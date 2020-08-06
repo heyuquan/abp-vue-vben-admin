@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.PermissionManagement.EntityFrameworkCore" Version="3.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Leopard.Core\Leopard.Core.csproj" />
+    <ProjectReference Include="..\Leopard.EntityFrameworkCore\Leopard.EntityFrameworkCore.csproj" />
+  </ItemGroup>
+
+</Project>
