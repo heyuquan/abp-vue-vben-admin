@@ -1,0 +1,4 @@
+Ec.Admin.Web	(Identity)			https://localhost:50046
+
+Ec.Admin.IdentityServer.Web			https://localhost:40048
+Ec.Admin.IdentityServer AuthServer	https://localhost:40048

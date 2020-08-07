@@ -23,6 +23,9 @@ using Volo.Abp.Caching.StackExchangeRedis;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Volo.Abp.VirtualFileSystem;
+using Volo.Abp.Guids;
+using Volo.Abp.Localization.ExceptionHandling;
+using Mk.DemoB.Localization;
 
 namespace Mk.DemoB
 {
@@ -52,6 +55,17 @@ namespace Mk.DemoB
             ConfigureRedis(context, configuration, hostingEnvironment);
             ConfigureCors(context, configuration);
             ConfigureSwaggerServices(context);
+
+            Configure<AbpSequentialGuidGeneratorOptions>(options =>
+            {
+                options.DefaultSequentialGuidType = SequentialGuidType.SequentialAsString;
+            });
+
+            // 使用错误代码
+            context.Services.Configure<AbpExceptionLocalizationOptions>(options =>
+            {
+                options.MapCodeNamespace("DemoBError", typeof(DemoBResource));
+            });
         }
 
         private void ConfigureCache(IConfiguration configuration)
