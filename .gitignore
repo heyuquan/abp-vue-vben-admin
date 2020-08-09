@@ -254,5 +254,3 @@ paket-files/
 # User
 **/Logs/
 
-/Leopard.Framework/Demo/Mk.DemoB/src/Mk.DemoB.HttpApi.Host/Logs
-/Mk.DemoB/src/Mk.DemoB.HttpApi.Host/Logs/logs.txt
