@@ -252,5 +252,5 @@ paket-files/
 *.sln.iml
 
 # User
-*/Logs/**
+*/Logs/
 
