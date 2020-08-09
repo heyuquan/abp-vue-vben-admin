@@ -1,4 +1,5 @@
-﻿using Volo.Abp.Settings;
+﻿using Volo.Abp.SettingManagement;
+using Volo.Abp.Settings;
 
 namespace Mk.DemoB.Settings
 {
@@ -8,6 +9,10 @@ namespace Mk.DemoB.Settings
         {
             //Define your own settings here. Example:
             //context.Add(new SettingDefinition(DemoBSettings.MySetting1));
+
+            context.Add(new SettingDefinition(DemoBSettings.CompanyName, "BAT"));
+            context.Add(new SettingDefinition(name: DemoBSettings.CompanySecretKey, defaultValue: "123456", isEncrypted: true));
+
         }
     }
 }

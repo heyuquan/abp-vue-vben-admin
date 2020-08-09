@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Volo.Abp;
 using Volo.Abp.Validation;
 
-namespace Mk.DemoB.ErrorAppService
+namespace Mk.DemoB.Application
 {
     public class ErrorAppService : DemoBAppService
     {

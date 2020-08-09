@@ -252,9 +252,5 @@ paket-files/
 *.sln.iml
 
 # User
-src/Imc.User.Web/Logs/*
-src/Imc.User.Web/Logs/*
-src/Imc.User.IdentityServer/Logs/*
-src/Imc.User.HttpApi.Host/Logs/*
-src/Imc.User.HttpApi.HostWithIds/Logs/*
-src/Imc.User.DbMigrator/Logs/*
+*/Logs/**
+
