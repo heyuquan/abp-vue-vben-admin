@@ -7,6 +7,7 @@ using Hangfire.MySql;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using System.Transactions;
+using Hangfire.Dashboard.BasicAuthorization;
 
 namespace Mk.DemoB.BackgroundJobs
 {
@@ -26,7 +27,7 @@ namespace Mk.DemoB.BackgroundJobs
                            QueuePollInterval = TimeSpan.FromSeconds(15),
                            JobExpirationCheckInterval = TimeSpan.FromHours(1),
                            CountersAggregateInterval = TimeSpan.FromMinutes(5),
-                           PrepareSchemaIfNecessary = false,
+                           PrepareSchemaIfNecessary = true,
                            DashboardJobListLimit = 50000,
                            TransactionTimeout = TimeSpan.FromMinutes(1),
                            TablesPrefix = "Hangfire_"
@@ -46,9 +47,32 @@ namespace Mk.DemoB.BackgroundJobs
         public override void OnApplicationInitialization(ApplicationInitializationContext context)
         {
             var app = context.GetApplicationBuilder();
+            var configuration = context.GetConfiguration();
 
             app.UseHangfireServer();
-            app.UseHangfireDashboard();
+
+            app.UseHangfireDashboard(options: new DashboardOptions
+            {
+                Authorization = new[]
+                {
+                    new BasicAuthAuthorizationFilter(new BasicAuthAuthorizationFilterOptions
+                    {
+                        RequireSsl = false,
+                        SslRedirect = false,
+                        LoginCaseSensitive = true,
+                        Users = new []
+                        {
+                            new BasicAuthAuthorizationUser
+                            {
+                                Login = configuration["Hangfire:Login"],
+                                PasswordClear =  configuration["Hangfire:Password"]
+                            }
+                        }
+                    })
+                },
+                DashboardTitle = "任务调度中心"
+            });
+
         }
     }
 }
