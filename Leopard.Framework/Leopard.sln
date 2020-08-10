@@ -3,31 +3,31 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29020.237
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.Domain", "Demo\Mk.DemoB\src\Mk.DemoB.Domain\Mk.DemoB.Domain.csproj", "{554AD327-6DBA-4F8F-96F8-81CE7A0C863F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.Domain", "..\Mk.DemoB\src\Mk.DemoB.Domain\Mk.DemoB.Domain.csproj", "{554AD327-6DBA-4F8F-96F8-81CE7A0C863F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.Application", "Demo\Mk.DemoB\src\Mk.DemoB.Application\Mk.DemoB.Application.csproj", "{1A94A50E-06DC-43C1-80B5-B662820EC3EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.Application", "..\Mk.DemoB\src\Mk.DemoB.Application\Mk.DemoB.Application.csproj", "{1A94A50E-06DC-43C1-80B5-B662820EC3EB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.EntityFrameworkCore", "Demo\Mk.DemoB\src\Mk.DemoB.EntityFrameworkCore\Mk.DemoB.EntityFrameworkCore.csproj", "{C956DD76-69C8-4A9C-83EA-D17DF83340FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.EntityFrameworkCore", "..\Mk.DemoB\src\Mk.DemoB.EntityFrameworkCore\Mk.DemoB.EntityFrameworkCore.csproj", "{C956DD76-69C8-4A9C-83EA-D17DF83340FD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03_DemoB", "03_DemoB", "{CA9AC87F-097E-4F15-8393-4BC07735A5B0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.EntityFrameworkCore.DbMigrations", "Demo\Mk.DemoB\src\Mk.DemoB.EntityFrameworkCore.DbMigrations\Mk.DemoB.EntityFrameworkCore.DbMigrations.csproj", "{0372FA84-C517-4EB3-9A9F-B9ACAC0CA5E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.EntityFrameworkCore.DbMigrations", "..\Mk.DemoB\src\Mk.DemoB.EntityFrameworkCore.DbMigrations\Mk.DemoB.EntityFrameworkCore.DbMigrations.csproj", "{0372FA84-C517-4EB3-9A9F-B9ACAC0CA5E0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.Domain.Shared", "Demo\Mk.DemoB\src\Mk.DemoB.Domain.Shared\Mk.DemoB.Domain.Shared.csproj", "{42F719ED-8413-4895-B5B4-5AB56079BC66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.Domain.Shared", "..\Mk.DemoB\src\Mk.DemoB.Domain.Shared\Mk.DemoB.Domain.Shared.csproj", "{42F719ED-8413-4895-B5B4-5AB56079BC66}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.Application.Contracts", "Demo\Mk.DemoB\src\Mk.DemoB.Application.Contracts\Mk.DemoB.Application.Contracts.csproj", "{520659C8-C734-4298-A3DA-B539DB9DFC0B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.Application.Contracts", "..\Mk.DemoB\src\Mk.DemoB.Application.Contracts\Mk.DemoB.Application.Contracts.csproj", "{520659C8-C734-4298-A3DA-B539DB9DFC0B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.HttpApi", "Demo\Mk.DemoB\src\Mk.DemoB.HttpApi\Mk.DemoB.HttpApi.csproj", "{4164BDF7-F527-4E85-9CE6-E3C2D7426A27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.HttpApi", "..\Mk.DemoB\src\Mk.DemoB.HttpApi\Mk.DemoB.HttpApi.csproj", "{4164BDF7-F527-4E85-9CE6-E3C2D7426A27}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.HttpApi.Client", "Demo\Mk.DemoB\src\Mk.DemoB.HttpApi.Client\Mk.DemoB.HttpApi.Client.csproj", "{3B5A0094-670D-4BB1-BFDD-61B88A8773DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.HttpApi.Client", "..\Mk.DemoB\src\Mk.DemoB.HttpApi.Client\Mk.DemoB.HttpApi.Client.csproj", "{3B5A0094-670D-4BB1-BFDD-61B88A8773DC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.Web", "Demo\Mk.DemoB\src\Mk.DemoB.Web\Mk.DemoB.Web.csproj", "{6FE54035-9C11-4702-A5E2-D16F23101468}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.Web", "..\Mk.DemoB\src\Mk.DemoB.Web\Mk.DemoB.Web.csproj", "{6FE54035-9C11-4702-A5E2-D16F23101468}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.IdentityServer", "Demo\Mk.DemoB\src\Mk.DemoB.IdentityServer\Mk.DemoB.IdentityServer.csproj", "{073C361E-B8F4-49F5-93CC-72A3FF49C026}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.IdentityServer", "..\Mk.DemoB\src\Mk.DemoB.IdentityServer\Mk.DemoB.IdentityServer.csproj", "{073C361E-B8F4-49F5-93CC-72A3FF49C026}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.HttpApi.Host", "Demo\Mk.DemoB\src\Mk.DemoB.HttpApi.Host\Mk.DemoB.HttpApi.Host.csproj", "{E6D5BF0E-DE92-4D82-A352-EF04B37CB11C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.HttpApi.Host", "..\Mk.DemoB\src\Mk.DemoB.HttpApi.Host\Mk.DemoB.HttpApi.Host.csproj", "{E6D5BF0E-DE92-4D82-A352-EF04B37CB11C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.DbMigrator", "Demo\Mk.DemoB\src\Mk.DemoB.DbMigrator\Mk.DemoB.DbMigrator.csproj", "{AA94D832-1CCC-4715-95A9-A483F23A1A5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.DbMigrator", "..\Mk.DemoB\src\Mk.DemoB.DbMigrator\Mk.DemoB.DbMigrator.csproj", "{AA94D832-1CCC-4715-95A9-A483F23A1A5D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02_Framework", "02_Framework", "{408C61DE-C824-4BA2-8EE7-CE571EA864B5}"
 EndProject
@@ -56,6 +56,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01_Document", "01_Document"
 		..\Doc\architecture instructions.txt = ..\Doc\architecture instructions.txt
 		..\Doc\my_demo.txt = ..\Doc\my_demo.txt
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.BackgroundJobs", "..\Mk.DemoB\src\Mk.DemoB.BackgroundJobs\Mk.DemoB.BackgroundJobs.csproj", "{E7E1C844-2434-44D8-8060-8F145785722C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -151,6 +153,10 @@ Global
 		{F34CB1A6-4FF2-4161-8365-CAE4E0DD654E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F34CB1A6-4FF2-4161-8365-CAE4E0DD654E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F34CB1A6-4FF2-4161-8365-CAE4E0DD654E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7E1C844-2434-44D8-8060-8F145785722C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7E1C844-2434-44D8-8060-8F145785722C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7E1C844-2434-44D8-8060-8F145785722C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7E1C844-2434-44D8-8060-8F145785722C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -178,6 +184,7 @@ Global
 		{4A827D0D-44D9-4F86-8158-A3F1B12F1950} = {408C61DE-C824-4BA2-8EE7-CE571EA864B5}
 		{8B34E5EC-1B0E-41ED-872B-7905023E966A} = {408C61DE-C824-4BA2-8EE7-CE571EA864B5}
 		{F34CB1A6-4FF2-4161-8365-CAE4E0DD654E} = {408C61DE-C824-4BA2-8EE7-CE571EA864B5}
+		{E7E1C844-2434-44D8-8060-8F145785722C} = {CA9AC87F-097E-4F15-8393-4BC07735A5B0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {28315BFD-90E7-4E14-A2EA-F3D23AF4126F}

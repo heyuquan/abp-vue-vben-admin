@@ -11,12 +11,13 @@ namespace Mk.DemoB
         public static int Main(string[] args)
         {
             Log.Logger = new LoggerConfiguration()
-#if DEBUG
-                .MinimumLevel.Debug()
-#else
-                .MinimumLevel.Information()
-#endif
-                .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+//#if DEBUG
+//                .MinimumLevel.Debug()
+//#else
+//                .MinimumLevel.Information()
+//#endif
+//                .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+                .MinimumLevel.Warning()
                 .Enrich.FromLogContext()
                 .WriteTo.Async(c => c.File("Logs/logs.txt"))
                 .CreateLogger();

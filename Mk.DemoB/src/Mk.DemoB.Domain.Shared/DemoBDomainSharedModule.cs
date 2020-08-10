@@ -41,7 +41,7 @@ namespace Mk.DemoB
             Configure<AbpLocalizationOptions>(options =>
             {
                 options.Resources
-                    .Add<DemoBResource>("en")
+                    .Add<DemoBResource>("en")  //Define the resource by "en" default culture
                     .AddBaseTypes(typeof(AbpValidationResource))
                     .AddVirtualJson("/Localization/DemoB");
                 

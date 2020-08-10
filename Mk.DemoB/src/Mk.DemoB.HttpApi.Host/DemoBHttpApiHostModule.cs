@@ -23,6 +23,11 @@ using Volo.Abp.Caching.StackExchangeRedis;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Volo.Abp.VirtualFileSystem;
+using Volo.Abp.Guids;
+using Volo.Abp.Localization.ExceptionHandling;
+using Mk.DemoB.Localization;
+using Volo.Abp.BackgroundJobs;
+using Mk.DemoB.BackgroundJobs;
 
 namespace Mk.DemoB
 {
@@ -33,7 +38,8 @@ namespace Mk.DemoB
         typeof(AbpAspNetCoreMvcUiMultiTenancyModule),
         typeof(DemoBApplicationModule),
         typeof(DemoBEntityFrameworkCoreDbMigrationsModule),
-        typeof(AbpAspNetCoreSerilogModule)
+        typeof(AbpAspNetCoreSerilogModule),
+        typeof(DemoBBackgroundJobsModule)
         )]
     public class DemoBHttpApiHostModule : AbpModule
     {
@@ -52,6 +58,23 @@ namespace Mk.DemoB
             ConfigureRedis(context, configuration, hostingEnvironment);
             ConfigureCors(context, configuration);
             ConfigureSwaggerServices(context);
+
+            Configure<AbpSequentialGuidGeneratorOptions>(options =>
+            {
+                options.DefaultSequentialGuidType = SequentialGuidType.SequentialAsString;
+            });
+
+            // 使用错误代码
+            context.Services.Configure<AbpExceptionLocalizationOptions>(options =>
+            {
+                options.MapCodeNamespace("DemoBError", typeof(DemoBResource));
+            });
+
+            //// 禁用 BackgroundJob
+            //Configure<AbpBackgroundJobOptions>(options =>
+            //{
+            //    options.IsJobExecutionEnabled = false;
+            //});
         }
 
         private void ConfigureCache(IConfiguration configuration)
@@ -111,13 +134,13 @@ namespace Mk.DemoB
         {
             Configure<AbpLocalizationOptions>(options =>
             {
-                options.Languages.Add(new LanguageInfo("cs", "cs", "Čeština"));
+                //options.Languages.Add(new LanguageInfo("cs", "cs", "Čeština"));
                 options.Languages.Add(new LanguageInfo("en", "en", "English"));
-                options.Languages.Add(new LanguageInfo("pt-BR", "pt-BR", "Português"));
-                options.Languages.Add(new LanguageInfo("ru", "ru", "Русский"));
-                options.Languages.Add(new LanguageInfo("tr", "tr", "Türkçe"));
+                //options.Languages.Add(new LanguageInfo("pt-BR", "pt-BR", "Português"));
+                //options.Languages.Add(new LanguageInfo("ru", "ru", "Русский"));
+                //options.Languages.Add(new LanguageInfo("tr", "tr", "Türkçe"));
                 options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "简体中文"));
-                options.Languages.Add(new LanguageInfo("zh-Hant", "zh-Hant", "繁體中文"));
+                //options.Languages.Add(new LanguageInfo("zh-Hant", "zh-Hant", "繁體中文"));
             });
         }
 

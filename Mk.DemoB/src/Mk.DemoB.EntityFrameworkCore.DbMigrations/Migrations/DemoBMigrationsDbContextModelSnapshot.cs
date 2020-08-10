@@ -23,100 +23,103 @@ namespace Mk.DemoB.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("ApplicationName")
-                        .HasColumnName("ApplicationName")
+                        .HasColumnName("application_name")
                         .HasColumnType("varchar(96) CHARACTER SET utf8mb4")
                         .HasMaxLength(96);
 
                     b.Property<string>("BrowserInfo")
-                        .HasColumnName("BrowserInfo")
+                        .HasColumnName("browser_info")
                         .HasColumnType("varchar(512) CHARACTER SET utf8mb4")
                         .HasMaxLength(512);
 
                     b.Property<string>("ClientId")
-                        .HasColumnName("ClientId")
+                        .HasColumnName("client_id")
                         .HasColumnType("varchar(64) CHARACTER SET utf8mb4")
                         .HasMaxLength(64);
 
                     b.Property<string>("ClientIpAddress")
-                        .HasColumnName("ClientIpAddress")
+                        .HasColumnName("client_ip_address")
                         .HasColumnType("varchar(64) CHARACTER SET utf8mb4")
                         .HasMaxLength(64);
 
                     b.Property<string>("ClientName")
-                        .HasColumnName("ClientName")
+                        .HasColumnName("client_name")
                         .HasColumnType("varchar(128) CHARACTER SET utf8mb4")
                         .HasMaxLength(128);
 
                     b.Property<string>("Comments")
-                        .HasColumnName("Comments")
+                        .HasColumnName("comments")
                         .HasColumnType("varchar(256) CHARACTER SET utf8mb4")
                         .HasMaxLength(256);
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnName("ConcurrencyStamp")
+                        .HasColumnName("concurrency_stamp")
                         .HasColumnType("varchar(40) CHARACTER SET utf8mb4")
                         .HasMaxLength(40);
 
                     b.Property<string>("CorrelationId")
-                        .HasColumnName("CorrelationId")
+                        .HasColumnName("correlation_id")
                         .HasColumnType("varchar(64) CHARACTER SET utf8mb4")
                         .HasMaxLength(64);
 
                     b.Property<string>("Exceptions")
-                        .HasColumnName("Exceptions")
+                        .HasColumnName("exceptions")
                         .HasColumnType("longtext CHARACTER SET utf8mb4")
                         .HasMaxLength(4000);
 
                     b.Property<int>("ExecutionDuration")
-                        .HasColumnName("ExecutionDuration")
+                        .HasColumnName("execution_duration")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("ExecutionTime")
+                        .HasColumnName("execution_time")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("ExtraProperties")
-                        .HasColumnName("ExtraProperties")
+                        .HasColumnName("extra_properties")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("HttpMethod")
-                        .HasColumnName("HttpMethod")
+                        .HasColumnName("http_method")
                         .HasColumnType("varchar(16) CHARACTER SET utf8mb4")
                         .HasMaxLength(16);
 
                     b.Property<int?>("HttpStatusCode")
-                        .HasColumnName("HttpStatusCode")
+                        .HasColumnName("http_status_code")
                         .HasColumnType("int");
 
                     b.Property<Guid?>("ImpersonatorTenantId")
-                        .HasColumnName("ImpersonatorTenantId")
+                        .HasColumnName("impersonator_tenant_id")
                         .HasColumnType("char(36)");
 
                     b.Property<Guid?>("ImpersonatorUserId")
-                        .HasColumnName("ImpersonatorUserId")
+                        .HasColumnName("impersonator_user_id")
                         .HasColumnType("char(36)");
 
                     b.Property<Guid?>("TenantId")
-                        .HasColumnName("TenantId")
+                        .HasColumnName("tenant_id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("TenantName")
+                        .HasColumnName("tenant_name")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("Url")
-                        .HasColumnName("Url")
+                        .HasColumnName("url")
                         .HasColumnType("varchar(256) CHARACTER SET utf8mb4")
                         .HasMaxLength(256);
 
                     b.Property<Guid?>("UserId")
-                        .HasColumnName("UserId")
+                        .HasColumnName("user_id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("UserName")
-                        .HasColumnName("UserName")
+                        .HasColumnName("user_name")
                         .HasColumnType("varchar(256) CHARACTER SET utf8mb4")
                         .HasMaxLength(256);
 
@@ -126,48 +129,49 @@ namespace Mk.DemoB.Migrations
 
                     b.HasIndex("TenantId", "UserId", "ExecutionTime");
 
-                    b.ToTable("AbpAuditLogs");
+                    b.ToTable("abp_audit_logs");
                 });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.AuditLogAction", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("char(36)");
 
                     b.Property<Guid>("AuditLogId")
-                        .HasColumnName("AuditLogId")
+                        .HasColumnName("audit_log_id")
                         .HasColumnType("char(36)");
 
                     b.Property<int>("ExecutionDuration")
-                        .HasColumnName("ExecutionDuration")
+                        .HasColumnName("execution_duration")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("ExecutionTime")
-                        .HasColumnName("ExecutionTime")
+                        .HasColumnName("execution_time")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("ExtraProperties")
-                        .HasColumnName("ExtraProperties")
+                        .HasColumnName("extra_properties")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("MethodName")
-                        .HasColumnName("MethodName")
+                        .HasColumnName("method_name")
                         .HasColumnType("varchar(128) CHARACTER SET utf8mb4")
                         .HasMaxLength(128);
 
                     b.Property<string>("Parameters")
-                        .HasColumnName("Parameters")
+                        .HasColumnName("parameters")
                         .HasColumnType("varchar(2000) CHARACTER SET utf8mb4")
                         .HasMaxLength(2000);
 
                     b.Property<string>("ServiceName")
-                        .HasColumnName("ServiceName")
+                        .HasColumnName("service_name")
                         .HasColumnType("varchar(256) CHARACTER SET utf8mb4")
                         .HasMaxLength(256);
 
                     b.Property<Guid?>("TenantId")
-                        .HasColumnName("TenantId")
+                        .HasColumnName("tenant_id")
                         .HasColumnType("char(36)");
 
                     b.HasKey("Id");
@@ -176,48 +180,50 @@ namespace Mk.DemoB.Migrations
 
                     b.HasIndex("TenantId", "ServiceName", "MethodName", "ExecutionTime");
 
-                    b.ToTable("AbpAuditLogActions");
+                    b.ToTable("abp_audit_log_actions");
                 });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.EntityChange", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("char(36)");
 
                     b.Property<Guid>("AuditLogId")
-                        .HasColumnName("AuditLogId")
+                        .HasColumnName("audit_log_id")
                         .HasColumnType("char(36)");
 
                     b.Property<DateTime>("ChangeTime")
-                        .HasColumnName("ChangeTime")
+                        .HasColumnName("change_time")
                         .HasColumnType("datetime(6)");
 
                     b.Property<byte>("ChangeType")
-                        .HasColumnName("ChangeType")
+                        .HasColumnName("change_type")
                         .HasColumnType("tinyint unsigned");
 
                     b.Property<string>("EntityId")
                         .IsRequired()
-                        .HasColumnName("EntityId")
+                        .HasColumnName("entity_id")
                         .HasColumnType("varchar(128) CHARACTER SET utf8mb4")
                         .HasMaxLength(128);
 
                     b.Property<Guid?>("EntityTenantId")
+                        .HasColumnName("entity_tenant_id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("EntityTypeFullName")
                         .IsRequired()
-                        .HasColumnName("EntityTypeFullName")
+                        .HasColumnName("entity_type_full_name")
                         .HasColumnType("varchar(128) CHARACTER SET utf8mb4")
                         .HasMaxLength(128);
 
                     b.Property<string>("ExtraProperties")
-                        .HasColumnName("ExtraProperties")
+                        .HasColumnName("extra_properties")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<Guid?>("TenantId")
-                        .HasColumnName("TenantId")
+                        .HasColumnName("tenant_id")
                         .HasColumnType("char(36)");
 
                     b.HasKey("Id");
@@ -226,99 +232,109 @@ namespace Mk.DemoB.Migrations
 
                     b.HasIndex("TenantId", "EntityTypeFullName", "EntityId");
 
-                    b.ToTable("AbpEntityChanges");
+                    b.ToTable("abp_entity_changes");
                 });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.EntityPropertyChange", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("char(36)");
 
                     b.Property<Guid>("EntityChangeId")
+                        .HasColumnName("entity_change_id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("NewValue")
-                        .HasColumnName("NewValue")
+                        .HasColumnName("new_value")
                         .HasColumnType("varchar(512) CHARACTER SET utf8mb4")
                         .HasMaxLength(512);
 
                     b.Property<string>("OriginalValue")
-                        .HasColumnName("OriginalValue")
+                        .HasColumnName("original_value")
                         .HasColumnType("varchar(512) CHARACTER SET utf8mb4")
                         .HasMaxLength(512);
 
                     b.Property<string>("PropertyName")
                         .IsRequired()
-                        .HasColumnName("PropertyName")
+                        .HasColumnName("property_name")
                         .HasColumnType("varchar(128) CHARACTER SET utf8mb4")
                         .HasMaxLength(128);
 
                     b.Property<string>("PropertyTypeFullName")
                         .IsRequired()
-                        .HasColumnName("PropertyTypeFullName")
+                        .HasColumnName("property_type_full_name")
                         .HasColumnType("varchar(64) CHARACTER SET utf8mb4")
                         .HasMaxLength(64);
 
                     b.Property<Guid?>("TenantId")
-                        .HasColumnName("TenantId")
+                        .HasColumnName("tenant_id")
                         .HasColumnType("char(36)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("EntityChangeId");
 
-                    b.ToTable("AbpEntityPropertyChanges");
+                    b.ToTable("abp_entity_property_changes");
                 });
 
             modelBuilder.Entity("Volo.Abp.BackgroundJobs.BackgroundJobRecord", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnName("ConcurrencyStamp")
+                        .HasColumnName("concurrency_stamp")
                         .HasColumnType("varchar(40) CHARACTER SET utf8mb4")
                         .HasMaxLength(40);
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnName("CreationTime")
+                        .HasColumnName("creation_time")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("ExtraProperties")
-                        .HasColumnName("ExtraProperties")
+                        .HasColumnName("extra_properties")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<bool>("IsAbandoned")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("is_abandoned")
                         .HasColumnType("tinyint(1)")
                         .HasDefaultValue(false);
 
                     b.Property<string>("JobArgs")
                         .IsRequired()
+                        .HasColumnName("job_args")
                         .HasColumnType("longtext CHARACTER SET utf8mb4")
                         .HasMaxLength(1048576);
 
                     b.Property<string>("JobName")
                         .IsRequired()
+                        .HasColumnName("job_name")
                         .HasColumnType("varchar(128) CHARACTER SET utf8mb4")
                         .HasMaxLength(128);
 
                     b.Property<DateTime?>("LastTryTime")
+                        .HasColumnName("last_try_time")
                         .HasColumnType("datetime(6)");
 
                     b.Property<DateTime>("NextTryTime")
+                        .HasColumnName("next_try_time")
                         .HasColumnType("datetime(6)");
 
                     b.Property<byte>("Priority")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("priority")
                         .HasColumnType("tinyint unsigned")
                         .HasDefaultValue((byte)15);
 
                     b.Property<short>("TryCount")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("try_count")
                         .HasColumnType("smallint")
                         .HasDefaultValue((short)0);
 
@@ -326,30 +342,35 @@ namespace Mk.DemoB.Migrations
 
                     b.HasIndex("IsAbandoned", "NextTryTime");
 
-                    b.ToTable("AbpBackgroundJobs");
+                    b.ToTable("abp_background_jobs");
                 });
 
             modelBuilder.Entity("Volo.Abp.FeatureManagement.FeatureValue", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasColumnName("name")
                         .HasColumnType("varchar(128) CHARACTER SET utf8mb4")
                         .HasMaxLength(128);
 
                     b.Property<string>("ProviderKey")
+                        .HasColumnName("provider_key")
                         .HasColumnType("varchar(64) CHARACTER SET utf8mb4")
                         .HasMaxLength(64);
 
                     b.Property<string>("ProviderName")
+                        .HasColumnName("provider_name")
                         .HasColumnType("varchar(64) CHARACTER SET utf8mb4")
                         .HasMaxLength(64);
 
                     b.Property<string>("Value")
                         .IsRequired()
+                        .HasColumnName("value")
                         .HasColumnType("varchar(128) CHARACTER SET utf8mb4")
                         .HasMaxLength(128);
 
@@ -357,263 +378,280 @@ namespace Mk.DemoB.Migrations
 
                     b.HasIndex("Name", "ProviderName", "ProviderKey");
 
-                    b.ToTable("AbpFeatureValues");
+                    b.ToTable("abp_feature_values");
                 });
 
             modelBuilder.Entity("Volo.Abp.Identity.IdentityClaimType", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnName("ConcurrencyStamp")
+                        .HasColumnName("concurrency_stamp")
                         .HasColumnType("varchar(40) CHARACTER SET utf8mb4")
                         .HasMaxLength(40);
 
                     b.Property<string>("Description")
+                        .HasColumnName("description")
                         .HasColumnType("varchar(256) CHARACTER SET utf8mb4")
                         .HasMaxLength(256);
 
                     b.Property<string>("ExtraProperties")
-                        .HasColumnName("ExtraProperties")
+                        .HasColumnName("extra_properties")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<bool>("IsStatic")
+                        .HasColumnName("is_static")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasColumnName("name")
                         .HasColumnType("varchar(256) CHARACTER SET utf8mb4")
                         .HasMaxLength(256);
 
                     b.Property<string>("Regex")
+                        .HasColumnName("regex")
                         .HasColumnType("varchar(512) CHARACTER SET utf8mb4")
                         .HasMaxLength(512);
 
                     b.Property<string>("RegexDescription")
+                        .HasColumnName("regex_description")
                         .HasColumnType("varchar(128) CHARACTER SET utf8mb4")
                         .HasMaxLength(128);
 
                     b.Property<bool>("Required")
+                        .HasColumnName("required")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<int>("ValueType")
+                        .HasColumnName("value_type")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("AbpClaimTypes");
+                    b.ToTable("abp_claim_types");
                 });
 
             modelBuilder.Entity("Volo.Abp.Identity.IdentityRole", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnName("ConcurrencyStamp")
+                        .HasColumnName("concurrency_stamp")
                         .HasColumnType("varchar(40) CHARACTER SET utf8mb4")
                         .HasMaxLength(40);
 
                     b.Property<string>("ExtraProperties")
-                        .HasColumnName("ExtraProperties")
+                        .HasColumnName("extra_properties")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<bool>("IsDefault")
-                        .HasColumnName("IsDefault")
+                        .HasColumnName("is_default")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<bool>("IsPublic")
-                        .HasColumnName("IsPublic")
+                        .HasColumnName("is_public")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<bool>("IsStatic")
-                        .HasColumnName("IsStatic")
+                        .HasColumnName("is_static")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasColumnName("name")
                         .HasColumnType("varchar(256) CHARACTER SET utf8mb4")
                         .HasMaxLength(256);
 
                     b.Property<string>("NormalizedName")
                         .IsRequired()
+                        .HasColumnName("normalized_name")
                         .HasColumnType("varchar(256) CHARACTER SET utf8mb4")
                         .HasMaxLength(256);
 
                     b.Property<Guid?>("TenantId")
-                        .HasColumnName("TenantId")
+                        .HasColumnName("tenant_id")
                         .HasColumnType("char(36)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedName");
 
-                    b.ToTable("AbpRoles");
+                    b.ToTable("abp_roles");
                 });
 
             modelBuilder.Entity("Volo.Abp.Identity.IdentityRoleClaim", b =>
                 {
                     b.Property<Guid>("Id")
+                        .HasColumnName("id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("ClaimType")
                         .IsRequired()
+                        .HasColumnName("claim_type")
                         .HasColumnType("varchar(256) CHARACTER SET utf8mb4")
                         .HasMaxLength(256);
 
                     b.Property<string>("ClaimValue")
+                        .HasColumnName("claim_value")
                         .HasColumnType("varchar(1024) CHARACTER SET utf8mb4")
                         .HasMaxLength(1024);
 
                     b.Property<Guid>("RoleId")
+                        .HasColumnName("role_id")
                         .HasColumnType("char(36)");
 
                     b.Property<Guid?>("TenantId")
-                        .HasColumnName("TenantId")
+                        .HasColumnName("tenant_id")
                         .HasColumnType("char(36)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AbpRoleClaims");
+                    b.ToTable("abp_role_claims");
                 });
 
             modelBuilder.Entity("Volo.Abp.Identity.IdentityUser", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("char(36)");
 
                     b.Property<int>("AccessFailedCount")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("AccessFailedCount")
+                        .HasColumnName("access_failed_count")
                         .HasColumnType("int")
                         .HasDefaultValue(0);
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnName("ConcurrencyStamp")
+                        .HasColumnName("concurrency_stamp")
                         .HasColumnType("varchar(40) CHARACTER SET utf8mb4")
                         .HasMaxLength(40);
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnName("CreationTime")
+                        .HasColumnName("creation_time")
                         .HasColumnType("datetime(6)");
 
                     b.Property<Guid?>("CreatorId")
-                        .HasColumnName("CreatorId")
+                        .HasColumnName("creator_id")
                         .HasColumnType("char(36)");
 
                     b.Property<Guid?>("DeleterId")
-                        .HasColumnName("DeleterId")
+                        .HasColumnName("deleter_id")
                         .HasColumnType("char(36)");
 
                     b.Property<DateTime?>("DeletionTime")
-                        .HasColumnName("DeletionTime")
+                        .HasColumnName("deletion_time")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnName("Email")
+                        .HasColumnName("email")
                         .HasColumnType("varchar(256) CHARACTER SET utf8mb4")
                         .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("EmailConfirmed")
+                        .HasColumnName("email_confirmed")
                         .HasColumnType("tinyint(1)")
                         .HasDefaultValue(false);
 
                     b.Property<string>("ExtraProperties")
-                        .HasColumnName("ExtraProperties")
+                        .HasColumnName("extra_properties")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("IsDeleted")
+                        .HasColumnName("is_deleted")
                         .HasColumnType("tinyint(1)")
                         .HasDefaultValue(false);
 
                     b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnName("LastModificationTime")
+                        .HasColumnName("last_modification_time")
                         .HasColumnType("datetime(6)");
 
                     b.Property<Guid?>("LastModifierId")
-                        .HasColumnName("LastModifierId")
+                        .HasColumnName("last_modifier_id")
                         .HasColumnType("char(36)");
 
                     b.Property<bool>("LockoutEnabled")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("LockoutEnabled")
+                        .HasColumnName("lockout_enabled")
                         .HasColumnType("tinyint(1)")
                         .HasDefaultValue(false);
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnName("lockout_end")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Name")
-                        .HasColumnName("Name")
+                        .HasColumnName("name")
                         .HasColumnType("varchar(64) CHARACTER SET utf8mb4")
                         .HasMaxLength(64);
 
                     b.Property<string>("NormalizedEmail")
                         .IsRequired()
-                        .HasColumnName("NormalizedEmail")
+                        .HasColumnName("normalized_email")
                         .HasColumnType("varchar(256) CHARACTER SET utf8mb4")
                         .HasMaxLength(256);
 
                     b.Property<string>("NormalizedUserName")
                         .IsRequired()
-                        .HasColumnName("NormalizedUserName")
+                        .HasColumnName("normalized_user_name")
                         .HasColumnType("varchar(256) CHARACTER SET utf8mb4")
                         .HasMaxLength(256);
 
                     b.Property<string>("PasswordHash")
-                        .HasColumnName("PasswordHash")
+                        .HasColumnName("password_hash")
                         .HasColumnType("varchar(256) CHARACTER SET utf8mb4")
                         .HasMaxLength(256);
 
                     b.Property<string>("PhoneNumber")
-                        .HasColumnName("PhoneNumber")
+                        .HasColumnName("phone_number")
                         .HasColumnType("varchar(16) CHARACTER SET utf8mb4")
                         .HasMaxLength(16);
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("PhoneNumberConfirmed")
+                        .HasColumnName("phone_number_confirmed")
                         .HasColumnType("tinyint(1)")
                         .HasDefaultValue(false);
 
                     b.Property<string>("SecurityStamp")
                         .IsRequired()
-                        .HasColumnName("SecurityStamp")
+                        .HasColumnName("security_stamp")
                         .HasColumnType("varchar(256) CHARACTER SET utf8mb4")
                         .HasMaxLength(256);
 
                     b.Property<string>("Surname")
-                        .HasColumnName("Surname")
+                        .HasColumnName("surname")
                         .HasColumnType("varchar(64) CHARACTER SET utf8mb4")
                         .HasMaxLength(64);
 
                     b.Property<Guid?>("TenantId")
-                        .HasColumnName("TenantId")
+                        .HasColumnName("tenant_id")
                         .HasColumnType("char(36)");
 
                     b.Property<bool>("TwoFactorEnabled")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("TwoFactorEnabled")
+                        .HasColumnName("two_factor_enabled")
                         .HasColumnType("tinyint(1)")
                         .HasDefaultValue(false);
 
                     b.Property<string>("UserName")
                         .IsRequired()
-                        .HasColumnName("UserName")
+                        .HasColumnName("user_name")
                         .HasColumnType("varchar(256) CHARACTER SET utf8mb4")
                         .HasMaxLength(256);
 
@@ -627,200 +665,218 @@ namespace Mk.DemoB.Migrations
 
                     b.HasIndex("UserName");
 
-                    b.ToTable("AbpUsers");
+                    b.ToTable("abp_users");
                 });
 
             modelBuilder.Entity("Volo.Abp.Identity.IdentityUserClaim", b =>
                 {
                     b.Property<Guid>("Id")
+                        .HasColumnName("id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("ClaimType")
                         .IsRequired()
+                        .HasColumnName("claim_type")
                         .HasColumnType("varchar(256) CHARACTER SET utf8mb4")
                         .HasMaxLength(256);
 
                     b.Property<string>("ClaimValue")
+                        .HasColumnName("claim_value")
                         .HasColumnType("varchar(1024) CHARACTER SET utf8mb4")
                         .HasMaxLength(1024);
 
                     b.Property<Guid?>("TenantId")
-                        .HasColumnName("TenantId")
+                        .HasColumnName("tenant_id")
                         .HasColumnType("char(36)");
 
                     b.Property<Guid>("UserId")
+                        .HasColumnName("user_id")
                         .HasColumnType("char(36)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AbpUserClaims");
+                    b.ToTable("abp_user_claims");
                 });
 
             modelBuilder.Entity("Volo.Abp.Identity.IdentityUserLogin", b =>
                 {
                     b.Property<Guid>("UserId")
+                        .HasColumnName("user_id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("LoginProvider")
+                        .HasColumnName("login_provider")
                         .HasColumnType("varchar(64) CHARACTER SET utf8mb4")
                         .HasMaxLength(64);
 
                     b.Property<string>("ProviderDisplayName")
+                        .HasColumnName("provider_display_name")
                         .HasColumnType("varchar(128) CHARACTER SET utf8mb4")
                         .HasMaxLength(128);
 
                     b.Property<string>("ProviderKey")
                         .IsRequired()
+                        .HasColumnName("provider_key")
                         .HasColumnType("varchar(196) CHARACTER SET utf8mb4")
                         .HasMaxLength(196);
 
                     b.Property<Guid?>("TenantId")
-                        .HasColumnName("TenantId")
+                        .HasColumnName("tenant_id")
                         .HasColumnType("char(36)");
 
                     b.HasKey("UserId", "LoginProvider");
 
                     b.HasIndex("LoginProvider", "ProviderKey");
 
-                    b.ToTable("AbpUserLogins");
+                    b.ToTable("abp_user_logins");
                 });
 
             modelBuilder.Entity("Volo.Abp.Identity.IdentityUserOrganizationUnit", b =>
                 {
                     b.Property<Guid>("OrganizationUnitId")
+                        .HasColumnName("organization_unit_id")
                         .HasColumnType("char(36)");
 
                     b.Property<Guid>("UserId")
+                        .HasColumnName("user_id")
                         .HasColumnType("char(36)");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnName("CreationTime")
+                        .HasColumnName("creation_time")
                         .HasColumnType("datetime(6)");
 
                     b.Property<Guid?>("CreatorId")
-                        .HasColumnName("CreatorId")
+                        .HasColumnName("creator_id")
                         .HasColumnType("char(36)");
 
                     b.Property<Guid?>("TenantId")
-                        .HasColumnName("TenantId")
+                        .HasColumnName("tenant_id")
                         .HasColumnType("char(36)");
 
                     b.HasKey("OrganizationUnitId", "UserId");
 
                     b.HasIndex("UserId", "OrganizationUnitId");
 
-                    b.ToTable("AbpUserOrganizationUnits");
+                    b.ToTable("abp_user_organization_units");
                 });
 
             modelBuilder.Entity("Volo.Abp.Identity.IdentityUserRole", b =>
                 {
                     b.Property<Guid>("UserId")
+                        .HasColumnName("user_id")
                         .HasColumnType("char(36)");
 
                     b.Property<Guid>("RoleId")
+                        .HasColumnName("role_id")
                         .HasColumnType("char(36)");
 
                     b.Property<Guid?>("TenantId")
-                        .HasColumnName("TenantId")
+                        .HasColumnName("tenant_id")
                         .HasColumnType("char(36)");
 
                     b.HasKey("UserId", "RoleId");
 
                     b.HasIndex("RoleId", "UserId");
 
-                    b.ToTable("AbpUserRoles");
+                    b.ToTable("abp_user_roles");
                 });
 
             modelBuilder.Entity("Volo.Abp.Identity.IdentityUserToken", b =>
                 {
                     b.Property<Guid>("UserId")
+                        .HasColumnName("user_id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("LoginProvider")
+                        .HasColumnName("login_provider")
                         .HasColumnType("varchar(64) CHARACTER SET utf8mb4")
                         .HasMaxLength(64);
 
                     b.Property<string>("Name")
+                        .HasColumnName("name")
                         .HasColumnType("varchar(128) CHARACTER SET utf8mb4")
                         .HasMaxLength(128);
 
                     b.Property<Guid?>("TenantId")
-                        .HasColumnName("TenantId")
+                        .HasColumnName("tenant_id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Value")
+                        .HasColumnName("value")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("AbpUserTokens");
+                    b.ToTable("abp_user_tokens");
                 });
 
             modelBuilder.Entity("Volo.Abp.Identity.OrganizationUnit", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Code")
                         .IsRequired()
-                        .HasColumnName("Code")
+                        .HasColumnName("code")
                         .HasColumnType("varchar(95) CHARACTER SET utf8mb4")
                         .HasMaxLength(95);
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnName("ConcurrencyStamp")
+                        .HasColumnName("concurrency_stamp")
                         .HasColumnType("varchar(40) CHARACTER SET utf8mb4")
                         .HasMaxLength(40);
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnName("CreationTime")
+                        .HasColumnName("creation_time")
                         .HasColumnType("datetime(6)");
 
                     b.Property<Guid?>("CreatorId")
-                        .HasColumnName("CreatorId")
+                        .HasColumnName("creator_id")
                         .HasColumnType("char(36)");
 
                     b.Property<Guid?>("DeleterId")
-                        .HasColumnName("DeleterId")
+                        .HasColumnName("deleter_id")
                         .HasColumnType("char(36)");
 
                     b.Property<DateTime?>("DeletionTime")
-                        .HasColumnName("DeletionTime")
+                        .HasColumnName("deletion_time")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("DisplayName")
                         .IsRequired()
-                        .HasColumnName("DisplayName")
+                        .HasColumnName("display_name")
                         .HasColumnType("varchar(128) CHARACTER SET utf8mb4")
                         .HasMaxLength(128);
 
                     b.Property<string>("ExtraProperties")
-                        .HasColumnName("ExtraProperties")
+                        .HasColumnName("extra_properties")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("IsDeleted")
+                        .HasColumnName("is_deleted")
                         .HasColumnType("tinyint(1)")
                         .HasDefaultValue(false);
 
                     b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnName("LastModificationTime")
+                        .HasColumnName("last_modification_time")
                         .HasColumnType("datetime(6)");
 
                     b.Property<Guid?>("LastModifierId")
-                        .HasColumnName("LastModifierId")
+                        .HasColumnName("last_modifier_id")
                         .HasColumnType("char(36)");
 
                     b.Property<Guid?>("ParentId")
+                        .HasColumnName("parent_id")
                         .HasColumnType("char(36)");
 
                     b.Property<Guid?>("TenantId")
-                        .HasColumnName("TenantId")
+                        .HasColumnName("tenant_id")
                         .HasColumnType("char(36)");
 
                     b.HasKey("Id");
@@ -829,566 +885,659 @@ namespace Mk.DemoB.Migrations
 
                     b.HasIndex("ParentId");
 
-                    b.ToTable("AbpOrganizationUnits");
+                    b.ToTable("abp_organization_units");
                 });
 
             modelBuilder.Entity("Volo.Abp.Identity.OrganizationUnitRole", b =>
                 {
                     b.Property<Guid>("OrganizationUnitId")
+                        .HasColumnName("organization_unit_id")
                         .HasColumnType("char(36)");
 
                     b.Property<Guid>("RoleId")
+                        .HasColumnName("role_id")
                         .HasColumnType("char(36)");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnName("CreationTime")
+                        .HasColumnName("creation_time")
                         .HasColumnType("datetime(6)");
 
                     b.Property<Guid?>("CreatorId")
-                        .HasColumnName("CreatorId")
+                        .HasColumnName("creator_id")
                         .HasColumnType("char(36)");
 
                     b.Property<Guid?>("TenantId")
-                        .HasColumnName("TenantId")
+                        .HasColumnName("tenant_id")
                         .HasColumnType("char(36)");
 
                     b.HasKey("OrganizationUnitId", "RoleId");
 
                     b.HasIndex("RoleId", "OrganizationUnitId");
 
-                    b.ToTable("AbpOrganizationUnitRoles");
+                    b.ToTable("abp_organization_unit_roles");
                 });
 
             modelBuilder.Entity("Volo.Abp.IdentityServer.ApiResources.ApiResource", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnName("ConcurrencyStamp")
+                        .HasColumnName("concurrency_stamp")
                         .HasColumnType("varchar(40) CHARACTER SET utf8mb4")
                         .HasMaxLength(40);
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnName("CreationTime")
+                        .HasColumnName("creation_time")
                         .HasColumnType("datetime(6)");
 
                     b.Property<Guid?>("CreatorId")
-                        .HasColumnName("CreatorId")
+                        .HasColumnName("creator_id")
                         .HasColumnType("char(36)");
 
                     b.Property<Guid?>("DeleterId")
-                        .HasColumnName("DeleterId")
+                        .HasColumnName("deleter_id")
                         .HasColumnType("char(36)");
 
                     b.Property<DateTime?>("DeletionTime")
-                        .HasColumnName("DeletionTime")
+                        .HasColumnName("deletion_time")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Description")
+                        .HasColumnName("description")
                         .HasColumnType("varchar(1000) CHARACTER SET utf8mb4")
                         .HasMaxLength(1000);
 
                     b.Property<string>("DisplayName")
+                        .HasColumnName("display_name")
                         .HasColumnType("varchar(200) CHARACTER SET utf8mb4")
                         .HasMaxLength(200);
 
                     b.Property<bool>("Enabled")
+                        .HasColumnName("enabled")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("ExtraProperties")
-                        .HasColumnName("ExtraProperties")
+                        .HasColumnName("extra_properties")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("IsDeleted")
+                        .HasColumnName("is_deleted")
                         .HasColumnType("tinyint(1)")
                         .HasDefaultValue(false);
 
                     b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnName("LastModificationTime")
+                        .HasColumnName("last_modification_time")
                         .HasColumnType("datetime(6)");
 
                     b.Property<Guid?>("LastModifierId")
-                        .HasColumnName("LastModifierId")
+                        .HasColumnName("last_modifier_id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasColumnName("name")
                         .HasColumnType("varchar(200) CHARACTER SET utf8mb4")
                         .HasMaxLength(200);
 
                     b.Property<string>("Properties")
+                        .HasColumnName("properties")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.HasKey("Id");
 
-                    b.ToTable("IdentityServerApiResources");
+                    b.ToTable("identity_server_api_resources");
                 });
 
             modelBuilder.Entity("Volo.Abp.IdentityServer.ApiResources.ApiResourceClaim", b =>
                 {
                     b.Property<Guid>("ApiResourceId")
+                        .HasColumnName("api_resource_id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Type")
+                        .HasColumnName("type")
                         .HasColumnType("varchar(200) CHARACTER SET utf8mb4")
                         .HasMaxLength(200);
 
                     b.HasKey("ApiResourceId", "Type");
 
-                    b.ToTable("IdentityServerApiClaims");
+                    b.ToTable("identity_server_api_claims");
                 });
 
             modelBuilder.Entity("Volo.Abp.IdentityServer.ApiResources.ApiScope", b =>
                 {
                     b.Property<Guid>("ApiResourceId")
+                        .HasColumnName("api_resource_id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Name")
+                        .HasColumnName("name")
                         .HasColumnType("varchar(200) CHARACTER SET utf8mb4")
                         .HasMaxLength(200);
 
                     b.Property<string>("Description")
+                        .HasColumnName("description")
                         .HasColumnType("varchar(1000) CHARACTER SET utf8mb4")
                         .HasMaxLength(1000);
 
                     b.Property<string>("DisplayName")
+                        .HasColumnName("display_name")
                         .HasColumnType("varchar(200) CHARACTER SET utf8mb4")
                         .HasMaxLength(200);
 
                     b.Property<bool>("Emphasize")
+                        .HasColumnName("emphasize")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<bool>("Required")
+                        .HasColumnName("required")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<bool>("ShowInDiscoveryDocument")
+                        .HasColumnName("show_in_discovery_document")
                         .HasColumnType("tinyint(1)");
 
                     b.HasKey("ApiResourceId", "Name");
 
-                    b.ToTable("IdentityServerApiScopes");
+                    b.ToTable("identity_server_api_scopes");
                 });
 
             modelBuilder.Entity("Volo.Abp.IdentityServer.ApiResources.ApiScopeClaim", b =>
                 {
                     b.Property<Guid>("ApiResourceId")
+                        .HasColumnName("api_resource_id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Name")
+                        .HasColumnName("name")
                         .HasColumnType("varchar(200) CHARACTER SET utf8mb4")
                         .HasMaxLength(200);
 
                     b.Property<string>("Type")
+                        .HasColumnName("type")
                         .HasColumnType("varchar(200) CHARACTER SET utf8mb4")
                         .HasMaxLength(200);
 
                     b.HasKey("ApiResourceId", "Name", "Type");
 
-                    b.ToTable("IdentityServerApiScopeClaims");
+                    b.ToTable("identity_server_api_scope_claims");
                 });
 
             modelBuilder.Entity("Volo.Abp.IdentityServer.ApiResources.ApiSecret", b =>
                 {
                     b.Property<Guid>("ApiResourceId")
+                        .HasColumnName("api_resource_id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Type")
+                        .HasColumnName("type")
                         .HasColumnType("varchar(250) CHARACTER SET utf8mb4")
                         .HasMaxLength(250);
 
                     b.Property<string>("Value")
+                        .HasColumnName("value")
                         .HasColumnType("varchar(300) CHARACTER SET utf8mb4")
                         .HasMaxLength(300);
 
                     b.Property<string>("Description")
+                        .HasColumnName("description")
                         .HasColumnType("varchar(2000) CHARACTER SET utf8mb4")
                         .HasMaxLength(2000);
 
                     b.Property<DateTime?>("Expiration")
+                        .HasColumnName("expiration")
                         .HasColumnType("datetime(6)");
 
                     b.HasKey("ApiResourceId", "Type", "Value");
 
-                    b.ToTable("IdentityServerApiSecrets");
+                    b.ToTable("identity_server_api_secrets");
                 });
 
             modelBuilder.Entity("Volo.Abp.IdentityServer.Clients.Client", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("char(36)");
 
                     b.Property<int>("AbsoluteRefreshTokenLifetime")
+                        .HasColumnName("absolute_refresh_token_lifetime")
                         .HasColumnType("int");
 
                     b.Property<int>("AccessTokenLifetime")
+                        .HasColumnName("access_token_lifetime")
                         .HasColumnType("int");
 
                     b.Property<int>("AccessTokenType")
+                        .HasColumnName("access_token_type")
                         .HasColumnType("int");
 
                     b.Property<bool>("AllowAccessTokensViaBrowser")
+                        .HasColumnName("allow_access_tokens_via_browser")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<bool>("AllowOfflineAccess")
+                        .HasColumnName("allow_offline_access")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<bool>("AllowPlainTextPkce")
+                        .HasColumnName("allow_plain_text_pkce")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<bool>("AllowRememberConsent")
+                        .HasColumnName("allow_remember_consent")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<bool>("AlwaysIncludeUserClaimsInIdToken")
+                        .HasColumnName("always_include_user_claims_in_id_token")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<bool>("AlwaysSendClientClaims")
+                        .HasColumnName("always_send_client_claims")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<int>("AuthorizationCodeLifetime")
+                        .HasColumnName("authorization_code_lifetime")
                         .HasColumnType("int");
 
                     b.Property<bool>("BackChannelLogoutSessionRequired")
+                        .HasColumnName("back_channel_logout_session_required")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("BackChannelLogoutUri")
+                        .HasColumnName("back_channel_logout_uri")
                         .HasColumnType("varchar(2000) CHARACTER SET utf8mb4")
                         .HasMaxLength(2000);
 
                     b.Property<string>("ClientClaimsPrefix")
+                        .HasColumnName("client_claims_prefix")
                         .HasColumnType("varchar(200) CHARACTER SET utf8mb4")
                         .HasMaxLength(200);
 
                     b.Property<string>("ClientId")
                         .IsRequired()
+                        .HasColumnName("client_id")
                         .HasColumnType("varchar(200) CHARACTER SET utf8mb4")
                         .HasMaxLength(200);
 
                     b.Property<string>("ClientName")
+                        .HasColumnName("client_name")
                         .HasColumnType("varchar(200) CHARACTER SET utf8mb4")
                         .HasMaxLength(200);
 
                     b.Property<string>("ClientUri")
+                        .HasColumnName("client_uri")
                         .HasColumnType("varchar(2000) CHARACTER SET utf8mb4")
                         .HasMaxLength(2000);
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnName("ConcurrencyStamp")
+                        .HasColumnName("concurrency_stamp")
                         .HasColumnType("varchar(40) CHARACTER SET utf8mb4")
                         .HasMaxLength(40);
 
                     b.Property<int?>("ConsentLifetime")
+                        .HasColumnName("consent_lifetime")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnName("CreationTime")
+                        .HasColumnName("creation_time")
                         .HasColumnType("datetime(6)");
 
                     b.Property<Guid?>("CreatorId")
-                        .HasColumnName("CreatorId")
+                        .HasColumnName("creator_id")
                         .HasColumnType("char(36)");
 
                     b.Property<Guid?>("DeleterId")
-                        .HasColumnName("DeleterId")
+                        .HasColumnName("deleter_id")
                         .HasColumnType("char(36)");
 
                     b.Property<DateTime?>("DeletionTime")
-                        .HasColumnName("DeletionTime")
+                        .HasColumnName("deletion_time")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Description")
+                        .HasColumnName("description")
                         .HasColumnType("varchar(1000) CHARACTER SET utf8mb4")
                         .HasMaxLength(1000);
 
                     b.Property<int>("DeviceCodeLifetime")
+                        .HasColumnName("device_code_lifetime")
                         .HasColumnType("int");
 
                     b.Property<bool>("EnableLocalLogin")
+                        .HasColumnName("enable_local_login")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<bool>("Enabled")
+                        .HasColumnName("enabled")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("ExtraProperties")
-                        .HasColumnName("ExtraProperties")
+                        .HasColumnName("extra_properties")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<bool>("FrontChannelLogoutSessionRequired")
+                        .HasColumnName("front_channel_logout_session_required")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("FrontChannelLogoutUri")
+                        .HasColumnName("front_channel_logout_uri")
                         .HasColumnType("varchar(2000) CHARACTER SET utf8mb4")
                         .HasMaxLength(2000);
 
                     b.Property<int>("IdentityTokenLifetime")
+                        .HasColumnName("identity_token_lifetime")
                         .HasColumnType("int");
 
                     b.Property<bool>("IncludeJwtId")
+                        .HasColumnName("include_jwt_id")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("IsDeleted")
+                        .HasColumnName("is_deleted")
                         .HasColumnType("tinyint(1)")
                         .HasDefaultValue(false);
 
                     b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnName("LastModificationTime")
+                        .HasColumnName("last_modification_time")
                         .HasColumnType("datetime(6)");
 
                     b.Property<Guid?>("LastModifierId")
-                        .HasColumnName("LastModifierId")
+                        .HasColumnName("last_modifier_id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("LogoUri")
+                        .HasColumnName("logo_uri")
                         .HasColumnType("varchar(2000) CHARACTER SET utf8mb4")
                         .HasMaxLength(2000);
 
                     b.Property<string>("PairWiseSubjectSalt")
+                        .HasColumnName("pair_wise_subject_salt")
                         .HasColumnType("varchar(200) CHARACTER SET utf8mb4")
                         .HasMaxLength(200);
 
                     b.Property<string>("ProtocolType")
                         .IsRequired()
+                        .HasColumnName("protocol_type")
                         .HasColumnType("varchar(200) CHARACTER SET utf8mb4")
                         .HasMaxLength(200);
 
                     b.Property<int>("RefreshTokenExpiration")
+                        .HasColumnName("refresh_token_expiration")
                         .HasColumnType("int");
 
                     b.Property<int>("RefreshTokenUsage")
+                        .HasColumnName("refresh_token_usage")
                         .HasColumnType("int");
 
                     b.Property<bool>("RequireClientSecret")
+                        .HasColumnName("require_client_secret")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<bool>("RequireConsent")
+                        .HasColumnName("require_consent")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<bool>("RequirePkce")
+                        .HasColumnName("require_pkce")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<int>("SlidingRefreshTokenLifetime")
+                        .HasColumnName("sliding_refresh_token_lifetime")
                         .HasColumnType("int");
 
                     b.Property<bool>("UpdateAccessTokenClaimsOnRefresh")
+                        .HasColumnName("update_access_token_claims_on_refresh")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("UserCodeType")
+                        .HasColumnName("user_code_type")
                         .HasColumnType("varchar(100) CHARACTER SET utf8mb4")
                         .HasMaxLength(100);
 
                     b.Property<int?>("UserSsoLifetime")
+                        .HasColumnName("user_sso_lifetime")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ClientId");
 
-                    b.ToTable("IdentityServerClients");
+                    b.ToTable("identity_server_clients");
                 });
 
             modelBuilder.Entity("Volo.Abp.IdentityServer.Clients.ClientClaim", b =>
                 {
                     b.Property<Guid>("ClientId")
+                        .HasColumnName("client_id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Type")
+                        .HasColumnName("type")
                         .HasColumnType("varchar(250) CHARACTER SET utf8mb4")
                         .HasMaxLength(250);
 
                     b.Property<string>("Value")
+                        .HasColumnName("value")
                         .HasColumnType("varchar(250) CHARACTER SET utf8mb4")
                         .HasMaxLength(250);
 
                     b.HasKey("ClientId", "Type", "Value");
 
-                    b.ToTable("IdentityServerClientClaims");
+                    b.ToTable("identity_server_client_claims");
                 });
 
             modelBuilder.Entity("Volo.Abp.IdentityServer.Clients.ClientCorsOrigin", b =>
                 {
                     b.Property<Guid>("ClientId")
+                        .HasColumnName("client_id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Origin")
+                        .HasColumnName("origin")
                         .HasColumnType("varchar(150) CHARACTER SET utf8mb4")
                         .HasMaxLength(150);
 
                     b.HasKey("ClientId", "Origin");
 
-                    b.ToTable("IdentityServerClientCorsOrigins");
+                    b.ToTable("identity_server_client_cors_origins");
                 });
 
             modelBuilder.Entity("Volo.Abp.IdentityServer.Clients.ClientGrantType", b =>
                 {
                     b.Property<Guid>("ClientId")
+                        .HasColumnName("client_id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("GrantType")
+                        .HasColumnName("grant_type")
                         .HasColumnType("varchar(250) CHARACTER SET utf8mb4")
                         .HasMaxLength(250);
 
                     b.HasKey("ClientId", "GrantType");
 
-                    b.ToTable("IdentityServerClientGrantTypes");
+                    b.ToTable("identity_server_client_grant_types");
                 });
 
             modelBuilder.Entity("Volo.Abp.IdentityServer.Clients.ClientIdPRestriction", b =>
                 {
                     b.Property<Guid>("ClientId")
+                        .HasColumnName("client_id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Provider")
+                        .HasColumnName("provider")
                         .HasColumnType("varchar(200) CHARACTER SET utf8mb4")
                         .HasMaxLength(200);
 
                     b.HasKey("ClientId", "Provider");
 
-                    b.ToTable("IdentityServerClientIdPRestrictions");
+                    b.ToTable("identity_server_client_id_prestrictions");
                 });
 
             modelBuilder.Entity("Volo.Abp.IdentityServer.Clients.ClientPostLogoutRedirectUri", b =>
                 {
                     b.Property<Guid>("ClientId")
+                        .HasColumnName("client_id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("PostLogoutRedirectUri")
+                        .HasColumnName("post_logout_redirect_uri")
                         .HasColumnType("varchar(300) CHARACTER SET utf8mb4")
                         .HasMaxLength(300);
 
                     b.HasKey("ClientId", "PostLogoutRedirectUri");
 
-                    b.ToTable("IdentityServerClientPostLogoutRedirectUris");
+                    b.ToTable("identity_server_client_post_logout_redirect_uris");
                 });
 
             modelBuilder.Entity("Volo.Abp.IdentityServer.Clients.ClientProperty", b =>
                 {
                     b.Property<Guid>("ClientId")
+                        .HasColumnName("client_id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Key")
+                        .HasColumnName("key")
                         .HasColumnType("varchar(250) CHARACTER SET utf8mb4")
                         .HasMaxLength(250);
 
                     b.Property<string>("Value")
                         .IsRequired()
+                        .HasColumnName("value")
                         .HasColumnType("varchar(2000) CHARACTER SET utf8mb4")
                         .HasMaxLength(2000);
 
                     b.HasKey("ClientId", "Key");
 
-                    b.ToTable("IdentityServerClientProperties");
+                    b.ToTable("identity_server_client_properties");
                 });
 
             modelBuilder.Entity("Volo.Abp.IdentityServer.Clients.ClientRedirectUri", b =>
                 {
                     b.Property<Guid>("ClientId")
+                        .HasColumnName("client_id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("RedirectUri")
+                        .HasColumnName("redirect_uri")
                         .HasColumnType("varchar(300) CHARACTER SET utf8mb4")
                         .HasMaxLength(300);
 
                     b.HasKey("ClientId", "RedirectUri");
 
-                    b.ToTable("IdentityServerClientRedirectUris");
+                    b.ToTable("identity_server_client_redirect_uris");
                 });
 
             modelBuilder.Entity("Volo.Abp.IdentityServer.Clients.ClientScope", b =>
                 {
                     b.Property<Guid>("ClientId")
+                        .HasColumnName("client_id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Scope")
+                        .HasColumnName("scope")
                         .HasColumnType("varchar(200) CHARACTER SET utf8mb4")
                         .HasMaxLength(200);
 
                     b.HasKey("ClientId", "Scope");
 
-                    b.ToTable("IdentityServerClientScopes");
+                    b.ToTable("identity_server_client_scopes");
                 });
 
             modelBuilder.Entity("Volo.Abp.IdentityServer.Clients.ClientSecret", b =>
                 {
                     b.Property<Guid>("ClientId")
+                        .HasColumnName("client_id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Type")
+                        .HasColumnName("type")
                         .HasColumnType("varchar(250) CHARACTER SET utf8mb4")
                         .HasMaxLength(250);
 
                     b.Property<string>("Value")
+                        .HasColumnName("value")
                         .HasColumnType("varchar(300) CHARACTER SET utf8mb4")
                         .HasMaxLength(300);
 
                     b.Property<string>("Description")
+                        .HasColumnName("description")
                         .HasColumnType("varchar(2000) CHARACTER SET utf8mb4")
                         .HasMaxLength(2000);
 
                     b.Property<DateTime?>("Expiration")
+                        .HasColumnName("expiration")
                         .HasColumnType("datetime(6)");
 
                     b.HasKey("ClientId", "Type", "Value");
 
-                    b.ToTable("IdentityServerClientSecrets");
+                    b.ToTable("identity_server_client_secrets");
                 });
 
             modelBuilder.Entity("Volo.Abp.IdentityServer.Devices.DeviceFlowCodes", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("ClientId")
                         .IsRequired()
+                        .HasColumnName("client_id")
                         .HasColumnType("varchar(200) CHARACTER SET utf8mb4")
                         .HasMaxLength(200);
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnName("ConcurrencyStamp")
+                        .HasColumnName("concurrency_stamp")
                         .HasColumnType("varchar(40) CHARACTER SET utf8mb4")
                         .HasMaxLength(40);
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnName("CreationTime")
+                        .HasColumnName("creation_time")
                         .HasColumnType("datetime(6)");
 
                     b.Property<Guid?>("CreatorId")
-                        .HasColumnName("CreatorId")
+                        .HasColumnName("creator_id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Data")
                         .IsRequired()
+                        .HasColumnName("data")
                         .HasColumnType("longtext CHARACTER SET utf8mb4")
                         .HasMaxLength(50000);
 
                     b.Property<string>("DeviceCode")
                         .IsRequired()
+                        .HasColumnName("device_code")
                         .HasColumnType("varchar(200) CHARACTER SET utf8mb4")
                         .HasMaxLength(200);
 
                     b.Property<DateTime?>("Expiration")
                         .IsRequired()
+                        .HasColumnName("expiration")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("ExtraProperties")
-                        .HasColumnName("ExtraProperties")
+                        .HasColumnName("extra_properties")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<string>("SubjectId")
+                        .HasColumnName("subject_id")
                         .HasColumnType("varchar(200) CHARACTER SET utf8mb4")
                         .HasMaxLength(200);
 
                     b.Property<string>("UserCode")
                         .IsRequired()
+                        .HasColumnName("user_code")
                         .HasColumnType("varchar(200) CHARACTER SET utf8mb4")
                         .HasMaxLength(200);
 
@@ -1402,50 +1551,58 @@ namespace Mk.DemoB.Migrations
                     b.HasIndex("UserCode")
                         .IsUnique();
 
-                    b.ToTable("IdentityServerDeviceFlowCodes");
+                    b.ToTable("identity_server_device_flow_codes");
                 });
 
             modelBuilder.Entity("Volo.Abp.IdentityServer.Grants.PersistedGrant", b =>
                 {
                     b.Property<string>("Key")
+                        .HasColumnName("key")
                         .HasColumnType("varchar(200) CHARACTER SET utf8mb4")
                         .HasMaxLength(200);
 
                     b.Property<string>("ClientId")
                         .IsRequired()
+                        .HasColumnName("client_id")
                         .HasColumnType("varchar(200) CHARACTER SET utf8mb4")
                         .HasMaxLength(200);
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnName("ConcurrencyStamp")
+                        .HasColumnName("concurrency_stamp")
                         .HasColumnType("varchar(40) CHARACTER SET utf8mb4")
                         .HasMaxLength(40);
 
                     b.Property<DateTime>("CreationTime")
+                        .HasColumnName("creation_time")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Data")
                         .IsRequired()
+                        .HasColumnName("data")
                         .HasColumnType("longtext CHARACTER SET utf8mb4")
                         .HasMaxLength(10000);
 
                     b.Property<DateTime?>("Expiration")
+                        .HasColumnName("expiration")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("ExtraProperties")
-                        .HasColumnName("ExtraProperties")
+                        .HasColumnName("extra_properties")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<Guid>("Id")
+                        .HasColumnName("id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("SubjectId")
+                        .HasColumnName("subject_id")
                         .HasColumnType("varchar(200) CHARACTER SET utf8mb4")
                         .HasMaxLength(200);
 
                     b.Property<string>("Type")
                         .IsRequired()
+                        .HasColumnName("type")
                         .HasColumnType("varchar(50) CHARACTER SET utf8mb4")
                         .HasMaxLength(50);
 
@@ -1455,155 +1612,175 @@ namespace Mk.DemoB.Migrations
 
                     b.HasIndex("SubjectId", "ClientId", "Type");
 
-                    b.ToTable("IdentityServerPersistedGrants");
+                    b.ToTable("identity_server_persisted_grants");
                 });
 
             modelBuilder.Entity("Volo.Abp.IdentityServer.IdentityResources.IdentityClaim", b =>
                 {
                     b.Property<Guid>("IdentityResourceId")
+                        .HasColumnName("identity_resource_id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Type")
+                        .HasColumnName("type")
                         .HasColumnType("varchar(200) CHARACTER SET utf8mb4")
                         .HasMaxLength(200);
 
                     b.HasKey("IdentityResourceId", "Type");
 
-                    b.ToTable("IdentityServerIdentityClaims");
+                    b.ToTable("identity_server_identity_claims");
                 });
 
             modelBuilder.Entity("Volo.Abp.IdentityServer.IdentityResources.IdentityResource", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnName("ConcurrencyStamp")
+                        .HasColumnName("concurrency_stamp")
                         .HasColumnType("varchar(40) CHARACTER SET utf8mb4")
                         .HasMaxLength(40);
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnName("CreationTime")
+                        .HasColumnName("creation_time")
                         .HasColumnType("datetime(6)");
 
                     b.Property<Guid?>("CreatorId")
-                        .HasColumnName("CreatorId")
+                        .HasColumnName("creator_id")
                         .HasColumnType("char(36)");
 
                     b.Property<Guid?>("DeleterId")
-                        .HasColumnName("DeleterId")
+                        .HasColumnName("deleter_id")
                         .HasColumnType("char(36)");
 
                     b.Property<DateTime?>("DeletionTime")
-                        .HasColumnName("DeletionTime")
+                        .HasColumnName("deletion_time")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("Description")
+                        .HasColumnName("description")
                         .HasColumnType("varchar(1000) CHARACTER SET utf8mb4")
                         .HasMaxLength(1000);
 
                     b.Property<string>("DisplayName")
+                        .HasColumnName("display_name")
                         .HasColumnType("varchar(200) CHARACTER SET utf8mb4")
                         .HasMaxLength(200);
 
                     b.Property<bool>("Emphasize")
+                        .HasColumnName("emphasize")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<bool>("Enabled")
+                        .HasColumnName("enabled")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<string>("ExtraProperties")
-                        .HasColumnName("ExtraProperties")
+                        .HasColumnName("extra_properties")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("IsDeleted")
+                        .HasColumnName("is_deleted")
                         .HasColumnType("tinyint(1)")
                         .HasDefaultValue(false);
 
                     b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnName("LastModificationTime")
+                        .HasColumnName("last_modification_time")
                         .HasColumnType("datetime(6)");
 
                     b.Property<Guid?>("LastModifierId")
-                        .HasColumnName("LastModifierId")
+                        .HasColumnName("last_modifier_id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasColumnName("name")
                         .HasColumnType("varchar(200) CHARACTER SET utf8mb4")
                         .HasMaxLength(200);
 
                     b.Property<string>("Properties")
+                        .HasColumnName("properties")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<bool>("Required")
+                        .HasColumnName("required")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<bool>("ShowInDiscoveryDocument")
+                        .HasColumnName("show_in_discovery_document")
                         .HasColumnType("tinyint(1)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("IdentityServerIdentityResources");
+                    b.ToTable("identity_server_identity_resources");
                 });
 
             modelBuilder.Entity("Volo.Abp.PermissionManagement.PermissionGrant", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasColumnName("name")
                         .HasColumnType("varchar(128) CHARACTER SET utf8mb4")
                         .HasMaxLength(128);
 
                     b.Property<string>("ProviderKey")
                         .IsRequired()
+                        .HasColumnName("provider_key")
                         .HasColumnType("varchar(64) CHARACTER SET utf8mb4")
                         .HasMaxLength(64);
 
                     b.Property<string>("ProviderName")
                         .IsRequired()
+                        .HasColumnName("provider_name")
                         .HasColumnType("varchar(64) CHARACTER SET utf8mb4")
                         .HasMaxLength(64);
 
                     b.Property<Guid?>("TenantId")
-                        .HasColumnName("TenantId")
+                        .HasColumnName("tenant_id")
                         .HasColumnType("char(36)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("Name", "ProviderName", "ProviderKey");
 
-                    b.ToTable("AbpPermissionGrants");
+                    b.ToTable("abp_permission_grants");
                 });
 
             modelBuilder.Entity("Volo.Abp.SettingManagement.Setting", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasColumnName("name")
                         .HasColumnType("varchar(128) CHARACTER SET utf8mb4")
                         .HasMaxLength(128);
 
                     b.Property<string>("ProviderKey")
+                        .HasColumnName("provider_key")
                         .HasColumnType("varchar(64) CHARACTER SET utf8mb4")
                         .HasMaxLength(64);
 
                     b.Property<string>("ProviderName")
+                        .HasColumnName("provider_name")
                         .HasColumnType("varchar(64) CHARACTER SET utf8mb4")
                         .HasMaxLength(64);
 
                     b.Property<string>("Value")
                         .IsRequired()
+                        .HasColumnName("value")
                         .HasColumnType("longtext CHARACTER SET utf8mb4")
                         .HasMaxLength(2048);
 
@@ -1611,57 +1788,59 @@ namespace Mk.DemoB.Migrations
 
                     b.HasIndex("Name", "ProviderName", "ProviderKey");
 
-                    b.ToTable("AbpSettings");
+                    b.ToTable("abp_settings");
                 });
 
             modelBuilder.Entity("Volo.Abp.TenantManagement.Tenant", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnName("ConcurrencyStamp")
+                        .HasColumnName("concurrency_stamp")
                         .HasColumnType("varchar(40) CHARACTER SET utf8mb4")
                         .HasMaxLength(40);
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnName("CreationTime")
+                        .HasColumnName("creation_time")
                         .HasColumnType("datetime(6)");
 
                     b.Property<Guid?>("CreatorId")
-                        .HasColumnName("CreatorId")
+                        .HasColumnName("creator_id")
                         .HasColumnType("char(36)");
 
                     b.Property<Guid?>("DeleterId")
-                        .HasColumnName("DeleterId")
+                        .HasColumnName("deleter_id")
                         .HasColumnType("char(36)");
 
                     b.Property<DateTime?>("DeletionTime")
-                        .HasColumnName("DeletionTime")
+                        .HasColumnName("deletion_time")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("ExtraProperties")
-                        .HasColumnName("ExtraProperties")
+                        .HasColumnName("extra_properties")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("IsDeleted")
+                        .HasColumnName("is_deleted")
                         .HasColumnType("tinyint(1)")
                         .HasDefaultValue(false);
 
                     b.Property<DateTime?>("LastModificationTime")
-                        .HasColumnName("LastModificationTime")
+                        .HasColumnName("last_modification_time")
                         .HasColumnType("datetime(6)");
 
                     b.Property<Guid?>("LastModifierId")
-                        .HasColumnName("LastModifierId")
+                        .HasColumnName("last_modifier_id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasColumnName("name")
                         .HasColumnType("varchar(64) CHARACTER SET utf8mb4")
                         .HasMaxLength(64);
 
@@ -1669,26 +1848,29 @@ namespace Mk.DemoB.Migrations
 
                     b.HasIndex("Name");
 
-                    b.ToTable("AbpTenants");
+                    b.ToTable("abp_tenants");
                 });
 
             modelBuilder.Entity("Volo.Abp.TenantManagement.TenantConnectionString", b =>
                 {
                     b.Property<Guid>("TenantId")
+                        .HasColumnName("tenant_id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Name")
+                        .HasColumnName("name")
                         .HasColumnType("varchar(64) CHARACTER SET utf8mb4")
                         .HasMaxLength(64);
 
                     b.Property<string>("Value")
                         .IsRequired()
+                        .HasColumnName("value")
                         .HasColumnType("varchar(1024) CHARACTER SET utf8mb4")
                         .HasMaxLength(1024);
 
                     b.HasKey("TenantId", "Name");
 
-                    b.ToTable("AbpTenantConnectionStrings");
+                    b.ToTable("abp_tenant_connection_strings");
                 });
 
             modelBuilder.Entity("Volo.Abp.AuditLogging.AuditLogAction", b =>
