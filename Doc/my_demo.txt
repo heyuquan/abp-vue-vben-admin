@@ -1,4 +1,10 @@
-Ec.Admin.Web	(Identity)			https://localhost:50046
 
-Ec.Admin.IdentityServer.Web			https://localhost:40048
-Ec.Admin.IdentityServer AuthServer	https://localhost:40048
+02_Framework：框架代码
+
+
+03_DemoB：用abp app模板创建。包含abp完成的模块依赖
+DemoB:https://localhost:44304
+IdentityServer:https://localhost:44325
+
+04_DemoC：用abp module模板创建。只依赖自身的模块和Abp框架的模块
+DemoC:https://localhost:44356

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Mk.DemoB.Dto;
+using Mk.DemoB.IAppService;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,7 +9,7 @@ using Volo.Abp.Guids;
 
 namespace Mk.DemoB.Application
 {
-    public class GuidAppService : DemoBAppService
+    public class GuidAppService : DemoBAppService, IGuidAppService
     {
         private readonly IGuidGenerator _guidGenerator;
 

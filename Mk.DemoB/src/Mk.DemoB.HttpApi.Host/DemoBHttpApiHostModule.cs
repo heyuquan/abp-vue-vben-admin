@@ -108,7 +108,11 @@ namespace Mk.DemoB
         {
             Configure<AbpAspNetCoreMvcOptions>(options =>
             {
-                options.ConventionalControllers.Create(typeof(DemoBApplicationModule).Assembly);
+                options.ConventionalControllers.Create(typeof(DemoBApplicationModule).Assembly,opt=> {
+                    // 默认是：/api/app/***
+                    //如下修改为：/api/volosoft/book-store/***
+                    //opts.RootPath = "volosoft/book-store";
+                });
             });
         }
 
