@@ -1,5 +1,6 @@
 ﻿using Volo.Abp.Account;
 using Volo.Abp.AutoMapper;
+using Volo.Abp.BackgroundJobs.Hangfire;
 using Volo.Abp.FeatureManagement;
 using Volo.Abp.Identity;
 using Volo.Abp.Modularity;
@@ -15,7 +16,8 @@ namespace Mk.DemoB
         typeof(AbpIdentityApplicationModule),
         typeof(AbpPermissionManagementApplicationModule),
         typeof(AbpTenantManagementApplicationModule),
-        typeof(AbpFeatureManagementApplicationModule)
+        typeof(AbpFeatureManagementApplicationModule),
+        typeof(AbpBackgroundJobsHangfireModule)
         )]
     public class DemoBApplicationModule : AbpModule
     {

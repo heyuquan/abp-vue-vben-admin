@@ -15,7 +15,8 @@ namespace Mk.DemoB.Application
         public float Price { get; set; }
     }
 
-    public class CacheAppService : DemoBAppService
+    [Route("api/abp/cache")]
+    public class CacheAbpAppService : DemoBAppService
     {
         //ASP.NET Core 定义了 IDistributedCache 接口用于 get/set 缓存值.但是会有以下问题:
         //  1、它适用于 byte 数组 而不是.NET 对象. 因此你需要对缓存的对象进行序列化/反序列化.
@@ -27,13 +28,13 @@ namespace Mk.DemoB.Application
         // IDistributedCache<TCacheItem> 接口默认了键是 string 类型
         // 其他类型的key，可以使用：IDistributedCache<TCacheItem, TCacheKey>
         private readonly IDistributedCache<BookCacheItem> _cache;
-        public CacheAppService(IDistributedCache<BookCacheItem> cache)
+        public CacheAbpAppService(IDistributedCache<BookCacheItem> cache)
         {
             _cache = cache;
         }
-
-        [HttpGet]
-        public async Task<BookCacheItem> GetAsync(string bookId)
+        
+        [HttpGet("get")]
+        public async Task<BookCacheItem> GetAsync(string bookId = "book1")
         {
             return await _cache.GetOrAddAsync(
                 bookId,
@@ -43,7 +44,7 @@ namespace Mk.DemoB.Application
                         new BookCacheItem
                         {
                             Name = Guid.NewGuid().ToString(),
-                            Price = new Random().Next(int.MinValue, int.MaxValue)
+                            Price = new Random().Next(1, int.MaxValue)
                         }
                         );
                 },
@@ -51,6 +52,39 @@ namespace Mk.DemoB.Application
                 {
                     AbsoluteExpiration = DateTimeOffset.Now.AddMinutes(2)
                 });
+        }
+
+        [HttpPost("remove")]
+        public async Task RemoveAsync(string bookId = "book1")
+        {
+            await _cache.RemoveAsync(bookId);
+        }
+
+        [HttpPost("setmany")]
+        public async Task<List<KeyValuePair<string, BookCacheItem>>> SetManyAsync(string bookId1 = "book1", string bookId2 = "book2")
+        {
+            List<KeyValuePair<string, BookCacheItem>> items = new List<KeyValuePair<string, BookCacheItem>>();
+            items.Add(
+                new KeyValuePair<string, BookCacheItem>(bookId1, new BookCacheItem
+                {
+                    Name = Guid.NewGuid().ToString(),
+                    Price = new Random().Next(1, int.MaxValue)
+                }
+            ));
+            items.Add(
+                new KeyValuePair<string, BookCacheItem>(bookId2, new BookCacheItem
+                {
+                    Name = Guid.NewGuid().ToString(),
+                    Price = new Random().Next(1, int.MaxValue)
+                }
+            ));
+            await _cache.SetManyAsync(items,
+                 new DistributedCacheEntryOptions
+                 {
+                     AbsoluteExpiration = DateTimeOffset.Now.AddMinutes(2)
+                 });
+
+            return items;
         }
     }
 }

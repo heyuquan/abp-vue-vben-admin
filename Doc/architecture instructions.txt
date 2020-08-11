@@ -43,6 +43,7 @@ Web 层(Presentation Layer)
 	表现层：可依赖 *.Application 包，*.Domain.Shared 包，*.EntityFrameworkCore 包，*.HttpApi 包
 	Ec.Admin.Web	包含页面,视图,脚本,样式,图像和其他UI组件.仅依赖于 HttpApi 包
 	Ec.Admin.HttpApi.Host		WebApi宿主项目
+	Mk.DemoB.BackgroundJobs		后台任务项目，命名为 以 s 结尾。因为 Volo.Abp.BackgroundJobs.BackgroundJob 提供了类名叫 BackgroundJob
 	
 
 HTTP 层(Distributed Services Layers)

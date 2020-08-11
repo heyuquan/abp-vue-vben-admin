@@ -11,4 +11,8 @@
     <PackageReference Include="Hangfire.MySqlStorage" Version="2.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Mk.DemoB.Domain\Mk.DemoB.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

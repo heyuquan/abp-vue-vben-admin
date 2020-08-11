@@ -75,6 +75,9 @@ namespace Mk.DemoB
             //{
             //    options.IsJobExecutionEnabled = false;
             //});
+
+            // 注册dotnet core 后台服务
+            context.Services.AddTransient<IHostedService, SimpleDotNetJob>();
         }
 
         private void ConfigureCache(IConfiguration configuration)
