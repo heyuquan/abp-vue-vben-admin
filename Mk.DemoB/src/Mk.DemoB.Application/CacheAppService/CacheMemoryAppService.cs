@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Mk.DemoB.CacheAppService
 {
+    // Memory 缓存
+    // 加载 AbpCachingModule 模块
+
     [Route("api/memory/cache")]
     public class CacheMemoryAppService : DemoBAppService
     {

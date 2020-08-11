@@ -15,6 +15,9 @@ namespace Mk.DemoB.Application
         public float Price { get; set; }
     }
 
+    // redis 缓存
+    // 加载 AbpCachingStackExchangeRedisModule 模块
+
     [Route("api/abp/cache")]
     public class CacheAbpAppService : DemoBAppService
     {
