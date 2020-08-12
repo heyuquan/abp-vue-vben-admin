@@ -19,19 +19,20 @@ using Volo.Abp.AspNetCore.MultiTenancy;
 using Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
 using Volo.Abp.AspNetCore.Serilog;
-using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.Autofac;
 using Volo.Abp.Caching;
 using Volo.Abp.Caching.StackExchangeRedis;
 using Volo.Abp.EntityFrameworkCore;
-using Volo.Abp.EntityFrameworkCore.SqlServer;
+using Volo.Abp.EntityFrameworkCore.MySQL;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Volo.Abp.MultiTenancy;
-using Volo.Abp.PermissionManagement.EntityFrameworkCore;
 using Volo.Abp.Security.Claims;
-using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.VirtualFileSystem;
+using Leopard.Abp.AuditLogging.EntityFrameworkCore;
+using Leopard.Abp.PermissionManagement.EntityFrameworkCore;
+using Leopard.Abp.SettingManagement.EntityFrameworkCore;
+using Volo.Abp.AspNetCore.Mvc;
 
 namespace Mk.DemoC
 {
@@ -42,10 +43,10 @@ namespace Mk.DemoC
         typeof(AbpAspNetCoreMvcUiMultiTenancyModule),
         typeof(AbpAutofacModule),
         typeof(AbpCachingStackExchangeRedisModule),
-        typeof(AbpEntityFrameworkCoreSqlServerModule),
-        typeof(AbpAuditLoggingEntityFrameworkCoreModule),
-        typeof(AbpPermissionManagementEntityFrameworkCoreModule),
-        typeof(AbpSettingManagementEntityFrameworkCoreModule),
+        typeof(AbpEntityFrameworkCoreMySQLModule),
+        typeof(LeopardAuditLoggingEntityFrameworkCoreModule),
+        typeof(LeopardPermissionManagementEntityFrameworkCoreModule),
+        typeof(LeopardSettingManagementEntityFrameworkCoreModule),
         typeof(AbpAspNetCoreSerilogModule)
         )]
     public class DemoCHttpApiHostModule : AbpModule
@@ -57,9 +58,18 @@ namespace Mk.DemoC
             var hostingEnvironment = context.Services.GetHostingEnvironment();
             var configuration = context.Services.GetConfiguration();
 
+            Configure<AbpAspNetCoreMvcOptions>(options =>
+            {
+                options.ConventionalControllers.Create(typeof(DemoCApplicationModule).Assembly, opt => {
+                    // 默认是：/api/app/***
+                    //如下修改为：/api/volosoft/book-store/***
+                    //opts.RootPath = "volosoft/book-store";
+                });
+            });
+
             Configure<AbpDbContextOptions>(options =>
             {
-                options.UseSqlServer();
+                options.UseMySQL();
             });
 
             Configure<AbpMultiTenancyOptions>(options =>

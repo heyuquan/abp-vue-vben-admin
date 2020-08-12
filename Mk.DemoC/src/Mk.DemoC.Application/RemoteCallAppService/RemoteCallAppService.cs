@@ -1,10 +1,11 @@
-﻿using System;
+﻿using Mk.DemoC.IAppService;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Mk.DemoC.RemoteCallAppService
 {
-    public class RemoteCallAppService : DemoCAppService
+    public class RemoteCallAppService : DemoCAppService, IRemoteCallAppService
     {
         public RemoteCallAppService()
         {

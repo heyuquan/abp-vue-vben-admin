@@ -12,7 +12,7 @@ namespace Mk.DemoC.EntityFrameworkCore
             var configuration = BuildConfiguration();
 
             var builder = new DbContextOptionsBuilder<DemoCHttpApiHostMigrationsDbContext>()
-                .UseSqlServer(configuration.GetConnectionString("DemoC"));
+                .UseMySql(configuration.GetConnectionString("DemoC"));
 
             return new DemoCHttpApiHostMigrationsDbContext(builder.Options);
         }
