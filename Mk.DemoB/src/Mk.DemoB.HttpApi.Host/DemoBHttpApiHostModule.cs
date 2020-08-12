@@ -71,10 +71,10 @@ namespace Mk.DemoB
             });
 
             //// 禁用 BackgroundJob
-            //Configure<AbpBackgroundJobOptions>(options =>
-            //{
-            //    options.IsJobExecutionEnabled = false;
-            //});
+            Configure<AbpBackgroundJobOptions>(options =>
+            {
+                options.IsJobExecutionEnabled = false;
+            });
 
             // 注册dotnet core 后台服务
             context.Services.AddTransient<IHostedService, SimpleDotNetJob>();
@@ -221,7 +221,7 @@ namespace Mk.DemoB
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", "DemoB API");
             });
 
-            app.UseAuditing();
+            //app.UseAuditing();
             app.UseAbpSerilogEnrichers();
             app.UseConfiguredEndpoints();
         }

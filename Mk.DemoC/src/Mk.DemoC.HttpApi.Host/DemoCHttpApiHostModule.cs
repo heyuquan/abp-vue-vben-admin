@@ -187,7 +187,7 @@ namespace Mk.DemoC
             {
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", "Support APP API");
             });
-            app.UseAuditing();
+            //app.UseAuditing();
             app.UseAbpSerilogEnrichers();
             app.UseConfiguredEndpoints();
         }

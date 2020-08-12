@@ -1,4 +1,5 @@
-﻿using Volo.Abp.Account;
+﻿using Mk.DemoC;
+using Volo.Abp.Account;
 using Volo.Abp.AutoMapper;
 using Volo.Abp.BackgroundJobs.Hangfire;
 using Volo.Abp.FeatureManagement;
@@ -17,7 +18,10 @@ namespace Mk.DemoB
         typeof(AbpPermissionManagementApplicationModule),
         typeof(AbpTenantManagementApplicationModule),
         typeof(AbpFeatureManagementApplicationModule),
-        typeof(AbpBackgroundJobsHangfireModule)
+        typeof(AbpBackgroundJobsHangfireModule),
+
+        // 远程调用C，需要依赖远程  C代理Module
+        typeof(DemoCHttpApiClientModule)
         )]
     public class DemoBApplicationModule : AbpModule
     {

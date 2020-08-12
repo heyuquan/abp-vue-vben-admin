@@ -1,7 +1,9 @@
-﻿using Mk.DemoC.IAppService;
+﻿using Microsoft.AspNetCore.Authorization;
+using Mk.DemoC.IAppService;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Mk.DemoC.RemoteCallAppService
 {
@@ -12,9 +14,10 @@ namespace Mk.DemoC.RemoteCallAppService
 
         }
 
-        public string WelcomeToC()
+        //[AllowAnonymous]
+        public async Task<string> WelcomeToCAsync()
         {
-            return "welcome to c,i am demo c";
+            return await Task.FromResult("welcome to c,i am demo c");
         }
     }
 }
