@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Threading.Tasks;
 using Volo.Abp;
+using Volo.Abp.ExceptionHandling;
 using Volo.Abp.Validation;
 
 namespace Mk.DemoB.Application
@@ -14,7 +15,9 @@ namespace Mk.DemoB.Application
     {
         public ErrorAppService()
         {
-
+            // 默认通知。 不知道那里注入进去的，默认会输出到logger日志
+            //var notifier= this.ServiceProvider.GetService<IExceptionNotifier>()
+            // Volo.Abp.AspNetCore.Mvc.ExceptionHandling.AbpExceptionFilter 过滤器处理异常
         }
 
         /// <summary>

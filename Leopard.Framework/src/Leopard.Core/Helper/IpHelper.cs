@@ -7,6 +7,10 @@ namespace Leopard.Core.Helper
     // C#中IP地址与数字之间的互转
     // https://www.cnblogs.com/uonun/archive/2010/03/28/1698963.html
 
+    // ip2region - 最自由的ip地址查询库，ip到地区的映射库，提供Binary,B树和纯内存三种查询算法，妈妈再也不用担心我的ip地址定位。
+    // https://www.nuget.org/packages/IP2Region/
+    // https://github.com/lionsoul2014/ip2region/tree/master/binding/c%23
+
     public static class IpHelper
     {
         /// <summary>
