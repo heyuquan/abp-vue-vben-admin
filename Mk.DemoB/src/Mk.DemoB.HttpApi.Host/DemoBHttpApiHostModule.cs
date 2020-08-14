@@ -28,6 +28,9 @@ using Volo.Abp.Localization.ExceptionHandling;
 using Mk.DemoB.Localization;
 using Volo.Abp.BackgroundJobs;
 using Mk.DemoB.BackgroundJobs;
+using Microsoft.AspNetCore.Mvc;
+using Volo.Abp.AspNetCore.Mvc.ExceptionHandling;
+using Leopard.AspNetCore.Mvc.Filter;
 
 namespace Mk.DemoB
 {
@@ -78,6 +81,16 @@ namespace Mk.DemoB
 
             // 注册dotnet core 后台服务
             context.Services.AddTransient<IHostedService, SimpleDotNetJob>();
+
+            Configure<MvcOptions>(mvcOptions =>
+            {
+                // 全局异常替换
+                // https://www.cnblogs.com/twoBcoder/p/12838913.html
+                var index = mvcOptions.Filters.ToList().FindIndex(filter => filter is ServiceFilterAttribute attr && attr.ServiceType.Equals(typeof(AbpExceptionFilter)));
+                if (index > -1)
+                    mvcOptions.Filters.RemoveAt(index);
+                mvcOptions.Filters.Add(typeof(LeopardExceptionFilter));
+            });
         }
 
         private void ConfigureCache(IConfiguration configuration)
@@ -108,7 +121,8 @@ namespace Mk.DemoB
         {
             Configure<AbpAspNetCoreMvcOptions>(options =>
             {
-                options.ConventionalControllers.Create(typeof(DemoBApplicationModule).Assembly,opt=> {
+                options.ConventionalControllers.Create(typeof(DemoBApplicationModule).Assembly, opt =>
+                {
                     // 默认是：/api/app/***
                     //如下修改为：/api/volosoft/book-store/***
                     //opts.RootPath = "volosoft/book-store";
@@ -132,7 +146,7 @@ namespace Mk.DemoB
             context.Services.AddSwaggerGen(
                 options =>
                 {
-                    options.SwaggerDoc("v1", new OpenApiInfo {Title = "DemoB API", Version = "v1"});
+                    options.SwaggerDoc("v1", new OpenApiInfo { Title = "DemoB API", Version = "v1" });
                     options.DocInclusionPredicate((docName, description) => true);
                 });
         }
@@ -206,7 +220,7 @@ namespace Mk.DemoB
             app.UseRouting();
             app.UseCors(DefaultCorsPolicyName);
             app.UseAuthentication();
-            
+
             if (MultiTenancyConsts.IsEnabled)
             {
                 app.UseMultiTenancy();

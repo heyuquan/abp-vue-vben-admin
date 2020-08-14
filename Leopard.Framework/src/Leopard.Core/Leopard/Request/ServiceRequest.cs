@@ -2,18 +2,22 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Leopard.Core.ServiceRequest
+namespace Leopard.Request
 {
     /// <summary>
     /// Service 请求实体
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class Request<T>
+    public class ServiceRequest<T>
     {
+        /// <summary>
+        /// 请求Id
+        /// </summary>
+        public string RequestId { get; set; } = Guid.NewGuid().ToString("N");
         /// <summary>
         /// 请求头
         /// </summary>
-        public RequestHeader Header { get; set; }
+        public ServiceRequestHeader Header { get; set; }
 
         /// <summary>
         /// 请求数据
@@ -25,7 +29,7 @@ namespace Leopard.Core.ServiceRequest
     /// <summary>
     /// 请求头
     /// </summary>
-    public class RequestHeader
+    public class ServiceRequestHeader
     {
         /// <summary>
         /// 用于唯一标识客户端  eg:APP=4，H5=5，pc web=6

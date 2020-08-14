@@ -2,32 +2,39 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Leopard.Core.ServiceResult
+namespace Leopard.Result
 {
     /// <summary>
     /// 服务层响应实体
     /// </summary>
     public class ServiceResult
     {
+        public ServiceResult() : this(Guid.NewGuid().ToString("N"))
+        {
+        }
+
+        public ServiceResult(string requestId)
+        {
+            RequestId = requestId;
+        }
+        /// <summary>
+        /// 请求Id
+        /// </summary>
+        public string RequestId { get; private set; }
         /// <summary>
         /// 响应码
         /// </summary>
-        public ServiceResultCode Code { get; set; }
+        public ServiceResultCode ResultCode { get; private set; }
 
         /// <summary>
         /// 错误码
         /// </summary>
-        public string ErrorCode { get; set; }
+        public string ErrorCode { get; private set; }
 
         /// <summary>
         /// 响应信息
         /// </summary>
-        public string Message { get; set; }
-
-        /// <summary>
-        /// 成功
-        /// </summary>
-        public bool Success => Code == ServiceResultCode.Succeed;
+        public string Message { get; private set; }
 
         /// <summary>
         /// 时间戳(毫秒)
@@ -40,10 +47,10 @@ namespace Leopard.Core.ServiceResult
         /// <param name="message"></param>
         /// <param name="data"></param>
         /// <returns></returns>
-        public void IsSuccess(string message = "")
+        public void SetSuccess(string message = "")
         {
             Message = message;
-            Code = ServiceResultCode.Succeed;
+            ResultCode = ServiceResultCode.Succeed;
         }
 
         /// <summary>
@@ -52,22 +59,12 @@ namespace Leopard.Core.ServiceResult
         /// <param name="message"></param>
         /// <param name="data"></param>
         /// <returns></returns>
-        public void IsFailed(string message = "")
+        public void SetFailed(string errorCode, string message = "")
         {
+            ErrorCode = errorCode;
             Message = message;
-            Code = ServiceResultCode.Failed;
+            ResultCode = ServiceResultCode.Failed;
         }
 
-        /// <summary>
-        /// 响应失败
-        /// </summary>
-        /// <param name="exexception></param>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        public void IsFailed(Exception exception)
-        {
-            Message = exception.InnerException?.StackTrace;
-            Code = ServiceResultCode.Failed;
-        }
     }
 }

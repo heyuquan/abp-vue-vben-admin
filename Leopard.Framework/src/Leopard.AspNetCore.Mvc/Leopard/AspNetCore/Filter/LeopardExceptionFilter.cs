@@ -1,0 +1,106 @@
+﻿using System;
+using System.Threading.Tasks;
+using Leopard.Result;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Abstractions;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
+using Volo.Abp.AspNetCore.ExceptionHandling;
+using Volo.Abp.DependencyInjection;
+using Volo.Abp.ExceptionHandling;
+using Volo.Abp.Http;
+using Volo.Abp.Json;
+using Volo.Abp.Tracing;
+
+namespace Leopard.AspNetCore.Mvc.Filter
+{
+    public class LeopardExceptionFilter : IAsyncExceptionFilter, ITransientDependency
+    {
+        public ILogger<LeopardExceptionFilter> Logger { get; set; }
+
+        private readonly IExceptionToErrorInfoConverter _errorInfoConverter;
+        private readonly IHttpExceptionStatusCodeFinder _statusCodeFinder;
+        private readonly IJsonSerializer _jsonSerializer;
+        private readonly ICorrelationIdProvider _correlationIdProvider;
+
+        public LeopardExceptionFilter(
+            IExceptionToErrorInfoConverter errorInfoConverter,
+            IHttpExceptionStatusCodeFinder statusCodeFinder,
+            IJsonSerializer jsonSerializer,
+            ICorrelationIdProvider correlationIdProvider)
+        {
+            _errorInfoConverter = errorInfoConverter;
+            _statusCodeFinder = statusCodeFinder;
+            _jsonSerializer = jsonSerializer;
+            _correlationIdProvider = correlationIdProvider;
+
+            Logger = NullLogger<LeopardExceptionFilter>.Instance;
+        }
+
+        public async Task OnExceptionAsync(ExceptionContext context)
+        {
+            if (!ShouldHandleException(context))
+            {
+                return;
+            }
+
+            await HandleAndWrapException(context);
+        }
+
+        protected virtual bool ShouldHandleException(ExceptionContext context)
+        {
+            //TODO: Create DontWrap attribute to control wrapping..?
+
+            if (context.ActionDescriptor.IsControllerAction() &&
+                context.ActionDescriptor.HasObjectResult())
+            {
+                return true;
+            }
+
+            if (context.HttpContext.Request.CanAccept(MimeTypes.Application.Json))
+            {
+                return true;
+            }
+
+            if (context.HttpContext.Request.IsAjax())
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        protected virtual async Task HandleAndWrapException(ExceptionContext context)
+        {
+            //TODO: Trigger an AbpExceptionHandled event or something like that.
+
+            context.HttpContext.Response.Headers.Add(AbpHttpConsts.AbpErrorFormat, "true");
+            context.HttpContext.Response.StatusCode = (int)_statusCodeFinder.GetStatusCode(context.HttpContext, context.Exception);
+
+            var remoteServiceErrorInfo = _errorInfoConverter.Convert(context.Exception);
+
+            ServiceResult ret = new ServiceResult(_correlationIdProvider.Get());
+            ret.SetFailed(remoteServiceErrorInfo.Code, remoteServiceErrorInfo.Message);
+            context.Result = new ObjectResult(ret);
+
+            var logLevel = context.Exception.GetLogLevel();
+
+            Logger.LogWithLevel(logLevel, $"---------- {nameof(RemoteServiceErrorInfo)} ----------");
+            Logger.LogWithLevel(logLevel, $"RequestId={ret.RequestId}");
+            Logger.LogWithLevel(logLevel, _jsonSerializer.Serialize(remoteServiceErrorInfo, indented: true));
+            Logger.LogException(context.Exception, logLevel);
+
+            await context.HttpContext
+                .RequestServices
+                .GetRequiredService<IExceptionNotifier>()
+                .NotifyAsync(
+                    new ExceptionNotificationContext(context.Exception)
+                );
+
+            context.Exception = null; //Handled!
+        }
+    }
+}

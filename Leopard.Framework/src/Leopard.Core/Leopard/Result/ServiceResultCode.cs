@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Leopard.Core.ServiceResult
+namespace Leopard.Result
 {
     /// <summary>
     /// 服务层响应码枚举

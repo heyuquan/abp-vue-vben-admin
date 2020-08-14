@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Leopard.Core.Helper
+namespace Leopard.Helper
 {
     // C#中IP地址与数字之间的互转
     // https://www.cnblogs.com/uonun/archive/2010/03/28/1698963.html

@@ -79,6 +79,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoC.HttpApi.Host", "Mk
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoC.HttpApi.Client", "Mk.DemoC\src\Mk.DemoC.HttpApi.Client\Mk.DemoC.HttpApi.Client.csproj", "{AC7A3EB0-B9DB-4396-B646-1F236433600E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.AspNetCore.Mvc", "Leopard.Framework\src\Leopard.AspNetCore.Mvc\Leopard.AspNetCore.Mvc.csproj", "{BA1218D5-7F58-4209-91AF-44761CBE9421}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -213,6 +215,10 @@ Global
 		{AC7A3EB0-B9DB-4396-B646-1F236433600E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC7A3EB0-B9DB-4396-B646-1F236433600E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC7A3EB0-B9DB-4396-B646-1F236433600E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA1218D5-7F58-4209-91AF-44761CBE9421}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA1218D5-7F58-4209-91AF-44761CBE9421}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA1218D5-7F58-4209-91AF-44761CBE9421}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA1218D5-7F58-4209-91AF-44761CBE9421}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -250,6 +256,7 @@ Global
 		{3375801B-1070-4D06-9B67-334CC89A125B} = {F88A0388-EC61-4CB3-852F-FBE3FE15BCB3}
 		{95CE1EB6-2364-420E-A428-09F0F6B9F9CB} = {F88A0388-EC61-4CB3-852F-FBE3FE15BCB3}
 		{AC7A3EB0-B9DB-4396-B646-1F236433600E} = {F88A0388-EC61-4CB3-852F-FBE3FE15BCB3}
+		{BA1218D5-7F58-4209-91AF-44761CBE9421} = {408C61DE-C824-4BA2-8EE7-CE571EA864B5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {28315BFD-90E7-4E14-A2EA-F3D23AF4126F}
