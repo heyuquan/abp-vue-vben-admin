@@ -18,7 +18,7 @@ namespace Mk.DemoB
         typeof(AbpPermissionManagementApplicationModule),
         typeof(AbpTenantManagementApplicationModule),
         typeof(AbpFeatureManagementApplicationModule),
-        typeof(AbpBackgroundJobsHangfireModule),
+        // typeof(DemoBBackgroundJobsModule),    // 先去掉后台任务，不然hangfire一直打日志
 
         // 远程调用C，需要依赖远程  C代理Module
         typeof(DemoCHttpApiClientModule)

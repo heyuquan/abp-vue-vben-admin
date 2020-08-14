@@ -27,7 +27,6 @@ using Volo.Abp.Guids;
 using Volo.Abp.Localization.ExceptionHandling;
 using Mk.DemoB.Localization;
 using Volo.Abp.BackgroundJobs;
-using Mk.DemoB.BackgroundJobs;
 using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc.ExceptionHandling;
 using Leopard.AspNetCore.Mvc.Filter;
@@ -41,8 +40,7 @@ namespace Mk.DemoB
         typeof(AbpAspNetCoreMvcUiMultiTenancyModule),
         typeof(DemoBApplicationModule),
         typeof(DemoBEntityFrameworkCoreDbMigrationsModule),
-        typeof(AbpAspNetCoreSerilogModule),
-        typeof(DemoBBackgroundJobsModule)
+        typeof(AbpAspNetCoreSerilogModule)
         )]
     public class DemoBHttpApiHostModule : AbpModule
     {
@@ -79,9 +77,6 @@ namespace Mk.DemoB
                 options.IsJobExecutionEnabled = false;
             });
 
-            // 注册dotnet core 后台服务
-            context.Services.AddTransient<IHostedService, SimpleDotNetJob>();
-
             Configure<MvcOptions>(mvcOptions =>
             {
                 // 全局异常替换
@@ -90,6 +85,11 @@ namespace Mk.DemoB
                 if (index > -1)
                     mvcOptions.Filters.RemoveAt(index);
                 mvcOptions.Filters.Add(typeof(LeopardExceptionFilter));
+            });
+
+            context.Services.AddHttpClient("rate", c =>
+            {
+                c.BaseAddress = new Uri("https://srh.bankofchina.com/");
             });
         }
 

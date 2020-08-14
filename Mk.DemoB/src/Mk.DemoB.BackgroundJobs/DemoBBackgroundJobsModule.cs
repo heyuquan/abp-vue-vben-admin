@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using System.Transactions;
 using Hangfire.Dashboard.BasicAuthorization;
+using Microsoft.Extensions.Hosting;
 
 namespace Mk.DemoB.BackgroundJobs
 {
@@ -41,6 +42,9 @@ namespace Mk.DemoB.BackgroundJobs
             //DashboardJobListLimit - dashboard job list limit.Default is 50000.
             //TransactionTimeout - transaction timeout.Default is 1 minute.
             //TablesPrefix - prefix for the tables in database.Default is none
+
+            //// 注册dotnet core 后台服务
+            context.Services.AddTransient<IHostedService, SimpleDotNetJob>();
 
         }
 

@@ -10,13 +10,14 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\Leopard.Framework\src\Leopard.Core\Leopard.Core.csproj" />
     <ProjectReference Include="..\..\..\Mk.DemoC\src\Mk.DemoC.HttpApi.Client\Mk.DemoC.HttpApi.Client.csproj" />
+    <ProjectReference Include="..\Mk.DemoB.BackgroundJobs\Mk.DemoB.BackgroundJobs.csproj" />
     <ProjectReference Include="..\Mk.DemoB.Domain\Mk.DemoB.Domain.csproj" />
     <ProjectReference Include="..\Mk.DemoB.Application.Contracts\Mk.DemoB.Application.Contracts.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.24" />
     <PackageReference Include="Volo.Abp.Account.Application" Version="3.0.4" />
-    <PackageReference Include="Volo.Abp.BackgroundJobs.HangFire" Version="3.0.4" />
     <PackageReference Include="Volo.Abp.Identity.Application" Version="3.0.4" />
     <PackageReference Include="Volo.Abp.PermissionManagement.Application" Version="3.0.4" />
     <PackageReference Include="Volo.Abp.TenantManagement.Application" Version="3.0.4" />
