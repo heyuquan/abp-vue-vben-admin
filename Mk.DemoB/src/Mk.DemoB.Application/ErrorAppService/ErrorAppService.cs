@@ -13,10 +13,11 @@ namespace Mk.DemoB.Application
 {
     public class ErrorAppService : DemoBAppService
     {
+        private IExceptionNotifier _exceptionNotifier;
         public ErrorAppService()
         {
             // 默认通知。 不知道那里注入进去的，默认会输出到logger日志
-            //var notifier= this.ServiceProvider.GetService<IExceptionNotifier>()
+            //LazyGetRequiredService<IExceptionNotifier>(ref _exceptionNotifier);
             // Volo.Abp.AspNetCore.Mvc.ExceptionHandling.AbpExceptionFilter 过滤器处理异常
         }
 
