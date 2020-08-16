@@ -1,9 +1,7 @@
 ﻿using Leopard.Result;
+using Mk.DemoB.BookMgr.Entities;
 using Mk.DemoB.Dto.DtoValid;
 using Mk.DemoB.DtoValid;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Mk.DemoB.DtoValidAppService
@@ -18,12 +16,13 @@ namespace Mk.DemoB.DtoValidAppService
     // 怎么做手动验证？
     // 1、Volo.Abp.FluentValidation 在Abp自动验证时，会找到AbstractValidator类，并进行验证
 
+    // FluentValidation使用资料：https://www.xcode.me/post/5849
+
     public class DtoValidAppService : DemoBAppService
     {
-        private readonly DtoValidManager _dtoValidManager;
-        public DtoValidAppService(DtoValidManager dtoValidManager)
+        public DtoValidAppService()
         {
-            _dtoValidManager = dtoValidManager;
+           
         }
 
         public virtual async Task<ServiceResult<BookDto>> CreateBookAsync(CreateBookDto dto)
@@ -36,8 +35,7 @@ namespace Mk.DemoB.DtoValidAppService
                 dto.Price
             );
 
-            var result = await _dtoValidManager.CreateBookAsync(book);
-            ret.SetSuccess(ObjectMapper.Map<Book, BookDto>(result));
+            ret.SetSuccess(ObjectMapper.Map<Book, BookDto>(book));
             return ret;
         }
     }

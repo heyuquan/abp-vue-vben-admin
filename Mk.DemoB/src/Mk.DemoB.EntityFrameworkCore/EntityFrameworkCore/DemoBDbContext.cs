@@ -1,4 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Mk.DemoB.AuthorMgr.Entities;
+using Mk.DemoB.BookMgr.Entities;
+using Mk.DemoB.DbMapperCfg;
 using Mk.DemoB.Users;
 using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;
@@ -26,6 +29,10 @@ namespace Mk.DemoB.EntityFrameworkCore
          * Also map them inside DemoBDbContextModelCreatingExtensions.ConfigureDemoB
          */
 
+        public DbSet<Book> Books { get; set; }
+
+        public DbSet<Author> Authors { get; set; }
+
         public DemoBDbContext(DbContextOptions<DemoBDbContext> options)
             : base(options)
         {
@@ -52,7 +59,8 @@ namespace Mk.DemoB.EntityFrameworkCore
 
             /* Configure your own tables/entities inside the ConfigureDemoB method */
 
-            builder.ConfigureDemoB();
+            builder.ApplyConfiguration(new BookCfg());
+            builder.ApplyConfiguration(new AuthorCfg());
 
             builder.DbMapperCameNamelToUnder();
         }

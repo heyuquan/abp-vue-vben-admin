@@ -2,7 +2,7 @@
 {
     public static class DemoBConsts
     {
-        public const string DbTablePrefix = "App";
+        public const string DbTablePrefix = "Demob";
 
         public const string DbSchema = null;
     }
