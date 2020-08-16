@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Leopard.Result;
 using Microsoft.AspNetCore.Http;
@@ -27,6 +28,7 @@ namespace Leopard.AspNetCore.Mvc.Filter
         private readonly ICorrelationIdProvider _correlationIdProvider;
 
         public LeopardExceptionFilter(
+            ILogger<LeopardExceptionFilter> logger,
             IExceptionToErrorInfoConverter errorInfoConverter,
             IHttpExceptionStatusCodeFinder statusCodeFinder,
             IJsonSerializer jsonSerializer,
@@ -37,7 +39,9 @@ namespace Leopard.AspNetCore.Mvc.Filter
             _jsonSerializer = jsonSerializer;
             _correlationIdProvider = correlationIdProvider;
 
-            Logger = NullLogger<LeopardExceptionFilter>.Instance;
+            // Volo.Abp.AspNetCore.Mvc.ExceptionHandling.AbpExceptionFilter 中直接使用NullLogger，但也可以打出日志，不清楚什么原因
+            //Logger = NullLogger<LeopardExceptionFilter>.Instance;
+            Logger = logger;
         }
 
         public async Task OnExceptionAsync(ExceptionContext context)
@@ -82,15 +86,15 @@ namespace Leopard.AspNetCore.Mvc.Filter
 
             var remoteServiceErrorInfo = _errorInfoConverter.Convert(context.Exception);
 
-            ServiceResult ret = new ServiceResult(_correlationIdProvider.Get());
-            ret.SetFailed(remoteServiceErrorInfo.Code, remoteServiceErrorInfo.Message);
+            ServiceResult<RemoteServiceErrorInfo> ret = new ServiceResult<RemoteServiceErrorInfo>(_correlationIdProvider.Get());
+            ret.SetFailed(remoteServiceErrorInfo);
+
             context.Result = new ObjectResult(ret);
 
             var logLevel = context.Exception.GetLogLevel();
 
             Logger.LogWithLevel(logLevel, $"---------- {nameof(RemoteServiceErrorInfo)} ----------");
-            Logger.LogWithLevel(logLevel, $"RequestId={ret.RequestId}");
-            Logger.LogWithLevel(logLevel, _jsonSerializer.Serialize(remoteServiceErrorInfo, indented: true));
+            Logger.LogWithLevel(logLevel, _jsonSerializer.Serialize(ret, indented: true));
             Logger.LogException(context.Exception, logLevel);
 
             await context.HttpContext

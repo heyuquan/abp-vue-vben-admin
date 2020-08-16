@@ -3,6 +3,7 @@ using Volo.Abp.Account;
 using Volo.Abp.AutoMapper;
 using Volo.Abp.BackgroundJobs.Hangfire;
 using Volo.Abp.FeatureManagement;
+using Volo.Abp.FluentValidation;
 using Volo.Abp.Identity;
 using Volo.Abp.Modularity;
 using Volo.Abp.PermissionManagement;
@@ -18,6 +19,8 @@ namespace Mk.DemoB
         typeof(AbpPermissionManagementApplicationModule),
         typeof(AbpTenantManagementApplicationModule),
         typeof(AbpFeatureManagementApplicationModule),
+
+        typeof(AbpFluentValidationModule),
         // typeof(DemoBBackgroundJobsModule),    // 先去掉后台任务，不然hangfire一直打日志
 
         // 远程调用C，需要依赖远程  C代理Module
