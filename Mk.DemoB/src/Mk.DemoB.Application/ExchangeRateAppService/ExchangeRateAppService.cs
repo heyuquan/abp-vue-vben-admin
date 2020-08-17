@@ -5,6 +5,10 @@ using System.Threading.Tasks;
 
 namespace Mk.DemoB.ExchangeRateAppService
 {
+    // ID 和 Class h2[@id='test'][@class='test']
+    // Html Agility Pack如何快速实现解析Html
+    // https://www.cnblogs.com/xuliangxing/p/8004403.html
+
     /// <summary>
     /// 汇率
     /// </summary>
