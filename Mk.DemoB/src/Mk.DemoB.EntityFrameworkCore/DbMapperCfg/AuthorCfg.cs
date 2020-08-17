@@ -20,8 +20,6 @@ namespace Mk.DemoB.DbMapperCfg
                 .HasColumnName(nameof(Author.Name));
             builder.Property(p => p.Age)
                 .HasColumnName(nameof(Author.Age));
-
-            builder.HasMany(p => p.Books).WithOne();
         }
     }
 }

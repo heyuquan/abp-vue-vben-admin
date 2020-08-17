@@ -8,6 +8,8 @@ using Volo.Abp.EntityFrameworkCore.Modeling;
 
 namespace Mk.DemoB.DbMapperCfg
 {
+    // 配置Has***和With***，应该把关系配置到ForeignKey所在的实体上
+
     public class BookCfg : IEntityTypeConfiguration<Book>
     {
         public void Configure(EntityTypeBuilder<Book> builder)
@@ -22,7 +24,11 @@ namespace Mk.DemoB.DbMapperCfg
                 .HasDefaultValue(0)
                 .HasColumnName(nameof(Book.Price));
 
-            builder.HasOne(p => p.Author).WithMany(p=>p.Books).IsRequired();
+            builder
+                .HasOne(p => p.Author)
+                .WithMany(p=>p.Books)
+                .HasForeignKey(x=>x.AuthorId)
+                .IsRequired();
         }
     }
 }

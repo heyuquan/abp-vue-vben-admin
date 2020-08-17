@@ -17,6 +17,8 @@ namespace Mk.DemoB.BookMgr.Entities
 
 
         public decimal Price { get; set; }
+
+        public Guid AuthorId { get; set; }
         /// <summary>
         /// 书的作者
         /// </summary>

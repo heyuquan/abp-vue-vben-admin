@@ -6,5 +6,11 @@ namespace Mk.DemoB.DataFilterAppService
 {
     public class DataFilterAppService: DemoBAppService
     {
+        public DataFilterAppService()
+        {
+            
+        }
+
+        
     }
 }

@@ -6,6 +6,12 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Mk.DemoB</RootNamespace>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Abp\**" />
+    <EmbeddedResource Remove="Abp\**" />
+    <None Remove="Abp\**" />
+  </ItemGroup>
   
   <ItemGroup>
     <ProjectReference Include="..\..\..\Leopard.Framework\src\Leopard.Abp.AuditLogging.EntityFrameworkCore\Leopard.Abp.AuditLogging.EntityFrameworkCore.csproj" />
@@ -20,10 +26,6 @@
     <ProjectReference Include="..\..\..\Leopard.Framework\src\Leopard.EntityFrameworkCore\Leopard.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\Mk.DemoB.Domain\Mk.DemoB.Domain.csproj" />
     <PackageReference Include="Volo.Abp.EntityFrameworkCore.MySQL" Version="3.0.4" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <Folder Include="Abp\" />
   </ItemGroup>
 
 </Project>
