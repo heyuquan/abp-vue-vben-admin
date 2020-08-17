@@ -1,7 +1,6 @@
 ﻿using Leopard.Result;
 using Mk.DemoB.BookMgr.Entities;
 using Mk.DemoB.Dto.DtoValid;
-using Mk.DemoB.DtoValid;
 using System.Threading.Tasks;
 
 namespace Mk.DemoB.DtoValidAppService
