@@ -1,6 +1,6 @@
 ﻿using Leopard.Result;
 using Mk.DemoB.BookMgr.Entities;
-using Mk.DemoB.Dto.DtoValid;
+using Mk.DemoB.Dto;
 using System.Threading.Tasks;
 
 namespace Mk.DemoB.DtoValidAppService
@@ -24,14 +24,14 @@ namespace Mk.DemoB.DtoValidAppService
            
         }
 
-        public virtual async Task<ServiceResult<BookDto>> CreateBookAsync(CreateBookDto dto)
+        public virtual async Task<ServiceResult<BookDto>> CreateBookAsync(CreateBookRequestDto input)
         {
             ServiceResult<BookDto> ret = new ServiceResult<BookDto>();
             Book book = new Book
             (
                 GuidGenerator.Create(),
-                dto.Name,
-                dto.Price
+                input.Name,
+                input.Price
             );
 
             ret.SetSuccess(ObjectMapper.Map<Book, BookDto>(book));

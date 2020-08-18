@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Mk.DemoB.BookMgr.Entities;
-using Mk.DemoB.Dto.DtoValid;
+using Mk.DemoB.Dto;
 
 namespace Mk.DemoB.MappingProfile
 {

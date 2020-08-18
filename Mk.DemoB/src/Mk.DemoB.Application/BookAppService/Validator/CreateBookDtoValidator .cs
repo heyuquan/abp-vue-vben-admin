@@ -1,12 +1,9 @@
 ﻿using FluentValidation;
-using Mk.DemoB.Dto.DtoValid;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Mk.DemoB.Dto;
 
-namespace Mk.DemoB.DtoValidAppService.Validator
+namespace Mk.DemoB.BookAppService.Validator
 {
-    public class CreateBookDtoValidator : AbstractValidator<CreateBookDto>
+    public class CreateBookDtoValidator : AbstractValidator<CreateBookRequestDto>
     {
         public CreateBookDtoValidator()
         {

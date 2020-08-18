@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace Mk.DemoB.Dto.DtoValid
+namespace Mk.DemoB.Dto
 {
-    public class CreateBookDto
+    public class CreateBookRequestDto
+
     {
         [Required]
         [StringLength(100)]
