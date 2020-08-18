@@ -11,13 +11,5 @@ namespace Mk.DemoB.BookMgr
         {
             
         }
-
-        public async Task<PagedResultDto<BookDto>> GetBookListContainDeleted(GetBookListRequestDto input)
-        {
-            using (_dataFilter.Disable<ISoftDelete>())
-            {
-                return await _bookRepository
-            }
-        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Mk.DemoB.AuthorMgr.Entities;
 using Mk.DemoB.BookMgr.Entities;
+using Mk.DemoB.ExchangeRateMgr.Entities;
 using Mk.DemoB.Users;
 using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;
@@ -31,6 +32,12 @@ namespace Mk.DemoB.EntityFrameworkCore
         public DbSet<Book> Books { get; set; }
 
         public DbSet<Author> Authors { get; set; }
+
+        public DbSet<CaptureCurrency> CaptureCurrencys { get; set; }
+        public DbSet<ExchangeRateCaptureBatch> ExchangeRateCaptureBatchs { get; set; }
+        public DbSet<ExchangeRate> ExchangeRates { get; set; }
+
+
 
         public DemoBDbContext(DbContextOptions<DemoBDbContext> options)
             : base(options)

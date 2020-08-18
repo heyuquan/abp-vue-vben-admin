@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Mk.DemoB.BookMgr.Entities;
+using Mk.DemoB.Consts;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -18,7 +19,7 @@ namespace Mk.DemoB.DbMapperCfg
             builder.ConfigureByConvention();
 
             builder.Property(p => p.Name).IsRequired()
-                .HasMaxLength(120)
+                .HasMaxLength(BookConsts.MaxNameLength)
                 .HasColumnName(nameof(Book.Name));
             builder.Property(p => p.Price).IsRequired()
                 .HasDefaultValue(0)

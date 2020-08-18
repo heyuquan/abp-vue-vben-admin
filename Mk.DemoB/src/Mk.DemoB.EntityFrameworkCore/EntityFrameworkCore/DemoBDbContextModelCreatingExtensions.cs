@@ -21,6 +21,10 @@ namespace Mk.DemoB.EntityFrameworkCore
 
             builder.ApplyConfiguration(new BookCfg());
             builder.ApplyConfiguration(new AuthorCfg());
+
+            builder.ApplyConfiguration(new CaptureCurrencyCfg());
+            builder.ApplyConfiguration(new ExchangeRateCaptureBatchCfg());
+            builder.ApplyConfiguration(new ExchangeRateCfg());
         }
     }
 }

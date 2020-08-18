@@ -28,4 +28,8 @@
     <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="3.1.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Leopard.Framework\src\Leopard.Abp.Domain.Share\Leopard.Abp.Domain.Share.csproj" />
+  </ItemGroup>
+
 </Project>

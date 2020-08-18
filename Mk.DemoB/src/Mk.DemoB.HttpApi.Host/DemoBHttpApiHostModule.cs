@@ -87,10 +87,6 @@ namespace Mk.DemoB
                 mvcOptions.Filters.Add(typeof(LeopardExceptionFilter));
             });
 
-            context.Services.AddHttpClient("rate", c =>
-            {
-                c.BaseAddress = new Uri("https://srh.bankofchina.com/");
-            });
         }
 
         private void ConfigureCache(IConfiguration configuration)

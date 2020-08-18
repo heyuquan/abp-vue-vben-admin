@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Leopard.Core;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Mk.DemoB.AuthorMgr.Entities;
+using Mk.DemoB.Consts;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,7 +18,7 @@ namespace Mk.DemoB.DbMapperCfg
             builder.ConfigureByConvention();
 
             builder.Property(p => p.Name).IsRequired()
-                .HasMaxLength(120)
+                .HasMaxLength(AuthorConsts.MaxNameLength)
                 .HasColumnName(nameof(Author.Name));
             builder.Property(p => p.Age)
                 .HasColumnName(nameof(Author.Age));
