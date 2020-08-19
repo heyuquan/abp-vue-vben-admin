@@ -13,7 +13,7 @@ using Volo.Abp.Domain.Repositories;
 namespace Mk.DemoB.DataFilterAppService
 {
     // https://docs.abp.io/zh-Hans/abp/latest/Data-Filtering
-    // 实现自定义过滤的最佳方法是为重写你的 DbContext 的 CreateFilterExpression
+    // 实现自定义过滤的最佳方法是重写你的 DbContext 的 CreateFilterExpression
     // EG：
     //protected bool IsActiveFilterEnabled => DataFilter?.IsEnabled<IIsActive>() ?? false;
 

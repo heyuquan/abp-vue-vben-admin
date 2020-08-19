@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace System
 {
-    public static class LeopardStringExtensions
+    public static class StringExtensions
     {
         /// <summary>
         /// 功能：驼峰命名转下划线命名（AbpUser>>abp_user）
