@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Mk.DemoB.BookMgr.Entities;
 using Mk.DemoB.Dto;
+using Mk.DemoB.Dto.ExchangeRates;
+using Mk.DemoB.ExchangeRateMgr.Entities;
 
 namespace Mk.DemoB.MappingProfile
 {
@@ -12,6 +14,11 @@ namespace Mk.DemoB.MappingProfile
 
             CreateMap<Book, BookDto>()
                 .MapExtraProperties();
+
+            CreateMap<ExchangeRate, ExchangeRateDto>();
+
+            CreateMap<CaptureCurrency, CaptureCurrencyDto>();           
+
         }
     }
 }

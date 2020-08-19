@@ -10,7 +10,7 @@ namespace Mk.DemoB.DbMapperCfg
     {
         public void Configure(EntityTypeBuilder<ExchangeRate> builder)
         {
-            builder.ToTable(DemoBConsts.DbTablePrefix + nameof(CaptureCurrency), DemoBConsts.DbSchema);
+            builder.ToTable(DemoBConsts.DbTablePrefix + nameof(ExchangeRate), DemoBConsts.DbSchema);
             builder.ConfigureByConvention();
 
             builder.Property(p => p.CurrencyCodeFrom).IsRequired()
@@ -30,8 +30,9 @@ namespace Mk.DemoB.DbMapperCfg
             builder.Property(p => p.CaptureBatchNumber).IsRequired()
               .HasMaxLength(ExchangeRateConsts.MaxCaptureBatchNumberLength)
               .HasColumnName(nameof(ExchangeRate.CaptureBatchNumber));
-            
 
+            builder.Property(p => p.CaptureTime).IsRequired()
+              .HasColumnName(nameof(ExchangeRate.CaptureTime));
         }
     }
 }

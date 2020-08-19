@@ -14,14 +14,14 @@ namespace Mk.DemoB.BackgroundJobAppService
     /// IBackgroundJobManager 使用 IBackgroundJobStore 来存储job作业，默认的IBackgroundJobStore为存储为内存
     /// 通过 Volo.Abp.BackgroundJobs.HangFire 包，让其进入hangfire数据库，由hangfire调度
     /// </summary>
-    public class BusinessAppService : DemoBAppService
+    public class JobAppService : DemoBAppService
     {
         private readonly IBackgroundJobManager _backgroundJobManager;
-        public readonly ILogger<BusinessAppService> _logger;
+        public readonly ILogger<JobAppService> _logger;
 
-        public BusinessAppService(
+        public JobAppService(
             IBackgroundJobManager backgroundJobManager
-            , ILogger<BusinessAppService> logger
+            , ILogger<JobAppService> logger
             )
         {
             _backgroundJobManager = backgroundJobManager;

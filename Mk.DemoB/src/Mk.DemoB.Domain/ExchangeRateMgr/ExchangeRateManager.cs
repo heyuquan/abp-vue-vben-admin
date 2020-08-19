@@ -9,31 +9,39 @@ using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Domain.Services;
 using System.Linq;
 using System.Collections.Concurrent;
+using Microsoft.EntityFrameworkCore;
 
 namespace Mk.DemoB.ExchangeRateMgr
 {
     public class ExchangeRateManager : DomainService
     {
-        public readonly IHttpClientFactory _clientFactory;
-        public readonly IRepository<ExchangeRate, Guid> _exchangeRateRepository;
-        public readonly IRepository<CaptureCurrency, Guid> _captureCurrencyRepository;
+        private readonly IHttpClientFactory _clientFactory;
+        private readonly IRepository<ExchangeRate, Guid> _exchangeRateRepository;
+        private readonly IRepository<CaptureCurrency, Guid> _captureCurrencyRepository;
+        private readonly IRepository<ExchangeRateCaptureBatch, Guid> _exchangeRateCaptureBatchRepository;
 
         public ExchangeRateManager(
             IHttpClientFactory clientFactory
             , IRepository<ExchangeRate, Guid> exchangeRateRepository
             , IRepository<CaptureCurrency, Guid> captureCurrencyRepository
+            , IRepository<ExchangeRateCaptureBatch, Guid> exchangeRateCaptureBatchRepository
             )
         {
             _clientFactory = clientFactory;
             _exchangeRateRepository = exchangeRateRepository;
             _captureCurrencyRepository = captureCurrencyRepository;
+            _exchangeRateCaptureBatchRepository = exchangeRateCaptureBatchRepository;
         }
 
+
+        // ID 和 Class h2[@id='test'][@class='test']
+        // Html Agility Pack如何快速实现解析Html
+        // https://www.cnblogs.com/xuliangxing/p/8004403.html
         /// <summary>
         /// 抓取指定的汇率
         /// </summary>
         /// <returns></returns>
-        public async Task<ExchangeRate> CaptureOneRate(string currencyCodeFrom = "CNY", string currencyCodeTo = "USD")
+        private async Task<ExchangeRate> CaptureOneRateAsync(string currencyCodeFrom = "CNY", string currencyCodeTo = "USD")
         {
 
             HttpClient client = _clientFactory.CreateClient();
@@ -51,6 +59,7 @@ namespace Mk.DemoB.ExchangeRateMgr
 
             ExchangeRate exchangeRate = new ExchangeRate(GuidGenerator.Create(), currencyCodeFrom, currencyCodeTo, buyPrice);
             exchangeRate.DataFromUrl = url;
+            exchangeRate.CaptureTime = DateTime.Now;
 
             return exchangeRate;
         }
@@ -65,24 +74,76 @@ namespace Mk.DemoB.ExchangeRateMgr
             // #、获取要获取的币种源数据
             List<CaptureCurrency> captureCurrencys = await _captureCurrencyRepository.GetListAsync();
 
+            string captureBatchNumber = Guid.NewGuid().ToString("N");
+            ExchangeRateCaptureBatch batch = new ExchangeRateCaptureBatch(GuidGenerator.Create(), captureBatchNumber);
             // #、抓取汇率
             if (captureCurrencys.Any())
             {
-                string captureBatchNumber = Guid.NewGuid().ToString("N");
                 var exchangeRates = new ConcurrentBag<ExchangeRate>();
-                Parallel.ForEach(captureCurrencys, async item =>
-                 {
-                     var exchangeRate = await this.CaptureOneRate(item.CurrencyCodeFrom, item.CurrencyCodeTo);
-                     exchangeRate.CaptureBatchNumber = captureBatchNumber;
-                     exchangeRates.Add(exchangeRate);
-                 });
+                ParallelLoopResult loopResult = Parallel.ForEach(captureCurrencys, item =>
+                {
+                    var exchangeRate = this.CaptureOneRateAsync(item.CurrencyCodeFrom, item.CurrencyCodeTo).Result;
+                    exchangeRate.CaptureBatchNumber = captureBatchNumber;
+                    exchangeRates.Add(exchangeRate);
+                });
+
                 result = exchangeRates.ToList();
+
+                // #、保存抓取的汇率
+                // #、保存抓取批次
+                if (result.Any())
+                {
+                    result.ForEach(async item => await _exchangeRateRepository.InsertAsync(item));
+                    batch.IsSuccess = true;
+                }
+                else
+                {
+                    batch.IsSuccess = false;
+                    batch.Remark = "没有抓取到任何数据";
+                }
             }
-            if (result.Any())
+            else
             {
-                await _exchangeRateRepository.(result);
+                batch.IsSuccess = false;
+                batch.Remark = "没有要抓取的币别主数据";
             }
+            await _exchangeRateCaptureBatchRepository.InsertAsync(batch);
+
             return result;
+        }
+
+        /// <summary>
+        /// 获取最新批次的汇率数据
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<ExchangeRate>> GetLateastBatchRate()
+        {
+            var batch = await _exchangeRateCaptureBatchRepository.OrderByDescending(x => x.Id).FirstOrDefaultAsync();
+            if (batch != null)
+            {
+                var exchangeRates = await _exchangeRateRepository.Where(x => x.CaptureBatchNumber == batch.CaptureBatchNumber).ToListAsync();
+                return exchangeRates;
+            }
+            else
+            {
+                return new List<ExchangeRate>();
+            }
+        }
+
+        /// <summary>
+        /// 获取最新批次的汇率数据
+        /// </summary>
+        /// <param name="currencyCodeFrom">来源币种（eg：CNY）</param>
+        /// <param name="currencyCodeTo">目的币种（eg：USD）</param>
+        /// <param name="topCount">按时间排序，返回多少条数据。最新时间的数据为第一条</param>
+        /// <returns></returns>
+        public async Task<List<ExchangeRate>> GetRateAsync(string currencyCodeFrom, string currencyCodeTo, int topCount = 1)
+        {
+            var exchangeRates = await _exchangeRateRepository
+                .Where(x => x.CurrencyCodeFrom == currencyCodeFrom && x.CurrencyCodeTo == currencyCodeTo)
+                .OrderByDescending(x => x.CreationTime)
+                .Take(topCount).ToListAsync();
+            return exchangeRates;
         }
     }
 }

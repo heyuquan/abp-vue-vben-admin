@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Mk.DemoB.Localization;
 using Volo.Abp.Application.Services;
+using Volo.Abp.Tracing;
 
 namespace Mk.DemoB
 {
@@ -10,9 +11,14 @@ namespace Mk.DemoB
      */
     public abstract class DemoBAppService : ApplicationService
     {
+
         protected DemoBAppService()
         {
             LocalizationResource = typeof(DemoBResource);
         }
+
+        private ICorrelationIdProvider _correlationIdProvider;
+
+        protected ICorrelationIdProvider IdProvider => LazyGetRequiredService(ref _correlationIdProvider);
     }
 }

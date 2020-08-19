@@ -20,7 +20,7 @@ namespace Mk.DemoB.DbMapperCfg
             builder.Property(p => p.IsSuccess).IsRequired()
               .HasColumnName(nameof(ExchangeRateCaptureBatch.IsSuccess));
 
-            builder.Property(p => p.Remark).IsRequired()
+            builder.Property(p => p.Remark)
               .HasMaxLength(ExchangeRateCaptureBatchConsts.MaxRemarkLength)
               .HasColumnName(nameof(ExchangeRateCaptureBatch.Remark));
         }

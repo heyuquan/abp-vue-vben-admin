@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Mk.DemoB.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
@@ -9,9 +10,10 @@ using Volo.Abp.EntityFrameworkCore;
 namespace Mk.DemoB.Migrations
 {
     [DbContext(typeof(DemoBMigrationsDbContext))]
-    partial class DemoBMigrationsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200819061054_UpdateRate")]
+    partial class UpdateRate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -209,10 +211,6 @@ namespace Mk.DemoB.Migrations
                         .HasColumnName("capture_batch_number")
                         .HasColumnType("varchar(64) CHARACTER SET utf8mb4")
                         .HasMaxLength(64);
-
-                    b.Property<DateTime>("CaptureTime")
-                        .HasColumnName("capture_time")
-                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()

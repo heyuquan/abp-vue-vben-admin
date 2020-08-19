@@ -31,6 +31,10 @@ namespace Mk.DemoB.ExchangeRateMgr.Entities
         /// 抓取批次
         /// </summary>
         public string CaptureBatchNumber { get; set; }
+        /// <summary>
+        /// 抓取时间
+        /// </summary>
+        public DateTime CaptureTime { get; set; }
 
         public ExchangeRate(
             Guid id

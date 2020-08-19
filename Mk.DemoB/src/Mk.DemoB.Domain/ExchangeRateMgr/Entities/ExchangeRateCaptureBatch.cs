@@ -10,7 +10,7 @@ namespace Mk.DemoB.ExchangeRateMgr.Entities
         /// <summary>
         /// 本次抓取批号
         /// </summary>
-        public string CaptureBatchNumber { get; set; }
+        public string CaptureBatchNumber { get; protected set; }
         /// <summary>
         /// 抓取是否成功
         /// </summary>
@@ -19,5 +19,11 @@ namespace Mk.DemoB.ExchangeRateMgr.Entities
         /// 备注
         /// </summary>
         public string Remark { get; set; }
+
+        public ExchangeRateCaptureBatch(Guid id, string captureBatchNumber)
+        {
+            Id = id;
+            CaptureBatchNumber = captureBatchNumber;
+        }
     }
 }
