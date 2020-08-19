@@ -23,6 +23,9 @@ namespace Mk.DemoB.DbMapperCfg
             builder.Property(p => p.Remark)
               .HasMaxLength(ExchangeRateCaptureBatchConsts.MaxRemarkLength)
               .HasColumnName(nameof(ExchangeRateCaptureBatch.Remark));
+
+            builder.Property(p => p.CaptureTime).IsRequired()
+              .HasColumnName(nameof(ExchangeRateCaptureBatch.CaptureTime));
         }
     }
 }

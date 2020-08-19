@@ -34,18 +34,20 @@ namespace Mk.DemoB.ExchangeRateMgr.Entities
         /// <summary>
         /// 抓取时间
         /// </summary>
-        public DateTime CaptureTime { get; set; }
+        public DateTime CaptureTime { get; protected set; }
 
         public ExchangeRate(
             Guid id
             , [NotNull]string currencyCodeFrom
             , [NotNull]string currencyCodeTo
-            , decimal buyPrice)
+            , decimal buyPrice
+            , [NotNull]DateTime captureTime)
         {
             Id = id;
             CurrencyCodeFrom = currencyCodeFrom;
             CurrencyCodeTo = currencyCodeTo;
             BuyPrice = buyPrice;
+            CaptureTime = captureTime;
         }
     }
 }

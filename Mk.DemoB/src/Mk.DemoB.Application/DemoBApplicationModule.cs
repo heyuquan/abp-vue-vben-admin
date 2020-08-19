@@ -1,4 +1,5 @@
-﻿using Mk.DemoC;
+﻿using Mk.DemoB.BackgroundJobs;
+using Mk.DemoC;
 using Volo.Abp.Account;
 using Volo.Abp.AutoMapper;
 using Volo.Abp.BackgroundJobs.Hangfire;
@@ -21,7 +22,7 @@ namespace Mk.DemoB
         typeof(AbpFeatureManagementApplicationModule),
 
         typeof(AbpFluentValidationModule),
-        // typeof(DemoBBackgroundJobsModule),    // 先去掉后台任务，不然hangfire一直打日志
+        typeof(DemoBBackgroundJobsModule),   
 
         // 远程调用C，需要依赖远程  C代理Module
         typeof(DemoCHttpApiClientModule)

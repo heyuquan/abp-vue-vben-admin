@@ -30,6 +30,8 @@ using Volo.Abp.BackgroundJobs;
 using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc.ExceptionHandling;
 using Leopard.AspNetCore.Mvc.Filter;
+using Mk.DemoB.BackgroundJobs;
+using Mk.DemoB.BackgroundJobs.Job;
 
 namespace Mk.DemoB
 {

@@ -21,7 +21,6 @@ namespace Mk.DemoB.ExchangeRateAppService
     [Route("exchange-rate")]
     public class ExchangeRateAppService : DemoBAppService
     {
-        private readonly IHttpClientFactory _clientFactory;
         private readonly ExchangeRateManager _exchangeRateManager;
         private readonly IRepository<CaptureCurrency, Guid> _captureCurrencyRepository;
 
@@ -31,11 +30,15 @@ namespace Mk.DemoB.ExchangeRateAppService
             , IRepository<CaptureCurrency, Guid> captureCurrencyRepository
             )
         {
-            _clientFactory = clientFactory;
             _exchangeRateManager = exchangeRateManager;
             _captureCurrencyRepository = captureCurrencyRepository;
         }
 
+        /// <summary>
+        /// 创建一笔币别对应关系
+        /// </summary>
+        /// <param name="req"></param>
+        /// <returns></returns>
         [HttpPost("capture-currency/create")]
         public async Task<ServiceResult<CaptureCurrencyDto>> AddCaptureCurrencyAsync(AddCaptureCurrencyRequest req)
         {
@@ -49,6 +52,9 @@ namespace Mk.DemoB.ExchangeRateAppService
             return ret;
         }
 
+        /// <summary>
+        /// 抓取所有CaptureCurrency表中指定的汇率
+        /// </summary>
         [HttpPost("capture/all")]
         public async Task<ServiceResult<List<ExchangeRateDto>>> CaptureAllRateAndSaveAsync()
         {
