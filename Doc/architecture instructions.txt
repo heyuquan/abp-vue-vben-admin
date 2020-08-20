@@ -68,7 +68,9 @@ HTTP 层 和 Web 层，只能注入 应用服务层 提供的服务。一般来说应用服务层公开的api就
 		
 领域层(Domain Layer)
 	Ec.Admin.Domain				包含实体, 仓储接口,领域服务接口及其实现和其他领域对象.依赖于 Domain.Shared 包.
-		#、AggregateRoot
+		#、AggregateRoot		
+		       1、里面包含实体的操作
+		       2、每个实体都提供带主键Key的构造函数，创建实体。构造函数中包含Check.NotNull操作、传入主要的字段、字段的默认赋值
 		#、值对象
 		#、Service 领域服务（eg：**Manager，）
 		#、IRepository
