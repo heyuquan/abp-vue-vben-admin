@@ -5,7 +5,7 @@ using System.Text;
 using Volo.Abp;
 using Volo.Abp.Http;
 
-namespace Leopard.Result
+namespace Leopard.Results
 {
     /// <summary>
     /// 服务层响应实体

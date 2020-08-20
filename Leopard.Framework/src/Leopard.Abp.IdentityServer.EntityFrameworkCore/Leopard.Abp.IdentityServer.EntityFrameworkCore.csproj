@@ -7,7 +7,7 @@
   <ItemGroup>
     <PackageReference Include="Volo.Abp.IdentityServer.EntityFrameworkCore" Version="3.0.4" />    
   </ItemGroup>
-  
+
   <ItemGroup>
     <ProjectReference Include="..\Leopard.EntityFrameworkCore\Leopard.EntityFrameworkCore.csproj" />
   </ItemGroup>

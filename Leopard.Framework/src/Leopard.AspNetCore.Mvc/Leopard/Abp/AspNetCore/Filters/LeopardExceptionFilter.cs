@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Leopard.Result;
+using Leopard.Results;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Abstractions;
@@ -16,7 +16,7 @@ using Volo.Abp.Http;
 using Volo.Abp.Json;
 using Volo.Abp.Tracing;
 
-namespace Leopard.AspNetCore.Mvc.Filter
+namespace Leopard.AspNetCore.Mvc.Filters
 {
     public class LeopardExceptionFilter : IAsyncExceptionFilter, ITransientDependency
     {

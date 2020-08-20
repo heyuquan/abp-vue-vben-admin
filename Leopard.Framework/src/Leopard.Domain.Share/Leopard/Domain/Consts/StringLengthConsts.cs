@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Leopard.Abp.Domain
+namespace Leopard.Domain.Consts
 {
     /// <summary>
     /// 通用字符串长度

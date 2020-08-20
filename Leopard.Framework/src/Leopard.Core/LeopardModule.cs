@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using Volo.Abp.Modularity;
 
-namespace Leopard.Core
+namespace Leopard
 {
-    public class LeopardCoreModule: AbpModule
+    public class LeopardModule: AbpModule
     {
     }
 }

@@ -1,4 +1,4 @@
-﻿using Leopard.Result;
+﻿using Leopard.Results;
 using Microsoft.AspNetCore.Mvc;
 using Mk.DemoB.BookMgr;
 using Mk.DemoB.BookMgr.Entities;

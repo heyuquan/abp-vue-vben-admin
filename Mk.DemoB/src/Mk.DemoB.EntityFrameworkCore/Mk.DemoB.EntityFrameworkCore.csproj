@@ -22,7 +22,7 @@
     <ProjectReference Include="..\..\..\Leopard.Framework\src\Leopard.Abp.PermissionManagement.EntityFrameworkCore\Leopard.Abp.PermissionManagement.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\..\..\Leopard.Framework\src\Leopard.Abp.SettingManagement.EntityFrameworkCore\Leopard.Abp.SettingManagement.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\..\..\Leopard.Framework\src\Leopard.Abp.TenantManagement.EntityFrameworkCore\Leopard.Abp.TenantManagement.EntityFrameworkCore.csproj" />
-    <ProjectReference Include="..\..\..\Leopard.Framework\src\Leopard.Core\Leopard.Core.csproj" />
+    <ProjectReference Include="..\..\..\Leopard.Framework\src\Leopard.Core\Leopard.csproj" />
     <ProjectReference Include="..\..\..\Leopard.Framework\src\Leopard.EntityFrameworkCore\Leopard.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\Mk.DemoB.Domain\Mk.DemoB.Domain.csproj" />
     <PackageReference Include="Volo.Abp.EntityFrameworkCore.MySQL" Version="3.0.4" />

@@ -29,7 +29,7 @@ using Mk.DemoB.Localization;
 using Volo.Abp.BackgroundJobs;
 using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc.ExceptionHandling;
-using Leopard.AspNetCore.Mvc.Filter;
+using Leopard.AspNetCore.Mvc.Filters;
 using Mk.DemoB.BackgroundJobs;
 using Mk.DemoB.BackgroundJobs.Job;
 

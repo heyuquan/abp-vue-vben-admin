@@ -1,4 +1,4 @@
-﻿using Leopard.Abp.Domain;
+﻿using Leopard.Domain.Consts;
 using System;
 using System.Collections.Generic;
 using System.Text;

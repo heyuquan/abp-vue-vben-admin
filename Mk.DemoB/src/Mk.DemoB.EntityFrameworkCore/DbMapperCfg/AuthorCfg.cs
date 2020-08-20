@@ -1,4 +1,4 @@
-﻿using Leopard.Core;
+﻿using Leopard;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Mk.DemoB.AuthorMgr.Entities;

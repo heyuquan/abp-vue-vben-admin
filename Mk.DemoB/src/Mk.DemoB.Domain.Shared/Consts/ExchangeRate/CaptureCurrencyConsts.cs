@@ -1,7 +1,4 @@
-﻿using Leopard.Abp.Domain;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Leopard.Domain.Consts;
 
 namespace Mk.DemoB.Consts
 {

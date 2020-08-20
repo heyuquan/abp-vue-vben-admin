@@ -47,7 +47,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Abp.TenantManagemen
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Abp.PermissionManagement.EntityFrameworkCore", "Leopard.Framework\src\Leopard.Abp.PermissionManagement.EntityFrameworkCore\Leopard.Abp.PermissionManagement.EntityFrameworkCore.csproj", "{4A827D0D-44D9-4F86-8158-A3F1B12F1950}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Core", "Leopard.Framework\src\Leopard.Core\Leopard.Core.csproj", "{8B34E5EC-1B0E-41ED-872B-7905023E966A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard", "Leopard.Framework\src\Leopard.Core\Leopard.csproj", "{8B34E5EC-1B0E-41ED-872B-7905023E966A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.EntityFrameworkCore", "Leopard.Framework\src\Leopard.EntityFrameworkCore\Leopard.EntityFrameworkCore.csproj", "{F34CB1A6-4FF2-4161-8365-CAE4E0DD654E}"
 EndProject
@@ -81,9 +81,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoC.HttpApi.Client", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.AspNetCore.Mvc", "Leopard.Framework\src\Leopard.AspNetCore.Mvc\Leopard.AspNetCore.Mvc.csproj", "{BA1218D5-7F58-4209-91AF-44761CBE9421}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leopard.Abp.Domain.Share", "Leopard.Framework\src\Leopard.Abp.Domain.Share\Leopard.Abp.Domain.Share.csproj", "{CA7DFE7B-908A-4175-9223-579FFFB828A1}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EntityFrameworkCore", "EntityFrameworkCore", "{AE43C6D4-22DF-4609-BE9B-8A462ABA7FC9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Domain.Share", "Leopard.Framework\src\Leopard.Domain.Share\Leopard.Domain.Share.csproj", "{E09BC551-2A2E-4A8B-B903-40CD0969A51A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -223,10 +223,10 @@ Global
 		{BA1218D5-7F58-4209-91AF-44761CBE9421}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA1218D5-7F58-4209-91AF-44761CBE9421}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA1218D5-7F58-4209-91AF-44761CBE9421}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CA7DFE7B-908A-4175-9223-579FFFB828A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CA7DFE7B-908A-4175-9223-579FFFB828A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CA7DFE7B-908A-4175-9223-579FFFB828A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CA7DFE7B-908A-4175-9223-579FFFB828A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E09BC551-2A2E-4A8B-B903-40CD0969A51A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E09BC551-2A2E-4A8B-B903-40CD0969A51A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E09BC551-2A2E-4A8B-B903-40CD0969A51A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E09BC551-2A2E-4A8B-B903-40CD0969A51A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -265,8 +265,8 @@ Global
 		{95CE1EB6-2364-420E-A428-09F0F6B9F9CB} = {F88A0388-EC61-4CB3-852F-FBE3FE15BCB3}
 		{AC7A3EB0-B9DB-4396-B646-1F236433600E} = {F88A0388-EC61-4CB3-852F-FBE3FE15BCB3}
 		{BA1218D5-7F58-4209-91AF-44761CBE9421} = {408C61DE-C824-4BA2-8EE7-CE571EA864B5}
-		{CA7DFE7B-908A-4175-9223-579FFFB828A1} = {408C61DE-C824-4BA2-8EE7-CE571EA864B5}
 		{AE43C6D4-22DF-4609-BE9B-8A462ABA7FC9} = {408C61DE-C824-4BA2-8EE7-CE571EA864B5}
+		{E09BC551-2A2E-4A8B-B903-40CD0969A51A} = {408C61DE-C824-4BA2-8EE7-CE571EA864B5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {28315BFD-90E7-4E14-A2EA-F3D23AF4126F}

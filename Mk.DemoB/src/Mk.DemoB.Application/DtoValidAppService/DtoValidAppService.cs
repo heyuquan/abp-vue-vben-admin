@@ -1,4 +1,4 @@
-﻿using Leopard.Result;
+﻿using Leopard.Results;
 using Mk.DemoB.BookMgr.Entities;
 using Mk.DemoB.Dto;
 using System.Threading.Tasks;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Leopard.Request
+namespace Leopard.Requests
 {
     /// <summary>
     /// Service 请求实体
