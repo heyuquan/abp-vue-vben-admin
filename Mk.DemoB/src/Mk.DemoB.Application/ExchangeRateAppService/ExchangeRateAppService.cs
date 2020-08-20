@@ -10,6 +10,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Volo.Abp;
+using Volo.Abp.Application.Dtos;
 using Volo.Abp.Domain.Repositories;
 
 namespace Mk.DemoB.ExchangeRateAppService
@@ -17,7 +18,7 @@ namespace Mk.DemoB.ExchangeRateAppService
     /// <summary>
     /// 汇率
     /// </summary>
-    [Route("exchange-rate")]
+    [Route("api/exchange-rate")]
     public class ExchangeRateAppService : DemoBAppService
     {
         private readonly ExchangeRateManager _exchangeRateManager;
@@ -82,18 +83,18 @@ namespace Mk.DemoB.ExchangeRateAppService
         }
 
         /// <summary>
-        /// 获取汇率
+        /// 获取汇率数据的Top条记录
         /// </summary>
         /// <param name="currencyCodeFrom">来源币种（eg：CNY）</param>
         /// <param name="currencyCodeTo">目的币种（eg：USD）</param>
         /// <param name="topCount">按时间排序，返回多少条数据。最新时间的数据为第一条</param>
         /// <returns></returns>
-        [HttpGet("one")]
-        public async Task<ServiceResult<List<ExchangeRateDto>>> GetRateAsync(string currencyCodeFrom, string currencyCodeTo, int topCount = 1)
+        [HttpGet("top-record")]
+        public async Task<ServiceResult<List<ExchangeRateDto>>> GetTopRateAsync(string currencyCodeFrom, string currencyCodeTo, int topCount = 1)
         {
             ServiceResult<List<ExchangeRateDto>> ret = new ServiceResult<List<ExchangeRateDto>>(IdProvider.Get());
 
-            var exchangeRates = await _exchangeRateManager.GetRateAsync(currencyCodeFrom, currencyCodeTo, topCount);
+            var exchangeRates = await _exchangeRateManager.GetTopRateAsync(currencyCodeFrom, currencyCodeTo, topCount);
             if (exchangeRates.Any())
             {
                 List<ExchangeRateDto> dtos = ObjectMapper.Map<List<ExchangeRate>, List<ExchangeRateDto>>(exchangeRates);
@@ -106,6 +107,31 @@ namespace Mk.DemoB.ExchangeRateAppService
                    , logLevel: LogLevel.Error
                    );
                 throw exception;
+            }
+
+            return ret;
+        }
+
+        /// <summary>
+        /// 获取汇率分页数据
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("paging")]
+        public async Task<ServiceResult<PagedResultDto<ExchangeRateDto>>> GetRatePagingAsync(GetRateRequest req)
+        {
+            ServiceResult<PagedResultDto<ExchangeRateDto>> ret = new ServiceResult<PagedResultDto<ExchangeRateDto>>(IdProvider.Get());
+
+            var exchangeRates = await _exchangeRateManager.GetRatePagingAsync(req.CurrencyCodeFrom, req.CurrencyCodeTo, req.BeginTime, req.EndTime, req.SkipCount, req.MaxResultCount);
+            var count = await _exchangeRateManager.GetRatePagingCountAsync(req.CurrencyCodeFrom, req.CurrencyCodeTo, req.BeginTime, req.EndTime);
+            if (exchangeRates.Any())
+            {
+                List<ExchangeRateDto> dtos = ObjectMapper.Map<List<ExchangeRate>, List<ExchangeRateDto>>(exchangeRates);
+                var pagDto = new PagedResultDto<ExchangeRateDto>(count, dtos);
+                ret.SetSuccess(pagDto);
+            }
+            else
+            {
+                throw new UserFriendlyException(message: "传入的币种，获取不到汇率数据", logLevel: LogLevel.Error);
             }
 
             return ret;
