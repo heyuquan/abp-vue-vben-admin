@@ -9,6 +9,13 @@ using Volo.Abp.Guids;
 
 namespace Mk.DemoB.Application
 {
+    // 配置
+    // Configure<AbpSequentialGuidGeneratorOptions>(options =>
+    // { 
+    //        options.DefaultSequentialGuidType = SequentialGuidType.SequentialAsBinary;
+    // });
+
+
     public class GuidAppService : DemoBAppService, IGuidAppService
     {
         private readonly IGuidGenerator _guidGenerator;

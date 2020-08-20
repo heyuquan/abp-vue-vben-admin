@@ -21,7 +21,8 @@ namespace Mk.DemoB.DbMapperCfg
               .HasColumnName(nameof(ExchangeRate.CurrencyCodeTo));
 
             builder.Property(p => p.BuyPrice).IsRequired()
-              .HasColumnName(nameof(ExchangeRate.BuyPrice));
+              .HasColumnName(nameof(ExchangeRate.BuyPrice))
+              .HasColumnType("decimal(18,6)");
 
             builder.Property(p => p.DataFromUrl).IsRequired()
               .HasMaxLength(ExchangeRateConsts.MaxDataFromUrlLength)

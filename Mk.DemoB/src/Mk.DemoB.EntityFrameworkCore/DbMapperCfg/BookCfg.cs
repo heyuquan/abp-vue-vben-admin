@@ -23,7 +23,8 @@ namespace Mk.DemoB.DbMapperCfg
                 .HasColumnName(nameof(Book.Name));
             builder.Property(p => p.Price).IsRequired()
                 .HasDefaultValue(0)
-                .HasColumnName(nameof(Book.Price));
+                .HasColumnName(nameof(Book.Price))
+                .HasColumnType("decimal(18,6)"); ;
 
             builder
                 .HasOne(p => p.Author)
