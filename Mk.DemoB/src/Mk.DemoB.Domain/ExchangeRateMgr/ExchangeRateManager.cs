@@ -47,8 +47,8 @@ namespace Mk.DemoB.ExchangeRateMgr
             HttpClient client = _clientFactory.CreateClient();
 
             string url = $"https://www.exchange-rates.org/converter/{currencyCodeFrom}/{currencyCodeTo}/1";
-            HttpResponseMessage response = await client.GetAsync(url);
-            string html = await response.Content.ReadAsStringAsync();
+            HttpResponseMessage response = await client.GetAsync(url).ConfigureAwait(false);
+            string html = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
             HtmlDocument doc = new HtmlDocument();
             doc.LoadHtml(html);
@@ -78,13 +78,17 @@ namespace Mk.DemoB.ExchangeRateMgr
             // #、抓取汇率
             if (captureCurrencys.Any())
             {
+
                 var exchangeRates = new ConcurrentBag<ExchangeRate>();
-                ParallelLoopResult loopResult = Parallel.ForEach(captureCurrencys, item =>
+
+                var tasks = captureCurrencys.Select(async item =>
                 {
-                    var exchangeRate = this.CaptureOneRateAsync(item.CurrencyCodeFrom, item.CurrencyCodeTo).Result;
+                    var exchangeRate = await this.CaptureOneRateAsync(item.CurrencyCodeFrom, item.CurrencyCodeTo);
                     exchangeRate.CaptureBatchNumber = captureBatchNumber;
                     exchangeRates.Add(exchangeRate);
-                });
+                }).ToArray();
+
+                await Task.WhenAll(tasks);
 
                 result = exchangeRates.ToList();
 
