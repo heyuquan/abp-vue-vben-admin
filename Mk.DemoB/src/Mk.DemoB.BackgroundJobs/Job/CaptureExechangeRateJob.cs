@@ -24,6 +24,9 @@ namespace Mk.DemoB.BackgroundJobs.Job
     // 原因：https://www.cnblogs.com/myzony/p/11647030.html
     // AppService中的方法不用带 [UnitOfWork] 特性，是因为基类实现了Abp自动开启了工作单元。后续再研究abp源码
 
+    // 使用 PeriodicBackgroundWorkerContext 解析依赖 而不是构造函数. 
+    // 因为 AsyncPeriodicBackgroundWorkerBase 使用 IServiceScope 在你的任务执行结束时会对其 disposed.
+
     public class CaptureExechangeRateJob : AsyncPeriodicBackgroundWorkerBase
     {
         private readonly ILogger<CaptureExechangeRateJob> _logger;
