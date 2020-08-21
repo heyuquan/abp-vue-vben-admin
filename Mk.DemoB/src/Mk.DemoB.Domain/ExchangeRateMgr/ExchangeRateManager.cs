@@ -119,24 +119,6 @@ namespace Mk.DemoB.ExchangeRateMgr
         /// <summary>
         /// 获取最新批次的汇率数据
         /// </summary>
-        /// <returns></returns>
-        public async Task<List<ExchangeRate>> GetLateastBatchRate()
-        {
-            var batch = await _exchangeRateCaptureBatchRepository.OrderByDescending(x => x.Id).FirstOrDefaultAsync();
-            if (batch != null)
-            {
-                var exchangeRates = await _exchangeRateRepository.Where(x => x.CaptureBatchNumber == batch.CaptureBatchNumber).ToListAsync();
-                return exchangeRates;
-            }
-            else
-            {
-                return new List<ExchangeRate>();
-            }
-        }
-
-        /// <summary>
-        /// 获取最新批次的汇率数据
-        /// </summary>
         /// <param name="currencyCodeFrom">来源币种（eg：CNY）</param>
         /// <param name="currencyCodeTo">目的币种（eg：USD）</param>
         /// <param name="topCount">按时间排序，返回多少条数据。最新时间的数据为第一条</param>

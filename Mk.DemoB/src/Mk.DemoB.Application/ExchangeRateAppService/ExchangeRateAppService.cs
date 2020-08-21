@@ -1,5 +1,6 @@
 ﻿using Leopard.Results;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Mk.DemoB.Dto.ExchangeRates;
 using Mk.DemoB.ExchangeRateMgr;
@@ -23,15 +24,21 @@ namespace Mk.DemoB.ExchangeRateAppService
     {
         private readonly ExchangeRateManager _exchangeRateManager;
         private readonly IRepository<CaptureCurrency, Guid> _captureCurrencyRepository;
+        private readonly IRepository<ExchangeRateCaptureBatch, Guid> _exchangeRateCaptureBatchRepository;
+        private readonly IRepository<ExchangeRate, Guid> _exchangeRateRepository;
 
         public ExchangeRateAppService(
             IHttpClientFactory clientFactory
             , ExchangeRateManager exchangeRateManager
+            , IRepository<ExchangeRate, Guid> exchangeRateRepository
             , IRepository<CaptureCurrency, Guid> captureCurrencyRepository
+            , IRepository<ExchangeRateCaptureBatch, Guid> exchangeRateCaptureBatchRepository
             )
         {
             _exchangeRateManager = exchangeRateManager;
             _captureCurrencyRepository = captureCurrencyRepository;
+            _exchangeRateCaptureBatchRepository = exchangeRateCaptureBatchRepository;
+            _exchangeRateRepository = exchangeRateRepository;
         }
 
         /// <summary>
@@ -71,14 +78,30 @@ namespace Mk.DemoB.ExchangeRateAppService
         /// </summary>
         /// <returns></returns>
         [HttpGet("lateast-batch")]
-        public async Task<ServiceResult<List<ExchangeRateDto>>> GetLateastBatchRate()
+        public async Task<ServiceResult<ExchangeRateBatchDto>> GetLateastBatchRate()
         {
-            ServiceResult<List<ExchangeRateDto>> ret = new ServiceResult<List<ExchangeRateDto>>(IdProvider.Get());
+            ServiceResult<ExchangeRateBatchDto> ret = new ServiceResult<ExchangeRateBatchDto>(IdProvider.Get());
+            ExchangeRateBatchDto retDto = new ExchangeRateBatchDto();
 
-            var exchangeRates = await _exchangeRateManager.GetLateastBatchRate();
-            List<ExchangeRateDto> dtos = ObjectMapper.Map<List<ExchangeRate>, List<ExchangeRateDto>>(exchangeRates);
-
-            ret.SetSuccess(dtos);
+            var batch = await _exchangeRateCaptureBatchRepository.OrderByDescending(x => x.Id).FirstOrDefaultAsync();
+            if (batch != null)
+            {
+                var exchangeRates = await _exchangeRateRepository.Where(x => x.CaptureBatchNumber == batch.CaptureBatchNumber).ToListAsync();
+                retDto.CaptureTime = batch.CaptureTime;
+                retDto.CaptureBatchNumber = batch.CaptureBatchNumber;
+                List<ExchangeRateDto> exchangeRateDtos = ObjectMapper.Map<List<ExchangeRate>, List<ExchangeRateDto>>(exchangeRates);
+                retDto.ExchangeRates = exchangeRateDtos;
+                ret.SetSuccess(retDto);
+            }
+            else
+            {
+                UserFriendlyException exception = new UserFriendlyException(
+                    message: "没有任何汇率数据"
+                   , logLevel: LogLevel.Error
+                   );
+                throw exception;
+            }
+           
             return ret;
         }
 
