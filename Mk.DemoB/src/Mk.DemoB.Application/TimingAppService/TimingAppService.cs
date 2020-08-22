@@ -69,11 +69,14 @@ namespace Mk.DemoB.TimingAppService
         /// </summary>
         /// <param name="time"></param>
         /// <returns></returns>
-        public virtual async Task AbpClockInput(DateTime time)
+        public virtual async Task<DateTime> AbpClockInput(DateTime time)
         {
             // eg
             // 传入 2020-08-22 17:53:15
             // time对象时间为 2020-08-22 17:53:15  Kind=Utc
+
+            // 明确返回local时间
+            return time.ToLocalTime();
         }
 
     }
