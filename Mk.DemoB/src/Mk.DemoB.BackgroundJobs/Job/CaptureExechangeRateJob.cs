@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Volo.Abp.BackgroundWorkers;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Threading;
+using Volo.Abp.Timing;
 using Volo.Abp.Uow;
 
 namespace Mk.DemoB.BackgroundJobs.Job
@@ -32,9 +33,11 @@ namespace Mk.DemoB.BackgroundJobs.Job
         private readonly ILogger<CaptureExechangeRateJob> _logger;
         private const int IntervalSecond = (1000 * 60) * 60 * 8; //8小时抓取一次
         private const int CaptureCountPerDay = 1;   // 每天抓取多少次
+        private readonly Clock _clock;
 
         public CaptureExechangeRateJob(
                 AbpTimer timer
+                , Clock clock
                 , IServiceScopeFactory serviceScopeFactory
                 , ILogger<CaptureExechangeRateJob> logger
             ) : base(
@@ -43,6 +46,7 @@ namespace Mk.DemoB.BackgroundJobs.Job
         {
             _logger = logger;
             timer.Period = IntervalSecond;
+            _clock = clock;
         }
 
         [UnitOfWork]
@@ -62,7 +66,7 @@ namespace Mk.DemoB.BackgroundJobs.Job
             int hadCaptureCount = 0;
             if (exchangeRateCaptureBatchs.Any())
             {
-                DateTime now = DateTime.Now;
+                DateTime now = _clock.Now;
                 foreach (var item in exchangeRateCaptureBatchs)
                 {
                     DateTime capturetime = item.CaptureTime;

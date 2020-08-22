@@ -22,7 +22,7 @@ namespace Mk.DemoB.CacheAppService
         [HttpGet("settime")]
         public async Task<string> SetTime()
         {
-            var currentTime = DateTime.Now.ToString();
+            var currentTime = Clock.Now.ToString();
             await this._cache.SetStringAsync("CurrentTime", currentTime);
             return $"设置时间为{currentTime}";
         }

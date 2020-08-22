@@ -32,6 +32,7 @@ using Volo.Abp.AspNetCore.Mvc.ExceptionHandling;
 using Leopard.AspNetCore.Mvc.Filters;
 using Mk.DemoB.BackgroundJobs;
 using Mk.DemoB.BackgroundJobs.Job;
+using Volo.Abp.Timing;
 
 namespace Mk.DemoB
 {
@@ -62,6 +63,7 @@ namespace Mk.DemoB
             ConfigureCors(context, configuration);
             ConfigureSwaggerServices(context);
 
+            // guid的排序规则
             Configure<AbpSequentialGuidGeneratorOptions>(options =>
             {
                 options.DefaultSequentialGuidType = SequentialGuidType.SequentialAsString;
@@ -73,7 +75,7 @@ namespace Mk.DemoB
                 options.MapCodeNamespace("DemoBError", typeof(DemoBResource));
             });
 
-            //// 禁用 BackgroundJob
+            // 禁用 BackgroundJob
             Configure<AbpBackgroundJobOptions>(options =>
             {
                 options.IsJobExecutionEnabled = false;
@@ -87,6 +89,11 @@ namespace Mk.DemoB
                 if (index > -1)
                     mvcOptions.Filters.RemoveAt(index);
                 mvcOptions.Filters.Add(typeof(LeopardExceptionFilter));
+            });
+
+            Configure<AbpClockOptions>(options =>
+            {
+                options.Kind = DateTimeKind.Utc;
             });
 
         }

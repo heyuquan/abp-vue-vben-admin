@@ -58,7 +58,7 @@ namespace Mk.DemoB.ExchangeRateMgr
 
             decimal buyPrice = decimal.Parse(node.InnerText);
 
-            ExchangeRate exchangeRate = new ExchangeRate(GuidGenerator.Create(), currencyCodeFrom, currencyCodeTo, buyPrice, DateTime.Now);
+            ExchangeRate exchangeRate = new ExchangeRate(GuidGenerator.Create(), currencyCodeFrom, currencyCodeTo, buyPrice, Clock.Now);
             exchangeRate.DataFromUrl = url;
 
             return exchangeRate;
@@ -75,7 +75,7 @@ namespace Mk.DemoB.ExchangeRateMgr
             List<CaptureCurrency> captureCurrencys = await _captureCurrencyRepository.GetListAsync();
 
             string captureBatchNumber = Guid.NewGuid().ToString("N");
-            ExchangeRateCaptureBatch batch = new ExchangeRateCaptureBatch(GuidGenerator.Create(), captureBatchNumber, DateTime.Now);
+            ExchangeRateCaptureBatch batch = new ExchangeRateCaptureBatch(GuidGenerator.Create(), captureBatchNumber, Clock.Now);
             // #、抓取汇率
             if (captureCurrencys.Any())
             {

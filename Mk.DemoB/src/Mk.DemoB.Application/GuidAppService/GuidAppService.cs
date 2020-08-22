@@ -14,7 +14,9 @@ namespace Mk.DemoB.Application
     // { 
     //        options.DefaultSequentialGuidType = SequentialGuidType.SequentialAsBinary;
     // });
-
+    // SequentialAtEnd(default) 用于SQL Server.
+    // SequentialAsString 用于MySQL和PostgreSQL.
+    // SequentialAsBinary 用于Oracle.
 
     public class GuidAppService : DemoBAppService, IGuidAppService
     {
@@ -51,6 +53,8 @@ namespace Mk.DemoB.Application
                 ids.Add(id);
             }
 
+            // 生成的guid排序规则是根据 mssql、mysql、oracle等排序，不是C#的排序规则
+            // 排序规则通过 options.DefaultSequentialGuidType 设置
             sortIds.Add(ids[3]);
             sortIds.Add(ids[0]);
             sortIds.Add(ids[4]);

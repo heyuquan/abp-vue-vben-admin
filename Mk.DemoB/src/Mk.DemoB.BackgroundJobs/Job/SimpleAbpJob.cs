@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using Volo.Abp.BackgroundJobs;
 using Volo.Abp.DependencyInjection;
+using Volo.Abp.Timing;
 
 namespace Mk.DemoB.BackgroundJobs
 {
@@ -13,14 +14,17 @@ namespace Mk.DemoB.BackgroundJobs
 
     public class SimpleAbpJob : BackgroundJob<SimpleAbpArgs>, ITransientDependency
     {
-        public SimpleAbpJob()
+        private readonly Clock _clock;
+        public SimpleAbpJob(
+            Clock clock
+            )
         {
-
+            _clock = clock;
         }
 
         public override void Execute(SimpleAbpArgs args)
         {
-            var msg = $"Abp 后台任务：CurrentTime:{ DateTime.Now}, Hello World!,JobCreatime:{args.CreateTime}";
+            var msg = $"Abp 后台任务：CurrentTime:{ _clock.Now}, Hello World!,JobCreatime:{args.CreateTime}";
 
             Console.WriteLine(msg);
 

@@ -9,11 +9,11 @@ using Volo.Abp.Localization;
 
 namespace Mk.DemoB.Application
 {
-    public class LocalAppService : DemoBAppService
+    public class LanguageAppService : DemoBAppService
     {
         private readonly IStringLocalizer<DemoBResource> _localizer;
 
-        public LocalAppService(IStringLocalizer<DemoBResource> localizer)
+        public LanguageAppService(IStringLocalizer<DemoBResource> localizer)
         {
             _localizer = localizer;
         }

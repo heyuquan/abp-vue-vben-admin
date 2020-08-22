@@ -35,7 +35,7 @@ namespace Mk.DemoB.BackgroundJobAppService
 
             // 创建job作业，eg：发邮件
             await _backgroundJobManager.EnqueueAsync(
-                args: new SimpleAbpArgs { BusinessName = "RegisterUser", CreateTime = DateTime.Now }
+                args: new SimpleAbpArgs { BusinessName = "RegisterUser", CreateTime = Clock.Now }
                 , delay: new TimeSpan(0, 0, 5)
                 );
         }

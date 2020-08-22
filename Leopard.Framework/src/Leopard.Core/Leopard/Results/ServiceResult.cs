@@ -35,7 +35,7 @@ namespace Leopard.Results
         /// <summary>
         /// 时间戳(毫秒)
         /// </summary>
-        public long Timestamp { get; } = (DateTime.Now.ToUniversalTime().Ticks - 621355968000000000) / 10000;
+        public long Timestamp { get; } = (DateTime.UtcNow.Ticks - 621355968000000000) / 10000;
 
         /// <summary>
         /// 响应成功
