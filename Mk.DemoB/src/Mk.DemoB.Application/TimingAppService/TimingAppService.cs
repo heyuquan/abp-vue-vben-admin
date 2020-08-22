@@ -45,7 +45,7 @@ namespace Mk.DemoB.TimingAppService
             // Africa/Abidjan
             var ianaTimezones = _timezoneProvider.GetIanaTimezones();
 
-            var info = _timezoneProvider.GetTimeZoneInfo("Africa/Abidjan");           
+            var info = _timezoneProvider.GetTimeZoneInfo("Africa/Abidjan");
         }
 
         public virtual async Task AbpClock()
@@ -62,6 +62,18 @@ namespace Mk.DemoB.TimingAppService
             // Abp在保存数据到数据库和返回对象到前台时，如果字段是DateTime对象(DateTime中有Kind对象指示当前是Local还是Utc)，
             // 会调用Clock的 Normalize()方法，将其格式化为 AbpClockOptions 设置的Local或Utc
             // 当然在获取Now时间时，最好使用 Clock 对象。避免出现调试时看到是这个时间，但保存后或者返回对象的时间却是另外一个
+        }
+
+        /// <summary>
+        /// 验证输入的时间是否会自动 Utc 化 
+        /// </summary>
+        /// <param name="time"></param>
+        /// <returns></returns>
+        public virtual async Task AbpClockInput(DateTime time)
+        {
+            // eg
+            // 传入 2020-08-22 17:53:15
+            // time对象时间为 2020-08-22 17:53:15  Kind=Utc
         }
 
     }
