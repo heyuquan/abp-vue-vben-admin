@@ -83,7 +83,7 @@ namespace Mk.DemoB.BackgroundJobs
             //    DashboardTitle = "任务调度中心"
             //});
 
-            context.AddBackgroundWorker<CaptureExechangeRateJob>();
+            context.AddBackgroundWorker<CaptureExechangeRateWorker>();
         }
     }
 }

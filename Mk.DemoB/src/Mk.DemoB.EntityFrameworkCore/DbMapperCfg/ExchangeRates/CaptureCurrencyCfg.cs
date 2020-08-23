@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Mk.DemoB.Consts;
+using Mk.DemoB.Consts.ExchangeRates;
 using Mk.DemoB.ExchangeRateMgr.Entities;
 using Volo.Abp.EntityFrameworkCore.Modeling;
 
-namespace Mk.DemoB.DbMapperCfg
+namespace Mk.DemoB.DbMapperCfg.ExchangeRates
 {
     public class CaptureCurrencyCfg : IEntityTypeConfiguration<CaptureCurrency>
     {

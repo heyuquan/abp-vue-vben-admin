@@ -2,6 +2,7 @@
 using Mk.DemoB.AuthorMgr.Entities;
 using Mk.DemoB.BookMgr.Entities;
 using Mk.DemoB.ExchangeRateMgr.Entities;
+using Mk.DemoB.SaleOrderMgr.Entities;
 using Mk.DemoB.Users;
 using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;
@@ -36,6 +37,9 @@ namespace Mk.DemoB.EntityFrameworkCore
         public DbSet<CaptureCurrency> CaptureCurrencys { get; set; }
         public DbSet<ExchangeRateCaptureBatch> ExchangeRateCaptureBatchs { get; set; }
         public DbSet<ExchangeRate> ExchangeRates { get; set; }
+
+        public DbSet<SaleOrder> SaleOrders { get; set; }
+        public DbSet<SaleOrderDetail> SaleOrderDetails { get; set; }
 
 
 

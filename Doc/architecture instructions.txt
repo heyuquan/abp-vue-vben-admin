@@ -63,7 +63,7 @@ HTTP 层 和 Web 层，只能注入 应用服务层 提供的服务。一般来说应用服务层公开的api就
 		#、AutoMapperProfile映射
 	Ec.Admin.Application.Contracts		包含应用服务接口和相关的数据传输对象(DTO).依赖于 Domain.Shared 包
 		#、I**AppService
-		#、DTO
+		#、DTO    命名为：**Request、**Input的为输入参数，可以带上验证特性
 		#、Permission定义（eg：**PermissionDefinitionProvider）
 		
 领域层(Domain Layer)

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Mk.DemoB.Dto
+namespace Mk.DemoB.Dto.Guids
 {
     public class SequentialIdsDto
     {

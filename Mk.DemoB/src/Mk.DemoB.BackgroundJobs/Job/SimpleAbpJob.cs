@@ -9,7 +9,7 @@ using Volo.Abp.Timing;
 
 namespace Mk.DemoB.BackgroundJobs
 {
-
+    // 后台作业
     // 需要用 IBackgroundJobManager 把作业加入到队列中
 
     public class SimpleAbpJob : BackgroundJob<SimpleAbpArgs>, ITransientDependency

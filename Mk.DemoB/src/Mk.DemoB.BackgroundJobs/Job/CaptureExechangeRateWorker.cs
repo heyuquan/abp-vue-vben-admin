@@ -16,6 +16,8 @@ using Volo.Abp.Uow;
 
 namespace Mk.DemoB.BackgroundJobs.Job
 {
+    // 后台工作者
+
     // 注意：net core 的 BackgroundService 不能直接用于AbpVnext中
     // 原因：直接使用，依赖注入会出现问题。eg：在注入 IRepository 后，使用时会报对应的dbcontext已经被释放
     // 1、所以：要使用 AsyncPeriodicBackgroundWorkerBase  https://docs.abp.io/zh-Hans/abp/latest/Background-Workers
@@ -28,18 +30,18 @@ namespace Mk.DemoB.BackgroundJobs.Job
     // 使用 PeriodicBackgroundWorkerContext 解析依赖 而不是构造函数. 
     // 因为 AsyncPeriodicBackgroundWorkerBase 使用 IServiceScope 在你的任务执行结束时会对其 disposed.
 
-    public class CaptureExechangeRateJob : AsyncPeriodicBackgroundWorkerBase
+    public class CaptureExechangeRateWorker : AsyncPeriodicBackgroundWorkerBase
     {
-        private readonly ILogger<CaptureExechangeRateJob> _logger;
+        private readonly ILogger<CaptureExechangeRateWorker> _logger;
         private const int IntervalSecond = (1000 * 60) * 60 * 8; //8小时抓取一次
         private const int CaptureCountPerDay = 1;   // 每天抓取多少次
         private readonly Clock _clock;
 
-        public CaptureExechangeRateJob(
+        public CaptureExechangeRateWorker(
                 AbpTimer timer
                 , Clock clock
                 , IServiceScopeFactory serviceScopeFactory
-                , ILogger<CaptureExechangeRateJob> logger
+                , ILogger<CaptureExechangeRateWorker> logger
             ) : base(
             timer,
             serviceScopeFactory)

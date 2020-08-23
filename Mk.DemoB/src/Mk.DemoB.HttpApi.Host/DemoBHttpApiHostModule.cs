@@ -54,7 +54,9 @@ namespace Mk.DemoB
             var configuration = context.Services.GetConfiguration();
             var hostingEnvironment = context.Services.GetHostingEnvironment();
 
+            // 自动API控制器
             ConfigureConventionalControllers();
+
             ConfigureAuthentication(context, configuration);
             ConfigureLocalization();
             ConfigureCache(configuration);

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mk.DemoB.Dto.Timing;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -59,24 +60,32 @@ namespace Mk.DemoB.TimingAppService
             // 始终使用 DateTime.UtcNow 并将所有 DateTime 对象假定为UTC时间. 
             // 在这种情况下你可以在需要时将其转换为目标客户端的时区.
 
-            // Abp在保存数据到数据库和返回对象到前台时，如果字段是DateTime对象(DateTime中有Kind对象指示当前是Local还是Utc)，
-            // 会调用Clock的 Normalize()方法，将其格式化为 AbpClockOptions 设置的Local或Utc
-            // 当然在获取Now时间时，最好使用 Clock 对象。避免出现调试时看到是这个时间，但保存后或者返回对象的时间却是另外一个
+            // 1、Abp在保存数据到数据库，如果字段是DateTime对象(DateTime中有Kind对象指示当前是Local还是Utc)，会调用Clock的 Normalize()方法，将其格式化为 AbpClockOptions 设置的Local或Utc
+            // 最佳编程规范：在获取Now时间时，最好使用 Clock.Now 对象。 对于字符串手动转换local和utc时间时使用： Clock.Normalize(dateTime) 方法
+            // 2、Abp会自动处理接口输入的时间字符串参数
+            // 3、Abp会自动处理返回对象若包含DateTime字段的格式化，可使用 DisableDateTimeNormalizationAttribute 特性禁止某个字段的处理
         }
 
         /// <summary>
-        /// 验证输入的时间是否会自动 Utc 化 
+        /// 输入时间字符串时，默认创建的DateTime 其Kind=Utc  （由AbpClockOptions指定）
         /// </summary>
         /// <param name="time"></param>
         /// <returns></returns>
-        public virtual async Task<DateTime> AbpClockInput(DateTime time)
+        public virtual async Task<MultiTimeTypeResult> MultiTimeType(DateTime time)
         {
             // eg
-            // 传入 2020-08-22 17:53:15
+            // 传入字符串： 2020-08-22 17:53:15
             // time对象时间为 2020-08-22 17:53:15  Kind=Utc
 
-            // 明确返回local时间
-            return time.ToLocalTime();
+            // 标识 DisableDateTimeNormalization 特性，Abp才不会对输出对象的DateTime类型字段做处理
+            MultiTimeTypeResult result = new MultiTimeTypeResult
+            {
+                LocalDateTime = time.ToLocalTime(),     // 2020-08-23T01:53:15+08:00
+                UtcDateTime = time.ToUniversalTime(),   // 2020-08-22T17:53:15Z
+                UnHandleDateTime = time                 // 2020-08-22T17:53:15Z
+            };
+
+            return result;
         }
 
     }

@@ -47,8 +47,11 @@ namespace Mk.DemoB.DataFilterAppService
             _bookRepository = bookRepository;
         }
 
-        // ListResultDto
-
+        /// <summary>
+        /// 获取 Book 数据（包含 软删除）
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         [Route("booklist")]
         [HttpGet]
         public async Task<PagedResultDto<BookDto>> GetBookListContainDeleted(GetBookListRequestDto input)

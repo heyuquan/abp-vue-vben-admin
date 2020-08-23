@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Mk.DemoB.DbMapperCfg;
+using Mk.DemoB.DbMapperCfg.ExchangeRates;
+using Mk.DemoB.DbMapperCfg.SaleOrders;
 using Volo.Abp;
 
 namespace Mk.DemoB.EntityFrameworkCore
@@ -25,6 +27,9 @@ namespace Mk.DemoB.EntityFrameworkCore
             builder.ApplyConfiguration(new CaptureCurrencyCfg());
             builder.ApplyConfiguration(new ExchangeRateCaptureBatchCfg());
             builder.ApplyConfiguration(new ExchangeRateCfg());
+
+            builder.ApplyConfiguration(new SaleOrderCfg());
+            builder.ApplyConfiguration(new SaleOrderDetailCfg());
         }
     }
 }

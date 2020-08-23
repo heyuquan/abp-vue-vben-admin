@@ -21,5 +21,10 @@ namespace Leopard.Domain.Consts
         /// URL长度
         /// </summary>
         public const int MaxUrlLength = 256;
+        /// <summary>
+        /// 最大编码
+        /// </summary>
+        public const int MaxCodeLength = 64;
+
     }
 }

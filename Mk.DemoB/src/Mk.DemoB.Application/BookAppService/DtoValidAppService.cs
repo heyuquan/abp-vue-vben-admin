@@ -14,6 +14,7 @@ namespace Mk.DemoB.DtoValidAppService
 
     // 怎么做手动验证？
     // 1、Volo.Abp.FluentValidation 在Abp自动验证时，会找到AbstractValidator类，并进行验证
+    // eg： Validator/CreateBookDtoValidator .cs
 
     // FluentValidation使用资料：https://www.xcode.me/post/5849
 
@@ -24,6 +25,11 @@ namespace Mk.DemoB.DtoValidAppService
            
         }
 
+        /// <summary>
+        /// 验证输入参数Dto
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public virtual async Task<ServiceResult<BookDto>> CreateBookAsync(CreateBookRequestDto input)
         {
             ServiceResult<BookDto> ret = new ServiceResult<BookDto>();

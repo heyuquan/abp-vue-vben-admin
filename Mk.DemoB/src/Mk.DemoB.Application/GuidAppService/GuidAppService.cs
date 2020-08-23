@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Mk.DemoB.Dto;
+using Mk.DemoB.Dto.Guids;
 using Mk.DemoB.IAppService;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Volo.Abp.Guids;
 

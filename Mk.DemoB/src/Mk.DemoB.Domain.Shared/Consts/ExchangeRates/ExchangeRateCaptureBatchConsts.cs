@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Mk.DemoB.Consts
+namespace Mk.DemoB.Consts.ExchangeRates
 {
     public class ExchangeRateCaptureBatchConsts
     {

@@ -11,7 +11,9 @@ namespace Mk.DemoB.Application
     // 2、DemoB 使用的地方，引用 Mk.DemoC.HttpApi.Client 程序集。并且DemoBModule 要依赖DemoCHttpApiClientModule模块，来创建代理
     // 
 
-
+    /// <summary>
+    /// 动态 C# API 客户端
+    /// </summary>
     public class RemoteCallAppService : DemoBAppService
     {
         private readonly IRemoteCallAppService _remoteCallAppService;
