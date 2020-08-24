@@ -1,9 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Leopard.EntityFrameworkCore;
+using Leopard.EntityFrameworkCore.Logger;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Mk.DemoB.AuthorMgr.Entities;
 using Mk.DemoB.BookMgr.Entities;
 using Mk.DemoB.ExchangeRateMgr.Entities;
 using Mk.DemoB.SaleOrderMgr.Entities;
 using Mk.DemoB.Users;
+using System;
 using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.Modeling;
@@ -22,7 +26,7 @@ namespace Mk.DemoB.EntityFrameworkCore
      * used modules (as explained above). See DemoBMigrationsDbContext for migrations.
      */
     [ConnectionStringName("Default")]
-    public class DemoBDbContext : AbpDbContext<DemoBDbContext>
+    public class DemoBDbContext : LeopardDbContext<DemoBDbContext>
     {
         public DbSet<AppUser> Users { get; set; }
 
@@ -41,12 +45,12 @@ namespace Mk.DemoB.EntityFrameworkCore
         public DbSet<SaleOrder> SaleOrders { get; set; }
         public DbSet<SaleOrderDetail> SaleOrderDetails { get; set; }
 
-
-
-        public DemoBDbContext(DbContextOptions<DemoBDbContext> options)
-            : base(options)
+        public DemoBDbContext(
+            DbContextOptions<DemoBDbContext> options
+            , IServiceProvider serviceProvider
+            )
+            : base(options, serviceProvider)
         {
-
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -58,7 +62,7 @@ namespace Mk.DemoB.EntityFrameworkCore
             builder.Entity<AppUser>(b =>
             {
                 b.ToTable(AbpIdentityDbProperties.DbTablePrefix + "Users"); //Sharing the same table "AbpUsers" with the IdentityUser
-                
+
                 b.ConfigureByConvention();
                 b.ConfigureAbpUser();
 
@@ -68,9 +72,11 @@ namespace Mk.DemoB.EntityFrameworkCore
             });
 
             /* Configure your own tables/entities inside the ConfigureDemoB method */
-            builder.ConfigureDemoB();           
+            builder.ConfigureDemoB();
 
             builder.DbMapperCameNamelToUnder();
         }
+
+
     }
 }

@@ -1,15 +1,17 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿
 using Leopard.Abp.AuditLogging.EntityFrameworkCore;
 using Leopard.Abp.BackgroundJobs.EntityFrameworkCore;
-using Volo.Abp.EntityFrameworkCore;
-using Volo.Abp.EntityFrameworkCore.MySQL;
 using Leopard.Abp.FeatureManagement.EntityFrameworkCore;
 using Leopard.Abp.Identity.EntityFrameworkCore;
 using Leopard.Abp.IdentityServer.EntityFrameworkCore;
-using Volo.Abp.Modularity;
 using Leopard.Abp.PermissionManagement.EntityFrameworkCore;
 using Leopard.Abp.SettingManagement.EntityFrameworkCore;
 using Leopard.Abp.TenantManagement.EntityFrameworkCore;
+using Leopard.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Volo.Abp.EntityFrameworkCore;
+using Volo.Abp.EntityFrameworkCore.MySQL;
+using Volo.Abp.Modularity;
 
 namespace Mk.DemoB.EntityFrameworkCore
 {
@@ -23,7 +25,8 @@ namespace Mk.DemoB.EntityFrameworkCore
         typeof(LeopardBackgroundJobsEntityFrameworkCoreModule),
         typeof(LeopardAuditLoggingEntityFrameworkCoreModule),
         typeof(LeopardTenantManagementEntityFrameworkCoreModule),
-        typeof(LeopardFeatureManagementEntityFrameworkCoreModule)
+        typeof(LeopardFeatureManagementEntityFrameworkCoreModule),
+        typeof(LeopardEntityFrameworkCoreModule)
         )]
     public class DemoBEntityFrameworkCoreModule : AbpModule
     {
@@ -47,6 +50,7 @@ namespace Mk.DemoB.EntityFrameworkCore
                  * See also DemoBMigrationsDbContextFactory for EF Core tooling. */
                 options.UseMySQL();
             });
+
         }
     }
 }

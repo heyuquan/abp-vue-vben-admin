@@ -19,7 +19,7 @@ namespace Mk.DemoB.ExchangeRateAppService
     /// <summary>
     /// 汇率
     /// </summary>
-    [Route("api/exchange-rate")]
+    [Route("api/demob/exchange-rate")]
     public class ExchangeRateAppService : DemoBAppService
     {
         private readonly ExchangeRateManager _exchangeRateManager;
@@ -74,16 +74,25 @@ namespace Mk.DemoB.ExchangeRateAppService
         }
 
         /// <summary>
-        /// 获取最新批次的汇率数据
+        /// 获取批次的汇率数据
         /// </summary>
+        /// <param name="captureBatchNumber">可空，若为空，则获取最新批次的汇率数据</param>
         /// <returns></returns>
-        [HttpGet("lateast-batch")]
-        public async Task<ServiceResult<ExchangeRateBatchDto>> GetLateastBatchRate()
+        [HttpGet("batch")]
+        public async Task<ServiceResult<ExchangeRateBatchDto>> GetLateastBatchRate(string captureBatchNumber)
         {
             ServiceResult<ExchangeRateBatchDto> ret = new ServiceResult<ExchangeRateBatchDto>(IdProvider.Get());
             ExchangeRateBatchDto retDto = new ExchangeRateBatchDto();
+            ExchangeRateCaptureBatch batch = null;
+            if (string.IsNullOrWhiteSpace(captureBatchNumber))
+            {
+                batch = await _exchangeRateCaptureBatchRepository.OrderByDescending(x => x.Id).FirstOrDefaultAsync();
+            }
+            else
+            {
+                batch = await _exchangeRateCaptureBatchRepository.Where(x => x.CaptureBatchNumber == captureBatchNumber).FirstOrDefaultAsync();
+            }
 
-            var batch = await _exchangeRateCaptureBatchRepository.OrderByDescending(x => x.Id).FirstOrDefaultAsync();
             if (batch != null)
             {
                 var exchangeRates = await _exchangeRateRepository.Where(x => x.CaptureBatchNumber == batch.CaptureBatchNumber).ToListAsync();
