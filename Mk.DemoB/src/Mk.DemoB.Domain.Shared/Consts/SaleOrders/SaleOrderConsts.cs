@@ -10,6 +10,8 @@ namespace Mk.DemoB.Consts.SaleOrders
         public const int MaxOrderNoLength = 64;
 
         public const int MaxCurrencyLength = StringLengthConsts.MaxCurrencyCodeLength;
+
+        public const int MaxCustomerNameLength = 64; 
     }
 
 }

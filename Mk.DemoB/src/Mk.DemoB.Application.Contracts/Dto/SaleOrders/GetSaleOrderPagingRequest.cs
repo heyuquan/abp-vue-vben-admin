@@ -1,19 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Text;
 using Volo.Abp.Application.Dtos;
 
-namespace Mk.DemoB.Dto.ExchangeRates
+namespace Mk.DemoB.Dto.SaleOrders
 {
-    public class GetRateRequest: IPagedResultRequest
+    public class GetSaleOrderPagingRequest : IPagedResultRequest
     {
-        /// <summary>
-        /// 本币币种编码
-        /// </summary>
-        public string CurrencyCodeFrom { get; set; }
-        /// <summary>
-        /// 兑换币种编码
-        /// </summary>
-        public string CurrencyCodeTo { get; set; }
         /// <summary>
         /// 开始时间
         /// </summary>

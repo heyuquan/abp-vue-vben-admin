@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Volo.Abp;
+using Volo.Abp.Application.Dtos;
 using Volo.Abp.Domain.Repositories;
 
 namespace Mk.DemoB.SaleOrderAppService
@@ -41,7 +42,7 @@ namespace Mk.DemoB.SaleOrderAppService
         /// <param name="req"></param>
         /// <returns></returns>
         [HttpPost("Create")]
-        public virtual async Task<ServiceResult<SaleOrderDto>> Create(CreateOrderRequest req)
+        public virtual async Task<ServiceResult<SaleOrderDto>> CreateSaleOrderAsync(CreateSaleOrderRequest req)
         {
             ServiceResult<SaleOrderDto> retValue = new ServiceResult<SaleOrderDto>(IdProvider.Get());
 
@@ -69,5 +70,18 @@ namespace Mk.DemoB.SaleOrderAppService
 
         }
 
+        /// <summary>
+        /// 创建订单
+        /// </summary>
+        /// <param name="req"></param>
+        /// <returns></returns>
+        [HttpGet("Paging")]
+        public virtual async Task<ServiceResult<PagedResultDto<SaleOrderDto>>> GetSaleOrderPagingAsync(GetSaleOrderPagingRequest req)
+        {
+            ServiceResult<PagedResultDto<SaleOrderDto>> ret = new ServiceResult<PagedResultDto<SaleOrderDto>>(IdProvider.Get());
+
+            _saleOrderRepository
+                .WhereIf(req.BeginTime.HasValue,x=>x.OrderNo)
+        }
     }
 }

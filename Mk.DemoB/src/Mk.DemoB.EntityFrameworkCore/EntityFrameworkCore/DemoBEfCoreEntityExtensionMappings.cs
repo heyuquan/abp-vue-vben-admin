@@ -1,4 +1,7 @@
-﻿using Volo.Abp.Identity;
+﻿using Mk.DemoB.Consts.SaleOrders;
+using Mk.DemoB.SaleOrderMgr.Entities;
+using System;
+using Volo.Abp.Identity;
 using Volo.Abp.ObjectExtending;
 using Volo.Abp.Threading;
 
@@ -33,6 +36,24 @@ namespace Mk.DemoB.EntityFrameworkCore
                  * See the documentation for more:
                  * https://docs.abp.io/en/abp/latest/Customizing-Application-Modules-Extending-Entities
                  */
+
+                ObjectExtensionManager.Instance
+                    .AddOrUpdateProperty<SaleOrder, DateTime>(
+                        "OrderTime"
+                        , options =>
+                        {
+                            options.MapEfCore(b => b.IsRequired());
+                        }
+                    )
+                    .AddOrUpdateProperty<SaleOrder, string>(
+                        "CustomerName"
+                        , options =>
+                        {
+                            options
+                            .MapEfCore(b => b.IsRequired())
+                            .MapEfCore(b => b.HasMaxLength(SaleOrderConsts.MaxCustomerNameLength));
+                        }
+                    );
             });
         }
     }

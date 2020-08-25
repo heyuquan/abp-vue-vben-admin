@@ -110,7 +110,7 @@ namespace Mk.DemoB.ExchangeRateAppService
                    );
                 throw exception;
             }
-           
+
             return ret;
         }
 
@@ -149,7 +149,7 @@ namespace Mk.DemoB.ExchangeRateAppService
         /// </summary>
         /// <returns></returns>
         [HttpGet("paging")]
-        public async Task<ServiceResult<PagedResultDto<ExchangeRateDto>>> GetRatePagingAsync(GetRateRequest req)
+        public async Task<ServiceResult<PagedResultDto<ExchangeRateDto>>> GetRatePagingAsync(GetRatePagingRequest req)
         {
             ServiceResult<PagedResultDto<ExchangeRateDto>> ret = new ServiceResult<PagedResultDto<ExchangeRateDto>>(IdProvider.Get());
 

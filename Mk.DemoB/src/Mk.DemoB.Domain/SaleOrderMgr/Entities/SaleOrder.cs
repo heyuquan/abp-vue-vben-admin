@@ -38,6 +38,8 @@ namespace Mk.DemoB.SaleOrderMgr.Entities
             TotalAmount = 0;
             OrderStatus = SaleOrderStatus.UnPay;
             SaleOrderDetails = new HashSet<SaleOrderDetail>();
+
+            ExtraProperties = new Dictionary<string, object>();
         }
 
         /// <summary>
