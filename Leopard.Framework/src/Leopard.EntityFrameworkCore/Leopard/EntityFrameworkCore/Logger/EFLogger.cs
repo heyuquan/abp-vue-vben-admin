@@ -31,11 +31,11 @@ namespace Leopard.EntityFrameworkCore.Logger
 
         public EFLogger(
             ILogger<EFLogger> logger
-            , IOptionsMonitor<EFLogOptions> efLogOptions
+            , IOptionsSnapshot<EFLogOptions> efLogOptions
             )
         {
             _logger = logger;
-            _efLogOptions = efLogOptions.CurrentValue;
+            _efLogOptions = efLogOptions.Value;
         }
 
         public void SetCategoryName(string categoryName)
