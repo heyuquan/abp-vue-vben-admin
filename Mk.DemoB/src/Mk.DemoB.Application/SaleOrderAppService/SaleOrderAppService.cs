@@ -80,8 +80,9 @@ namespace Mk.DemoB.SaleOrderAppService
         {
             ServiceResult<PagedResultDto<SaleOrderDto>> ret = new ServiceResult<PagedResultDto<SaleOrderDto>>(IdProvider.Get());
 
-            _saleOrderRepository
-                .WhereIf(req.BeginTime.HasValue,x=>x.OrderNo)
+            //_saleOrderRepository
+            //    .WhereIf(req.BeginTime.HasValue,x=>x.OrderNo)
+            return null;
         }
     }
 }

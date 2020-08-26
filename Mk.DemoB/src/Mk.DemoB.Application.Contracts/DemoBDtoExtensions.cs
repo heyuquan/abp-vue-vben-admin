@@ -34,7 +34,7 @@ namespace Mk.DemoB
                     .AddOrUpdateProperty<DateTime>(
                         new[]
                         {
-                            typeof(CreateSaleOrderRequest),
+                            //typeof(CreateSaleOrderRequest),
                             typeof(SaleOrderDto)
                         },
                         "OrderTime"
@@ -47,9 +47,9 @@ namespace Mk.DemoB
                     .AddOrUpdateProperty<DateTime>(
                         new[]
                         {
-                            typeof(CreateSaleOrderRequest),
+                            //typeof(CreateSaleOrderRequest),
                             typeof(SaleOrderDto),
-                            typeof(GetSaleOrderPagingRequest),
+                            //typeof(GetSaleOrderPagingRequest),
                         },
                         "CustomerName"
                         , options =>

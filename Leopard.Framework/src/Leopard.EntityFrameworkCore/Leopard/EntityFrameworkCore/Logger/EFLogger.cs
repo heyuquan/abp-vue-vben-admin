@@ -1,7 +1,9 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Volo.Abp.DependencyInjection;
 
@@ -25,15 +27,15 @@ namespace Leopard.EntityFrameworkCore.Logger
     {
         private string categoryName;
         private readonly ILogger<EFLogger> _logger;
-        private readonly IConfiguration _config;
+        private readonly EFLogOptions _efLogOptions;
 
         public EFLogger(
             ILogger<EFLogger> logger
-            , IConfiguration config
+            , IOptionsMonitor<EFLogOptions> efLogOptions
             )
         {
             _logger = logger;
-            _config = config;
+            _efLogOptions = efLogOptions.CurrentValue;
         }
 
         public void SetCategoryName(string categoryName)
@@ -43,9 +45,7 @@ namespace Leopard.EntityFrameworkCore.Logger
 
         public bool IsEnabled(LogLevel logLevel)
         {
-            bool isEnable;
-            bool.TryParse(_config.GetSection("EFCore:IsEnableLog").Value, out isEnable);
-            return isEnable;
+            return _efLogOptions.IsEnableLog;
         }
 
         public void Log<TState>(
@@ -60,7 +60,21 @@ namespace Leopard.EntityFrameworkCore.Logger
                 logLevel == LogLevel.Information)
             {
                 string logContent = formatter(state, exception);
-                _logger.LogInformation(logContent);
+
+                if (_efLogOptions.ExecuteTimeSpent > 0)
+                {
+                    var values = state as IReadOnlyList<KeyValuePair<string, object>>;
+                    var timeSpent = Convert.ToInt32(values.First(p => p.Key == "elapsed").Value);
+
+                    if (timeSpent > _efLogOptions.ExecuteTimeSpent)
+                    {
+                        _logger.LogInformation(logContent);
+                    }
+                }
+                else
+                {
+                    _logger.LogInformation(logContent);
+                }
             }
         }
 
