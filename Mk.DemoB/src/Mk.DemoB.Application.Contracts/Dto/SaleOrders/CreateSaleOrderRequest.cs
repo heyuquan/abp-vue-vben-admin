@@ -9,6 +9,10 @@ namespace Mk.DemoB.Dto.SaleOrders
     public class CreateSaleOrderRequest
     {
         /// <summary>
+        /// 订单时间
+        /// </summary>
+        public DateTime? OrderTime { get; set; }
+        /// <summary>
         /// 币种
         /// </summary>
         [Required]

@@ -17,6 +17,9 @@ namespace Mk.DemoB.DbMapperCfg.SaleOrders
                 .HasMaxLength(SaleOrderConsts.MaxOrderNoLength)
                 .HasColumnName(nameof(SaleOrder.OrderNo));
 
+            builder.Property(p => p.OrderTime).IsRequired()
+                .HasColumnName(nameof(SaleOrder.OrderTime));
+
             builder.Property(p => p.Currency).IsRequired()
                 .HasMaxLength(SaleOrderConsts.MaxCurrencyLength)
                 .HasColumnName(nameof(SaleOrder.Currency));

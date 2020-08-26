@@ -38,13 +38,6 @@ namespace Mk.DemoB.EntityFrameworkCore
                  */
 
                 ObjectExtensionManager.Instance
-                    .AddOrUpdateProperty<SaleOrder, DateTime>(
-                        "OrderTime"
-                        , options =>
-                        {
-                            options.MapEfCore(b => b.IsRequired());
-                        }
-                    )
                     .AddOrUpdateProperty<SaleOrder, string>(
                         "CustomerName"
                         , options =>

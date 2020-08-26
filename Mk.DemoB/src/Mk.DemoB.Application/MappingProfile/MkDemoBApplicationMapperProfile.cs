@@ -26,7 +26,8 @@ namespace Mk.DemoB.MappingProfile
 
             CreateMap<CaptureCurrency, CaptureCurrencyDto>();
 
-            CreateMap<SaleOrder, SaleOrderDto>();
+            CreateMap<SaleOrder, SaleOrderDto>()
+                .MapExtraProperties();  // 会映射实体中的 Dictionary<string, object> ExtraProperties 属性
 
             CreateMap<SaleOrderDetail, SaleOrderDetailDto>();
         }

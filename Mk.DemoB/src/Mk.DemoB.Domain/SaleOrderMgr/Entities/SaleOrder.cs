@@ -16,6 +16,10 @@ namespace Mk.DemoB.SaleOrderMgr.Entities
         /// </summary>
         public string OrderNo { get; set; }
         /// <summary>
+        /// 订单时间
+        /// </summary>
+        public DateTime OrderTime { get; set; }
+        /// <summary>
         /// 币种
         /// </summary>
         public string Currency { get; set; }
@@ -30,10 +34,11 @@ namespace Mk.DemoB.SaleOrderMgr.Entities
 
         public virtual ICollection<SaleOrderDetail> SaleOrderDetails { get; set; }
 
-        public SaleOrder(Guid id, string orderNo, string currency)
+        public SaleOrder(Guid id, string orderNo, DateTime orderTime, string currency)
         {
             Id = id;
             OrderNo = orderNo;
+            OrderTime = orderTime;
             Currency = currency;
             TotalAmount = 0;
             OrderStatus = SaleOrderStatus.UnPay;

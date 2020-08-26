@@ -1,10 +1,12 @@
 ﻿using Leopard.Results;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using Mk.DemoB.Dto.SaleOrders;
 using Mk.DemoB.SaleOrderMgr.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Volo.Abp;
@@ -49,6 +51,7 @@ namespace Mk.DemoB.SaleOrderAppService
             SaleOrder order = new SaleOrder(
                 GuidGenerator.Create()
                 , $"A0{new Random().Next(100000, 999999)}"
+                , req.OrderTime.HasValue ? req.OrderTime.Value : Clock.Now
                 , req.Currency
                 );
 
@@ -80,9 +83,17 @@ namespace Mk.DemoB.SaleOrderAppService
         {
             ServiceResult<PagedResultDto<SaleOrderDto>> ret = new ServiceResult<PagedResultDto<SaleOrderDto>>(IdProvider.Get());
 
-            //_saleOrderRepository
-            //    .WhereIf(req.BeginTime.HasValue,x=>x.OrderNo)
-            return null;
+            var query = _saleOrderRepository
+               .WhereIf(req.BeginTime.HasValue, x => x.OrderTime > req.BeginTime.Value)
+               .WhereIf(req.EndTime.HasValue, x => x.OrderTime < req.EndTime.Value);
+
+            var count = await query.LongCountAsync();
+            var saleOrders=await query.IncludeDetails().PageBy(req.SkipCount, req.MaxResultCount).ToListAsync();
+
+            List<SaleOrderDto> dtos = ObjectMapper.Map<List<SaleOrder>, List<SaleOrderDto>>(saleOrders);
+            var pageData = new PagedResultDto<SaleOrderDto>(count, dtos);
+            ret.SetSuccess(pageData);
+            return ret;
         }
     }
 }

@@ -13,6 +13,10 @@ namespace Mk.DemoB.Dto.SaleOrders
         /// </summary>
         public string OrderNo { get; protected set; }
         /// <summary>
+        /// 订单时间
+        /// </summary>
+        public DateTime OrderTime { get; set; }
+        /// <summary>
         /// 币种
         /// </summary>
         public string Currency { get; protected set; }

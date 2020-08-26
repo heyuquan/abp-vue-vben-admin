@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mk.DemoB.Consts;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -19,6 +20,6 @@ namespace Mk.DemoB.Dto.SaleOrders
         [Required]
         public int SkipCount { get; set; }
         [Required]
-        public int MaxResultCount { get; set; }
+        public int MaxResultCount { get; set; } 
     }
 }
