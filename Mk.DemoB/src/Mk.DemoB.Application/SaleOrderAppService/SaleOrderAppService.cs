@@ -26,7 +26,7 @@ namespace Mk.DemoB.SaleOrderAppService
     // SaleOrder 使用到功能点：本地领域事件、分布式领域事件
 
 
-    [Route("api/SaleOrder")]
+    [Route("api/demob/sale-order")]
     public class SaleOrderAppService : DemoBAppService
     {
         private readonly IRepository<SaleOrder, Guid> _saleOrderRepository;
@@ -43,7 +43,7 @@ namespace Mk.DemoB.SaleOrderAppService
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
-        [HttpPost("Create")]
+        [HttpPost("create")]
         public virtual async Task<ServiceResult<SaleOrderDto>> CreateSaleOrderAsync(CreateSaleOrderRequest req)
         {
             ServiceResult<SaleOrderDto> retValue = new ServiceResult<SaleOrderDto>(IdProvider.Get());
@@ -78,7 +78,7 @@ namespace Mk.DemoB.SaleOrderAppService
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
-        [HttpGet("Paging")]
+        [HttpGet("paging")]
         public virtual async Task<ServiceResult<PagedResultDto<SaleOrderDto>>> GetSaleOrderPagingAsync(GetSaleOrderPagingRequest req)
         {
             ServiceResult<PagedResultDto<SaleOrderDto>> ret = new ServiceResult<PagedResultDto<SaleOrderDto>>(IdProvider.Get());
@@ -88,7 +88,7 @@ namespace Mk.DemoB.SaleOrderAppService
                .WhereIf(req.EndTime.HasValue, x => x.OrderTime < req.EndTime.Value);
 
             var count = await query.LongCountAsync();
-            var saleOrders=await query.IncludeDetails().PageBy(req.SkipCount, req.MaxResultCount).ToListAsync();
+            var saleOrders=await query.Include(x=>x.SaleOrderDetails).PageBy(req.SkipCount, req.MaxResultCount).ToListAsync();
 
             List<SaleOrderDto> dtos = ObjectMapper.Map<List<SaleOrder>, List<SaleOrderDto>>(saleOrders);
             var pageData = new PagedResultDto<SaleOrderDto>(count, dtos);

@@ -1,9 +1,24 @@
-﻿using Mk.DemoB.SaleOrderMgr.Entities;
+﻿using Leopard.Results;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
+using Mk.DemoB.Dto.ExtraSaleOrder;
+using Mk.DemoB.Dto.SaleOrders;
+using Mk.DemoB.SaleOrderMgr.Entities;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Volo.Abp;
+using Volo.Abp.Application.Dtos;
+using Volo.Abp.Data;
 using Volo.Abp.Domain.Repositories;
+
 
 namespace Mk.DemoB.ExtraSaleOrderAppService
 {
+    [Route("api/demob/extra-sale-order")]
     public class ExtraSaleOrderAppService: DemoBAppService
     {
         private readonly IRepository<SaleOrder, Guid> _saleOrderRepository;
@@ -15,19 +30,42 @@ namespace Mk.DemoB.ExtraSaleOrderAppService
             _saleOrderRepository = saleOrderRepository;
         }
 
-        ///// <summary>
-        ///// 创建订单
-        ///// </summary>
-        ///// <param name="req"></param>
-        ///// <returns></returns>
-        //[HttpGet("Paging")]
-        //public virtual async Task<ServiceResult<PagedResultDto<SaleOrderDto>>> GetSaleOrderPagingAsync(GetSaleOrderPagingRequest req)
-        //{
-        //    ServiceResult<PagedResultDto<SaleOrderDto>> ret = new ServiceResult<PagedResultDto<SaleOrderDto>>(IdProvider.Get());
+        /// <summary>
+        /// 创建订单
+        /// 使用 Abp的对象扩展设置了Customer字段
+        /// </summary>
+        /// <param name="req"></param>
+        /// <returns></returns>
+        [HttpPost("create")]
+        public virtual async Task<ServiceResult<SaleOrderDto>> CreateSaleOrderAsync(CreateSaleOrderRequestEx req)
+        {
+            ServiceResult<SaleOrderDto> retValue = new ServiceResult<SaleOrderDto>(IdProvider.Get());
 
-        //    _saleOrderRepository
-        //        .WhereIf(req.BeginTime.HasValue,x=>x.order)
-        //    return null;
-        //}
+            SaleOrder order = new SaleOrder(
+                GuidGenerator.Create()
+                , $"A0{new Random().Next(100000, 999999)}"
+                , req.OrderTime.HasValue ? req.OrderTime.Value : Clock.Now
+                , req.Currency
+                );
+
+            order.SetProperty("CustomerName", req.CustomerName);
+
+            foreach (var item in req.SaleOrderDetails)
+            {
+                SaleOrderDetail orderDetail = new SaleOrderDetail(
+                    GuidGenerator.Create()
+                    , order.Id, item.ProductSkuCode, item.Price, item.Quantity
+                    );
+
+                order.AddItem(orderDetail);
+            }
+
+            await _saleOrderRepository.InsertAsync(order);
+
+            var dto = ObjectMapper.Map<SaleOrder, SaleOrderDto>(order);
+            retValue.SetSuccess(dto);
+            return retValue;
+
+        }
     }
 }

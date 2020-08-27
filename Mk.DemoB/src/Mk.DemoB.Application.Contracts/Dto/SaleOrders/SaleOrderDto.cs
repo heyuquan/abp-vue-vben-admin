@@ -11,7 +11,7 @@ namespace Mk.DemoB.Dto.SaleOrders
         /// <summary>
         /// 订单编号
         /// </summary>
-        public string OrderNo { get; protected set; }
+        public string OrderNo { get; set; }
         /// <summary>
         /// 订单时间
         /// </summary>
@@ -19,11 +19,15 @@ namespace Mk.DemoB.Dto.SaleOrders
         /// <summary>
         /// 币种
         /// </summary>
-        public string Currency { get; protected set; }
+        public string Currency { get; set; }
         /// <summary>
         /// 总金额
         /// </summary>
-        public decimal TotalAmount { get; protected set; }
+        public decimal TotalAmount { get; set; }
+        /// <summary>
+        /// 客户名称
+        /// </summary>
+        public string CustomerName { get; set; }
         /// <summary>
         /// 订单状态
         /// </summary>
