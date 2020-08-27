@@ -18,6 +18,9 @@ using Volo.Abp.Domain.Repositories;
 
 namespace Mk.DemoB.ExtraSaleOrderAppService
 {
+    // 如何将 dto 中的 ExtraProperties 字段映射到 实体中 ExtraProperties
+    // dto.MapExtraPropertiesTo(role);   只映射单个字段
+
     [Route("api/demob/extra-sale-order")]
     public class ExtraSaleOrderAppService: DemoBAppService
     {
