@@ -49,6 +49,7 @@ namespace Mk.DemoB.ExtraSaleOrderAppService
                 );
 
             order.SetProperty("CustomerName", req.CustomerName);
+            order.SetProperty("CustomerName2", "我没有独立字段来存储");
 
             foreach (var item in req.SaleOrderDetails)
             {

@@ -32,8 +32,11 @@ namespace Mk.DemoB
 
 
             ObjectExtensionManager.Instance
-                .AddOrUpdateProperty<SaleOrderDto, DateTime>("CustomerName");
-                        
+                .AddOrUpdateProperty<SaleOrderDto, string>("CustomerName")
+
+                // 虽然 CustomerName2 没有映射到独立的数据表字段，但是扩展字段依然要加到Dto上，
+                // 否则在对象映射 MapExtraProperties() 时，并不会把 CustomerName2 映射到目的对象的 ExtraProperties 字典中
+                .AddOrUpdateProperty<SaleOrderDto, string>("CustomerName2");    
             });
         }
     }

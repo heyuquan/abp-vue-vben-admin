@@ -36,7 +36,7 @@ namespace Mk.DemoB.EntityFrameworkCore
                  * See the documentation for more:
                  * https://docs.abp.io/en/abp/latest/Customizing-Application-Modules-Extending-Entities
                  */
-
+                // 这种方式：将扩展字段映射到独立的字段。  否则只会以json的形式加到  ExtraProperties 字段中
                 ObjectExtensionManager.Instance
                     .AddOrUpdateProperty<SaleOrder, string>(
                         "CustomerName"
