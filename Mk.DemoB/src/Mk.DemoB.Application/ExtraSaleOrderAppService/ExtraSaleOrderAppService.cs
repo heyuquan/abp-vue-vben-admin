@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using Mk.DemoB.Dto.ExtraSaleOrder;
 using Mk.DemoB.Dto.SaleOrders;
+using Mk.DemoB.IAppService;
 using Mk.DemoB.SaleOrderMgr.Entities;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ using Volo.Abp;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Data;
 using Volo.Abp.Domain.Repositories;
-
+using Volo.Abp.Uow;
 
 namespace Mk.DemoB.ExtraSaleOrderAppService
 {
@@ -22,15 +23,18 @@ namespace Mk.DemoB.ExtraSaleOrderAppService
     // dto.MapExtraPropertiesTo(role);   只映射单个字段
 
     [Route("api/demob/extra-sale-order")]
-    public class ExtraSaleOrderAppService: DemoBAppService
+    public class ExtraSaleOrderAppService : DemoBAppService
     {
         private readonly IRepository<SaleOrder, Guid> _saleOrderRepository;
+        private readonly ISaleOrderAppService _saleOrderAppService;
 
         public ExtraSaleOrderAppService(
-            IRepository<SaleOrder, Guid> saleOrderRepository
+            ISaleOrderAppService saleOrderAppService
+            , IRepository<SaleOrder, Guid> saleOrderRepository
             )
         {
             _saleOrderRepository = saleOrderRepository;
+            _saleOrderAppService = saleOrderAppService;
         }
 
         /// <summary>
@@ -40,24 +44,26 @@ namespace Mk.DemoB.ExtraSaleOrderAppService
         /// <param name="req"></param>
         /// <returns></returns>
         [HttpPost("create")]
-        public virtual async Task<ServiceResult<SaleOrderDto>> CreateSaleOrderAsync(CreateSaleOrderRequestEx req)
+        [UnitOfWork]
+        public virtual async Task<ServiceResult<SaleOrderDto>> CreateSaleOrderAsync(ExtraSaleOrderCreateDto input)
         {
             ServiceResult<SaleOrderDto> retValue = new ServiceResult<SaleOrderDto>(IdProvider.Get());
 
             SaleOrder order = new SaleOrder(
                 GuidGenerator.Create()
+                , CurrentTenant.Id
                 , $"A0{new Random().Next(100000, 999999)}"
-                , req.OrderTime.HasValue ? req.OrderTime.Value : Clock.Now
-                , req.Currency
+                , input.OrderTime
+                , input.Currency
                 );
 
-            order.SetProperty("CustomerName", req.CustomerName);
+            order.SetProperty("CustomerName", input.CustomerName);
             order.SetProperty("CustomerName2", "我没有独立字段来存储");
 
-            foreach (var item in req.SaleOrderDetails)
+            foreach (var item in input.SaleOrderDetails)
             {
                 SaleOrderDetail orderDetail = new SaleOrderDetail(
-                    GuidGenerator.Create()
+                    GuidGenerator.Create(), CurrentTenant.Id
                     , order.Id, item.ProductSkuCode, item.Price, item.Quantity
                     );
 

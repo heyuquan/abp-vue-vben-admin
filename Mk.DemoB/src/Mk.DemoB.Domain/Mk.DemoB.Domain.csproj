@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Leopard.Framework\src\Leopard.Core\Leopard.csproj" />
     <ProjectReference Include="..\Mk.DemoB.Domain.Shared\Mk.DemoB.Domain.Shared.csproj" />
   </ItemGroup>
 
@@ -23,7 +24,6 @@
     <PackageReference Include="Volo.Abp.FeatureManagement.Domain" Version="3.0.4" />
     <PackageReference Include="Volo.Abp.SettingManagement.Domain" Version="3.0.4" />
     <PackageReference Include="HtmlAgilityPack" Version="1.11.24" />
-    <PackageReference Include="Volo.Abp.EntityFrameworkCore" Version="3.0.4" />
   </ItemGroup>
 
   <ItemGroup>

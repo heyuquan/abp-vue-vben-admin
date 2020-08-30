@@ -60,8 +60,9 @@ namespace Mk.DemoB.DataFilterAppService
             long count = 0;
             using (_dataFilter.Disable<ISoftDelete>())
             {
-                books = await _bookRepository.GetListAsync(input.MinPrice, input.MaxPrice, input.MaxResultCount, input.SkipCount);
-                count = await _bookRepository.GetCountAsync(input.MinPrice, input.MaxPrice);
+                var pageData= await _bookRepository.GetPagingListAsync(input.MinPrice, input.MaxPrice, input.MaxResultCount, input.SkipCount);
+                books = pageData.Items;
+                count = pageData.TotalCount;
             }
 
             var dtos = ObjectMapper.Map<List<Book>, List<BookDto>>(books);

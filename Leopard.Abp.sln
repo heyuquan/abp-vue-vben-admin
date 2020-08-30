@@ -85,6 +85,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EntityFrameworkCore", "Enti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Domain.Share", "Leopard.Framework\src\Leopard.Domain.Share\Leopard.Domain.Share.csproj", "{E09BC551-2A2E-4A8B-B903-40CD0969A51A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leopard.Ddd.Application.Contracts", "Leopard.Framework\src\Leopard.Ddd.Application.Contracts\Leopard.Ddd.Application.Contracts.csproj", "{524168D3-A6FD-4181-9B77-FA6A33029855}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -227,6 +229,10 @@ Global
 		{E09BC551-2A2E-4A8B-B903-40CD0969A51A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E09BC551-2A2E-4A8B-B903-40CD0969A51A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E09BC551-2A2E-4A8B-B903-40CD0969A51A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{524168D3-A6FD-4181-9B77-FA6A33029855}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{524168D3-A6FD-4181-9B77-FA6A33029855}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{524168D3-A6FD-4181-9B77-FA6A33029855}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{524168D3-A6FD-4181-9B77-FA6A33029855}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -267,6 +273,7 @@ Global
 		{BA1218D5-7F58-4209-91AF-44761CBE9421} = {408C61DE-C824-4BA2-8EE7-CE571EA864B5}
 		{AE43C6D4-22DF-4609-BE9B-8A462ABA7FC9} = {408C61DE-C824-4BA2-8EE7-CE571EA864B5}
 		{E09BC551-2A2E-4A8B-B903-40CD0969A51A} = {408C61DE-C824-4BA2-8EE7-CE571EA864B5}
+		{524168D3-A6FD-4181-9B77-FA6A33029855} = {408C61DE-C824-4BA2-8EE7-CE571EA864B5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {28315BFD-90E7-4E14-A2EA-F3D23AF4126F}

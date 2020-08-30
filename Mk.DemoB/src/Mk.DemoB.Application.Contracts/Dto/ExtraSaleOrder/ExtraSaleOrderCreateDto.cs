@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Mk.DemoB.Dto.ExtraSaleOrder
 {
-    public class CreateSaleOrderRequestEx : CreateSaleOrderRequest
+    public class ExtraSaleOrderCreateDto: SaleOrderCreateDto
     {
         /// <summary>
         /// 客户名称

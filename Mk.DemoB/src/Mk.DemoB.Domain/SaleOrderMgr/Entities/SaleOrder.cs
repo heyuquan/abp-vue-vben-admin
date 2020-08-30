@@ -3,14 +3,16 @@ using System;
 using System.Collections.Generic;
 using Volo.Abp.Domain.Entities.Auditing;
 using System.Linq;
+using Volo.Abp.MultiTenancy;
 
 namespace Mk.DemoB.SaleOrderMgr.Entities
 {
     /// <summary>
     /// 销售订单
     /// </summary>
-    public class SaleOrder : FullAuditedAggregateRoot<Guid>
+    public class SaleOrder : FullAuditedAggregateRoot<Guid>, IMultiTenant
     {
+        public Guid? TenantId { get; protected set; }
         /// <summary>
         /// 订单编号
         /// </summary>
@@ -34,9 +36,10 @@ namespace Mk.DemoB.SaleOrderMgr.Entities
 
         public virtual ICollection<SaleOrderDetail> SaleOrderDetails { get; set; }
 
-        public SaleOrder(Guid id, string orderNo, DateTime orderTime, string currency)
+        public SaleOrder(Guid id, Guid? tenantId, string orderNo, DateTime orderTime, string currency)
         {
             Id = id;
+            TenantId = tenantId;
             OrderNo = orderNo;
             OrderTime = orderTime;
             Currency = currency;
@@ -54,11 +57,22 @@ namespace Mk.DemoB.SaleOrderMgr.Entities
         public void AddItem(SaleOrderDetail item)
         {
             item.LineNo = SaleOrderDetails.Count() + 1;
-            item.ParentId = this.Id;
             SaleOrderDetails.Add(item);
 
             this.TotalAmount += item.Price * item.Quantity;
         }
 
+        /// <summary>
+        /// 汇总子表数据
+        /// </summary>
+        public void SumDetail()
+        {
+            decimal totalAmount = 0;
+            foreach (var item in SaleOrderDetails)
+            {
+                totalAmount += item.Price * item.Quantity;
+            }
+            TotalAmount = totalAmount;
+        }
     }
 }

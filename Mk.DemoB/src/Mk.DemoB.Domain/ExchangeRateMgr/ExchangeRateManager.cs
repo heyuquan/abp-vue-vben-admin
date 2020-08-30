@@ -1,16 +1,14 @@
 ﻿using HtmlAgilityPack;
+using JetBrains.Annotations;
 using Mk.DemoB.ExchangeRateMgr.Entities;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using Volo.Abp.Domain.Repositories;
 using Volo.Abp.Domain.Services;
-using System.Linq;
-using System.Collections.Concurrent;
-using Microsoft.EntityFrameworkCore;
-using JetBrains.Annotations;
 
 namespace Mk.DemoB.ExchangeRateMgr
 {
@@ -116,55 +114,6 @@ namespace Mk.DemoB.ExchangeRateMgr
             return result;
         }
 
-        /// <summary>
-        /// 获取最新批次的汇率数据
-        /// </summary>
-        /// <param name="currencyCodeFrom">来源币种（eg：CNY）</param>
-        /// <param name="currencyCodeTo">目的币种（eg：USD）</param>
-        /// <param name="topCount">按时间排序，返回多少条数据。最新时间的数据为第一条</param>
-        /// <returns></returns>
-        public async Task<List<ExchangeRate>> GetTopRateAsync(string currencyCodeFrom, string currencyCodeTo, int topCount = 1)
-        {
-            var exchangeRates = await _exchangeRateRepository
-                .Where(x => x.CurrencyCodeFrom == currencyCodeFrom && x.CurrencyCodeTo == currencyCodeTo)
-                .OrderByDescending(x => x.CreationTime)
-                .Take(topCount).ToListAsync();
-            return exchangeRates;
-        }
-
-        /// <summary>
-        /// 获取汇率的分页数据
-        /// </summary>
-        /// <param name="currencyCodeFrom">来源币种（eg：CNY）</param>
-        /// <param name="currencyCodeTo">目的币种（eg：USD）</param>
-        /// <param name="beginTime">开始时间</param>
-        /// <param name="endTime">结束时间</param>
-        /// <param name="skipCount"></param>
-        /// <param name="maxResultCount"></param>
-        /// <returns></returns>
-        public async Task<List<ExchangeRate>> GetRatePagingAsync(string currencyCodeFrom, string currencyCodeTo
-            , DateTime? beginTime, DateTime? endTime, [NotNull]int skipCount, [NotNull]int maxResultCount)
-        {
-            var exchangeRates = await _exchangeRateRepository
-                .WhereIf(!String.IsNullOrWhiteSpace(currencyCodeFrom), x => x.CurrencyCodeFrom == currencyCodeFrom)
-                .WhereIf(!String.IsNullOrWhiteSpace(currencyCodeTo), x => x.CurrencyCodeTo == currencyCodeTo)
-                .WhereIf(beginTime.HasValue, x => x.CaptureTime >= beginTime.Value)
-                .WhereIf(endTime.HasValue, x => x.CaptureTime <= endTime.Value)
-                .OrderByDescending(x => x.CreationTime)
-                .PageBy(skipCount, maxResultCount).ToListAsync();
-            return exchangeRates;
-        }
-
-        public async Task<int> GetRatePagingCountAsync(string currencyCodeFrom, string currencyCodeTo
-            , DateTime? beginTime, DateTime? endTime)
-        {
-            var count = await _exchangeRateRepository
-                .WhereIf(!String.IsNullOrWhiteSpace(currencyCodeFrom), x => x.CurrencyCodeFrom == currencyCodeFrom)
-                .WhereIf(!String.IsNullOrWhiteSpace(currencyCodeTo), x => x.CurrencyCodeTo == currencyCodeTo)
-                .WhereIf(beginTime.HasValue, x => x.CaptureTime >= beginTime.Value)
-                .WhereIf(endTime.HasValue, x => x.CaptureTime <= endTime.Value)
-                .CountAsync();
-            return count;
-        }
+        
     }
 }

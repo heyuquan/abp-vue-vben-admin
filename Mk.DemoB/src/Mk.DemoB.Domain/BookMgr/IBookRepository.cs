@@ -1,4 +1,5 @@
-﻿using Mk.DemoB.BookMgr.Entities;
+﻿using Leopard.Paging;
+using Mk.DemoB.BookMgr.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,8 +10,8 @@ namespace Mk.DemoB.BookMgr
 {
     public interface IBookRepository : IBasicRepository<Book, Guid>
     {
-        Task<List<Book>> GetListAsync(decimal? minPrice, decimal? maxPrice, int maxResultCount, int skipCount);
-
-        Task<long> GetCountAsync(decimal? minPrice, decimal? maxPrice);
+        Task<PageData<Book>> GetPagingListAsync(
+            decimal? minPrice, decimal? maxPrice
+            , int maxResultCount, int skipCount);
     }
 }

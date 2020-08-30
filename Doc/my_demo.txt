@@ -20,3 +20,6 @@ Mk.DemoB.BackgroundJobs
 数据里操作还是要放到 Mk.DemoB.EntityFrameworkCore 层的对应的Repository中。放在如Domain和Application中有两个问题
 1、这两个层需要引用Microsoft.EntityFrameworkCore ，否则一些扩展方法没有，eg：ToListAsync()
 2、如 Mk.DemoB.EntityFrameworkCore 中定义的 IncludeDetails 没办法使用上
+每个实体定义仓储的好处
+1、可以强制把数据库业务写到仓储中
+2、更好的封装了数据库操作。  方便在其他层注入仓储，获取数据操作

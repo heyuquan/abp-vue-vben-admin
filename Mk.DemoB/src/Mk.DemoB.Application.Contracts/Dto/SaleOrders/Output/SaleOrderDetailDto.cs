@@ -5,7 +5,7 @@ using Volo.Abp.Application.Dtos;
 
 namespace Mk.DemoB.Dto.SaleOrders
 {
-    public class SaleOrderDetailDto : ExtensibleCreationAuditedEntityDto
+    public class SaleOrderDetailDto : ExtensibleCreationAuditedEntityDto<Guid>
     {
         /// <summary>
         /// 父表ID

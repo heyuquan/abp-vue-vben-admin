@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <Import Project="..\..\common.props" />
 
@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Leopard.Framework\src\Leopard.Ddd.Application.Contracts\Leopard.Ddd.Application.Contracts.csproj" />
     <ProjectReference Include="..\Mk.DemoB.Domain.Shared\Mk.DemoB.Domain.Shared.csproj" />
   </ItemGroup>
 
