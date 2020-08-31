@@ -10,7 +10,6 @@ namespace Mk.DemoB.Dto.SaleOrders
         /// <summary>
         /// 有值为更新；null为新增
         /// </summary>
-        [Required]
         public Guid? Id { get; set; }
 
         /// <summary>

@@ -28,7 +28,7 @@ namespace Mk.DemoB.Repository
         /// <returns></returns>
         public async Task<SaleOrder> GetByOrderNoAsync(string orderNo)
         {
-            return await Task.FromResult(DbSet.Where(x => x.OrderNo == orderNo).FirstOrDefault());
+            return await Task.FromResult(GetQueryable().IncludeDetails().Where(x => x.OrderNo == orderNo).FirstOrDefault());
         }
 
         /// <summary>
@@ -78,6 +78,13 @@ namespace Mk.DemoB.Repository
             }
 
             return result;
+        }
+
+        // 重写了这个方法，Repository中的 方法参数 includeDetails 参数才有效果。  
+        // 因为这个方法中指定了 实体 和 关联实体的关系，不指定系统也不知道要关联啥东西
+        public override IQueryable<SaleOrder> WithDetails()
+        {
+            return GetQueryable().IncludeDetails();
         }
 
     }

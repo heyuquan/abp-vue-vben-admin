@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using Volo.Abp.Application.Dtos;
 using System.Linq;
 using Volo.Abp;
+using Mk.DemoB.IAppService;
+using Volo.Abp.ObjectExtending;
 
 namespace Mk.DemoB.SaleOrderAppService
 {
@@ -24,7 +26,7 @@ namespace Mk.DemoB.SaleOrderAppService
 
 
     [Route("api/demob/sale-order")]
-    public class SaleOrderAppService : DemoBAppService
+    public class SaleOrderAppService : DemoBAppService, ISaleOrderAppService
     {
         private readonly ISaleOrderRepository _saleOrderRepository;
 
@@ -45,27 +47,29 @@ namespace Mk.DemoB.SaleOrderAppService
         {
             ServiceResult<SaleOrderDto> retValue = new ServiceResult<SaleOrderDto>(IdProvider.Get());
 
-            SaleOrder order = new SaleOrder(
+            SaleOrder saleOrder = new SaleOrder(
                 GuidGenerator.Create()
                 , CurrentTenant.Id
-                , $"A0{new Random().Next(100000, 999999)}"
+                , input.OrderNo
                 , input.OrderTime
                 , input.Currency
                 );
+
+            input.MapExtraPropertiesTo(saleOrder);
 
             foreach (var item in input.SaleOrderDetails)
             {
                 SaleOrderDetail orderDetail = new SaleOrderDetail(
                     GuidGenerator.Create(), CurrentTenant.Id
-                    , order.Id, item.ProductSkuCode, item.Price, item.Quantity
+                    , saleOrder.Id, item.ProductSkuCode, item.Price, item.Quantity
                     );
 
-                order.AddItem(orderDetail);
+                saleOrder.AddItem(orderDetail);
             }
 
-            await _saleOrderRepository.InsertAsync(order);
+            await _saleOrderRepository.InsertAsync(saleOrder);
 
-            var dto = ObjectMapper.Map<SaleOrder, SaleOrderDto>(order);
+            var dto = ObjectMapper.Map<SaleOrder, SaleOrderDto>(saleOrder);
             retValue.SetSuccess(dto);
             return retValue;
 
@@ -101,7 +105,7 @@ namespace Mk.DemoB.SaleOrderAppService
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
-        [HttpPost("{id}")]
+        [HttpPost("id/{id}")]
         public virtual async Task<ServiceResult<SaleOrderDto>> GetByIdAsync(Guid id)
         {
             ServiceResult<SaleOrderDto> retValue = new ServiceResult<SaleOrderDto>(IdProvider.Get());
@@ -112,11 +116,11 @@ namespace Mk.DemoB.SaleOrderAppService
         }
 
         /// <summary>
-        /// 根据Id查询订单
+        /// 根据 订单编号 查询订单
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
-        [HttpPost("{id}")]
+        [HttpPost("orderno/{orderNo}")]
         public virtual async Task<ServiceResult<SaleOrderDto>> GetByOrderNoAsync(string orderNo)
         {
             Check.NotNullOrEmpty(orderNo, nameof(orderNo));
@@ -139,9 +143,13 @@ namespace Mk.DemoB.SaleOrderAppService
             ServiceResult<SaleOrderDto> retValue = new ServiceResult<SaleOrderDto>(IdProvider.Get());
             var saleOrder = await _saleOrderRepository.FindAsync(input.Id);
 
+            // ConcurrencyStamp 并发检查，发生并发会抛出异常：AbpDbConcurrencyException
+            saleOrder.ConcurrencyStamp = input.ConcurrencyStamp;
             saleOrder.OrderNo = input.OrderNo;
             saleOrder.OrderTime = input.OrderTime;
             saleOrder.Currency = input.Currency;
+
+            input.MapExtraPropertiesTo(saleOrder);
 
             foreach (var item in input.SaleOrderDetails)
             {
@@ -178,6 +186,7 @@ namespace Mk.DemoB.SaleOrderAppService
                 }
             }
 
+            saleOrder.SumDetail();
             await _saleOrderRepository.UpdateAsync(saleOrder);
             var dto = ObjectMapper.Map<SaleOrder, SaleOrderDto>(saleOrder);
             retValue.SetSuccess(dto);

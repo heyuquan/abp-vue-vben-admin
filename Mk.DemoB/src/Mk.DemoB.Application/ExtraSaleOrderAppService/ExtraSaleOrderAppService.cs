@@ -45,37 +45,13 @@ namespace Mk.DemoB.ExtraSaleOrderAppService
         /// <returns></returns>
         [HttpPost("create")]
         [UnitOfWork]
-        public virtual async Task<ServiceResult<SaleOrderDto>> CreateSaleOrderAsync(ExtraSaleOrderCreateDto input)
+        public virtual async Task<ServiceResult<SaleOrderDto>> CreateAsync(ExtraSaleOrderCreateDto input)
         {
-            ServiceResult<SaleOrderDto> retValue = new ServiceResult<SaleOrderDto>(IdProvider.Get());
+            SaleOrderCreateDto saleOrderCreateDto = input;
+            saleOrderCreateDto.SetProperty("CustomerName", input.CustomerName);
+            saleOrderCreateDto.SetProperty("CustomerName2", "我没有独立字段来存储");
 
-            SaleOrder order = new SaleOrder(
-                GuidGenerator.Create()
-                , CurrentTenant.Id
-                , $"A0{new Random().Next(100000, 999999)}"
-                , input.OrderTime
-                , input.Currency
-                );
-
-            order.SetProperty("CustomerName", input.CustomerName);
-            order.SetProperty("CustomerName2", "我没有独立字段来存储");
-
-            foreach (var item in input.SaleOrderDetails)
-            {
-                SaleOrderDetail orderDetail = new SaleOrderDetail(
-                    GuidGenerator.Create(), CurrentTenant.Id
-                    , order.Id, item.ProductSkuCode, item.Price, item.Quantity
-                    );
-
-                order.AddItem(orderDetail);
-            }
-
-            await _saleOrderRepository.InsertAsync(order);
-
-            var dto = ObjectMapper.Map<SaleOrder, SaleOrderDto>(order);
-            retValue.SetSuccess(dto);
-            return retValue;
-
+            return await _saleOrderAppService.CreateAsync(saleOrderCreateDto);
         }
     }
 }

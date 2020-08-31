@@ -3,10 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Volo.Abp.Application.Dtos;
+using Volo.Abp.Domain.Entities;
+using Volo.Abp.MultiTenancy;
 
 namespace Mk.DemoB.Dto.SaleOrders
 {
-    public class SaleOrderDto : ExtensibleCreationAuditedEntityDto<Guid>
+    public class SaleOrderDto : ExtensibleCreationAuditedEntityDto<Guid>, IHasConcurrencyStamp
     {
         /// <summary>
         /// 订单编号
@@ -32,6 +34,8 @@ namespace Mk.DemoB.Dto.SaleOrders
         /// 订单状态
         /// </summary>
         public SaleOrderStatus OrderStatus { get; set; }
+
+        public string ConcurrencyStamp { get; set; }
 
         public virtual ICollection<SaleOrderDetailDto> SaleOrderDetails { get; set; }
     }

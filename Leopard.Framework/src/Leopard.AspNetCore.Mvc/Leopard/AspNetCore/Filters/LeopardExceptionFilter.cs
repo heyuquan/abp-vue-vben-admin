@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
@@ -26,15 +27,18 @@ namespace Leopard.AspNetCore.Mvc.Filters
         private readonly IHttpExceptionStatusCodeFinder _statusCodeFinder;
         private readonly IJsonSerializer _jsonSerializer;
         private readonly ICorrelationIdProvider _correlationIdProvider;
+        private readonly IConfiguration _configuration;
 
         public LeopardExceptionFilter(
             ILogger<LeopardExceptionFilter> logger,
+            IConfiguration configuration,
             IExceptionToErrorInfoConverter errorInfoConverter,
             IHttpExceptionStatusCodeFinder statusCodeFinder,
             IJsonSerializer jsonSerializer,
             ICorrelationIdProvider correlationIdProvider)
         {
             _errorInfoConverter = errorInfoConverter;
+            _configuration = configuration;
             _statusCodeFinder = statusCodeFinder;
             _jsonSerializer = jsonSerializer;
             _correlationIdProvider = correlationIdProvider;
@@ -85,6 +89,14 @@ namespace Leopard.AspNetCore.Mvc.Filters
             context.HttpContext.Response.StatusCode = (int)_statusCodeFinder.GetStatusCode(context.HttpContext, context.Exception);
 
             var remoteServiceErrorInfo = _errorInfoConverter.Convert(context.Exception);
+
+            if (_configuration.GetSection("Environment").Value == "Develop")
+            {
+                if (string.IsNullOrWhiteSpace(remoteServiceErrorInfo.Details))
+                {
+                    remoteServiceErrorInfo.Details = $"{context.Exception.GetType()}. {context.Exception.Message}";
+                }                
+            }
 
             ServiceResult<RemoteServiceErrorInfo> ret = new ServiceResult<RemoteServiceErrorInfo>(_correlationIdProvider.Get());
             ret.SetFailed(remoteServiceErrorInfo);
