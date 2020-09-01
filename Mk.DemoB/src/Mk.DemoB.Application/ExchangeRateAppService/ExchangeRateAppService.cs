@@ -96,18 +96,14 @@ namespace Mk.DemoB.ExchangeRateAppService
                 retDto.CaptureTime = batch.CaptureTime;
                 retDto.CaptureBatchNumber = batch.CaptureBatchNumber;
                 List<ExchangeRateDto> exchangeRateDtos = ObjectMapper.Map<List<ExchangeRate>, List<ExchangeRateDto>>(pageData.Items);
-                retDto.ExchangeRates = exchangeRateDtos;
-                ret.SetSuccess(retDto);
+                retDto.ExchangeRates = exchangeRateDtos;               
             }
             else
             {
-                UserFriendlyException exception = new UserFriendlyException(
-                    message: "没有任何汇率数据"
-                   , logLevel: LogLevel.Error
-                   );
-                throw exception;
+                retDto.ExchangeRates = new List<ExchangeRateDto>();               
             }
 
+            ret.SetSuccess(retDto);
             return ret;
         }
 
