@@ -87,7 +87,7 @@ namespace Mk.DemoB.SaleOrderAppService
 
             var pageData = await _saleOrderRepository.GetPagingListAsync(
                             req.OrderNo
-                            ,req.OrderStatus
+                            , req.OrderStatus
                             , req.BeginTime, req.EndTime
                             , req.MaxTotalAmount, req.MinTotalAmount
                             , req.CustomerName
@@ -191,7 +191,20 @@ namespace Mk.DemoB.SaleOrderAppService
             var dto = ObjectMapper.Map<SaleOrder, SaleOrderDto>(saleOrder);
             retValue.SetSuccess(dto);
             return retValue;
+        }
 
+        /// <summary>
+        /// 删除订单
+        /// </summary>
+        /// <param name="req"></param>
+        /// <returns></returns>
+        [HttpDelete("{id}")]
+        public virtual async Task<ServiceResult> DeleteByIdAsync(Guid id)
+        {
+            ServiceResult<SaleOrderDto> retValue = new ServiceResult<SaleOrderDto>(IdProvider.Get());
+            await _saleOrderRepository.DeleteAsync(id);
+            retValue.SetSuccess();
+            return retValue;
         }
     }
 }

@@ -4,7 +4,7 @@ using Volo.Abp.Application.Dtos;
 
 namespace Mk.DemoB.Dto.ExchangeRates
 {
-    public class GetPagingRequest : IPagedResultRequest
+    public class GetExchangeRatePagingRequest : PagedResultRequestDto
     {
         /// <summary>
         /// 本币币种编码
@@ -26,9 +26,5 @@ namespace Mk.DemoB.Dto.ExchangeRates
         /// 抓取批次
         /// </summary>
         public string CaptureBatchNumber { get; set; }
-        [Required]
-        public int SkipCount { get; set; }
-        [Required]
-        public int MaxResultCount { get; set; }
     }
 }

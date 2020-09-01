@@ -33,6 +33,7 @@ using Leopard.AspNetCore.Mvc.Filters;
 using Mk.DemoB.BackgroundJobs;
 using Mk.DemoB.BackgroundJobs.Job;
 using Volo.Abp.Timing;
+using Volo.Abp.Application.Dtos;
 
 namespace Mk.DemoB
 {
@@ -64,6 +65,9 @@ namespace Mk.DemoB
             ConfigureRedis(context, configuration, hostingEnvironment);
             ConfigureCors(context, configuration);
             ConfigureSwaggerServices(context);
+
+            // 设置分页默认返回20条数据   
+            PagedResultRequestDto.DefaultMaxResultCount = 20;
 
             // guid的排序规则
             Configure<AbpSequentialGuidGeneratorOptions>(options =>

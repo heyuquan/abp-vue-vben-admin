@@ -28,8 +28,7 @@ namespace Mk.DemoB.ExchangeRateAppService
         private readonly IExchangeRateRepository _exchangeRateRepository;
 
         public ExchangeRateAppService(
-            IHttpClientFactory clientFactory
-            , ExchangeRateManager exchangeRateManager
+            ExchangeRateManager exchangeRateManager
             , IExchangeRateRepository exchangeRateRepository
             , ICaptureCurrencyRepository captureCurrencyRepository
             , IExchangeRateCaptureBatchRepository exchangeRateCaptureBatchRepository
@@ -44,14 +43,14 @@ namespace Mk.DemoB.ExchangeRateAppService
         /// <summary>
         /// 创建一笔币别对应关系
         /// </summary>
-        /// <param name="req"></param>
+        /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost("capture-currency/create")]
-        public async Task<ServiceResult<CaptureCurrencyDto>> AddCaptureCurrencyAsync(AddCaptureCurrencyRequest req)
+        public virtual async Task<ServiceResult<CaptureCurrencyDto>> CreateCaptureCurrencyAsync(CaptureCurrencyCreate input)
         {
             ServiceResult<CaptureCurrencyDto> ret = new ServiceResult<CaptureCurrencyDto>(IdProvider.Get());
 
-            CaptureCurrency entity = new CaptureCurrency(GuidGenerator.Create(), req.CurrencyCodeFrom, req.CurrencyCodeTo);
+            CaptureCurrency entity = new CaptureCurrency(GuidGenerator.Create(), input.CurrencyCodeFrom, input.CurrencyCodeTo);
             await _captureCurrencyRepository.InsertAsync(entity);
 
             CaptureCurrencyDto dto = ObjectMapper.Map<CaptureCurrency, CaptureCurrencyDto>(entity);
@@ -63,7 +62,7 @@ namespace Mk.DemoB.ExchangeRateAppService
         /// 抓取所有CaptureCurrency表中指定的汇率
         /// </summary>
         [HttpPost("capture/all")]
-        public async Task<ServiceResult<List<ExchangeRateDto>>> CaptureAllRateAndSaveAsync()
+        public virtual async Task<ServiceResult<List<ExchangeRateDto>>> CaptureAllRateAndSaveAsync()
         {
             ServiceResult<List<ExchangeRateDto>> ret = new ServiceResult<List<ExchangeRateDto>>(IdProvider.Get());
 
@@ -78,8 +77,8 @@ namespace Mk.DemoB.ExchangeRateAppService
         /// </summary>
         /// <param name="captureBatchNumber">可空，若为空，则获取最新批次的汇率数据</param>
         /// <returns></returns>
-        [HttpGet("latest-batch")]
-        public async Task<ServiceResult<ExchangeRateBatchDto>> GetLatestBatchPagingAsync()
+        [HttpGet("batch/latest")]
+        public virtual async Task<ServiceResult<ExchangeRateBatchDto>> GetLatestBatchPagingAsync()
         {
             ServiceResult<ExchangeRateBatchDto> ret = new ServiceResult<ExchangeRateBatchDto>(IdProvider.Get());
             ExchangeRateBatchDto retDto = new ExchangeRateBatchDto();
@@ -96,11 +95,11 @@ namespace Mk.DemoB.ExchangeRateAppService
                 retDto.CaptureTime = batch.CaptureTime;
                 retDto.CaptureBatchNumber = batch.CaptureBatchNumber;
                 List<ExchangeRateDto> exchangeRateDtos = ObjectMapper.Map<List<ExchangeRate>, List<ExchangeRateDto>>(pageData.Items);
-                retDto.ExchangeRates = exchangeRateDtos;               
+                retDto.ExchangeRates = exchangeRateDtos;
             }
             else
             {
-                retDto.ExchangeRates = new List<ExchangeRateDto>();               
+                retDto.ExchangeRates = new List<ExchangeRateDto>();
             }
 
             ret.SetSuccess(retDto);
@@ -112,7 +111,7 @@ namespace Mk.DemoB.ExchangeRateAppService
         /// </summary>
         /// <returns></returns>
         [HttpGet("paging")]
-        public async Task<ServiceResult<PagedResultDto<ExchangeRateDto>>> GetPagingAsync(GetPagingRequest req)
+        public virtual async Task<ServiceResult<PagedResultDto<ExchangeRateDto>>> GetExchangeRatePagingRequest(GetExchangeRatePagingRequest req)
         {
             ServiceResult<PagedResultDto<ExchangeRateDto>> ret = new ServiceResult<PagedResultDto<ExchangeRateDto>>(IdProvider.Get());
 

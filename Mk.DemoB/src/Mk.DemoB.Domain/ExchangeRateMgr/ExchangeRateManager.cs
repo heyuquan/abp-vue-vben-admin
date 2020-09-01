@@ -77,7 +77,6 @@ namespace Mk.DemoB.ExchangeRateMgr
             // #、抓取汇率
             if (captureCurrencys.Any())
             {
-
                 var exchangeRates = new ConcurrentBag<ExchangeRate>();
 
                 var tasks = captureCurrencys.Select(async item =>

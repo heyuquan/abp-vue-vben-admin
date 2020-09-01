@@ -8,7 +8,7 @@ using Volo.Abp.Application.Dtos;
 
 namespace Mk.DemoB.Dto.SaleOrders
 {
-    public class GetSaleOrderPagingRequest : IPagedResultRequest
+    public class GetSaleOrderPagingRequest : PagedResultRequestDto
     {
         /// <summary>
         /// 订单编号
@@ -38,10 +38,5 @@ namespace Mk.DemoB.Dto.SaleOrders
         /// 订单状态
         /// </summary>
         public SaleOrderStatus? OrderStatus { get; set; }
-
-        [Required]
-        public int SkipCount { get; set; }
-        [Required]
-        public int MaxResultCount { get; set; } 
     }
 }
