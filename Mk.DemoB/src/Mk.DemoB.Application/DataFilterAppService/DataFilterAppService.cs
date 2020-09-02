@@ -55,7 +55,7 @@ namespace Mk.DemoB.DataFilterAppService
         {
             ServiceResult<long> result = new ServiceResult<long>(IdProvider.Get());
 
-            ServiceResult<PagedResultDto<SaleOrderDto>> retValue = await _saleOrderAppService.GetSaleOrderPagingAsync(req);
+            ServiceResult<PagedResultDto<SaleOrderDto>> retValue = await _saleOrderAppService.GetOrderPagingAsync(req);
             result.SetSuccess(retValue.Data.TotalCount);
 
             return result;
@@ -73,7 +73,7 @@ namespace Mk.DemoB.DataFilterAppService
 
             using (_dataFilter.Disable<ISoftDelete>())
             {
-                ServiceResult<PagedResultDto<SaleOrderDto>> retValue = await _saleOrderAppService.GetSaleOrderPagingAsync(req);
+                ServiceResult<PagedResultDto<SaleOrderDto>> retValue = await _saleOrderAppService.GetOrderPagingAsync(req);
                 result.SetSuccess(retValue.Data.TotalCount);
             }
 

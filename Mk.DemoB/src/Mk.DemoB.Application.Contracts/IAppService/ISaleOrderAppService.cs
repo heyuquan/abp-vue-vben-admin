@@ -19,6 +19,6 @@ namespace Mk.DemoB.IAppService
         /// <summary>
         /// 获取订单分页数据
         /// </summary>
-       Task<ServiceResult<PagedResultDto<SaleOrderDto>>> GetSaleOrderPagingAsync(GetSaleOrderPagingRequest req);
+       Task<ServiceResult<PagedResultDto<SaleOrderDto>>> GetOrderPagingAsync(GetSaleOrderPagingRequest req);
     }
 }

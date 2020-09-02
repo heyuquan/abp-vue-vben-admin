@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Volo.Abp.Domain.Entities.Auditing;
 using System.Linq;
 using Volo.Abp.MultiTenancy;
+using Mk.DemoB.SaleOrderMgr.Events;
 
 namespace Mk.DemoB.SaleOrderMgr.Entities
 {

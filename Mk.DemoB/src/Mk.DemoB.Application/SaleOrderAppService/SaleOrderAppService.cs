@@ -11,6 +11,8 @@ using System.Linq;
 using Volo.Abp;
 using Mk.DemoB.IAppService;
 using Volo.Abp.ObjectExtending;
+using Volo.Abp.EventBus.Local;
+using Mk.DemoB.SaleOrderMgr.Events;
 
 namespace Mk.DemoB.SaleOrderAppService
 {
@@ -28,12 +30,15 @@ namespace Mk.DemoB.SaleOrderAppService
     [Route("api/demob/sale-order")]
     public class SaleOrderAppService : DemoBAppService, ISaleOrderAppService
     {
+        private readonly ILocalEventBus _localEventBus;
         private readonly ISaleOrderRepository _saleOrderRepository;
 
         public SaleOrderAppService(
-            ISaleOrderRepository saleOrderRepository
+            ILocalEventBus localEventBus
+            , ISaleOrderRepository saleOrderRepository
             )
         {
+            _localEventBus = localEventBus;
             _saleOrderRepository = saleOrderRepository;
         }
 
@@ -81,7 +86,7 @@ namespace Mk.DemoB.SaleOrderAppService
         /// <param name="req"></param>
         /// <returns></returns>
         [HttpGet("paging")]
-        public virtual async Task<ServiceResult<PagedResultDto<SaleOrderDto>>> GetSaleOrderPagingAsync(GetSaleOrderPagingRequest req)
+        public virtual async Task<ServiceResult<PagedResultDto<SaleOrderDto>>> GetOrderPagingAsync(GetSaleOrderPagingRequest req)
         {
             ServiceResult<PagedResultDto<SaleOrderDto>> retValue = new ServiceResult<PagedResultDto<SaleOrderDto>>(IdProvider.Get());
 
@@ -165,24 +170,82 @@ namespace Mk.DemoB.SaleOrderAppService
                     {
                         // 删除
                         saleOrder.SaleOrderDetails.Remove(subItem);
+                        await _localEventBus.PublishAsync(
+                                new SaleOrderSkuQuantityChangedEvent
+                                {
+                                    SaleOrderId = saleOrder.Id,
+                                    SaleOrderDetailId = item.Id.Value,
+                                    ProductSkuCode = subItem.ProductSkuCode,
+                                    ChangeQuantity = -subItem.Quantity
+                                });
                     }
                     else
                     {
                         // 修改
-                        subItem.ProductSkuCode = item.ProductSkuCode;
-                        subItem.Price = item.Price;
-                        subItem.Quantity = item.Quantity;
+                        if (string.Compare(subItem.ProductSkuCode, item.ProductSkuCode) == 0)
+                        {
+                            subItem.Price = item.Price;
+                            subItem.Quantity = item.Quantity;
+
+                            if (subItem.Quantity != item.Quantity)
+                            {
+                                await _localEventBus.PublishAsync(
+                                     new SaleOrderSkuQuantityChangedEvent
+                                     {
+                                         SaleOrderId = saleOrder.Id,
+                                         SaleOrderDetailId = item.Id.Value,
+                                         ProductSkuCode = subItem.ProductSkuCode,
+                                         ChangeQuantity = item.Quantity - subItem.Quantity
+                                     });
+                            }
+                        }
+                        else
+                        {
+                            // 发布旧sku的变更事件
+                            await _localEventBus.PublishAsync(
+                                    new SaleOrderSkuQuantityChangedEvent
+                                    {
+                                        SaleOrderId = saleOrder.Id,
+                                        SaleOrderDetailId = item.Id.Value,
+                                        ProductSkuCode = subItem.ProductSkuCode,
+                                        ChangeQuantity = -subItem.Quantity
+                                    });
+
+
+                            subItem.ProductSkuCode = item.ProductSkuCode;
+                            subItem.Price = item.Price;
+                            subItem.Quantity = item.Quantity;
+
+                            // 发布新sku的变更事件
+                            await _localEventBus.PublishAsync(
+                                    new SaleOrderSkuQuantityChangedEvent
+                                    {
+                                        SaleOrderId = saleOrder.Id,
+                                        SaleOrderDetailId = item.Id.Value,
+                                        ProductSkuCode = subItem.ProductSkuCode,
+                                        ChangeQuantity = subItem.Quantity
+                                    });
+                        }
                     }
                 }
                 else
                 {
+                    Guid orderItemId = GuidGenerator.Create();
                     // 新增
-                    SaleOrderDetail orderDetail = new SaleOrderDetail(
-                        GuidGenerator.Create(), CurrentTenant.Id
+                    SaleOrderDetail orderItem = new SaleOrderDetail(
+                        orderItemId, CurrentTenant.Id
                         , saleOrder.Id, item.ProductSkuCode, item.Price, item.Quantity
                         );
 
-                    saleOrder.AddItem(orderDetail);
+                    saleOrder.AddItem(orderItem);
+                    await _localEventBus.PublishAsync(
+                            new SaleOrderSkuQuantityChangedEvent
+                            {
+                                SaleOrderId = saleOrder.Id,
+                                SaleOrderDetailId = orderItemId,
+                                ProductSkuCode = orderItem.ProductSkuCode,
+                                ChangeQuantity = orderItem.Quantity
+                            });
                 }
             }
 
