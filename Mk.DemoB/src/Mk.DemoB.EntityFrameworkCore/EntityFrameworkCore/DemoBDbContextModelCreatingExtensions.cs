@@ -1,11 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Mk.DemoB.DbMapperCfg;
 using Mk.DemoB.DbMapperCfg.ExchangeRates;
 using Mk.DemoB.DbMapperCfg.SaleOrders;
-using Mk.DemoB.SaleOrderMgr.Entities;
-using System;
 using Volo.Abp;
-using Volo.Abp.ObjectExtending;
 
 namespace Mk.DemoB.EntityFrameworkCore
 {
@@ -23,9 +19,6 @@ namespace Mk.DemoB.EntityFrameworkCore
             //    b.ConfigureByConvention(); //auto configure for the base class props
             //    //...
             //});
-
-            builder.ApplyConfiguration(new BookCfg());
-            builder.ApplyConfiguration(new AuthorCfg());
 
             builder.ApplyConfiguration(new CaptureCurrencyCfg());
             builder.ApplyConfiguration(new ExchangeRateCaptureBatchCfg());

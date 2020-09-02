@@ -58,7 +58,7 @@ namespace Leopard.Results
     /// <summary>
     /// 服务层响应实体
     /// </summary>
-    public class ServiceResult<T> : ServiceResult where T : class
+    public class ServiceResult<T> : ServiceResult
     {
         public ServiceResult() : base(Guid.NewGuid().ToString("N"))
         {

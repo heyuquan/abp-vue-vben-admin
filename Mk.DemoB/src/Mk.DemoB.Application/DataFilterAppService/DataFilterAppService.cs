@@ -1,14 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Mk.DemoB.BookMgr;
-using Mk.DemoB.BookMgr.Entities;
-using Mk.DemoB.Dto;
-using System;
-using System.Collections.Generic;
+﻿using Leopard.Results;
+using Microsoft.AspNetCore.Mvc;
+using Mk.DemoB.Dto.SaleOrders;
+using Mk.DemoB.IAppService;
 using System.Threading.Tasks;
 using Volo.Abp;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Data;
-using Volo.Abp.Domain.Repositories;
 
 namespace Mk.DemoB.DataFilterAppService
 {
@@ -33,40 +30,54 @@ namespace Mk.DemoB.DataFilterAppService
     //    return expression;
     //}
 
+    [Route("api/demob/datafilter")]
     public class DataFilterAppService : DemoBAppService
     {
         private readonly IDataFilter _dataFilter;
-        private readonly IBookRepository _bookRepository;
+        private readonly ISaleOrderAppService _saleOrderAppService;
 
         public DataFilterAppService(
             IDataFilter dataFilter,
-            IBookRepository bookRepository
+            ISaleOrderAppService saleOrderAppService
             )
         {
             _dataFilter = dataFilter;
-            _bookRepository = bookRepository;
+            _saleOrderAppService = saleOrderAppService;
         }
 
         /// <summary>
-        /// 获取 Book 数据（包含 软删除）
+        /// 获取订单分页数据
         /// </summary>
-        /// <param name="input"></param>
+        /// <param name="req"></param>
         /// <returns></returns>
-        [Route("booklist")]
-        [HttpGet]
-        public async Task<PagedResultDto<BookDto>> GetBookListContainDeleted(GetBookListRequestDto input)
+        [HttpGet("not-contain-delete-count")]
+        public virtual async Task<ServiceResult<long>> GetSaleOrderCountAsync(GetSaleOrderPagingRequest req)
         {
-            List<Book> books = null;
-            long count = 0;
+            ServiceResult<long> result = new ServiceResult<long>(IdProvider.Get());
+
+            ServiceResult<PagedResultDto<SaleOrderDto>> retValue = await _saleOrderAppService.GetSaleOrderPagingAsync(req);
+            result.SetSuccess(retValue.Data.TotalCount);
+
+            return result;
+        }
+
+        /// <summary>
+        /// 获取订单分页数据
+        /// </summary>
+        /// <param name="req"></param>
+        /// <returns></returns>
+        [HttpGet("contain-delete-count")]
+        public virtual async Task<ServiceResult<long>> GetAllSaleOrderCountAsync(GetSaleOrderPagingRequest req)
+        {
+            ServiceResult<long> result = new ServiceResult<long>(IdProvider.Get());
+
             using (_dataFilter.Disable<ISoftDelete>())
             {
-                var pageData= await _bookRepository.GetPagingListAsync(input.MinPrice, input.MaxPrice, input.MaxResultCount, input.SkipCount);
-                books = pageData.Items;
-                count = pageData.TotalCount;
+                ServiceResult<PagedResultDto<SaleOrderDto>> retValue = await _saleOrderAppService.GetSaleOrderPagingAsync(req);
+                result.SetSuccess(retValue.Data.TotalCount);
             }
 
-            var dtos = ObjectMapper.Map<List<Book>, List<BookDto>>(books);
-            return new PagedResultDto<BookDto>(count, dtos);
+            return result;
         }
 
 

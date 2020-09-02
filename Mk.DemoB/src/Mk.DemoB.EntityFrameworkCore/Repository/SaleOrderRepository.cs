@@ -1,6 +1,5 @@
 ﻿using Leopard.Paging;
 using Microsoft.EntityFrameworkCore;
-using Mk.DemoB.BookMgr.Entities;
 using Mk.DemoB.EntityFrameworkCore;
 using Mk.DemoB.Enums.SaleOrder;
 using Mk.DemoB.SaleOrderMgr;
@@ -8,10 +7,10 @@ using Mk.DemoB.SaleOrderMgr.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
 using Volo.Abp.Domain.Repositories.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
-using System.Linq.Dynamic.Core;
 
 namespace Mk.DemoB.Repository
 {
