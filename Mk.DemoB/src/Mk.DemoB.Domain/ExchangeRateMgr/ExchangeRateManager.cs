@@ -1,5 +1,6 @@
 ﻿using HtmlAgilityPack;
 using JetBrains.Annotations;
+using Microsoft.Extensions.Logging;
 using Mk.DemoB.ExchangeRateMgr.Entities;
 using System;
 using System.Collections.Concurrent;
@@ -14,18 +15,21 @@ namespace Mk.DemoB.ExchangeRateMgr
 {
     public class ExchangeRateManager : DomainService
     {
+        private readonly ILogger<ExchangeRateManager> _logger;
         private readonly IHttpClientFactory _clientFactory;
         private readonly IRepository<ExchangeRate, Guid> _exchangeRateRepository;
         private readonly IRepository<CaptureCurrency, Guid> _captureCurrencyRepository;
         private readonly IRepository<ExchangeRateCaptureBatch, Guid> _exchangeRateCaptureBatchRepository;
 
         public ExchangeRateManager(
-            IHttpClientFactory clientFactory
+            ILogger<ExchangeRateManager> logger
+            , IHttpClientFactory clientFactory
             , IRepository<ExchangeRate, Guid> exchangeRateRepository
             , IRepository<CaptureCurrency, Guid> captureCurrencyRepository
             , IRepository<ExchangeRateCaptureBatch, Guid> exchangeRateCaptureBatchRepository
             )
         {
+            _logger = logger;
             _clientFactory = clientFactory;
             _exchangeRateRepository = exchangeRateRepository;
             _captureCurrencyRepository = captureCurrencyRepository;
@@ -54,12 +58,20 @@ namespace Mk.DemoB.ExchangeRateMgr
 
             HtmlNode node = doc.DocumentNode.SelectSingleNode("//span[@id='ctl00_M_lblToAmount']");
 
-            decimal buyPrice = decimal.Parse(node.InnerText);
+            if (node != null)
+            {
+                decimal buyPrice = decimal.Parse(node.InnerText);
 
-            ExchangeRate exchangeRate = new ExchangeRate(GuidGenerator.Create(), currencyCodeFrom, currencyCodeTo, buyPrice, Clock.Now);
-            exchangeRate.DataFromUrl = url;
+                ExchangeRate exchangeRate = new ExchangeRate(GuidGenerator.Create(), currencyCodeFrom, currencyCodeTo, buyPrice, Clock.Now);
+                exchangeRate.DataFromUrl = url;
 
-            return exchangeRate;
+                return exchangeRate;
+            }
+            else
+            {
+                _logger.LogWarning($"来源币别{currencyCodeFrom}到目的币别{currencyCodeTo}抓取不到汇率。url:{url}");
+                return null;
+            }
         }
 
         /// <summary>
@@ -82,8 +94,11 @@ namespace Mk.DemoB.ExchangeRateMgr
                 var tasks = captureCurrencys.Select(async item =>
                 {
                     var exchangeRate = await this.CaptureOneRateAsync(item.CurrencyCodeFrom, item.CurrencyCodeTo);
-                    exchangeRate.CaptureBatchNumber = captureBatchNumber;
-                    exchangeRates.Add(exchangeRate);
+                    if (exchangeRate != null)
+                    {
+                        exchangeRate.CaptureBatchNumber = captureBatchNumber;
+                        exchangeRates.Add(exchangeRate);
+                    }
                 }).ToArray();
 
                 await Task.WhenAll(tasks);
@@ -113,6 +128,6 @@ namespace Mk.DemoB.ExchangeRateMgr
             return result;
         }
 
-        
+
     }
 }

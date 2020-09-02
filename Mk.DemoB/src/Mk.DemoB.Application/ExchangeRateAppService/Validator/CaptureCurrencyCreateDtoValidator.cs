@@ -19,9 +19,9 @@ namespace Mk.DemoB.ExchangeRateAppService.Validator
 
     // FluentValidation使用资料：https://www.xcode.me/post/5849
 
-    public class CaptureCurrencyCreateValidator : AbstractValidator<CaptureCurrencyCreate>
+    public class CaptureCurrencyCreateDtoValidator : AbstractValidator<CaptureCurrencyCreate>
     {
-        public CaptureCurrencyCreateValidator()
+        public CaptureCurrencyCreateDtoValidator()
         {
             RuleFor(x => x.CurrencyCodeFrom).Must(CheckSameCurrencyCode).WithMessage("来源币种和目的币种不能相同");
         }
@@ -35,16 +35,16 @@ namespace Mk.DemoB.ExchangeRateAppService.Validator
             if (string.IsNullOrWhiteSpace(currencyCodeTo) && string.IsNullOrWhiteSpace(currencyCodeFrom))
             {
                 // 都为空，就不用检查
-                return false;
+                return true;
             }
 
             if (String.Compare(currencyCodeTo, currencyCodeFrom, true) == 0)
             {
                 // 币别不能相同
-                return true;
+                return false;
             }
 
-            return false;
+            return true;
         }
     }
 }
