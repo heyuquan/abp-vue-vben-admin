@@ -4,7 +4,7 @@ using Volo.Abp.Application.Dtos;
 
 namespace Mk.DemoB.Dto.ExchangeRates
 {
-    public class GetExchangeRatePagingRequest : PagedResultRequestDto
+    public class GetExchangeRatePagingRequest : PagedAndSortedResultRequestDto
     {
         /// <summary>
         /// 本币币种编码

@@ -120,6 +120,7 @@ namespace Mk.DemoB.ExchangeRateAppService
                                         , currencyCodeTo: req.CurrencyCodeTo
                                         , beginTime: req.BeginTime
                                         , endTime: req.EndTime
+                                        , sorting: req.Sorting
                                         , skipCount: req.SkipCount
                                         , maxResultCount: req.MaxResultCount);
 

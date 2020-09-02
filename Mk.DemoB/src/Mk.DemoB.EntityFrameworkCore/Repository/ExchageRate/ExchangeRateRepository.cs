@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Volo.Abp.Domain.Repositories.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
+using System.Linq.Dynamic.Core;
 
 namespace Mk.DemoB.Repository
 {
@@ -28,6 +29,7 @@ namespace Mk.DemoB.Repository
         /// <param name="beginTime">开始时间</param>
         /// <param name="endTime">结束时间</param>
         /// <param name="captureBatchNumber">抓取批次</param>
+        /// <param name="sorting">Eg：Name asc,Id desc</param>
         /// <param name="skipCount"></param>
         /// <param name="maxResultCount"></param>
         /// <returns></returns>
@@ -37,6 +39,7 @@ namespace Mk.DemoB.Repository
             , DateTime? beginTime = null
             , DateTime? endTime = null
             , string captureBatchNumber = null
+            , string sorting = null
             , int skipCount = 0
             , int maxResultCount = int.MaxValue
             , bool isGetTotalCount = true)
@@ -49,11 +52,21 @@ namespace Mk.DemoB.Repository
                 .WhereIf(endTime.HasValue, x => x.CaptureTime <= endTime.Value)
                 .WhereIf(!String.IsNullOrWhiteSpace(captureBatchNumber), x => x.CaptureBatchNumber == captureBatchNumber);
 
-            result.Items = await query.OrderByDescending(x => x.Id).PageBy(skipCount, maxResultCount).ToListAsync();
             if (isGetTotalCount)
             {
                 result.TotalCount = await query.LongCountAsync();
             }
+
+            if (!string.IsNullOrWhiteSpace(sorting))
+            {
+                query = query.OrderBy(sorting);
+            }
+            else
+            {
+                query.OrderByDescending(x => x.Id);
+            }
+
+            result.Items = await query.PageBy(skipCount, maxResultCount).ToListAsync();
 
             return result;
         }

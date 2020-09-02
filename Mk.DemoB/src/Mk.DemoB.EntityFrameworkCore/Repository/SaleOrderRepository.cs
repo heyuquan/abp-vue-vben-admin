@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Volo.Abp.Domain.Repositories.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
+using System.Linq.Dynamic.Core;
 
 namespace Mk.DemoB.Repository
 {
@@ -40,20 +41,20 @@ namespace Mk.DemoB.Repository
         /// <param name="endTime">结束书简</param>
         /// <param name="maxTotalAmount">最大订单金额</param>
         /// <param name="minTotalAmount">最小订单金额</param>
-        /// <param name="customerName">客户名称</param>
+        /// <param name="sorting">Eg：Name asc,Id desc</param>
         /// <param name="skipCount"></param>
         /// <param name="maxResultCount"></param>
         /// <param name="includeDetails"></param>
         /// <param name="isGetTotalCount">是否获取总记录条数</param>
         /// <returns></returns>
-        public async Task<PageData<SaleOrder>> GetPagingListAsync(
+        public async Task<PageData<SaleOrder>> GetPagingAsync(
             string orderNo = null
             , SaleOrderStatus? orderStatus = null
             , DateTime? beginTime = null
             , DateTime? endTime = null
             , decimal? maxTotalAmount = null
             , decimal? minTotalAmount = null
-            , string customerName = null
+            , string sorting = null
             , int skipCount = 0
             , int maxResultCount = int.MaxValue
             , bool includeDetails = true
@@ -61,7 +62,7 @@ namespace Mk.DemoB.Repository
         {
             PageData<SaleOrder> result = new PageData<SaleOrder>();
 
-            var query = GetQueryable()
+            IQueryable<SaleOrder> query = GetQueryable()
                .WhereIf(!string.IsNullOrWhiteSpace(orderNo), x => x.OrderNo == orderNo)
                .WhereIf(orderStatus.HasValue, x => x.OrderStatus == orderStatus.Value)
                // 由于 customerName 是自定义扩展字段，存储在 ExtraProperties 字段中，无法在过滤sql中
@@ -71,11 +72,22 @@ namespace Mk.DemoB.Repository
                .WhereIf(beginTime.HasValue, x => x.OrderTime > beginTime.Value)
                .WhereIf(endTime.HasValue, x => x.OrderTime < endTime.Value);
 
-            result.Items = await query.IncludeDetails(includeDetails).PageBy(skipCount, maxResultCount).ToListAsync();
             if (isGetTotalCount)
             {
                 result.TotalCount = await query.LongCountAsync();
             }
+
+            query = query.IncludeDetails(includeDetails);
+            if (!string.IsNullOrWhiteSpace(sorting))
+            {
+                query = query.OrderBy(sorting);
+            }
+            else 
+            {
+                query.OrderByDescending(x => x.Id);
+            }
+
+            result.Items = await query.PageBy(skipCount, maxResultCount).ToListAsync();
 
             return result;
         }

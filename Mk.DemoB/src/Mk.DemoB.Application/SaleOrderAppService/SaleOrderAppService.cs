@@ -85,12 +85,12 @@ namespace Mk.DemoB.SaleOrderAppService
         {
             ServiceResult<PagedResultDto<SaleOrderDto>> retValue = new ServiceResult<PagedResultDto<SaleOrderDto>>(IdProvider.Get());
 
-            var pageData = await _saleOrderRepository.GetPagingListAsync(
+            var pageData = await _saleOrderRepository.GetPagingAsync(
                             req.OrderNo
                             , req.OrderStatus
                             , req.BeginTime, req.EndTime
                             , req.MaxTotalAmount, req.MinTotalAmount
-                            , req.CustomerName
+                            , req.Sorting
                             , req.SkipCount, req.MaxResultCount
                             );
 

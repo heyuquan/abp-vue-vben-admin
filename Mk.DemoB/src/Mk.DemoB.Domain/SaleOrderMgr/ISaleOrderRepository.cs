@@ -26,20 +26,20 @@ namespace Mk.DemoB.SaleOrderMgr
         /// <param name="endTime">结束书简</param>
         /// <param name="maxTotalAmount">最大订单金额</param>
         /// <param name="minTotalAmount">最小订单金额</param>
-        /// <param name="customerName">客户名称</param>
+        /// <param name="sorting">Eg：Name asc,Id desc</param>
         /// <param name="skipCount"></param>
         /// <param name="maxResultCount"></param>
         /// <param name="includeDetails"></param>
         /// <param name="isGetTotalCount">是否获取总记录条数</param>
         /// <returns></returns>
-        Task<PageData<SaleOrder>> GetPagingListAsync(
+        Task<PageData<SaleOrder>> GetPagingAsync(
             string orderNo = null
             , SaleOrderStatus? orderStatus = null
             , DateTime? beginTime = null
             , DateTime? endTime = null
             , decimal? maxTotalAmount = null
             , decimal? minTotalAmount = null
-            , string customerName = null
+            , string sorting = null
             , int skipCount = 0
             , int maxResultCount = int.MaxValue
             , bool includeDetails = true

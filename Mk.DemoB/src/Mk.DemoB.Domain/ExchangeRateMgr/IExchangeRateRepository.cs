@@ -19,6 +19,7 @@ namespace Mk.DemoB.ExchangeRateMgr
         /// <param name="beginTime">开始时间</param>
         /// <param name="endTime">结束时间</param>
         /// <param name="captureBatchNumber">抓取批次</param>
+        /// <param name="sorting">Eg：Name asc,Id desc</param>
         /// <param name="skipCount"></param>
         /// <param name="maxResultCount"></param>
         /// <returns></returns>
@@ -28,6 +29,7 @@ namespace Mk.DemoB.ExchangeRateMgr
             , DateTime? beginTime = null
             , DateTime? endTime = null
             , string captureBatchNumber = null
+            , string sorting= null
             , int skipCount = 0
             , int maxResultCount = int.MaxValue
             , bool isGetTotalCount = true);
