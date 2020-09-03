@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Mk.DemoB.Consts.SaleOrders;
+using Mk.DemoB.Domain.Consts.SaleOrders;
 using Mk.DemoB.SaleOrderMgr.Entities;
 using Volo.Abp.EntityFrameworkCore.Modeling;
 

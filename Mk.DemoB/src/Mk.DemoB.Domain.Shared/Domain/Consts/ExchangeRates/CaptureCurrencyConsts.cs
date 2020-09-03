@@ -1,6 +1,6 @@
 ﻿using Leopard.Domain.Consts;
 
-namespace Mk.DemoB.Consts.ExchangeRates
+namespace Mk.DemoB.Domain.Consts.ExchangeRates
 {
     public class CaptureCurrencyConsts
     {

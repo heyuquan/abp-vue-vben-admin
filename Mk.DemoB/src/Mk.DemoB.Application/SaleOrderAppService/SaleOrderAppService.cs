@@ -1,18 +1,16 @@
 ﻿using Leopard.Results;
 using Microsoft.AspNetCore.Mvc;
 using Mk.DemoB.Dto.SaleOrders;
+using Mk.DemoB.IAppService;
 using Mk.DemoB.SaleOrderMgr;
 using Mk.DemoB.SaleOrderMgr.Entities;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using Volo.Abp.Application.Dtos;
 using System.Linq;
+using System.Threading.Tasks;
 using Volo.Abp;
-using Mk.DemoB.IAppService;
+using Volo.Abp.Application.Dtos;
 using Volo.Abp.ObjectExtending;
-using Volo.Abp.EventBus.Local;
-using Mk.DemoB.SaleOrderMgr.Events;
 
 namespace Mk.DemoB.SaleOrderAppService
 {
@@ -222,7 +220,7 @@ namespace Mk.DemoB.SaleOrderAppService
             // 直接通过 id 删除实体，并不会把关联的子表一起删除。所以需要将实体和实体的子表查出来，再删除
             //await _saleOrderRepository.DeleteAsync(id);
             var saleOrder = await _saleOrderRepository.FindAsync(id);
-
+            
             await _saleOrderRepository.DeleteAsync(saleOrder);
             retValue.SetSuccess();
             return retValue;

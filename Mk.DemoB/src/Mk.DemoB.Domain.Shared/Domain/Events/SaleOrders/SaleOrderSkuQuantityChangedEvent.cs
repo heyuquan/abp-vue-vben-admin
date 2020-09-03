@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Mk.DemoB.SaleOrderMgr.Events
+namespace Mk.DemoB.Domain.Events.SaleOrders
 {
     /// <summary>
     /// 销售订单的sku和数量变化事件

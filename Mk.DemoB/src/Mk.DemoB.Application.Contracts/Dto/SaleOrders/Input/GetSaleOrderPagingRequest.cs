@@ -1,9 +1,5 @@
-﻿using Mk.DemoB.Consts;
-using Mk.DemoB.Enums.SaleOrder;
+﻿using Mk.DemoB.Domain.Enums.SaleOrders;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
 using Volo.Abp.Application.Dtos;
 
 namespace Mk.DemoB.Dto.SaleOrders

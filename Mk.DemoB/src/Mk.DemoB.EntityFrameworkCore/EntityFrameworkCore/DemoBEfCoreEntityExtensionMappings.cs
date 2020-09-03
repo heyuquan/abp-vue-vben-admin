@@ -1,7 +1,5 @@
-﻿using Mk.DemoB.Consts.SaleOrders;
+﻿using Mk.DemoB.Domain.Consts.SaleOrders;
 using Mk.DemoB.SaleOrderMgr.Entities;
-using System;
-using Volo.Abp.Identity;
 using Volo.Abp.ObjectExtending;
 using Volo.Abp.Threading;
 

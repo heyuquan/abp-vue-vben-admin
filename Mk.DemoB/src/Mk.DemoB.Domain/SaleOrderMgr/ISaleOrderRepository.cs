@@ -1,9 +1,7 @@
 ﻿using Leopard.Paging;
-using Mk.DemoB.Enums.SaleOrder;
+using Mk.DemoB.Domain.Enums.SaleOrders;
 using Mk.DemoB.SaleOrderMgr.Entities;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Volo.Abp.Domain.Repositories;
 

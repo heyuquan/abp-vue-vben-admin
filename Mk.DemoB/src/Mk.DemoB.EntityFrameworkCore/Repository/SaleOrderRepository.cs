@@ -1,7 +1,7 @@
 ﻿using Leopard.Paging;
 using Microsoft.EntityFrameworkCore;
+using Mk.DemoB.Domain.Enums.SaleOrders;
 using Mk.DemoB.EntityFrameworkCore;
-using Mk.DemoB.Enums.SaleOrder;
 using Mk.DemoB.SaleOrderMgr;
 using Mk.DemoB.SaleOrderMgr.Entities;
 using System;

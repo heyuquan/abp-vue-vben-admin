@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Mk.DemoB.Enums.SaleOrder
+namespace Mk.DemoB.Domain.Enums.SaleOrders
 {
     /// <summary>
     /// 销售订单状态

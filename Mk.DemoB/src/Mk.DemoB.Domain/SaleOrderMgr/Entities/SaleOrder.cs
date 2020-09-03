@@ -1,10 +1,11 @@
-﻿using Mk.DemoB.Enums.SaleOrder;
+﻿using Mk.DemoB.Domain.Enums.SaleOrders;
 using System;
 using System.Collections.Generic;
 using Volo.Abp.Domain.Entities.Auditing;
 using System.Linq;
 using Volo.Abp.MultiTenancy;
-using Mk.DemoB.SaleOrderMgr.Events;
+using Volo.Abp.Data;
+using Mk.DemoB.Domain.Events.SaleOrders;
 
 namespace Mk.DemoB.SaleOrderMgr.Entities
 {
@@ -149,6 +150,21 @@ namespace Mk.DemoB.SaleOrderMgr.Entities
                 totalAmount += item.Price * item.Quantity;
             }
             TotalAmount = totalAmount;
+        }
+
+        /// <summary>
+        /// 发布销售订单创建成功事件
+        /// </summary>
+        public void PublishCreateSuccessEvent()
+        {
+            string customerName = this.GetProperty<string>("CustomerName");
+            if (!string.IsNullOrWhiteSpace(customerName))
+            {
+                AddDistributedEvent(new SaleOrderCreatedEvent
+                {
+                    CustomerName = customerName
+                });
+            }
         }
     }
 }

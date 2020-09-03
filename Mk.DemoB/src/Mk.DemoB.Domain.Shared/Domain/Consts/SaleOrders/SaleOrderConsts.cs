@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Mk.DemoB.Consts.SaleOrders
+namespace Mk.DemoB.Domain.Consts.SaleOrders
 {
     public class SaleOrderConsts
     {

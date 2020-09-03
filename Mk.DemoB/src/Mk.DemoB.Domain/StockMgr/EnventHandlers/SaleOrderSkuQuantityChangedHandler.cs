@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
-using Mk.DemoB.SaleOrderMgr.Events;
+using Mk.DemoB.Domain.Events.SaleOrders;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.EventBus;
 
-namespace Mk.DemoB.StockMgr.Handlers
+namespace Mk.DemoB.StockMgr.EnventHandlers
 {
 
     // 业务逻辑：在saleOrder中的sku 数量发生变化时，通知库存更新库存
