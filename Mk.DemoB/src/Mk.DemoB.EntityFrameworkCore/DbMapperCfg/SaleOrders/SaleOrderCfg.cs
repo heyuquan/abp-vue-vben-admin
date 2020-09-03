@@ -31,9 +31,11 @@ namespace Mk.DemoB.DbMapperCfg.SaleOrders
             builder.Property(p => p.OrderStatus).IsRequired()
                 .HasColumnName(nameof(SaleOrder.OrderStatus));
 
+
             builder.HasMany(x => x.SaleOrderDetails)
-                .WithOne().HasForeignKey(x => x.ParentId)
-                .IsRequired();
+                .WithOne()
+                .HasForeignKey(x => x.ParentId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

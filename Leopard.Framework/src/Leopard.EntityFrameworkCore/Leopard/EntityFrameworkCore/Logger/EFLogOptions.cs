@@ -18,6 +18,10 @@ namespace Leopard.EntityFrameworkCore.Logger
         /// 输出sql执行时间超过**ms的语句
         /// </summary>
         public int ExecuteTimeSpent { get; set; }
+        /// <summary>
+        /// 是否显示sql中过得参数值
+        /// </summary>
+        public bool EnableSensitiveData { get; set; }
 
     }
 }

@@ -60,7 +60,82 @@ namespace Mk.DemoB.SaleOrderMgr.Entities
             item.LineNo = SaleOrderDetails.Count() + 1;
             SaleOrderDetails.Add(item);
 
+            AddLocalEvent(new SaleOrderSkuQuantityChangedEvent
+            {
+                SaleOrderId = Id,
+                SaleOrderDetailId = item.Id,
+                ProductSkuCode = item.ProductSkuCode,
+                ChangeQuantity = item.Quantity
+            });
+
             this.TotalAmount += item.Price * item.Quantity;
+        }
+
+        /// <summary>
+        /// 删除产品项
+        /// </summary>
+        /// <param name="item"></param>
+        public void DeleteItem(SaleOrderDetail item)
+        {
+            item.LineNo = SaleOrderDetails.Count() + 1;
+            SaleOrderDetails.Remove(item);
+
+            AddLocalEvent(new SaleOrderSkuQuantityChangedEvent
+            {
+                SaleOrderId = Id,
+                SaleOrderDetailId = item.Id,
+                ProductSkuCode = item.ProductSkuCode,
+                ChangeQuantity = -item.Quantity
+            });
+
+            this.TotalAmount += item.Price * item.Quantity;
+        }
+
+        /// <summary>
+        /// 修改Sku数量
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="newQuantity"></param>
+        public void ChangeSkuQuantity(SaleOrderDetail item, int newQuantity)
+        {
+            AddLocalEvent(new SaleOrderSkuQuantityChangedEvent
+            {
+                SaleOrderId = Id,
+                SaleOrderDetailId = item.Id,
+                ProductSkuCode = item.ProductSkuCode,
+                ChangeQuantity = newQuantity - item.Quantity
+            });
+
+            item.Quantity = newQuantity;
+        }
+
+        /// <summary>
+        /// 改变SkuCode
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="newQuantity"></param>
+        public void ChangeSku(SaleOrderDetail item, string productSkuCode, int quantity)
+        {
+            // 发布旧sku的变更事件
+            AddLocalEvent(new SaleOrderSkuQuantityChangedEvent
+            {
+                SaleOrderId = Id,
+                SaleOrderDetailId = item.Id,
+                ProductSkuCode = item.ProductSkuCode,
+                ChangeQuantity = -item.Quantity
+            });
+
+            item.ProductSkuCode = productSkuCode;
+            item.Quantity = quantity;
+
+            // 发布新sku的变更事件
+            AddLocalEvent(new SaleOrderSkuQuantityChangedEvent
+            {
+                SaleOrderId = Id,
+                SaleOrderDetailId = item.Id,
+                ProductSkuCode = item.ProductSkuCode,
+                ChangeQuantity = item.Quantity
+            });
         }
 
         /// <summary>

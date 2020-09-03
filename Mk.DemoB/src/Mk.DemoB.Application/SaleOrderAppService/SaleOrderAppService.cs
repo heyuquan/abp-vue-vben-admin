@@ -26,19 +26,19 @@ namespace Mk.DemoB.SaleOrderAppService
 
     // SaleOrder 聚合根使用到功能点：本地领域事件、分布式领域事件
 
+    // 领域事件：
+    // 再应用层直接注入ILocalEventBus，在调用PublishAsync就直接发布事件了。
+    // 在领域根里面使用领域根的发布事件，则是在SaveChange成功后才发布事件
 
     [Route("api/demob/sale-order")]
     public class SaleOrderAppService : DemoBAppService, ISaleOrderAppService
     {
-        private readonly ILocalEventBus _localEventBus;
         private readonly ISaleOrderRepository _saleOrderRepository;
 
         public SaleOrderAppService(
-            ILocalEventBus localEventBus
-            , ISaleOrderRepository saleOrderRepository
+            ISaleOrderRepository saleOrderRepository
             )
         {
-            _localEventBus = localEventBus;
             _saleOrderRepository = saleOrderRepository;
         }
 
@@ -72,6 +72,7 @@ namespace Mk.DemoB.SaleOrderAppService
                 saleOrder.AddItem(orderDetail);
             }
 
+            saleOrder.SumDetail();
             await _saleOrderRepository.InsertAsync(saleOrder);
 
             var dto = ObjectMapper.Map<SaleOrder, SaleOrderDto>(saleOrder);
@@ -169,62 +170,22 @@ namespace Mk.DemoB.SaleOrderAppService
                     if (item.IsDelete)
                     {
                         // 删除
-                        saleOrder.SaleOrderDetails.Remove(subItem);
-                        await _localEventBus.PublishAsync(
-                                new SaleOrderSkuQuantityChangedEvent
-                                {
-                                    SaleOrderId = saleOrder.Id,
-                                    SaleOrderDetailId = item.Id.Value,
-                                    ProductSkuCode = subItem.ProductSkuCode,
-                                    ChangeQuantity = -subItem.Quantity
-                                });
+                        saleOrder.DeleteItem(subItem);
                     }
                     else
                     {
+                        subItem.Price = item.Price;
                         // 修改
                         if (string.Compare(subItem.ProductSkuCode, item.ProductSkuCode) == 0)
-                        {
-                            subItem.Price = item.Price;
-                            subItem.Quantity = item.Quantity;
-
+                        {                            
                             if (subItem.Quantity != item.Quantity)
                             {
-                                await _localEventBus.PublishAsync(
-                                     new SaleOrderSkuQuantityChangedEvent
-                                     {
-                                         SaleOrderId = saleOrder.Id,
-                                         SaleOrderDetailId = item.Id.Value,
-                                         ProductSkuCode = subItem.ProductSkuCode,
-                                         ChangeQuantity = item.Quantity - subItem.Quantity
-                                     });
+                                saleOrder.ChangeSkuQuantity(subItem, item.Quantity);
                             }
                         }
                         else
                         {
-                            // 发布旧sku的变更事件
-                            await _localEventBus.PublishAsync(
-                                    new SaleOrderSkuQuantityChangedEvent
-                                    {
-                                        SaleOrderId = saleOrder.Id,
-                                        SaleOrderDetailId = item.Id.Value,
-                                        ProductSkuCode = subItem.ProductSkuCode,
-                                        ChangeQuantity = -subItem.Quantity
-                                    });
-
-
-                            subItem.ProductSkuCode = item.ProductSkuCode;
-                            subItem.Price = item.Price;
-                            subItem.Quantity = item.Quantity;
-
-                            // 发布新sku的变更事件
-                            await _localEventBus.PublishAsync(
-                                    new SaleOrderSkuQuantityChangedEvent
-                                    {
-                                        SaleOrderId = saleOrder.Id,
-                                        SaleOrderDetailId = item.Id.Value,
-                                        ProductSkuCode = subItem.ProductSkuCode,
-                                        ChangeQuantity = subItem.Quantity
-                                    });
+                            saleOrder.ChangeSku(subItem, item.ProductSkuCode, item.Quantity);
                         }
                     }
                 }
@@ -238,14 +199,6 @@ namespace Mk.DemoB.SaleOrderAppService
                         );
 
                     saleOrder.AddItem(orderItem);
-                    await _localEventBus.PublishAsync(
-                            new SaleOrderSkuQuantityChangedEvent
-                            {
-                                SaleOrderId = saleOrder.Id,
-                                SaleOrderDetailId = orderItemId,
-                                ProductSkuCode = orderItem.ProductSkuCode,
-                                ChangeQuantity = orderItem.Quantity
-                            });
                 }
             }
 
@@ -265,7 +218,12 @@ namespace Mk.DemoB.SaleOrderAppService
         public virtual async Task<ServiceResult> DeleteByIdAsync(Guid id)
         {
             ServiceResult<SaleOrderDto> retValue = new ServiceResult<SaleOrderDto>(IdProvider.Get());
-            await _saleOrderRepository.DeleteAsync(id);
+
+            // 直接通过 id 删除实体，并不会把关联的子表一起删除。所以需要将实体和实体的子表查出来，再删除
+            //await _saleOrderRepository.DeleteAsync(id);
+            var saleOrder = await _saleOrderRepository.FindAsync(id);
+
+            await _saleOrderRepository.DeleteAsync(saleOrder);
             retValue.SetSuccess();
             return retValue;
         }

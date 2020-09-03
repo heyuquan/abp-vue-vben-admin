@@ -16,7 +16,6 @@ namespace Mk.DemoB.SaleOrderMgr.Entities
         /// 父表ID
         /// </summary>
         public Guid ParentId { get; protected set; }
-
         /// <summary>
         /// 行号
         /// </summary>

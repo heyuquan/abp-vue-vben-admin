@@ -17,9 +17,9 @@ namespace Mk.DemoB.StockMgr.Handlers
         : ILocalEventHandler<SaleOrderSkuQuantityChangedEvent>, ITransientDependency
     {
         private const string EVENT_TYPE = "本地事件";
-        private readonly Logger<SaleOrderSkuQuantityChangedHandler> _logger;
+        private readonly ILogger<SaleOrderSkuQuantityChangedHandler> _logger;
         public SaleOrderSkuQuantityChangedHandler(
-            Logger<SaleOrderSkuQuantityChangedHandler> logger
+            ILogger<SaleOrderSkuQuantityChangedHandler> logger
             )
         {
             _logger = logger;
@@ -27,7 +27,8 @@ namespace Mk.DemoB.StockMgr.Handlers
 
         public virtual async Task HandleEventAsync(SaleOrderSkuQuantityChangedEvent eventData)
         {
-            _logger.LogInformation($"{EVENT_TYPE}：销售订单{eventData.SaleOrderId}子记录{eventData.SaleOrderDetailId},Sku[{eventData.ProductSkuCode}]数量{(eventData.ChangeQuantity > 0 ? "增加" : "减少")}{Math.Abs(eventData.ChangeQuantity)}");
+            _logger.LogInformation($"{EVENT_TYPE}：销售订单[{eventData.SaleOrderId}]子记录[{eventData.SaleOrderDetailId}]," +
+                $"Sku[{eventData.ProductSkuCode}]数量{(eventData.ChangeQuantity > 0 ? "增加" : "减少")}{Math.Abs(eventData.ChangeQuantity)}");
         }
     }
 }
