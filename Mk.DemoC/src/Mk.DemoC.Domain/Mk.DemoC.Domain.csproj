@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="Volo.Abp.Ddd.Domain" Version="3.0.4" />
+    <ProjectReference Include="..\..\..\Mk.DemoB\src\Mk.DemoB.Domain.Shared\Mk.DemoB.Domain.Shared.csproj" />
     <ProjectReference Include="..\Mk.DemoC.Domain.Shared\Mk.DemoC.Domain.Shared.csproj" />
   </ItemGroup>
 
