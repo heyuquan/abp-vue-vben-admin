@@ -33,6 +33,7 @@ using Leopard.Abp.AuditLogging.EntityFrameworkCore;
 using Leopard.Abp.PermissionManagement.EntityFrameworkCore;
 using Leopard.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.AspNetCore.Mvc;
+using Volo.Abp.EventBus.RabbitMq;
 
 namespace Mk.DemoC
 {
@@ -47,7 +48,8 @@ namespace Mk.DemoC
         typeof(LeopardAuditLoggingEntityFrameworkCoreModule),
         typeof(LeopardPermissionManagementEntityFrameworkCoreModule),
         typeof(LeopardSettingManagementEntityFrameworkCoreModule),
-        typeof(AbpAspNetCoreSerilogModule)
+        typeof(AbpAspNetCoreSerilogModule),
+        typeof(AbpEventBusRabbitMqModule)
         )]
     public class DemoCHttpApiHostModule : AbpModule
     {

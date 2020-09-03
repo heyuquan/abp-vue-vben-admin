@@ -1,8 +1,5 @@
-﻿using Mk.DemoB.Consts;
-using System;
-using System.Collections.Generic;
+﻿using Mk.DemoB.Domain.Consts;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 using Volo.Abp.ObjectExtending;
 
 namespace Mk.DemoB.Dto.SaleOrders

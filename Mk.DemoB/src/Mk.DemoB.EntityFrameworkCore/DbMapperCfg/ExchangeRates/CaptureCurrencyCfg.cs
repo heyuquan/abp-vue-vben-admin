@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Mk.DemoB.Consts.ExchangeRates;
+using Mk.DemoB.Domain.Consts.ExchangeRates;
 using Mk.DemoB.ExchangeRateMgr.Entities;
 using Volo.Abp.EntityFrameworkCore.Modeling;
 

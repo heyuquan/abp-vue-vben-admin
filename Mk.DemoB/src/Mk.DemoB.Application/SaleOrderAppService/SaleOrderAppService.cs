@@ -71,7 +71,9 @@ namespace Mk.DemoB.SaleOrderAppService
             }
 
             saleOrder.SumDetail();
+            saleOrder.PublishCreateSuccessEvent();
             await _saleOrderRepository.InsertAsync(saleOrder);
+            await CurrentUnitOfWork.SaveChangesAsync();
 
             var dto = ObjectMapper.Map<SaleOrder, SaleOrderDto>(saleOrder);
             retValue.SetSuccess(dto);
@@ -175,7 +177,7 @@ namespace Mk.DemoB.SaleOrderAppService
                         subItem.Price = item.Price;
                         // 修改
                         if (string.Compare(subItem.ProductSkuCode, item.ProductSkuCode) == 0)
-                        {                            
+                        {
                             if (subItem.Quantity != item.Quantity)
                             {
                                 saleOrder.ChangeSkuQuantity(subItem, item.Quantity);
@@ -220,7 +222,7 @@ namespace Mk.DemoB.SaleOrderAppService
             // 直接通过 id 删除实体，并不会把关联的子表一起删除。所以需要将实体和实体的子表查出来，再删除
             //await _saleOrderRepository.DeleteAsync(id);
             var saleOrder = await _saleOrderRepository.FindAsync(id);
-            
+
             await _saleOrderRepository.DeleteAsync(saleOrder);
             retValue.SetSuccess();
             return retValue;

@@ -1,10 +1,8 @@
-﻿using Mk.DemoB.Enums.SaleOrder;
+﻿using Mk.DemoB.Domain.Enums.SaleOrders;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Domain.Entities;
-using Volo.Abp.MultiTenancy;
 
 namespace Mk.DemoB.Dto.SaleOrders
 {

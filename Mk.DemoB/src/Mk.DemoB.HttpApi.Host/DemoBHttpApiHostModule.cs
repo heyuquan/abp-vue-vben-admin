@@ -34,6 +34,9 @@ using Mk.DemoB.BackgroundJobs;
 using Mk.DemoB.BackgroundJobs.Job;
 using Volo.Abp.Timing;
 using Volo.Abp.Application.Dtos;
+using Volo.Abp.EventBus.RabbitMq;
+using Volo.Abp.RabbitMQ;
+using Volo.Abp.Domain.Entities.Events.Distributed;
 
 namespace Mk.DemoB
 {
@@ -44,7 +47,8 @@ namespace Mk.DemoB
         typeof(AbpAspNetCoreMvcUiMultiTenancyModule),
         typeof(DemoBApplicationModule),
         typeof(DemoBEntityFrameworkCoreDbMigrationsModule),
-        typeof(AbpAspNetCoreSerilogModule)
+        typeof(AbpAspNetCoreSerilogModule),
+        typeof(AbpEventBusRabbitMqModule)
         )]
     public class DemoBHttpApiHostModule : AbpModule
     {
@@ -100,6 +104,11 @@ namespace Mk.DemoB
             Configure<AbpClockOptions>(options =>
             {
                 options.Kind = DateTimeKind.Utc;
+            });
+
+            Configure<AbpDistributedEntityEventOptions>(options =>
+            {
+                options.AutoEventSelectors.AddAll();
             });
 
         }
