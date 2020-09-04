@@ -22,7 +22,7 @@ namespace Leopard.EntityFrameworkCore
             ) : base(options)
         {
             _serviceProvider = serviceProvider;
-            _efLogOptions = serviceProvider.GetService<IOptionsSnapshot<EFLogOptions>>().Value;
+            _efLogOptions = serviceProvider.GetService<IOptions<EFLogOptions>>().Value;
         }
 
         public override void Initialize(AbpEfCoreDbContextInitializationContext initializationContext)

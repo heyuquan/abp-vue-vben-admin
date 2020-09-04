@@ -25,7 +25,7 @@ namespace Mk.DemoB.SaleOrderAppService
     // SaleOrder 聚合根使用到功能点：本地领域事件、分布式领域事件
 
     // 领域事件：
-    // 再应用层直接注入ILocalEventBus，在调用PublishAsync就直接发布事件了。
+    // 再应用层直接注入ILocalEventBus，IDistributedEventBus ，在调用PublishAsync就直接发布事件了。
     // 在领域根里面使用领域根的发布事件，则是在SaveChange成功后才发布事件
 
     [Route("api/demob/sale-order")]

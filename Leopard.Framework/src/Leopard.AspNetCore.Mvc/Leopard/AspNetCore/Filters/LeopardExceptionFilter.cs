@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using Volo.Abp.AspNetCore.ExceptionHandling;
@@ -27,18 +28,18 @@ namespace Leopard.AspNetCore.Mvc.Filters
         private readonly IHttpExceptionStatusCodeFinder _statusCodeFinder;
         private readonly IJsonSerializer _jsonSerializer;
         private readonly ICorrelationIdProvider _correlationIdProvider;
-        private readonly IConfiguration _configuration;
+        private readonly IHostEnvironment _env;
 
         public LeopardExceptionFilter(
             ILogger<LeopardExceptionFilter> logger,
-            IConfiguration configuration,
+            IHostEnvironment env,
             IExceptionToErrorInfoConverter errorInfoConverter,
             IHttpExceptionStatusCodeFinder statusCodeFinder,
             IJsonSerializer jsonSerializer,
             ICorrelationIdProvider correlationIdProvider)
         {
             _errorInfoConverter = errorInfoConverter;
-            _configuration = configuration;
+            _env = env;
             _statusCodeFinder = statusCodeFinder;
             _jsonSerializer = jsonSerializer;
             _correlationIdProvider = correlationIdProvider;
@@ -90,7 +91,7 @@ namespace Leopard.AspNetCore.Mvc.Filters
 
             var remoteServiceErrorInfo = _errorInfoConverter.Convert(context.Exception);
 
-            if (_configuration.GetSection("Environment").Value == "Develop")
+            if (_env.IsDevelopment())
             {
                 if (string.IsNullOrWhiteSpace(remoteServiceErrorInfo.Details))
                 {

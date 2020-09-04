@@ -31,7 +31,7 @@ namespace Leopard.EntityFrameworkCore.Logger
 
         public EFLogger(
             ILogger<EFLogger> logger
-            , IOptionsSnapshot<EFLogOptions> efLogOptions
+            , IOptions<EFLogOptions> efLogOptions
             )
         {
             _logger = logger;
