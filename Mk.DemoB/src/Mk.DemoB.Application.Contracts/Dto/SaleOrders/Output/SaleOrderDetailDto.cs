@@ -5,6 +5,7 @@ using Volo.Abp.Application.Dtos;
 
 namespace Mk.DemoB.Dto.SaleOrders
 {
+    [Serializable]
     public class SaleOrderDetailDto : ExtensibleCreationAuditedEntityDto<Guid>
     {
         /// <summary>

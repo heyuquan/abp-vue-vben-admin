@@ -64,7 +64,10 @@ namespace Leopard.EntityFrameworkCore.Logger
                 if (_efLogOptions.ExecuteTimeSpent > 0)
                 {
                     var values = state as IReadOnlyList<KeyValuePair<string, object>>;
-                    var timeSpent = Convert.ToInt32(values.First(p => p.Key == "elapsed").Value);
+                    string timeSpentStr = values.First(p => p.Key == "elapsed").Value.ToString();
+                    // 去掉 ,    因为如  1325ms表示为：1.325ms
+                    timeSpentStr = timeSpentStr.Replace(",", String.Empty);
+                    var timeSpent = Convert.ToInt32(timeSpentStr);
 
                     if (timeSpent > _efLogOptions.ExecuteTimeSpent)
                     {

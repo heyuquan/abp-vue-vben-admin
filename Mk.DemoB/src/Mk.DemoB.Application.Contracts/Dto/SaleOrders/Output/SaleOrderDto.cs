@@ -6,6 +6,7 @@ using Volo.Abp.Domain.Entities;
 
 namespace Mk.DemoB.Dto.SaleOrders
 {
+    [Serializable]
     public class SaleOrderDto : ExtensibleCreationAuditedEntityDto<Guid>, IHasConcurrencyStamp
     {
         /// <summary>
