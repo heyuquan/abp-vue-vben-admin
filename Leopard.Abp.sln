@@ -90,6 +90,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03_Docker", "03_Docker", "{929CB07B-95E7-4FAB-A4A8-1ED43D521416}"
 	ProjectSection(SolutionItems) = preProject
 		Docker\1-Docker命令.txt = Docker\1-Docker命令.txt
+		Docker\docker-compose.yml = Docker\docker-compose.yml
 		Docker\Dockerfile-demob = Docker\Dockerfile-demob
 		Docker\Dockerfile-democ = Docker\Dockerfile-democ
 	EndProjectSection

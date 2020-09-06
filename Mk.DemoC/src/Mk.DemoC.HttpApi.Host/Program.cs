@@ -42,16 +42,10 @@ namespace Mk.DemoC
 
         internal static IHostBuilder CreateHostBuilder(string[] args)
         {
-            var configuration = new ConfigurationBuilder()
-                .SetBasePath(Environment.CurrentDirectory)
-                .AddJsonFile("host.json")
-                .Build();
-            string[] urls = configuration["urls"].Split(",");
             return Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                    webBuilder.UseUrls(urls);
                 })
                 .UseAutofac()
                 .UseSerilog();

@@ -1,0 +1,33 @@
+version: '3.4'
+services:
+    mk.demob:
+        image: mk.demob
+        build:
+            context: ../
+            dockerfile: ./Docker/Dockerfile-demob
+        ports:
+            - '44302:44302'
+        environment:
+            - ASPNETCORE_URLS=http://*:44302
+        volumes:
+            - /app/Logs:/e/Code/open_source/Abp/Leopard.Abp/Docker/App/Mk.DemoB/Logs
+        networks:
+            - my-net
+        depends_on:
+            - mk.democ
+    mk.democ:
+        image: mk.democ
+        build:
+            context: ../
+            dockerfile: ./Docker/Dockerfile-democ
+        ports:
+            - '44402:44402'
+        environment:
+            - ASPNETCORE_URLS=http://*:44402
+        volumes:
+            - /app/Logs:/e/Code/open_source/Abp/Leopard.Abp/Docker/App/Mk.DemoC/Logs
+        networks:
+            - my-net
+networks:
+    my-net:
+        driver: bridge
