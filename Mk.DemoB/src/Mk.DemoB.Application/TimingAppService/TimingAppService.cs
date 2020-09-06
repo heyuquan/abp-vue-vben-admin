@@ -24,7 +24,7 @@ namespace Mk.DemoB.TimingAppService
     //在这种情况下你可以在需要时将其转换为目标客户端的时区.
 
     /// <summary>
-    /// 研究时钟市区
+    /// 时钟时区
     /// </summary>
     public class TimingAppService : DemoBAppService
     {
@@ -47,6 +47,8 @@ namespace Mk.DemoB.TimingAppService
             var ianaTimezones = _timezoneProvider.GetIanaTimezones();
 
             var info = _timezoneProvider.GetTimeZoneInfo("Africa/Abidjan");
+
+            await Task.CompletedTask;
         }
 
         public virtual async Task AbpClock()
@@ -64,6 +66,7 @@ namespace Mk.DemoB.TimingAppService
             // 最佳编程规范：在获取Now时间时，最好使用 Clock.Now 对象。 对于字符串手动转换local和utc时间时使用： Clock.Normalize(dateTime) 方法
             // 2、Abp会自动处理接口输入的时间字符串参数
             // 3、Abp会自动处理返回对象若包含DateTime字段的格式化，可使用 DisableDateTimeNormalizationAttribute 特性禁止某个字段的处理
+            await Task.CompletedTask;
         }
 
         /// <summary>
@@ -85,7 +88,7 @@ namespace Mk.DemoB.TimingAppService
                 UnHandleDateTime = time                 // 2020-08-22T17:53:15Z
             };
 
-            return result;
+            return await Task.FromResult(result);
         }
 
     }

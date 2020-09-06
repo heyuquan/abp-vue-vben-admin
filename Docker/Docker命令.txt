@@ -1,0 +1,20 @@
+
+--demob
+docker build -f Dockerfile-demob -t mk.demob E:\Code\open_source\Abp\Leopard.Abp
+
+docker run --name mk.demob -p 44302:44302  -v /e/Code/open_source/Abp/Leopard.Abp/Docker/Publish/Logs/Mk.DemoB:/app/Logs -d mk.demob
+
+docker exec -it mk.demob /bin/bash
+
+
+
+
+--democ
+docker build -f Dockerfile-democ -t mk.democ E:\Code\open_source\Abp\Leopard.Abp
+
+docker run --name mk.democ -p 44402:44402  -v /e/Code/open_source/Abp/Leopard.Abp/Docker/Publish/Logs/Mk.DemoC:/app/Logs -d mk.democ
+
+
+docker exec -it mk.democ /bin/bash
+
+

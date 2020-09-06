@@ -1,0 +1,5 @@
+docker build -f Dockerfile-demob -t mk.demob E:\Code\open_source\Abp\Leopard.Abp
+
+
+
+C:\ProgramData\Docker\tmp

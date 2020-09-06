@@ -1,8 +1,10 @@
 ﻿using System;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 using Serilog.Events;
+using Microsoft.Extensions.Logging;
 
 namespace Mk.DemoB
 {
@@ -39,13 +41,30 @@ namespace Mk.DemoB
             }
         }
 
-        internal static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                })
-                .UseAutofac()
-                .UseSerilog();
+        internal static IHostBuilder CreateHostBuilder(string[] args)
+        {
+            var configuration = new ConfigurationBuilder()
+                .SetBasePath(Environment.CurrentDirectory)
+                .AddJsonFile("host.json")
+                .Build();
+            string[] urls = configuration["urls"].Split(",");
+
+            return Host.CreateDefaultBuilder(args)
+                 .ConfigureWebHostDefaults(webBuilder =>
+                 {
+                     webBuilder.UseStartup<Startup>();
+                     webBuilder.UseUrls(urls);
+                 })
+                 //.ConfigureLogging((hostingContext, loggingBuilder) =>
+                 //{
+                 //    // 在容器中运行直接报错了，没有把日志输出到日志。所以有时候需要开启Console，方便查问题
+                 //    // 如果开启Console，需要把 UseSerilog() 注释掉
+                 //    loggingBuilder.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
+                 //    loggingBuilder.AddConsole();
+                 //    loggingBuilder.AddDebug();
+                 //})
+                 .UseAutofac()
+                 .UseSerilog();
+        }
     }
 }

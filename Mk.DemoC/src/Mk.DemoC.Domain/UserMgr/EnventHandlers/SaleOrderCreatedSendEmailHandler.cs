@@ -23,6 +23,8 @@ namespace Mk.DemoC.UserMgr.EnventHandlers
         public async Task HandleEventAsync(SaleOrderCreatedEvent eventData)
         {
             _logger.LogInformation($"尊敬的用户：{eventData.CustomerName},您的销售订单已经创建成功");
+
+            await Task.CompletedTask;
         }
     }
 }

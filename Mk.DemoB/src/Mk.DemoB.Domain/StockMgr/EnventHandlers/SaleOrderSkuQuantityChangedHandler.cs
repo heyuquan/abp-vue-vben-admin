@@ -29,6 +29,8 @@ namespace Mk.DemoB.StockMgr.EnventHandlers
         {
             _logger.LogInformation($"{EVENT_TYPE}：销售订单[{eventData.SaleOrderId}]子记录[{eventData.SaleOrderDetailId}]," +
                 $"Sku[{eventData.ProductSkuCode}]数量{(eventData.ChangeQuantity > 0 ? "增加" : "减少")}{Math.Abs(eventData.ChangeQuantity)}");
+
+            await Task.CompletedTask;
         }
     }
 }

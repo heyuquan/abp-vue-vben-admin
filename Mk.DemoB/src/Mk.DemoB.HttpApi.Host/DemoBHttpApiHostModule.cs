@@ -37,6 +37,7 @@ using Volo.Abp.Application.Dtos;
 using Volo.Abp.EventBus.RabbitMq;
 using Volo.Abp.RabbitMQ;
 using Volo.Abp.Domain.Entities.Events.Distributed;
+using System.Reflection;
 
 namespace Mk.DemoB
 {
@@ -168,6 +169,10 @@ namespace Mk.DemoB
                 {
                     options.SwaggerDoc("v1", new OpenApiInfo { Title = "DemoB API", Version = "v1" });
                     options.DocInclusionPredicate((docName, description) => true);
+
+                    // 为 Swagger JSON and UI设置xml文档注释路径
+                    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "Mk.DemoB.Application.xml"), true);
+                    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "Mk.DemoB.Application.Contracts.xml"), true);
                 });
         }
 

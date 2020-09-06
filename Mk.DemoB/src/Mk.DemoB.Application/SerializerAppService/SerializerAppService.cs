@@ -48,7 +48,7 @@ namespace Mk.DemoB.SerializerAppService
 
         // 入参字符串太长，所以使用Post
         [HttpPost("json/deserialize")]
-        public async Task<SaleOrderDto> JsonDeserialize(string json)
+        public SaleOrderDto JsonDeserialize(string json)
         {
             return _jsonSerializer.Deserialize<SaleOrderDto>(json);
         }
@@ -69,7 +69,7 @@ namespace Mk.DemoB.SerializerAppService
 
         // 入参字符串太长，所以使用Post
         [HttpPost("binary/deserialize")]
-        public async Task<SaleOrderDto> BinaryDeserialize(string binaryStr)
+        public SaleOrderDto BinaryDeserialize(string binaryStr)
         {
             byte[] binary = Convert.FromBase64String(binaryStr);
             return _objectSerializer.Deserialize<SaleOrderDto>(binary);

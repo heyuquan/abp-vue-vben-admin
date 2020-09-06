@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.Application", "Mk.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.EntityFrameworkCore", "Mk.DemoB\src\Mk.DemoB.EntityFrameworkCore\Mk.DemoB.EntityFrameworkCore.csproj", "{C956DD76-69C8-4A9C-83EA-D17DF83340FD}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03_DemoB", "03_DemoB", "{CA9AC87F-097E-4F15-8393-4BC07735A5B0}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04_DemoB", "04_DemoB", "{CA9AC87F-097E-4F15-8393-4BC07735A5B0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.EntityFrameworkCore.DbMigrations", "Mk.DemoB\src\Mk.DemoB.EntityFrameworkCore.DbMigrations\Mk.DemoB.EntityFrameworkCore.DbMigrations.csproj", "{0372FA84-C517-4EB3-9A9F-B9ACAC0CA5E0}"
 EndProject
@@ -59,7 +59,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01_Document", "01_Document"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.BackgroundJobs", "Mk.DemoB\src\Mk.DemoB.BackgroundJobs\Mk.DemoB.BackgroundJobs.csproj", "{E7E1C844-2434-44D8-8060-8F145785722C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04_DemoC", "04_DemoC", "{F88A0388-EC61-4CB3-852F-FBE3FE15BCB3}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05_DemoC", "05_DemoC", "{F88A0388-EC61-4CB3-852F-FBE3FE15BCB3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoC.Application", "Mk.DemoC\src\Mk.DemoC.Application\Mk.DemoC.Application.csproj", "{ED27BCE7-D646-4C3A-9477-176474070E54}"
 EndProject
@@ -85,7 +85,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EntityFrameworkCore", "Enti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Domain.Share", "Leopard.Framework\src\Leopard.Domain.Share\Leopard.Domain.Share.csproj", "{E09BC551-2A2E-4A8B-B903-40CD0969A51A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leopard.Ddd.Application.Contracts", "Leopard.Framework\src\Leopard.Ddd.Application.Contracts\Leopard.Ddd.Application.Contracts.csproj", "{524168D3-A6FD-4181-9B77-FA6A33029855}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Ddd.Application.Contracts", "Leopard.Framework\src\Leopard.Ddd.Application.Contracts\Leopard.Ddd.Application.Contracts.csproj", "{524168D3-A6FD-4181-9B77-FA6A33029855}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03_Docker", "03_Docker", "{929CB07B-95E7-4FAB-A4A8-1ED43D521416}"
+	ProjectSection(SolutionItems) = preProject
+		Docker\1-Docker命令.txt = Docker\1-Docker命令.txt
+		Docker\Dockerfile-demob = Docker\Dockerfile-demob
+		Docker\Dockerfile-democ = Docker\Dockerfile-democ
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
