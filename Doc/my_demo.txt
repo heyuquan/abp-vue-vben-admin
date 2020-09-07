@@ -27,3 +27,29 @@ Mk.DemoB.BackgroundJobs
 定义端口规范
 http	**02
 htps	**05
+
+
+
+--demob
+docker build -f Dockerfile -t mk.demob.api ../../../
+
+docker run --name mk.demob.api -p 44302:44302  -v /e/Code/open_source/Abp/Leopard.Abp/Docker/App/Mk.DemoB/Logs:/app/Logs -d mk.demob.api
+
+docker exec -it mk.demob /bin/bash
+
+
+
+
+--democ
+docker build -f Dockerfile -t mk.democ.api ../../../
+
+docker run --name mk.democ.api -p 44402:44402  -v /e/Code/open_source/Abp/Leopard.Abp/Docker/App/Mk.DemoC/Logs:/app/Logs -d mk.democ.api
+
+
+docker exec -it mk.democ /bin/bash
+
+
+构建：docker-compose build
+启动：docker-compose up
+      docker-compose up -d    -d代表在后台运行
+销毁：docker-compose down

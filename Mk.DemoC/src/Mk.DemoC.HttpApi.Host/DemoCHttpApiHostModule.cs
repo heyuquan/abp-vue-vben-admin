@@ -96,6 +96,10 @@ namespace Mk.DemoC
                     options.SwaggerDoc("v1", new OpenApiInfo { Title = "DemoC API", Version = "v1" });
                     options.DocInclusionPredicate((docName, description) => true);
                     options.CustomSchemaIds(type => type.FullName);
+
+                    // 为 Swagger JSON and UI设置xml文档注释路径
+                    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "Mk.DemoB.Application.xml"), true);
+                    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "Mk.DemoB.Application.Contracts.xml"), true);
                 });
 
             Configure<AbpLocalizationOptions>(options =>

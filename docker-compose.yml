@@ -1,10 +1,10 @@
 version: '3.4'
 services:
-    mk.demob:
-        image: mk.demob
+    mk.demob.api:
+        image: mk.demob.api
         build:
-            context: ../
-            dockerfile: ./Docker/Dockerfile-demob
+            context: .
+            dockerfile: ./Mk.DemoB/src/Mk.DemoB.HttpApi.Host/Dockerfile
         ports:
             - '44302:44302'
         environment:
@@ -14,12 +14,12 @@ services:
         networks:
             - my-net
         depends_on:
-            - mk.democ
-    mk.democ:
-        image: mk.democ
+            - mk.democ.api
+    mk.democ.api:
+        image: mk.democ.api
         build:
-            context: ../
-            dockerfile: ./Docker/Dockerfile-democ
+            context: .
+            dockerfile: ./Mk.DemoC/src/Mk.DemoC.HttpApi.Host/Dockerfile
         ports:
             - '44402:44402'
         environment:
