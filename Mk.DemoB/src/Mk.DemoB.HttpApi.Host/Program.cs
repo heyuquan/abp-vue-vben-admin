@@ -59,7 +59,8 @@ namespace Mk.DemoB
             return new ElasticsearchSinkOptions(new Uri(cfg["ElasticConfiguration:Uri"]))
             {
                 AutoRegisterTemplate = true,
-                IndexFormat = $"{Assembly.GetExecutingAssembly().GetName().Name.ToLower().Replace(".", "-")}-{env?.ToLower().Replace(".", "-")}-{DateTime.UtcNow:yyyy-MM}"
+                // IndexFormat = $"{Assembly.GetExecutingAssembly().GetName().Name.ToLower().Replace(".", "-")}-{env?.ToLower().Replace(".", "-")}-{DateTime.UtcNow:yyyy-MM}"
+                IndexFormat = $"Mk.DemoB.Api-{DateTime.UtcNow:yyyy-MM}"
             };
         }
 
