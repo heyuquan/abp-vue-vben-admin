@@ -87,12 +87,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Domain.Share", "Leo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Ddd.Application.Contracts", "Leopard.Framework\src\Leopard.Ddd.Application.Contracts\Leopard.Ddd.Application.Contracts.csproj", "{524168D3-A6FD-4181-9B77-FA6A33029855}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03_Docker", "03_Docker", "{929CB07B-95E7-4FAB-A4A8-1ED43D521416}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03_Other", "03_Other", "{9A9EAD65-2DBA-4E8C-8A9A-D3C75EA55FA6}"
 	ProjectSection(SolutionItems) = preProject
-		Docker\1-Docker命令.txt = Docker\1-Docker命令.txt
-		Docker\docker-compose.yml = Docker\docker-compose.yml
-		Docker\Dockerfile-demob = Docker\Dockerfile-demob
-		Docker\Dockerfile-democ = Docker\Dockerfile-democ
+		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject
 Global
