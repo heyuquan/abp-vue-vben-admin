@@ -5,23 +5,18 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 using Serilog.Events;
+using Serilog.Exceptions;
+using Serilog.Sinks.Elasticsearch;
 
 namespace Mk.DemoC
 {
     public class Program
     {
+        private static readonly string env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
         public static int Main(string[] args)
         {
-            Log.Logger = new LoggerConfiguration()
-#if DEBUG
-                .MinimumLevel.Debug()
-#else
-                .MinimumLevel.Information()
-#endif
-                .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
-                .Enrich.FromLogContext()
-                .WriteTo.File("Logs/logs.txt")
-                .CreateLogger();
+            ConfigureLogging();
 
             try
             {
@@ -38,6 +33,34 @@ namespace Mk.DemoC
             {
                 Log.CloseAndFlush();
             }
+        }
+
+        private static void ConfigureLogging()
+        {
+            var cfg = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env}.json", optional: true, reloadOnChange: true)
+                .Build();
+            Log.Logger = new LoggerConfiguration()
+                .Enrich.FromLogContext()
+                .Enrich.WithExceptionDetails()
+                .Enrich.WithProperty("Environment", env)
+                //.WriteTo.Debug()
+                //.WriteTo.Console()  // 在容器中，有时候挂载日志文件异常，导致查不出原因，会需要将日志打印到控制台上
+                //.WriteTo.Async(c => c.File("Logs/logs.txt"))
+                .WriteTo.Elasticsearch(ConfigureElasticSink(cfg, env))
+                .ReadFrom.Configuration(cfg)
+                .CreateLogger();
+        }
+
+        private static ElasticsearchSinkOptions ConfigureElasticSink(IConfigurationRoot cfg, string env)
+        {
+            return new ElasticsearchSinkOptions(new Uri(cfg["ElasticConfiguration:Uri"]))
+            {
+                AutoRegisterTemplate = true,
+                // IndexFormat = $"{Assembly.GetExecutingAssembly().GetName().Name.ToLower().Replace(".", "-")}-{env?.ToLower().Replace(".", "-")}-{DateTime.UtcNow:yyyy-MM}"
+                IndexFormat = $"Mk.DemoC.Api-{DateTime.UtcNow:yyyy-MM}"
+            };
         }
 
         internal static IHostBuilder CreateHostBuilder(string[] args)
