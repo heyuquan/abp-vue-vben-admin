@@ -42,5 +42,20 @@ namespace Mk.DemoC.SearchDocumentMgr.Entities
         public decimal MinPrice { get; set; }
 
         public decimal MaxPrice { get; set; }
+
+        public ProductSpuDoc(Guid id, string spuCode, string sumSkuCode, string spuName
+            , string brand, string spuKeywords, string sumSkuKeywords, string currency, decimal minPrice, decimal maxPrice)
+        {
+            Id = id;
+            SpuCode = spuCode;
+            SumSkuCode = sumSkuCode ?? spuCode;
+            SpuName = spuName;
+            Brand = brand;
+            SpuKeywords = spuKeywords;
+            SumSkuKeywords = sumSkuKeywords ?? spuKeywords;
+            Currency = currency;
+            MinPrice = minPrice;
+            MaxPrice = maxPrice;
+        }
     }
 }
