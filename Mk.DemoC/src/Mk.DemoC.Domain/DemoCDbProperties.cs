@@ -2,10 +2,10 @@
 {
     public static class DemoCDbProperties
     {
-        public static string DbTablePrefix { get; set; } = "DemoC";
+        public static string DbTablePrefix { get; set; } = "Democ";
 
         public static string DbSchema { get; set; } = null;
 
-        public const string ConnectionStringName = "DemoC";
+        public const string ConnectionStringName = "Democ";
     }
 }

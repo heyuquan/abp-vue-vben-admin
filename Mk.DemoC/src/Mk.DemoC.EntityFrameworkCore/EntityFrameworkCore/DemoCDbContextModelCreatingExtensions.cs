@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
+using Mk.DemoC.DbMapperCfg.SearchDocuments;
 using Volo.Abp;
 
 namespace Mk.DemoC.EntityFrameworkCore
@@ -38,6 +39,8 @@ namespace Mk.DemoC.EntityFrameworkCore
                 b.HasIndex(q => q.CreationTime);
             });
             */
+
+            builder.ApplyConfiguration(new ProductSpuDocCfg());
         }
     }
 }

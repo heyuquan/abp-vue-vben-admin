@@ -16,6 +16,8 @@ namespace Mk.DemoC.EntityFrameworkCore
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ConfigureDemoC();
+
+            modelBuilder.DbMapperCameNamelToUnder();
         }
     }
 }

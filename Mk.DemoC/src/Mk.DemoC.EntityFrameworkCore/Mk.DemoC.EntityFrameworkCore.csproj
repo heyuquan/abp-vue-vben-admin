@@ -3,12 +3,13 @@
   <Import Project="..\..\common.props" />
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Mk.DemoC</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Volo.Abp.EntityFrameworkCore" Version="3.0.4" />
+    <ProjectReference Include="..\..\..\Leopard.Framework\src\Leopard.EntityFrameworkCore\Leopard.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\Mk.DemoC.Domain\Mk.DemoC.Domain.csproj" />
   </ItemGroup>
 
