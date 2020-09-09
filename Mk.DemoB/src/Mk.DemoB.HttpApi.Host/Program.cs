@@ -44,7 +44,7 @@ namespace Mk.DemoB
                 .Build();
             Log.Logger = new LoggerConfiguration()
                 .Enrich.FromLogContext()
-                .Enrich.WithExceptionDetails()
+                //.Enrich.WithExceptionDetails()
                 .Enrich.WithProperty("Environment", env)
                 //.WriteTo.Debug()
                 //.WriteTo.Console()  // 在容器中，有时候挂载日志文件异常，导致查不出原因，会需要将日志打印到控制台上

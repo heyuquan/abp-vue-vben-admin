@@ -8,7 +8,7 @@ using Volo.Abp.EntityFrameworkCore;
 namespace Mk.DemoC.EntityFrameworkCore
 {
     [ConnectionStringName(DemoCDbProperties.ConnectionStringName)]
-    public class DemoCDbContext : LeopardDbContext<DemoCDbContext>, IDemoCDbContext
+    public class DemoCDbContext : LeopardDbContext<DemoCDbContext>//, IDemoCDbContext
     {
         /* Add DbSet for each Aggregate Root here. Example:
          * public DbSet<Question> Questions { get; set; }

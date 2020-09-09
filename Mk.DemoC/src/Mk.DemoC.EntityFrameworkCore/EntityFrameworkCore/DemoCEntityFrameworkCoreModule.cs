@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Leopard.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.Modularity;
 
@@ -6,7 +7,8 @@ namespace Mk.DemoC.EntityFrameworkCore
 {
     [DependsOn(
         typeof(DemoCDomainModule),
-        typeof(AbpEntityFrameworkCoreModule)
+        typeof(AbpEntityFrameworkCoreModule),
+        typeof(LeopardEntityFrameworkCoreModule)
     )]
     public class DemoCEntityFrameworkCoreModule : AbpModule
     {

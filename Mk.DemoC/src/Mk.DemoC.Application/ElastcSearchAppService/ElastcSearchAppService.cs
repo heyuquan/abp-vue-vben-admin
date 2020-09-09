@@ -8,9 +8,12 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
+using Microsoft.AspNetCore.Mvc;
+using Leopard.Results;
 
 namespace Mk.DemoC.ElastcSearchAppService
 {
+    [Route("api/democ/elastic")]
     public class ElastcSearchAppService : DemoCAppService
     {
         private readonly ILogger<ElastcSearchAppService> _logger;
@@ -32,8 +35,11 @@ namespace Mk.DemoC.ElastcSearchAppService
         //https://www.zyccst.com/yaocai-786.html		广金钱草
         //https://www.zyccst.com/yaocai-192.html		枸杞子
         //https://www.zyccst.com/yaocai-526.html		石斛
-        public async Task CaptureProductSpuDocAsync()
+        [HttpPost("product/capture")]
+        public async Task<ServiceResult<long>> CaptureProductDocAsync()
         {
+            ServiceResult<long> ret = new ServiceResult<long>(IdProvider.Get());
+            long hadCaptureCount = 0;
             HttpClient client = _clientFactory.CreateClient();
 
             Dictionary<string, string> urlMap = new Dictionary<string, string>
@@ -65,6 +71,7 @@ namespace Mk.DemoC.ElastcSearchAppService
                     for (var i = 1; i <= 5; i++)
                     {
                         string productListUrl = string.Format(subUrlTemplate, item.Key, i);
+                        _logger.LogInformation($"产品抓取[{item.Value}],url:[{productListUrl}]");
                         HttpResponseMessage subResponse = await client.GetAsync(productListUrl).ConfigureAwait(false);
                         string subHtml = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
@@ -83,6 +90,7 @@ namespace Mk.DemoC.ElastcSearchAppService
                             ProductSpuDoc entity = new ProductSpuDoc(GuidGenerator.Create(), productCode, null
                                 , productName, "诚实通", item.Value, null, "CNY", price, price);
                             list.Add(entity);
+                            hadCaptureCount++;
                         }
 
                         list.ForEach(async i => await _productSpuDocRepository.InsertAsync(i));
@@ -91,6 +99,17 @@ namespace Mk.DemoC.ElastcSearchAppService
                     }
                 }
             }
+            ret.SetSuccess(hadCaptureCount);
+            return ret;
+        }
+
+        [HttpDelete("product/all")]
+        public async Task<ServiceResult> DeleteProductDocAsync()
+        {
+            ServiceResult ret = new ServiceResult(IdProvider.Get());
+            await _productSpuDocRepository.DeleteAllAsync();
+            ret.SetSuccess();
+            return ret;
         }
     }
 }

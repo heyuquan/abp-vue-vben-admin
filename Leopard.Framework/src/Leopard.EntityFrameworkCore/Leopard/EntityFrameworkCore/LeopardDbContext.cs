@@ -34,9 +34,12 @@ namespace Leopard.EntityFrameworkCore
         {
             var loggerFactory = new LoggerFactory();
             EFLoggerProvider _efLoggerProvider = _serviceProvider.GetService<EFLoggerProvider>();
-            loggerFactory.AddProvider(_efLoggerProvider);
-            optionsBuilder.EnableSensitiveDataLogging(_efLogOptions.EnableSensitiveData);
-            optionsBuilder.UseLoggerFactory(loggerFactory);
+            if (_efLoggerProvider != null)
+            {
+                loggerFactory.AddProvider(_efLoggerProvider);
+                optionsBuilder.EnableSensitiveDataLogging(_efLogOptions.EnableSensitiveData);
+                optionsBuilder.UseLoggerFactory(loggerFactory);
+            }
 
             base.OnConfiguring(optionsBuilder);
         }

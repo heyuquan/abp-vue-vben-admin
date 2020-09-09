@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Mk.DemoC.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
@@ -9,9 +10,10 @@ using Volo.Abp.EntityFrameworkCore;
 namespace Mk.DemoC.Migrations
 {
     [DbContext(typeof(DemoCHttpApiHostMigrationsDbContext))]
-    partial class DemoCHttpApiHostMigrationsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200909025303_UpdateProductSpuDoc")]
+    partial class UpdateProductSpuDoc
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

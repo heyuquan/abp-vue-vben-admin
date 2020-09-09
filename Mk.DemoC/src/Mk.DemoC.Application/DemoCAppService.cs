@@ -1,5 +1,6 @@
 ﻿using Mk.DemoC.Localization;
 using Volo.Abp.Application.Services;
+using Volo.Abp.Tracing;
 
 namespace Mk.DemoC
 {
@@ -10,5 +11,9 @@ namespace Mk.DemoC
             LocalizationResource = typeof(DemoCResource);
             ObjectMapperContext = typeof(DemoCApplicationModule);
         }
+
+        private ICorrelationIdProvider _correlationIdProvider;
+
+        protected ICorrelationIdProvider IdProvider => LazyGetRequiredService(ref _correlationIdProvider);
     }
 }
