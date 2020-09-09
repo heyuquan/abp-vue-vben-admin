@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Leopard.Results;
+using Nest;
+using Mk.DemoC.Dto.ElastcSearchs;
 
 namespace Mk.DemoC.ElastcSearchAppService
 {
@@ -110,6 +112,40 @@ namespace Mk.DemoC.ElastcSearchAppService
             await _productSpuDocRepository.DeleteAllAsync();
             ret.SetSuccess();
             return ret;
+        }
+
+        // Elasticsearch .Net Client NEST 多条件查询示例
+        // https://www.cnblogs.com/huhangfei/p/5985280.html
+        // Elasticsearch .net client NEST 5.x 使用总结
+        // https://www.cnblogs.com/huhangfei/p/7524886.html
+        // Elasticsearch搜索查询语法
+        // https://www.cnblogs.com/haixiang/p/12095578.html
+
+        [HttpPost("document/create")]
+        public async Task CreateDocumentIndex()
+        {
+            var node = new Uri("http://134.175.121.78:9200");
+            var settings = new ConnectionSettings(node);
+            var client = new ElasticClient(settings);
+
+            ProductSpuDoc entity = new ProductSpuDoc(GuidGenerator.Create(), "A001", null
+                                , "一个产品", "诚实通", "关键词", null, "CNY", 12, 12);
+            ProductSpuDocument document = ObjectMapper.Map<ProductSpuDoc, ProductSpuDocument>(entity);
+
+            var response = await client.IndexAsync(document, idx => idx.Index("mall_search"));
+           
+            var getResponse = await client.GetAsync<ProductSpuDocument>(1, idx => idx.Index("mall_search"));
+            var r = getResponse.Source;
+
+            var searchRequest = new SearchRequest("mall_search")
+            {
+                From = 0,
+                Size = 10,
+                Query = new TermQuery { Field = "spucode", Value = "A001" }
+            };
+
+            var searchResponse = client.Search<ProductSpuDocument>();
+
         }
     }
 }
