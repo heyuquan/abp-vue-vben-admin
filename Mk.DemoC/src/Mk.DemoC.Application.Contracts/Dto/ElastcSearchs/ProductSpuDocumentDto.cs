@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Mk.DemoC.Dto.ElastcSearchs
 {
-    public class ProductSpuDocument
+    public class ProductSpuDocumentDto
     {
         /// <summary>
         /// Spu编码

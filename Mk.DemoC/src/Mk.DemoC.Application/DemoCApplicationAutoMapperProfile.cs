@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Mk.DemoC.Dto.ElastcSearchs;
+using Mk.DemoC.ElastcSearchAppService.Documents;
 using Mk.DemoC.SearchDocumentMgr.Entities;
 
 namespace Mk.DemoC
@@ -13,6 +14,7 @@ namespace Mk.DemoC
              * into multiple profile classes for a better organization. */
 
             CreateMap<ProductSpuDoc, ProductSpuDocument>();
+            CreateMap<ProductSpuDocument, ProductSpuDocumentDto>();
         }
     }
 }

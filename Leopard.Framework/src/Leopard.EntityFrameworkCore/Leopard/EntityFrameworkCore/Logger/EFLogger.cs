@@ -71,7 +71,7 @@ namespace Leopard.EntityFrameworkCore.Logger
 
                     if (timeSpent > _efLogOptions.ExecuteTimeSpent)
                     {
-                        _logger.LogInformation(logContent);
+                        _logger.LogWarning(logContent);
                     }
                 }
                 else
