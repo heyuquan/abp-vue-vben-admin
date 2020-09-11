@@ -12,6 +12,9 @@ namespace Mk.DemoC.DbMapperCfg.SearchDocuments
             builder.ToTable(DemoCDbProperties.DbTablePrefix + nameof(ProductSpuDoc), DemoCDbProperties.DbSchema);
             builder.ConfigureByConvention();
 
+            builder.Property(p => p.DocId)
+                .HasMaxLength(64)
+                .HasColumnName(nameof(ProductSpuDoc.SpuCode));
             builder.Property(p => p.SpuCode).IsRequired()
                 .HasMaxLength(24)
                 .HasColumnName(nameof(ProductSpuDoc.SpuCode));

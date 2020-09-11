@@ -10,7 +10,7 @@ namespace Mk.DemoC.ElastcSearchAppService.Documents
         /// <summary>
         /// Spu编码
         /// </summary>
-        [Keyword]
+        [Keyword(Normalizer = "lowercase")]
         public string SpuCode { get; set; }
         /// <summary>
         /// Spu下所有Sku拼接，以空格隔开
@@ -36,7 +36,7 @@ namespace Mk.DemoC.ElastcSearchAppService.Documents
         /// <summary>
         /// 币别
         /// </summary>
-        [Keyword]
+        [Keyword(Normalizer = "lowercase")]
         public string Currency { get; set; }
 
         public decimal MinPrice { get; set; }

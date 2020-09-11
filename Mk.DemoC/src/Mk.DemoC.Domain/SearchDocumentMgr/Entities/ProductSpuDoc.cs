@@ -14,6 +14,10 @@ namespace Mk.DemoC.SearchDocumentMgr.Entities
     public class ProductSpuDoc : CreationAuditedAggregateRoot<Guid>
     {
         /// <summary>
+        /// Doc id
+        /// </summary>
+        public string DocId { get; set; }
+        /// <summary>
         /// Spu编码
         /// </summary>
         public string SpuCode { get; set; }

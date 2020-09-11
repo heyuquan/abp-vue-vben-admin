@@ -1,106 +1,52 @@
-﻿using Elasticsearch.Net;
-using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json.Linq;
+﻿using Microsoft.Extensions.Configuration;
+using Mk.DemoC.ElastcSearchAppService.Documents;
+using Nest;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
-using Volo.Abp;
 using Volo.Abp.DependencyInjection;
-using Volo.Abp.Json;
 
 namespace Mk.DemoC.ElastcSearchAppService
 {
     public class ElasticSearchClient : ITransientDependency
     {
-        public ElasticLowLevelClient client { get; }
+        public const string MALL_SEARCH_PRODUCT = "mall.search.product";
 
+        private readonly IElasticClient client;        
         private readonly IConfiguration _configuration;
-        private readonly IJsonSerializer _jsonSerializer;
 
-        public ElasticSearchClient(
-            IConfiguration configuration
-            , IJsonSerializer jsonSerializer
-            )
+        public ElasticSearchClient(IConfiguration configuration)
         {
             _configuration = configuration;
-            _jsonSerializer = jsonSerializer;
-            client = InitClient();
-        }
 
-        private ElasticLowLevelClient InitClient()
-        {
             var node = new Uri(_configuration["ElasticConfiguration:Uri"]);
-            var settings = new ConnectionConfiguration(node);
-            var client = new ElasticLowLevelClient(settings);
+            var settings = new ConnectionSettings(node);
+            client = new ElasticClient(settings);
 
+            this.InitIndex();
+        }
+
+        private void InitIndex()
+        {
+            client.Indices.Create(MALL_SEARCH_PRODUCT, c => c
+                //.Settings(s => s
+                //    .Analysis(a => a
+                //        .Normalizers(n => n.Custom("lowercase", cn => cn.Filters("lowercase")))
+                //        )
+                //    )
+                .Map<ProductSpuDocument>(mm => mm
+                    .AutoMap())
+                //.Map(m => m.DynamicTemplates(dt => dt.DynamicTemplate("keyword_to_lowercase", t => t
+                //            .MatchMappingType("string")
+                //            .Mapping(map => map.Keyword(k => k.Normalizer("lowercase")))
+                //         )
+                //       ))
+            );
+        }
+
+        public IElasticClient Get()
+        {
             return client;
-        }
-
-        private void ResponseValidate(StringResponse response)
-        {
-            if (response.Success == false)
-            {
-                throw new BusinessException(message: response.Body);
-            }
-        }
-
-        public async Task<string> Index(string index, string id, PostData body)
-        {
-            var response = await client.IndexAsync<StringResponse>(index, id, body);
-
-            ResponseValidate(response);
-            return response.Body;
-        }
-
-        public async Task<List<string>> SearchWithHighLight(string index, string query)
-        {
-            var response = await client.SearchAsync<StringResponse>(
-                index,
-                PostData.Serializable(
-                    new
-                    {
-                        from = 0,
-                        size = 100,
-                        query = new
-                        {
-                            match = new { content = query }
-                        },
-                        hightlight = new
-                        {
-                            pre_tags = new[] { "<tag1>", "<tag2>" },
-                            post_tags = new[] { "/<tag1>", "/<tag2>" },
-                            fields = new
-                            {
-                                content = new { }
-                            }
-                        }
-                    })
-                );
-
-            ResponseValidate(response);
-
-            var responseJson = _jsonSerializer.Deserialize<JObject>(response.Body);
-
-            var hits = responseJson["hits"]["hits"] as JArray;
-
-            var result = new List<string>();
-
-            foreach (var hit in hits)
-            {
-                var id = hit["_id"].ToObject<string>();
-
-                result.Add(id);
-            }
-
-            return result;
-        }
-
-        public async Task Delete(string index, string id)
-        {
-            var response = await client.DeleteAsync<StringResponse>(index, id);
-
-            ResponseValidate(response);
         }
     }
 }

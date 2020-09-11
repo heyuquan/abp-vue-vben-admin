@@ -15,6 +15,8 @@ namespace Mk.DemoC
 
             CreateMap<ProductSpuDoc, ProductSpuDocument>();
             CreateMap<ProductSpuDocument, ProductSpuDocumentDto>();
+            CreateMap<ProductSpuDoc, ProductSpuDocumentDto>()
+                 .MapExtraProperties();
         }
     }
 }

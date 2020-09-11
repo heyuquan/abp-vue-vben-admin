@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Volo.Abp.Application.Dtos;
 
 namespace Mk.DemoC.Dto.ElastcSearchs
 {
-    public class ProductSpuDocumentDto
+    public class ProductSpuDocumentDto : ExtensibleCreationAuditedEntityDto<Guid>
     {
+        /// <summary>
+        /// Doc id
+        /// </summary>
+        public string DocId { get; set; }
         /// <summary>
         /// Spu编码
         /// </summary>
