@@ -47,10 +47,11 @@ namespace Mk.DemoC.SearchDocumentMgr.Entities
 
         public decimal MaxPrice { get; set; }
 
-        public ProductSpuDoc(Guid id, string spuCode, string sumSkuCode, string spuName
+        public ProductSpuDoc(Guid id, string docId, string spuCode, string sumSkuCode, string spuName
             , string brand, string spuKeywords, string sumSkuKeywords, string currency, decimal minPrice, decimal maxPrice)
         {
             Id = id;
+            DocId = docId ?? Id.ToString("N");
             SpuCode = spuCode;
             SumSkuCode = sumSkuCode ?? spuCode;
             SpuName = spuName;

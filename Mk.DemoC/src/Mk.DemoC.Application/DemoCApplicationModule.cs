@@ -2,6 +2,8 @@
 using Volo.Abp.AutoMapper;
 using Volo.Abp.Modularity;
 using Volo.Abp.Application;
+using Mk.DemoC.ElastcSearchAppService;
+using Volo.Abp;
 
 namespace Mk.DemoC
 {
@@ -20,6 +22,15 @@ namespace Mk.DemoC
             {
                 options.AddMaps<DemoCApplicationModule>(validate: true);
             });
+
+
         }
+
+        public override void OnApplicationInitialization(ApplicationInitializationContext context)
+        {
+            var esClient = context.ServiceProvider.GetService<ElasticSearchClient>();
+            esClient.InitIndex();
+        }
+
     }
 }

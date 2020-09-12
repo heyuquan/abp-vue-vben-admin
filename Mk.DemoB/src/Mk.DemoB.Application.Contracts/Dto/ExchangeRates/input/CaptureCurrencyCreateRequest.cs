@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Mk.DemoB.Dto.ExchangeRates
 {
-    public class CaptureCurrencyCreate
+    public class CaptureCurrencyCreateRequest
     {
         /// <summary>
         /// 本币币种编码

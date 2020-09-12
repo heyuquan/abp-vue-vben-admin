@@ -93,7 +93,7 @@ namespace Mk.DemoC.ElastcSearchAppService
                             string productCode = (productUrl.Split("-")).Last().Split(".")[0];
                             decimal price = decimal.Parse(product.SelectSingleNode(".//div[@class='proPrice l']").SelectSingleNode(".//span").InnerText.Split(" ").Last());
 
-                            ProductSpuDoc entity = new ProductSpuDoc(GuidGenerator.Create(), productCode, null
+                            ProductSpuDoc entity = new ProductSpuDoc(GuidGenerator.Create(), null, productCode, null
                                 , productName, "诚实通", item.Value, null, "CNY", price, price);
                             list.Add(entity);
                             hadCaptureCount++;
@@ -127,7 +127,7 @@ namespace Mk.DemoC.ElastcSearchAppService
                 isNotracking: true
                 );
 
-            ProductSpuDoc entity = new ProductSpuDoc(GuidGenerator.Create(), "A001", "A0012 A0011"
+            ProductSpuDoc entity = new ProductSpuDoc(GuidGenerator.Create(), null, "A001", "A0012 A0011"
                                 , "一个产品，这个产品很有价值，是不是你想要的产品？", "诚实通", "关键词", null, "CNY", 12, 12);
             ProductSpuDocument document = ObjectMapper.Map<ProductSpuDoc, ProductSpuDocument>(entity);
 

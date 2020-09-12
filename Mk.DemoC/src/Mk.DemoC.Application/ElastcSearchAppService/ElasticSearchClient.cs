@@ -4,6 +4,7 @@ using Nest;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Volo.Abp;
 using Volo.Abp.DependencyInjection;
 
 namespace Mk.DemoC.ElastcSearchAppService
@@ -12,7 +13,7 @@ namespace Mk.DemoC.ElastcSearchAppService
     {
         public const string MALL_SEARCH_PRODUCT = "mall.search.product";
 
-        private readonly IElasticClient client;        
+        private readonly IElasticClient client;
         private readonly IConfiguration _configuration;
 
         public ElasticSearchClient(IConfiguration configuration)
@@ -22,26 +23,30 @@ namespace Mk.DemoC.ElastcSearchAppService
             var node = new Uri(_configuration["ElasticConfiguration:Uri"]);
             var settings = new ConnectionSettings(node);
             client = new ElasticClient(settings);
-
-            this.InitIndex();
         }
 
-        private void InitIndex()
+        public void InitIndex()
         {
-            client.Indices.Create(MALL_SEARCH_PRODUCT, c => c
-                //.Settings(s => s
-                //    .Analysis(a => a
-                //        .Normalizers(n => n.Custom("lowercase", cn => cn.Filters("lowercase")))
-                //        )
-                //    )
-                .Map<ProductSpuDocument>(mm => mm
-                    .AutoMap())
-                //.Map(m => m.DynamicTemplates(dt => dt.DynamicTemplate("keyword_to_lowercase", t => t
-                //            .MatchMappingType("string")
-                //            .Mapping(map => map.Keyword(k => k.Normalizer("lowercase")))
-                //         )
-                //       ))
-            );
+            // term
+            // 插入 "A001 " 带空格， SpuCode 字段标注 keyword，lowercase   是否可以用"A001"、"a001"搜索到？
+            // 不能搜索到。 term是精确匹配，存带空格，查也必须带上
+            if (!client.Indices.Exists(MALL_SEARCH_PRODUCT).Exists)
+            {
+                var index = client.Indices.Create(MALL_SEARCH_PRODUCT, c => c
+                                  .Settings(s => s
+                                      .Analysis(a => a
+                                            .Normalizers(n => n.Custom("my_normalizer", cn => cn.Filters("lowercase")))
+                                          )
+                                      )
+                                  .Map<ProductSpuDocument>(mm => mm
+                                      .AutoMap()
+                                  )
+                             );
+                if (!index.IsValid)
+                {
+                    throw new Exception($"[{MALL_SEARCH_PRODUCT}]索引创建失败");
+                }
+            }
         }
 
         public IElasticClient Get()

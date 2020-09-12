@@ -5,12 +5,18 @@ using System.Text;
 
 namespace Mk.DemoC.ElastcSearchAppService.Documents
 {
+    [ElasticsearchType(IdProperty = "DocId")]
     public class ProductSpuDocument
     {
         /// <summary>
+        /// Doc id
+        /// </summary>
+        [Keyword(Normalizer = "my_normalizer")]
+        public string DocId { get; set; }
+        /// <summary>
         /// Spu编码
         /// </summary>
-        [Keyword(Normalizer = "lowercase")]
+        [Keyword(Normalizer = "my_normalizer")]
         public string SpuCode { get; set; }
         /// <summary>
         /// Spu下所有Sku拼接，以空格隔开
@@ -25,7 +31,7 @@ namespace Mk.DemoC.ElastcSearchAppService.Documents
         /// <summary>
         /// 品牌
         /// </summary>
-        [Text]
+        [Keyword(Normalizer = "my_normalizer")]
         public string Brand { get; set; }
 
         [Text]
@@ -36,7 +42,7 @@ namespace Mk.DemoC.ElastcSearchAppService.Documents
         /// <summary>
         /// 币别
         /// </summary>
-        [Keyword(Normalizer = "lowercase")]
+        [Keyword(Normalizer = "my_normalizer")]
         public string Currency { get; set; }
 
         public decimal MinPrice { get; set; }

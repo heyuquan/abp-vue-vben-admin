@@ -46,7 +46,7 @@ namespace Mk.DemoB.ExchangeRateAppService
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost("capture-currency/create")]
-        public virtual async Task<ServiceResult<CaptureCurrencyDto>> CreateCaptureCurrencyAsync(CaptureCurrencyCreate input)
+        public virtual async Task<ServiceResult<CaptureCurrencyDto>> CreateCaptureCurrencyAsync(CaptureCurrencyCreateRequest input)
         {
             ServiceResult<CaptureCurrencyDto> ret = new ServiceResult<CaptureCurrencyDto>(IdProvider.Get());
 

@@ -34,6 +34,10 @@ using Leopard.Abp.PermissionManagement.EntityFrameworkCore;
 using Leopard.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.EventBus.RabbitMq;
+using Microsoft.AspNetCore.Mvc;
+using Leopard.AspNetCore.Mvc.Filters;
+using Volo.Abp.Timing;
+using Volo.Abp.AspNetCore.Mvc.ExceptionHandling;
 
 namespace Mk.DemoC
 {
@@ -157,6 +161,22 @@ namespace Mk.DemoC
                         .AllowAnyMethod()
                         .AllowCredentials();
                 });
+            });
+
+
+            Configure<MvcOptions>(mvcOptions =>
+            {
+                // 全局异常替换
+                // https://www.cnblogs.com/twoBcoder/p/12838913.html
+                var index = mvcOptions.Filters.ToList().FindIndex(filter => filter is ServiceFilterAttribute attr && attr.ServiceType.Equals(typeof(AbpExceptionFilter)));
+                if (index > -1)
+                    mvcOptions.Filters.RemoveAt(index);
+                mvcOptions.Filters.Add(typeof(LeopardExceptionFilter));
+            });
+
+            Configure<AbpClockOptions>(options =>
+            {
+                options.Kind = DateTimeKind.Utc;
             });
         }
 
