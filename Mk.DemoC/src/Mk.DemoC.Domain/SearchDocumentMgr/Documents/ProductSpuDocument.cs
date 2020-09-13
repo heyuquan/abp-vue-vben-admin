@@ -1,9 +1,10 @@
-﻿using Nest;
+﻿using Mk.DemoC.Domain.Consts.ElastcSearchs;
+using Nest;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Mk.DemoC.ElastcSearchAppService.Documents
+namespace Mk.DemoC.SearchDocumentMgr.Documents
 {
     [ElasticsearchType(IdProperty = "DocId")]
     public class ProductSpuDocument
@@ -26,7 +27,7 @@ namespace Mk.DemoC.ElastcSearchAppService.Documents
         /// <summary>
         /// Spu产品名
         /// </summary>
-        [Text]
+        [Text(Analyzer = ElastcSearchAnazer.IK_SMART)]
         public string SpuName { get; set; }
         /// <summary>
         /// 品牌
@@ -34,9 +35,9 @@ namespace Mk.DemoC.ElastcSearchAppService.Documents
         [Keyword(Normalizer = "my_normalizer")]
         public string Brand { get; set; }
 
-        [Text]
+        [Text(Analyzer = ElastcSearchAnazer.IK_SMART)]
         public string SpuKeywords { get; set; }
-        [Text]
+        [Text(Analyzer = ElastcSearchAnazer.IK_SMART)]
         public string SumSkuKeywords { get; set; }
 
         /// <summary>

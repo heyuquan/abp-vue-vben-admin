@@ -1,10 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
-using Mk.DemoC.ElastcSearchAppService.Documents;
+using Mk.DemoC.SearchDocumentMgr.Documents;
 using Nest;
 using System;
-using System.Collections.Generic;
-using System.Text;
-using Volo.Abp;
 using Volo.Abp.DependencyInjection;
 
 namespace Mk.DemoC.ElastcSearchAppService

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Mk.DemoC.Dto.ElastcSearchs;
-using Mk.DemoC.ElastcSearchAppService.Documents;
+using Mk.DemoC.SearchDocumentMgr.Documents;
 using Mk.DemoC.SearchDocumentMgr.Entities;
 using Volo.Abp.AutoMapper;
 

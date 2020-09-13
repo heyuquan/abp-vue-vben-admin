@@ -20,5 +20,9 @@
     <EmbeddedResource Include="Localization\DemoC\*.json" />
     <Content Remove="Localization\DemoC\*.json" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="Domain\Enums\" />
+  </ItemGroup>
 
 </Project>

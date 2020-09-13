@@ -1,30 +1,31 @@
-﻿using HtmlAgilityPack;
-using Leopard.Paging;
-using Leopard.Results;
+﻿using Leopard.Results;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Mk.DemoC.Domain.Consts.ElastcSearchs;
 using Mk.DemoC.Dto.ElastcSearchs;
-using Mk.DemoC.ElastcSearchAppService.Documents;
 using Mk.DemoC.SearchDocumentMgr;
-using Mk.DemoC.SearchDocumentMgr.Entities;
+using Mk.DemoC.SearchDocumentMgr.Documents;
 using Nest;
 using Swashbuckle.Swagger.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace Mk.DemoC.ElastcSearchAppService
 {
+    // 百度搜索的高级搜索技巧
+    // https://jingyan.baidu.com/article/948f5924cff4bcd80ff5f9be.html
+
     // ElasticSearch 分词器
     // https://www.shangmayuan.com/a/49084a28ed9847aca4c9af36.html
     // Elasticsearch7 分词器(内置分词器和自定义分词器)
     // https://blog.csdn.net/white_while/article/details/98504574
-    // Elasticsearch .Net Client NEST 多条件查询示例
-    // https://www.cnblogs.com/huhangfei/p/5985280.html
+    // Elasticsearch-Analysis-IK中文分词器配置使用
+    // https://blog.csdn.net/chy2z/article/details/82962903
+    // ElasticSearch(六)组合多查询(must, should, must_not, bool, filter)
+    // https://www.it610.com/article/1297259129663987712.htm
     // Elasticsearch .net client NEST 5.x 使用总结
     // https://www.cnblogs.com/huhangfei/p/7524886.html
     // Elasticsearch搜索查询语法
@@ -40,6 +41,8 @@ namespace Mk.DemoC.ElastcSearchAppService
     // [github]
     // ElasticSearch match, match_phrase, term区别
     // https://www.cnblogs.com/buxizhizhoum/p/9874703.html
+    // Elasticsearch filter和query的不同
+    // https://blog.csdn.net/laoyang360/article/details/80468757
 
     // =====normalizer=====
     // ElasticSearch Normalizer 的使用方法？
@@ -99,12 +102,12 @@ namespace Mk.DemoC.ElastcSearchAppService
             ProductSpuDocument doc1 = new ProductSpuDocument
             {
                 DocId = "39f792fdc909816aeda1bbb97faa18a5",
-                SpuCode = "A001",
-                SumSkuCode = "A0012 A0011",
-                Brand = "诚实通",
-                SpuKeywords = "A001",
-                SumSkuKeywords = "A0012 A0011",
-                SpuName = "一个产品，这个产品很有价值，是不是你想要的产品？",
+                SpuCode = "A000",
+                SumSkuCode = "A0002 A0001",
+                Brand = "花花公子",
+                SpuKeywords = "冬天 羽绒服 衣服",
+                SumSkuKeywords = "冬天 羽绒服 衣服",
+                SpuName = "冬天暖心羽绒服",
                 Currency = "CNY",
                 MinPrice = 13,
                 MaxPrice = 13
@@ -122,38 +125,38 @@ namespace Mk.DemoC.ElastcSearchAppService
                 DocId = "39f79307c24e296637ea2dd8215172bd",
                 SpuCode = "A001 ",                  // 带一个空格
                 SumSkuCode = "A0012 A0011",
-                Brand = "诚实通",
-                SpuKeywords = "A001",
-                SumSkuKeywords = "A0012 A0011",
-                SpuName = "一个产品，这个产品很有价值，是不是你想要的产品？",
+                Brand = "花花公子",
+                SpuKeywords = "羽绒服 衣服",
+                SumSkuKeywords = "羽绒服 衣服",
+                SpuName = "羽绒服",
                 Currency = "CNY",
-                MinPrice = 12,
+                MinPrice = 8,
                 MaxPrice = 12
             };
 
             ProductSpuDocument doc3 = new ProductSpuDocument
             {
                 DocId = "39f7930c455671def2f955af0906a466",
-                SpuCode = "A001",
-                SumSkuCode = "A0012 A0011",
-                Brand = "诚实通",
-                SpuKeywords = "A001",
-                SumSkuKeywords = "A0012 A0011",
-                SpuName = "一个产品，这个产品很有价值，是不是你想要的产品？",
+                SpuCode = "A002",
+                SumSkuCode = "A0022 A0021",
+                Brand = "贵人鸟",
+                SpuKeywords = "服装 衣服",
+                SumSkuKeywords = "服装 衣服",
+                SpuName = "服装",
                 Currency = "HKD",
-                MinPrice = 12,
-                MaxPrice = 12
+                MinPrice = 50,
+                MaxPrice = 50
             };
 
             ProductSpuDocument doc4 = new ProductSpuDocument
             {
                 DocId = "39f793154cac656efa8f211c156e46c4",
-                SpuCode = "A001",
-                SumSkuCode = "A0012 A0011",
-                Brand = "天地药材",
-                SpuKeywords = "A001",
-                SumSkuKeywords = "A0012 A0011",
-                SpuName = "一个产品，这个产品很有价值，是不是你想要的产品？",
+                SpuCode = "A003",
+                SumSkuCode = "A0032 A0031",
+                Brand = "贵人鸟",
+                SpuKeywords = "冬天 毛衣 衣服",
+                SumSkuKeywords = "冬天 毛衣 衣服",
+                SpuName = "冬天毛衣",
                 Currency = "CNY",
                 MinPrice = 12,
                 MaxPrice = 12
@@ -246,35 +249,49 @@ namespace Mk.DemoC.ElastcSearchAppService
         {
             ServiceResult<List<ProductSpuDocumentDto>> ret = new ServiceResult<List<ProductSpuDocumentDto>>(IdProvider.Get());
 
-            // term
-            var mustQuerys = new List<Func<QueryContainerDescriptor<ProductSpuDocument>, QueryContainer>>();
+            var shouldQuerys = new List<Func<QueryContainerDescriptor<ProductSpuDocument>, QueryContainer>>();
+            shouldQuerys.Add(t => t.Term(f => f.SpuCode, req.Keyword));
+            shouldQuerys.Add(t => t.Match(f => f
+                                            .Field(x => x.SumSkuCode)
+                                            .Query(req.Keyword)
+                                        ));
+            shouldQuerys.Add(t => t.Match(f => f
+                                            .Field(x => x.SpuKeywords)
+                                            .Query(req.Keyword)
+                                            .Analyzer(ElastcSearchAnazer.IK_SMART)
+                                        ));
+            shouldQuerys.Add(t => t.Match(f => f
+                                            .Field(x => x.SumSkuKeywords)
+                                            .Query(req.Keyword)
+                                            .Analyzer(ElastcSearchAnazer.IK_SMART)
+                                        ));
+
+            var mustFilters = new List<Func<QueryContainerDescriptor<ProductSpuDocument>, QueryContainer>>();
             if (!string.IsNullOrEmpty(req.Currency))
             {
-                mustQuerys.Add(t => t.Term(f => f.Currency, req.Currency));
+                mustFilters.Add(t => t.Term(f => f.Currency, req.Currency));
             }
             if (!string.IsNullOrEmpty(req.Brand))
             {
-                mustQuerys.Add(t => t.Term(f => f.Brand, req.Brand));
+                mustFilters.Add(t => t.Term(f => f.Brand, req.Brand));
             }
-
-            // filters
-            var mustFilters = new List<Func<QueryContainerDescriptor<ProductSpuDocument>, QueryContainer>>();
-            mustFilters.Add(t => t.Match(f => f.Field(x => x.SpuCode).Query(req.Keyword)));
-            mustFilters.Add(t => t.Match(f => f.Field(x => x.SumSkuCode).Query(req.Keyword)));
-            mustFilters.Add(t => t.Match(f => f.Field(x => x.SpuKeywords).Query(req.Keyword)));
-            mustFilters.Add(t => t.Match(f => f.Field(x => x.SumSkuKeywords).Query(req.Keyword)));
-            mustFilters.Add(t => t.Match(f => f.Field(x => x.SpuName).Query(req.Keyword)));
 
             var rp = client.Search<ProductSpuDocument>(s => s
                             .Index(ElasticSearchClient.MALL_SEARCH_PRODUCT)
-                            .Query(q => q
-                                .Bool(b => b
-                                    .Must(mustQuerys)
+                            .Query(q => q     
+                                .Bool(b => b     
+                                    .Must(m=>m.Match(f => f
+                                            .Field(x => x.SpuName)
+                                            .Query(req.Keyword)
+                                            .Analyzer(ElastcSearchAnazer.IK_SMART)
+                                        ))
+                                    .Should(shouldQuerys)
                                     .Filter(f => f
-                                        .Bool(fb => fb.Should(mustFilters))
-                                    )
-                                )
+                                        .Bool(fb => fb.Must(mustFilters))                                           
+                                    )                                    
+                                )                                
                             )
+                           
                         );
             var productSpuDocuments = rp.Documents.ToList();
 
