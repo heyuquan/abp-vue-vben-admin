@@ -273,7 +273,6 @@ namespace Mk.DemoC.ElastcSearchAppService
                                 s => s
                                     .Index(ElasticSearchClient.MALL_SEARCH_PRODUCT)
                                     .Query(q => q.MatchAll())
-                                    //.Query(q => q.Match(m => m.Field(x => x.SumSkuCode).Query("A0011")))
                                     .Script(ss => ss.Source("ctx._source.minPrice=8;ctx._source.currency='CNY';"))
                                 );
             if (rp3.OriginalException != null)

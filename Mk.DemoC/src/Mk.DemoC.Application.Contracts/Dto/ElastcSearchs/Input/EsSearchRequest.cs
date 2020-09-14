@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
+using Volo.Abp.Application.Dtos;
 
 namespace Mk.DemoC.Dto.ElastcSearchs
 {
-    public class EsTestSearchRequest
+    public class EsSearchRequest: PagedResultRequestDto
     {
         [Required]
         public string Keyword { get; set; }
@@ -18,8 +19,8 @@ namespace Mk.DemoC.Dto.ElastcSearchs
         /// </summary>
         public string Currency { get; set; }
 
-        public decimal? MinPrice { get; set; }
+        public double? MinPrice { get; set; }
 
-        public decimal? MaxPrice { get; set; }
+        public double? MaxPrice { get; set; }
     }
 }

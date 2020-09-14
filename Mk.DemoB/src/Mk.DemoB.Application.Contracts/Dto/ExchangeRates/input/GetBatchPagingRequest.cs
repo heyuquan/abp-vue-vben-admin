@@ -6,14 +6,9 @@ using Volo.Abp.Application.Dtos;
 
 namespace Mk.DemoB.Dto.ExchangeRates
 {
-    public class GetBatchPagingRequest : IPagedResultRequest
+    public class GetBatchPagingRequest : PagedAndSortedResultRequestDto
     {
         [Required]
         public string CaptureBatchNumber { get; set; }
-
-        [Required]
-        public int SkipCount { get; set; }
-        [Required]
-        public int MaxResultCount { get; set; }
     }
 }

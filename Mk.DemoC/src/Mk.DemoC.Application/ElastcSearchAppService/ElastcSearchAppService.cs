@@ -70,12 +70,12 @@ namespace Mk.DemoC.ElastcSearchAppService
                     int capturePageCount = ((totalCount / 12) + 1) > 5 ? 5 : ((totalCount / 12) + 1);
 
                     List<ProductSpuDoc> list = new List<ProductSpuDoc>();
-                    for (var i = 1; i <= 5; i++)
+                    for (var i = 1; i <= capturePageCount; i++)
                     {
                         string productListUrl = string.Format(subUrlTemplate, item.Key, i);
                         _logger.LogInformation($"产品抓取[{item.Value}],url:[{productListUrl}]");
                         HttpResponseMessage subResponse = await client.GetAsync(productListUrl).ConfigureAwait(false);
-                        string subHtml = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                        string subHtml = await subResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
 
                         HtmlDocument subDoc = new HtmlDocument();
                         subDoc.LoadHtml(subHtml);

@@ -16,6 +16,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Volo.Abp.Application.Dtos;
 
 namespace Mk.DemoC.ElastcSearchAppService
 {
@@ -29,10 +30,10 @@ namespace Mk.DemoC.ElastcSearchAppService
         }
 
         [HttpPost("doc/search")]
-        [SwaggerResponse(HttpStatusCode.OK, Type = typeof(ServiceResult<ProductSpuDocumentDto>))]
-        public async Task<ServiceResult<List<ProductSpuDocumentDto>>> SearchAsync(EsTestSearchRequest req)
+        [SwaggerResponse(HttpStatusCode.OK, Type = typeof(ServiceResult<PagedResultDto<ProductSpuDocumentDto>>))]
+        public async Task<ServiceResult<PagedResultDto<ProductSpuDocumentDto>>> SearchAsync(EsSearchRequest req)
         {
-            ServiceResult<List<ProductSpuDocumentDto>> ret = new ServiceResult<List<ProductSpuDocumentDto>>(IdProvider.Get());
+            ServiceResult<PagedResultDto<ProductSpuDocumentDto>> ret = new ServiceResult<PagedResultDto<ProductSpuDocumentDto>>(IdProvider.Get());
 
             var shouldQuerys = new List<Func<QueryContainerDescriptor<ProductSpuDocument>, QueryContainer>>();
             shouldQuerys.Add(t => t.Match(f => f
@@ -75,22 +76,37 @@ namespace Mk.DemoC.ElastcSearchAppService
             {
                 mustFilters.Add(t => t.Term(f => f.Brand, req.Brand));
             }
+            if (req.MinPrice.HasValue)
+            {
+                mustFilters.Add(t => t.Range(r => r.Field(f => f.MinPrice).GreaterThanOrEquals(req.MinPrice.Value)));
+            }
+            if (req.MaxPrice.HasValue)
+            {
+                mustFilters.Add(t => t.Range(r => r.Field(f => f.MaxPrice).LessThanOrEquals(req.MaxPrice.Value)));
+            }
 
             var rp = client.Search<ProductSpuDocument>(s => s
                             .Index(ElasticSearchClient.MALL_SEARCH_PRODUCT)
-                            //.MinScore(double.MinValue)
+                            .MinScore(0.02)
+                            .Skip(req.SkipCount)
+                            .Size(req.MaxResultCount)
                             .Query(q => q
                                 .Bool(b => b
                                     .Should(shouldQuerys).MinimumShouldMatch(new MinimumShouldMatch(1))
                                     .Filter(f => f
                                         .Bool(fb => fb.Must(mustFilters))
+
                                     )
                                 )
+
                             )
                         );
             var productSpuDocuments = rp.Documents.ToList();
 
-            ret.SetSuccess(ObjectMapper.Map<List<ProductSpuDocument>, List<ProductSpuDocumentDto>>(productSpuDocuments));
+            PagedResultDto<ProductSpuDocumentDto> pageDtos = new PagedResultDto<ProductSpuDocumentDto>();
+            pageDtos.Items = ObjectMapper.Map<List<ProductSpuDocument>, List<ProductSpuDocumentDto>>(productSpuDocuments);
+            pageDtos.TotalCount = rp.Total;
+            ret.SetSuccess(pageDtos);
             return ret;
         }
 
