@@ -15,26 +15,22 @@ using System.Threading.Tasks;
 namespace Mk.DemoC.ElastcSearchAppService
 {
     [Route("api/democ/elastic")]
-    public class ElastcSearchAppService : DemoCAppService
+    public class ElastcSearchAppService : ElastcSearchBaseAppService
     {
         private readonly ILogger<ElastcSearchAppService> _logger;
         private readonly IHttpClientFactory _clientFactory;
         private readonly IProductSpuDocRepository _productSpuDocRepository;
-        private readonly ElasticSearchClient _elasticSearchClient;
-        private readonly IElasticClient client;
 
         public ElastcSearchAppService(
             ILogger<ElastcSearchAppService> logger
             , IHttpClientFactory clientFactory
             , ElasticSearchClient elasticSearchClient
             , IProductSpuDocRepository productSpuDocRepository
-            )
+            ) : base(elasticSearchClient)
         {
             _logger = logger;
             _clientFactory = clientFactory;
             _productSpuDocRepository = productSpuDocRepository;
-            _elasticSearchClient = elasticSearchClient;
-            client = _elasticSearchClient.Get();
         }
 
         //https://www.zyccst.com/yaocai-277.html		狗鞭
@@ -84,7 +80,7 @@ namespace Mk.DemoC.ElastcSearchAppService
                         HtmlDocument subDoc = new HtmlDocument();
                         subDoc.LoadHtml(subHtml);
 
-                        HtmlNodeCollection productNodes = doc.DocumentNode.SelectNodes("//div[@class='productUnit clf']");
+                        HtmlNodeCollection productNodes = subDoc.DocumentNode.SelectNodes("//div[@class='productUnit clf']");
                         foreach (var product in productNodes)
                         {
                             HtmlNode titleNode = product.SelectSingleNode(".//div[@class='proTitle']").SelectSingleNode(".//a");
@@ -109,7 +105,7 @@ namespace Mk.DemoC.ElastcSearchAppService
             return ret;
         }
 
-        [HttpDelete("product/all")]
+        [HttpDelete("product/delete/all")]
         public async Task<ServiceResult> DeleteProductDocAsync()
         {
             ServiceResult ret = new ServiceResult(IdProvider.Get());
@@ -118,43 +114,21 @@ namespace Mk.DemoC.ElastcSearchAppService
             return ret;
         }
 
-        private string indexName = "mall.search.product";
-        [HttpPost("document/create")]
-        public async Task CreateDocumentIndex()
+        [HttpPost("doc/create/all")]
+        public async Task CreateDocumentAll()
         {
-            PageData<ProductSpuDoc> docs = await _productSpuDocRepository.GetPagingAsync(
+            PageData<ProductSpuDoc> docsEntity = await _productSpuDocRepository.GetPagingAsync(
                 isGetTotalCount: false,
                 isNotracking: true
                 );
 
-            ProductSpuDoc entity = new ProductSpuDoc(GuidGenerator.Create(), null, "A001", "A0012 A0011"
-                                , "一个产品，这个产品很有价值，是不是你想要的产品？", "诚实通", "关键词", null, "CNY", 12, 12);
-            ProductSpuDocument document = ObjectMapper.Map<ProductSpuDoc, ProductSpuDocument>(entity);
+            List<ProductSpuDocument> docs = ObjectMapper.Map<List<ProductSpuDoc>, List<ProductSpuDocument>>(docsEntity.Items);
 
-            var response = await client.IndexAsync(document, idx => idx.Index(ElasticSearchClient.MALL_SEARCH_PRODUCT));
-
-            var getResponse = await client.GetAsync<ProductSpuDocument>(response.Id, idx => idx.Index(ElasticSearchClient.MALL_SEARCH_PRODUCT));
-            var r = getResponse.Source;
-
-            var searchResponse = client.Search<ProductSpuDocument>(m => m
-                                    .Index(ElasticSearchClient.MALL_SEARCH_PRODUCT)
-                                    .Query(q => q.Term(tm => tm.SpuCode, "A001"))
-                                );
-
-            var searchResponse3 = client.Search<ProductSpuDocument>(s => s
-                .Index(ElasticSearchClient.MALL_SEARCH_PRODUCT)
-                .Query(q => q
-                     .Match(m => m
-                        .Field(f => f.SumSkuCode)
-                        .Query("A0011")
-                     )
-                )
-            );
-
-            var searchResponse2 = client.Search<ProductSpuDocument>(m => m
-                                    .Index(indexName)
-                                    );
-
+            var rp = await client.IndexManyAsync(docs, ElasticSearchClient.MALL_SEARCH_PRODUCT);
+            if (rp.OriginalException != null)
+            {
+                throw rp.OriginalException;
+            }
         }
     }
 }

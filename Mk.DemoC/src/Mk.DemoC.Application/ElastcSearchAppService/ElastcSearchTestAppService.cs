@@ -1,13 +1,11 @@
 ﻿using Leopard.Results;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Mk.DemoC.Domain.Consts.ElastcSearchs;
 using Mk.DemoC.Dto.ElastcSearchs;
 using Mk.DemoC.SearchDocumentMgr;
 using Mk.DemoC.SearchDocumentMgr.Documents;
 using Nest;
 using Swashbuckle.Swagger.Annotations;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -15,15 +13,28 @@ using System.Threading.Tasks;
 
 namespace Mk.DemoC.ElastcSearchAppService
 {
+    // elasticSearch-中文社区
+    // https://elasticsearch.cn/article/
+    // 官方文档
+    // https://www.elastic.co/guide/index.html
+    // .NET 操作
+    // https://www.elastic.co/guide/en/elasticsearch/client/net-api/current/index.html
+
+
     // 百度搜索的高级搜索技巧
     // https://jingyan.baidu.com/article/948f5924cff4bcd80ff5f9be.html
-
+    // ElasticSearch 的分数 (_score) 是怎么计算得出 (2.X & 5.X)
+    // https://ruby-china.org/topics/31934
     // ElasticSearch 分词器
     // https://www.shangmayuan.com/a/49084a28ed9847aca4c9af36.html
-    // Elasticsearch7 分词器(内置分词器和自定义分词器)
+    // elasticSearch中文文档  分词
+    // https://blog.csdn.net/lauyiran/article/details/86509833
+    // Elasticsearch7 分词器(内置分词器和自定义分词器)w
     // https://blog.csdn.net/white_while/article/details/98504574
     // Elasticsearch-Analysis-IK中文分词器配置使用
     // https://blog.csdn.net/chy2z/article/details/82962903
+    // 英文分词  snowball  Porter
+    // https://www.ibm.com/support/knowledgecenter/zh/SSGU8G_12.1.0/com.ibm.dbext.doc/ids_dbxt_522.htm
     // ElasticSearch(六)组合多查询(must, should, must_not, bool, filter)
     // https://www.it610.com/article/1297259129663987712.htm
     // Elasticsearch .net client NEST 5.x 使用总结
@@ -43,6 +54,8 @@ namespace Mk.DemoC.ElastcSearchAppService
     // https://www.cnblogs.com/buxizhizhoum/p/9874703.html
     // Elasticsearch filter和query的不同
     // https://blog.csdn.net/laoyang360/article/details/80468757
+    // Elasticsearch（6）-基于boost的搜索条件权重控制   (默认情况下，搜索条件的权重都是一样的，都是1)
+    // https://blog.csdn.net/cs1509235061/article/details/89450553
 
     // =====normalizer=====
     // ElasticSearch Normalizer 的使用方法？
@@ -58,23 +71,16 @@ namespace Mk.DemoC.ElastcSearchAppService
     // 在elasticsearch6.0之前是有个type的概念的，index类似于数据库的库，type类似于表，但是在6.0之后就不再使用type这个字段了
 
     [Route("api/democ/elastic-test")]
-    public class ElastcSearchTestAppService : DemoCAppService
+    public class ElastcSearchTestAppService : ElastcSearchBaseAppService
     {
         private readonly ILogger<ElastcSearchAppService> _logger;
-        private readonly IProductSpuDocRepository _productSpuDocRepository;
-        private readonly ElasticSearchClient _elasticSearchClient;
-        private readonly IElasticClient client;
 
         public ElastcSearchTestAppService(
             ILogger<ElastcSearchAppService> logger
             , ElasticSearchClient elasticSearchClient
-            , IProductSpuDocRepository productSpuDocRepository
-            )
+            ):base(elasticSearchClient)
         {
             _logger = logger;
-            _productSpuDocRepository = productSpuDocRepository;
-            _elasticSearchClient = elasticSearchClient;
-            client = _elasticSearchClient.Get();
         }
 
         //[HttpPost("doc/reindex")]
@@ -185,9 +191,9 @@ namespace Mk.DemoC.ElastcSearchAppService
 
         [HttpPost("doc/get")]
         [SwaggerResponse(HttpStatusCode.OK, Type = typeof(ServiceResult<ProductSpuDocumentDto>))]
-        public async Task<ServiceResult> GetAsync()
+        public async Task<ServiceResult<List<ProductSpuDocumentDto>>> GetAsync()
         {
-            ServiceResult ret = new ServiceResult(IdProvider.Get());
+            ServiceResult<List<ProductSpuDocumentDto>> ret = new ServiceResult<List<ProductSpuDocumentDto>>(IdProvider.Get());
 
             #region 获取doc的方式
             var rp1 = await client.GetAsync<ProductSpuDocument>("39f792fdc909816aeda1bbb97faa18a5"
@@ -212,90 +218,12 @@ namespace Mk.DemoC.ElastcSearchAppService
                                 , ElasticSearchClient.MALL_SEARCH_PRODUCT);
             List<ProductSpuDocument> list = rp12.Where(x => x.Found).Select(x => x.Source).ToList();
 
-            // keyword
-            var rp2 = client.Search<ProductSpuDocument>(m => m
-                                    .Index(ElasticSearchClient.MALL_SEARCH_PRODUCT)
-                                    .Query(q => q.Term(tm => tm.SpuCode, "A001 "))
-                                );
-            if (rp2.OriginalException != null)
-            {
-                throw rp2.OriginalException;
-            }
-
-            // text 分词
-            var rp3 = client.Search<ProductSpuDocument>(s => s
-                .Index(ElasticSearchClient.MALL_SEARCH_PRODUCT)
-                .Query(q => q
-                     .Match(m => m
-                        .Field(f => f.SumSkuCode)
-                        .Query("A0011")
-                     )
-                )
-            );
-            if (rp3.OriginalException != null)
-            {
-                throw rp3.OriginalException;
-            }
-            List<ProductSpuDocument> list3 = rp3.Documents.ToList();
             #endregion
 
-            ret.SetSuccess();
-            return ret;
-        }
+            List<ProductSpuDocumentDto> dtos = ObjectMapper
+                .Map<List<ProductSpuDocument>, List<ProductSpuDocumentDto>>(list);
 
-        [HttpPost("doc/search")]
-        [SwaggerResponse(HttpStatusCode.OK, Type = typeof(ServiceResult<ProductSpuDocumentDto>))]
-        public async Task<ServiceResult<List<ProductSpuDocumentDto>>> SearchAsync(EsTestSearchRequest req)
-        {
-            ServiceResult<List<ProductSpuDocumentDto>> ret = new ServiceResult<List<ProductSpuDocumentDto>>(IdProvider.Get());
-
-            var shouldQuerys = new List<Func<QueryContainerDescriptor<ProductSpuDocument>, QueryContainer>>();
-            shouldQuerys.Add(t => t.Term(f => f.SpuCode, req.Keyword));
-            shouldQuerys.Add(t => t.Match(f => f
-                                            .Field(x => x.SumSkuCode)
-                                            .Query(req.Keyword)
-                                        ));
-            shouldQuerys.Add(t => t.Match(f => f
-                                            .Field(x => x.SpuKeywords)
-                                            .Query(req.Keyword)
-                                            .Analyzer(ElastcSearchAnazer.IK_SMART)
-                                        ));
-            shouldQuerys.Add(t => t.Match(f => f
-                                            .Field(x => x.SumSkuKeywords)
-                                            .Query(req.Keyword)
-                                            .Analyzer(ElastcSearchAnazer.IK_SMART)
-                                        ));
-
-            var mustFilters = new List<Func<QueryContainerDescriptor<ProductSpuDocument>, QueryContainer>>();
-            if (!string.IsNullOrEmpty(req.Currency))
-            {
-                mustFilters.Add(t => t.Term(f => f.Currency, req.Currency));
-            }
-            if (!string.IsNullOrEmpty(req.Brand))
-            {
-                mustFilters.Add(t => t.Term(f => f.Brand, req.Brand));
-            }
-
-            var rp = client.Search<ProductSpuDocument>(s => s
-                            .Index(ElasticSearchClient.MALL_SEARCH_PRODUCT)
-                            .Query(q => q     
-                                .Bool(b => b     
-                                    .Must(m=>m.Match(f => f
-                                            .Field(x => x.SpuName)
-                                            .Query(req.Keyword)
-                                            .Analyzer(ElastcSearchAnazer.IK_SMART)
-                                        ))
-                                    .Should(shouldQuerys)
-                                    .Filter(f => f
-                                        .Bool(fb => fb.Must(mustFilters))                                           
-                                    )                                    
-                                )                                
-                            )
-                           
-                        );
-            var productSpuDocuments = rp.Documents.ToList();
-
-            ret.SetSuccess(ObjectMapper.Map<List<ProductSpuDocument>, List<ProductSpuDocumentDto>>(productSpuDocuments));
+            ret.SetSuccess(dtos);
             return ret;
         }
 
@@ -344,9 +272,9 @@ namespace Mk.DemoC.ElastcSearchAppService
             var rp3 = await client.UpdateByQueryAsync<ProductSpuDocument>(
                                 s => s
                                     .Index(ElasticSearchClient.MALL_SEARCH_PRODUCT)
-                                    .Query(q => q
-                                        .Match(m => m.Field(x => x.SumSkuCode).Query("A0011"))
-                                    ).Script(ss => ss.Source("ctx._source.minPrice=8"))
+                                    .Query(q => q.MatchAll())
+                                    //.Query(q => q.Match(m => m.Field(x => x.SumSkuCode).Query("A0011")))
+                                    .Script(ss => ss.Source("ctx._source.minPrice=8;ctx._source.currency='CNY';"))
                                 );
             if (rp3.OriginalException != null)
             {
@@ -355,32 +283,6 @@ namespace Mk.DemoC.ElastcSearchAppService
 
             ret.SetSuccess();
             return ret;
-        }
-
-        [HttpDelete("doc/delete")]
-        public async Task DeleteAsync()
-        {
-            string id = "39f792fdc909816aeda1bbb97faa18a5";
-
-            DocumentPath<ProductSpuDocument> deletePath = new DocumentPath<ProductSpuDocument>(id);
-            var rp1 = await client.DeleteAsync(deletePath, d => d.Index(ElasticSearchClient.MALL_SEARCH_PRODUCT));
-
-            if (rp1.OriginalException != null)
-            {
-                throw rp1.OriginalException;
-            }
-
-            var rp2 = await client.DeleteByQueryAsync<ProductSpuDocument>(
-                     s => s
-                         .Index(ElasticSearchClient.MALL_SEARCH_PRODUCT)
-                         .Query(q => q
-                              .Match(m => m.Field(x => x.SumSkuCode).Query("A0011"))
-                         )
-                     );
-            if (rp2.OriginalException != null)
-            {
-                throw rp2.OriginalException;
-            }
         }
 
     }

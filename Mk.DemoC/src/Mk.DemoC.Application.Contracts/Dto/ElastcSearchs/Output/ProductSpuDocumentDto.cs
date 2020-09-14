@@ -5,7 +5,7 @@ using Volo.Abp.Application.Dtos;
 
 namespace Mk.DemoC.Dto.ElastcSearchs
 {
-    public class ProductSpuDocumentDto : ExtensibleCreationAuditedEntityDto<Guid>
+    public class ProductSpuDocumentDto
     {
         /// <summary>
         /// Doc id

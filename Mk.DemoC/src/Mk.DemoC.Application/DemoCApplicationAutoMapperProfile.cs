@@ -15,13 +15,7 @@ namespace Mk.DemoC
              * into multiple profile classes for a better organization. */
 
             CreateMap<ProductSpuDoc, ProductSpuDocument>();
-            CreateMap<ProductSpuDocument, ProductSpuDocumentDto>()
-                .Ignore(x => x.Id)
-                .Ignore(x => x.CreationTime)
-                .Ignore(x => x.CreatorId)
-                .Ignore(x => x.ExtraProperties);
-            CreateMap<ProductSpuDoc, ProductSpuDocumentDto>()
-                 .MapExtraProperties();
+            CreateMap<ProductSpuDocument, ProductSpuDocumentDto>();
         }
     }
 }
