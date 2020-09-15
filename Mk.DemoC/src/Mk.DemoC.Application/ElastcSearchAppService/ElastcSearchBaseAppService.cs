@@ -90,6 +90,8 @@ namespace Mk.DemoC.ElastcSearchAppService
                             .MinScore(0.02)
                             .Skip(req.SkipCount)
                             .Size(req.MaxResultCount)
+                            // 指定要返回的字段，避免把一些不必要的字段返回
+                            //.Source(x=>x.Includes(fin=>fin.Fields(f=>f.SpuName,f=>f.SpuCode)))
                             .Query(q => q
                                 .Bool(b => b
                                     .Should(shouldQuerys).MinimumShouldMatch(new MinimumShouldMatch(1))
