@@ -17,7 +17,7 @@ namespace Mk.DemoC.ElastcSearchAppService
     // https://elasticsearch.cn/article/
     // 官方文档
     // https://www.elastic.co/guide/index.html
-    // .NET 操作
+    // .NET API
     // https://www.elastic.co/guide/en/elasticsearch/client/net-api/current/index.html
 
 
@@ -56,6 +56,8 @@ namespace Mk.DemoC.ElastcSearchAppService
     // https://blog.csdn.net/laoyang360/article/details/80468757
     // Elasticsearch（6）-基于boost的搜索条件权重控制   (默认情况下，搜索条件的权重都是一样的，都是1)
     // https://blog.csdn.net/cs1509235061/article/details/89450553
+    // ElasticSearch 排序
+    // https://www.cnblogs.com/shaosks/p/7542076.html
 
     // =====normalizer=====
     // ElasticSearch Normalizer 的使用方法？
