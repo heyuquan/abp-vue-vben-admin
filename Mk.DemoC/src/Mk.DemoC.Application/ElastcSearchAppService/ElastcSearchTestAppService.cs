@@ -274,7 +274,7 @@ namespace Mk.DemoC.ElastcSearchAppService
             var rp3 = await client.UpdateByQueryAsync<ProductSpuDocument>(
                                 s => s
                                     .Index(ElasticSearchClient.MALL_SEARCH_PRODUCT)
-                                    .Query(q => q.MatchAll())
+                                    .Query(q => q.MatchAll())                                    
                                     .Script(ss => ss.Source("ctx._source.minPrice=8;ctx._source.currency='CNY';"))
                                 );
             if (rp3.OriginalException != null)

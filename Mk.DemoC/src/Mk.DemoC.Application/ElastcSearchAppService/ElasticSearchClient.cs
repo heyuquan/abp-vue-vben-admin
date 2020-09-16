@@ -18,7 +18,11 @@ namespace Mk.DemoC.ElastcSearchAppService
             _configuration = configuration;
 
             var node = new Uri(_configuration["ElasticConfiguration:Uri"]);
-            var settings = new ConnectionSettings(node);
+            var settings = new ConnectionSettings(node)
+                .PrettyJson()
+                .EnableHttpCompression()
+                .RequestTimeout(TimeSpan.FromMinutes(2))
+                .DefaultMappingFor<ProductSpuDocument>(m=>m.IndexName(ElasticSearchClient.MALL_SEARCH_PRODUCT));
             client = new ElasticClient(settings);
         }
 
@@ -29,6 +33,9 @@ namespace Mk.DemoC.ElastcSearchAppService
             // 不能搜索到。 term是精确匹配，存带空格，查也必须带上
             if (!client.Indices.Exists(MALL_SEARCH_PRODUCT).Exists)
             {
+                // 配置分词器
+                // https://www.elastic.co/guide/en/elasticsearch/client/net-api/current/writing-analyzers.html
+
                 var index = client.Indices.Create(MALL_SEARCH_PRODUCT, c => c
                                   .Settings(s => s
                                       .Analysis(a => a

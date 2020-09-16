@@ -86,10 +86,10 @@ namespace Mk.DemoC.ElastcSearchAppService
             }
 
             var rp = client.Search<ProductSpuDocument>(s => s
-                            .Index(ElasticSearchClient.MALL_SEARCH_PRODUCT)
+                            .Index(ElasticSearchClient.MALL_SEARCH_PRODUCT)                            
                             .MinScore(0.02)
-                            .Skip(req.SkipCount)
-                            .Size(req.MaxResultCount)
+                            .From(req.SkipCount)       // Es中分页使用 from+size
+                            .Size(req.MaxResultCount)                            
                             // 指定要返回的字段，避免把一些不必要的字段返回
                             //.Source(x=>x.Includes(fin=>fin.Fields(f=>f.SpuName,f=>f.SpuCode)))
                             .Query(q => q
