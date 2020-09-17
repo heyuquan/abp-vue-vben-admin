@@ -8,6 +8,7 @@ namespace Mk.DemoC.ElastcSearchAppService
 {
     public class ElasticSearchClient : ITransientDependency
     {
+        // Es索引名称必须小写
         public const string MALL_SEARCH_PRODUCT = "mall.search.product";
 
         private readonly IElasticClient client;
