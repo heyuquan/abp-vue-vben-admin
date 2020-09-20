@@ -38,6 +38,7 @@ using Volo.Abp.EventBus.RabbitMq;
 using Volo.Abp.RabbitMQ;
 using Volo.Abp.Domain.Entities.Events.Distributed;
 using System.Reflection;
+using Leopard.Consul;
 
 namespace Mk.DemoB
 {
@@ -49,7 +50,8 @@ namespace Mk.DemoB
         typeof(DemoBApplicationModule),
         typeof(DemoBEntityFrameworkCoreDbMigrationsModule),
         typeof(AbpAspNetCoreSerilogModule),
-        typeof(AbpEventBusRabbitMqModule)
+        typeof(AbpEventBusRabbitMqModule),
+        typeof(LeopardConsulModule)
         )]
     public class DemoBHttpApiHostModule : AbpModule
     {

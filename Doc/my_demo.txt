@@ -28,6 +28,9 @@ Mk.DemoB.BackgroundJobs
 http	**02
 htps	**05
 
+demob.api      44305   44302
+democ.api      44405   44402
+demo.gateway   44505   44502 
 
 
 --demob
