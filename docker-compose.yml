@@ -32,7 +32,7 @@ services:
         image: consul
         build:
             context: .
-            dockerfile: .Environment/Dockerfile
+            dockerfile: ./Environment/Dockerfile
         ports:
             - '8500:8500'
         networks:
