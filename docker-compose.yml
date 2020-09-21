@@ -28,6 +28,15 @@ services:
             - /app/Logs:/e/Code/open_source/Abp/Leopard.Abp/Docker/App/Mk.DemoC/Logs
         networks:
             - my-net
+    consul:
+        image: consul
+        build:
+            context: .
+            dockerfile: .Environment/Dockerfile
+        ports:
+            - '8500:8500'
+        networks:
+            - my-net
 networks:
     my-net:
         driver: bridge
