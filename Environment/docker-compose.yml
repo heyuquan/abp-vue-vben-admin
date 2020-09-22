@@ -24,7 +24,7 @@ services:
       # Use single node discovery in order to disable production mode and avoid bootstrap checks
       # see https://www.elastic.co/guide/en/elasticsearch/reference/current/bootstrap-checks.html
       discovery.type: single-node
-    container_name:elasticsearch
+    container_name: elasticsearch
     networks:
       - my-net
 
@@ -49,7 +49,7 @@ services:
       - "9600:9600"
     environment:
       LS_JAVA_OPTS: "-Xmx256m -Xms256m"
-    container_name:logstash
+    container_name: logstash
     networks:
       - my-net
     depends_on:
@@ -68,7 +68,7 @@ services:
         read_only: true
     ports:
       - "5601:5601"
-    container_name:kibana
+    container_name: kibana
     networks:
       - my-net
     depends_on:
@@ -80,8 +80,10 @@ services:
       context: consul/
     ports:
       - '8500:8500'
+    container_name: consul
     networks:
       - my-net
+      
 networks:
   my-net:
     driver: bridge

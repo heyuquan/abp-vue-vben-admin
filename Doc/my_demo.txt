@@ -57,3 +57,6 @@ docker exec -it mk.democ /bin/bash
       docker-compose up -d    -d代表在后台运行
 销毁：docker-compose down
 重启：docker-compose restart
+
+
+git clone https://github.com/…/PrettyGirls.git
