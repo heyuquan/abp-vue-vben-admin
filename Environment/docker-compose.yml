@@ -73,6 +73,7 @@ services:
       - my-net
     depends_on:
       - elasticsearch
+      - logstash
       
   consul:
     image: consul.img

@@ -94,9 +94,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03_Other", "03_Other", "{9A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "06_Gateways", "06_Gateways", "{BFBA6DEE-2C3D-4695-A63C-9EC95A7D5400}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mk.Demo.Gateway", "Gateways\Mk.Demo.Gateway\Mk.Demo.Gateway.csproj", "{EA840D90-8FE0-484A-A3A7-538C2CC6F49B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.Demo.Gateway", "Gateways\Mk.Demo.Gateway\Mk.Demo.Gateway.csproj", "{EA840D90-8FE0-484A-A3A7-538C2CC6F49B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leopard.Consul", "Leopard.Framework\src\Leopard.Consul\Leopard.Consul.csproj", "{01D5AB23-4029-4DC7-A041-0D510C099F49}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Consul", "Leopard.Framework\src\Leopard.Consul\Leopard.Consul.csproj", "{01D5AB23-4029-4DC7-A041-0D510C099F49}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

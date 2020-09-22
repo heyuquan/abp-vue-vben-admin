@@ -1,7 +1,22 @@
 version: '3.4'
 services:
+    mk.demo.gateway:
+        image: mk.demo.gateway.img
+        build:
+            context: .
+            dockerfile: ./Mk.DemoC/src/Mk.DemoC.HttpApi.Host/Dockerfile
+        ports:
+            - '44502:44502'
+        environment:
+            - ASPNETCORE_URLS=http://*:44502
+        volumes:
+            - /app/Logs:/e/Code/open_source/Abp/Leopard.Abp/Docker/App/Mk.Demo.Gateway/Logs
+        container_name: mk.demo.gateway
+        networks:
+            - my-net
+
     mk.demob.api:
-        image: mk.demob.api
+        image: mk.demob.api.img
         build:
             context: .
             dockerfile: ./Mk.DemoB/src/Mk.DemoB.HttpApi.Host/Dockerfile
@@ -13,10 +28,13 @@ services:
             - /app/Logs:/e/Code/open_source/Abp/Leopard.Abp/Docker/App/Mk.DemoB/Logs
         networks:
             - my-net
+        container_name: mk.demob.api
         depends_on:
+            - mk.demo.gateway
             - mk.democ.api
+
     mk.democ.api:
-        image: mk.democ.api
+        image: mk.democ.api.img
         build:
             context: .
             dockerfile: ./Mk.DemoC/src/Mk.DemoC.HttpApi.Host/Dockerfile
@@ -28,6 +46,10 @@ services:
             - /app/Logs:/e/Code/open_source/Abp/Leopard.Abp/Docker/App/Mk.DemoC/Logs
         networks:
             - my-net
+        container_name: mk.democ.api
+        depends_on:
+            - mk.demo.gateway
+
 networks:
     my-net:
         driver: bridge
