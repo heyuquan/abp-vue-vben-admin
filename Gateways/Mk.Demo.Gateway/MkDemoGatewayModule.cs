@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
+using Ocelot.Provider.Consul;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,9 @@ namespace Mk.Demo.Gateway
                 options.CustomSchemaIds(type => type.FullName);
             });
 
-            context.Services.AddOcelot(configuration);
+            context.Services
+                .AddOcelot(configuration)
+                .AddConsul();
         }
 
         public override void OnApplicationInitialization(ApplicationInitializationContext context)

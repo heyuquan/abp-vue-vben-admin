@@ -18,25 +18,24 @@
       "LoadBalancerOptions": {
         "Type": "LeastConnection"
       }
+    },
+    {
+      "DownstreamPathTemplate": "/api/loadbalance/{everything}",
+      "DownstreamScheme": "https",
+      "UpstreamPathTemplate": "/api/consul/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ],
+      "ServiceName": "Consul_ServiceA",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      }
     }
-    //,
-    //{
-    //  "DownstreamPathTemplate": "/api/{everything}",
-    //  "DownstreamScheme": "http",
-    //  "UpstreamPathTemplate": "/ServiceB/{everything}",
-    //  "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ],
-    //  "ServiceName": "ServiceB",
-    //  "LoadBalancerOptions": {
-    //    "Type": "LeastConnection"
-    //  }
-    //}
   ],
   "GlobalConfiguration": {
-    //"ServiceDiscoveryProvider": {
-    //  "Host": "localhost",
-    //  "Port": 8500,
-    //  "Type": "Consul"
-    //}
+    "ServiceDiscoveryProvider": {
+      "Host": "134.175.121.78",
+      "Port": 8500,
+      "Type": "Consul"
+    },
     "BaseUrl": "https://localhost:44505"
   }
 }

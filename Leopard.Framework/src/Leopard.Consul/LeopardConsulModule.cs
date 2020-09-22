@@ -9,6 +9,11 @@ namespace Leopard.Consul
 {
     public class LeopardConsulModule : AbpModule
     {
+        public override void ConfigureServices(ServiceConfigurationContext context)
+        {
+            context.Services.AddServiceDiscovery();
+        }
+
         public override void OnApplicationInitialization(ApplicationInitializationContext context)
         {
             var app = context.GetApplicationBuilder();

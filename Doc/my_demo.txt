@@ -59,4 +59,11 @@ docker exec -it mk.democ /bin/bash
 ÷ÿ∆Ù£∫docker-compose restart
 
 
-git clone https://github.com/°≠/PrettyGirls.git
+git clone https://github.com/heyuquan/Leopard.Abp.git
+git pull https://github.com/heyuquan/Leopard.Abp.git 
+
+/usr/local/Leopard.Abp/Environment
+
+elastic£∫http://134.175.121.78:9200
+kibana£∫http://134.175.121.78:5601/
+consul:http://134.175.121.78:8500/
