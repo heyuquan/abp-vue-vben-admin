@@ -34,9 +34,9 @@ demo.gateway   44505   44502
 
 
 --demob
-docker build -f Dockerfile -t mk.demob.api ../../../
+docker build -f Dockerfile -t mk.demob.api.img ../../../
 
-docker run --name mk.demob.api -p 44302:44302  -v /e/Code/open_source/Abp/Leopard.Abp/Docker/App/Mk.DemoB/Logs:/app/Logs -d mk.demob.api
+docker run --name mk.demob.api -p 44302:44302  -v /e/Code/open_source/Abp/Leopard.Abp/Docker/App/Mk.DemoB/Logs:/app/Logs -d mk.demob.api.img
 
 docker exec -it mk.demob /bin/bash
 
@@ -44,9 +44,9 @@ docker exec -it mk.demob /bin/bash
 
 
 --democ
-docker build -f Dockerfile -t mk.democ.api ../../../
+docker build -f Dockerfile -t mk.democ.api.img ../../../
 
-docker run --name mk.democ.api -p 44402:44402  -v /e/Code/open_source/Abp/Leopard.Abp/Docker/App/Mk.DemoC/Logs:/app/Logs -d mk.democ.api
+docker run --name mk.democ.api -p 44402:44402  -v /e/Code/open_source/Abp/Leopard.Abp/Docker/App/Mk.DemoC/Logs:/app/Logs -d mk.democ.api.img
 
 
 docker exec -it mk.democ /bin/bash

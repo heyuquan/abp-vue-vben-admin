@@ -4,7 +4,7 @@ services:
         image: mk.demo.gateway.img
         build:
             context: .
-            dockerfile: ./Mk.DemoC/src/Mk.DemoC.HttpApi.Host/Dockerfile
+            dockerfile: ./Gateways/mk.Demo.Gateway/Dockerfile
         ports:
             - '44502:44502'
         environment:
