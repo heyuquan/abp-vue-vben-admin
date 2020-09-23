@@ -15,5 +15,5 @@ RUN dotnet publish -nowarn:cs1998,cs1572,cs1573 --no-restore -c Release -o /app
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
-ENV ASPNETCORE_URLS=http://*:44502
+ENV ASPNETCORE_URLS=http://localhost:44502
 ENTRYPOINT ["dotnet", "Mk.Demo.Gateway.dll"]

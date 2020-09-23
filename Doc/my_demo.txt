@@ -58,6 +58,8 @@ docker exec -it mk.democ /bin/bash
 销毁：docker-compose down
 重启：docker-compose restart
 
+docker-compose -f docker-compose-linux.yml up -d
+
 git 拉取远程代码
 https://blog.csdn.net/weijinqian0/article/details/76217014
     git clone https://github.com/heyuquan/Leopard.Abp.git

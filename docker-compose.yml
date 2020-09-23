@@ -8,7 +8,7 @@ services:
     ports:
       - '44502:44502'
     environment:
-      - ASPNETCORE_URLS=http://*:44502
+      - ASPNETCORE_URLS=http://localhost:44502
     volumes:
       - type: bind
         source: /e/Code/open_source/Abp/Leopard.Abp/Docker/App/Mk.Demo.Gateway/Logs
@@ -25,7 +25,7 @@ services:
     ports:
       - '44302:44302'
     environment:
-      - ASPNETCORE_URLS=http://*:44302
+      - ASPNETCORE_URLS=http://localhost:44302
     volumes:
       - type: bind
         source: /e/Code/open_source/Abp/Leopard.Abp/Docker/App/Mk.DemoB/Logs
@@ -45,7 +45,7 @@ services:
     ports:
       - '44402:44402'
     environment:
-      - ASPNETCORE_URLS=http://*:44402
+      - ASPNETCORE_URLS=http://localhost:44402
     volumes:
       - type: bind
         source: /e/Code/open_source/Abp/Leopard.Abp/Docker/App/Mk.DemoC/Logs
