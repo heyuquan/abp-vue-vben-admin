@@ -5,7 +5,7 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
 COPY . .
-WORKDIR /src/Gateways/Mk.Demo.Gateway/Mk.Demo.Gateway.Host
+WORKDIR /src/Gateways/Mk.Demo.Gateway
 RUN dotnet restore -nowarn:msb3202,nu1503
 RUN dotnet build -nowarn:cs1998,cs1572,cs1573 --no-restore -c Release -o /app
 
