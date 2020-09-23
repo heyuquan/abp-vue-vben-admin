@@ -33,7 +33,7 @@ namespace Leopard.Consul.Extensions
             var serviceDiscoveryOptions = app.ApplicationServices.GetService(typeof(IOptions<ServiceDiscoveryOptions>)) as IOptions<ServiceDiscoveryOptions>;
             var serviceDiscovery = serviceDiscoveryOptions.Value;
             Check.NotNull(serviceDiscovery, nameof(serviceDiscoveryOptions));
-           
+
             var consul = app.ApplicationServices.GetService(typeof(IConsulClient)) as IConsulClient;
 
             var loggerFactory = app.ApplicationServices.GetRequiredService<ILoggerFactory>();
@@ -54,6 +54,9 @@ namespace Leopard.Consul.Extensions
             {
                 logger.LogInformation($"Trying to use server.Features to figure out the service endpoints for service registration.");
                 var features = app.Properties["server.Features"] as FeatureCollection;
+                var cols = features.Get<IServerAddressesFeature>().Addresses;
+                logger.LogInformation($"Found {cols.Count()} endpoints: {string.Join(",", cols)}.");
+
                 addresses = features.Get<IServerAddressesFeature>()
                     .Addresses
                     .Select(p => new Uri(p)).ToArray();
@@ -101,6 +104,6 @@ namespace Leopard.Consul.Extensions
             }
 
             return app;
-        }      
+        }
     }
 }
