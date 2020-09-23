@@ -50,7 +50,7 @@ namespace Mk.DemoB
 #if DEBUG
                 //.WriteTo.Console()  // 在容器中，有时候挂载日志文件异常，导致查不出原因，会需要将日志打印到控制台上
 #endif
-                //.WriteTo.Async(c => c.File("Logs/logs.txt"))
+                .WriteTo.Async(c => c.File("Logs/logs.txt"))
                 .WriteTo.Elasticsearch(ConfigureElasticSink(cfg, env))
                 .ReadFrom.Configuration(cfg)
                 .CreateLogger();
