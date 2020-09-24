@@ -6,12 +6,12 @@ services:
       context: .
       dockerfile: ./Gateways/Mk.Demo.Gateway/Dockerfile
     ports:
-      - target: 80                    
+      - target: 44502                    
         published: 44502              
         protocol: tcp                 
         mode: host  
     environment:
-      - ASPNETCORE_URLS=http://0.0.0.0:80
+      - ASPNETCORE_URLS=http://0.0.0.0:44502
     volumes:
       - type: bind
         source: /usr/local/logs/App/Mk.Demo.Gateway/Logs
@@ -26,12 +26,12 @@ services:
       context: .
       dockerfile: ./Mk.DemoB/src/Mk.DemoB.HttpApi.Host/Dockerfile
     ports:
-      - target: 80                    
+      - target: 44302                    
         published: 44302              
         protocol: tcp                 
         mode: host  
     environment:
-      - ASPNETCORE_URLS=http://0.0.0.0:80
+      - ASPNETCORE_URLS=http://0.0.0.0:44302
     volumes:
       - type: bind
         source: /usr/local/logs/App/Mk.DemoB/Logs
@@ -49,12 +49,12 @@ services:
       context: .
       dockerfile: ./Mk.DemoC/src/Mk.DemoC.HttpApi.Host/Dockerfile
     ports:
-      - target: 80                    
+      - target: 44402                    
         published: 44402              
         protocol: tcp                 
         mode: host  
     environment:
-      - ASPNETCORE_URLS=http://0.0.0.0:80
+      - ASPNETCORE_URLS=http://0.0.0.0:44402
     volumes:
       - type: bind
         source: /usr/local/logs/App/Mk.DemoC/Logs
