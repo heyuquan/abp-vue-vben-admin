@@ -6,9 +6,12 @@ services:
       context: .
       dockerfile: ./Gateways/Mk.Demo.Gateway/Dockerfile
     ports:
-      - '44502:44502'
+      - target: 80                    # 容器端口
+        published: 44502              # 宿主机端口
+        protocol: tcp                 
+        mode: host  
     environment:
-      - ASPNETCORE_URLS=http://localhost:44502
+      - ASPNETCORE_URLS=http://0.0.0.0:80
     volumes:
       - type: bind
         source: /e/Code/open_source/Abp/Leopard.Abp/Docker/App/Mk.Demo.Gateway/Logs
@@ -23,9 +26,12 @@ services:
       context: .
       dockerfile: ./Mk.DemoB/src/Mk.DemoB.HttpApi.Host/Dockerfile
     ports:
-      - '44302:44302'
+      - target: 80                    # 容器端口
+        published: 44302              # 宿主机端口
+        protocol: tcp                 
+        mode: host  
     environment:
-      - ASPNETCORE_URLS=http://localhost:44302
+      - ASPNETCORE_URLS=http://0.0.0.0:80
     volumes:
       - type: bind
         source: /e/Code/open_source/Abp/Leopard.Abp/Docker/App/Mk.DemoB/Logs
@@ -43,9 +49,12 @@ services:
       context: .
       dockerfile: ./Mk.DemoC/src/Mk.DemoC.HttpApi.Host/Dockerfile
     ports:
-      - '44402:44402'
+      - target: 80                    # 容器端口
+        published: 44402              # 宿主机端口
+        protocol: tcp                 
+        mode: host  
     environment:
-      - ASPNETCORE_URLS=http://localhost:44402
+      - ASPNETCORE_URLS=http://0.0.0.0:80
     volumes:
       - type: bind
         source: /e/Code/open_source/Abp/Leopard.Abp/Docker/App/Mk.DemoC/Logs

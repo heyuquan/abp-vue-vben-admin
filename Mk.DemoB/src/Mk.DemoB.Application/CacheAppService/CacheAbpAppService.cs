@@ -21,6 +21,7 @@ namespace Mk.DemoB.Application
     [Route("api/abp/cache")]
     public class CacheAbpAppService : DemoBAppService
     {
+
         //ASP.NET Core 定义了 IDistributedCache 接口用于 get/set 缓存值.但是会有以下问题:
         //  1、它适用于 byte 数组 而不是.NET 对象. 因此你需要对缓存的对象进行序列化/反序列化.
         //  2、它为所有的缓存项提供了 单个 key 池, 因此 ;
@@ -33,6 +34,7 @@ namespace Mk.DemoB.Application
         private readonly IDistributedCache<BookCacheItem> _cache;
         public CacheAbpAppService(IDistributedCache<BookCacheItem> cache)
         {
+            _cache = cache;
             _cache = cache;
         }
         
