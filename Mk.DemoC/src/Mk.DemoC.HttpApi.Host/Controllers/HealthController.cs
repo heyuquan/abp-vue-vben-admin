@@ -3,7 +3,7 @@ using Volo.Abp.AspNetCore.Mvc;
 
 namespace Mk.DemoC.Controllers
 {
-
+    [Route("api/democ/health")]
     public class HealthController : AbpController
     {
         /// <summary>
