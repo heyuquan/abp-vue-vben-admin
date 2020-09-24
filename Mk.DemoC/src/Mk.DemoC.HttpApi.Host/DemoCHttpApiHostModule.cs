@@ -38,6 +38,7 @@ using Microsoft.AspNetCore.Mvc;
 using Leopard.AspNetCore.Mvc.Filters;
 using Volo.Abp.Timing;
 using Volo.Abp.AspNetCore.Mvc.ExceptionHandling;
+using Leopard.Consul;
 
 namespace Mk.DemoC
 {
@@ -53,7 +54,8 @@ namespace Mk.DemoC
         typeof(LeopardPermissionManagementEntityFrameworkCoreModule),
         typeof(LeopardSettingManagementEntityFrameworkCoreModule),
         typeof(AbpAspNetCoreSerilogModule),
-        typeof(AbpEventBusRabbitMqModule)
+        typeof(AbpEventBusRabbitMqModule),
+        typeof(LeopardConsulModule)
         )]
     public class DemoCHttpApiHostModule : AbpModule
     {

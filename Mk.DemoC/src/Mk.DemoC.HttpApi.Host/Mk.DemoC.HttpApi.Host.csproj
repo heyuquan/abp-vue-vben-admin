@@ -34,6 +34,7 @@
     <ProjectReference Include="..\..\..\Leopard.Framework\src\Leopard.Abp.PermissionManagement.EntityFrameworkCore\Leopard.Abp.PermissionManagement.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\..\..\Leopard.Framework\src\Leopard.Abp.SettingManagement.EntityFrameworkCore\Leopard.Abp.SettingManagement.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\..\..\Leopard.Framework\src\Leopard.AspNetCore.Mvc\Leopard.AspNetCore.Mvc.csproj" />
+    <ProjectReference Include="..\..\..\Leopard.Framework\src\Leopard.Consul\Leopard.Consul.csproj" />
     <ProjectReference Include="..\Mk.DemoC.HttpApi\Mk.DemoC.HttpApi.csproj" />
     <ProjectReference Include="..\Mk.DemoC.Application\Mk.DemoC.Application.csproj" />
     <ProjectReference Include="..\Mk.DemoC.EntityFrameworkCore\Mk.DemoC.EntityFrameworkCore.csproj" />
