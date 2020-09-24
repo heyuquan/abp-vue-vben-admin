@@ -14,8 +14,11 @@ services:
       - ASPNETCORE_URLS=http://0.0.0.0:44502
     volumes:
       - type: bind
-        source: /e/Code/open_source/Abp/Leopard.Abp/Docker/App/Mk.Demo.Gateway/Logs
+        source: /usr/local/logs/App/Mk.Demo.Gateway/Logs
         target: /app/Logs
+      - type: bind
+        source: /usr/local/logs/App/Mk.Demo.Gateway/appsettings.json
+        target: /app/appsettings.json
     container_name: mk.demo.gateway
     networks:
       - my-net
@@ -34,8 +37,11 @@ services:
       - ASPNETCORE_URLS=http://0.0.0.0:44302
     volumes:
       - type: bind
-        source: /e/Code/open_source/Abp/Leopard.Abp/Docker/App/Mk.DemoB/Logs
+        source: /usr/local/logs/App/Mk.DemoB/Logs
         target: /app/Logs
+      - type: bind
+        source: /usr/local/logs/App/Mk.DemoB/appsettings.json
+        target: /app/appsettings.json
     networks:
       - my-net
     container_name: mk.demob.api
@@ -57,8 +63,11 @@ services:
       - ASPNETCORE_URLS=http://0.0.0.0:44402
     volumes:
       - type: bind
-        source: /e/Code/open_source/Abp/Leopard.Abp/Docker/App/Mk.DemoC/Logs
+        source: /usr/local/logs/App/Mk.DemoC/Logs
         target: /app/Logs
+      - type: bind
+        source: /usr/local/logs/App/Mk.DemoC/appsettings.json
+        target: /app/appsettings.json
     networks:
       - my-net
     container_name: mk.democ.api
