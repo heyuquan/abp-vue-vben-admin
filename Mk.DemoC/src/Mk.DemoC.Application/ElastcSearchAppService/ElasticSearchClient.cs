@@ -23,7 +23,7 @@ namespace Mk.DemoC.ElastcSearchAppService
                 .PrettyJson()
                 .EnableHttpCompression()
                 .RequestTimeout(TimeSpan.FromMinutes(2))
-                .DefaultMappingFor<ProductSpuDocument>(m=>m.IndexName(ElasticSearchClient.MALL_SEARCH_PRODUCT));
+                .DefaultMappingFor<ProductSpuDocument>(m => m.IndexName(ElasticSearchClient.MALL_SEARCH_PRODUCT));
             client = new ElasticClient(settings);
         }
 
@@ -49,7 +49,8 @@ namespace Mk.DemoC.ElastcSearchAppService
                              );
                 if (!index.IsValid)
                 {
-                    throw new Exception($"[{MALL_SEARCH_PRODUCT}]索引创建失败");
+
+                    throw new Exception($"[{MALL_SEARCH_PRODUCT}]索引创建失败", index.OriginalException);
                 }
             }
         }

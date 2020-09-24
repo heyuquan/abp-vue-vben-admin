@@ -6,8 +6,8 @@ services:
       context: .
       dockerfile: ./Gateways/Mk.Demo.Gateway/Dockerfile
     ports:
-      - target: 80                    # 容器端口
-        published: 44502              # 宿主机端口
+      - target: 80                    
+        published: 44502              
         protocol: tcp                 
         mode: host  
     environment:
@@ -26,8 +26,8 @@ services:
       context: .
       dockerfile: ./Mk.DemoB/src/Mk.DemoB.HttpApi.Host/Dockerfile
     ports:
-      - target: 80                    # 容器端口
-        published: 44302              # 宿主机端口
+      - target: 80                    
+        published: 44302              
         protocol: tcp                 
         mode: host  
     environment:
@@ -49,8 +49,8 @@ services:
       context: .
       dockerfile: ./Mk.DemoC/src/Mk.DemoC.HttpApi.Host/Dockerfile
     ports:
-      - target: 80                    # 容器端口
-        published: 44402              # 宿主机端口
+      - target: 80                    
+        published: 44402              
         protocol: tcp                 
         mode: host  
     environment:

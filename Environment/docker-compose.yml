@@ -15,6 +15,9 @@ services:
       - type: volume
         source: elasticsearch
         target: /usr/share/elasticsearch/data
+      - type: bind
+        source: ./elasticsearch/plugins
+        target: /usr/share/elasticsearch/plugins
     ports:
       - "9200:9200"
       - "9300:9300"
