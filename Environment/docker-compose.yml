@@ -12,8 +12,8 @@ services:
         source: ./elasticsearch/config/elasticsearch.yml
         target: /usr/share/elasticsearch/config/elasticsearch.yml
         read_only: true
-      - type: volume
-        source: elasticsearch
+      - type: bind
+        source: /usr/local/app-data/elasticsearch/data
         target: /usr/share/elasticsearch/data
       - type: bind
         source: ./elasticsearch/plugins
@@ -91,6 +91,3 @@ services:
 networks:
   my-net:
     driver: bridge
-
-volumes:
-  elasticsearch:

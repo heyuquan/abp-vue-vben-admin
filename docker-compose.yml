@@ -14,11 +14,14 @@ services:
       - ASPNETCORE_URLS=http://0.0.0.0:44502
     volumes:
       - type: bind
-        source: /usr/local/logs/App/Mk.Demo.Gateway/Logs
+        source: /usr/local/app-data/logs/Mk.Demo.Gateway/Logs
         target: /app/Logs
       - type: bind
-        source: /usr/local/logs/App/Mk.Demo.Gateway/appsettings.json
+        source: /usr/local/app-data/config/Mk.Demo.Gateway/appsettings.json
         target: /app/appsettings.json
+      - type: bind
+        source: /usr/local/app-data/config/Mk.Demo.Gateway/ocelot.json
+        target: /app/ocelot.json
     container_name: mk.demo.gateway
     networks:
       - my-net
@@ -37,10 +40,10 @@ services:
       - ASPNETCORE_URLS=http://0.0.0.0:44302
     volumes:
       - type: bind
-        source: /usr/local/logs/App/Mk.DemoB/Logs
+        source: /usr/local/app-data/logs/Mk.DemoB.Api/Logs
         target: /app/Logs
       - type: bind
-        source: /usr/local/logs/App/Mk.DemoB/appsettings.json
+        source: /usr/local/app-data/config/Mk.DemoB.Api/appsettings.json
         target: /app/appsettings.json
     networks:
       - my-net
@@ -63,10 +66,10 @@ services:
       - ASPNETCORE_URLS=http://0.0.0.0:44402
     volumes:
       - type: bind
-        source: /usr/local/logs/App/Mk.DemoC/Logs
+        source: /usr/local/app-data/logs/Mk.DemoC.Api/Logs
         target: /app/Logs
       - type: bind
-        source: /usr/local/logs/App/Mk.DemoC/appsettings.json
+        source: /usr/local/app-data/config/Mk.DemoC.Api/appsettings.json
         target: /app/appsettings.json
     networks:
       - my-net
