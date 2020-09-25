@@ -39,6 +39,7 @@ using Leopard.AspNetCore.Mvc.Filters;
 using Volo.Abp.Timing;
 using Volo.Abp.AspNetCore.Mvc.ExceptionHandling;
 using Leopard.Consul;
+using Serilog;
 
 namespace Mk.DemoC
 {
@@ -199,6 +200,7 @@ namespace Mk.DemoC
 
             app.UseHttpsRedirection();
             app.UseCorrelationId();
+            app.UseSerilogRequestLogging();
             app.UseVirtualFiles();
             app.UseRouting();
             app.UseCors(DefaultCorsPolicyName);        

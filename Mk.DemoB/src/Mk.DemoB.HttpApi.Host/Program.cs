@@ -8,6 +8,8 @@ using Microsoft.Extensions.Logging;
 using Serilog.Sinks.Elasticsearch;
 using System.Reflection;
 using Serilog.Exceptions;
+using Mk.DemoB.Domain.Consts;
+using System.Text;
 
 namespace Mk.DemoB
 {
@@ -42,15 +44,27 @@ namespace Mk.DemoB
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{env}.json", optional: true, reloadOnChange: true)
                 .Build();
+
+            // https://www.cnblogs.com/Quinnz/p/12202633.html
+            const string outputTemplate = "[{Timestamp:yyyy-MM-dd HH:mm:ss.FFF} {Level:w3}] {Message} {NewLine}{Exception}";
             Log.Logger = new LoggerConfiguration()
                 .Enrich.FromLogContext()
                 //.Enrich.WithExceptionDetails()
                 .Enrich.WithProperty("Environment", env)
+                .Enrich.WithProperty("ProjectName", AppConsts.PROJECT_NAME)
                 //.WriteTo.Debug()
 #if DEBUG
                 //.WriteTo.Console()  // 在容器中，有时候挂载日志文件异常，导致查不出原因，会需要将日志打印到控制台上
 #endif
-                .WriteTo.Async(c => c.File("Logs/logs.txt"))
+                .WriteTo.Async(c => c.File(
+                                        "Logs/logs.txt"
+                                        , encoding: Encoding.UTF8
+                                        , rollOnFileSizeLimit: true
+                                        , fileSizeLimitBytes: (1024 * 10) * 1024    // 10k*1024=10M  最大单个文件10M
+                                        , rollingInterval: RollingInterval.Day
+                                        , outputTemplate: outputTemplate
+                                        )
+                                    )
                 .WriteTo.Elasticsearch(ConfigureElasticSink(cfg, env))
                 .ReadFrom.Configuration(cfg)
                 .CreateLogger();

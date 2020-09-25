@@ -12,6 +12,7 @@ services:
         mode: host  
     environment:
       - ASPNETCORE_URLS=http://0.0.0.0:44502
+      - ASPNETCORE_ENVIRONMENT=Production
     volumes:
       - type: bind
         source: /usr/local/app-data/logs/Mk.Demo.Gateway/Logs
@@ -38,6 +39,7 @@ services:
         mode: host  
     environment:
       - ASPNETCORE_URLS=http://0.0.0.0:44302
+      - ASPNETCORE_ENVIRONMENT=Production
     volumes:
       - type: bind
         source: /usr/local/app-data/logs/Mk.DemoB.Api/Logs
@@ -64,6 +66,7 @@ services:
         mode: host  
     environment:
       - ASPNETCORE_URLS=http://0.0.0.0:44402
+      - ASPNETCORE_ENVIRONMENT=Production
     volumes:
       - type: bind
         source: /usr/local/app-data/logs/Mk.DemoC.Api/Logs

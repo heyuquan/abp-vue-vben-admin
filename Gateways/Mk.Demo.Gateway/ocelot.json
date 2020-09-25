@@ -3,7 +3,7 @@
     {
       "DownstreamPathTemplate": "/api/loadbalance/{everything}",
       "UpstreamPathTemplate": "/api/loadbalance/{everything}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "UpstreamHttpMethod": [ "GET" ],
       "DownstreamHostAndPorts": [
         {
@@ -21,7 +21,7 @@
     },
     {
       "DownstreamPathTemplate": "/api/loadbalance/{everything}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "UpstreamPathTemplate": "/api/consul/{everything}",
       "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ],
       "ServiceName": "Consul_ServiceA",

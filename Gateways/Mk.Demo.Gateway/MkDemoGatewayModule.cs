@@ -4,6 +4,7 @@ using Microsoft.OpenApi.Models;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 using Ocelot.Provider.Consul;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,6 +42,7 @@ namespace Mk.Demo.Gateway
         {
             var app = context.GetApplicationBuilder();
             app.UseCorrelationId();
+            app.UseSerilogRequestLogging();
             app.UseRouting();
             //app.UseAuthentication();
             app.UseAbpClaimsMap();

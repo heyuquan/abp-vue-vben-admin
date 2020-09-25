@@ -39,6 +39,8 @@ using Volo.Abp.RabbitMQ;
 using Volo.Abp.Domain.Entities.Events.Distributed;
 using System.Reflection;
 using Leopard.Consul;
+using Microsoft.AspNetCore.Http;
+using Serilog;
 
 namespace Mk.DemoB
 {
@@ -81,7 +83,7 @@ namespace Mk.DemoB
             {
                 options.DefaultSequentialGuidType = SequentialGuidType.SequentialAsString;
             });
-
+            
             // 使用错误代码
             context.Services.Configure<AbpExceptionLocalizationOptions>(options =>
             {
@@ -243,6 +245,8 @@ namespace Mk.DemoB
             }
 
             app.UseCorrelationId();
+            // https://github.com/serilog/serilog-aspnetcore/blob/dev/src/Serilog.AspNetCore/AspNetCore/RequestLoggingMiddleware.cs
+            app.UseSerilogRequestLogging();
             app.UseVirtualFiles();
             app.UseRouting();
             app.UseCors(DefaultCorsPolicyName);

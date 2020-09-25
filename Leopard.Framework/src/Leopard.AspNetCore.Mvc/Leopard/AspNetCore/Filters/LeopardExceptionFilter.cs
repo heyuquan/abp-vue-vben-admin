@@ -96,7 +96,7 @@ namespace Leopard.AspNetCore.Mvc.Filters
                 if (string.IsNullOrWhiteSpace(remoteServiceErrorInfo.Details))
                 {
                     remoteServiceErrorInfo.Details = $"{context.Exception.GetType()}. {context.Exception.Message}";
-                }                
+                }
             }
 
             ServiceResult<RemoteServiceErrorInfo> ret = new ServiceResult<RemoteServiceErrorInfo>(_correlationIdProvider.Get());
@@ -106,9 +106,8 @@ namespace Leopard.AspNetCore.Mvc.Filters
 
             var logLevel = context.Exception.GetLogLevel();
 
-            Logger.LogWithLevel(logLevel, $"---------- {nameof(RemoteServiceErrorInfo)} ----------");
-            Logger.LogWithLevel(logLevel, _jsonSerializer.Serialize(ret, indented: true));
-            Logger.LogException(context.Exception, logLevel);
+            Logger.LogWithLevel(logLevel, _jsonSerializer.Serialize(ret, indented: true), context.Exception);
+            //Logger.LogException(context.Exception, logLevel);
 
             await context.HttpContext
                 .RequestServices

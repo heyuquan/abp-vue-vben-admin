@@ -18,11 +18,10 @@
   
   <ItemGroup>
     <EmbeddedResource Include="Localization\DemoC\*.json" />
+    <Compile Remove="Domain\Enums\**" />
     <Content Remove="Localization\DemoC\*.json" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <Folder Include="Domain\Enums\" />
+    <EmbeddedResource Remove="Domain\Enums\**" />
+    <None Remove="Domain\Enums\**" />
   </ItemGroup>
 
 </Project>
