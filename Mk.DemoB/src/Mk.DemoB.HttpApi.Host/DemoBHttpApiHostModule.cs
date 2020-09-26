@@ -1,46 +1,40 @@
-using System;
-using System.IO;
-using System.Linq;
+using Leopard.AspNetCore.Mvc.Filters;
+using Leopard.Consul;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using Mk.DemoB.EntityFrameworkCore;
+using Mk.DemoB.Localization;
 using Mk.DemoB.MultiTenancy;
 using StackExchange.Redis;
-using Microsoft.OpenApi.Models;
+using System;
+using System.IO;
+using System.Linq;
 using Volo.Abp;
+using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
+using Volo.Abp.AspNetCore.Mvc.ExceptionHandling;
 using Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
 using Volo.Abp.AspNetCore.Serilog;
 using Volo.Abp.Autofac;
+using Volo.Abp.BackgroundJobs;
 using Volo.Abp.Caching;
 using Volo.Abp.Caching.StackExchangeRedis;
-using Volo.Abp.Localization;
-using Volo.Abp.Modularity;
-using Volo.Abp.VirtualFileSystem;
-using Volo.Abp.Guids;
-using Volo.Abp.Localization.ExceptionHandling;
-using Mk.DemoB.Localization;
-using Volo.Abp.BackgroundJobs;
-using Microsoft.AspNetCore.Mvc;
-using Volo.Abp.AspNetCore.Mvc.ExceptionHandling;
-using Leopard.AspNetCore.Mvc.Filters;
-using Mk.DemoB.BackgroundJobs;
-using Mk.DemoB.BackgroundJobs.Job;
-using Volo.Abp.Timing;
-using Volo.Abp.Application.Dtos;
-using Volo.Abp.EventBus.RabbitMq;
-using Volo.Abp.RabbitMQ;
 using Volo.Abp.Domain.Entities.Events.Distributed;
-using System.Reflection;
-using Leopard.Consul;
-using Microsoft.AspNetCore.Http;
-using Serilog;
+using Volo.Abp.EventBus.RabbitMq;
+using Volo.Abp.Guids;
+using Volo.Abp.Localization;
+using Volo.Abp.Localization.ExceptionHandling;
+using Volo.Abp.Modularity;
+using Volo.Abp.Timing;
+using Volo.Abp.VirtualFileSystem;
 
 namespace Mk.DemoB
 {
@@ -245,8 +239,7 @@ namespace Mk.DemoB
             }
 
             app.UseCorrelationId();
-            // https://github.com/serilog/serilog-aspnetcore/blob/dev/src/Serilog.AspNetCore/AspNetCore/RequestLoggingMiddleware.cs
-            app.UseSerilogRequestLogging();
+
             app.UseVirtualFiles();
             app.UseRouting();
             app.UseCors(DefaultCorsPolicyName);

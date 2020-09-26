@@ -4,13 +4,9 @@ using Microsoft.OpenApi.Models;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 using Ocelot.Provider.Consul;
-using Serilog;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Volo.Abp;
 using Volo.Abp.AspNetCore.Mvc;
+using Volo.Abp.AspNetCore.Serilog;
 using Volo.Abp.Autofac;
 using Volo.Abp.Modularity;
 
@@ -18,7 +14,8 @@ namespace Mk.Demo.Gateway
 {
     [DependsOn(
         typeof(AbpAutofacModule),
-        typeof(AbpAspNetCoreMvcModule)
+        typeof(AbpAspNetCoreMvcModule),
+        typeof(AbpAspNetCoreSerilogModule)
         )]
     public class MkDemoGatewayModule : AbpModule
     {
@@ -42,7 +39,7 @@ namespace Mk.Demo.Gateway
         {
             var app = context.GetApplicationBuilder();
             app.UseCorrelationId();
-            app.UseSerilogRequestLogging();
+            app.UseAbpSerilogEnrichers();
             app.UseRouting();
             //app.UseAuthentication();
             app.UseAbpClaimsMap();

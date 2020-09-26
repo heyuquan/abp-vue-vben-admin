@@ -200,7 +200,7 @@ namespace Mk.DemoC
 
             app.UseHttpsRedirection();
             app.UseCorrelationId();
-            app.UseSerilogRequestLogging();
+         
             app.UseVirtualFiles();
             app.UseRouting();
             app.UseCors(DefaultCorsPolicyName);        
