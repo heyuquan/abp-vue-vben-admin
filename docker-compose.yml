@@ -21,6 +21,9 @@ services:
         source: /usr/local/app-data/config/Mk.Demo.Gateway/appsettings.json
         target: /app/appsettings.json
       - type: bind
+        source: /usr/local/app-data/config/Mk.Demo.Gateway/appsettings.Production.json
+        target: /app/appsettings.Production.json
+      - type: bind
         source: /usr/local/app-data/config/Mk.Demo.Gateway/ocelot.json
         target: /app/ocelot.json
     container_name: mk.demo.gateway
@@ -47,6 +50,9 @@ services:
       - type: bind
         source: /usr/local/app-data/config/Mk.DemoB.Api/appsettings.json
         target: /app/appsettings.json
+      - type: bind
+        source: /usr/local/app-data/config/Mk.DemoB.Api/appsettings.Production.json
+        target: /app/appsettings.Production.json
     networks:
       - my-net
     container_name: mk.demob.api
@@ -74,6 +80,9 @@ services:
       - type: bind
         source: /usr/local/app-data/config/Mk.DemoC.Api/appsettings.json
         target: /app/appsettings.json
+      - type: bind
+        source: /usr/local/app-data/config/Mk.DemoC.Api/appsettings.Production.json
+        target: /app/appsettings.Production.json
     networks:
       - my-net
     container_name: mk.democ.api
