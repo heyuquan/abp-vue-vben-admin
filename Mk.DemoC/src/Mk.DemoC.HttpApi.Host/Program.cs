@@ -73,7 +73,7 @@ namespace Mk.DemoC
             {
                 AutoRegisterTemplate = true,
                 // IndexFormat = $"{Assembly.GetExecutingAssembly().GetName().Name.ToLower().Replace(".", "-")}-{env?.ToLower().Replace(".", "-")}-{DateTime.UtcNow:yyyy-MM}"
-                IndexFormat = $"Mk.DemoC.Api-{DateTime.UtcNow:yyyy-MM}"
+                IndexFormat = $"Mk.DemoC.Api-v1-{DateTime.UtcNow:yyyy-MM}"
             };
         }
 

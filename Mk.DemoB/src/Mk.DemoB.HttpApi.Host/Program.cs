@@ -76,7 +76,8 @@ namespace Mk.DemoB
             {
                 AutoRegisterTemplate = true,
                 // IndexFormat = $"{Assembly.GetExecutingAssembly().GetName().Name.ToLower().Replace(".", "-")}-{env?.ToLower().Replace(".", "-")}-{DateTime.UtcNow:yyyy-MM}"
-                IndexFormat = $"Mk.DemoB.Api-{DateTime.UtcNow:yyyy-MM}"
+                // 加入版本 v1 若索引字段有变化，需要重建索引，就可以根据版本重新建一个新的索引
+                IndexFormat = $"Mk.DemoB.Api-v1-{DateTime.UtcNow:yyyy-MM}"
             };
         }
 

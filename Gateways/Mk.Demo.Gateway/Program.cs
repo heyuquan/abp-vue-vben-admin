@@ -73,7 +73,7 @@ namespace Mk.Demo.Gateway
             {
                 AutoRegisterTemplate = true,
                 // IndexFormat = $"{Assembly.GetExecutingAssembly().GetName().Name.ToLower().Replace(".", "-")}-{env?.ToLower().Replace(".", "-")}-{DateTime.UtcNow:yyyy-MM}"
-                IndexFormat = $"Mk.Demo.Gateway-{DateTime.UtcNow:yyyy-MM}"
+                IndexFormat = $"Mk.Demo.Gateway-v1-{DateTime.UtcNow:yyyy-MM}"
             };
         }
 
