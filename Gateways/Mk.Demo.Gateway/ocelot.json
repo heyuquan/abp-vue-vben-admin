@@ -1,24 +1,24 @@
 {
   "Routes": [
-    {
-      "DownstreamPathTemplate": "/api/loadbalance/{everything}",
-      "UpstreamPathTemplate": "/api/loadbalance/{everything}",
-      "DownstreamScheme": "http",
-      "UpstreamHttpMethod": [ "GET" ],
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 44305
-        },
-        {
-          "Host": "localhost",
-          "Port": 44405
-        }
-      ],
-      "LoadBalancerOptions": {
-        "Type": "LeastConnection"
-      }
-    },
+    //{
+    //  "DownstreamPathTemplate": "/api/loadbalance/{everything}",
+    //  "UpstreamPathTemplate": "/api/loadbalance/{everything}",
+    //  "DownstreamScheme": "http",
+    //  "UpstreamHttpMethod": [ "GET" ],
+    //  "DownstreamHostAndPorts": [
+    //    {
+    //      "Host": "localhost",
+    //      "Port": 44305
+    //    },
+    //    {
+    //      "Host": "localhost",
+    //      "Port": 44405
+    //    }
+    //  ],
+    //  "LoadBalancerOptions": {
+    //    "Type": "LeastConnection"
+    //  }
+    //},
     {
       "DownstreamPathTemplate": "/api/loadbalance/{everything}",
       "DownstreamScheme": "http",

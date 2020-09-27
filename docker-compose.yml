@@ -15,14 +15,14 @@ services:
       - ASPNETCORE_ENVIRONMENT=Production
     volumes:
       - type: bind
-        source: /usr/local/app-data/logs/Mk.Demo.Gateway/Logs
+        source: /usr/local/app-data/logs/Mk.Demo.Gateway
         target: /app/Logs
       - type: bind
         source: /usr/local/app-data/config/Mk.Demo.Gateway/ocelot.json
         target: /app/ocelot.json
     container_name: mk.demo.gateway
     networks:
-      - my-net
+      - app-net
 
   mk.demob.api:
     image: mk.demob.api.img
@@ -39,10 +39,10 @@ services:
       - ASPNETCORE_ENVIRONMENT=Production
     volumes:
       - type: bind
-        source: /usr/local/app-data/logs/Mk.DemoB.Api/Logs
+        source: /usr/local/app-data/logs/Mk.DemoB.Api
         target: /app/Logs
     networks:
-      - my-net
+      - app-net
     container_name: mk.demob.api
     depends_on:
       - mk.demo.gateway
@@ -63,14 +63,14 @@ services:
       - ASPNETCORE_ENVIRONMENT=Production
     volumes:
       - type: bind
-        source: /usr/local/app-data/logs/Mk.DemoC.Api/Logs
+        source: /usr/local/app-data/logs/Mk.DemoC.Api
         target: /app/Logs
     networks:
-      - my-net
+      - app-net
     container_name: mk.democ.api
     depends_on:
       - mk.demo.gateway
 
 networks:
-  my-net:
+  app-net:
     driver: bridge
