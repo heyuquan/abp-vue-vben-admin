@@ -5,6 +5,7 @@ services:
     build:
       context: .
       dockerfile: ./Gateways/Mk.Demo.Gateway/Dockerfile
+    restart: always
     ports:
       - target: 44502                    
         published: 44502              
@@ -29,6 +30,7 @@ services:
     build:
       context: .
       dockerfile: ./Mk.DemoB/src/Mk.DemoB.HttpApi.Host/Dockerfile
+    restart: always
     ports:
       - target: 44302                    
         published: 44302              
@@ -53,6 +55,7 @@ services:
     build:
       context: .
       dockerfile: ./Mk.DemoC/src/Mk.DemoC.HttpApi.Host/Dockerfile
+    restart: always
     ports:
       - target: 44402                    
         published: 44402              
