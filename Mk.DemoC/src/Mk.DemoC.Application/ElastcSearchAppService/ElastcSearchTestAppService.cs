@@ -4,10 +4,8 @@ using Microsoft.Extensions.Logging;
 using Mk.DemoC.Dto.ElastcSearchs;
 using Mk.DemoC.SearchDocumentMgr.Documents;
 using Nest;
-using Swashbuckle.AspNetCore.Annotations;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 
 namespace Mk.DemoC.ElastcSearchAppService
@@ -96,7 +94,6 @@ namespace Mk.DemoC.ElastcSearchAppService
         /// </summary>
         /// <returns></returns>
         [HttpPost("doc/init")]
-        [SwaggerResponse((int)HttpStatusCode.OK, Type = typeof(ServiceResult))]
         public async Task<ServiceResult<List<ProductSpuDocumentDto>>> InitDocument()
         {
             ServiceResult<List<ProductSpuDocumentDto>> ret = new ServiceResult<List<ProductSpuDocumentDto>>(IdProvider.Get());
@@ -191,7 +188,6 @@ namespace Mk.DemoC.ElastcSearchAppService
         }
 
         [HttpPost("doc/get")]
-        [SwaggerResponse((int)HttpStatusCode.OK, Type = typeof(ServiceResult<ProductSpuDocumentDto>))]
         public async Task<ServiceResult<List<ProductSpuDocumentDto>>> GetAsync()
         {
             ServiceResult<List<ProductSpuDocumentDto>> ret = new ServiceResult<List<ProductSpuDocumentDto>>(IdProvider.Get());
@@ -229,7 +225,6 @@ namespace Mk.DemoC.ElastcSearchAppService
         }
 
         [HttpPost("doc/update")]
-        [SwaggerResponse((int)HttpStatusCode.OK, Type = typeof(ServiceResult))]
         public async Task<ServiceResult> UpdateDocumentAsync()
         {
             string id = "39f792fdc909816aeda1bbb97faa18a5";

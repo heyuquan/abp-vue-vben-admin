@@ -4,11 +4,9 @@ using Mk.DemoC.Domain.Consts.ElastcSearchs;
 using Mk.DemoC.Dto.ElastcSearchs;
 using Mk.DemoC.SearchDocumentMgr.Documents;
 using Nest;
-using Swashbuckle.AspNetCore.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 using Volo.Abp.Application.Dtos;
 
@@ -24,7 +22,6 @@ namespace Mk.DemoC.ElastcSearchAppService
         }
 
         [HttpPost("doc/search")]
-        [SwaggerResponse((int)HttpStatusCode.OK, Type = typeof(ServiceResult<PagedResultDto<ProductSpuDocumentDto>>))]
         public async Task<ServiceResult<PagedResultDto<ProductSpuDocumentDto>>> SearchAsync(EsSearchRequest req)
         {
             ServiceResult<PagedResultDto<ProductSpuDocumentDto>> ret = new ServiceResult<PagedResultDto<ProductSpuDocumentDto>>(IdProvider.Get());

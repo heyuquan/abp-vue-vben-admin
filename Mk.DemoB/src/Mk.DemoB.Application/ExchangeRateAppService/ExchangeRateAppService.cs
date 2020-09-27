@@ -1,18 +1,11 @@
 ﻿using Leopard.Results;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using Mk.DemoB.Dto.ExchangeRates;
 using Mk.DemoB.ExchangeRateMgr;
 using Mk.DemoB.ExchangeRateMgr.Entities;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
-using Volo.Abp;
 using Volo.Abp.Application.Dtos;
-using Volo.Abp.Domain.Repositories;
 
 namespace Mk.DemoB.ExchangeRateAppService
 {
@@ -75,7 +68,6 @@ namespace Mk.DemoB.ExchangeRateAppService
         /// <summary>
         /// 获取最新批次的汇率数据
         /// </summary>
-        /// <param name="captureBatchNumber">可空，若为空，则获取最新批次的汇率数据</param>
         /// <returns></returns>
         [HttpGet("batch/latest")]
         public virtual async Task<ServiceResult<ExchangeRateBatchDto>> GetLatestBatchPagingAsync()
@@ -109,6 +101,8 @@ namespace Mk.DemoB.ExchangeRateAppService
         /// <summary>
         /// 获取汇率分页数据
         /// </summary>
+        /// <param name="req">实体类参数</param>
+        /// 
         /// <returns></returns>
         [HttpGet("paging")]
         public virtual async Task<ServiceResult<PagedResultDto<ExchangeRateDto>>> GetExchangeRatePagingRequest(GetExchangeRatePagingRequest req)
