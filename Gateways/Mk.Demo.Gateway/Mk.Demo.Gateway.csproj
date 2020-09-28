@@ -19,6 +19,6 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.2" />
   </ItemGroup>
 
-  <ProjectExtensions><VisualStudio><UserProperties ocelot_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" ocelot_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
   
 </Project>

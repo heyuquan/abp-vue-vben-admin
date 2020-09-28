@@ -1,0 +1,22 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/loadbalance/{everything}",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/api/consul/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ],
+      "ServiceName": "Consul_ServiceA",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      }
+    }
+  ],
+  "GlobalConfiguration": {
+    "ServiceDiscoveryProvider": {
+      "Host": "134.175.121.78",
+      "Port": 8500,
+      "Type": "Consul"
+    },
+    "BaseUrl": "http://134.175.121.78:44502"
+  }
+}

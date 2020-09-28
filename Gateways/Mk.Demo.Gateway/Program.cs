@@ -85,7 +85,7 @@ namespace Mk.Demo.Gateway
                     webBuilder.UseStartup<Startup>();
                 })
                 .ConfigureAppConfiguration((hostingContext, config)=> {
-                    config.AddJsonFile("ocelot.json", optional: true, reloadOnChange: true);
+                    config.AddJsonFile($"ocelot.{env}.json", optional: true, reloadOnChange: true);
                 })
                 .UseAutofac()
                 .UseSerilog();

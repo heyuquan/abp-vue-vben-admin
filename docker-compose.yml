@@ -18,11 +18,11 @@ services:
         source: /usr/local/app-data/logs/Mk.Demo.Gateway
         target: /app/Logs
       - type: bind
-        source: /usr/local/app-data/config/Mk.Demo.Gateway/ocelot.json
-        target: /app/ocelot.json
+        source: /usr/local/app-data/config/Mk.Demo.Gateway/ocelot.Production.json
+        target: /app/ocelot.Production.json
     container_name: mk.demo.gateway
     networks:
-      - app-net
+      - my-net
 
   mk.demob.api:
     image: mk.demob.api.img
@@ -42,7 +42,7 @@ services:
         source: /usr/local/app-data/logs/Mk.DemoB.Api
         target: /app/Logs
     networks:
-      - app-net
+      - my-net
     container_name: mk.demob.api
     depends_on:
       - mk.demo.gateway
@@ -66,11 +66,11 @@ services:
         source: /usr/local/app-data/logs/Mk.DemoC.Api
         target: /app/Logs
     networks:
-      - app-net
+      - my-net
     container_name: mk.democ.api
     depends_on:
       - mk.demo.gateway
 
 networks:
-  app-net:
+  my-net:
     driver: bridge
