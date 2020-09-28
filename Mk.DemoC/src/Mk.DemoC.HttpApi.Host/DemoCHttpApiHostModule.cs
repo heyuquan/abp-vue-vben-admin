@@ -195,10 +195,10 @@ namespace Mk.DemoC
             else
             {
                 app.UseErrorPage();
-                app.UseHsts();
+                //app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseCorrelationId();
          
             app.UseVirtualFiles();
