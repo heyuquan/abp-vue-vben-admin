@@ -55,8 +55,8 @@ namespace Mk.DemoC
         typeof(LeopardPermissionManagementEntityFrameworkCoreModule),
         typeof(LeopardSettingManagementEntityFrameworkCoreModule),
         typeof(AbpAspNetCoreSerilogModule),
-        typeof(AbpEventBusRabbitMqModule),
-        typeof(LeopardConsulModule)
+        typeof(AbpEventBusRabbitMqModule)
+        //typeof(LeopardConsulModule)
         )]
     public class DemoCHttpApiHostModule : AbpModule
     {
@@ -142,9 +142,9 @@ namespace Mk.DemoC
             if (!hostingEnvironment.IsDevelopment())
             {
                 var redis = ConnectionMultiplexer.Connect(configuration["Redis:Configuration"]);
-                context.Services
-                    .AddDataProtection()
-                    .PersistKeysToStackExchangeRedis(redis, "DemoC-Protection-Keys");
+                //context.Services
+                //    .AddDataProtection()
+                //    .PersistKeysToStackExchangeRedis(redis, "DemoC-Protection-Keys");
             }
 
             context.Services.AddCors(options =>

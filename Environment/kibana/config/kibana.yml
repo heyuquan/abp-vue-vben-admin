@@ -11,3 +11,7 @@ monitoring.ui.container.elasticsearch.enabled: true
 #
 elasticsearch.username: elastic
 elasticsearch.password: changeme
+
+xpack.encryptedSavedObjects.encryptionKey: encryptedSavedObjects12345678909876543210
+xpack.security.encryptionKey: encryptionKeysecurity12345678909876543210
+xpack.reporting.encryptionKey: encryptionKeyreporting12345678909876543210
