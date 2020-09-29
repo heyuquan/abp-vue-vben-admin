@@ -55,8 +55,8 @@ namespace Mk.DemoC
         typeof(LeopardPermissionManagementEntityFrameworkCoreModule),
         typeof(LeopardSettingManagementEntityFrameworkCoreModule),
         typeof(AbpAspNetCoreSerilogModule),
-        typeof(AbpEventBusRabbitMqModule)
-        //typeof(LeopardConsulModule)
+        typeof(AbpEventBusRabbitMqModule),
+        typeof(LeopardConsulModule)
         )]
     public class DemoCHttpApiHostModule : AbpModule
     {
