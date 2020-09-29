@@ -40,6 +40,7 @@ using Volo.Abp.Timing;
 using Volo.Abp.AspNetCore.Mvc.ExceptionHandling;
 using Leopard.Consul;
 using Serilog;
+using Microsoft.AspNetCore.Http;
 
 namespace Mk.DemoC
 {
@@ -55,8 +56,10 @@ namespace Mk.DemoC
         typeof(LeopardPermissionManagementEntityFrameworkCoreModule),
         typeof(LeopardSettingManagementEntityFrameworkCoreModule),
         typeof(AbpAspNetCoreSerilogModule),
-        typeof(AbpEventBusRabbitMqModule),
-        typeof(LeopardConsulModule)
+        typeof(AbpEventBusRabbitMqModule)
+        // 注册consul后，负载是正常的。但是不知道为什么 kibana 就会一直报错。  
+        // 可能是consul做health检查时，日志格式问题？？但依旧找不到具体原因，所以注释掉consul
+        //typeof(LeopardConsulModule)  
         )]
     public class DemoCHttpApiHostModule : AbpModule
     {
@@ -69,7 +72,8 @@ namespace Mk.DemoC
 
             Configure<AbpAspNetCoreMvcOptions>(options =>
             {
-                options.ConventionalControllers.Create(typeof(DemoCApplicationModule).Assembly, opt => {
+                options.ConventionalControllers.Create(typeof(DemoCApplicationModule).Assembly, opt =>
+                {
                     // 默认是：/api/app/***
                     //如下修改为：/api/volosoft/book-store/***
                     //opts.RootPath = "volosoft/book-store";
@@ -181,6 +185,15 @@ namespace Mk.DemoC
             {
                 options.Kind = DateTimeKind.Utc;
             });
+
+            context.Services.AddHttpsRedirection(options =>
+            {
+                // 默认情况下，该 app.UseHttpsRedirection() 发出307临时重定向响应
+                // 如果没有代码中指定https端口，则该类将从HTTPS_PORT环境变量或IServerAddress功能获取https端口。
+                // .netcore的证书需要 pfx格式
+                options.RedirectStatusCode = StatusCodes.Status308PermanentRedirect;
+                options.HttpsPort = 44402;
+            });
         }
 
         public override void OnApplicationInitialization(ApplicationInitializationContext context)
@@ -195,15 +208,15 @@ namespace Mk.DemoC
             else
             {
                 app.UseErrorPage();
-                //app.UseHsts();
+                app.UseHsts();
             }
 
-            //app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
             app.UseCorrelationId();
-         
+
             app.UseVirtualFiles();
             app.UseRouting();
-            app.UseCors(DefaultCorsPolicyName);        
+            app.UseCors(DefaultCorsPolicyName);
             app.UseAuthentication();
             app.UseAbpClaimsMap();
             if (MultiTenancyConsts.IsEnabled)

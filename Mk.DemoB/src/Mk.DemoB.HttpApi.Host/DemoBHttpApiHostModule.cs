@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -47,7 +48,9 @@ namespace Mk.DemoB
         typeof(DemoBEntityFrameworkCoreDbMigrationsModule),
         typeof(AbpAspNetCoreSerilogModule),
         typeof(AbpEventBusRabbitMqModule)
-        //typeof(LeopardConsulModule)
+        // 注册consul后，负载是正常的。但是不知道为什么 kibana 就会一直报错。  
+        // 可能是consul做health检查时，日志格式问题？？但依旧找不到具体原因，所以注释掉consul
+        //typeof(LeopardConsulModule)  
         )]
     public class DemoBHttpApiHostModule : AbpModule
     {
@@ -77,7 +80,7 @@ namespace Mk.DemoB
             {
                 options.DefaultSequentialGuidType = SequentialGuidType.SequentialAsString;
             });
-            
+
             // 使用错误代码
             context.Services.Configure<AbpExceptionLocalizationOptions>(options =>
             {
@@ -108,6 +111,15 @@ namespace Mk.DemoB
             Configure<AbpDistributedEntityEventOptions>(options =>
             {
                 options.AutoEventSelectors.AddAll();
+            });
+
+            context.Services.AddHttpsRedirection(options =>
+            {
+                // 默认情况下，该 app.UseHttpsRedirection() 发出307临时重定向响应
+                // 如果没有代码中指定https端口，则该类将从HTTPS_PORT环境变量或IServerAddress功能获取https端口。
+                // .netcore的证书需要 pfx格式
+                options.RedirectStatusCode = StatusCodes.Status308PermanentRedirect;
+                options.HttpsPort = 44305;
             });
 
         }
@@ -236,9 +248,11 @@ namespace Mk.DemoB
             else
             {
                 app.UseErrorPage();
+                app.UseHsts();
             }
 
             app.UseCorrelationId();
+            app.UseHttpsRedirection();
 
             app.UseVirtualFiles();
             app.UseRouting();
