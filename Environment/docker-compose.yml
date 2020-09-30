@@ -117,7 +117,7 @@ services:
       context: nginx/
     restart: always
     ports:
-      - '8081:8081'
+      - '8081:80'
     volumes:
       - type: bind
         source: /usr/local/data/env/nginx/www
@@ -125,6 +125,10 @@ services:
       - type: bind
         source: /usr/local/data/env/nginx/logs
         target: /var/log/nginx
+      - type: bind
+        source: /usr/local/data/env/nginx/conf/nginx.conf
+        target: /etc/nginx/nginx.conf
+      - type: bind
     container_name: nginx
     networks:
       - my-net

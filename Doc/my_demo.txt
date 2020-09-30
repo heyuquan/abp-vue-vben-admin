@@ -81,3 +81,5 @@ mk.democ.api:http://134.175.121.78:44402/swagger/index.html
 elastic£ºhttp://134.175.121.78:9200
 kibana£ºhttp://134.175.121.78:5601/
 consul:http://134.175.121.78:8500/
+
+nginx:http://134.175.121.78:8081/
