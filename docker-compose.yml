@@ -11,23 +11,18 @@ services:
         protocol: tcp                 
         mode: host  
     environment:
-      - ASPNETCORE_URLS=http://0.0.0.0:44502;https://0.0.0.0:44505
+      - ASPNETCORE_URLS=http://0.0.0.0:44502
       - ASPNETCORE_ENVIRONMENT=Production
-      - ASPNETCORE_Kestrel__Certificates__Default__Password=123456
-      - ASPNETCORE_Kestrel__Certificates__Default__Path=/app/mkdemo.pfx
     volumes:
       - type: bind
-        source: /usr/local/app-data/logs/Mk.Demo.Gateway
+        source: /usr/local/data/app/logs/Mk.Demo.Gateway
         target: /app/Logs
       - type: bind
-        source: /usr/local/app-data/config/Mk.Demo.Gateway/appsettings.Production.json
+        source: /usr/local/data/app/config/Mk.Demo.Gateway/appsettings.Production.json
         target: /app/appsettings.Production.json
       - type: bind
-        source: /usr/local/app-data/config/Mk.Demo.Gateway/ocelot.Production.json
+        source: /usr/local/data/app/config/Mk.Demo.Gateway/ocelot.Production.json
         target: /app/ocelot.Production.json
-      - type: bind
-        source: /usr/local/app-data/https/mkdemo.pfx
-        target: /app/mkdemo.pfx
     container_name: mk.demo.gateway
     networks:
       - my-net
@@ -43,20 +38,15 @@ services:
         protocol: tcp                 
         mode: host  
     environment:
-      - ASPNETCORE_URLS=http://0.0.0.0:44302;https://0.0.0.0:44305
+      - ASPNETCORE_URLS=http://0.0.0.0:44302
       - ASPNETCORE_ENVIRONMENT=Production
-      - ASPNETCORE_Kestrel__Certificates__Default__Password=123456
-      - ASPNETCORE_Kestrel__Certificates__Default__Path=/app/mkdemo.pfx
     volumes:
       - type: bind
-        source: /usr/local/app-data/logs/Mk.DemoB.Api
+        source: /usr/local/data/app/logs/Mk.DemoB.Api
         target: /app/Logs
       - type: bind
-        source: /usr/local/app-data/config/Mk.DemoB.Api/appsettings.Production.json
+        source: /usr/local/data/app/config/Mk.DemoB.Api/appsettings.Production.json
         target: /app/appsettings.Production.json
-      - type: bind
-        source: /usr/local/app-data/https/mkdemo.pfx
-        target: /app/mkdemo.pfx
     networks:
       - my-net
     container_name: mk.demob.api
@@ -75,20 +65,15 @@ services:
         protocol: tcp                 
         mode: host  
     environment:
-      - ASPNETCORE_URLS=http://0.0.0.0:44402;https://0.0.0.0:44405
+      - ASPNETCORE_URLS=http://0.0.0.0:44402
       - ASPNETCORE_ENVIRONMENT=Production
-      - ASPNETCORE_Kestrel__Certificates__Default__Password=123456
-      - ASPNETCORE_Kestrel__Certificates__Default__Path=/app/mkdemo.pfx
     volumes:
       - type: bind
-        source: /usr/local/app-data/logs/Mk.DemoC.Api
+        source: /usr/local/data/app/logs/Mk.DemoC.Api
         target: /app/Logs
       - type: bind
-        source: /usr/local/app-data/config/Mk.DemoC.Api/appsettings.Production.json
+        source: /usr/local/data/app/config/Mk.DemoC.Api/appsettings.Production.json
         target: /app/appsettings.Production.json
-      - type: bind
-        source: /usr/local/app-data/https/mkdemo.pfx
-        target: /app/mkdemo.pfx
     networks:
       - my-net
     container_name: mk.democ.api

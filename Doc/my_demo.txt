@@ -26,11 +26,11 @@ Mk.DemoB.BackgroundJobs
 
 定义端口规范
 http	**02
-htps	**05
+https	**05    (只需要启动一个http端口即可，在nginx上设置证书，并启用https。这样子证书也不用每个应用端口都去设置一个了)
 
-demob.api      44305   44302
-democ.api      44405   44402
-demo.gateway   44505   44502 
+demob.api         44302
+democ.api         44402
+demo.gateway      44502 
 
 
 --demob
