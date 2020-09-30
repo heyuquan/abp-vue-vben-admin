@@ -128,7 +128,6 @@ services:
       - type: bind
         source: /usr/local/data/env/nginx/conf/nginx.conf
         target: /etc/nginx/nginx.conf
-      - type: bind
     container_name: nginx
     networks:
       - my-net
