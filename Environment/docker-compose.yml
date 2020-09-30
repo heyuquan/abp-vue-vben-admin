@@ -120,9 +120,6 @@ services:
       - '8081:80'
     volumes:
       - type: bind
-        source: /usr/local/data/env/nginx/www
-        target: /usr/share/nginx/html
-      - type: bind
         source: /usr/local/data/env/nginx/logs
         target: /var/log/nginx
       - type: bind
