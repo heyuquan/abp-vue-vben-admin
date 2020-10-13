@@ -62,6 +62,8 @@ services:
 
   kibana:
     image: kibana.img
+    # kibana不用重启，有时候异常不断重启太吃资源
+    # restart: always
     build:
       context: kibana/
       args:

@@ -19,8 +19,6 @@
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_Kestrel__Certificates__Default__Path": "./mkdemo.pfx",
-        "ASPNETCORE_Kestrel__Certificates__Default__Password": "123456",
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "applicationUrl": "http://localhost:44302"

@@ -113,14 +113,14 @@ namespace Mk.DemoB
                 options.AutoEventSelectors.AddAll();
             });
 
-            context.Services.AddHttpsRedirection(options =>
-            {
-                // 默认情况下，该 app.UseHttpsRedirection() 发出307临时重定向响应
-                // 如果没有代码中指定https端口，则该类将从HTTPS_PORT环境变量或IServerAddress功能获取https端口。
-                // .netcore的证书需要 pfx格式
-                options.RedirectStatusCode = StatusCodes.Status308PermanentRedirect;
-                options.HttpsPort = 44305;
-            });
+            //context.Services.AddHttpsRedirection(options =>
+            //{
+            //    // 默认情况下，该 app.UseHttpsRedirection() 发出307临时重定向响应
+            //    // 如果没有代码中指定https端口，则该类将从HTTPS_PORT环境变量或IServerAddress功能获取https端口。
+            //    // .netcore的证书需要 pfx格式
+            //    options.RedirectStatusCode = StatusCodes.Status308PermanentRedirect;
+            //    options.HttpsPort = 44305;
+            //});
 
         }
 
@@ -248,11 +248,11 @@ namespace Mk.DemoB
             else
             {
                 app.UseErrorPage();
-                app.UseHsts();
+                //app.UseHsts();
             }
 
             app.UseCorrelationId();
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseVirtualFiles();
             app.UseRouting();
