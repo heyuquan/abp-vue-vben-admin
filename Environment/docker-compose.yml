@@ -32,6 +32,19 @@ services:
     networks:
       - my-net
 
+  elasticsearch-head:
+    image: elasticsearch-head.img
+    build:
+      context: elasticsearch-head/
+    restart: always
+    ports:
+      - "9100:9100"
+    container_name: elasticsearch-head
+    networks:
+      - my-net
+    depends_on:
+      - elasticsearch
+
   logstash:
     image: logstash.img
     build:
