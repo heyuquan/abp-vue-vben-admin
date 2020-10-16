@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Mk.DemoC.SearchDocumentMgr.Documents;
 using Nest;
 using System;
@@ -13,10 +14,15 @@ namespace Mk.DemoC.ElastcSearchAppService
 
         private readonly IElasticClient client;
         private readonly IConfiguration _configuration;
+        private readonly ILogger<ElasticSearchClient> _logger;
 
-        public ElasticSearchClient(IConfiguration configuration)
+        public ElasticSearchClient(
+            IConfiguration configuration
+            , ILogger<ElasticSearchClient> logger
+            )
         {
             _configuration = configuration;
+            _logger = logger;
 
             var node = new Uri(_configuration["ElasticConfiguration:Uri"]);
             var settings = new ConnectionSettings(node)
@@ -37,21 +43,67 @@ namespace Mk.DemoC.ElastcSearchAppService
                 // 配置分词器
                 // https://www.elastic.co/guide/en/elasticsearch/client/net-api/current/writing-analyzers.html
 
-                var index = client.Indices.Create(MALL_SEARCH_PRODUCT, c => c
-                                  .Settings(s => s
-                                      .Analysis(a => a
-                                            .Normalizers(n => n.Custom("my_normalizer", cn => cn.Filters("lowercase")))
-                                          )
-                                      )
-                                  .Map<ProductSpuDocument>(mm => mm
-                                      .AutoMap()
-                                  )
-                             );
-                if (!index.IsValid)
-                {
+                // setting 建议使用elasticsearch 提供的url设置，因为代码里面设置有些api没有，如拼音插件里面的api就没有
+                // 查询设置
+                // GET /mall.search.product/_settings
+                // 创建索引
+                //PUT /mall.search.product
+                //{
+                //  "settings":{
+                //    "analysis":{
+                //      "normalizer" : {
+                //        "my_normalizer" : {
+                //          "filter" : [
+                //            "lowercase"
+                //            ],
+                //          "type" : "custom"
+                //        }
+                //      },
+                //      "analyzer":{
+                //        "ik_smart_pinyin":{
+                //          "type":"custom",
+                //          "tokenizer":"ik_smart",
+                //          "filter":["g_pinyin","word_delimiter"]
+                //        },
+                //        "ik_max_word_pinyin":{
+                //          "type":"custom",
+                //          "tokenizer":"ik_max_word",
+                //          "filter":["g_pinyin","word_delimiter"]
+                //        }
+                //      },
+                //      "filter":{
+                //        "g_pinyin":{
+                //          "type":"pinyin",
+                //          "keep_separate_first_letter":true,
+                //          "keep_full_pinyin":true,
+                //          "keep_original":true,
+                //          "limit_first_letter_length":16,
+                //          "lowercase":true,
+                //          "remove_duplicated_term":true
+                //        }
+                //      }
+                //    }
+                //  }
+                //}
 
-                    throw new Exception($"[{MALL_SEARCH_PRODUCT}]索引创建失败", index.OriginalException);
-                }
+                //var index = client.Indices.Create(MALL_SEARCH_PRODUCT, c => c
+                //                  .Settings(s => s
+                //                      .Analysis(a => a
+                //                            .Normalizers(n => n.Custom("my_normalizer", cn => cn.Filters("lowercase")))
+                //                            .Analyzers(a => a.Custom("ik_smart_pinyin", ca => ca.Tokenizer("ik_smart").Filters("g_pinyin", "word_delimiter")))
+                //                            .Analyzers(a => a.Custom("ik_max_smart_pinyin", ca => ca.Tokenizer("ik_max_smart").Filters("g_pinyin", "word_delimiter")))
+                //                            .TokenFilters(tf => tf.)
+                //                          )
+                //                      )
+                //                  .Map<ProductSpuDocument>(mm => mm
+                //                      .AutoMap()
+                //                  )
+                //             );
+                _logger.LogWarning($"[{MALL_SEARCH_PRODUCT}]索引不存在，请手动创建索引");                
+            }
+            else
+            {
+                client.Map<ProductSpuDocument>(m => m.AutoMap());
             }
         }
 

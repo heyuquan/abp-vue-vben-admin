@@ -27,17 +27,17 @@ namespace Mk.DemoC.SearchDocumentMgr.Documents
         /// <summary>
         /// Spu产品名
         /// </summary>
-        [Text(Analyzer = ElastcSearchAnazer.IK_SMART)]
+        [Text(Analyzer = ElastcSearchAnazer.IK_SMART_PINYIN)]
         public string SpuName { get; set; }
         /// <summary>
         /// 品牌
         /// </summary>
-        [Keyword(Normalizer = "my_normalizer")]
+        [Text(Analyzer = ElastcSearchAnazer.IK_SMART_PINYIN)]
         public string Brand { get; set; }
 
-        [Text(Analyzer = ElastcSearchAnazer.IK_SMART)]
+        [Text(Analyzer = ElastcSearchAnazer.IK_SMART_PINYIN)]
         public string SpuKeywords { get; set; }
-        [Text(Analyzer = ElastcSearchAnazer.IK_SMART)]
+        [Text(Analyzer = ElastcSearchAnazer.IK_SMART_PINYIN)]
         public string SumSkuKeywords { get; set; }
 
         /// <summary>
