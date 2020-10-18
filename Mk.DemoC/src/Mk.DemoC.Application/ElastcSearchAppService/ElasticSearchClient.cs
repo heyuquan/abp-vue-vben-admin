@@ -47,44 +47,7 @@ namespace Mk.DemoC.ElastcSearchAppService
                 // 查询设置
                 // GET /mall.search.product/_settings
                 // 创建索引
-                //PUT /mall.search.product
-                //{
-                //  "settings":{
-                //    "analysis":{
-                //      "normalizer" : {
-                //        "my_normalizer" : {
-                //          "filter" : [
-                //            "lowercase"
-                //            ],
-                //          "type" : "custom"
-                //        }
-                //      },
-                //      "analyzer":{
-                //        "ik_smart_pinyin":{
-                //          "type":"custom",
-                //          "tokenizer":"ik_smart",
-                //          "filter":["g_pinyin","word_delimiter"]
-                //        },
-                //        "ik_max_word_pinyin":{
-                //          "type":"custom",
-                //          "tokenizer":"ik_max_word",
-                //          "filter":["g_pinyin","word_delimiter"]
-                //        }
-                //      },
-                //      "filter":{
-                //        "g_pinyin":{
-                //          "type":"pinyin",
-                //          "keep_separate_first_letter":true,
-                //          "keep_full_pinyin":true,
-                //          "keep_original":true,
-                //          "limit_first_letter_length":16,
-                //          "lowercase":true,
-                //          "remove_duplicated_term":true
-                //        }
-                //      }
-                //    }
-                //  }
-                //}
+                // 使用 Index_create.txt 创建索引
 
                 //var index = client.Indices.Create(MALL_SEARCH_PRODUCT, c => c
                 //                  .Settings(s => s
@@ -104,6 +67,7 @@ namespace Mk.DemoC.ElastcSearchAppService
             else
             {
                 client.Map<ProductSpuDocument>(m => m.AutoMap());
+               
             }
         }
 
