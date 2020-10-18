@@ -78,7 +78,8 @@ mk.demo.gateway:http://134.175.121.78:44502/swagger/index.html
 mk.demob.api:http://134.175.121.78:44302/swagger/index.html
 mk.democ.api:http://134.175.121.78:44402/swagger/index.html
 
-elastic：http://134.175.121.78:9200
+es 默认端口9200 老是被攻击，导致数据篡改，elk运行异常
+elastic：http://134.175.121.78:59210
 kibana：http://134.175.121.78:5601/
 consul:http://134.175.121.78:8500/
 
