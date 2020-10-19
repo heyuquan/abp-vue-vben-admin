@@ -1,0 +1,2 @@
+elasticsearch.exceptions.TransportError: TransportError(429, 'circuit_breaking_exception', '[parent] Data too large, data for [<http_request>] would be [246901928/235.4mb], which is larger than the limit of [246546432/235.1mb], real usage: [246901768/235.4mb], new bytes reserved: [160/160b], usages [request=0/0b, fielddata=11733/11.4kb, in_flight_requests=160/160b, accounting=6120593/5.8mb]'
+解决方案：https://www.cnblogs.com/zhanchenjin/p/11672900.html
