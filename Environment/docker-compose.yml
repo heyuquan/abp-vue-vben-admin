@@ -19,6 +19,9 @@ services:
       - type: bind
         source: ./elasticsearch/plugins
         target: /usr/share/elasticsearch/plugins
+      - type: bind
+        source: ./elasticsearch/analysis
+        target: /usr/share/elasticsearch/analysis
     ports:
       - "59210:9200"
       - "9300:9300"
