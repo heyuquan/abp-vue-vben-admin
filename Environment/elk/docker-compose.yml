@@ -40,6 +40,10 @@ services:
     build:
       context: elasticsearch-head/
     restart: always
+    volumes:
+      - type: bind
+        source: ./elasticsearch-head/app/_site/vendor.js
+        target: /usr/src/app/_site/vendor.js
     ports:
       - "9100:9100"
     container_name: elasticsearch-head
