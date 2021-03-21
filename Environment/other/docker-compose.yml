@@ -24,6 +24,27 @@ services:
     container_name: nginx
     networks:
       - my-net
+  mysql:
+    image: mysql.img
+    build:
+      context: mysql/
+    restart: always
+    ports:
+      - '8706:3306'
+    environment:
+      - MYSQL_ROOT_PASSWORD: "37#idA2&3v"
+      - MYSQL_USER: 'root'
+      - MYSQL_PASS: '37#idA2&3v'
+    volumes:
+      - type: bind
+        source: ./data
+        target: /usr/local/data/env/mysql/data
+      - type: bind
+        source: ./conf/my.cnf
+        target: /usr/local/data/env/mysql/config/my.cnf
+    container_name: mysql
+    networks:
+      - my-net
       
 networks:
   my-net:
