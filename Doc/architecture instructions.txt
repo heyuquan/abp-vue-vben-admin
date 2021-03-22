@@ -76,7 +76,7 @@ HTTP 层 和 Web 层，只能注入 应用服务层 提供的服务。一般来说应用服务层公开的api就
 		#、IRepository
 		#、Domain （eg：IdentityServer\IdentityServerDataSeedContributor.cs 数据种子Domain；Migrations\AdminDbMigrationService.cs 数据迁移；**Manager）
 	Ec.Admin.Domain.Shared		包含常量,枚举和其他类型, 它不能包含实体,存储库,域服务或任何其他业务对象. 可以安全地与模块中的所有层使用. 此包也可以与第三方客户端使用.
-		#、多语言 Location\Respirces\**
+		#、多语言 Location\Resources\**
 		#、定义常量、枚举
 
 基础设施层(Infrastructure Layer)

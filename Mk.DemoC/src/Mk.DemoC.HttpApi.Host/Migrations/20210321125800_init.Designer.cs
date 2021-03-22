@@ -10,8 +10,8 @@ using Volo.Abp.EntityFrameworkCore;
 namespace Mk.DemoC.Migrations
 {
     [DbContext(typeof(DemoCHttpApiHostMigrationsDbContext))]
-    [Migration("20200908093617_AddProductSpuDoc")]
-    partial class AddProductSpuDoc
+    [Migration("20210321125800_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -52,6 +52,11 @@ namespace Mk.DemoC.Migrations
                         .HasColumnName("currency")
                         .HasColumnType("varchar(8) CHARACTER SET utf8mb4")
                         .HasMaxLength(8);
+
+                    b.Property<string>("DocId")
+                        .HasColumnName("doc_id")
+                        .HasColumnType("varchar(64) CHARACTER SET utf8mb4")
+                        .HasMaxLength(64);
 
                     b.Property<string>("ExtraProperties")
                         .HasColumnName("extra_properties")
@@ -95,7 +100,7 @@ namespace Mk.DemoC.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("democ_product_spu_doc");
+                    b.ToTable("product_spu_doc");
                 });
 #pragma warning restore 612, 618
         }

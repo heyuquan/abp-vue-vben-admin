@@ -1,0 +1,43 @@
+https://blog.csdn.net/qq1445654576/article/details/104490305/
+
+https://blog.csdn.net/subfate/article/details/98042864
+mysql这个环境变量配置，不能带 - ，否则提示services.mongo.environment contains {"MONGO_INITDB_ROOT_USERNAME": "root"}, which is an invalid type, it should be a string
+environment:
+  - MONGO_INITDB_ROOT_USERNAME: root
+  - MONGO_INITDB_ROOT_PASSWORD: root
+
+docker exec -it foomysql bash   进入容器
+登录
+mysql -u root -p
+登录成功了，再使用第三方工具连接
+
+MySQL系列：Docker安装 MySQL提示错误：Access denied for user'root'@'localhost' （using password:yes）
+https://www.bbsmax.com/A/Ae5RKDa8dQ/
+
+#将数据库切换至mysql库
+mysql> USE mysql;
+#修改密码
+mysql> UPDATE user SET password=PASSWORD(‘newpasswd’)WHERE user=’root’; 
+#刷新MySQL权限相关的表
+mysql> flush privileges;
+
+
+
+
+执行命令，要以 ; 结尾，否则"回车"会变成换行效果
+1、显示数据库
+show databases;
+
+2、选择数据库
+use 数据库名;
+
+3、显示数据库中的表
+show tables;
+
+4、显示数据表的结构 
+describe 表名;
+
+ 5、显示表中记录 
+SELECT * FROM 表名
+
+

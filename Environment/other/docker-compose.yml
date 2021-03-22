@@ -32,16 +32,14 @@ services:
     ports:
       - '8706:3306'
     environment:
-      - MYSQL_ROOT_PASSWORD: "37#idA2&3v"
-      - MYSQL_USER: 'root'
-      - MYSQL_PASS: '37#idA2&3v'
+      MYSQL_ROOT_PASSWORD: '123456'
     volumes:
       - type: bind
-        source: ./data
-        target: /usr/local/data/env/mysql/data
+        source: /usr/local/data/env/mysql/data
+        target: /var/lib/mysql
       - type: bind
-        source: ./conf/my.cnf
-        target: /usr/local/data/env/mysql/config/my.cnf
+        source: /usr/local/Leopard.Abp/Environment/other/mysql/config/my.cnf
+        target: /etc/my.cnf
     container_name: mysql
     networks:
       - my-net

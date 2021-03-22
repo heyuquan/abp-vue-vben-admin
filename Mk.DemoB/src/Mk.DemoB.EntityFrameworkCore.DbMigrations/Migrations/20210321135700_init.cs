@@ -232,6 +232,95 @@ namespace Mk.DemoB.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "demob_capture_currency",
+                columns: table => new
+                {
+                    id = table.Column<Guid>(nullable: false),
+                    extra_properties = table.Column<string>(nullable: true),
+                    concurrency_stamp = table.Column<string>(maxLength: 40, nullable: true),
+                    creation_time = table.Column<DateTime>(nullable: false),
+                    creator_id = table.Column<Guid>(nullable: true),
+                    currency_code_from = table.Column<string>(maxLength: 8, nullable: false),
+                    currency_code_to = table.Column<string>(maxLength: 8, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_demob_capture_currency", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "demob_exchange_rate",
+                columns: table => new
+                {
+                    id = table.Column<Guid>(nullable: false),
+                    extra_properties = table.Column<string>(nullable: true),
+                    concurrency_stamp = table.Column<string>(maxLength: 40, nullable: true),
+                    creation_time = table.Column<DateTime>(nullable: false),
+                    creator_id = table.Column<Guid>(nullable: true),
+                    last_modification_time = table.Column<DateTime>(nullable: true),
+                    last_modifier_id = table.Column<Guid>(nullable: true),
+                    is_deleted = table.Column<bool>(nullable: false, defaultValue: false),
+                    deleter_id = table.Column<Guid>(nullable: true),
+                    deletion_time = table.Column<DateTime>(nullable: true),
+                    currency_code_from = table.Column<string>(maxLength: 8, nullable: false),
+                    currency_code_to = table.Column<string>(maxLength: 8, nullable: false),
+                    buy_price = table.Column<decimal>(type: "decimal(18,6)", nullable: false),
+                    data_from_url = table.Column<string>(maxLength: 256, nullable: false),
+                    capture_batch_number = table.Column<string>(maxLength: 64, nullable: false),
+                    capture_time = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_demob_exchange_rate", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "demob_exchange_rate_capture_batch",
+                columns: table => new
+                {
+                    id = table.Column<Guid>(nullable: false),
+                    extra_properties = table.Column<string>(nullable: true),
+                    concurrency_stamp = table.Column<string>(maxLength: 40, nullable: true),
+                    creation_time = table.Column<DateTime>(nullable: false),
+                    creator_id = table.Column<Guid>(nullable: true),
+                    capture_batch_number = table.Column<string>(maxLength: 64, nullable: false),
+                    capture_time = table.Column<DateTime>(nullable: false),
+                    is_success = table.Column<bool>(nullable: false),
+                    remark = table.Column<string>(maxLength: 512, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_demob_exchange_rate_capture_batch", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "demob_sale_order",
+                columns: table => new
+                {
+                    id = table.Column<Guid>(nullable: false),
+                    extra_properties = table.Column<string>(nullable: true),
+                    concurrency_stamp = table.Column<string>(maxLength: 40, nullable: true),
+                    creation_time = table.Column<DateTime>(nullable: false),
+                    creator_id = table.Column<Guid>(nullable: true),
+                    last_modification_time = table.Column<DateTime>(nullable: true),
+                    last_modifier_id = table.Column<Guid>(nullable: true),
+                    is_deleted = table.Column<bool>(nullable: false, defaultValue: false),
+                    deleter_id = table.Column<Guid>(nullable: true),
+                    deletion_time = table.Column<DateTime>(nullable: true),
+                    tenant_id = table.Column<Guid>(nullable: true),
+                    order_no = table.Column<string>(maxLength: 64, nullable: false),
+                    order_time = table.Column<DateTime>(nullable: false),
+                    currency = table.Column<string>(maxLength: 8, nullable: false),
+                    total_amount = table.Column<decimal>(type: "decimal(18,6)", nullable: false),
+                    order_status = table.Column<int>(nullable: false),
+                    customer_name = table.Column<string>(maxLength: 64, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_demob_sale_order", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "identity_server_api_resources",
                 columns: table => new
                 {
@@ -610,6 +699,36 @@ namespace Mk.DemoB.Migrations
                         name: "FK_abp_user_tokens_abp_users_user_id",
                         column: x => x.user_id,
                         principalTable: "abp_users",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "demob_sale_order_detail",
+                columns: table => new
+                {
+                    id = table.Column<Guid>(nullable: false),
+                    creation_time = table.Column<DateTime>(nullable: false),
+                    creator_id = table.Column<Guid>(nullable: true),
+                    last_modification_time = table.Column<DateTime>(nullable: true),
+                    last_modifier_id = table.Column<Guid>(nullable: true),
+                    is_deleted = table.Column<bool>(nullable: false, defaultValue: false),
+                    deleter_id = table.Column<Guid>(nullable: true),
+                    deletion_time = table.Column<DateTime>(nullable: true),
+                    tenant_id = table.Column<Guid>(nullable: true),
+                    parent_id = table.Column<Guid>(nullable: false),
+                    line_no = table.Column<int>(nullable: false),
+                    product_sku_code = table.Column<string>(maxLength: 64, nullable: false),
+                    price = table.Column<decimal>(type: "decimal(18,6)", nullable: false),
+                    quantity = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_demob_sale_order_detail", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_demob_sale_order_detail_demob_sale_order_parent_id",
+                        column: x => x.parent_id,
+                        principalTable: "demob_sale_order",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -1029,6 +1148,11 @@ namespace Mk.DemoB.Migrations
                 column: "user_name");
 
             migrationBuilder.CreateIndex(
+                name: "IX_demob_sale_order_detail_parent_id",
+                table: "demob_sale_order_detail",
+                column: "parent_id");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_identity_server_clients_client_id",
                 table: "identity_server_clients",
                 column: "client_id");
@@ -1109,6 +1233,18 @@ namespace Mk.DemoB.Migrations
                 name: "abp_user_tokens");
 
             migrationBuilder.DropTable(
+                name: "demob_capture_currency");
+
+            migrationBuilder.DropTable(
+                name: "demob_exchange_rate");
+
+            migrationBuilder.DropTable(
+                name: "demob_exchange_rate_capture_batch");
+
+            migrationBuilder.DropTable(
+                name: "demob_sale_order_detail");
+
+            migrationBuilder.DropTable(
                 name: "identity_server_api_claims");
 
             migrationBuilder.DropTable(
@@ -1167,6 +1303,9 @@ namespace Mk.DemoB.Migrations
 
             migrationBuilder.DropTable(
                 name: "abp_users");
+
+            migrationBuilder.DropTable(
+                name: "demob_sale_order");
 
             migrationBuilder.DropTable(
                 name: "identity_server_api_scopes");
