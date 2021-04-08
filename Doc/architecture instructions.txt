@@ -91,7 +91,7 @@ Ec.Admin.Application.Contracts
 Ec.Admin.Domain.Shared
 设置为 netstandard2.1
 
-其他项目都设置为netcoreapp3.1
+其他项目都设置为net5.0
 
 
 依赖注入=========

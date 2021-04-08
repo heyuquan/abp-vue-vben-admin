@@ -40,7 +40,7 @@ namespace Mk.DemoC.ElastcSearchAppService
         [HttpPost("product/capture")]
         public async Task<ServiceResult<long>> CaptureProductDocAsync()
         {
-            ServiceResult<long> ret = new ServiceResult<long>(IdProvider.Get());
+            ServiceResult<long> ret = new ServiceResult<long>(CorrelationIdIdProvider.Get());
             long hadCaptureCount = 0;
             HttpClient client = _clientFactory.CreateClient();
 
@@ -108,7 +108,7 @@ namespace Mk.DemoC.ElastcSearchAppService
         [HttpDelete("product/delete/all")]
         public async Task<ServiceResult> DeleteProductDocAsync()
         {
-            ServiceResult ret = new ServiceResult(IdProvider.Get());
+            ServiceResult ret = new ServiceResult(CorrelationIdIdProvider.Get());
             await _productSpuDocRepository.DeleteAllAsync();
             ret.SetSuccess();
             return ret;

@@ -4,9 +4,11 @@ using Volo.Abp.BackgroundJobs;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;
+using Volo.Abp.MultiTenancy;
 
 namespace Leopard.Abp.BackgroundJobs.EntityFrameworkCore
 {
+    [IgnoreMultiTenancy]
     [ConnectionStringName(LeopardDbProperties.DefaultDbConnectionStringName)]
     public class LeopardBackgroundJobsDbContext : AbpDbContext<LeopardBackgroundJobsDbContext>, IBackgroundJobsDbContext
     {

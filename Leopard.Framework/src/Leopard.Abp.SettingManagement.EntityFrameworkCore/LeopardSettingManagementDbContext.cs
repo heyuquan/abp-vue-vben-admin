@@ -3,11 +3,13 @@ using Leopard.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;
+using Volo.Abp.MultiTenancy;
 using Volo.Abp.SettingManagement;
 using Volo.Abp.SettingManagement.EntityFrameworkCore;
 
 namespace Leopard.Abp.SettingManagement.EntityFrameworkCore
 {
+    [IgnoreMultiTenancy]
     [ConnectionStringName(LeopardDbProperties.DefaultDbConnectionStringName)]
     public class LeopardSettingManagementDbContext : AbpDbContext<LeopardSettingManagementDbContext>, ISettingManagementDbContext
     {

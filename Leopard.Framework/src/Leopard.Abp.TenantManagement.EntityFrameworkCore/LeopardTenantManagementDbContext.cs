@@ -2,11 +2,13 @@
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;
+using Volo.Abp.MultiTenancy;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
 
 namespace Leopard.Abp.TenantManagement.EntityFrameworkCore
 {
+    [IgnoreMultiTenancy]
     [ConnectionStringName(LeopardDbProperties.DefaultDbConnectionStringName)]
     public class LeopardTenantManagementDbContext : AbpDbContext<LeopardTenantManagementDbContext>, ITenantManagementDbContext
     {

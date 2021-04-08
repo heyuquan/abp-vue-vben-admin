@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
@@ -11,8 +12,9 @@ namespace Mk.DemoC.EntityFrameworkCore
         {
             var configuration = BuildConfiguration();
 
+            var version = new MySqlServerVersion(new Version(5, 7, 33));
             var builder = new DbContextOptionsBuilder<DemoCHttpApiHostMigrationsDbContext>()
-                .UseMySql(configuration.GetConnectionString(DemoCDbProperties.ConnectionStringName));
+                .UseMySql(configuration.GetConnectionString(DemoCDbProperties.ConnectionStringName),version);
 
             return new DemoCHttpApiHostMigrationsDbContext(builder.Options);
         }

@@ -21,6 +21,10 @@ namespace Leopard.Abp.Identity.EntityFrameworkCore
 
         public DbSet<OrganizationUnit> OrganizationUnits { get; set; }
 
+        public DbSet<IdentitySecurityLog> SecurityLogs { get; set; }
+
+        public DbSet<IdentityLinkUser> LinkUsers { get; set; }
+
         public LeopardIdentityDbContext(DbContextOptions<LeopardIdentityDbContext> options)
             : base(options)
         {

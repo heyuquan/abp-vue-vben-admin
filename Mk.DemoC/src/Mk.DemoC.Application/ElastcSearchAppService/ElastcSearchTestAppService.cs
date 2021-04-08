@@ -96,7 +96,7 @@ namespace Mk.DemoC.ElastcSearchAppService
         [HttpPost("doc/init")]
         public async Task<ServiceResult<List<ProductSpuDocumentDto>>> InitDocument()
         {
-            ServiceResult<List<ProductSpuDocumentDto>> ret = new ServiceResult<List<ProductSpuDocumentDto>>(IdProvider.Get());
+            ServiceResult<List<ProductSpuDocumentDto>> ret = new ServiceResult<List<ProductSpuDocumentDto>>(CorrelationIdIdProvider.Get());
 
             // id相同的Document，会自行变成更新而不是新增
             // 39f792fdc909816aeda1bbb97faa18a5
@@ -190,7 +190,7 @@ namespace Mk.DemoC.ElastcSearchAppService
         [HttpPost("doc/get")]
         public async Task<ServiceResult<List<ProductSpuDocumentDto>>> GetAsync()
         {
-            ServiceResult<List<ProductSpuDocumentDto>> ret = new ServiceResult<List<ProductSpuDocumentDto>>(IdProvider.Get());
+            ServiceResult<List<ProductSpuDocumentDto>> ret = new ServiceResult<List<ProductSpuDocumentDto>>(CorrelationIdIdProvider.Get());
 
             #region 获取doc的方式
             var rp1 = await client.GetAsync<ProductSpuDocument>("39f792fdc909816aeda1bbb97faa18a5"
@@ -228,7 +228,7 @@ namespace Mk.DemoC.ElastcSearchAppService
         public async Task<ServiceResult> UpdateDocumentAsync()
         {
             string id = "39f792fdc909816aeda1bbb97faa18a5";
-            ServiceResult ret = new ServiceResult(IdProvider.Get());
+            ServiceResult ret = new ServiceResult(CorrelationIdIdProvider.Get());
             var getResponse = await client.GetAsync<ProductSpuDocument>(id
                                         , idx => idx.Index(ElasticSearchClient.MALL_SEARCH_PRODUCT));
             var doc = getResponse.Source;

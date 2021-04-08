@@ -94,7 +94,7 @@ namespace Leopard.Results
             IsSuccess = false;
             if (data is RemoteServiceErrorInfo)
             {
-                Data = data;
+                   Data = data;
             }
             else
             {

@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
@@ -15,8 +16,9 @@ namespace Mk.DemoB.EntityFrameworkCore
 
             var configuration = BuildConfiguration();
 
+            var version = new MySqlServerVersion(new Version(5, 7, 33));
             var builder = new DbContextOptionsBuilder<DemoBMigrationsDbContext>()
-                .UseMySql(configuration.GetConnectionString("Default"));
+                .UseMySql(configuration.GetConnectionString("Default"), version);
 
             return new DemoBMigrationsDbContext(builder.Options);
         }

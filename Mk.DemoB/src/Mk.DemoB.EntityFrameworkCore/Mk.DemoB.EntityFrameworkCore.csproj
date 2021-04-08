@@ -3,7 +3,7 @@
   <Import Project="..\..\common.props" />
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>Mk.DemoB</RootNamespace>
   </PropertyGroup>
 
@@ -25,7 +25,7 @@
     <ProjectReference Include="..\..\..\Leopard.Framework\src\Leopard.Core\Leopard.csproj" />
     <ProjectReference Include="..\..\..\Leopard.Framework\src\Leopard.EntityFrameworkCore\Leopard.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\Mk.DemoB.Domain\Mk.DemoB.Domain.csproj" />
-    <PackageReference Include="Volo.Abp.EntityFrameworkCore.MySQL" Version="3.0.4" />
+    <PackageReference Include="Volo.Abp.EntityFrameworkCore.MySQL" Version="4.2.1" />
   </ItemGroup>
 
 </Project>

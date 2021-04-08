@@ -28,7 +28,7 @@ namespace Mk.DemoB
     {
         public override void PreConfigureServices(ServiceConfigurationContext context)
         {
-            DemoBModulePropertyConfigurator.Configure();
+            DemoBModuleExtensionConfigurator.Configure();
         }
 
         public override void ConfigureServices(ServiceConfigurationContext context)

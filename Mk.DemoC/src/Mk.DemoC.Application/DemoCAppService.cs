@@ -12,8 +12,6 @@ namespace Mk.DemoC
             ObjectMapperContext = typeof(DemoCApplicationModule);
         }
 
-        private ICorrelationIdProvider _correlationIdProvider;
-
-        protected ICorrelationIdProvider IdProvider => LazyGetRequiredService(ref _correlationIdProvider);
+        protected ICorrelationIdProvider CorrelationIdIdProvider => LazyServiceProvider.LazyGetRequiredService<ICorrelationIdProvider>();
     }
 }

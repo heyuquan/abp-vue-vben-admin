@@ -38,7 +38,7 @@ namespace Mk.DemoB.BackgroundJobs.Job
         private readonly Clock _clock;
 
         public CaptureExechangeRateWorker(
-                AbpTimer timer
+                AbpAsyncTimer timer
                 , Clock clock
                 , IServiceScopeFactory serviceScopeFactory
                 , ILogger<CaptureExechangeRateWorker> logger

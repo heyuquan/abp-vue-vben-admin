@@ -24,7 +24,7 @@ namespace Mk.DemoC.ElastcSearchAppService
         [HttpPost("doc/search")]
         public async Task<ServiceResult<PagedResultDto<ProductSpuDocumentDto>>> SearchAsync(EsSearchRequest req)
         {
-            ServiceResult<PagedResultDto<ProductSpuDocumentDto>> ret = new ServiceResult<PagedResultDto<ProductSpuDocumentDto>>(IdProvider.Get());
+            ServiceResult<PagedResultDto<ProductSpuDocumentDto>> ret = new ServiceResult<PagedResultDto<ProductSpuDocumentDto>>(CorrelationIdIdProvider.Get());
 
             var shouldQuerys = new List<Func<QueryContainerDescriptor<ProductSpuDocument>, QueryContainer>>();
             shouldQuerys.Add(t => t.Match(f => f

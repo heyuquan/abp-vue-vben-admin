@@ -41,7 +41,7 @@ namespace Mk.DemoB.ExchangeRateAppService
         [HttpPost("capture-currency/create")]
         public virtual async Task<ServiceResult<CaptureCurrencyDto>> CreateCaptureCurrencyAsync(CaptureCurrencyCreateRequest input)
         {
-            ServiceResult<CaptureCurrencyDto> ret = new ServiceResult<CaptureCurrencyDto>(IdProvider.Get());
+            ServiceResult<CaptureCurrencyDto> ret = new ServiceResult<CaptureCurrencyDto>(CorrelationIdIdProvider.Get());
 
             CaptureCurrency entity = new CaptureCurrency(GuidGenerator.Create(), input.CurrencyCodeFrom, input.CurrencyCodeTo);
             await _captureCurrencyRepository.InsertAsync(entity);
@@ -57,7 +57,7 @@ namespace Mk.DemoB.ExchangeRateAppService
         [HttpPost("capture/all")]
         public virtual async Task<ServiceResult<List<ExchangeRateDto>>> CaptureAllRateAndSaveAsync()
         {
-            ServiceResult<List<ExchangeRateDto>> ret = new ServiceResult<List<ExchangeRateDto>>(IdProvider.Get());
+            ServiceResult<List<ExchangeRateDto>> ret = new ServiceResult<List<ExchangeRateDto>>(CorrelationIdIdProvider.Get());
 
             var exchangeRates = await _exchangeRateManager.CaptureAllRateAndSaveAsync();
             List<ExchangeRateDto> dtos = ObjectMapper.Map<List<ExchangeRate>, List<ExchangeRateDto>>(exchangeRates);
@@ -72,7 +72,7 @@ namespace Mk.DemoB.ExchangeRateAppService
         [HttpGet("batch/latest")]
         public virtual async Task<ServiceResult<ExchangeRateBatchDto>> GetLatestBatchPagingAsync()
         {
-            ServiceResult<ExchangeRateBatchDto> ret = new ServiceResult<ExchangeRateBatchDto>(IdProvider.Get());
+            ServiceResult<ExchangeRateBatchDto> ret = new ServiceResult<ExchangeRateBatchDto>(CorrelationIdIdProvider.Get());
             ExchangeRateBatchDto retDto = new ExchangeRateBatchDto();
             ExchangeRateCaptureBatch batch = await _exchangeRateCaptureBatchRepository.GetTopOneAsync();
 
@@ -107,7 +107,7 @@ namespace Mk.DemoB.ExchangeRateAppService
         [HttpGet("paging")]
         public virtual async Task<ServiceResult<PagedResultDto<ExchangeRateDto>>> GetExchangeRatePagingRequest(GetExchangeRatePagingRequest req)
         {
-            ServiceResult<PagedResultDto<ExchangeRateDto>> ret = new ServiceResult<PagedResultDto<ExchangeRateDto>>(IdProvider.Get());
+            ServiceResult<PagedResultDto<ExchangeRateDto>> ret = new ServiceResult<PagedResultDto<ExchangeRateDto>>(CorrelationIdIdProvider.Get());
 
             var pageData = await _exchangeRateRepository.GetPagingAsync(
                                         currencyCodeFrom: req.CurrencyCodeFrom

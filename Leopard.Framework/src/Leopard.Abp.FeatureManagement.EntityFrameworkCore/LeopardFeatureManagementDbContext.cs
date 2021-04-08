@@ -4,9 +4,11 @@ using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.FeatureManagement;
 using Volo.Abp.FeatureManagement.EntityFrameworkCore;
+using Volo.Abp.MultiTenancy;
 
 namespace Leopard.Abp.FeatureManagement.EntityFrameworkCore
 {
+    [IgnoreMultiTenancy]
     [ConnectionStringName(LeopardDbProperties.DefaultDbConnectionStringName)]
     public class LeopardFeatureManagementDbContext : AbpDbContext<LeopardFeatureManagementDbContext>, IFeatureManagementDbContext
     {

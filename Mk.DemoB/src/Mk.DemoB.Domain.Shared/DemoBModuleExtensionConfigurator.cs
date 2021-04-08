@@ -5,7 +5,7 @@ using Volo.Abp.Threading;
 
 namespace Mk.DemoB
 {
-    public static class DemoBModulePropertyConfigurator
+    public static class DemoBModuleExtensionConfigurator
     {
         private static readonly OneTimeRunner OneTimeRunner = new OneTimeRunner();
 

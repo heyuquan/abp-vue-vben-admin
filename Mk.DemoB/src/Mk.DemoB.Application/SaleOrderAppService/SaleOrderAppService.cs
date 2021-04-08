@@ -48,7 +48,7 @@ namespace Mk.DemoB.SaleOrderAppService
         [HttpPost("create")]
         public virtual async Task<ServiceResult<SaleOrderDto>> CreateAsync(SaleOrderCreateDto input)
         {
-            ServiceResult<SaleOrderDto> retValue = new ServiceResult<SaleOrderDto>(IdProvider.Get());
+            ServiceResult<SaleOrderDto> retValue = new ServiceResult<SaleOrderDto>(CorrelationIdIdProvider.Get());
 
             SaleOrder saleOrder = new SaleOrder(
                 GuidGenerator.Create()
@@ -89,7 +89,7 @@ namespace Mk.DemoB.SaleOrderAppService
         [HttpGet("paging")]
         public virtual async Task<ServiceResult<PagedResultDto<SaleOrderDto>>> GetOrderPagingAsync(GetSaleOrderPagingRequest req)
         {
-            ServiceResult<PagedResultDto<SaleOrderDto>> retValue = new ServiceResult<PagedResultDto<SaleOrderDto>>(IdProvider.Get());
+            ServiceResult<PagedResultDto<SaleOrderDto>> retValue = new ServiceResult<PagedResultDto<SaleOrderDto>>(CorrelationIdIdProvider.Get());
 
             var pageData = await _saleOrderRepository.GetPagingAsync(
                             req.OrderNo
@@ -114,7 +114,7 @@ namespace Mk.DemoB.SaleOrderAppService
         [HttpPost("id/{id}")]
         public virtual async Task<ServiceResult<SaleOrderDto>> GetByIdAsync(Guid id)
         {
-            ServiceResult<SaleOrderDto> retValue = new ServiceResult<SaleOrderDto>(IdProvider.Get());
+            ServiceResult<SaleOrderDto> retValue = new ServiceResult<SaleOrderDto>(CorrelationIdIdProvider.Get());
             var saleOrder = await _saleOrderRepository.FindAsync(id);
 
             retValue.SetSuccess(ObjectMapper.Map<SaleOrder, SaleOrderDto>(saleOrder));
@@ -131,7 +131,7 @@ namespace Mk.DemoB.SaleOrderAppService
         {
             Check.NotNullOrEmpty(orderNo, nameof(orderNo));
 
-            ServiceResult<SaleOrderDto> retValue = new ServiceResult<SaleOrderDto>(IdProvider.Get());
+            ServiceResult<SaleOrderDto> retValue = new ServiceResult<SaleOrderDto>(CorrelationIdIdProvider.Get());
             var saleOrder = await _saleOrderRepository.GetByOrderNoAsync(orderNo);
 
             retValue.SetSuccess(ObjectMapper.Map<SaleOrder, SaleOrderDto>(saleOrder));
@@ -146,7 +146,7 @@ namespace Mk.DemoB.SaleOrderAppService
         [HttpPost("update")]
         public virtual async Task<ServiceResult<SaleOrderDto>> UpdateAsync(SaleOrderUpdateDto input)
         {
-            ServiceResult<SaleOrderDto> retValue = new ServiceResult<SaleOrderDto>(IdProvider.Get());
+            ServiceResult<SaleOrderDto> retValue = new ServiceResult<SaleOrderDto>(CorrelationIdIdProvider.Get());
             var saleOrder = await _saleOrderRepository.FindAsync(input.Id);
 
             // ConcurrencyStamp 并发检查，发生并发会抛出异常：AbpDbConcurrencyException
@@ -217,7 +217,7 @@ namespace Mk.DemoB.SaleOrderAppService
         [HttpDelete("{id}")]
         public virtual async Task<ServiceResult> DeleteByIdAsync(Guid id)
         {
-            ServiceResult<SaleOrderDto> retValue = new ServiceResult<SaleOrderDto>(IdProvider.Get());
+            ServiceResult<SaleOrderDto> retValue = new ServiceResult<SaleOrderDto>(CorrelationIdIdProvider.Get());
 
             // 直接通过 id 删除实体，并不会把关联的子表一起删除。所以需要将实体和实体的子表查出来，再删除
             //await _saleOrderRepository.DeleteAsync(id);

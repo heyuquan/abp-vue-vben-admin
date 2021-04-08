@@ -11,7 +11,7 @@ namespace Mk.DemoB.EntityFrameworkCore
 
         public static void Configure()
         {
-            DemoBModulePropertyConfigurator.Configure();
+            DemoBModuleExtensionConfigurator.Configure();
             
             OneTimeRunner.Run(() =>
             {

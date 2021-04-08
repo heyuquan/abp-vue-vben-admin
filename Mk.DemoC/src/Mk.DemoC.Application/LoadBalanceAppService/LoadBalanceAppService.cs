@@ -27,7 +27,7 @@ namespace Mk.DemoC.RemoteCallAppService
         [HttpGet("location")]
         public async Task<ServiceResult<string>> Location()
         {
-            ServiceResult<string> ret = new ServiceResult<string>(IdProvider.Get());
+            ServiceResult<string> ret = new ServiceResult<string>(CorrelationIdIdProvider.Get());
             var context = _httpContextAccessor.HttpContext;
 
             ret.SetSuccess($"负载|democ|{context.Request.Host.Value}|{context.Request.Path}");

@@ -53,7 +53,7 @@ namespace Mk.DemoB.DataFilterAppService
         [HttpGet("not-contain-delete-count")]
         public virtual async Task<ServiceResult<long>> GetSaleOrderCountAsync(GetSaleOrderPagingRequest req)
         {
-            ServiceResult<long> result = new ServiceResult<long>(IdProvider.Get());
+            ServiceResult<long> result = new ServiceResult<long>(CorrelationIdIdProvider.Get());
 
             ServiceResult<PagedResultDto<SaleOrderDto>> retValue = await _saleOrderAppService.GetOrderPagingAsync(req);
             result.SetSuccess(retValue.Data.TotalCount);
@@ -69,7 +69,7 @@ namespace Mk.DemoB.DataFilterAppService
         [HttpGet("contain-delete-count")]
         public virtual async Task<ServiceResult<long>> GetAllSaleOrderCountAsync(GetSaleOrderPagingRequest req)
         {
-            ServiceResult<long> result = new ServiceResult<long>(IdProvider.Get());
+            ServiceResult<long> result = new ServiceResult<long>(CorrelationIdIdProvider.Get());
 
             using (_dataFilter.Disable<ISoftDelete>())
             {

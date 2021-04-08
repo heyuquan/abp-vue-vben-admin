@@ -20,12 +20,16 @@ namespace Leopard.Abp.Identity.EntityFrameworkCore
                 options.AddRepository<IdentityRole, EfCoreIdentityRoleRepository>();
                 options.AddRepository<IdentityClaimType, EfCoreIdentityClaimTypeRepository>();
                 options.AddRepository<OrganizationUnit, EfCoreOrganizationUnitRepository>();
+                options.AddRepository<IdentitySecurityLog, EFCoreIdentitySecurityLogRepository>();
+                options.AddRepository<IdentityLinkUser, EfCoreIdentityLinkUserRepository>();
             });
 
             context.Services.TryAddTransient(typeof(IIdentityClaimTypeRepository), typeof(EfCoreIdentityClaimTypeRepository));
             context.Services.TryAddTransient(typeof(IIdentityRoleRepository), typeof(EfCoreIdentityRoleRepository));
             context.Services.TryAddTransient(typeof(IIdentityUserRepository), typeof(EfCoreIdentityUserRepository));
             context.Services.TryAddTransient(typeof(IOrganizationUnitRepository), typeof(EfCoreOrganizationUnitRepository));
+            context.Services.TryAddTransient(typeof(IIdentitySecurityLogRepository), typeof(EFCoreIdentitySecurityLogRepository));
+            context.Services.TryAddTransient(typeof(IIdentityLinkUserRepository), typeof(EfCoreIdentityLinkUserRepository));
         }
     }
 }
