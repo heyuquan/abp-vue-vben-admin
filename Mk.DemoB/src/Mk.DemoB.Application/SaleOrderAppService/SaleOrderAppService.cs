@@ -1,4 +1,4 @@
-﻿using Leopard.Results;
+using Leopard.Results;
 using Microsoft.AspNetCore.Mvc;
 using Mk.DemoB.Dto.SaleOrders;
 using Mk.DemoB.IAppService;
@@ -43,7 +43,7 @@ namespace Mk.DemoB.SaleOrderAppService
         /// <summary>
         /// 创建订单
         /// </summary>
-        /// <param name="req"></param>
+        /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost("create")]
         public virtual async Task<ServiceResult<SaleOrderDto>> CreateAsync(SaleOrderCreateDto input)
@@ -109,7 +109,7 @@ namespace Mk.DemoB.SaleOrderAppService
         /// <summary>
         /// 根据Id查询订单
         /// </summary>
-        /// <param name="req"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
         [HttpPost("id/{id}")]
         public virtual async Task<ServiceResult<SaleOrderDto>> GetByIdAsync(Guid id)
@@ -124,7 +124,7 @@ namespace Mk.DemoB.SaleOrderAppService
         /// <summary>
         /// 根据 订单编号 查询订单
         /// </summary>
-        /// <param name="req"></param>
+        /// <param name="orderNo"></param>
         /// <returns></returns>
         [HttpPost("orderno/{orderNo}")]
         public virtual async Task<ServiceResult<SaleOrderDto>> GetByOrderNoAsync(string orderNo)
@@ -141,7 +141,7 @@ namespace Mk.DemoB.SaleOrderAppService
         /// <summary>
         /// 更新订单
         /// </summary>
-        /// <param name="req"></param>
+        /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost("update")]
         public virtual async Task<ServiceResult<SaleOrderDto>> UpdateAsync(SaleOrderUpdateDto input)
@@ -212,7 +212,7 @@ namespace Mk.DemoB.SaleOrderAppService
         /// <summary>
         /// 删除订单
         /// </summary>
-        /// <param name="req"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete("{id}")]
         public virtual async Task<ServiceResult> DeleteByIdAsync(Guid id)
