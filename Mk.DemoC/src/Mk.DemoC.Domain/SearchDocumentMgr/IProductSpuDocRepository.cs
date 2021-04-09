@@ -1,4 +1,4 @@
-﻿using Mk.DemoC.SearchDocumentMgr.Entities;
+using Mk.DemoC.SearchDocumentMgr.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -19,13 +19,13 @@ namespace Mk.DemoC.SearchDocumentMgr
         /// <param name="skipCount"></param>
         /// <param name="maxResultCount"></param>
         /// <param name="isGetTotalCount"></param>
-        /// <param name="isNotracking"></param>
+        /// <param name="isNoTracking"></param>
         /// <returns></returns>
         Task<PageData<ProductSpuDoc>> GetPagingAsync(
            string sorting = null
            , int skipCount = 0
            , int maxResultCount = int.MaxValue
            , bool isGetTotalCount = true
-           , bool isNotracking = false);
+           , bool isNoTracking = false);
     }
 }

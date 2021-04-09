@@ -1,4 +1,4 @@
-﻿using HtmlAgilityPack;
+using HtmlAgilityPack;
 using Leopard.Paging;
 using Leopard.Results;
 using Microsoft.AspNetCore.Mvc;
@@ -119,7 +119,7 @@ namespace Mk.DemoC.ElastcSearchAppService
         {
             PageData<ProductSpuDoc> docsEntity = await _productSpuDocRepository.GetPagingAsync(
                 isGetTotalCount: false,
-                isNotracking: true
+                isNoTracking: true
                 );
 
             List<ProductSpuDocument> docs = ObjectMapper.Map<List<ProductSpuDoc>, List<ProductSpuDocument>>(docsEntity.Items);

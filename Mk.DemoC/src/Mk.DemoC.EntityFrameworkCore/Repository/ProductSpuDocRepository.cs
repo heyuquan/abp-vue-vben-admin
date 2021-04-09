@@ -1,4 +1,4 @@
-﻿using Leopard.Paging;
+using Leopard.Paging;
 using Microsoft.EntityFrameworkCore;
 using Mk.DemoC.EntityFrameworkCore;
 using Mk.DemoC.SearchDocumentMgr;
@@ -34,18 +34,18 @@ namespace Mk.DemoC.Repository
         /// <param name="skipCount"></param>
         /// <param name="maxResultCount"></param>
         /// <param name="isGetTotalCount"></param>
-        /// <param name="isNotracking"></param>
+        /// <param name="isNoTracking"></param>
         /// <returns></returns>
         public async Task<PageData<ProductSpuDoc>> GetPagingAsync(
             string sorting = null
             , int skipCount = 0
             , int maxResultCount = int.MaxValue
             , bool isGetTotalCount = true
-            , bool isNotracking = false)
+            , bool isNoTracking = false)
         {
             PageData<ProductSpuDoc> result = new PageData<ProductSpuDoc>();
             var query = GetQueryable();
-            if (isNotracking)
+            if (isNoTracking)
             {
                 query = query.AsNoTracking();
             }
