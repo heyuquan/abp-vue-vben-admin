@@ -1,3 +1,4 @@
+using Leopard.Domain.Consts;
 using Leopard.Paging;
 using Microsoft.EntityFrameworkCore;
 using Mk.DemoB.Domain.Enums.SaleOrders;
@@ -55,7 +56,7 @@ namespace Mk.DemoB.Repository
             , decimal? minTotalAmount = null
             , string sorting = null
             , int skipCount = 0
-            , int maxResultCount = int.MaxValue
+            , int maxResultCount = PagingConsts.ResultCount.Normal
             , bool includeDetails = true
             , bool isGetTotalCount = true)
         {

@@ -100,9 +100,10 @@ namespace Mk.DemoB.SaleOrderAppService
             }
             else
             {
-                if (req.MaxResultCount > 200)      // 一般分页，每页最多就200条记录
+                int resultCount = 200;    //支持参数设定。默认为  PagingConsts.ResultCount.Normal
+                if (req.MaxResultCount > resultCount)      // 一般分页，每页最多就200条记录
                 {
-                    req.MaxResultCount = 200;
+                    req.MaxResultCount = resultCount;
                 }
             }
 

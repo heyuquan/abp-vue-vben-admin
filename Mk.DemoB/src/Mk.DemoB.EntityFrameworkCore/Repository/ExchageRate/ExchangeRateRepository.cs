@@ -11,6 +11,7 @@ using Volo.Abp.Domain.Repositories.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
 using System.Linq.Dynamic.Core;
 using Volo.Abp;
+using Leopard.Domain.Consts;
 
 namespace Mk.DemoB.Repository
 {
@@ -42,7 +43,7 @@ namespace Mk.DemoB.Repository
             , string captureBatchNumber = null
             , string sorting = null
             , int skipCount = 0
-            , int maxResultCount = int.MaxValue
+            , int maxResultCount = PagingConsts.ResultCount.Normal
             , bool isGetTotalCount = true)
         {
             PageData<ExchangeRate> result = new PageData<ExchangeRate>();
