@@ -1,4 +1,4 @@
-﻿using Leopard.Paging;
+using Leopard.Paging;
 using Microsoft.EntityFrameworkCore;
 using Mk.DemoB.Domain.Enums.SaleOrders;
 using Mk.DemoB.EntityFrameworkCore;
@@ -28,7 +28,7 @@ namespace Mk.DemoB.Repository
         /// <returns></returns>
         public async Task<SaleOrder> GetByOrderNoAsync(string orderNo)
         {
-            return await Task.FromResult(GetQueryable().IncludeDetails().Where(x => x.OrderNo == orderNo).FirstOrDefault());
+            return await Task.FromResult((await GetQueryableAsync()).IncludeDetails().Where(x => x.OrderNo == orderNo).FirstOrDefault());
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Mk.DemoB.Repository
         {
             PageData<SaleOrder> result = new PageData<SaleOrder>();
 
-            IQueryable<SaleOrder> query = GetQueryable()
+            IQueryable<SaleOrder> query = (await GetQueryableAsync())
                .WhereIf(!string.IsNullOrWhiteSpace(orderNo), x => x.OrderNo == orderNo)
                .WhereIf(orderStatus.HasValue, x => x.OrderStatus == orderStatus.Value)
                // 由于 customerName 是自定义扩展字段，存储在 ExtraProperties 字段中，无法在过滤sql中
@@ -93,9 +93,9 @@ namespace Mk.DemoB.Repository
 
         // 重写了这个方法，Repository中的 方法参数 includeDetails 参数才有效果。  
         // 因为这个方法中指定了 实体 和 关联实体的关系，不指定系统也不知道要关联啥东西
-        public override IQueryable<SaleOrder> WithDetails()
+        public override async Task<IQueryable<SaleOrder>> WithDetailsAsync()
         {
-            return GetQueryable().IncludeDetails();
+            return (await GetQueryableAsync()).IncludeDetails();
         }
 
     }

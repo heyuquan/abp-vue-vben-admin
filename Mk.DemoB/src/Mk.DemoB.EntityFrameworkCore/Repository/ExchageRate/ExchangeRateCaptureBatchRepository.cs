@@ -1,4 +1,4 @@
-﻿using Mk.DemoB.EntityFrameworkCore;
+using Mk.DemoB.EntityFrameworkCore;
 using Mk.DemoB.ExchangeRateMgr;
 using Mk.DemoB.ExchangeRateMgr.Entities;
 using System;
@@ -19,12 +19,12 @@ namespace Mk.DemoB.Repository
 
         public async Task<ExchangeRateCaptureBatch> GetByCaptureBatchNumberAsync(string captureBatchNumber)
         {
-            return await GetQueryable().Where(x => x.CaptureBatchNumber == captureBatchNumber).FirstOrDefaultAsync();
+            return await (await GetQueryableAsync()).Where(x => x.CaptureBatchNumber == captureBatchNumber).FirstOrDefaultAsync();
         }
 
         public async Task<ExchangeRateCaptureBatch> GetTopOneAsync()
         {
-            return await GetQueryable().OrderByDescending(x => x.Id).FirstOrDefaultAsync();
+            return await (await GetQueryableAsync()).OrderByDescending(x => x.Id).FirstOrDefaultAsync();
         }
 
     }

@@ -1,4 +1,4 @@
-﻿using Leopard.Paging;
+using Leopard.Paging;
 using Microsoft.EntityFrameworkCore;
 using Mk.DemoB.EntityFrameworkCore;
 using Mk.DemoB.ExchangeRateMgr;
@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Volo.Abp.Domain.Repositories.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
 using System.Linq.Dynamic.Core;
+using Volo.Abp;
 
 namespace Mk.DemoB.Repository
 {
@@ -45,7 +46,7 @@ namespace Mk.DemoB.Repository
             , bool isGetTotalCount = true)
         {
             PageData<ExchangeRate> result = new PageData<ExchangeRate>();
-            var query = GetQueryable()
+            var query = (await GetQueryableAsync())
                 .WhereIf(!String.IsNullOrWhiteSpace(currencyCodeFrom), x => x.CurrencyCodeFrom == currencyCodeFrom)
                 .WhereIf(!String.IsNullOrWhiteSpace(currencyCodeTo), x => x.CurrencyCodeTo == currencyCodeTo)
                 .WhereIf(beginTime.HasValue, x => x.CaptureTime >= beginTime.Value)

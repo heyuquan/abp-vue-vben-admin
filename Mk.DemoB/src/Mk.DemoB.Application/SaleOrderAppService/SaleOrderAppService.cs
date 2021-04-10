@@ -91,6 +91,21 @@ namespace Mk.DemoB.SaleOrderAppService
         {
             ServiceResult<PagedResultDto<SaleOrderDto>> retValue = new ServiceResult<PagedResultDto<SaleOrderDto>>(CorrelationIdIdProvider.Get());
 
+            // 写个Filter处理，这样可以对每个action指定  MaxResultCount  的判断值
+            req.SkipCount = req.SkipCount < 0 ? 0 : req.SkipCount;
+
+            if (req.MaxResultCount < 0)
+            {
+                req.MaxResultCount = 0;
+            }
+            else
+            {
+                if (req.MaxResultCount > 200)      // 一般分页，每页最多就200条记录
+                {
+                    req.MaxResultCount = 200;
+                }
+            }
+
             var pageData = await _saleOrderRepository.GetPagingAsync(
                             req.OrderNo
                             , req.OrderStatus
