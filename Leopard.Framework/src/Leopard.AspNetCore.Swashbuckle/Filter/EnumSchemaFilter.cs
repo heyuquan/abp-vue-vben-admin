@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 
-namespace Leopard.AspNetCore.Swashbuckle
+namespace Leopard.AspNetCore.Swashbuckle.Filter
 {
     public class EnumSchemaFilter : ISchemaFilter
     {
