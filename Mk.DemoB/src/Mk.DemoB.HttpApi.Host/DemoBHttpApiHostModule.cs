@@ -1,10 +1,8 @@
 using Leopard.AspNetCore.Mvc.Filters;
-using Leopard.Consul;
+using Leopard.AspNetCore.Swashbuckle;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -179,6 +177,7 @@ namespace Mk.DemoB
                 {
                     options.SwaggerDoc("v1", new OpenApiInfo { Title = "DemoB API", Version = "v1" });
                     options.DocInclusionPredicate((docName, description) => true);
+                    options.SchemaFilter<EnumSchemaFilter>();
 
                     // 为 Swagger JSON and UI设置xml文档注释路径
                     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "Mk.DemoB.Application.xml"), true);

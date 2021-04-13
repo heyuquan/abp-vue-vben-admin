@@ -1,4 +1,4 @@
-﻿using Leopard.Results;
+using Leopard.Results;
 using Microsoft.AspNetCore.Mvc;
 using Mk.DemoC.Domain.Consts.ElastcSearchs;
 using Mk.DemoC.Dto.ElastcSearchs;
@@ -76,23 +76,23 @@ namespace Mk.DemoC.ElastcSearchAppService
                 mustFilters.Add(t => t.Range(r => r.Field(f => f.MaxPrice).LessThanOrEquals(req.MaxPrice.Value)));
             }
 
-            var rp = client.Search<ProductSpuDocument>(s => s
-                            .Index(ElasticSearchClient.MALL_SEARCH_PRODUCT)                            
-                            .MinScore(0.02)
-                            .From(req.SkipCount)       // Es中分页使用 from+size
-                            .Size(req.MaxResultCount)                            
-                            // 指定要返回的字段，避免把一些不必要的字段返回
-                            //.Source(x=>x.Includes(fin=>fin.Fields(f=>f.SpuName,f=>f.SpuCode)))
-                            .Query(q => q
-                                .Bool(b => b
-                                    .Should(shouldQuerys).MinimumShouldMatch(new MinimumShouldMatch(1))
-                                    .Filter(f => f
-                                        .Bool(fb => fb.Must(mustFilters))
+            var rp = await client.SearchAsync<ProductSpuDocument>(s => s
+                             .Index(ElasticSearchClient.MALL_SEARCH_PRODUCT)
+                             .MinScore(0.02)
+                             .From(req.SkipCount)       // Es中分页使用 from+size
+                             .Size(req.MaxResultCount)
+                             // 指定要返回的字段，避免把一些不必要的字段返回
+                             //.Source(x=>x.Includes(fin=>fin.Fields(f=>f.SpuName,f=>f.SpuCode)))
+                             .Query(q => q
+                                 .Bool(b => b
+                                     .Should(shouldQuerys).MinimumShouldMatch(new MinimumShouldMatch(1))
+                                     .Filter(f => f
+                                         .Bool(fb => fb.Must(mustFilters))
 
-                                    )
-                                )
+                                     )
+                                 )
 
-                            )
+                             )
                         );
             var productSpuDocuments = rp.Documents.ToList();
 

@@ -31,6 +31,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Leopard.Framework\src\Leopard.AspNetCore.Mvc\Leopard.AspNetCore.Mvc.csproj" />
+    <ProjectReference Include="..\..\..\Leopard.Framework\src\Leopard.AspNetCore.Swashbuckle\Leopard.AspNetCore.Swashbuckle.csproj" />
     <ProjectReference Include="..\..\..\Leopard.Framework\src\Leopard.Consul\Leopard.Consul.csproj" />
     <ProjectReference Include="..\Mk.DemoB.Application\Mk.DemoB.Application.csproj" />
     <ProjectReference Include="..\Mk.DemoB.EntityFrameworkCore.DbMigrations\Mk.DemoB.EntityFrameworkCore.DbMigrations.csproj" />

@@ -24,7 +24,8 @@ namespace Mk.DemoC.Repository
         public async Task DeleteAllAsync()
         {
             string sql = "delete from product_spu_doc";
-            await DbContext.Database.ExecuteSqlRawAsync(sql);
+
+            await (await GetDbContextAsync()).Database.ExecuteSqlRawAsync(sql);
         }
 
         /// <summary>
@@ -44,7 +45,7 @@ namespace Mk.DemoC.Repository
             , bool isNoTracking = false)
         {
             PageData<ProductSpuDoc> result = new PageData<ProductSpuDoc>();
-            var query = GetQueryable();
+            var query = await GetQueryableAsync();
             if (isNoTracking)
             {
                 query = query.AsNoTracking();

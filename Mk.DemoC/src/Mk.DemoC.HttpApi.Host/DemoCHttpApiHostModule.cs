@@ -41,6 +41,7 @@ using Volo.Abp.AspNetCore.Mvc.ExceptionHandling;
 using Leopard.Consul;
 using Serilog;
 using Microsoft.AspNetCore.Http;
+using Leopard.AspNetCore.Swashbuckle;
 
 namespace Mk.DemoC
 {
@@ -107,6 +108,7 @@ namespace Mk.DemoC
                     options.SwaggerDoc("v1", new OpenApiInfo { Title = "DemoC API", Version = "v1" });
                     options.DocInclusionPredicate((docName, description) => true);
                     options.CustomSchemaIds(type => type.FullName);
+                    options.SchemaFilter<EnumSchemaFilter>();
 
                     // 为 Swagger JSON and UI设置xml文档注释路径
                     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "Mk.DemoC.Application.xml"), true);
