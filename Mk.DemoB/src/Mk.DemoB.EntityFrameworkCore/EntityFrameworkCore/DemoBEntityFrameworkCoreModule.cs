@@ -1,12 +1,12 @@
-﻿
-using Leopard.Abp.AuditLogging.EntityFrameworkCore;
-using Leopard.Abp.BackgroundJobs.EntityFrameworkCore;
-using Leopard.Abp.FeatureManagement.EntityFrameworkCore;
-using Leopard.Abp.Identity.EntityFrameworkCore;
-using Leopard.Abp.IdentityServer.EntityFrameworkCore;
-using Leopard.Abp.PermissionManagement.EntityFrameworkCore;
-using Leopard.Abp.SettingManagement.EntityFrameworkCore;
-using Leopard.Abp.TenantManagement.EntityFrameworkCore;
+
+using Volo.Abp.AuditLogging.EntityFrameworkCore;
+using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
+using Volo.Abp.FeatureManagement.EntityFrameworkCore;
+using Volo.Abp.Identity.EntityFrameworkCore;
+using Volo.Abp.IdentityServer.EntityFrameworkCore;
+using Volo.Abp.PermissionManagement.EntityFrameworkCore;
+using Volo.Abp.SettingManagement.EntityFrameworkCore;
+using Volo.Abp.TenantManagement.EntityFrameworkCore;
 using Leopard.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.EntityFrameworkCore;
@@ -17,15 +17,15 @@ namespace Mk.DemoB.EntityFrameworkCore
 {
     [DependsOn(
         typeof(DemoBDomainModule),
-        typeof(LeopardIdentityEntityFrameworkCoreModule),
-        typeof(LeopardIdentityServerEntityFrameworkCoreModule),
-        typeof(LeopardPermissionManagementEntityFrameworkCoreModule),
-        typeof(LeopardSettingManagementEntityFrameworkCoreModule),
+        typeof(AbpIdentityEntityFrameworkCoreModule),
+        typeof(AbpIdentityServerEntityFrameworkCoreModule),
+        typeof(AbpPermissionManagementEntityFrameworkCoreModule),
+        typeof(AbpSettingManagementEntityFrameworkCoreModule),
+        typeof(AbpBackgroundJobsEntityFrameworkCoreModule),
+        typeof(AbpAuditLoggingEntityFrameworkCoreModule),
+        typeof(AbpTenantManagementEntityFrameworkCoreModule),
+        typeof(AbpFeatureManagementEntityFrameworkCoreModule),
         typeof(AbpEntityFrameworkCoreMySQLModule),
-        typeof(LeopardBackgroundJobsEntityFrameworkCoreModule),
-        typeof(LeopardAuditLoggingEntityFrameworkCoreModule),
-        typeof(LeopardTenantManagementEntityFrameworkCoreModule),
-        typeof(LeopardFeatureManagementEntityFrameworkCoreModule),
         typeof(LeopardEntityFrameworkCoreModule)
         )]
     public class DemoBEntityFrameworkCoreModule : AbpModule

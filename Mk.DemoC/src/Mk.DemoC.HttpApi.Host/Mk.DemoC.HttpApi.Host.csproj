@@ -31,9 +31,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Leopard.Framework\src\Leopard.Abp.AuditLogging.EntityFrameworkCore\Leopard.Abp.AuditLogging.EntityFrameworkCore.csproj" />
-    <ProjectReference Include="..\..\..\Leopard.Framework\src\Leopard.Abp.PermissionManagement.EntityFrameworkCore\Leopard.Abp.PermissionManagement.EntityFrameworkCore.csproj" />
-    <ProjectReference Include="..\..\..\Leopard.Framework\src\Leopard.Abp.SettingManagement.EntityFrameworkCore\Leopard.Abp.SettingManagement.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\..\..\Leopard.Framework\src\Leopard.AspNetCore.Mvc\Leopard.AspNetCore.Mvc.csproj" />
     <ProjectReference Include="..\..\..\Leopard.Framework\src\Leopard.AspNetCore.Swashbuckle\Leopard.AspNetCore.Swashbuckle.csproj" />
     <ProjectReference Include="..\..\..\Leopard.Framework\src\Leopard.Consul\Leopard.Consul.csproj" />
@@ -48,10 +45,6 @@
     <Content Remove="Logs\**" />
     <EmbeddedResource Remove="Logs\**" />
     <None Remove="Logs\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Migrations\" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>

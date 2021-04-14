@@ -1,156 +1,166 @@
-ABP¿ò¼ÜµÄÖ÷ÒªÄ¿±êÖ®Ò»¾ÍÊÇÌá¹©±ã½İµÄ»ù´¡ÉèÊ©À´´´½¨Î¢·şÎñ½â¾ö·½°¸
-ÓĞÁ½ÖÖÀàĞÍµÄÄ£¿é
-¿ò¼ÜÄ£¿é: ÕâĞ©ÊÇ ¿ò¼ÜµÄºËĞÄÄ£¿é,Ïñ»º´æ,ÓÊ¼ş,Ö÷Ìâ,°²È«ĞÔ,ĞòÁĞ»¯,ÑéÖ¤,Ef Core¼¯³É,MongoDB¼¯³É...µÈµÈ. ËüÃÇÃ»ÓĞÓ¦ÓÃ³ÌĞò/ÒµÎñ¹¦ÄÜ,µ«Í¨¹ıÌá¹©Í¨ÓÃ»ù´¡¼Ü¹¹,¼¯³ÉºÍ³éÏó»áÊ¹ÄãµÄÈÕ³£¿ª·¢¸ü¼ÓÈİÒ×.
-Ó¦ÓÃ³ÌĞòÄ£¿é: ÕâĞ©Ä£¿éÊÇÊµÏÖÌØ¶¨µÄÓ¦ÓÃ³ÌĞò/ÒµÎñ¹¦ÄÜ,Ïñ ²©¿Í, ÎÄµµ¹ÜÀí, Éí·İ¹ÜÀí, ×â»§¹ÜÀí... µÈµÈ. ËüÊÇÍ¨³£ÓĞ×Ô¼ºµÄÊµÌå,·şÎñ,APIºÍUI×é¼ş.
-	Account: ÓÃÓÚÓÃ»§µÇÂ¼/×¢²áÓ¦ÓÃ³ÌĞò.
-	Audit Logging: ÓÃÓÚ½«Éó¼ÆÈÕÖ¾³Ö¾Ã»¯µ½Êı¾İ¿â.
-	Background Jobs: ÓÃÓÚÔÚÊ¹ÓÃÄ¬ÈÏºóÌ¨×÷Òµ¹ÜÀíÆ÷Ê±±£´æºóÌ¨×÷Òµ.
-	Blogging: ÓÃÓÚ´´½¨¾«ÃÀµÄ²©¿Í. ABPµÄ²©¿Í ¾ÍÊ¹ÓÃÁË´ËÄ£¿é.
-	Docs: ÓÃÓÚ´´½¨¼¼ÊõÎÄµµÒ³Ãæ. ABPµÄÎÄµµ ¾ÍÊ¹ÓÃÁË´ËÄ£¿é.
-	Identity: ÓÃÓÚ¹ÜÀí½ÇÉ«,ÓÃ»§ºÍËûÃÇµÄÈ¨ÏŞ.
-	Identity Server: ¼¯³ÉÁËIdentityServer4.
-	Permission Management: ÓÃÓÚ±£´æÈ¨ÏŞ.
-	Setting Management: ÓÃÓÚ±£´æÉèÖÃ.
-	Tenant Management: ÓÃÓÚ¹ÜÀí¶à×â»§Ó¦ÓÃ³ÌĞòµÄ×â»§.
-	Users: ÓÃÓÚ³éÏóÓÃ»§, Òò´ËÆäËûÄ£¿é¿ÉÒÔÒÀÀµ´ËÄ£¿é¶ø²»ÊÇIdentityÄ£¿é.
+ABPæ¡†æ¶çš„ä¸»è¦ç›®æ ‡ä¹‹ä¸€å°±æ˜¯æä¾›ä¾¿æ·çš„åŸºç¡€è®¾æ–½æ¥åˆ›å»ºå¾®æœåŠ¡è§£å†³æ–¹æ¡ˆ
+æœ‰ä¸¤ç§ç±»å‹çš„æ¨¡å—
+æ¡†æ¶æ¨¡å—: è¿™äº›æ˜¯ æ¡†æ¶çš„æ ¸å¿ƒæ¨¡å—,åƒç¼“å­˜,é‚®ä»¶,ä¸»é¢˜,å®‰å…¨æ€§,åºåˆ—åŒ–,éªŒè¯,Ef Coreé›†æˆ,MongoDBé›†æˆ...ç­‰ç­‰. å®ƒä»¬æ²¡æœ‰åº”ç”¨ç¨‹åº/ä¸šåŠ¡åŠŸèƒ½,ä½†é€šè¿‡æä¾›é€šç”¨åŸºç¡€æ¶æ„,é›†æˆå’ŒæŠ½è±¡ä¼šä½¿ä½ çš„æ—¥å¸¸å¼€å‘æ›´åŠ å®¹æ˜“.
+åº”ç”¨ç¨‹åºæ¨¡å—: è¿™äº›æ¨¡å—æ˜¯å®ç°ç‰¹å®šçš„åº”ç”¨ç¨‹åº/ä¸šåŠ¡åŠŸèƒ½,åƒ åšå®¢, æ–‡æ¡£ç®¡ç†, èº«ä»½ç®¡ç†, ç§Ÿæˆ·ç®¡ç†... ç­‰ç­‰. å®ƒæ˜¯é€šå¸¸æœ‰è‡ªå·±çš„å®ä½“,æœåŠ¡,APIå’ŒUIç»„ä»¶.
+	Account: ç”¨äºç”¨æˆ·ç™»å½•/æ³¨å†Œåº”ç”¨ç¨‹åº.
+	Audit Logging: ç”¨äºå°†å®¡è®¡æ—¥å¿—æŒä¹…åŒ–åˆ°æ•°æ®åº“.
+	Background Jobs: ç”¨äºåœ¨ä½¿ç”¨é»˜è®¤åå°ä½œä¸šç®¡ç†å™¨æ—¶ä¿å­˜åå°ä½œä¸š.
+	Blogging: ç”¨äºåˆ›å»ºç²¾ç¾çš„åšå®¢. ABPçš„åšå®¢ å°±ä½¿ç”¨äº†æ­¤æ¨¡å—.
+	Docs: ç”¨äºåˆ›å»ºæŠ€æœ¯æ–‡æ¡£é¡µé¢. ABPçš„æ–‡æ¡£ å°±ä½¿ç”¨äº†æ­¤æ¨¡å—.
+	Identity: ç”¨äºç®¡ç†è§’è‰²,ç”¨æˆ·å’Œä»–ä»¬çš„æƒé™.
+	Identity Server: é›†æˆäº†IdentityServer4.
+	Permission Management: ç”¨äºä¿å­˜æƒé™.
+	Setting Management: ç”¨äºä¿å­˜è®¾ç½®.
+	Tenant Management: ç”¨äºç®¡ç†å¤šç§Ÿæˆ·åº”ç”¨ç¨‹åºçš„ç§Ÿæˆ·.
+	Users: ç”¨äºæŠ½è±¡ç”¨æˆ·, å› æ­¤å…¶ä»–æ¨¡å—å¯ä»¥ä¾èµ–æ­¤æ¨¡å—è€Œä¸æ˜¯Identityæ¨¡å—.
 
-ÊµÌå×ª»¯
-	±íÏÖ²ã£ºviewModel >> input
-	Ó¦ÓÃ²ã£ºÊäÈëinput£¬Êä³öoutput   £¨»òDto£©
-	ÁìÓò²ã£º²ÎÊı²»ÔÙ·â×°Îª¶ÔÏó£¬Ö»ÓĞ²ÎÊı±È½Ï¶àÊ±²Å·â×°¶ÔÏó¡£
-	        µ«¿ÉÒÔÖ±½Ó´«µİÓ¦ÓÃ²ã£¨input|output|dto£©²ÎÊı£¨±ÜÃâÔÙ¶àÒ»²ã¶ÔÏó×ª»»£¬£©
+å®ä½“è½¬åŒ–
+	è¡¨ç°å±‚ï¼šviewModel >> input
+	åº”ç”¨å±‚ï¼šè¾“å…¥inputï¼Œè¾“å‡ºoutput   ï¼ˆæˆ–Dtoï¼‰
+	é¢†åŸŸå±‚ï¼šå‚æ•°ä¸å†å°è£…ä¸ºå¯¹è±¡ï¼Œåªæœ‰å‚æ•°æ¯”è¾ƒå¤šæ—¶æ‰å°è£…å¯¹è±¡ã€‚
+	        ä½†å¯ä»¥ç›´æ¥ä¼ é€’åº”ç”¨å±‚ï¼ˆinput|output|dtoï¼‰å‚æ•°ï¼ˆé¿å…å†å¤šä¸€å±‚å¯¹è±¡è½¬æ¢ï¼Œï¼‰
 
 Abp Cli==================
 dotnet tool install -g Volo.Abp.Cli
 dotnet tool update -g Volo.Abp.Cli
 
-abp help        # ÏÔÊ¾³£¹æ°ïÖú.
-abp new Acme.BookStore [--output-folder D:\¡­¡­]
+abp help        # æ˜¾ç¤ºå¸¸è§„å¸®åŠ©.
+abp new Acme.BookStore [--output-folder D:\â€¦â€¦]
 
-½â¾ö·½°¸½á¹¹=============================
-	ÍÆ¼ö ÔÚVisual SudioÖĞÎªÃ¿¸öÄ£¿é´´½¨Ò»¸öµ¥¶ÀµÄ½â¾ö·½°¸.
-	ÍÆ¼ö ½«½â¾ö·½°¸ÃüÃûÎªCompanyName.ModuleName(¶ÔÓÚABPºËĞÄÄ£¿éÀ´Ëµ,ËüµÄÃüÃû·½Ê½ÊÇVolo.Abp.ModuleName).
-	ÍÆ¼ö Ò»¸öÄ£¿é×öÎª·Ö²ãÏîÄ¿¿ª·¢,ÒòÎªËüÓĞ¼¸¸ö°ü(ÏîÄ¿)ÊÇÏà»¥¹ØÁªµÄ.
-		Ã¿¸ö°ü¶¼ÓĞ×Ô¼ºµÄÄ£¿é¶¨ÒåÎÄ¼ş,²¢ÏÔÊ½ÉùÃ÷ËùÒÀÀµµÄ°ü/Ä£¿éµÄÒÀÀµ¹ØÏµ.
+è§£å†³æ–¹æ¡ˆç»“æ„=============================
+	æ¨è åœ¨Visual Sudioä¸­ä¸ºæ¯ä¸ªæ¨¡å—åˆ›å»ºä¸€ä¸ªå•ç‹¬çš„è§£å†³æ–¹æ¡ˆ.
+	æ¨è å°†è§£å†³æ–¹æ¡ˆå‘½åä¸ºCompanyName.ModuleName(å¯¹äºABPæ ¸å¿ƒæ¨¡å—æ¥è¯´,å®ƒçš„å‘½åæ–¹å¼æ˜¯Volo.Abp.ModuleName).
+	æ¨è ä¸€ä¸ªæ¨¡å—åšä¸ºåˆ†å±‚é¡¹ç›®å¼€å‘,å› ä¸ºå®ƒæœ‰å‡ ä¸ªåŒ…(é¡¹ç›®)æ˜¯ç›¸äº’å…³è”çš„.
+		æ¯ä¸ªåŒ…éƒ½æœ‰è‡ªå·±çš„æ¨¡å—å®šä¹‰æ–‡ä»¶,å¹¶æ˜¾å¼å£°æ˜æ‰€ä¾èµ–çš„åŒ…/æ¨¡å—çš„ä¾èµ–å…³ç³».
 
-Ä£¿é»¯¼Ü¹¹×î¼ÑÊµ¼ù & Ô¼¶¨
+æ¨¡å—åŒ–æ¶æ„æœ€ä½³å®è·µ & çº¦å®š
 https://docs.abp.io/zh-Hans/abp/latest/Best-Practices/Module-Architecture
 
-¶ÔÓÚÓ¦ÓÃ²ãºÍÁìÓò²ãÊµÏÖµÄ½Ó¿Ú£¬¶¼¶¨ÒåÎªvirtual£¬·½±ãÖØĞ´£¬ÔÙÌæ»»IOC
-ABP¿ò¼ÜÊ¹ÓÃ¶¯Ì¬´úÀí/À¹½ØÏµÍ³À´Ö´ĞĞÑéÖ¤.ÎªÁËÊ¹Æä¹¤×÷,ÄãµÄ·½·¨Ó¦¸ÃÊÇ virtual µÄ,·şÎñÓ¦¸Ã±»×¢Èë²¢Í¨¹ı½Ó¿Ú(ÈçIMyService)Ê¹ÓÃ.----£¨IValidatableObject£©
-·Ö²ãËµÃ÷================
-Web ²ã(Presentation Layer)
-	±íÏÖ²ã£º¿ÉÒÀÀµ *.Application °ü£¬*.Domain.Shared °ü£¬*.EntityFrameworkCore °ü£¬*.HttpApi °ü
-	Ec.Admin.Web	°üº¬Ò³Ãæ,ÊÓÍ¼,½Å±¾,ÑùÊ½,Í¼ÏñºÍÆäËûUI×é¼ş.½öÒÀÀµÓÚ HttpApi °ü
-	Ec.Admin.HttpApi.Host		WebApiËŞÖ÷ÏîÄ¿
-	Mk.DemoB.BackgroundJobs		ºóÌ¨ÈÎÎñÏîÄ¿£¬ÃüÃûÎª ÒÔ s ½áÎ²¡£ÒòÎª Volo.Abp.BackgroundJobs.BackgroundJob Ìá¹©ÁËÀàÃû½Ğ BackgroundJob
+å¯¹äºåº”ç”¨å±‚å’Œé¢†åŸŸå±‚å®ç°çš„æ¥å£ï¼Œéƒ½å®šä¹‰ä¸ºvirtualï¼Œæ–¹ä¾¿é‡å†™ï¼Œå†æ›¿æ¢IOC
+ABPæ¡†æ¶ä½¿ç”¨åŠ¨æ€ä»£ç†/æ‹¦æˆªç³»ç»Ÿæ¥æ‰§è¡ŒéªŒè¯.ä¸ºäº†ä½¿å…¶å·¥ä½œ,ä½ çš„æ–¹æ³•åº”è¯¥æ˜¯ virtual çš„,æœåŠ¡åº”è¯¥è¢«æ³¨å…¥å¹¶é€šè¿‡æ¥å£(å¦‚IMyService)ä½¿ç”¨.----ï¼ˆIValidatableObjectï¼‰
+åˆ†å±‚è¯´æ˜================
+Web å±‚(Presentation Layer)
+	è¡¨ç°å±‚ï¼šå¯ä¾èµ– *.Application åŒ…ï¼Œ*.Domain.Shared åŒ…ï¼Œ*.EntityFrameworkCore åŒ…ï¼Œ*.HttpApi åŒ…
+	Ec.Admin.Web	åŒ…å«é¡µé¢,è§†å›¾,è„šæœ¬,æ ·å¼,å›¾åƒå’Œå…¶ä»–UIç»„ä»¶.ä»…ä¾èµ–äº HttpApi åŒ…
+	Ec.Admin.HttpApi.Host		WebApiå®¿ä¸»é¡¹ç›®
+	Mk.DemoB.BackgroundJobs		åå°ä»»åŠ¡é¡¹ç›®ï¼Œå‘½åä¸º ä»¥ s ç»“å°¾ã€‚å› ä¸º Volo.Abp.BackgroundJobs.BackgroundJob æä¾›äº†ç±»åå« BackgroundJob
 	
 
-HTTP ²ã(Distributed Services Layers)
-	Ec.Admin.HttpApi			ÎªÄ£¿é¿ª·¢REST·ç¸ñµÄHTTP API.
-		HTTP API °üÖ»ÒÀÀµÓÚ Application.Contracts °ü. ²»ÒªÒÀÀµ Application °ü.
-		#¡¢¶¨ÒåController
-	Ec.Admin.HttpApi.Client		ÎªHTTP API°üÌá¹©¿Í»§¶Ë·şÎñµÄHTTP API Client°ü¡£Ê¹ÓÃAbpµÄ¶¯Ì¬API¿Í»§¶Ë(Volo.Abp.Http.Client)
-		HTTP API Client °ü½öÒÀÀµÓÚ Application.Contracts °ü.
+HTTP å±‚(Distributed Services Layers)
+	Ec.Admin.HttpApi			ä¸ºæ¨¡å—å¼€å‘RESTé£æ ¼çš„HTTP API.
+		HTTP API åŒ…åªä¾èµ–äº Application.Contracts åŒ…. ä¸è¦ä¾èµ– Application åŒ….
+		#ã€å®šä¹‰Controller
+	Ec.Admin.HttpApi.Client		ä¸ºHTTP APIåŒ…æä¾›å®¢æˆ·ç«¯æœåŠ¡çš„HTTP API ClientåŒ…ã€‚ä½¿ç”¨Abpçš„åŠ¨æ€APIå®¢æˆ·ç«¯(Volo.Abp.Http.Client)
+		HTTP API Client åŒ…ä»…ä¾èµ–äº Application.Contracts åŒ….
 
-HTTP ²ã ºÍ Web ²ã£¬Ö»ÄÜ×¢Èë Ó¦ÓÃ·şÎñ²ã Ìá¹©µÄ·şÎñ¡£Ò»°ãÀ´ËµÓ¦ÓÃ·şÎñ²ã¹«¿ªµÄapi¾Í¿ÉÒÔÂú×ãĞèÒª¡£µ«ÓĞĞ©Çé¿öÈçapp¡¢pc¡¢h5¸÷¸ö»·¾³
-ÏÂ·µ»ØµÄdataĞèÒªÌØÊâ´¦ÀíµÄ£¬¾ÍÔÚ HTTP ²ã ºÍ Web ²ã ´¦Àí
+HTTP å±‚ å’Œ Web å±‚ï¼Œåªèƒ½æ³¨å…¥ åº”ç”¨æœåŠ¡å±‚ æä¾›çš„æœåŠ¡ã€‚ä¸€èˆ¬æ¥è¯´åº”ç”¨æœåŠ¡å±‚å…¬å¼€çš„apiå°±å¯ä»¥æ»¡è¶³éœ€è¦ã€‚ä½†æœ‰äº›æƒ…å†µå¦‚appã€pcã€h5å„ä¸ªç¯å¢ƒ
+ä¸‹è¿”å›çš„dataéœ€è¦ç‰¹æ®Šå¤„ç†çš„ï¼Œå°±åœ¨ HTTP å±‚ å’Œ Web å±‚ å¤„ç†
 
 
-Ó¦ÓÃ·şÎñ²ã(Application Layer)
-	Ec.Admin.Application				°üº¬Ó¦ÓÃ·şÎñÊµÏÖ.ÒÀÀµÓÚ Domain °üºÍ Application.Contracts °ü
-		#¡¢ÊµÏÖ I**AppService
-		#¡¢AutoMapperProfileÓ³Éä
-	Ec.Admin.Application.Contracts		°üº¬Ó¦ÓÃ·şÎñ½Ó¿ÚºÍÏà¹ØµÄÊı¾İ´«Êä¶ÔÏó(DTO).ÒÀÀµÓÚ Domain.Shared °ü
-		#¡¢I**AppService
-		#¡¢DTO    ÃüÃûÎª£º**Request¡¢**InputµÄÎªÊäÈë²ÎÊı£¬¿ÉÒÔ´øÉÏÑéÖ¤ÌØĞÔ
-		#¡¢Permission¶¨Òå£¨eg£º**PermissionDefinitionProvider£©
+åº”ç”¨æœåŠ¡å±‚(Application Layer)
+	Ec.Admin.Application				åŒ…å«åº”ç”¨æœåŠ¡å®ç°.ä¾èµ–äº Domain åŒ…å’Œ Application.Contracts åŒ…
+		#ã€å®ç° I**AppService
+		#ã€AutoMapperProfileæ˜ å°„
+	Ec.Admin.Application.Contracts		åŒ…å«åº”ç”¨æœåŠ¡æ¥å£å’Œç›¸å…³çš„æ•°æ®ä¼ è¾“å¯¹è±¡(DTO).ä¾èµ–äº Domain.Shared åŒ…
+		#ã€I**AppService
+		#ã€DTO    å‘½åä¸ºï¼š**Requestã€**Inputçš„ä¸ºè¾“å…¥å‚æ•°ï¼Œå¯ä»¥å¸¦ä¸ŠéªŒè¯ç‰¹æ€§
+		#ã€Permissionå®šä¹‰ï¼ˆegï¼š**PermissionDefinitionProviderï¼‰
 		
-ÁìÓò²ã(Domain Layer)
-	Ec.Admin.Domain				°üº¬ÊµÌå, ²Ö´¢½Ó¿Ú,ÁìÓò·şÎñ½Ó¿Ú¼°ÆäÊµÏÖºÍÆäËûÁìÓò¶ÔÏó.ÒÀÀµÓÚ Domain.Shared °ü.
-		#¡¢AggregateRoot		
-		       1¡¢ÀïÃæ°üº¬ÊµÌåµÄ²Ù×÷
-		       2¡¢Ã¿¸öÊµÌå¶¼Ìá¹©´øÖ÷¼üKeyµÄ¹¹Ôìº¯Êı£¬´´½¨ÊµÌå¡£¹¹Ôìº¯ÊıÖĞ°üº¬Check.NotNull²Ù×÷¡¢´«ÈëÖ÷ÒªµÄ×Ö¶Î¡¢×Ö¶ÎµÄÄ¬ÈÏ¸³Öµ
-		#¡¢Öµ¶ÔÏó
-		#¡¢Service ÁìÓò·şÎñ£¨eg£º**Manager£¬£©
-		#¡¢IRepository
-		#¡¢Domain £¨eg£ºIdentityServer\IdentityServerDataSeedContributor.cs Êı¾İÖÖ×ÓDomain£»Migrations\AdminDbMigrationService.cs Êı¾İÇ¨ÒÆ£»**Manager£©
-	Ec.Admin.Domain.Shared		°üº¬³£Á¿,Ã¶¾ÙºÍÆäËûÀàĞÍ, Ëü²»ÄÜ°üº¬ÊµÌå,´æ´¢¿â,Óò·şÎñ»òÈÎºÎÆäËûÒµÎñ¶ÔÏó. ¿ÉÒÔ°²È«µØÓëÄ£¿éÖĞµÄËùÓĞ²ãÊ¹ÓÃ. ´Ë°üÒ²¿ÉÒÔÓëµÚÈı·½¿Í»§¶ËÊ¹ÓÃ.
-		#¡¢¶àÓïÑÔ Location\Resources\**
-		#¡¢¶¨Òå³£Á¿¡¢Ã¶¾Ù
+é¢†åŸŸå±‚(Domain Layer)
+	Ec.Admin.Domain				åŒ…å«å®ä½“, ä»“å‚¨æ¥å£,é¢†åŸŸæœåŠ¡æ¥å£åŠå…¶å®ç°å’Œå…¶ä»–é¢†åŸŸå¯¹è±¡.ä¾èµ–äº Domain.Shared åŒ….
+		#ã€AggregateRoot		
+		       1ã€é‡Œé¢åŒ…å«å®ä½“çš„æ“ä½œ
+		       2ã€æ¯ä¸ªå®ä½“éƒ½æä¾›å¸¦ä¸»é”®Keyçš„æ„é€ å‡½æ•°ï¼Œåˆ›å»ºå®ä½“ã€‚æ„é€ å‡½æ•°ä¸­åŒ…å«Check.NotNullæ“ä½œã€ä¼ å…¥ä¸»è¦çš„å­—æ®µã€å­—æ®µçš„é»˜è®¤èµ‹å€¼
+		#ã€å€¼å¯¹è±¡
+		#ã€Service é¢†åŸŸæœåŠ¡ï¼ˆegï¼š**Managerï¼Œï¼‰
+		#ã€IRepository
+		#ã€Domain ï¼ˆegï¼šIdentityServer\IdentityServerDataSeedContributor.cs æ•°æ®ç§å­Domainï¼›Migrations\AdminDbMigrationService.cs æ•°æ®è¿ç§»ï¼›**Managerï¼‰
+	Ec.Admin.Domain.Shared		åŒ…å«å¸¸é‡,æšä¸¾å’Œå…¶ä»–ç±»å‹, å®ƒä¸èƒ½åŒ…å«å®ä½“,å­˜å‚¨åº“,åŸŸæœåŠ¡æˆ–ä»»ä½•å…¶ä»–ä¸šåŠ¡å¯¹è±¡. å¯ä»¥å®‰å…¨åœ°ä¸æ¨¡å—ä¸­çš„æ‰€æœ‰å±‚ä½¿ç”¨. æ­¤åŒ…ä¹Ÿå¯ä»¥ä¸ç¬¬ä¸‰æ–¹å®¢æˆ·ç«¯ä½¿ç”¨.
+		#ã€å¤šè¯­è¨€ Location\Resources\**
+		#ã€å®šä¹‰å¸¸é‡ã€æšä¸¾
 
-»ù´¡ÉèÊ©²ã(Infrastructure Layer)
-	Ec.Admin.EntityFrameworkCore		Êı¾İ²Ö¿â£¬°üº¬DbContext¡¢RepositoryµÄÊµÏÖ
-		#¡¢ÊµÏÖIRepository
-		#¡¢¶¨ÒåDbContext
-	Ec.Admin.EntityFrameworkCore.DbMigrations	Êı¾İÇ¨ÒÆ´úÂë
-	Ec.Admin.DbMigrator					¿ØÖÆÌ¨³ÌĞò£¬Êı¾İÇ¨ÒÆÖ´ĞĞÕß
+åŸºç¡€è®¾æ–½å±‚(Infrastructure Layer)
+	Ec.Admin.EntityFrameworkCore		æ•°æ®ä»“åº“ï¼ŒåŒ…å«DbContextã€Repositoryçš„å®ç°
+		#ã€å®ç°IRepository
+		#ã€å®šä¹‰DbContext
+	Ec.Admin.EntityFrameworkCore.DbMigrations	æ•°æ®è¿ç§»ä»£ç 
+	Ec.Admin.DbMigrator					æ§åˆ¶å°ç¨‹åºï¼Œæ•°æ®è¿ç§»æ‰§è¡Œè€…
 
-³ıÁË
+é™¤äº†
 Ec.Admin.Application.Contracts
 Ec.Admin.Domain.Shared
-ÉèÖÃÎª netstandard2.1
+è®¾ç½®ä¸º netstandard2.1
 
-ÆäËûÏîÄ¿¶¼ÉèÖÃÎªnet5.0
+å…¶ä»–é¡¹ç›®éƒ½è®¾ç½®ä¸ºnet5.0
 
 
-ÒÀÀµ×¢Èë=========
-¹ÌÓĞµÄ×¢²áÀàĞÍ
-	Ò»Ğ©ÌØ¶¨ÀàĞÍ»áÄ¬ÈÏ×¢²áµ½ÒÀÀµ×¢Èë.Àı×Ó:
-	Ä£¿éÀà×¢²áÎªsingleton.
-	MVC¿ØÖÆÆ÷£¨¼Ì³ĞController»òAbpController£©±»×¢²áÎªtransient.
-	MVCÒ³ÃæÄ£ĞÍ£¨¼Ì³ĞPageModel»òAbpPageModel£©±»×¢²áÎªtransient.
-	MVCÊÓÍ¼×é¼ş£¨¼Ì³ĞViewComponent»òAbpViewComponent£©±»×¢²áÎªtransient.
-	Ó¦ÓÃ³ÌĞò·şÎñ£¨ÊµÏÖIApplicationService½Ó¿Ú»ò¼Ì³ĞApplicationServiceÀà£©×¢²áÎªtransient.
-	´æ´¢¿â£¨ÊµÏÖIRepository½Ó¿Ú£©×¢²áÎªtransient.
-	Óò·şÎñ£¨ÊµÏÖIDomainService½Ó¿Ú£©×¢²áÎªtransient.
+ä¾èµ–æ³¨å…¥=========
+å›ºæœ‰çš„æ³¨å†Œç±»å‹
+	ä¸€äº›ç‰¹å®šç±»å‹ä¼šé»˜è®¤æ³¨å†Œåˆ°ä¾èµ–æ³¨å…¥.ä¾‹å­:
+	æ¨¡å—ç±»æ³¨å†Œä¸ºsingleton.
+	MVCæ§åˆ¶å™¨ï¼ˆç»§æ‰¿Controlleræˆ–AbpControllerï¼‰è¢«æ³¨å†Œä¸ºtransient.
+	MVCé¡µé¢æ¨¡å‹ï¼ˆç»§æ‰¿PageModelæˆ–AbpPageModelï¼‰è¢«æ³¨å†Œä¸ºtransient.
+	MVCè§†å›¾ç»„ä»¶ï¼ˆç»§æ‰¿ViewComponentæˆ–AbpViewComponentï¼‰è¢«æ³¨å†Œä¸ºtransient.
+	åº”ç”¨ç¨‹åºæœåŠ¡ï¼ˆå®ç°IApplicationServiceæ¥å£æˆ–ç»§æ‰¿ApplicationServiceç±»ï¼‰æ³¨å†Œä¸ºtransient.
+	å­˜å‚¨åº“ï¼ˆå®ç°IRepositoryæ¥å£ï¼‰æ³¨å†Œä¸ºtransient.
+	åŸŸæœåŠ¡ï¼ˆå®ç°IDomainServiceæ¥å£ï¼‰æ³¨å†Œä¸ºtransient.
 
-ÒÀÀµ½Ó¿Ú
-	Èç¹ûÊµÏÖÕâĞ©½Ó¿Ú,Ôò»á×Ô¶¯½«Àà×¢²áµ½ÒÀÀµ×¢Èë:
-	ITransientDependency ×¢²áÎªtransientÉúÃüÖÜÆÚ.
-	ISingletonDependency ×¢²áÎªsingletonÉúÃüÖÜÆÚ.
-	IScopedDependency ×¢²áÎªscopedÉúÃüÖÜÆÚ.
+ä¾èµ–æ¥å£
+	å¦‚æœå®ç°è¿™äº›æ¥å£,åˆ™ä¼šè‡ªåŠ¨å°†ç±»æ³¨å†Œåˆ°ä¾èµ–æ³¨å…¥:
+	ITransientDependency æ³¨å†Œä¸ºtransientç”Ÿå‘½å‘¨æœŸ.
+	ISingletonDependency æ³¨å†Œä¸ºsingletonç”Ÿå‘½å‘¨æœŸ.
+	IScopedDependency æ³¨å†Œä¸ºscopedç”Ÿå‘½å‘¨æœŸ.
 
-Dependency ÌØĞÔ
-	ÅäÖÃÒÀÀµ×¢Èë·şÎñµÄÁíÒ»ÖÖ·½·¨ÊÇÊ¹ÓÃDependencyAttribute.Ëü¾ßÓĞÒÔÏÂÊôĞÔ:
-	Lifetime: ×¢²áµÄÉúÃüÖÜÆÚ:Singleton,Transient»òScoped.
-	TryRegister: ÉèÖÃtrueÔòÖ»×¢²áÒÔÇ°Î´×¢²áµÄ·şÎñ.Ê¹ÓÃIServiceCollectionµÄTryAdd ... À©Õ¹·½·¨.
-	ReplaceServices: ÉèÖÃtrueÔòÌæ»»Ö®Ç°ÒÑ¾­×¢²á¹ıµÄ·şÎñ.Ê¹ÓÃIServiceCollectionµÄReplaceÀ©Õ¹·½·¨.
+Dependency ç‰¹æ€§
+	é…ç½®ä¾èµ–æ³¨å…¥æœåŠ¡çš„å¦ä¸€ç§æ–¹æ³•æ˜¯ä½¿ç”¨DependencyAttribute.å®ƒå…·æœ‰ä»¥ä¸‹å±æ€§:
+	Lifetime: æ³¨å†Œçš„ç”Ÿå‘½å‘¨æœŸ:Singleton,Transientæˆ–Scoped.
+	TryRegister: è®¾ç½®trueåˆ™åªæ³¨å†Œä»¥å‰æœªæ³¨å†Œçš„æœåŠ¡.ä½¿ç”¨IServiceCollectionçš„TryAdd ... æ‰©å±•æ–¹æ³•.
+	ReplaceServices: è®¾ç½®trueåˆ™æ›¿æ¢ä¹‹å‰å·²ç»æ³¨å†Œè¿‡çš„æœåŠ¡.ä½¿ç”¨IServiceCollectionçš„Replaceæ‰©å±•æ–¹æ³•.
 
-ExposeServices ÌØĞÔ
-	ExposeServicesAttributeÓÃÓÚ¿ØÖÆÏà¹ØÀàÌá¹©ÁËÊ²Ã´·şÎñ¡£
-	eg£º
+ExposeServices ç‰¹æ€§
+	ExposeServicesAttributeç”¨äºæ§åˆ¶ç›¸å…³ç±»æä¾›äº†ä»€ä¹ˆæœåŠ¡ã€‚
+	egï¼š
 	[ExposeServices(typeof(ITaxCalculator))]
 	public class TaxCalculator: ICalculator, ITaxCalculator, ICanCalculate, ITransientDependency
 	{
 
 	}
-	TaxCalculatorÀàÖ»¹«¿ªITaxCalculator½Ó¿Ú.ÕâÒâÎ¶×ÅÄãÖ»ÄÜ×¢ÈëITaxCalculator,µ«²»ÄÜ×¢ÈëTaxCalculator»òICalculatorµ½ÄãµÄÓ¦ÓÃ³ÌĞòÖĞ.
+	TaxCalculatorç±»åªå…¬å¼€ITaxCalculatoræ¥å£.è¿™æ„å‘³ç€ä½ åªèƒ½æ³¨å…¥ITaxCalculator,ä½†ä¸èƒ½æ³¨å…¥TaxCalculatoræˆ–ICalculatoråˆ°ä½ çš„åº”ç”¨ç¨‹åºä¸­.
 
-IServiceCollection.OnRegistred ÊÂ¼ş
-	Äã¿ÉÄÜÏëÔÚ×¢²áµ½ÒÀÀµ×¢ÈëµÄÃ¿¸ö·şÎñÉÏÖ´ĞĞÒ»¸ö²Ù×÷, ÔÚÄãµÄÄ£¿éµÄ PreConfigureServices ·½·¨ÖĞ, Ê¹ÓÃ OnRegistred ·½·¨×¢²áÒ»¸ö»Øµ÷(callback) 
+IServiceCollection.OnRegistred äº‹ä»¶
+	ä½ å¯èƒ½æƒ³åœ¨æ³¨å†Œåˆ°ä¾èµ–æ³¨å…¥çš„æ¯ä¸ªæœåŠ¡ä¸Šæ‰§è¡Œä¸€ä¸ªæ“ä½œ, åœ¨ä½ çš„æ¨¡å—çš„ PreConfigureServices æ–¹æ³•ä¸­, ä½¿ç”¨ OnRegistred æ–¹æ³•æ³¨å†Œä¸€ä¸ªå›è°ƒ(callback) 
 
 
-Ä£¿éAbpModule=============
-ConfigureServices	½«ÄãµÄ·şÎñÌí¼Óµ½ÒÀÀµ×¢ÈëÏµÍ³²¢ÅäÖÃÆäËûÄ£¿éµÄÖ÷Òª·½·¨
-PreConfigureServicesºÍPostConfigureServices·½·¨ÓÃÀ´ÔÚConfigureServicesÖ®Ç°»òÖ®ºó¸²¸ÇºÍ±àĞ´ÄãµÄ´úÂë.Çë×¢Òâ,ÔÚÕâĞ©·½·¨ÖĞ±àĞ´µÄ´úÂë½«ÔÚËùÓĞÆäËûÄ£¿éµÄConfigureServices·½·¨Ö®Ç°/Ö®ºóÖ´ĞĞ
-OnApplicationInitialization	Ó¦ÓÃ³ÌĞò³õÊ¼»¯£¬¿ÉÒÔ´ÓIServiceProviderÖĞ»ñÈ¡·şÎñ
-OnPreApplicationInitializationºÍOnPostApplicationInitialization·½·¨ÓÃÀ´ÔÚOnApplicationInitializationÖ®Ç°»òÖ®ºó¸²¸ÇºÍ±àĞ´ÄãµÄ´úÂë.Çë×¢Òâ,ÔÚÕâĞ©·½·¨ÖĞ±àĞ´µÄ´úÂë½«ÔÚËùÓĞÆäËûÄ£¿éµÄOnApplicationInitialization·½·¨Ö®Ç°/Ö®ºóÖ´ĞĞ.
-OnApplicationShutdown	Ó¦ÓÃ³ÌĞò¹Ø±Õ
+æ¨¡å—AbpModule=============
+ConfigureServices	å°†ä½ çš„æœåŠ¡æ·»åŠ åˆ°ä¾èµ–æ³¨å…¥ç³»ç»Ÿå¹¶é…ç½®å…¶ä»–æ¨¡å—çš„ä¸»è¦æ–¹æ³•
+PreConfigureServiceså’ŒPostConfigureServicesæ–¹æ³•ç”¨æ¥åœ¨ConfigureServicesä¹‹å‰æˆ–ä¹‹åè¦†ç›–å’Œç¼–å†™ä½ çš„ä»£ç .è¯·æ³¨æ„,åœ¨è¿™äº›æ–¹æ³•ä¸­ç¼–å†™çš„ä»£ç å°†åœ¨æ‰€æœ‰å…¶ä»–æ¨¡å—çš„ConfigureServicesæ–¹æ³•ä¹‹å‰/ä¹‹åæ‰§è¡Œ
+OnApplicationInitialization	åº”ç”¨ç¨‹åºåˆå§‹åŒ–ï¼Œå¯ä»¥ä»IServiceProviderä¸­è·å–æœåŠ¡
+OnPreApplicationInitializationå’ŒOnPostApplicationInitializationæ–¹æ³•ç”¨æ¥åœ¨OnApplicationInitializationä¹‹å‰æˆ–ä¹‹åè¦†ç›–å’Œç¼–å†™ä½ çš„ä»£ç .è¯·æ³¨æ„,åœ¨è¿™äº›æ–¹æ³•ä¸­ç¼–å†™çš„ä»£ç å°†åœ¨æ‰€æœ‰å…¶ä»–æ¨¡å—çš„OnApplicationInitializationæ–¹æ³•ä¹‹å‰/ä¹‹åæ‰§è¡Œ.
+OnApplicationShutdown	åº”ç”¨ç¨‹åºå…³é—­
 
-¶¯Ì¬ C# API¿Í»§¶Ë(Volo.Abp.Http.Client) ==============
+åŠ¨æ€ C# APIå®¢æˆ·ç«¯(Volo.Abp.Http.Client) ==============
 https://docs.abp.io/zh-Hans/abp/latest/AspNetCore/Dynamic-CSharp-API-Clients
-×÷ÓÃ£º²»ĞèÒªÍ¨¹ı HttpClient »òÕßÆäËûµÍ¼¶µÄHTTP¹¦ÄÜµ÷ÓÃÔ¶³Ì·şÎñ²¢»ñÈ¡Êı¾İ.
-// ´´½¨¿Í»§¶Ë´úÀí
+ä½œç”¨ï¼šä¸éœ€è¦é€šè¿‡ HttpClient æˆ–è€…å…¶ä»–ä½çº§çš„HTTPåŠŸèƒ½è°ƒç”¨è¿œç¨‹æœåŠ¡å¹¶è·å–æ•°æ®.
+// åˆ›å»ºå®¢æˆ·ç«¯ä»£ç†
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
-        //´´½¨¶¯Ì¬¿Í»§¶Ë´úÀí
+        //åˆ›å»ºåŠ¨æ€å®¢æˆ·ç«¯ä»£ç†
         context.Services.AddHttpClientProxies(
             typeof(BookStoreApplicationModule).Assembly
         );
     }
-// Ê¹ÓÃµÄÊ±ºò£¬Ö±½Ó×¢Èë·şÎñ¼´¿É
+// ä½¿ç”¨çš„æ—¶å€™ï¼Œç›´æ¥æ³¨å…¥æœåŠ¡å³å¯
 	public MyService(IBookAppService bookService)
     {
         _bookService = bookService;
     }
+
+
+mysql æ¨èå°å†™åŠ  _ çš„å‘½åæ–¹å¼ã€‚
+å°è¯•è¿‡è½¬æˆæˆè¿™æ ·çš„å‘½åï¼Œä½†æ˜¯ä»abp3.xå‡çº§åˆ°abp4.xæ—¶ï¼Œç”Ÿæˆçš„è¿ç§»æ–‡ä»¶ä¼šæœ‰é—®é¢˜ï¼Œ
+egï¼š
+å¤–é”® FK_IdentityServerClientProperties_IdentityServerClients_ClientId 
+ç”Ÿæˆä¸ºï¼šFK_identity_server_client_properties_identity_server_clients_cl
+è¢«æˆªæ–­äº†
+
+å¦å¤–å‡çº§abpæ¡†æ¶è¿ç§»ä¹Ÿä¼šå­˜åœ¨ä¸çŸ¥é“çš„å¼‚å¸¸ï¼Œä¹Ÿæ²¡æœ‰è§£å†³ï¼Œæ‰€ä»¥å–æ¶ˆmysqlå‘½åçš„è½¬æ¢äº†

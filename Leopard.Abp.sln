@@ -31,22 +31,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.DbMigrator", "Mk.D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02_Framework", "02_Framework", "{408C61DE-C824-4BA2-8EE7-CE571EA864B5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Abp.AuditLogging.EntityFrameworkCore", "Leopard.Framework\src\Leopard.Abp.AuditLogging.EntityFrameworkCore\Leopard.Abp.AuditLogging.EntityFrameworkCore.csproj", "{2286288C-A1B4-43A2-BC81-2F7A547EBBDC}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Abp.BackgroundJobs.EntityFrameworkCore", "Leopard.Framework\src\Leopard.Abp.BackgroundJobs.EntityFrameworkCore\Leopard.Abp.BackgroundJobs.EntityFrameworkCore.csproj", "{4E35CB26-8CE4-4713-817F-D05931B70CA7}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Abp.FeatureManagement.EntityFrameworkCore", "Leopard.Framework\src\Leopard.Abp.FeatureManagement.EntityFrameworkCore\Leopard.Abp.FeatureManagement.EntityFrameworkCore.csproj", "{7B507CDE-BB9C-4D4C-A97A-678236D5C3E5}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Abp.Identity.EntityFrameworkCore", "Leopard.Framework\src\Leopard.Abp.Identity.EntityFrameworkCore\Leopard.Abp.Identity.EntityFrameworkCore.csproj", "{A2068F02-6809-4601-83AF-A06B880F4B2E}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Abp.IdentityServer.EntityFrameworkCore", "Leopard.Framework\src\Leopard.Abp.IdentityServer.EntityFrameworkCore\Leopard.Abp.IdentityServer.EntityFrameworkCore.csproj", "{6F706607-EE77-420F-8C25-09CC05ACB799}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Abp.SettingManagement.EntityFrameworkCore", "Leopard.Framework\src\Leopard.Abp.SettingManagement.EntityFrameworkCore\Leopard.Abp.SettingManagement.EntityFrameworkCore.csproj", "{A7FC3289-1450-458B-B6FE-68A8926C094B}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Abp.TenantManagement.EntityFrameworkCore", "Leopard.Framework\src\Leopard.Abp.TenantManagement.EntityFrameworkCore\Leopard.Abp.TenantManagement.EntityFrameworkCore.csproj", "{4EA73EAF-20AA-4559-8157-09F5D003E59C}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Abp.PermissionManagement.EntityFrameworkCore", "Leopard.Framework\src\Leopard.Abp.PermissionManagement.EntityFrameworkCore\Leopard.Abp.PermissionManagement.EntityFrameworkCore.csproj", "{4A827D0D-44D9-4F86-8158-A3F1B12F1950}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard", "Leopard.Framework\src\Leopard.Core\Leopard.csproj", "{8B34E5EC-1B0E-41ED-872B-7905023E966A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.EntityFrameworkCore", "Leopard.Framework\src\Leopard.EntityFrameworkCore\Leopard.EntityFrameworkCore.csproj", "{F34CB1A6-4FF2-4161-8365-CAE4E0DD654E}"
@@ -81,8 +65,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoC.HttpApi.Client", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.AspNetCore.Mvc", "Leopard.Framework\src\Leopard.AspNetCore.Mvc\Leopard.AspNetCore.Mvc.csproj", "{BA1218D5-7F58-4209-91AF-44761CBE9421}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EntityFrameworkCore", "EntityFrameworkCore", "{AE43C6D4-22DF-4609-BE9B-8A462ABA7FC9}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Domain.Share", "Leopard.Framework\src\Leopard.Domain.Share\Leopard.Domain.Share.csproj", "{E09BC551-2A2E-4A8B-B903-40CD0969A51A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Ddd.Application.Contracts", "Leopard.Framework\src\Leopard.Ddd.Application.Contracts\Leopard.Ddd.Application.Contracts.csproj", "{524168D3-A6FD-4181-9B77-FA6A33029855}"
@@ -98,7 +80,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.Demo.Gateway", "Gateways
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Consul", "Leopard.Framework\src\Leopard.Consul\Leopard.Consul.csproj", "{01D5AB23-4029-4DC7-A041-0D510C099F49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leopard.AspNetCore.Swashbuckle", "Leopard.Framework\src\Leopard.AspNetCore.Swashbuckle\Leopard.AspNetCore.Swashbuckle.csproj", "{7FEFE25B-8CBE-4625-9F83-EB069AADDFDC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.AspNetCore.Swashbuckle", "Leopard.Framework\src\Leopard.AspNetCore.Swashbuckle\Leopard.AspNetCore.Swashbuckle.csproj", "{7FEFE25B-8CBE-4625-9F83-EB069AADDFDC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -154,38 +136,6 @@ Global
 		{AA94D832-1CCC-4715-95A9-A483F23A1A5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA94D832-1CCC-4715-95A9-A483F23A1A5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA94D832-1CCC-4715-95A9-A483F23A1A5D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2286288C-A1B4-43A2-BC81-2F7A547EBBDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2286288C-A1B4-43A2-BC81-2F7A547EBBDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2286288C-A1B4-43A2-BC81-2F7A547EBBDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2286288C-A1B4-43A2-BC81-2F7A547EBBDC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4E35CB26-8CE4-4713-817F-D05931B70CA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4E35CB26-8CE4-4713-817F-D05931B70CA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4E35CB26-8CE4-4713-817F-D05931B70CA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4E35CB26-8CE4-4713-817F-D05931B70CA7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7B507CDE-BB9C-4D4C-A97A-678236D5C3E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7B507CDE-BB9C-4D4C-A97A-678236D5C3E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7B507CDE-BB9C-4D4C-A97A-678236D5C3E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7B507CDE-BB9C-4D4C-A97A-678236D5C3E5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A2068F02-6809-4601-83AF-A06B880F4B2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A2068F02-6809-4601-83AF-A06B880F4B2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A2068F02-6809-4601-83AF-A06B880F4B2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A2068F02-6809-4601-83AF-A06B880F4B2E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6F706607-EE77-420F-8C25-09CC05ACB799}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6F706607-EE77-420F-8C25-09CC05ACB799}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6F706607-EE77-420F-8C25-09CC05ACB799}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6F706607-EE77-420F-8C25-09CC05ACB799}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A7FC3289-1450-458B-B6FE-68A8926C094B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A7FC3289-1450-458B-B6FE-68A8926C094B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A7FC3289-1450-458B-B6FE-68A8926C094B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A7FC3289-1450-458B-B6FE-68A8926C094B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4EA73EAF-20AA-4559-8157-09F5D003E59C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4EA73EAF-20AA-4559-8157-09F5D003E59C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4EA73EAF-20AA-4559-8157-09F5D003E59C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4EA73EAF-20AA-4559-8157-09F5D003E59C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4A827D0D-44D9-4F86-8158-A3F1B12F1950}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4A827D0D-44D9-4F86-8158-A3F1B12F1950}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4A827D0D-44D9-4F86-8158-A3F1B12F1950}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4A827D0D-44D9-4F86-8158-A3F1B12F1950}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8B34E5EC-1B0E-41ED-872B-7905023E966A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8B34E5EC-1B0E-41ED-872B-7905023E966A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B34E5EC-1B0E-41ED-872B-7905023E966A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -275,14 +225,6 @@ Global
 		{073C361E-B8F4-49F5-93CC-72A3FF49C026} = {CA9AC87F-097E-4F15-8393-4BC07735A5B0}
 		{E6D5BF0E-DE92-4D82-A352-EF04B37CB11C} = {CA9AC87F-097E-4F15-8393-4BC07735A5B0}
 		{AA94D832-1CCC-4715-95A9-A483F23A1A5D} = {CA9AC87F-097E-4F15-8393-4BC07735A5B0}
-		{2286288C-A1B4-43A2-BC81-2F7A547EBBDC} = {AE43C6D4-22DF-4609-BE9B-8A462ABA7FC9}
-		{4E35CB26-8CE4-4713-817F-D05931B70CA7} = {AE43C6D4-22DF-4609-BE9B-8A462ABA7FC9}
-		{7B507CDE-BB9C-4D4C-A97A-678236D5C3E5} = {AE43C6D4-22DF-4609-BE9B-8A462ABA7FC9}
-		{A2068F02-6809-4601-83AF-A06B880F4B2E} = {AE43C6D4-22DF-4609-BE9B-8A462ABA7FC9}
-		{6F706607-EE77-420F-8C25-09CC05ACB799} = {AE43C6D4-22DF-4609-BE9B-8A462ABA7FC9}
-		{A7FC3289-1450-458B-B6FE-68A8926C094B} = {AE43C6D4-22DF-4609-BE9B-8A462ABA7FC9}
-		{4EA73EAF-20AA-4559-8157-09F5D003E59C} = {AE43C6D4-22DF-4609-BE9B-8A462ABA7FC9}
-		{4A827D0D-44D9-4F86-8158-A3F1B12F1950} = {AE43C6D4-22DF-4609-BE9B-8A462ABA7FC9}
 		{8B34E5EC-1B0E-41ED-872B-7905023E966A} = {408C61DE-C824-4BA2-8EE7-CE571EA864B5}
 		{F34CB1A6-4FF2-4161-8365-CAE4E0DD654E} = {408C61DE-C824-4BA2-8EE7-CE571EA864B5}
 		{E7E1C844-2434-44D8-8060-8F145785722C} = {CA9AC87F-097E-4F15-8393-4BC07735A5B0}
@@ -296,7 +238,6 @@ Global
 		{95CE1EB6-2364-420E-A428-09F0F6B9F9CB} = {F88A0388-EC61-4CB3-852F-FBE3FE15BCB3}
 		{AC7A3EB0-B9DB-4396-B646-1F236433600E} = {F88A0388-EC61-4CB3-852F-FBE3FE15BCB3}
 		{BA1218D5-7F58-4209-91AF-44761CBE9421} = {408C61DE-C824-4BA2-8EE7-CE571EA864B5}
-		{AE43C6D4-22DF-4609-BE9B-8A462ABA7FC9} = {408C61DE-C824-4BA2-8EE7-CE571EA864B5}
 		{E09BC551-2A2E-4A8B-B903-40CD0969A51A} = {408C61DE-C824-4BA2-8EE7-CE571EA864B5}
 		{524168D3-A6FD-4181-9B77-FA6A33029855} = {408C61DE-C824-4BA2-8EE7-CE571EA864B5}
 		{EA840D90-8FE0-484A-A3A7-538C2CC6F49B} = {BFBA6DEE-2C3D-4695-A63C-9EC95A7D5400}

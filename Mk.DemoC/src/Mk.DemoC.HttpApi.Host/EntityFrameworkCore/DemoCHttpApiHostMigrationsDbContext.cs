@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
 
 namespace Mk.DemoC.EntityFrameworkCore
@@ -17,7 +17,7 @@ namespace Mk.DemoC.EntityFrameworkCore
 
             modelBuilder.ConfigureDemoC();
 
-            modelBuilder.DbMapperCameNamelToUnder();
+            //modelBuilder.DbMapperCameNamelToUnder();
         }
     }
 }

@@ -1,31 +1,34 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="..\..\common.props" />
+	<Import Project="..\..\common.props" />
 
-  <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-    <RootNamespace>Mk.DemoB</RootNamespace>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<RootNamespace>Mk.DemoB</RootNamespace>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Abp\**" />
-    <EmbeddedResource Remove="Abp\**" />
-    <None Remove="Abp\**" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\Leopard.Framework\src\Leopard.Abp.AuditLogging.EntityFrameworkCore\Leopard.Abp.AuditLogging.EntityFrameworkCore.csproj" />
-    <ProjectReference Include="..\..\..\Leopard.Framework\src\Leopard.Abp.BackgroundJobs.EntityFrameworkCore\Leopard.Abp.BackgroundJobs.EntityFrameworkCore.csproj" />
-    <ProjectReference Include="..\..\..\Leopard.Framework\src\Leopard.Abp.FeatureManagement.EntityFrameworkCore\Leopard.Abp.FeatureManagement.EntityFrameworkCore.csproj" />
-    <ProjectReference Include="..\..\..\Leopard.Framework\src\Leopard.Abp.Identity.EntityFrameworkCore\Leopard.Abp.Identity.EntityFrameworkCore.csproj" />
-    <ProjectReference Include="..\..\..\Leopard.Framework\src\Leopard.Abp.IdentityServer.EntityFrameworkCore\Leopard.Abp.IdentityServer.EntityFrameworkCore.csproj" />
-    <ProjectReference Include="..\..\..\Leopard.Framework\src\Leopard.Abp.PermissionManagement.EntityFrameworkCore\Leopard.Abp.PermissionManagement.EntityFrameworkCore.csproj" />
-    <ProjectReference Include="..\..\..\Leopard.Framework\src\Leopard.Abp.SettingManagement.EntityFrameworkCore\Leopard.Abp.SettingManagement.EntityFrameworkCore.csproj" />
-    <ProjectReference Include="..\..\..\Leopard.Framework\src\Leopard.Abp.TenantManagement.EntityFrameworkCore\Leopard.Abp.TenantManagement.EntityFrameworkCore.csproj" />
-    <ProjectReference Include="..\..\..\Leopard.Framework\src\Leopard.Core\Leopard.csproj" />
-    <ProjectReference Include="..\..\..\Leopard.Framework\src\Leopard.EntityFrameworkCore\Leopard.EntityFrameworkCore.csproj" />
-    <ProjectReference Include="..\Mk.DemoB.Domain\Mk.DemoB.Domain.csproj" />
-    <PackageReference Include="Volo.Abp.EntityFrameworkCore.MySQL" Version="4.2.2" />
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Remove="Abp\**" />
+		<EmbeddedResource Remove="Abp\**" />
+		<None Remove="Abp\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Volo.Abp.AuditLogging.EntityFrameworkCore" Version="4.2.2" />
+		<PackageReference Include="Volo.Abp.BackgroundJobs.EntityFrameworkCore" Version="4.2.2" />
+		<PackageReference Include="Volo.Abp.FeatureManagement.EntityFrameworkCore" Version="4.2.2" />
+		<PackageReference Include="Volo.Abp.Identity.EntityFrameworkCore" Version="4.2.2" />
+		<PackageReference Include="Volo.Abp.IdentityServer.EntityFrameworkCore" Version="4.2.2" />
+		<PackageReference Include="Volo.Abp.PermissionManagement.EntityFrameworkCore" Version="4.2.2" />
+		<PackageReference Include="Volo.Abp.SettingManagement.EntityFrameworkCore" Version="4.2.2" />
+		<PackageReference Include="Volo.Abp.TenantManagement.EntityFrameworkCore" Version="4.2.2" />
+		<PackageReference Include="Volo.Abp.EntityFrameworkCore.MySQL" Version="4.2.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\Leopard.Framework\src\Leopard.Core\Leopard.csproj" />
+		<ProjectReference Include="..\..\..\Leopard.Framework\src\Leopard.EntityFrameworkCore\Leopard.EntityFrameworkCore.csproj" />
+		<ProjectReference Include="..\Mk.DemoB.Domain\Mk.DemoB.Domain.csproj" />		
+	</ItemGroup>
 
 </Project>

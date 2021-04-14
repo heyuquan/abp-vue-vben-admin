@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
@@ -44,7 +44,7 @@ namespace Mk.DemoB.EntityFrameworkCore
 
             builder.ConfigureDemoB();
 
-            builder.DbMapperCameNamelToUnder();
+            //builder.DbMapperCameNamelToUnder();
         }
     }
 }

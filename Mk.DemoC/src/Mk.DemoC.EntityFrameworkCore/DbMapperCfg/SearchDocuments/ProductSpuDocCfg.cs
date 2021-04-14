@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Mk.DemoC.SearchDocumentMgr.Entities;
 using Volo.Abp.EntityFrameworkCore.Modeling;
@@ -14,7 +14,7 @@ namespace Mk.DemoC.DbMapperCfg.SearchDocuments
 
             builder.Property(p => p.DocId)
                 .HasMaxLength(64)
-                .HasColumnName(nameof(ProductSpuDoc.SpuCode));
+                .HasColumnName(nameof(ProductSpuDoc.DocId));
             builder.Property(p => p.SpuCode).IsRequired()
                 .HasMaxLength(24)
                 .HasColumnName(nameof(ProductSpuDoc.SpuCode));

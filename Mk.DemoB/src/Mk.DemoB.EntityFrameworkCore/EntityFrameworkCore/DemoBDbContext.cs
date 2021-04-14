@@ -1,4 +1,4 @@
-﻿using Leopard.EntityFrameworkCore;
+using Leopard.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Mk.DemoB.ExchangeRateMgr.Entities;
 using Mk.DemoB.SaleOrderMgr.Entities;
@@ -65,7 +65,7 @@ namespace Mk.DemoB.EntityFrameworkCore
             /* Configure your own tables/entities inside the ConfigureDemoB method */
             builder.ConfigureDemoB();
 
-            builder.DbMapperCameNamelToUnder();
+            //builder.DbMapperCameNamelToUnder();
         }
 
 

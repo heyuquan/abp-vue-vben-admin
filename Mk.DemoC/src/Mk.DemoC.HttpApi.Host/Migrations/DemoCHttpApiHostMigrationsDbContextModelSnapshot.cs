@@ -16,89 +16,88 @@ namespace Mk.DemoC.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("_Abp_DatabaseProvider", EfCoreDatabaseProvider.MySql)
-                .HasAnnotation("ProductVersion", "3.1.5")
-                .HasAnnotation("Relational:MaxIdentifierLength", 64);
+                .HasAnnotation("Relational:MaxIdentifierLength", 64)
+                .HasAnnotation("ProductVersion", "5.0.5");
 
             modelBuilder.Entity("Mk.DemoC.SearchDocumentMgr.Entities.ProductSpuDoc", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("id")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Brand")
                         .IsRequired()
-                        .HasColumnName("brand")
+                        .HasMaxLength(24)
                         .HasColumnType("varchar(24) CHARACTER SET utf8mb4")
-                        .HasMaxLength(24);
+                        .HasColumnName("Brand");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnName("concurrency_stamp")
+                        .HasMaxLength(40)
                         .HasColumnType("varchar(40) CHARACTER SET utf8mb4")
-                        .HasMaxLength(40);
+                        .HasColumnName("ConcurrencyStamp");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnName("creation_time")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("CreationTime");
 
                     b.Property<Guid?>("CreatorId")
-                        .HasColumnName("creator_id")
-                        .HasColumnType("char(36)");
+                        .HasColumnType("char(36)")
+                        .HasColumnName("CreatorId");
 
                     b.Property<string>("Currency")
-                        .HasColumnName("currency")
+                        .HasMaxLength(8)
                         .HasColumnType("varchar(8) CHARACTER SET utf8mb4")
-                        .HasMaxLength(8);
+                        .HasColumnName("Currency");
 
                     b.Property<string>("DocId")
-                        .HasColumnName("doc_id")
+                        .HasMaxLength(64)
                         .HasColumnType("varchar(64) CHARACTER SET utf8mb4")
-                        .HasMaxLength(64);
+                        .HasColumnName("DocId");
 
                     b.Property<string>("ExtraProperties")
-                        .HasColumnName("extra_properties")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                        .HasColumnType("longtext CHARACTER SET utf8mb4")
+                        .HasColumnName("ExtraProperties");
 
                     b.Property<decimal>("MaxPrice")
-                        .HasColumnName("max_price")
-                        .HasColumnType("decimal(18,6)");
+                        .HasColumnType("decimal(18,6)")
+                        .HasColumnName("MaxPrice");
 
                     b.Property<decimal>("MinPrice")
-                        .HasColumnName("min_price")
-                        .HasColumnType("decimal(18,6)");
+                        .HasColumnType("decimal(18,6)")
+                        .HasColumnName("MinPrice");
 
                     b.Property<string>("SpuCode")
                         .IsRequired()
-                        .HasColumnName("spu_code")
+                        .HasMaxLength(24)
                         .HasColumnType("varchar(24) CHARACTER SET utf8mb4")
-                        .HasMaxLength(24);
+                        .HasColumnName("SpuCode");
 
                     b.Property<string>("SpuKeywords")
                         .IsRequired()
-                        .HasColumnName("spu_keywords")
+                        .HasMaxLength(64)
                         .HasColumnType("varchar(64) CHARACTER SET utf8mb4")
-                        .HasMaxLength(64);
+                        .HasColumnName("SpuKeywords");
 
                     b.Property<string>("SpuName")
                         .IsRequired()
-                        .HasColumnName("spu_name")
+                        .HasMaxLength(64)
                         .HasColumnType("varchar(64) CHARACTER SET utf8mb4")
-                        .HasMaxLength(64);
+                        .HasColumnName("SpuName");
 
                     b.Property<string>("SumSkuCode")
-                        .HasColumnName("sum_sku_code")
+                        .HasMaxLength(240)
                         .HasColumnType("varchar(240) CHARACTER SET utf8mb4")
-                        .HasMaxLength(240);
+                        .HasColumnName("SumSkuCode");
 
                     b.Property<string>("SumSkuKeywords")
-                        .HasColumnName("sum_sku_keywords")
+                        .HasMaxLength(640)
                         .HasColumnType("varchar(640) CHARACTER SET utf8mb4")
-                        .HasMaxLength(640);
+                        .HasColumnName("SumSkuKeywords");
 
                     b.HasKey("Id");
 
-                    b.ToTable("product_spu_doc");
+                    b.ToTable("ProductSpuDoc");
                 });
 #pragma warning restore 612, 618
         }
