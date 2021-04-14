@@ -1,4 +1,4 @@
-﻿using Leopard.Results;
+using Leopard.Results;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
@@ -41,7 +41,7 @@ namespace Mk.DemoB.ExtraSaleOrderAppService
         /// 创建订单
         /// 使用 Abp的对象扩展设置了Customer字段
         /// </summary>
-        /// <param name="req"></param>
+        /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost("create")]
         [UnitOfWork]

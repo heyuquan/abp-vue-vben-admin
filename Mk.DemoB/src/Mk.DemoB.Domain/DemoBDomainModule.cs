@@ -1,4 +1,4 @@
-﻿using Mk.DemoB.MultiTenancy;
+using Mk.DemoB.MultiTenancy;
 using Mk.DemoB.ObjectExtending;
 using Volo.Abp.AuditLogging;
 using Volo.Abp.BackgroundJobs;

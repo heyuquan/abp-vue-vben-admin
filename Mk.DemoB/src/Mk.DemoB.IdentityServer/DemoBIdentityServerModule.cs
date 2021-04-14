@@ -134,7 +134,10 @@ namespace Mk.DemoB
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
+
+            app.UseAbpRequestLocalization();
+
+            if (!env.IsDevelopment())
             {
                 app.UseErrorPage();
             }
@@ -150,7 +153,6 @@ namespace Mk.DemoB
                 app.UseMultiTenancy();
             }
             
-            app.UseAbpRequestLocalization();
             app.UseIdentityServer();
             app.UseAuthorization();
             app.UseAuditing();

@@ -1,4 +1,4 @@
-﻿using Mk.DemoB.Domain.Consts.SaleOrders;
+using Mk.DemoB.Domain.Consts.SaleOrders;
 using Mk.DemoB.SaleOrderMgr.Entities;
 using Volo.Abp.ObjectExtending;
 using Volo.Abp.Threading;
@@ -36,13 +36,13 @@ namespace Mk.DemoB.EntityFrameworkCore
                  */
                 // 这种方式：将扩展字段映射到独立的字段。  否则只会以json的形式加到  ExtraProperties 字段中
                 ObjectExtensionManager.Instance
-                    .AddOrUpdateProperty<SaleOrder, string>(
-                        "CustomerName"
-                        , options =>
+                    .MapEfCoreProperty<SaleOrder, string>(
+                        "CustomerName",
+                        (entityBuilder, propertyBuilder) =>
                         {
-                            options
-                            .MapEfCore(b => b.IsRequired())
-                            .MapEfCore(b => b.HasMaxLength(SaleOrderConsts.MaxCustomerNameLength));
+                            propertyBuilder
+                                .IsRequired()
+                                .HasMaxLength(SaleOrderConsts.MaxCustomerNameLength);
                         }
                     );
             });

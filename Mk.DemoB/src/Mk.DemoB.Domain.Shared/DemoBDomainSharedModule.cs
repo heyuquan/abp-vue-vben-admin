@@ -1,10 +1,11 @@
-﻿using Mk.DemoB.Localization;
+using Mk.DemoB.Localization;
 using Volo.Abp.AuditLogging;
 using Volo.Abp.BackgroundJobs;
 using Volo.Abp.FeatureManagement;
 using Volo.Abp.Identity;
 using Volo.Abp.IdentityServer;
 using Volo.Abp.Localization;
+using Volo.Abp.Localization.ExceptionHandling;
 using Volo.Abp.Modularity;
 using Volo.Abp.PermissionManagement;
 using Volo.Abp.SettingManagement;
@@ -28,6 +29,7 @@ namespace Mk.DemoB
     {
         public override void PreConfigureServices(ServiceConfigurationContext context)
         {
+            DemoBGlobalFeatureConfigurator.Configure();
             DemoBModuleExtensionConfigurator.Configure();
         }
 
@@ -46,6 +48,11 @@ namespace Mk.DemoB
                     .AddVirtualJson("/Localization/DemoB");
                 
                 options.DefaultResourceType = typeof(DemoBResource);
+            });
+
+            Configure<AbpExceptionLocalizationOptions>(options =>
+            {
+                options.MapCodeNamespace("Setting", typeof(DemoBResource));
             });
         }
     }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
@@ -26,7 +26,7 @@ namespace Mk.DemoB.EntityFrameworkCore
         private static IConfigurationRoot BuildConfiguration()
         {
             var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
+                .SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../Mk.DemoB.DbMigrator/"))
                 .AddJsonFile("appsettings.json", optional: false);
 
             return builder.Build();
