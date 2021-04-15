@@ -1,18 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="..\..\common.props" />
+	<Import Project="..\..\common.props" />
 
-  <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-    <RootNamespace>Mk.DemoC</RootNamespace>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<RootNamespace>Mk.DemoC</RootNamespace>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Volo.Abp.Ddd.Domain" Version="4.2.2" />
-    <PackageReference Include="NEST" Version="7.12.0" />
-    <ProjectReference Include="..\..\..\Leopard.Framework\src\Leopard.Core\Leopard.csproj" />
-    <ProjectReference Include="..\..\..\Mk.DemoB\src\Mk.DemoB.Domain.Shared\Mk.DemoB.Domain.Shared.csproj" />
-    <ProjectReference Include="..\Mk.DemoC.Domain.Shared\Mk.DemoC.Domain.Shared.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Volo.Abp.Ddd.Domain" Version="4.2.2" />
+		<PackageReference Include="NEST" Version="7.12.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\Leopard.Framework\src\Leopard.Core\Leopard.csproj" />
+		<ProjectReference Include="..\..\..\Mk.DemoB\src\Mk.DemoB.Domain.Shared\Mk.DemoB.Domain.Shared.csproj" />
+		<ProjectReference Include="..\Mk.DemoC.Domain.Shared\Mk.DemoC.Domain.Shared.csproj" />
+	</ItemGroup>
 
 </Project>

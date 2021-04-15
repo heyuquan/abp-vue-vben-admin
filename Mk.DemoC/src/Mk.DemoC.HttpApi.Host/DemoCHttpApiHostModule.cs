@@ -1,21 +1,20 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Security.Claims;
 using IdentityModel;
+using Leopard.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using Mk.DemoC.EntityFrameworkCore;
 using Mk.DemoC.MultiTenancy;
 using StackExchange.Redis;
-using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.Swagger;
+using System;
+using System.IO;
+using System.Linq;
 using Volo.Abp;
-using Volo.Abp.AspNetCore.MultiTenancy;
+using Volo.Abp.AspNetCore.Mvc;
+using Volo.Abp.AspNetCore.Mvc.ExceptionHandling;
 using Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
 using Volo.Abp.AspNetCore.Serilog;
@@ -24,24 +23,13 @@ using Volo.Abp.Caching;
 using Volo.Abp.Caching.StackExchangeRedis;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.MySQL;
+using Volo.Abp.EventBus.RabbitMq;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Volo.Abp.MultiTenancy;
 using Volo.Abp.Security.Claims;
-using Volo.Abp.VirtualFileSystem;
-using Leopard.Abp.AuditLogging.EntityFrameworkCore;
-using Leopard.Abp.PermissionManagement.EntityFrameworkCore;
-using Leopard.Abp.SettingManagement.EntityFrameworkCore;
-using Volo.Abp.AspNetCore.Mvc;
-using Volo.Abp.EventBus.RabbitMq;
-using Microsoft.AspNetCore.Mvc;
-using Leopard.AspNetCore.Mvc.Filters;
 using Volo.Abp.Timing;
-using Volo.Abp.AspNetCore.Mvc.ExceptionHandling;
-using Leopard.Consul;
-using Serilog;
-using Microsoft.AspNetCore.Http;
-using Leopard.AspNetCore.Swashbuckle;
+using Volo.Abp.VirtualFileSystem;
 
 namespace Mk.DemoC
 {
@@ -53,9 +41,6 @@ namespace Mk.DemoC
         typeof(AbpAutofacModule),
         typeof(AbpCachingStackExchangeRedisModule),
         typeof(AbpEntityFrameworkCoreMySQLModule),
-        typeof(LeopardAuditLoggingEntityFrameworkCoreModule),
-        typeof(LeopardPermissionManagementEntityFrameworkCoreModule),
-        typeof(LeopardSettingManagementEntityFrameworkCoreModule),
         typeof(AbpAspNetCoreSerilogModule),
         typeof(AbpEventBusRabbitMqModule)
         // 注册consul后，负载是正常的。但是不知道为什么 kibana 就会一直报错。  
