@@ -9,12 +9,6 @@ IdentityServer:https://localhost:44325
 04_DemoC：用abp module模板创建。只依赖自身的模块和Abp框架的模块，纯WEB API
 DemoC:https://localhost:44356
 
-遗留问题：
-Mk.DemoB.BackgroundJobs
-使用hangfire时，周期任务的mysql会报异常。所以需要将 MySqlConnector 升级到1.0版本再看看
-现在 Volo.Abp.EntityFrameworkCore.MySQL >>Pomelo.EntityFrameworkCore.MySql (3.1.1)>>MySqlConnector (0.61.0)还不能依赖1.0版本，所以要延后升级
-
-
 
 
 数据里操作还是要放到 Mk.DemoB.EntityFrameworkCore 层的对应的Repository中。放在如Domain和Application中有两个问题

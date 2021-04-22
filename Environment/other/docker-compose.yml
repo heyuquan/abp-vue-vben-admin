@@ -43,6 +43,21 @@ services:
     container_name: mysql
     networks:
       - my-net
+
+  baget:
+    image: loicsharma/baget:latest
+    restart: always
+    ports:
+      - '9002:80'
+    environment:
+      env-file: /usr/local/Leopard.Abp/Environment/other/baget/config/baget.env
+    volumes:
+      - type: bind
+        source: /usr/local/data/nuget/baget-data
+        target: /var/baget
+    container_name: baget-nuget
+    networks:
+      - my-net
       
 networks:
   my-net:

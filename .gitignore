@@ -255,3 +255,4 @@ paket-files/
 **/Logs/
 
 /Environment/elasticsearch/plugins/
+**/tempkey.jwk
