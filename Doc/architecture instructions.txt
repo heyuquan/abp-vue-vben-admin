@@ -16,9 +16,8 @@ ABP框架的主要目标之一就是提供便捷的基础设施来创建微服�
 
 实体转化
 	表现层：viewModel >> input
-	应用层：输入input，输出output   （或Dto）
-	领域层：参数不再封装为对象，只有参数比较多时才封装对象。
-	        但可以直接传递应用层（input|output|dto）参数（避免再多一层对象转换，）
+	应用层：输入input，输出output   
+	领域层：参数不再封装为对象，只有参数比较多时才封装对象。输入简单类型或者实体
 
 Abp Cli==================
 dotnet tool install -g Volo.Abp.Cli
@@ -29,14 +28,12 @@ abp new Acme.BookStore [--output-folder D:\……]
 
 解决方案结构=============================
 	推荐 在Visual Sudio中为每个模块创建一个单独的解决方案.
-	推荐 将解决方案命名为CompanyName.ModuleName(对于ABP核心模块来说,它的命名方式是Volo.Abp.ModuleName).
-	推荐 一个模块做为分层项目开发,因为它有几个包(项目)是相互关联的.
-		每个包都有自己的模块定义文件,并显式声明所依赖的包/模块的依赖关系.
+	推荐 将解决方案命名为CompanyName.ProductName.ModuleName(对于ABP核心模块来说,它的命名方式是Volo.Abp.ModuleName).
 
 模块化架构最佳实践 & 约定
 https://docs.abp.io/zh-Hans/abp/latest/Best-Practices/Module-Architecture
 
-对于应用层和领域层实现的接口，都定义为virtual，方便重写，再替换IOC
+对于应用层和领域层实现的接口，都定义为virtual，方便重写
 ABP框架使用动态代理/拦截系统来执行验证.为了使其工作,你的方法应该是 virtual 的,服务应该被注入并通过接口(如IMyService)使用.----（IValidatableObject）
 分层说明================
 Web 层(Presentation Layer)
@@ -44,18 +41,6 @@ Web 层(Presentation Layer)
 	Ec.Admin.Web	包含页面,视图,脚本,样式,图像和其他UI组件.仅依赖于 HttpApi 包
 	Ec.Admin.HttpApi.Host		WebApi宿主项目
 	Mk.DemoB.BackgroundJobs		后台任务项目，命名为 以 s 结尾。因为 Volo.Abp.BackgroundJobs.BackgroundJob 提供了类名叫 BackgroundJob
-	
-
-HTTP 层(Distributed Services Layers)
-	Ec.Admin.HttpApi			为模块开发REST风格的HTTP API.
-		HTTP API 包只依赖于 Application.Contracts 包. 不要依赖 Application 包.
-		#、定义Controller
-	Ec.Admin.HttpApi.Client		为HTTP API包提供客户端服务的HTTP API Client包。使用Abp的动态API客户端(Volo.Abp.Http.Client)
-		HTTP API Client 包仅依赖于 Application.Contracts 包.
-
-HTTP 层 和 Web 层，只能注入 应用服务层 提供的服务。一般来说应用服务层公开的api就可以满足需要。但有些情况如app、pc、h5各个环境
-下返回的data需要特殊处理的，就在 HTTP 层 和 Web 层 处理
-
 
 应用服务层(Application Layer)
 	Ec.Admin.Application				包含应用服务实现.依赖于 Domain 包和 Application.Contracts 包
@@ -63,19 +48,28 @@ HTTP 层 和 Web 层，只能注入 应用服务层 提供的服务。一般来�
 		#、AutoMapperProfile映射
 	Ec.Admin.Application.Contracts		包含应用服务接口和相关的数据传输对象(DTO).依赖于 Domain.Shared 包
 		#、I**AppService
-		#、DTO    命名为：**Request、**Input的为输入参数，可以带上验证特性
+		#、DTO    命名为：**Input、**Output的为输入参数，可以带上验证特性
 		#、Permission定义（eg：**PermissionDefinitionProvider）
+	Ec.Admin.HttpApi			为模块开发REST风格的HTTP API.
+		HTTP API 包只依赖于 Application.Contracts 包. 不要依赖 Application 包.
+		#、定义Controller
+	Ec.Admin.HttpApi.Client		远程调用代理。为HTTP API包提供客户端服务的HTTP API Client包。使用Abp的动态API客户端(Volo.Abp.Http.Client)
+		HTTP API Client 包仅依赖于 Application.Contracts 包.
 		
 领域层(Domain Layer)
-	Ec.Admin.Domain				包含实体, 仓储接口,领域服务接口及其实现和其他领域对象.依赖于 Domain.Shared 包.
-		#、AggregateRoot		
-		       1、里面包含实体的操作
-		       2、每个实体都提供带主键Key的构造函数，创建实体。构造函数中包含Check.NotNull操作、传入主要的字段、字段的默认赋值
-		#、值对象
-		#、Service 领域服务（eg：**Manager，）
-		#、IRepository
-		#、Domain （eg：IdentityServer\IdentityServerDataSeedContributor.cs 数据种子Domain；Migrations\AdminDbMigrationService.cs 数据迁移；**Manager）
-	Ec.Admin.Domain.Shared		包含常量,枚举和其他类型, 它不能包含实体,存储库,域服务或任何其他业务对象. 可以安全地与模块中的所有层使用. 此包也可以与第三方客户端使用.
+	Ec.Admin.Domain				包含实体值对象、聚合根, 仓储接口,领域服务接口及其实现和其他领域对象.依赖于 Domain.Shared 包.
+		***Aggregate文件夹
+			#、实体		
+				   1、包含实体的操作
+				   2、每个实体都提供带主键Key的构造函数，创建实体。构造函数中包含Check.NotNull操作、传入主要的字段、字段的默认赋值
+			#、值对象
+			#、Service 领域服务（命名为：**Manager）
+			#、IRepository
+			#、领域事件Handle
+			#、领域事件对象
+		DataSeeder文件夹
+			eg：IdentityServer\IdentityServerDataSeedContributor.cs 数据种子
+	Ec.Admin.Domain.Shared		包含常量,枚举和其他类型, 它不能包含实体,存储库,域服务或任何其他业务对象. 可以安全地与模块中的所有层使用. 此包也可以提供给第三方客户端使用.
 		#、多语言 Location\Resources\**
 		#、定义常量、枚举
 
@@ -89,9 +83,9 @@ HTTP 层 和 Web 层，只能注入 应用服务层 提供的服务。一般来�
 除了
 Ec.Admin.Application.Contracts
 Ec.Admin.Domain.Shared
-设置为 netstandard2.1
+设置为 netstandard2.0
 
-其他项目都设置为net5.0
+其他项目都设置为net5.0+
 
 
 依赖注入=========
@@ -118,7 +112,7 @@ Dependency 特性
 	ReplaceServices: 设置true则替换之前已经注册过的服务.使用IServiceCollection的Replace扩展方法.
 
 ExposeServices 特性
-	ExposeServicesAttribute用于控制相关类提供了什么服务。
+	ExposeServicesAttribute 用于控制类对外公开什么服务
 	eg：
 	[ExposeServices(typeof(ITaxCalculator))]
 	public class TaxCalculator: ICalculator, ITaxCalculator, ICanCalculate, ITransientDependency
@@ -128,7 +122,7 @@ ExposeServices 特性
 	TaxCalculator类只公开ITaxCalculator接口.这意味着你只能注入ITaxCalculator,但不能注入TaxCalculator或ICalculator到你的应用程序中.
 
 IServiceCollection.OnRegistred 事件
-	你可能想在注册到依赖注入的每个服务上执行一个操作, 在你的模块的 PreConfigureServices 方法中, 使用 OnRegistred 方法注册一个回调(callback) 
+	你可能想在注册到依赖注入的每个服务上执行一个操作, 可以在模块的 PreConfigureServices 方法中, 使用 OnRegistred 方法注册一个回调(callback) 
 
 
 模块AbpModule=============
@@ -140,8 +134,8 @@ OnApplicationShutdown	应用程序关闭
 
 动态 C# API客户端(Volo.Abp.Http.Client) ==============
 https://docs.abp.io/zh-Hans/abp/latest/AspNetCore/Dynamic-CSharp-API-Clients
-作用：不需要通过 HttpClient 或者其他低级的HTTP功能调用远程服务并获取数据.
-// 创建客户端代理
+作用：不需要通过 HttpClient 或者其他基础的HTTP功能调用远程服务并获取数据.
+	// 创建客户端代理
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         //创建动态客户端代理
@@ -149,7 +143,7 @@ https://docs.abp.io/zh-Hans/abp/latest/AspNetCore/Dynamic-CSharp-API-Clients
             typeof(BookStoreApplicationModule).Assembly
         );
     }
-// 使用的时候，直接注入服务即可
+	// 使用的时候，直接注入服务即可
 	public MyService(IBookAppService bookService)
     {
         _bookService = bookService;
@@ -157,10 +151,9 @@ https://docs.abp.io/zh-Hans/abp/latest/AspNetCore/Dynamic-CSharp-API-Clients
 
 
 mysql 推荐小写加 _ 的命名方式。
-尝试过转成成这样的命名，但是从abp3.x升级到abp4.x时，生成的迁移文件会有问题，
-eg：
-外键 FK_IdentityServerClientProperties_IdentityServerClients_ClientId 
-生成为：FK_identity_server_client_properties_identity_server_clients_cl
-被截断了
-
-另外升级abp框架迁移也会存在不知道的异常，也没有解决，所以取消mysql命名的转换了
+	尝试过转成这样的命名，但是从abp3.x升级到abp4.x时，生成的迁移文件会有问题，
+	eg：
+	外键 FK_IdentityServerClientProperties_IdentityServerClients_ClientId 
+	生成为：FK_identity_server_client_properties_identity_server_clients_cl
+	被截断了
+	所以：等以后官方支持吧！
