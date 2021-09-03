@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\..\..\..\configureawait.props" />
+	<Import Project="..\..\..\..\mk.demo.common.props" />
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<RootNamespace>Mk.DemoC</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Volo.Abp.Http.Client" Version="4.4.2" />
+		<ProjectReference Include="..\Mk.DemoC.Application.Contracts\Mk.DemoC.Application.Contracts.csproj" />
+	</ItemGroup>
+
+</Project>

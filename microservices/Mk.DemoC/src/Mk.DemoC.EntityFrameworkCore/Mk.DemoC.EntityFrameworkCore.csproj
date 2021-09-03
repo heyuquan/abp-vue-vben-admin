@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\..\..\..\configureawait.props" />
+	<Import Project="..\..\..\..\mk.demo.common.props" />
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<RootNamespace>Mk.DemoC</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Volo.Abp.EntityFrameworkCore" Version="4.4.2" />
+		<ProjectReference Include="..\..\..\..\framework\src\Leopard.Core\Leopard.csproj" />
+		<ProjectReference Include="..\..\..\..\framework\src\Leopard.EntityFrameworkCore\Leopard.EntityFrameworkCore.csproj" />
+		<ProjectReference Include="..\Mk.DemoC.Domain\Mk.DemoC.Domain.csproj" />
+	</ItemGroup>
+
+</Project>
