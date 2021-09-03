@@ -82,3 +82,7 @@ nginx:http://134.175.121.78:8081/
 
 MSSQL-链接字符串备注
 windows身份认证： "Server=(LocalDb)\\MSSQLLocalDB; Database=MsDemo_Identity;Trusted_Connection=True"
+
+项目启动说明
+AuthServer.Host
+1、在项目目录运行 yarn install
