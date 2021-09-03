@@ -1,0 +1,41 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/loadbalance/{everything}",
+      "UpstreamPathTemplate": "/api/loadbalance/{everything}",
+      "DownstreamScheme": "http",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44305
+        },
+        {
+          "Host": "localhost",
+          "Port": 44405
+        }
+      ],
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/loadbalance/{everything}",
+      "DownstreamScheme": "http",
+      "UpstreamPathTemplate": "/api/consul/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ],
+      "ServiceName": "Consul_ServiceA",
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      }
+    }
+  ],
+  "GlobalConfiguration": {
+    "ServiceDiscoveryProvider": {
+      "Host": "134.175.121.78",
+      "Port": 8500,
+      "Type": "Consul"
+    },
+    "BaseUrl": "https://localhost:44505"
+  }
+}
