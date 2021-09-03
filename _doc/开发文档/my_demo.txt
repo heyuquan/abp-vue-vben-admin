@@ -79,3 +79,6 @@ kibana：http://134.175.121.78:5601/
 consul:http://134.175.121.78:8500/
 
 nginx:http://134.175.121.78:8081/
+
+MSSQL-链接字符串备注
+windows身份认证： "Server=(LocalDb)\\MSSQLLocalDB; Database=MsDemo_Identity;Trusted_Connection=True"
