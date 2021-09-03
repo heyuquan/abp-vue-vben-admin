@@ -23,6 +23,8 @@ Abp Cli==================
 dotnet tool install -g Volo.Abp.Cli
 dotnet tool update -g Volo.Abp.Cli
 
+abp update -v 4.4.2
+
 abp help        # 显示常规帮助.
 abp new Acme.BookStore [--output-folder D:\……]
 
