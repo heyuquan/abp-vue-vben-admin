@@ -1,0 +1,107 @@
+version: '3.2'
+
+services:
+  elasticsearch:
+    image: elasticsearch.img
+    build:
+      context: elasticsearch/
+      args:
+        ELK_VERSION: $ELK_VERSION
+    restart: always
+    volumes:
+      - type: bind
+        source: ./elasticsearch/config/elasticsearch.yml
+        target: /usr/share/elasticsearch/config/elasticsearch.yml
+        read_only: true
+      - type: bind
+        source: /usr/local/data/env/elasticsearch/data
+        target: /usr/share/elasticsearch/data
+      - type: bind
+        source: ./elasticsearch/plugins
+        target: /usr/share/elasticsearch/plugins
+      - type: bind
+        source: ./elasticsearch/config/analysis
+        target: /usr/share/elasticsearch/config/analysis
+    ports:
+      - "59210:9200"
+      - "9300:9300"
+    environment:
+      ES_JAVA_OPTS: "-Xms1g -Xmx1g"
+      ELASTIC_PASSWORD: changeme
+      # Use single node discovery in order to disable production mode and avoid bootstrap checks
+      # see https://www.elastic.co/guide/en/elasticsearch/reference/current/bootstrap-checks.html
+      discovery.type: single-node
+    container_name: elasticsearch
+    networks:
+      - my-net
+
+  elasticsearch-head:
+    image: elasticsearch-head.img
+    build:
+      context: elasticsearch-head/
+    restart: always
+    volumes:
+      - type: bind
+        source: ./elasticsearch-head/app/_site/vendor.js
+        target: /usr/src/app/_site/vendor.js
+    ports:
+      - "9100:9100"
+    container_name: elasticsearch-head
+    networks:
+      - my-net
+    depends_on:
+      - elasticsearch
+
+  logstash:
+    image: logstash.img
+    build:
+      context: logstash/
+      args:
+        ELK_VERSION: $ELK_VERSION
+    restart: always
+    volumes:
+      - type: bind
+        source: ./logstash/config/logstash.yml
+        target: /usr/share/logstash/config/logstash.yml
+        read_only: true
+      - type: bind
+        source: ./logstash/pipeline
+        target: /usr/share/logstash/pipeline
+        read_only: true
+    ports:
+      - "5000:5000/tcp"
+      - "5000:5000/udp"
+      - "9600:9600"
+    environment:
+      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+    container_name: logstash
+    networks:
+      - my-net
+    depends_on:
+      - elasticsearch
+
+  kibana:
+    image: kibana.img
+    # kibana不用重启，有时候异常不断重启太吃资源
+    # restart: always
+    build:
+      context: kibana/
+      args:
+        ELK_VERSION: $ELK_VERSION
+    volumes:
+      - type: bind
+        source: ./kibana/config/kibana.yml
+        target: /usr/share/kibana/config/kibana.yml
+        read_only: true
+    ports:
+      - "5601:5601"
+    container_name: kibana
+    networks:
+      - my-net
+    depends_on:
+      - elasticsearch
+      - logstash
+
+networks:
+  my-net:
+    driver: bridge
