@@ -39,7 +39,7 @@ services:
         source: /usr/local/data/env/mysql/data
         target: /var/lib/mysql
       - type: bind
-        source: /usr/local/Leopard.Abp/environment/other/mysql/config/my.cnf
+        source: /usr/local/abp-vue-vben-admin/environment/other/mysql/config/my.cnf
         target: /etc/my.cnf
     container_name: mysql
     networks:
@@ -51,7 +51,7 @@ services:
   #   ports:
   #     - '9002:80'
   #   environment:
-  #     env-file: /usr/local/Leopard.Abp/environment/other/baget/config/baget.env
+  #     env-file: /usr/local/abp-vue-vben-admin/environment/other/baget/config/baget.env
   #   volumes:
   #     - type: bind
   #       source: /usr/local/data/nuget/baget-data
