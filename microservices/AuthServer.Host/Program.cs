@@ -56,6 +56,10 @@ namespace AuthServer.Host
 
         internal static IHostBuilder CreateHostBuilder(string[] args) =>
             Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration(build =>
+                {
+                    build.AddJsonFile("appsettings.secrets.json", optional: true);
+                })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
