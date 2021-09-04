@@ -90,6 +90,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "99_Shared", "99_Shared", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MsDemo.Shared", "microservices\shared\MsDemo.Shared\MsDemo.Shared.csproj", "{43EE6750-4187-4EC0-878F-8023E1A68870}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_run", "_run", "{8217A5AF-6037-40C9-856C-76E40C09BF8F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "脚本集合", "_run\脚本集合\脚本集合.csproj", "{B856AE14-40A3-41C7-A391-763BAA8EDB87}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -228,6 +232,10 @@ Global
 		{43EE6750-4187-4EC0-878F-8023E1A68870}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43EE6750-4187-4EC0-878F-8023E1A68870}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43EE6750-4187-4EC0-878F-8023E1A68870}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B856AE14-40A3-41C7-A391-763BAA8EDB87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B856AE14-40A3-41C7-A391-763BAA8EDB87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B856AE14-40A3-41C7-A391-763BAA8EDB87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B856AE14-40A3-41C7-A391-763BAA8EDB87}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -270,6 +278,7 @@ Global
 		{22EF20EA-0645-4CE9-A365-58484244212A} = {C9329CC1-07E9-4F9F-86A0-DD8DAF135A6F}
 		{FC715BA7-0C2F-424C-8EA3-EB02AB3FDCB8} = {FCF83F0C-BF45-4348-93C5-B9E560C35553}
 		{43EE6750-4187-4EC0-878F-8023E1A68870} = {FC715BA7-0C2F-424C-8EA3-EB02AB3FDCB8}
+		{B856AE14-40A3-41C7-A391-763BAA8EDB87} = {8217A5AF-6037-40C9-856C-76E40C09BF8F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {28315BFD-90E7-4E14-A2EA-F3D23AF4126F}
