@@ -84,6 +84,10 @@ namespace Mk.DemoB
         internal static IHostBuilder CreateHostBuilder(string[] args)
         {
             return Host.CreateDefaultBuilder(args)
+                 .ConfigureAppConfiguration(build =>
+                 {
+                     build.AddJsonFile("appsettings.secrets.json", optional: true);
+                 })
                  .ConfigureWebHostDefaults(webBuilder =>
                  {
                      webBuilder.UseStartup<Startup>();

@@ -1,7 +1,8 @@
 using Leopard.AspNetCore.Mvc.Filters;
-using Leopard.AspNetCore.Swashbuckle;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -13,6 +14,7 @@ using Mk.DemoB.Localization;
 using Mk.DemoB.MultiTenancy;
 using StackExchange.Redis;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Volo.Abp;
@@ -32,6 +34,7 @@ using Volo.Abp.Guids;
 using Volo.Abp.Localization;
 using Volo.Abp.Localization.ExceptionHandling;
 using Volo.Abp.Modularity;
+using Volo.Abp.Swashbuckle;
 using Volo.Abp.Timing;
 using Volo.Abp.VirtualFileSystem;
 
@@ -45,7 +48,8 @@ namespace Mk.DemoB
         typeof(DemoBApplicationModule),
         typeof(DemoBEntityFrameworkCoreDbMigrationsModule),
         typeof(AbpAspNetCoreSerilogModule),
-        typeof(AbpEventBusRabbitMqModule)
+        typeof(AbpEventBusRabbitMqModule),
+        typeof(AbpSwashbuckleModule)
         // 注册consul后，负载是正常的。但是不知道为什么 kibana 就会一直报错。  
         // 可能是consul做health检查时，日志格式问题？？但依旧找不到具体原因，所以注释掉consul
         //typeof(LeopardConsulModule)  
@@ -68,7 +72,7 @@ namespace Mk.DemoB
             ConfigureVirtualFileSystem(context);
             ConfigureRedis(context, configuration, hostingEnvironment);
             ConfigureCors(context, configuration);
-            ConfigureSwaggerServices(context);
+            ConfigureSwaggerServices(context, configuration);
 
             // 设置分页默认返回20条数据   
             PagedResultRequestDto.DefaultMaxResultCount = 20;
@@ -161,24 +165,29 @@ namespace Mk.DemoB
 
         private void ConfigureAuthentication(ServiceConfigurationContext context, IConfiguration configuration)
         {
-            context.Services.AddAuthentication("Bearer")
+            context.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddIdentityServerAuthentication(options =>
                 {
                     options.Authority = configuration["AuthServer:Authority"];
-                    options.RequireHttpsMetadata = true;
+                    options.RequireHttpsMetadata = Convert.ToBoolean(configuration["AuthServer:RequireHttpsMetadata"]);
                     options.ApiName = "DemoB";
                 });
         }
 
-        private static void ConfigureSwaggerServices(ServiceConfigurationContext context)
+        private static void ConfigureSwaggerServices(ServiceConfigurationContext context, IConfiguration configuration)
         {
-            context.Services.AddSwaggerGen(
+            context.Services.AddAbpSwaggerGenWithOAuth(
+                configuration["AuthServer:Authority"],
+                new Dictionary<string, string>
+                {
+                    {"DemoB", "DemoB API"}
+                },
                 options =>
                 {
                     options.SwaggerDoc("v1", new OpenApiInfo { Title = "DemoB API", Version = "v1" });
                     options.DocInclusionPredicate((docName, description) => true);
                     //options.SchemaFilter<EnumSchemaFilter>();
-
+                    options.CustomSchemaIds(type => type.FullName);
                     // 为 Swagger JSON and UI设置xml文档注释路径
                     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "Mk.DemoB.Application.xml"), true);
                     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "Mk.DemoB.Application.Contracts.xml"), true);
@@ -207,9 +216,9 @@ namespace Mk.DemoB
             if (!hostingEnvironment.IsDevelopment())
             {
                 var redis = ConnectionMultiplexer.Connect(configuration["Redis:Configuration"]);
-                //context.Services
-                //    .AddDataProtection()
-                //    .PersistKeysToStackExchangeRedis(redis, "DemoB-Protection-Keys");
+                context.Services
+                    .AddDataProtection()
+                    .PersistKeysToStackExchangeRedis(redis, "DemoB-Protection-Keys");
             }
         }
 
@@ -255,7 +264,7 @@ namespace Mk.DemoB
             app.UseCorrelationId();
             //app.UseHttpsRedirection();
 
-            app.UseVirtualFiles();
+            app.UseStaticFiles();
             app.UseRouting();
             app.UseCors(DefaultCorsPolicyName);
             app.UseAuthentication();
@@ -268,13 +277,19 @@ namespace Mk.DemoB
             app.UseAuthorization();
 
             app.UseSwagger();
-            app.UseSwaggerUI(options =>
+            app.UseAbpSwaggerUI(options =>
             {
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", "DemoB API");
+
+                var configuration = context.GetConfiguration();
+                options.OAuthClientId(configuration["AuthServer:SwaggerClientId"]);
+                options.OAuthClientSecret(configuration["AuthServer:SwaggerClientSecret"]);
+                options.OAuthScopes("DemoB");
             });
 
-            //app.UseAuditing();
+            app.UseAuditing();
             app.UseAbpSerilogEnrichers();
+            app.UseUnitOfWork();
             app.UseConfiguredEndpoints();
         }
     }

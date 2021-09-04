@@ -18,71 +18,9 @@ DemoC:https://localhost:44356
 1、可以强制把数据库业务写到仓储中
 2、更好的封装了数据库操作。  方便在其他层注入仓储，获取数据操作
 
-定义端口规范
-http	**02
-https	**05    (只需要启动一个http端口即可，在nginx上设置证书，并启用https。这样子证书也不用每个应用端口都去设置一个了)
-
-demob.api         44302
-democ.api         44402
-demo.gateway      44502 
 
 
---demob
-docker build -f Dockerfile -t mk.demob.api.img ../../../
-
-docker run --name mk.demob.api -p 44302:44302  -v /e/Code/open_source/Abp/Leopard.Abp/Docker/App/Mk.DemoB/Logs:/app/Logs -d mk.demob.api.img
-
-docker exec -it mk.demob /bin/bash
-
-
-
-
---democ
-docker build -f Dockerfile -t mk.democ.api.img ../../../
-
-docker run --name mk.democ.api -p 44402:44402  -v /e/Code/open_source/Abp/Leopard.Abp/Docker/App/Mk.DemoC/Logs:/app/Logs -d mk.democ.api.img
-
-
-docker exec -it mk.democ /bin/bash
-
-
-构建：docker-compose build
-
-启动：docker-compose up
-      docker-compose up -d    -d代表在后台运行
-销毁：docker-compose down
-重启：docker-compose restart
-
-创建服务（不启动）：docker-compose create
-删除服务：docker-compose rm 服务名
-
-docker-compose -f docker-compose-linux.yml up -d
-
-git 拉取远程代码
-https://blog.csdn.net/weijinqian0/article/details/76217014
-    git clone https://github.com/heyuquan/Leopard.Abp.git
-    进入代码目录，git pull 
-Git 本地的撤销修改和删除操作
-https://www.cnblogs.com/qlqwjy/p/8378851.html
-git reset --hard
-
-程序代码目录linux：/usr/local/Leopard.Abp/Environment
-
-mk.demo.gateway:http://134.175.121.78:44502/swagger/index.html
-mk.demob.api:http://134.175.121.78:44302/swagger/index.html
-mk.democ.api:http://134.175.121.78:44402/swagger/index.html
-
-es 默认端口9200 老是被攻击，导致数据篡改，elk运行异常
-elastic：http://134.175.121.78:59210
-elasticsearch-head：elastic：http://134.175.121.78:9100
-kibana：http://134.175.121.78:5601/
-consul:http://134.175.121.78:8500/
-
-nginx:http://134.175.121.78:8081/
 
 MSSQL-链接字符串备注
 windows身份认证： "Server=(LocalDb)\\MSSQLLocalDB; Database=MsDemo_Identity;Trusted_Connection=True"
 
-项目启动说明
-AuthServer.Host
-1、在项目目录运行 yarn install

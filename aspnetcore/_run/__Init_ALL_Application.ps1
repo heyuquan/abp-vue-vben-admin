@@ -1,5 +1,5 @@
 Write-Host Init AuthServer.Host ========================
-cd ../microservices/AuthServer.Host
+cd ../microservices/SSO.AuthServer/src/SSO.AuthServer.IdentityServer
 yarn install
 gulp
 
