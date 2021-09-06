@@ -1,18 +1,24 @@
-using IdentityModel;
 using Leopard.AspNetCore.Mvc.Filters;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Mk.DemoC.EntityFrameworkCore;
 using Mk.DemoC.MultiTenancy;
+using MsDemo.Shared;
 using StackExchange.Redis;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Volo.Abp;
+using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc.ExceptionHandling;
 using Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy;
@@ -27,7 +33,6 @@ using Volo.Abp.EventBus.RabbitMq;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Volo.Abp.MultiTenancy;
-using Volo.Abp.Security.Claims;
 using Volo.Abp.Timing;
 using Volo.Abp.VirtualFileSystem;
 
@@ -56,14 +61,23 @@ namespace Mk.DemoC
             var hostingEnvironment = context.Services.GetHostingEnvironment();
             var configuration = context.Services.GetConfiguration();
 
-            Configure<AbpAspNetCoreMvcOptions>(options =>
+            // 自动API控制器
+            ConfigureConventionalControllers();
+
+            ConfigureAuthentication(context, configuration);
+            ConfigureLocalization();
+            ConfigureCache(configuration);
+            ConfigureVirtualFileSystem(context);
+            ConfigureRedis(context, configuration, hostingEnvironment);
+            ConfigureCors(context, configuration);
+            ConfigureSwaggerServices(context, configuration);
+
+            // 设置分页默认返回20条数据   
+            PagedResultRequestDto.DefaultMaxResultCount = 20;
+
+            Configure<AbpMultiTenancyOptions>(options =>
             {
-                options.ConventionalControllers.Create(typeof(DemoCApplicationModule).Assembly, opt =>
-                {
-                    // 默认是：/api/app/***
-                    //如下修改为：/api/volosoft/book-store/***
-                    //opts.RootPath = "volosoft/book-store";
-                });
+                options.IsEnabled = MsDemoConsts.IsMultiTenancyEnabled;
             });
 
             Configure<AbpDbContextOptions>(options =>
@@ -75,88 +89,6 @@ namespace Mk.DemoC
             {
                 options.IsEnabled = MultiTenancyConsts.IsEnabled;
             });
-
-            if (hostingEnvironment.IsDevelopment())
-            {
-                Configure<AbpVirtualFileSystemOptions>(options =>
-                {
-                    options.FileSets.ReplaceEmbeddedByPhysical<DemoCDomainSharedModule>(Path.Combine(hostingEnvironment.ContentRootPath, string.Format("..{0}..{0}src{0}Mk.DemoC.Domain.Shared", Path.DirectorySeparatorChar)));
-                    options.FileSets.ReplaceEmbeddedByPhysical<DemoCDomainModule>(Path.Combine(hostingEnvironment.ContentRootPath, string.Format("..{0}..{0}src{0}Mk.DemoC.Domain", Path.DirectorySeparatorChar)));
-                    options.FileSets.ReplaceEmbeddedByPhysical<DemoCApplicationContractsModule>(Path.Combine(hostingEnvironment.ContentRootPath, string.Format("..{0}..{0}src{0}Mk.DemoC.Application.Contracts", Path.DirectorySeparatorChar)));
-                    options.FileSets.ReplaceEmbeddedByPhysical<DemoCApplicationModule>(Path.Combine(hostingEnvironment.ContentRootPath, string.Format("..{0}..{0}src{0}Mk.DemoC.Application", Path.DirectorySeparatorChar)));
-                });
-            }
-
-            context.Services.AddSwaggerGen(
-                options =>
-                {
-                    options.SwaggerDoc("v1", new OpenApiInfo { Title = "DemoC API", Version = "v1" });
-                    options.DocInclusionPredicate((docName, description) => true);
-                    options.CustomSchemaIds(type => type.FullName);
-                    //options.SchemaFilter<EnumSchemaFilter>();
-
-                    // 为 Swagger JSON and UI设置xml文档注释路径
-                    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "Mk.DemoC.Application.xml"), true);
-                    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "Mk.DemoC.Application.Contracts.xml"), true);
-                });
-
-            Configure<AbpLocalizationOptions>(options =>
-            {
-                options.Languages.Add(new LanguageInfo("cs", "cs", "Čeština"));
-                options.Languages.Add(new LanguageInfo("en", "en", "English"));
-                options.Languages.Add(new LanguageInfo("pt-BR", "pt-BR", "Português"));
-                options.Languages.Add(new LanguageInfo("ru", "ru", "Русский"));
-                options.Languages.Add(new LanguageInfo("tr", "tr", "Türkçe"));
-                options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "简体中文"));
-                options.Languages.Add(new LanguageInfo("zh-Hant", "zh-Hant", "繁體中文"));
-            });
-
-            //Updates AbpClaimTypes to be compatible with identity server claims.
-            AbpClaimTypes.UserId = JwtClaimTypes.Subject;
-            AbpClaimTypes.UserName = JwtClaimTypes.Name;
-            AbpClaimTypes.Role = JwtClaimTypes.Role;
-            AbpClaimTypes.Email = JwtClaimTypes.Email;
-
-            context.Services.AddAuthentication("Bearer")
-                .AddIdentityServerAuthentication(options =>
-                {
-                    options.Authority = configuration["AuthServer:Authority"];
-                    options.RequireHttpsMetadata = false;
-                    options.ApiName = "DemoC";
-                });
-
-            Configure<AbpDistributedCacheOptions>(options =>
-            {
-                options.KeyPrefix = "DemoC:";
-            });
-
-            if (!hostingEnvironment.IsDevelopment())
-            {
-                var redis = ConnectionMultiplexer.Connect(configuration["Redis:Configuration"]);
-                //context.Services
-                //    .AddDataProtection()
-                //    .PersistKeysToStackExchangeRedis(redis, "DemoC-Protection-Keys");
-            }
-
-            context.Services.AddCors(options =>
-            {
-                options.AddPolicy(DefaultCorsPolicyName, builder =>
-                {
-                    builder
-                        .WithOrigins(
-                            configuration["App:CorsOrigins"]
-                                .Split(",", StringSplitOptions.RemoveEmptyEntries)
-                                .Select(o => o.RemovePostFix("/"))
-                                .ToArray()
-                        )
-                        .WithAbpExposedHeaders()
-                        .SetIsOriginAllowedToAllowWildcardSubdomains()
-                        .AllowAnyHeader()
-                        .AllowAnyMethod()
-                        .AllowCredentials();
-                });
-            });
-
 
             Configure<MvcOptions>(mvcOptions =>
             {
@@ -183,6 +115,119 @@ namespace Mk.DemoC
             //});
         }
 
+        private void ConfigureCache(IConfiguration configuration)
+        {
+            Configure<AbpDistributedCacheOptions>(options =>
+            {
+                options.KeyPrefix = "MkDemoC:";
+            });
+        }
+
+        private void ConfigureVirtualFileSystem(ServiceConfigurationContext context)
+        {
+            var hostingEnvironment = context.Services.GetHostingEnvironment();
+
+            if (hostingEnvironment.IsDevelopment())
+            {
+                Configure<AbpVirtualFileSystemOptions>(options =>
+                {
+                    options.FileSets.ReplaceEmbeddedByPhysical<DemoCDomainSharedModule>(Path.Combine(hostingEnvironment.ContentRootPath, string.Format("..{0}..{0}src{0}Mk.DemoC.Domain.Shared", Path.DirectorySeparatorChar)));
+                    options.FileSets.ReplaceEmbeddedByPhysical<DemoCDomainModule>(Path.Combine(hostingEnvironment.ContentRootPath, string.Format("..{0}..{0}src{0}Mk.DemoC.Domain", Path.DirectorySeparatorChar)));
+                    options.FileSets.ReplaceEmbeddedByPhysical<DemoCApplicationContractsModule>(Path.Combine(hostingEnvironment.ContentRootPath, string.Format("..{0}..{0}src{0}Mk.DemoC.Application.Contracts", Path.DirectorySeparatorChar)));
+                    options.FileSets.ReplaceEmbeddedByPhysical<DemoCApplicationModule>(Path.Combine(hostingEnvironment.ContentRootPath, string.Format("..{0}..{0}src{0}Mk.DemoC.Application", Path.DirectorySeparatorChar)));
+                });
+            }
+        }
+
+        private void ConfigureConventionalControllers()
+        {
+            Configure<AbpAspNetCoreMvcOptions>(options =>
+            {
+                options.ConventionalControllers.Create(typeof(DemoCApplicationModule).Assembly, opt =>
+                {
+                    // 默认是：/api/app/***
+                    //如下修改为：/api/volosoft/book-store/***
+                    //opts.RootPath = "volosoft/book-store";
+                });
+            });
+        }
+
+        private void ConfigureAuthentication(ServiceConfigurationContext context, IConfiguration configuration)
+        {
+            context.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddIdentityServerAuthentication(options =>
+                {
+                    options.Authority = configuration["AuthServer:Authority"];
+                    options.RequireHttpsMetadata = Convert.ToBoolean(configuration["AuthServer:RequireHttpsMetadata"]);
+                    options.ApiName = "MkDemoC";
+                });
+        }
+
+        private static void ConfigureSwaggerServices(ServiceConfigurationContext context, IConfiguration configuration)
+        {
+            context.Services.AddAbpSwaggerGenWithOAuth(
+                configuration["AuthServer:Authority"],
+                new Dictionary<string, string>
+                {
+                    {"MkDemoC", "MkDemoC API"}
+                },
+                options =>
+                {
+                    options.SwaggerDoc("v1", new OpenApiInfo { Title = "MkDemoC API", Version = "v1" });
+                    options.DocInclusionPredicate((docName, description) => true);
+                    //options.SchemaFilter<EnumSchemaFilter>();
+                    options.CustomSchemaIds(type => type.FullName);
+                    // 为 Swagger JSON and UI设置xml文档注释路径
+                    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "Mk.DemoC.Application.xml"), true);
+                    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "Mk.DemoC.Application.Contracts.xml"), true);
+                });
+        }
+
+        private void ConfigureLocalization()
+        {
+            Configure<AbpLocalizationOptions>(options =>
+            {
+                options.Languages.Add(new LanguageInfo("en", "en", "English"));
+                options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "简体中文"));
+            });
+        }
+
+        private void ConfigureRedis(
+            ServiceConfigurationContext context,
+            IConfiguration configuration,
+            IWebHostEnvironment hostingEnvironment)
+        {
+            if (!hostingEnvironment.IsDevelopment())
+            {
+                var redis = ConnectionMultiplexer.Connect(configuration["Redis:Configuration"]);
+                context.Services
+                    .AddDataProtection()
+                    .PersistKeysToStackExchangeRedis(redis, "MkDemoC-Protection-Keys");
+            }
+        }
+
+        private void ConfigureCors(ServiceConfigurationContext context, IConfiguration configuration)
+        {
+            context.Services.AddCors(options =>
+            {
+                options.AddPolicy(DefaultCorsPolicyName, builder =>
+                {
+                    builder
+                        .WithOrigins(
+                            configuration["App:CorsOrigins"]
+                                .Split(",", StringSplitOptions.RemoveEmptyEntries)
+                                .Select(o => o.RemovePostFix("/"))
+                                .ToArray()
+                        )
+                        .WithAbpExposedHeaders()
+                        .SetIsOriginAllowedToAllowWildcardSubdomains()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowCredentials();
+                });
+            });
+        }
+
         public override void OnApplicationInitialization(ApplicationInitializationContext context)
         {
             var app = context.GetApplicationBuilder();
@@ -203,7 +248,7 @@ namespace Mk.DemoC
             //app.UseHttpsRedirection();
             app.UseCorrelationId();
 
-            app.UseVirtualFiles();
+            app.UseStaticFiles();
             app.UseRouting();
             app.UseCors(DefaultCorsPolicyName);
             app.UseAuthentication();
@@ -214,12 +259,19 @@ namespace Mk.DemoC
             }
             app.UseAuthorization();
             app.UseSwagger();
-            app.UseSwaggerUI(options =>
+            app.UseAbpSwaggerUI(options =>
             {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "Support APP API");
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "MkDemoC API");
+
+                var configuration = context.GetConfiguration();
+                options.OAuthClientId(configuration["AuthServer:SwaggerClientId"]);
+                options.OAuthClientSecret(configuration["AuthServer:SwaggerClientSecret"]);
+                options.OAuthScopes("MkDemoC");
             });
-            //app.UseAuditing();
+
+            app.UseAuditing();
             app.UseAbpSerilogEnrichers();
+            app.UseUnitOfWork();
             app.UseConfiguredEndpoints();
         }
     }

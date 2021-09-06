@@ -12,6 +12,7 @@ using Microsoft.OpenApi.Models;
 using Mk.DemoB.EntityFrameworkCore;
 using Mk.DemoB.Localization;
 using Mk.DemoB.MultiTenancy;
+using MsDemo.Shared;
 using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,7 @@ using Volo.Abp.Guids;
 using Volo.Abp.Localization;
 using Volo.Abp.Localization.ExceptionHandling;
 using Volo.Abp.Modularity;
+using Volo.Abp.MultiTenancy;
 using Volo.Abp.Swashbuckle;
 using Volo.Abp.Timing;
 using Volo.Abp.VirtualFileSystem;
@@ -77,6 +79,11 @@ namespace Mk.DemoB
             // 设置分页默认返回20条数据   
             PagedResultRequestDto.DefaultMaxResultCount = 20;
 
+            Configure<AbpMultiTenancyOptions>(options =>
+            {
+                options.IsEnabled = MsDemoConsts.IsMultiTenancyEnabled;
+            });
+
             // guid的排序规则
             Configure<AbpSequentialGuidGeneratorOptions>(options =>
             {
@@ -110,10 +117,10 @@ namespace Mk.DemoB
                 options.Kind = DateTimeKind.Utc;
             });
 
-            Configure<AbpDistributedEntityEventOptions>(options =>
-            {
-                options.AutoEventSelectors.AddAll();
-            });
+            //Configure<AbpDistributedEntityEventOptions>(options =>
+            //{
+            //    options.AutoEventSelectors.AddAll();
+            //});
 
             //context.Services.AddHttpsRedirection(options =>
             //{
@@ -130,7 +137,7 @@ namespace Mk.DemoB
         {
             Configure<AbpDistributedCacheOptions>(options =>
             {
-                options.KeyPrefix = "DemoB:";
+                options.KeyPrefix = "MkDemoB:";
             });
         }
 
@@ -170,7 +177,7 @@ namespace Mk.DemoB
                 {
                     options.Authority = configuration["AuthServer:Authority"];
                     options.RequireHttpsMetadata = Convert.ToBoolean(configuration["AuthServer:RequireHttpsMetadata"]);
-                    options.ApiName = "DemoB";
+                    options.ApiName = "MkDemoB";
                 });
         }
 
@@ -180,11 +187,11 @@ namespace Mk.DemoB
                 configuration["AuthServer:Authority"],
                 new Dictionary<string, string>
                 {
-                    {"DemoB", "DemoB API"}
+                    {"MkDemoB", "MkDemoB API"}
                 },
                 options =>
                 {
-                    options.SwaggerDoc("v1", new OpenApiInfo { Title = "DemoB API", Version = "v1" });
+                    options.SwaggerDoc("v1", new OpenApiInfo { Title = "MkDemoB API", Version = "v1" });
                     options.DocInclusionPredicate((docName, description) => true);
                     //options.SchemaFilter<EnumSchemaFilter>();
                     options.CustomSchemaIds(type => type.FullName);
@@ -198,13 +205,8 @@ namespace Mk.DemoB
         {
             Configure<AbpLocalizationOptions>(options =>
             {
-                //options.Languages.Add(new LanguageInfo("cs", "cs", "Čeština"));
                 options.Languages.Add(new LanguageInfo("en", "en", "English"));
-                //options.Languages.Add(new LanguageInfo("pt-BR", "pt-BR", "Português"));
-                //options.Languages.Add(new LanguageInfo("ru", "ru", "Русский"));
-                //options.Languages.Add(new LanguageInfo("tr", "tr", "Türkçe"));
                 options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "简体中文"));
-                //options.Languages.Add(new LanguageInfo("zh-Hant", "zh-Hant", "繁體中文"));
             });
         }
 
@@ -218,7 +220,7 @@ namespace Mk.DemoB
                 var redis = ConnectionMultiplexer.Connect(configuration["Redis:Configuration"]);
                 context.Services
                     .AddDataProtection()
-                    .PersistKeysToStackExchangeRedis(redis, "DemoB-Protection-Keys");
+                    .PersistKeysToStackExchangeRedis(redis, "MkDemoB-Protection-Keys");
             }
         }
 
@@ -279,12 +281,12 @@ namespace Mk.DemoB
             app.UseSwagger();
             app.UseAbpSwaggerUI(options =>
             {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "DemoB API");
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "MkDemoB API");
 
                 var configuration = context.GetConfiguration();
                 options.OAuthClientId(configuration["AuthServer:SwaggerClientId"]);
                 options.OAuthClientSecret(configuration["AuthServer:SwaggerClientSecret"]);
-                options.OAuthScopes("DemoB");
+                options.OAuthScopes("MkDemoB");
             });
 
             app.UseAuditing();

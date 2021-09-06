@@ -33,6 +33,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\..\framework\src\Leopard.AspNetCore.Mvc\Leopard.AspNetCore.Mvc.csproj" />
 		<ProjectReference Include="..\..\..\..\framework\src\Leopard.Consul\Leopard.Consul.csproj" />
+		<ProjectReference Include="..\..\..\shared\MsDemo.Shared\MsDemo.Shared.csproj" />
 		<ProjectReference Include="..\Mk.DemoB.Application\Mk.DemoB.Application.csproj" />
 		<ProjectReference Include="..\Mk.DemoB.EntityFrameworkCore.DbMigrations\Mk.DemoB.EntityFrameworkCore.DbMigrations.csproj" />
 		<ProjectReference Include="..\Mk.DemoB.HttpApi\Mk.DemoB.HttpApi.csproj" />

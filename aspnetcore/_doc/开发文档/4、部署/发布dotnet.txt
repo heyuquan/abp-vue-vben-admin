@@ -2,6 +2,7 @@
 http	**02
 https	**05    (只需要启动一个http端口即可，在nginx上设置证书，并启用https。这样子证书也不用每个应用端口都去设置一个了)
 
+SSO.AuthServer.HttpApi.Host     44105
 demob.api         44302
 democ.api         44402
 demo.gateway      44502 
