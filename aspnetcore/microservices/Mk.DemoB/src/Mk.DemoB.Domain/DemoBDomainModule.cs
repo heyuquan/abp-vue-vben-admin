@@ -1,5 +1,5 @@
-using Mk.DemoB.MultiTenancy;
 using Mk.DemoB.ObjectExtending;
+using MsDemo.Shared;
 using Volo.Abp.AuditLogging;
 using Volo.Abp.BackgroundJobs;
 using Volo.Abp.FeatureManagement;
@@ -37,7 +37,7 @@ namespace Mk.DemoB
         {
             Configure<AbpMultiTenancyOptions>(options =>
             {
-                options.IsEnabled = MultiTenancyConsts.IsEnabled;
+                options.IsEnabled = MsDemoConsts.IsMultiTenancyEnabled;
             });
         }
     }

@@ -10,7 +10,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Mk.DemoC.EntityFrameworkCore;
-using Mk.DemoC.MultiTenancy;
 using MsDemo.Shared;
 using StackExchange.Redis;
 using System;
@@ -33,6 +32,7 @@ using Volo.Abp.EventBus.RabbitMq;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Volo.Abp.MultiTenancy;
+using Volo.Abp.Swashbuckle;
 using Volo.Abp.Timing;
 using Volo.Abp.VirtualFileSystem;
 
@@ -47,7 +47,8 @@ namespace Mk.DemoC
         typeof(AbpCachingStackExchangeRedisModule),
         typeof(AbpEntityFrameworkCoreMySQLModule),
         typeof(AbpAspNetCoreSerilogModule),
-        typeof(AbpEventBusRabbitMqModule)
+        typeof(AbpEventBusRabbitMqModule),
+        typeof(AbpSwashbuckleModule)
         // 注册consul后，负载是正常的。但是不知道为什么 kibana 就会一直报错。  
         // 可能是consul做health检查时，日志格式问题？？但依旧找不到具体原因，所以注释掉consul
         //typeof(LeopardConsulModule)  
@@ -73,7 +74,7 @@ namespace Mk.DemoC
             ConfigureSwaggerServices(context, configuration);
 
             // 设置分页默认返回20条数据   
-            PagedResultRequestDto.DefaultMaxResultCount = 20;
+            LimitedResultRequestDto.DefaultMaxResultCount = 20;
 
             Configure<AbpMultiTenancyOptions>(options =>
             {
@@ -87,7 +88,7 @@ namespace Mk.DemoC
 
             Configure<AbpMultiTenancyOptions>(options =>
             {
-                options.IsEnabled = MultiTenancyConsts.IsEnabled;
+                options.IsEnabled = MsDemoConsts.IsMultiTenancyEnabled;
             });
 
             Configure<MvcOptions>(mvcOptions =>
@@ -253,7 +254,7 @@ namespace Mk.DemoC
             app.UseCors(DefaultCorsPolicyName);
             app.UseAuthentication();
             app.UseAbpClaimsMap();
-            if (MultiTenancyConsts.IsEnabled)
+            if (MsDemoConsts.IsMultiTenancyEnabled)
             {
                 app.UseMultiTenancy();
             }

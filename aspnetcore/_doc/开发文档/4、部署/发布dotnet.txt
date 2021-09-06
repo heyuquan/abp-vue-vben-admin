@@ -25,6 +25,7 @@ docker run --name mk.democ.api -p 44402:44402  -v /e/Code/open_source/Abp/Leopar
 
 
 docker exec -it mk.democ /bin/bash
+docker stop [container id or name]：停止运行指定容器
 
 构建：docker-compose build
 

@@ -11,7 +11,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Mk.DemoB.EntityFrameworkCore;
 using Mk.DemoB.Localization;
-using Mk.DemoB.MultiTenancy;
 using MsDemo.Shared;
 using StackExchange.Redis;
 using System;
@@ -77,7 +76,7 @@ namespace Mk.DemoB
             ConfigureSwaggerServices(context, configuration);
 
             // 设置分页默认返回20条数据   
-            PagedResultRequestDto.DefaultMaxResultCount = 20;
+            LimitedResultRequestDto.DefaultMaxResultCount = 20;
 
             Configure<AbpMultiTenancyOptions>(options =>
             {
@@ -271,7 +270,7 @@ namespace Mk.DemoB
             app.UseCors(DefaultCorsPolicyName);
             app.UseAuthentication();
 
-            if (MultiTenancyConsts.IsEnabled)
+            if (MsDemoConsts.IsMultiTenancyEnabled)
             {
                 app.UseMultiTenancy();
             }

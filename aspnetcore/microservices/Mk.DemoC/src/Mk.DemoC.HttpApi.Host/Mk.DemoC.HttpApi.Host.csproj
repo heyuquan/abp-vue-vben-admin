@@ -39,7 +39,6 @@
 		<ProjectReference Include="..\Mk.DemoC.HttpApi\Mk.DemoC.HttpApi.csproj" />
 		<ProjectReference Include="..\Mk.DemoC.Application\Mk.DemoC.Application.csproj" />
 		<ProjectReference Include="..\Mk.DemoC.EntityFrameworkCore\Mk.DemoC.EntityFrameworkCore.csproj" />
-		<ProjectReference Include="..\Mk.DemoC.Host.Shared\Mk.DemoC.Host.Shared.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

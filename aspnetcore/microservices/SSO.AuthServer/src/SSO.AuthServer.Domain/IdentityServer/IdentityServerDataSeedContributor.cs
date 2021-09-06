@@ -67,6 +67,7 @@ namespace SSO.AuthServer.IdentityServer
         {
             await CreateApiScopeAsync("SSOAuthServer");
             await CreateApiScopeAsync("MkDemoB");
+            await CreateApiScopeAsync("MkDemoC");
         }
 
         private async Task CreateApiResourcesAsync()
@@ -83,6 +84,7 @@ namespace SSO.AuthServer.IdentityServer
 
             await CreateApiResourceAsync("SSOAuthServer", commonApiUserClaims);
             await CreateApiResourceAsync("MkDemoB", commonApiUserClaims);
+            await CreateApiResourceAsync("MkDemoC", commonApiUserClaims);
         }
 
         private async Task<ApiResource> CreateApiResourceAsync(string name, IEnumerable<string> claims)
@@ -139,7 +141,7 @@ namespace SSO.AuthServer.IdentityServer
                 "role",
                 "phone",
                 "address",
-                "AuthServer"
+                "SSOAuthServer"
             };
 
             var configurationSection = _configuration.GetSection("IdentityServer:Clients");

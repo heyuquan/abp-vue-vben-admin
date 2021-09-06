@@ -10,6 +10,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\..\framework\src\Leopard.Core\Leopard.csproj" />
+		<ProjectReference Include="..\..\..\shared\MsDemo.Shared\MsDemo.Shared.csproj" />
 		<ProjectReference Include="..\Mk.DemoB.Domain.Shared\Mk.DemoB.Domain.Shared.csproj" />
 	</ItemGroup>
 
