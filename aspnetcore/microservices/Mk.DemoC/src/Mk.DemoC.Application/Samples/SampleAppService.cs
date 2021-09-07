@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Mk.DemoC.Samples
 {
@@ -16,6 +17,7 @@ namespace Mk.DemoC.Samples
         }
 
         [Authorize]
+        [Route("authorized")]
         public Task<SampleDto> GetAuthorizedAsync()
         {
             return Task.FromResult(

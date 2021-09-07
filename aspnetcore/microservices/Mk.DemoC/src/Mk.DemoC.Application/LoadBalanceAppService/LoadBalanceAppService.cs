@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace Mk.DemoC.RemoteCallAppService
 {
     /// <summary>
-    /// ocelot 负载测试
+    /// ocelot 负载测试   (两个链接，模拟负载)
     /// </summary>
     [Route("api/democ/loadbalance")]
     [Route("api/loadbalance")]

@@ -48,14 +48,14 @@ namespace Mk.DemoB.BackgroundJobs
             //// 注册dotnet core 后台服务  结合Abp使用会出问题，参考 CaptureExechangeRateJob.cs
             context.Services.AddTransient<IHostedService, SimpleDotNetJob>();
 
+            context.Services.AddHangfireServer();
+
         }
 
         public override void OnApplicationInitialization(ApplicationInitializationContext context)
         {
             var app = context.GetApplicationBuilder();
             var configuration = context.GetConfiguration();
-
-            app.UseHangfireServer();
 
             var hangfireStartUpPath = "/job";
             app.UseHangfireDashboard(

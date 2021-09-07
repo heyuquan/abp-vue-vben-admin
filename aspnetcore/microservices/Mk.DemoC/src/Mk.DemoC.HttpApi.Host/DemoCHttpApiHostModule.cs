@@ -1,4 +1,5 @@
 using Leopard.AspNetCore.Mvc.Filters;
+using Leopard.Consul;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors;
@@ -48,10 +49,8 @@ namespace Mk.DemoC
         typeof(AbpEntityFrameworkCoreMySQLModule),
         typeof(AbpAspNetCoreSerilogModule),
         typeof(AbpEventBusRabbitMqModule),
-        typeof(AbpSwashbuckleModule)
-        // 注册consul后，负载是正常的。但是不知道为什么 kibana 就会一直报错。  
-        // 可能是consul做health检查时，日志格式问题？？但依旧找不到具体原因，所以注释掉consul
-        //typeof(LeopardConsulModule)  
+        typeof(AbpSwashbuckleModule),
+        typeof(LeopardConsulModule)  
         )]
     public class DemoCHttpApiHostModule : AbpModule
     {
@@ -144,12 +143,7 @@ namespace Mk.DemoC
         {
             Configure<AbpAspNetCoreMvcOptions>(options =>
             {
-                options.ConventionalControllers.Create(typeof(DemoCApplicationModule).Assembly, opt =>
-                {
-                    // 默认是：/api/app/***
-                    //如下修改为：/api/volosoft/book-store/***
-                    //opts.RootPath = "volosoft/book-store";
-                });
+                options.ConventionalControllers.Create(typeof(DemoCApplicationModule).Assembly);
             });
         }
 

@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Mk.DemoC.RemoteCallAppService
 {
+    /// <summary>
+    /// 演示其他服务，eg：DemoB 中调用此服务
+    /// </summary>
     public class RemoteCallAppService : DemoCAppService, IRemoteCallAppService
     {
         public RemoteCallAppService()
