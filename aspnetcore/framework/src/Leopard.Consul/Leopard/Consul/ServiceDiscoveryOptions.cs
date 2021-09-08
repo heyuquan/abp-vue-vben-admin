@@ -20,5 +20,15 @@
         /// 当为空时， 服务发现会从 server.Features 中获取当前站点启动的 地址:端口(does not work in reverse proxy mode)
         /// </summary>
         public string[] Endpoints { get; set; }
+
+        /// <summary>
+        /// 检查配置是否有效
+        /// </summary>
+        /// <returns></returns>
+        public bool IsValid()
+        {
+            // 暂时简单检查，只检查 ServiceName
+            return !string.IsNullOrWhiteSpace(ServiceName);
+        }
     }
 }

@@ -19,6 +19,7 @@ namespace Leopard.Consul.Extensions
             Check.NotNull(configuration, nameof(configuration));
 
             services.Configure<ServiceDiscoveryOptions>(configuration.GetSection("ServiceDiscovery"));
+
             services.AddSingleton<IConsulClient>(p => new ConsulClient(cfg =>
             {
                 var serviceConfiguration = p.GetRequiredService<IOptions<ServiceDiscoveryOptions>>().Value;

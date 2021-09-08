@@ -30,14 +30,18 @@ namespace Leopard.Consul.Extensions
             var lifetime = app.ApplicationServices.GetService(typeof(IHostApplicationLifetime)) as IHostApplicationLifetime;
             Check.NotNull(lifetime, nameof(lifetime));
 
-            var serviceDiscoveryOptions = app.ApplicationServices.GetService(typeof(IOptions<ServiceDiscoveryOptions>)) as IOptions<ServiceDiscoveryOptions>;
-            var serviceDiscovery = serviceDiscoveryOptions.Value;
-            Check.NotNull(serviceDiscovery, nameof(serviceDiscoveryOptions));
-
-            var consul = app.ApplicationServices.GetService(typeof(IConsulClient)) as IConsulClient;
-
             var loggerFactory = app.ApplicationServices.GetRequiredService<ILoggerFactory>();
             var logger = loggerFactory.CreateLogger("ServiceDiscoveryBuilder");
+
+            var serviceDiscoveryOptions = app.ApplicationServices.GetService(typeof(IOptions<ServiceDiscoveryOptions>)) as IOptions<ServiceDiscoveryOptions>;
+            var serviceDiscovery = serviceDiscoveryOptions.Value;
+            if (!serviceDiscovery.IsValid())
+            {
+                logger.LogWarning("Consul ServiceDiscovery settings is error");
+                return app;
+            }
+
+            var consul = app.ApplicationServices.GetService(typeof(IConsulClient)) as IConsulClient;
 
             if (string.IsNullOrEmpty(serviceDiscovery.ServiceName))
             {
