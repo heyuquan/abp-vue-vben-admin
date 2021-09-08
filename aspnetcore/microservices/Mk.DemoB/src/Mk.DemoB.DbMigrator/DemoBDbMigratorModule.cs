@@ -7,7 +7,7 @@ namespace Mk.DemoB.DbMigrator
 {
     [DependsOn(
         typeof(AbpAutofacModule),
-        typeof(DemoBEntityFrameworkCoreDbMigrationsModule),
+        typeof(DemoBEntityFrameworkCoreModule),
         typeof(DemoBApplicationContractsModule)
         )]
     public class DemoBDbMigratorModule : AbpModule

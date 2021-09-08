@@ -2,12 +2,9 @@ using Leopard.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Mk.DemoB.ExchangeRateMgr.Entities;
 using Mk.DemoB.SaleOrderMgr.Entities;
-using Mk.DemoB.Users;
+
 using System;
 using Volo.Abp.Data;
-using Volo.Abp.EntityFrameworkCore.Modeling;
-using Volo.Abp.Identity;
-using Volo.Abp.Users.EntityFrameworkCore;
 
 namespace Mk.DemoB.EntityFrameworkCore
 {
@@ -23,8 +20,6 @@ namespace Mk.DemoB.EntityFrameworkCore
     [ConnectionStringName("Default")]
     public class DemoBDbContext : LeopardDbContext<DemoBDbContext>
     {
-        public DbSet<AppUser> Users { get; set; }
-
         /* Add DbSet properties for your Aggregate Roots / Entities here.
          * Also map them inside DemoBDbContextModelCreatingExtensions.ConfigureDemoB
          */
@@ -47,20 +42,6 @@ namespace Mk.DemoB.EntityFrameworkCore
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-
-            /* Configure the shared tables (with included modules) here */
-
-            builder.Entity<AppUser>(b =>
-            {
-                b.ToTable(AbpIdentityDbProperties.DbTablePrefix + "Users"); //Sharing the same table "AbpUsers" with the IdentityUser
-
-                b.ConfigureByConvention();
-                b.ConfigureAbpUser();
-
-                /* Configure mappings for your additional properties
-                 * Also see the DemoBEfCoreEntityExtensionMappings class
-                 */
-            });
 
             /* Configure your own tables/entities inside the ConfigureDemoB method */
             builder.ConfigureDemoB();

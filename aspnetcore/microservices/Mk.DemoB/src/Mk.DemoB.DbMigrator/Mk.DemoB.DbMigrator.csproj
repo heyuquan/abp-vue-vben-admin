@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<Import Project="..\..\..\..\configureawait.props" />
 	<Import Project="..\..\..\..\mk.demo.common.props" />
@@ -20,8 +20,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
 		<PackageReference Include="Volo.Abp.Autofac" Version="4.4.2" />
+		<PackageReference Include="Volo.Abp.BackgroundJobs" Version="4.4.2" />
 		<PackageReference Include="Serilog.Extensions.Logging" Version="3.0.1" />
+		<PackageReference Include="Serilog.Sinks.Async" Version="1.4.0" />
 		<PackageReference Include="Serilog.Sinks.File" Version="4.1.0" />
 		<PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="$(MicrosoftPackageVersion)" />
@@ -29,7 +32,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Mk.DemoB.Application.Contracts\Mk.DemoB.Application.Contracts.csproj" />
-		<ProjectReference Include="..\Mk.DemoB.EntityFrameworkCore.DbMigrations\Mk.DemoB.EntityFrameworkCore.DbMigrations.csproj" />
+		<ProjectReference Include="..\Mk.DemoB.EntityFrameworkCore\Mk.DemoB.EntityFrameworkCore.csproj" />
 	</ItemGroup>
 
 </Project>

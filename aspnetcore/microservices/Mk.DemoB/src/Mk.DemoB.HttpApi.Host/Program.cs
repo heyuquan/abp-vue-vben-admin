@@ -1,14 +1,11 @@
-﻿using System;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Serilog;
-using Serilog.Events;
 using Microsoft.Extensions.Logging;
-using Serilog.Sinks.Elasticsearch;
-using System.Reflection;
-using Serilog.Exceptions;
 using Mk.DemoB.Domain.Consts;
+using Serilog;
+using Serilog.Sinks.Elasticsearch;
+using System;
 using System.Text;
 
 namespace Mk.DemoB
@@ -52,9 +49,9 @@ namespace Mk.DemoB
                 //.Enrich.WithExceptionDetails()
                 .Enrich.WithProperty("Environment", env)
                 .Enrich.WithProperty("ProjectName", AppConsts.PROJECT_NAME)
-                //.WriteTo.Debug()
+                 //.WriteTo.Debug()
 #if DEBUG
-                .WriteTo.Console()  // 在容器中，有时候挂载日志文件异常，导致查不出原因，会需要将日志打印到控制台上
+                .WriteTo.Async(c => c.Console())  // 在容器中，有时候挂载日志文件异常，导致查不出原因，会需要将日志打印到控制台上
 #endif
                 .WriteTo.Async(c => c.File(
                                         "Logs/logs.txt"

@@ -10,7 +10,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using Mk.DemoB.EntityFrameworkCore;
 using Mk.DemoB.Localization;
 using MsDemo.Shared;
 using StackExchange.Redis;
@@ -29,7 +28,6 @@ using Volo.Abp.Autofac;
 using Volo.Abp.BackgroundJobs;
 using Volo.Abp.Caching;
 using Volo.Abp.Caching.StackExchangeRedis;
-using Volo.Abp.Domain.Entities.Events.Distributed;
 using Volo.Abp.EventBus.RabbitMq;
 using Volo.Abp.Guids;
 using Volo.Abp.Localization;
@@ -48,10 +46,10 @@ namespace Mk.DemoB
         typeof(AbpCachingStackExchangeRedisModule),
         typeof(AbpAspNetCoreMvcUiMultiTenancyModule),
         typeof(DemoBApplicationModule),
-        typeof(DemoBEntityFrameworkCoreDbMigrationsModule),
         typeof(AbpAspNetCoreSerilogModule),
         typeof(AbpEventBusRabbitMqModule),
         typeof(AbpSwashbuckleModule),
+        typeof(AbpAspNetCoreSerilogModule),
         typeof(LeopardConsulModule)  
         )]
     public class DemoBHttpApiHostModule : AbpModule

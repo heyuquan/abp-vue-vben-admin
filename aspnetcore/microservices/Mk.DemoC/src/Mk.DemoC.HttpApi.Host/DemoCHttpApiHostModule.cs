@@ -50,6 +50,7 @@ namespace Mk.DemoC
         typeof(AbpAspNetCoreSerilogModule),
         typeof(AbpEventBusRabbitMqModule),
         typeof(AbpSwashbuckleModule),
+        typeof(AbpAspNetCoreSerilogModule),
         typeof(LeopardConsulModule)  
         )]
     public class DemoCHttpApiHostModule : AbpModule

@@ -30,7 +30,7 @@ namespace Mk.DemoC.EntityFrameworkCore
 
             builder.ConfigureDemoC();
 
-            builder.DbMapperCameNamelToUnder();
+            // builder.DbMapperCameNamelToUnder();
         }
     }
 }

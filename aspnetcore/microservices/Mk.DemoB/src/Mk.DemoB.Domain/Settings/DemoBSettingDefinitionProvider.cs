@@ -1,5 +1,4 @@
-﻿using Volo.Abp.SettingManagement;
-using Volo.Abp.Settings;
+﻿using Volo.Abp.Settings;
 
 namespace Mk.DemoB.Settings
 {
