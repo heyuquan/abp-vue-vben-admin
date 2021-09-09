@@ -1,0 +1,5 @@
+
+#、consul问题
+因为开发时需要将服务注册到consul。但是consul是运行在服务器，没办法访问本机的服务，所以健康检查会失败，负载均衡也就做不了。
+本想在本地使用 -net host 在docker里面运行一个consul。但是加了host参数后，localhost:8500访问不了了，docker运行又是正常的，解决不了。
+最后，在windows电脑上搭建exe的运行服务。参考：https://www.pianshen.com/article/93971300107/

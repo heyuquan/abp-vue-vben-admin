@@ -7,8 +7,6 @@ services:
       context: consul/
     restart: always
     container_name: consul
-    networks:
-      - my-net
 
   rabbitmq:
     image: rabbitmq.img
@@ -22,3 +20,4 @@ services:
 networks:
   my-net:
     driver: bridge
+

@@ -4,7 +4,9 @@ services:
   consul:
     ports:
       - '8500:8500'
-
+    networks:
+      - my-net
+      
   rabbitmq:
     ports:
       - '5672:5672'
