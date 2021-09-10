@@ -1,27 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.Extensions.DependencyInjection;
-using Ocelot.DependencyInjection;
-using Ocelot.Middleware;
-using ProductManagement;
-using StackExchange.Redis;
 using Microsoft.OpenApi.Models;
 using MsDemo.Shared;
-using Swashbuckle.AspNetCore.Swagger;
+using Ocelot.DependencyInjection;
+using Ocelot.Middleware;
+using StackExchange.Redis;
+using System;
 using Volo.Abp;
-using Volo.Abp.AspNetCore.MultiTenancy;
 using Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy;
 using Volo.Abp.Autofac;
-using Volo.Abp.EntityFrameworkCore;
-using Volo.Abp.EntityFrameworkCore.SqlServer;
 using Volo.Abp.Modularity;
 using Volo.Abp.MultiTenancy;
 using Volo.Abp.PermissionManagement.EntityFrameworkCore;
-using Volo.Abp.Security.Claims;
 using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Blogging;
 
@@ -30,8 +21,6 @@ namespace PublicWebSiteGateway.Host
     [DependsOn(
         typeof(AbpAutofacModule),
         typeof(BloggingHttpApiModule),
-        typeof(ProductManagementHttpApiModule),
-        typeof(AbpEntityFrameworkCoreSqlServerModule),
         typeof(AbpPermissionManagementEntityFrameworkCoreModule),
         typeof(AbpSettingManagementEntityFrameworkCoreModule),
         typeof(AbpAspNetCoreMvcUiMultiTenancyModule)
@@ -63,11 +52,6 @@ namespace PublicWebSiteGateway.Host
             });
 
             context.Services.AddOcelot(context.Services.GetConfiguration());
-
-            Configure<AbpDbContextOptions>(options =>
-            {
-                options.UseSqlServer();
-            });
 
             context.Services.AddStackExchangeRedisCache(options =>
             {

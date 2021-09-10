@@ -24,7 +24,7 @@ namespace Mk.DemoC.ElastcSearchAppService
             _configuration = configuration;
             _logger = logger;
 
-            var node = new Uri(_configuration["ElasticConfiguration:Uri"]);
+            var node = new Uri(_configuration["ElasticSearch:Uri"]);
             var settings = new ConnectionSettings(node)
                 .PrettyJson()
                 .EnableHttpCompression()

@@ -69,7 +69,7 @@ namespace Mk.DemoC
 
         private static ElasticsearchSinkOptions ConfigureElasticSink(IConfigurationRoot cfg, string env)
         {
-            return new ElasticsearchSinkOptions(new Uri(cfg["ElasticConfiguration:Uri"]))
+            return new ElasticsearchSinkOptions(new Uri(cfg["ElasticSearch:Uri"]))
             {
                 AutoRegisterTemplate = true,
                 // IndexFormat = $"{Assembly.GetExecutingAssembly().GetName().Name.ToLower().Replace(".", "-")}-{env?.ToLower().Replace(".", "-")}-{DateTime.UtcNow:yyyy-MM}"

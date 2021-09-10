@@ -1,0 +1,7 @@
+﻿
+
+端口client命名
+API命名
+	**API		（eg：ProductApi）
+Gateway命名
+	**Gateway	（eg：BackendAdminAppGateway）

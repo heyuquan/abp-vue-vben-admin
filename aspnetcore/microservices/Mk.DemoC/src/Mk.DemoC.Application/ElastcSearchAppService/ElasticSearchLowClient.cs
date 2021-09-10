@@ -30,7 +30,7 @@ namespace Mk.DemoC.ElastcSearchAppService
 
         private ElasticLowLevelClient InitClient()
         {
-            var node = new Uri(_configuration["ElasticConfiguration:Uri"]);
+            var node = new Uri(_configuration["ElasticSearch:Uri"]);
             var settings = new ConnectionConfiguration(node);
             var client = new ElasticLowLevelClient(settings);
 
