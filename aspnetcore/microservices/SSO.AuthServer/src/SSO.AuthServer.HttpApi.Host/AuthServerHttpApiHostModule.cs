@@ -110,11 +110,11 @@ namespace SSO.AuthServer
                 configuration["AuthServer:Authority"],
                 new Dictionary<string, string>
                 {
-                    {"SSOAuthServer", "SSOAuthServer API"}
+                    {"SSOAuthServerService", "SSOAuthServerService API"}
                 },
                 options =>
                 {
-                    options.SwaggerDoc("v1", new OpenApiInfo {Title = "SSOAuthServer API", Version = "v1"});
+                    options.SwaggerDoc("v1", new OpenApiInfo {Title = "SSOAuthServerService API", Version = "v1"});
                     options.DocInclusionPredicate((docName, description) => true);
                     options.CustomSchemaIds(type => type.FullName);
                 });
@@ -198,12 +198,12 @@ namespace SSO.AuthServer
             app.UseSwagger();
             app.UseAbpSwaggerUI(options =>
             {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "SSOAuthServer API");
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "SSOAuthServerService API");
 
                 var configuration = context.GetConfiguration();
                 options.OAuthClientId(configuration["AuthServer:SwaggerClientId"]);
                 options.OAuthClientSecret(configuration["AuthServer:SwaggerClientSecret"]);
-                options.OAuthScopes("SSOAuthServer");
+                options.OAuthScopes("SSOAuthServerService");
             });
 
             app.UseAuditing();

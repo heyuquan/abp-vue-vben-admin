@@ -156,7 +156,7 @@ namespace Mk.DemoC
                 {
                     options.Authority = configuration["AuthServer:Authority"];
                     options.RequireHttpsMetadata = Convert.ToBoolean(configuration["AuthServer:RequireHttpsMetadata"]);
-                    options.ApiName = "MkDemoC";
+                    options.ApiName = configuration["AuthServer:SwaggerClientId"];
                 });
         }
 
@@ -166,11 +166,11 @@ namespace Mk.DemoC
                 configuration["AuthServer:Authority"],
                 new Dictionary<string, string>
                 {
-                    {"MkDemoC", "MkDemoC API"}
+                    {"MkDemoCService", "MkDemoCService API"}
                 },
                 options =>
                 {
-                    options.SwaggerDoc("v1", new OpenApiInfo { Title = "MkDemoC API", Version = "v1" });
+                    options.SwaggerDoc("v1", new OpenApiInfo { Title = "MkDemoCService API", Version = "v1" });
                     options.DocInclusionPredicate((docName, description) => true);
                     //options.SchemaFilter<EnumSchemaFilter>();
                     options.CustomSchemaIds(type => type.FullName);
@@ -258,12 +258,12 @@ namespace Mk.DemoC
             app.UseSwagger();
             app.UseAbpSwaggerUI(options =>
             {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "MkDemoC API");
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", "MkDemoCService API");
 
                 var configuration = context.GetConfiguration();
                 options.OAuthClientId(configuration["AuthServer:SwaggerClientId"]);
                 options.OAuthClientSecret(configuration["AuthServer:SwaggerClientSecret"]);
-                options.OAuthScopes("MkDemoC");
+                options.OAuthScopes("MkDemoCService");
             });
 
             app.UseAuditing();

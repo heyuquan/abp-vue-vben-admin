@@ -150,11 +150,64 @@ namespace SSO.AuthServer.IdentityServer
                 "role",
                 "phone",
                 "address",
-                "SSOAuthServer"
+                "SSOAuthServerService"
             };
 
             var configurationSection = _configuration.GetSection("IdentityServer:Clients");
 
+            // BackendAdminAppGateway
+            var backendAdminAppGatewayClientId = configurationSection["BackendAdminAppGateway:ClientId"];
+            if (!backendAdminAppGatewayClientId.IsNullOrWhiteSpace())
+            {
+                var clientRootUrl = configurationSection["BackendAdminAppGateway:RootUrl"]?.TrimEnd('/');
+
+                await CreateClientAsync(
+                    name: backendAdminAppGatewayClientId,
+                    scopes: commonScopes.Union(new[] { "BackendAdminAppGateway" }),
+                    grantTypes: new[] { "authorization_code" },
+                    secret: (configurationSection["BackendAdminAppGateway:ClientSecret"] ?? "1q2w3e*").Sha256(),
+                    requireClientSecret: false,
+                    redirectUri: clientRootUrl,
+                    postLogoutRedirectUri: $"{clientRootUrl}/swagger/oauth2-redirect.html",
+                    corsOrigins: new[] { clientRootUrl.RemovePostFix("/") }
+                );
+            }
+
+            // InternalGateway
+            var internalGatewayClientId = configurationSection["InternalGateway:ClientId"];
+            if (!internalGatewayClientId.IsNullOrWhiteSpace())
+            {
+                var clientRootUrl = configurationSection["InternalGateway:RootUrl"]?.TrimEnd('/');
+
+                await CreateClientAsync(
+                    name: internalGatewayClientId,
+                    scopes: commonScopes.Union(new[] { "InternalGateway" }),
+                    grantTypes: new[] { "authorization_code" },
+                    secret: (configurationSection["InternalGateway:ClientSecret"] ?? "1q2w3e*").Sha256(),
+                    requireClientSecret: false,
+                    redirectUri: clientRootUrl,
+                    postLogoutRedirectUri: $"{clientRootUrl}/swagger/oauth2-redirect.html",
+                    corsOrigins: new[] { clientRootUrl.RemovePostFix("/") }
+                );
+            }
+
+            // PublicWebSiteGateway
+            var publicWebSiteGatewayClientId = configurationSection["PublicWebSiteGateway:ClientId"];
+            if (!publicWebSiteGatewayClientId.IsNullOrWhiteSpace())
+            {
+                var clientRootUrl = configurationSection["PublicWebSiteGateway:RootUrl"]?.TrimEnd('/');
+
+                await CreateClientAsync(
+                    name: publicWebSiteGatewayClientId,
+                    scopes: commonScopes.Union(new[] { "PublicWebSiteGateway" }),
+                    grantTypes: new[] { "authorization_code" },
+                    secret: (configurationSection["PublicWebSiteGateway:ClientSecret"] ?? "1q2w3e*").Sha256(),
+                    requireClientSecret: false,
+                    redirectUri: clientRootUrl,
+                    postLogoutRedirectUri: $"{clientRootUrl}/swagger/oauth2-redirect.html",
+                    corsOrigins: new[] { clientRootUrl.RemovePostFix("/") }
+                );
+            }
 
             // vben-admin-client
             var vbenVueClientId = configurationSection["Vben_Admin_Web:ClientId"];
@@ -175,16 +228,16 @@ namespace SSO.AuthServer.IdentityServer
             }
 
             // Mk_DemoB_API
-            var mkDemoBApiClientId = configurationSection["Mk_DemoB_Service:ClientId"];
+            var mkDemoBApiClientId = configurationSection["MkDemoBService:ClientId"];
             if (!mkDemoBApiClientId.IsNullOrWhiteSpace())
             {
-                var clientRootUrl = configurationSection["Mk_DemoB_Service:RootUrl"].TrimEnd('/');
+                var clientRootUrl = configurationSection["MkDemoBService:RootUrl"].TrimEnd('/');
 
                 await CreateClientAsync(
                     name: mkDemoBApiClientId,
                     scopes: commonScopes.Union(new[] { "InternalGateway", "MkDemoBService", "MkDemoCService" }),
                     grantTypes: new[] { "authorization_code" },
-                    secret: (configurationSection["Mk_DemoB_Service:ClientSecret"] ?? "1q2w3e*").Sha256(),
+                    secret: (configurationSection["MkDemoBService:ClientSecret"] ?? "1q2w3e*").Sha256(),
                     requireClientSecret: false,
                     redirectUri: $"{clientRootUrl}/swagger/oauth2-redirect.html",
                     corsOrigins: new[] { clientRootUrl.RemovePostFix("/") }
@@ -192,16 +245,16 @@ namespace SSO.AuthServer.IdentityServer
             }
 
             // Mk_DemoC_API
-            var mkDemoCApiClientId = configurationSection["Mk_DemoC_Service:ClientId"];
+            var mkDemoCApiClientId = configurationSection["MkDemoCService:ClientId"];
             if (!mkDemoCApiClientId.IsNullOrWhiteSpace())
             {
-                var clientRootUrl = configurationSection["Mk_DemoC_Service:RootUrl"].TrimEnd('/');
+                var clientRootUrl = configurationSection["MkDemoCService:RootUrl"].TrimEnd('/');
 
                 await CreateClientAsync(
                     name: mkDemoCApiClientId,
                     scopes: commonScopes.Union(new[] { "InternalGateway", "MkDemoCService" }),
                     grantTypes: new[] { "authorization_code" },
-                    secret: (configurationSection["Mk_DemoC_Service:ClientSecret"] ?? "1q2w3e*").Sha256(),
+                    secret: (configurationSection["MkDemoCService:ClientSecret"] ?? "1q2w3e*").Sha256(),
                     requireClientSecret: false,
                     redirectUri: $"{clientRootUrl}/swagger/oauth2-redirect.html",
                     corsOrigins: new[] { clientRootUrl.RemovePostFix("/") }
@@ -209,16 +262,16 @@ namespace SSO.AuthServer.IdentityServer
             }
 
             // SSO_AuthServer_API
-            var ssoAuthServerApiClientId = configurationSection["SSO_AuthServer_Service:ClientId"];
+            var ssoAuthServerApiClientId = configurationSection["SSOAuthServerService:ClientId"];
             if (!ssoAuthServerApiClientId.IsNullOrWhiteSpace())
             {
-                var clientRootUrl = configurationSection["SSO_AuthServer_Service:RootUrl"].TrimEnd('/');
+                var clientRootUrl = configurationSection["SSOAuthServerService:RootUrl"].TrimEnd('/');
 
                 await CreateClientAsync(
                     name: ssoAuthServerApiClientId,
                     scopes: commonScopes,
                     grantTypes: new[] { "authorization_code" },
-                    secret: (configurationSection["SSO_AuthServer_Service:ClientSecret"] ?? "1q2w3e*").Sha256(),
+                    secret: (configurationSection["SSOAuthServerService:ClientSecret"] ?? "1q2w3e*").Sha256(),
                     requireClientSecret: false,
                     redirectUri: $"{clientRootUrl}/swagger/oauth2-redirect.html",
                     corsOrigins: new[] { clientRootUrl.RemovePostFix("/") }
