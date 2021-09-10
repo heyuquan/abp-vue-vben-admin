@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using Leopard.AspNetCore.Serilog;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -11,40 +12,23 @@ namespace BackendAdminAppGateway.Host
 {
     public class Program
     {
+        private static readonly string env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
         public static int Main(string[] args)
         {
-            //TODO: Temporary: it's not good to read appsettings.json here just to configure logging
-            var configuration = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json")
-                .AddEnvironmentVariables()
-                .Build();
+            var assemblyName = typeof(Program).Assembly.GetName().Name;
 
-            Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Debug()
-                .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
-                .MinimumLevel.Override("Microsoft.EntityFrameworkCore", LogEventLevel.Warning)
-                .Enrich.WithProperty("Application", "BackendAdminAppGateway")
-                .Enrich.FromLogContext()
-                .WriteTo.File("Logs/logs.txt")
-                .WriteTo.Elasticsearch(
-                    new ElasticsearchSinkOptions(new Uri(configuration["ElasticSearch:Url"]))
-                    {
-                        AutoRegisterTemplate = true,
-                        AutoRegisterTemplateVersion = AutoRegisterTemplateVersion.ESv6,
-                        IndexFormat = "msdemo-log-{0:yyyy.MM}"
-                    })
-                .CreateLogger();
+            SerilogConfigurationHelper.Configure(env, assemblyName, true, false);
 
             try
             {
-                Log.Information("Starting BackendAdminAppGateway.Host.");
+                Log.Information($"Starting {assemblyName}.");
                 CreateHostBuilder(args).Build().Run();
                 return 0;
             }
             catch (Exception ex)
             {
-                Log.Fatal(ex, "BackendAdminAppGateway.Host terminated unexpectedly!");
+                Log.Fatal(ex, $"{assemblyName} terminated unexpectedly!");
                 return 1;
             }
             finally

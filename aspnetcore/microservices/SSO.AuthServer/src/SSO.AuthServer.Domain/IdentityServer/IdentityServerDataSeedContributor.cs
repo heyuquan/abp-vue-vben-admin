@@ -66,9 +66,13 @@ namespace SSO.AuthServer.IdentityServer
 
         private async Task CreateApiScopesAsync()
         {
-            await CreateApiScopeAsync("SSOAuthServer");
-            await CreateApiScopeAsync("MkDemoB");
-            await CreateApiScopeAsync("MkDemoC");
+            await CreateApiScopeAsync("SSOAuthServerService");
+            await CreateApiScopeAsync("MkDemoBService");
+            await CreateApiScopeAsync("MkDemoCService");
+
+            await CreateApiScopeAsync("BackendAdminAppGateway");
+            await CreateApiScopeAsync("InternalGateway");
+            await CreateApiScopeAsync("PublicWebSiteGateway");
         }
 
         private async Task CreateApiResourcesAsync()
@@ -83,9 +87,13 @@ namespace SSO.AuthServer.IdentityServer
                 "role"
             };
 
-            await CreateApiResourceAsync("SSOAuthServer", commonApiUserClaims);
-            await CreateApiResourceAsync("MkDemoB", commonApiUserClaims);
-            await CreateApiResourceAsync("MkDemoC", commonApiUserClaims);
+            await CreateApiResourceAsync("SSOAuthServerService", commonApiUserClaims);
+            await CreateApiResourceAsync("MkDemoBService", commonApiUserClaims);
+            await CreateApiResourceAsync("MkDemoCService", commonApiUserClaims);
+
+            await CreateApiResourceAsync("BackendAdminAppGateway", commonApiUserClaims);
+            await CreateApiResourceAsync("InternalGateway", commonApiUserClaims);
+            await CreateApiResourceAsync("PublicWebSiteGateway", commonApiUserClaims);
         }
 
         private async Task<ApiResource> CreateApiResourceAsync(string name, IEnumerable<string> claims)
@@ -156,7 +164,7 @@ namespace SSO.AuthServer.IdentityServer
 
                 await CreateClientAsync(
                     name: vbenVueClientId,
-                    scopes: commonScopes.Union(new[] { "MkDemoB", "MkDemoC" }),
+                    scopes: commonScopes.Union(new[] { "BackendAdminAppGateway", "MkDemoBService", "MkDemoCService" }),
                     grantTypes: new[] { "password", "client_credentials", "authorization_code" },
                     secret: (configurationSection["Vben_Admin_Web:ClientSecret"] ?? "1q2w3e*").Sha256(),
                     requireClientSecret: false,
@@ -167,16 +175,16 @@ namespace SSO.AuthServer.IdentityServer
             }
 
             // Mk_DemoB_API
-            var mkDemoBApiClientId = configurationSection["Mk_DemoB_API:ClientId"];
+            var mkDemoBApiClientId = configurationSection["Mk_DemoB_Service:ClientId"];
             if (!mkDemoBApiClientId.IsNullOrWhiteSpace())
             {
-                var clientRootUrl = configurationSection["Mk_DemoB_API:RootUrl"].TrimEnd('/');
+                var clientRootUrl = configurationSection["Mk_DemoB_Service:RootUrl"].TrimEnd('/');
 
                 await CreateClientAsync(
                     name: mkDemoBApiClientId,
-                    scopes: commonScopes.Union(new[] { "MkDemoB", "MkDemoC" }),
+                    scopes: commonScopes.Union(new[] { "InternalGateway", "MkDemoBService", "MkDemoCService" }),
                     grantTypes: new[] { "authorization_code" },
-                    secret: (configurationSection["Mk_DemoB_API:ClientSecret"] ?? "1q2w3e*").Sha256(),
+                    secret: (configurationSection["Mk_DemoB_Service:ClientSecret"] ?? "1q2w3e*").Sha256(),
                     requireClientSecret: false,
                     redirectUri: $"{clientRootUrl}/swagger/oauth2-redirect.html",
                     corsOrigins: new[] { clientRootUrl.RemovePostFix("/") }
@@ -184,16 +192,16 @@ namespace SSO.AuthServer.IdentityServer
             }
 
             // Mk_DemoC_API
-            var mkDemoCApiClientId = configurationSection["Mk_DemoC_API:ClientId"];
+            var mkDemoCApiClientId = configurationSection["Mk_DemoC_Service:ClientId"];
             if (!mkDemoCApiClientId.IsNullOrWhiteSpace())
             {
-                var clientRootUrl = configurationSection["Mk_DemoC_API:RootUrl"].TrimEnd('/');
+                var clientRootUrl = configurationSection["Mk_DemoC_Service:RootUrl"].TrimEnd('/');
 
                 await CreateClientAsync(
                     name: mkDemoCApiClientId,
-                    scopes: commonScopes.Union(new[] { "MkDemoC" }),
+                    scopes: commonScopes.Union(new[] { "InternalGateway", "MkDemoCService" }),
                     grantTypes: new[] { "authorization_code" },
-                    secret: (configurationSection["Mk_DemoC_API:ClientSecret"] ?? "1q2w3e*").Sha256(),
+                    secret: (configurationSection["Mk_DemoC_Service:ClientSecret"] ?? "1q2w3e*").Sha256(),
                     requireClientSecret: false,
                     redirectUri: $"{clientRootUrl}/swagger/oauth2-redirect.html",
                     corsOrigins: new[] { clientRootUrl.RemovePostFix("/") }
@@ -201,16 +209,16 @@ namespace SSO.AuthServer.IdentityServer
             }
 
             // SSO_AuthServer_API
-            var ssoAuthServerApiClientId = configurationSection["SSO_AuthServer_API:ClientId"];
+            var ssoAuthServerApiClientId = configurationSection["SSO_AuthServer_Service:ClientId"];
             if (!ssoAuthServerApiClientId.IsNullOrWhiteSpace())
             {
-                var clientRootUrl = configurationSection["SSO_AuthServer_API:RootUrl"].TrimEnd('/');
+                var clientRootUrl = configurationSection["SSO_AuthServer_Service:RootUrl"].TrimEnd('/');
 
                 await CreateClientAsync(
                     name: ssoAuthServerApiClientId,
                     scopes: commonScopes,
                     grantTypes: new[] { "authorization_code" },
-                    secret: (configurationSection["SSO_AuthServer_API:ClientSecret"] ?? "1q2w3e*").Sha256(),
+                    secret: (configurationSection["SSO_AuthServer_Service:ClientSecret"] ?? "1q2w3e*").Sha256(),
                     requireClientSecret: false,
                     redirectUri: $"{clientRootUrl}/swagger/oauth2-redirect.html",
                     corsOrigins: new[] { clientRootUrl.RemovePostFix("/") }

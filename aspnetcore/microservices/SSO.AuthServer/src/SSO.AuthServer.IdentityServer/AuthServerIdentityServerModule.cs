@@ -1,6 +1,4 @@
-using System;
-using System.IO;
-using System.Linq;
+using Leopard.AspNetCore.Serilog;
 using Localization.Resources.AbpUi;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors;
@@ -11,16 +9,16 @@ using SSO.AuthServer.EntityFrameworkCore;
 using SSO.AuthServer.Localization;
 using SSO.AuthServer.MultiTenancy;
 using StackExchange.Redis;
+using System;
+using System.IO;
+using System.Linq;
 using Volo.Abp;
 using Volo.Abp.Account;
 using Volo.Abp.Account.Web;
-using Volo.Abp.AspNetCore.Mvc.UI;
-using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap;
 using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic.Bundling;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
-using Volo.Abp.AspNetCore.Serilog;
 using Volo.Abp.Auditing;
 using Volo.Abp.Autofac;
 using Volo.Abp.BackgroundJobs;
@@ -29,7 +27,6 @@ using Volo.Abp.Caching.StackExchangeRedis;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Volo.Abp.UI.Navigation.Urls;
-using Volo.Abp.UI;
 using Volo.Abp.VirtualFileSystem;
 
 namespace SSO.AuthServer
@@ -41,7 +38,7 @@ namespace SSO.AuthServer
         typeof(AbpAccountApplicationModule),
         typeof(AbpAspNetCoreMvcUiBasicThemeModule),
         typeof(AuthServerEntityFrameworkCoreModule),
-        typeof(AbpAspNetCoreSerilogModule)
+        typeof(LeopardAspNetCoreSerilogModule)
         )]
     public class AuthServerIdentityServerModule : AbpModule
     {

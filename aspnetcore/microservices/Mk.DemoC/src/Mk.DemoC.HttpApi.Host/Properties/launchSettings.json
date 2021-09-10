@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Mk.DemoC.DemoApp": {
+    "Mk.DemoC.HttpApi.Host": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

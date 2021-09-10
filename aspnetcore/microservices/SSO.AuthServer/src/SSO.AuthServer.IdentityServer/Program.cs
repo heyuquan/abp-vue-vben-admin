@@ -1,4 +1,5 @@
 ﻿using System;
+using Leopard.AspNetCore.Serilog;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -9,32 +10,23 @@ namespace SSO.AuthServer
 {
     public class Program
     {
+        private static readonly string env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
         public static int Main(string[] args)
         {
-            Log.Logger = new LoggerConfiguration()
-#if DEBUG
-                .MinimumLevel.Debug()
-#else
-                .MinimumLevel.Information()
-#endif
-                .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
-                .MinimumLevel.Override("Microsoft.EntityFrameworkCore", LogEventLevel.Warning)
-                .Enrich.FromLogContext()
-                .WriteTo.Async(c => c.File("Logs/logs.txt"))
-#if DEBUG
-                .WriteTo.Async(c => c.Console())
-#endif
-                .CreateLogger();
+            var assemblyName = typeof(Program).Assembly.GetName().Name;
+
+            SerilogConfigurationHelper.Configure(env, assemblyName, true, false);
 
             try
             {
-                Log.Information("Starting SSO.AuthServer.IdentityServer.");
+                Log.Information($"Starting {assemblyName}.");
                 CreateHostBuilder(args).Build().Run();
                 return 0;
             }
             catch (Exception ex)
             {
-                Log.Fatal(ex, "SSO.AuthServer.IdentityServer terminated unexpectedly!");
+                Log.Fatal(ex, $"{assemblyName} terminated unexpectedly!");
                 return 1;
             }
             finally

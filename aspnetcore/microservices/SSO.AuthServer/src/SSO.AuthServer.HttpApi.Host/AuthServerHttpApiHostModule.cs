@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+using Leopard.AspNetCore.Serilog;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors;
@@ -10,15 +7,18 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using SSO.AuthServer.EntityFrameworkCore;
 using SSO.AuthServer.MultiTenancy;
 using StackExchange.Redis;
-using Microsoft.OpenApi.Models;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using Volo.Abp;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
-using Volo.Abp.AspNetCore.Serilog;
 using Volo.Abp.Autofac;
 using Volo.Abp.Caching;
 using Volo.Abp.Caching.StackExchangeRedis;
@@ -36,7 +36,7 @@ namespace SSO.AuthServer
         typeof(AbpAspNetCoreMvcUiMultiTenancyModule),
         typeof(AuthServerApplicationModule),
         typeof(AuthServerEntityFrameworkCoreModule),
-        typeof(AbpAspNetCoreSerilogModule),
+        typeof(LeopardAspNetCoreSerilogModule),
         typeof(AbpSwashbuckleModule)
     )]
     public class AuthServerHttpApiHostModule : AbpModule

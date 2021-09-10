@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Leopard.AspNetCore.Serilog;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
@@ -27,7 +28,8 @@ namespace InternalGateway.Host
         typeof(AbpPermissionManagementEntityFrameworkCoreModule),
         typeof(AbpSettingManagementEntityFrameworkCoreModule),
         typeof(AbpTenantManagementHttpApiModule),
-        typeof(AbpAspNetCoreMultiTenancyModule)
+        typeof(AbpAspNetCoreMultiTenancyModule),
+        typeof(LeopardAspNetCoreSerilogModule)
         )]
     public class InternalGatewayHostModule : AbpModule
     {

@@ -1,4 +1,5 @@
 using Leopard.AspNetCore.Mvc.Filters;
+using Leopard.AspNetCore.Serilog;
 using Leopard.Consul;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -49,7 +50,7 @@ namespace Mk.DemoB
         typeof(AbpAspNetCoreSerilogModule),
         typeof(AbpEventBusRabbitMqModule),
         typeof(AbpSwashbuckleModule),
-        typeof(AbpAspNetCoreSerilogModule),
+        typeof(LeopardAspNetCoreSerilogModule),
         typeof(LeopardConsulModule)  
         )]
     public class DemoBHttpApiHostModule : AbpModule

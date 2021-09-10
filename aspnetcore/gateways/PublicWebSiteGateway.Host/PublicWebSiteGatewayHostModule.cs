@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Leopard.AspNetCore.Serilog;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
@@ -23,7 +24,8 @@ namespace PublicWebSiteGateway.Host
         typeof(BloggingHttpApiModule),
         typeof(AbpPermissionManagementEntityFrameworkCoreModule),
         typeof(AbpSettingManagementEntityFrameworkCoreModule),
-        typeof(AbpAspNetCoreMvcUiMultiTenancyModule)
+        typeof(AbpAspNetCoreMvcUiMultiTenancyModule),
+        typeof(LeopardAspNetCoreSerilogModule)
         )]
     public class PublicWebSiteGatewayHostModule : AbpModule
     {

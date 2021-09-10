@@ -107,6 +107,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternalGateway.Host", "gat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PublicWebSiteGateway.Host", "gateways\PublicWebSiteGateway.Host\PublicWebSiteGateway.Host.csproj", "{971204CE-9AF8-453A-8FF9-BBC900A25285}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leopard.AspNetCore.Serilog", "framework\src\Leopard.AspNetCore.Serilog\Leopard.AspNetCore.Serilog.csproj", "{29906DB2-CA4F-446D-B8CF-B95609F87C0E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -277,6 +279,10 @@ Global
 		{971204CE-9AF8-453A-8FF9-BBC900A25285}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{971204CE-9AF8-453A-8FF9-BBC900A25285}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{971204CE-9AF8-453A-8FF9-BBC900A25285}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29906DB2-CA4F-446D-B8CF-B95609F87C0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29906DB2-CA4F-446D-B8CF-B95609F87C0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29906DB2-CA4F-446D-B8CF-B95609F87C0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29906DB2-CA4F-446D-B8CF-B95609F87C0E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -327,6 +333,7 @@ Global
 		{E3F54858-8619-4962-B2A4-95EDC45D98DC} = {BFBA6DEE-2C3D-4695-A63C-9EC95A7D5400}
 		{5BE5E505-E93C-40FC-9D00-AFA9039AC64D} = {BFBA6DEE-2C3D-4695-A63C-9EC95A7D5400}
 		{971204CE-9AF8-453A-8FF9-BBC900A25285} = {BFBA6DEE-2C3D-4695-A63C-9EC95A7D5400}
+		{29906DB2-CA4F-446D-B8CF-B95609F87C0E} = {408C61DE-C824-4BA2-8EE7-CE571EA864B5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {28315BFD-90E7-4E14-A2EA-F3D23AF4126F}
