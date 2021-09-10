@@ -6,49 +6,21 @@ using Microsoft.OpenApi.Models;
 using MsDemo.Shared;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
+using SSO.AuthServer;
 using StackExchange.Redis;
 using System;
 using Volo.Abp;
 using Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy;
 using Volo.Abp.Autofac;
-using Volo.Abp.FeatureManagement;
-using Volo.Abp.FeatureManagement.EntityFrameworkCore;
-using Volo.Abp.Http.Client.IdentityModel.Web;
-using Volo.Abp.Identity;
 using Volo.Abp.Modularity;
 using Volo.Abp.MultiTenancy;
-using Volo.Abp.PermissionManagement;
-using Volo.Abp.PermissionManagement.EntityFrameworkCore;
-using Volo.Abp.PermissionManagement.HttpApi;
-using Volo.Abp.PermissionManagement.Identity;
-using Volo.Abp.PermissionManagement.IdentityServer;
-using Volo.Abp.SettingManagement.EntityFrameworkCore;
-using Volo.Abp.TenantManagement;
-using Volo.Abp.TenantManagement.EntityFrameworkCore;
-using Volo.Blogging;
 
 namespace BackendAdminAppGateway.Host
 {
     [DependsOn(
         typeof(AbpAutofacModule),
-        typeof(AbpIdentityHttpApiModule),
-        typeof(AbpIdentityHttpApiClientModule),
-        typeof(AbpPermissionManagementEntityFrameworkCoreModule),
-        typeof(AbpPermissionManagementApplicationModule),
-        typeof(AbpPermissionManagementHttpApiModule),
-        typeof(AbpSettingManagementEntityFrameworkCoreModule),
-        typeof(BloggingApplicationContractsModule),
-        typeof(AbpPermissionManagementDomainIdentityModule),
-        typeof(AbpPermissionManagementDomainIdentityServerModule),
-        typeof(AbpHttpClientIdentityModelWebModule),
-        typeof(AbpTenantManagementApplicationContractsModule),
-        typeof(AbpTenantManagementHttpApiModule),
-        typeof(AbpTenantManagementHttpApiClientModule),
-        typeof(AbpTenantManagementEntityFrameworkCoreModule),
-        typeof(AbpFeatureManagementEntityFrameworkCoreModule),
-        typeof(AbpFeatureManagementApplicationModule),
-        typeof(AbpFeatureManagementHttpApiModule),
         typeof(AbpAspNetCoreMvcUiMultiTenancyModule),
+        typeof(AuthServerHttpApiClientModule),
         typeof(LeopardAspNetCoreSerilogModule)
     )]
     public class BackendAdminAppGatewayHostModule : AbpModule

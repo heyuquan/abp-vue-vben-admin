@@ -6,29 +6,21 @@ using Microsoft.OpenApi.Models;
 using MsDemo.Shared;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
+using SSO.AuthServer;
 using StackExchange.Redis;
 using System;
 using Volo.Abp;
 using Volo.Abp.AspNetCore.MultiTenancy;
 using Volo.Abp.Autofac;
-using Volo.Abp.Identity;
 using Volo.Abp.Modularity;
 using Volo.Abp.MultiTenancy;
-using Volo.Abp.PermissionManagement.EntityFrameworkCore;
-using Volo.Abp.SettingManagement.EntityFrameworkCore;
-using Volo.Abp.TenantManagement;
-using Volo.Blogging;
 
 namespace InternalGateway.Host
 {
     [DependsOn(
         typeof(AbpAutofacModule),
-        typeof(AbpIdentityHttpApiModule),
-        typeof(BloggingHttpApiModule),
-        typeof(AbpPermissionManagementEntityFrameworkCoreModule),
-        typeof(AbpSettingManagementEntityFrameworkCoreModule),
-        typeof(AbpTenantManagementHttpApiModule),
         typeof(AbpAspNetCoreMultiTenancyModule),
+        typeof(AuthServerHttpApiClientModule),
         typeof(LeopardAspNetCoreSerilogModule)
         )]
     public class InternalGatewayHostModule : AbpModule

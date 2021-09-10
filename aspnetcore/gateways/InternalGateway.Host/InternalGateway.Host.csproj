@@ -15,20 +15,16 @@
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.1" />
         <PackageReference Include="Ocelot" Version="17.0.0" />
         <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="3.0.1" />
-        <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="5.0.*" />
-        <PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="5.0.*" />
+        <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="$(MicrosoftPackageVersion)" />
+        <PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="$(MicrosoftPackageVersion)" />
     </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Volo.Abp.Autofac" Version="4.4.2" />
-        <PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy" Version="4.4.2" />
-        <PackageReference Include="Volo.Abp.Identity.HttpApi" Version="4.4.2" />
-        <PackageReference Include="Volo.Abp.TenantManagement.HttpApi" Version="4.4.2" />
-        <PackageReference Include="Volo.Blogging.HttpApi" Version="4.4.2" />
-        <PackageReference Include="Volo.Abp.PermissionManagement.EntityFrameworkCore" Version="4.4.2" />
-        <PackageReference Include="Volo.Abp.SettingManagement.EntityFrameworkCore" Version="4.4.2" />
+        <PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy" Version="4.4.2" />     
         <ProjectReference Include="..\..\framework\src\Leopard.AspNetCore.Serilog\Leopard.AspNetCore.Serilog.csproj" />
         <ProjectReference Include="..\..\microservices\shared\MsDemo.Shared\MsDemo.Shared.csproj" />
+        <ProjectReference Include="..\..\microservices\SSO.AuthServer\src\SSO.AuthServer.HttpApi.Client\SSO.AuthServer.HttpApi.Client.csproj" />
     </ItemGroup>
 
     <ItemGroup>

@@ -13,8 +13,6 @@ using Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy;
 using Volo.Abp.Autofac;
 using Volo.Abp.Modularity;
 using Volo.Abp.MultiTenancy;
-using Volo.Abp.PermissionManagement.EntityFrameworkCore;
-using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Blogging;
 
 namespace PublicWebSiteGateway.Host
@@ -22,8 +20,6 @@ namespace PublicWebSiteGateway.Host
     [DependsOn(
         typeof(AbpAutofacModule),
         typeof(BloggingHttpApiModule),
-        typeof(AbpPermissionManagementEntityFrameworkCoreModule),
-        typeof(AbpSettingManagementEntityFrameworkCoreModule),
         typeof(AbpAspNetCoreMvcUiMultiTenancyModule),
         typeof(LeopardAspNetCoreSerilogModule)
         )]
