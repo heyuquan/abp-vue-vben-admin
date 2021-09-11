@@ -27,6 +27,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\..\framework\src\Leopard.AspNetCore.Mvc\Leopard.AspNetCore.Mvc.csproj" />
 		<ProjectReference Include="..\..\..\..\framework\src\Leopard.AspNetCore.Serilog\Leopard.AspNetCore.Serilog.csproj" />
+		<ProjectReference Include="..\..\..\..\framework\src\Leopard.AspNetCore.Swashbuckle\Leopard.AspNetCore.Swashbuckle.csproj" />
 		<ProjectReference Include="..\..\..\..\framework\src\Leopard.Consul\Leopard.Consul.csproj" />
 		<ProjectReference Include="..\..\..\shared\MsDemo.Shared\MsDemo.Shared.csproj" />
 		<ProjectReference Include="..\Mk.DemoB.Application\Mk.DemoB.Application.csproj" />

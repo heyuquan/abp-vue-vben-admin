@@ -30,6 +30,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\framework\src\Leopard.AspNetCore.Serilog\Leopard.AspNetCore.Serilog.csproj" />
+      <ProjectReference Include="..\..\framework\src\Leopard.AspNetCore.Swashbuckle\Leopard.AspNetCore.Swashbuckle.csproj" />
       <ProjectReference Include="..\..\framework\src\Leopard.Consul\Leopard.Consul.csproj" />
     </ItemGroup>
 

@@ -1,5 +1,6 @@
 using Leopard.AspNetCore.Mvc.Filters;
 using Leopard.AspNetCore.Serilog;
+using Leopard.AspNetCore.Swashbuckle.Filter;
 using Leopard.Consul;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -177,6 +178,8 @@ namespace Mk.DemoC
                     // 为 Swagger JSON and UI设置xml文档注释路径
                     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "Mk.DemoC.Application.xml"), true);
                     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "Mk.DemoC.Application.Contracts.xml"), true);
+
+                    options.OperationFilter<SwaggerTagsFilter>();
                 });
         }
 

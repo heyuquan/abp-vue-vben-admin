@@ -1,4 +1,5 @@
 using Leopard.AspNetCore.Serilog;
+using Leopard.AspNetCore.Swashbuckle.Filter;
 using Leopard.Consul;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -119,6 +120,8 @@ namespace SSO.AuthServer
                     options.SwaggerDoc("v1", new OpenApiInfo {Title = "SSOAuthServerService API", Version = "v1"});
                     options.DocInclusionPredicate((docName, description) => true);
                     options.CustomSchemaIds(type => type.FullName);
+
+                    options.OperationFilter<SwaggerTagsFilter>();
                 });
         }
 
