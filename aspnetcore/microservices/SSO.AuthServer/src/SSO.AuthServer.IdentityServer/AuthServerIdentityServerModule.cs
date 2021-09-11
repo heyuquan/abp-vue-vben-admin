@@ -1,4 +1,5 @@
 using Leopard.AspNetCore.Serilog;
+using Leopard.Consul;
 using Localization.Resources.AbpUi;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors;
@@ -38,7 +39,8 @@ namespace SSO.AuthServer
         typeof(AbpAccountApplicationModule),
         typeof(AbpAspNetCoreMvcUiBasicThemeModule),
         typeof(AuthServerEntityFrameworkCoreModule),
-        typeof(LeopardAspNetCoreSerilogModule)
+        typeof(LeopardAspNetCoreSerilogModule),
+        typeof(LeopardConsulModule)
         )]
     public class AuthServerIdentityServerModule : AbpModule
     {

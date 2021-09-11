@@ -19,6 +19,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\..\..\framework\src\Leopard.Consul\Leopard.Consul.csproj" />
 		<ProjectReference Include="..\SSO.AuthServer.Application\SSO.AuthServer.Application.csproj" />
 		<ProjectReference Include="..\SSO.AuthServer.EntityFrameworkCore\SSO.AuthServer.EntityFrameworkCore.csproj" />
 		<ProjectReference Include="..\SSO.AuthServer.HttpApi\SSO.AuthServer.HttpApi.csproj" />

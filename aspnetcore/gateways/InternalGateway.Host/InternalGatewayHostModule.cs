@@ -1,31 +1,26 @@
 ﻿using Leopard.AspNetCore.Serilog;
+using Leopard.Consul;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.DataProtection;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using MsDemo.Shared;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 using SSO.AuthServer;
-using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
 using Volo.Abp;
-using Volo.Abp.AspNetCore.MultiTenancy;
 using Volo.Abp.Autofac;
 using Volo.Abp.Modularity;
-using Volo.Abp.MultiTenancy;
 using Volo.Abp.Swashbuckle;
 
 namespace InternalGateway.Host
 {
     [DependsOn(
         typeof(AbpAutofacModule),
-        typeof(AbpAspNetCoreMultiTenancyModule),
         typeof(AbpSwashbuckleModule),
         typeof(AuthServerHttpApiClientModule),
-        typeof(LeopardAspNetCoreSerilogModule)
+        typeof(LeopardAspNetCoreSerilogModule),
+        typeof(LeopardConsulModule)
         )]
     public class InternalGatewayHostModule : AbpModule
     {
@@ -33,11 +28,6 @@ namespace InternalGateway.Host
         {
             var configuration = context.Services.GetConfiguration();
             var hostingEnvironment = context.Services.GetHostingEnvironment();
-
-            Configure<AbpMultiTenancyOptions>(options =>
-            {
-                options.IsEnabled = MsDemoConsts.IsMultiTenancyEnabled;
-            });
 
             context.Services.AddAuthentication("Bearer")
                 .AddIdentityServerAuthentication(options =>
@@ -65,18 +55,6 @@ namespace InternalGateway.Host
                 });
 
             context.Services.AddOcelot(context.Services.GetConfiguration());
-
-            context.Services.AddStackExchangeRedisCache(options =>
-            {
-                options.Configuration = configuration["Redis:Configuration"];
-            });
-
-            if (!hostingEnvironment.IsDevelopment())
-            {
-                var redis = ConnectionMultiplexer.Connect(configuration["Redis:Configuration"]);
-                context.Services.AddDataProtection()
-                    .PersistKeysToStackExchangeRedis(redis, "MsDemo-DataProtection-Keys");
-            }
         }
 
         public override void OnApplicationInitialization(ApplicationInitializationContext context)
@@ -84,14 +62,10 @@ namespace InternalGateway.Host
             var app = context.GetApplicationBuilder();
 
             app.UseCorrelationId();
-            app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthentication();
             app.UseAbpClaimsMap();
-            if (MsDemoConsts.IsMultiTenancyEnabled)
-            {
-                app.UseMultiTenancy();
-            }
+
             app.UseSwagger();
             app.UseAbpSwaggerUI(options =>
             {
@@ -107,7 +81,7 @@ namespace InternalGateway.Host
                 ctx =>
                     ctx.Request.Path.ToString().StartsWith("/api/abp/") ||
                     ctx.Request.Path.ToString().StartsWith("/Abp/") ||
-                    ctx.Request.Path.ToString().StartsWith("/Test/"),
+                    ctx.Request.Path.ToString().StartsWith("/api/internalGateway/"),
                 app2 =>
                 {
                     app2.UseRouting();

@@ -1,4 +1,5 @@
 using Leopard.AspNetCore.Serilog;
+using Leopard.Consul;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors;
@@ -37,7 +38,8 @@ namespace SSO.AuthServer
         typeof(AuthServerApplicationModule),
         typeof(AuthServerEntityFrameworkCoreModule),
         typeof(LeopardAspNetCoreSerilogModule),
-        typeof(AbpSwashbuckleModule)
+        typeof(AbpSwashbuckleModule),
+        typeof(LeopardConsulModule)
     )]
     public class AuthServerHttpApiHostModule : AbpModule
     {

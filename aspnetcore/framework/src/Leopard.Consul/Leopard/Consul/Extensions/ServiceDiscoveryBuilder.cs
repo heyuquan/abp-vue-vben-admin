@@ -35,11 +35,6 @@ namespace Leopard.Consul.Extensions
 
             var serviceDiscoveryOptions = app.ApplicationServices.GetService(typeof(IOptions<ServiceDiscoveryOptions>)) as IOptions<ServiceDiscoveryOptions>;
             var serviceDiscovery = serviceDiscoveryOptions.Value;
-            if (!serviceDiscovery.IsValid())
-            {
-                logger.LogWarning("Consul ServiceDiscovery settings is error");
-                return app;
-            }
 
             var consul = app.ApplicationServices.GetService(typeof(IConsulClient)) as IConsulClient;
 
@@ -100,7 +95,8 @@ namespace Leopard.Consul.Extensions
                     Address = address.Host,
                     ID = serviceId,
                     Name = serviceDiscoveryOptions.Value.ServiceName,
-                    Port = address.Port
+                    Port = address.Port,
+                    Tags= serviceDiscovery.Tags
                 };
 
                 consul.Agent.ServiceRegister(registration).GetAwaiter().GetResult();
