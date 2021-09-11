@@ -65,6 +65,7 @@ namespace InternalGateway.Host
             var app = context.GetApplicationBuilder();
 
             app.UseCorrelationId();
+            app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthentication();
             app.UseAbpClaimsMap();
