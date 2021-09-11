@@ -84,7 +84,11 @@ namespace Leopard.Consul.Extensions
                         Status = HealthStatus.Passing,
                         DeregisterCriticalServiceAfter = TimeSpan.FromMinutes(1),
                         Interval = TimeSpan.FromSeconds(serviceDiscovery.HealthCheck.Interval),
-                        HTTP = healthCheckUri
+                        HTTP = healthCheckUri,
+#if DEBUG
+                        // https://www.javaroad.cn/questions/94587   (Consul 检查HTTPS自签名)
+                        TLSSkipVerify = true,
+#endif
                     });
 
                     logger.LogInformation($"Adding healthcheck for service {serviceId}, checking {healthCheckUri}.");
