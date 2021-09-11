@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Localization;
+﻿using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Localization;
 using Mk.DemoB.Localization;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using Volo.Abp.Localization;
 
 namespace Mk.DemoB.Application
 {
+    [Route("api/demob/lanaguage")]
     public class LanguageAppService : DemoBAppService
     {
         private readonly IStringLocalizer<DemoBResource> _localizer;

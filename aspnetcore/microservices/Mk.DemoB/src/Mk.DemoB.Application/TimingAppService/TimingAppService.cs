@@ -1,4 +1,5 @@
-﻿using Mk.DemoB.Dto.Timing;
+﻿using Microsoft.AspNetCore.Components;
+using Mk.DemoB.Dto.Timing;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -26,6 +27,7 @@ namespace Mk.DemoB.TimingAppService
     /// <summary>
     /// 时钟时区
     /// </summary>
+    [Route("api/demob/timing")]
     public class TimingAppService : DemoBAppService
     {
         // ITimezoneProvider 是一个服务,可将Windows时区ID值简单转换为Iana时区名称值,反之亦然. 

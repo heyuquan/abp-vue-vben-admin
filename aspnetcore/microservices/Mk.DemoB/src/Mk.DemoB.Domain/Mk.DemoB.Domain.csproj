@@ -17,6 +17,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\..\framework\src\Leopard.Core\Leopard.csproj" />
 		<ProjectReference Include="..\..\..\shared\MsDemo.Shared\MsDemo.Shared.csproj" />
+		<ProjectReference Include="..\..\..\SSO.AuthServer\src\SSO.AuthServer.HttpApi.Client\SSO.AuthServer.HttpApi.Client.csproj" />
 		<ProjectReference Include="..\Mk.DemoB.Domain.Shared\Mk.DemoB.Domain.Shared.csproj" />
 	</ItemGroup>
 
@@ -25,7 +26,6 @@
 		<PackageReference Include="HtmlAgilityPack" Version="1.11.32" />	
 		<PackageReference Include="Microsoft.Extensions.Http" Version="5.0.0" />
 		<PackageReference Include="Volo.Abp.Ddd.Domain" Version="4.4.2" />
-		<PackageReference Include="Volo.Abp.TenantManagement.Domain" Version="4.4.2" />
 	</ItemGroup>
 
 </Project>

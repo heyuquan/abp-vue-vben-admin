@@ -10,7 +10,7 @@ namespace Mk.DemoB.CacheAppService
     // redis 缓存
     // 加载 AbpCachingStackExchangeRedisModule 模块
 
-    [Route("api/dts/cache")]
+    [Route("api/demob/dts/cache")]
     public class CacheDTSAppService : DemoBAppService
     {
         private IDistributedCache _cache;

@@ -8,8 +8,8 @@ namespace Mk.DemoC.RemoteCallAppService
     /// <summary>
     /// ocelot 负载测试   (两个链接，模拟负载)
     /// </summary>
-    [Route("api/democ/loadbalance")]
-    [Route("api/loadbalance")]
+    [Route("api/democ/loadbalance-one")]
+    [Route("api/democ/loadbalance-two")]
     public class LoadBalanceAppService : DemoCAppService
     {
         private readonly IHttpContextAccessor _httpContextAccessor;

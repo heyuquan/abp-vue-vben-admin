@@ -11,8 +11,8 @@ namespace Mk.DemoB.LoadBalanceAppService
     /// <summary>
     /// ocelot 负载测试
     /// </summary>
-    [Route("api/demob/loadbalance")]
-    [Route("api/loadbalance")]
+    [Route("api/demob/loadbalance-one")]
+    [Route("api/demob/loadbalance-two")]
     public class LoadBalanceAppService : DemoBAppService
     {
         private readonly IHttpContextAccessor _httpContextAccessor;

@@ -22,6 +22,10 @@
         <ProjectReference Include="..\..\framework\src\Leopard.AspNetCore.Serilog\Leopard.AspNetCore.Serilog.csproj" />
         <ProjectReference Include="..\..\framework\src\Leopard.AspNetCore.Swashbuckle\Leopard.AspNetCore.Swashbuckle.csproj" />
         <ProjectReference Include="..\..\framework\src\Leopard.Consul\Leopard.Consul.csproj" />
+        <ProjectReference Include="..\..\microservices\Mk.DemoB\src\Mk.DemoB.Application\Mk.DemoB.Application.csproj" />
+        <ProjectReference Include="..\..\microservices\Mk.DemoB\src\Mk.DemoB.HttpApi.Client\Mk.DemoB.HttpApi.Client.csproj" />
+        <ProjectReference Include="..\..\microservices\Mk.DemoC\src\Mk.DemoC.Application\Mk.DemoC.Application.csproj" />
+        <ProjectReference Include="..\..\microservices\Mk.DemoC\src\Mk.DemoC.HttpApi.Client\Mk.DemoC.HttpApi.Client.csproj" />
         <ProjectReference Include="..\..\microservices\SSO.AuthServer\src\SSO.AuthServer.HttpApi.Client\SSO.AuthServer.HttpApi.Client.csproj" />
     </ItemGroup>
 

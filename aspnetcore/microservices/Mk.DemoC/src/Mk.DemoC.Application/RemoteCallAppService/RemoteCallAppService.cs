@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Components;
 using Mk.DemoC.IAppService;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ namespace Mk.DemoC.RemoteCallAppService
     /// <summary>
     /// 演示其他服务，eg：DemoB 中调用此服务
     /// </summary>
+    [Route("api/democ/remote-call")]
     public class RemoteCallAppService : DemoCAppService, IRemoteCallAppService
     {
         public RemoteCallAppService()

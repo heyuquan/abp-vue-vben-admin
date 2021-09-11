@@ -18,7 +18,7 @@ namespace Mk.DemoB.Application
     // redis 缓存
     // 加载 AbpCachingStackExchangeRedisModule 模块
 
-    [Route("api/abp/cache")]
+    [Route("api/demob/abp/cache")]
     public class CacheAbpAppService : DemoBAppService
     {
 

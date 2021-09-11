@@ -4,6 +4,8 @@ using Leopard.Consul;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using Mk.DemoB;
+using Mk.DemoC;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 using SSO.AuthServer;
@@ -19,9 +21,13 @@ namespace BackendAdminAppGateway.Host
     [DependsOn(
         typeof(AbpAutofacModule),
         typeof(AbpSwashbuckleModule),
-        typeof(AuthServerHttpApiClientModule),
         typeof(LeopardAspNetCoreSerilogModule),
-        typeof(LeopardConsulModule)
+        typeof(LeopardConsulModule),
+        typeof(AuthServerHttpApiClientModule),
+        typeof(DemoBHttpApiClientModule),
+        typeof(DemoBApplicationModule),
+        typeof(DemoCHttpApiClientModule),
+        typeof(DemoCApplicationModule)
     )]
     public class BackendAdminAppGatewayHostModule : AbpModule
     {

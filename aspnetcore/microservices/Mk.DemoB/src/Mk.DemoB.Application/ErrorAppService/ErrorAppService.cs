@@ -11,6 +11,7 @@ using Volo.Abp.Validation;
 
 namespace Mk.DemoB.Application
 {
+    [Route("api/demob/error")]
     public class ErrorAppService : DemoBAppService
     {
         public ErrorAppService()

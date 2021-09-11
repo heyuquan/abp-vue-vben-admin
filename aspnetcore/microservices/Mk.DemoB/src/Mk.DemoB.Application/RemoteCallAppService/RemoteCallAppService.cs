@@ -1,4 +1,5 @@
-﻿using Mk.DemoC.IAppService;
+﻿using Microsoft.AspNetCore.Components;
+using Mk.DemoC.IAppService;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,6 +15,7 @@ namespace Mk.DemoB.Application
     /// <summary>
     /// 动态 C# API 客户端
     /// </summary>
+    [Route("api/demob/remote-call")]
     public class RemoteCallAppService : DemoBAppService
     {
         private readonly IRemoteCallAppService _remoteCallAppService;

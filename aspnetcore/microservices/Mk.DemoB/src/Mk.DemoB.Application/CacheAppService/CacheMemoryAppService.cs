@@ -10,7 +10,7 @@ namespace Mk.DemoB.CacheAppService
     // Memory 缓存
     // 加载 AbpCachingModule 模块
 
-    [Route("api/memory/cache")]
+    [Route("api/demob/memory/cache")]
     public class CacheMemoryAppService : DemoBAppService
     {
         private IMemoryCache _cache;

@@ -16,6 +16,7 @@ namespace Mk.DemoB.Application
     // SequentialAsString 用于MySQL和PostgreSQL.
     // SequentialAsBinary 用于Oracle.
 
+    [Route("api/demob/guid")]
     public class GuidAppService : DemoBAppService, IGuidAppService
     {
         private readonly IGuidGenerator _guidGenerator;

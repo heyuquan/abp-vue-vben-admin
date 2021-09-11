@@ -1,4 +1,5 @@
-﻿using Mk.DemoB.Settings;
+﻿using Microsoft.AspNetCore.Components;
+using Mk.DemoB.Settings;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,6 +8,7 @@ using Volo.Abp.Settings;
 
 namespace Mk.DemoB.SettingAppService
 {
+    [Route("api/demob/setting")]
     public class SettingAppService: DemoBAppService
     {
         private readonly ISettingProvider _settingProvider;
