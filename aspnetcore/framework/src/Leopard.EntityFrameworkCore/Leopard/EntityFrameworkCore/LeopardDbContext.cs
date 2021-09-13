@@ -18,6 +18,14 @@ namespace Leopard.EntityFrameworkCore
 
         public LeopardDbContext(
             DbContextOptions<TDbContext> options
+        ) : base(options)
+        {
+            _serviceProvider = null;
+            _efLogOptions = null;
+        }
+
+        public LeopardDbContext(
+            DbContextOptions<TDbContext> options
             , IServiceProvider serviceProvider
             ) : base(options)
         {
@@ -32,13 +40,16 @@ namespace Leopard.EntityFrameworkCore
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var loggerFactory = new LoggerFactory();
-            EFLoggerProvider _efLoggerProvider = _serviceProvider.GetService<EFLoggerProvider>();
-            if (_efLoggerProvider != null)
+            if (_serviceProvider != null)
             {
-                loggerFactory.AddProvider(_efLoggerProvider);
-                optionsBuilder.EnableSensitiveDataLogging(_efLogOptions.EnableSensitiveData);
-                optionsBuilder.UseLoggerFactory(loggerFactory);
+                var loggerFactory = new LoggerFactory();
+                EFLoggerProvider _efLoggerProvider = _serviceProvider.GetService<EFLoggerProvider>();
+                if (_efLoggerProvider != null)
+                {
+                    loggerFactory.AddProvider(_efLoggerProvider);
+                    optionsBuilder.EnableSensitiveDataLogging(_efLogOptions.EnableSensitiveData);
+                    optionsBuilder.UseLoggerFactory(loggerFactory);
+                }
             }
 
             base.OnConfiguring(optionsBuilder);

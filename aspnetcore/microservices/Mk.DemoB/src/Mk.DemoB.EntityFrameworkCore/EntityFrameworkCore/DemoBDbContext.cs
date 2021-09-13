@@ -33,6 +33,12 @@ namespace Mk.DemoB.EntityFrameworkCore
 
         public DemoBDbContext(
             DbContextOptions<DemoBDbContext> options
+        ): base(options)
+        {
+        }
+
+        public DemoBDbContext(
+            DbContextOptions<DemoBDbContext> options
             , IServiceProvider serviceProvider
             )
             : base(options, serviceProvider)
