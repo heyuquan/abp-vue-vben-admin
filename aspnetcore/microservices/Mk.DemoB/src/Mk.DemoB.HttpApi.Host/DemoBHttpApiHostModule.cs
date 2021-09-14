@@ -95,10 +95,10 @@ namespace Mk.DemoB
             });
 
             // 禁用 BackgroundJob
-            Configure<AbpBackgroundJobOptions>(options =>
-            {
-                options.IsJobExecutionEnabled = false;
-            });
+            //Configure<AbpBackgroundJobOptions>(options =>
+            //{
+            //    options.IsJobExecutionEnabled = false;
+            //});
 
             Configure<MvcOptions>(mvcOptions =>
             {

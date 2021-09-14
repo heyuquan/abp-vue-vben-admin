@@ -79,7 +79,5 @@ namespace Mk.DemoB.DataFilterAppService
 
             return result;
         }
-
-
     }
 }

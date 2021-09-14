@@ -1,6 +1,7 @@
-$x = Split-Path -Parent $MyInvocation.MyCommand.Definition
-cd  $x
-cd ../gateways/PublicWebSiteGateway.Host
+. "./__build-aspnetcore-common.ps1"
+
+$solutionPath = $rootFolder + "/../gateways/PublicWebSiteGateway.Host"
+Set-Location $solutionPath
 $path=Get-Location
 $launchSettings = (Get-Content "Properties/launchSettings.json") | ConvertFrom-Json
 $host.UI.RawUI.WindowTitle = $path.Path.Substring($path.Path.LastIndexOf("\")+1)+"  Address:  "+ $launchSettings.iisSettings.iisExpress.applicationUrl

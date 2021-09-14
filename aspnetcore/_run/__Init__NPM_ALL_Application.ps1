@@ -1,16 +1,16 @@
-cd ..
+. "./__build-aspnetcore-common.ps1"
 
 Write-Host ==================== Begin Init AuthServer.Host ========================
-cd ./microservices/SSO.AuthServer/src/SSO.AuthServer.IdentityServer
+$solutionPath = $rootFolder + "/../microservices/SSO.AuthServer/src/SSO.AuthServer.IdentityServer"
+Set-Location $solutionPath
 yarn install
 gulp
 
-cd ../../../../
 Write-Host End Init Mk.DemoC.HttpApi.Host ========================
 
 
 
 
 
-
+Set-Location $rootFolder
 pause

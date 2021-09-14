@@ -1,5 +1,4 @@
-﻿using Mk.DemoB.BackgroundJobs;
-using Mk.DemoC;
+﻿using Mk.DemoC;
 using Volo.Abp.AutoMapper;
 using Volo.Abp.FluentValidation;
 using Volo.Abp.Modularity;
@@ -9,8 +8,7 @@ namespace Mk.DemoB
     [DependsOn(
         typeof(DemoBDomainModule),
         typeof(DemoBApplicationContractsModule),
-        typeof(AbpFluentValidationModule),
-        typeof(DemoBBackgroundJobsModule),   
+        typeof(AbpFluentValidationModule), 
 
         // 远程调用C，需要依赖远程  C代理Module
         typeof(DemoCHttpApiClientModule)
