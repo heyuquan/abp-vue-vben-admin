@@ -28,8 +28,15 @@ namespace Mk.DemoC
 
         public override void OnApplicationInitialization(ApplicationInitializationContext context)
         {
-            var esClient = context.ServiceProvider.GetService<ElasticSearchClient>();
-            esClient.InitIndex();
+            try
+            {
+                var esClient = context.ServiceProvider.GetService<ElasticSearchClient>();
+                esClient.InitIndex();
+            }
+            catch
+            {
+                
+            }
         }
 
     }

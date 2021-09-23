@@ -12,6 +12,6 @@ namespace Mk.DemoB.IAppService
         /// 检测获取的是不是顺序Id
         /// </summary>
         /// <returns></returns>
-        Task<SequentialIdsDto> SequentialIds();
+        Task<SequentialIdsDto> CheckSequentialIds();
     }
 }

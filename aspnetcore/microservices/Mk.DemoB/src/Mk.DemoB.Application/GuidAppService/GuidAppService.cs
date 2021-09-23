@@ -31,6 +31,7 @@ namespace Mk.DemoB.Application
         /// </summary>
         /// <returns>GuidId</returns>
         [HttpGet]
+        [Route("new")]
         public async Task<string> New()
         {
             return await Task.FromResult(_guidGenerator.Create().ToString());
@@ -41,7 +42,8 @@ namespace Mk.DemoB.Application
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<SequentialIdsDto> SequentialIds()
+        [Route("check-sequential-id")]
+        public async Task<SequentialIdsDto> CheckSequentialIds()
         {
             List<string> ids = new List<string>();
             SortedSet<string> sortIds = new SortedSet<string>();

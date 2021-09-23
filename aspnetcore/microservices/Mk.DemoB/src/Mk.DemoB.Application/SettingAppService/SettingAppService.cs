@@ -15,6 +15,7 @@ namespace Mk.DemoB.SettingAppService
             _settingProvider = settingProvider;
         }
 
+        [HttpGet]
         public async Task<string> GetAsync()
         {
             string companyName = await _settingProvider.GetOrNullAsync(DemoBSettings.CompanyName);

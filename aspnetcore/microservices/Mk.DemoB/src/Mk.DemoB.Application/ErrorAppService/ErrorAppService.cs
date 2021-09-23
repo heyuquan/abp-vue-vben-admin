@@ -25,6 +25,7 @@ namespace Mk.DemoB.Application
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [Route("default")]
         public Task ThrowDefaultError()
         {
             throw new Exception("this is default error");
@@ -35,6 +36,7 @@ namespace Mk.DemoB.Application
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [Route("business")]
         public Task ThrowBusinessError()
         {
             Exception ex = new Exception("this is BusinessException error");
@@ -54,6 +56,7 @@ namespace Mk.DemoB.Application
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [Route("user-firendly")]
         public Task ThrowUserFriendlyError()
         {
             Exception ex = new Exception("this is UserFriendlyException error");
@@ -74,6 +77,7 @@ namespace Mk.DemoB.Application
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [Route("validation")]
         public Task ThrowValidationError()
         {
             Exception ex = new Exception("this is AbpValidationException error");

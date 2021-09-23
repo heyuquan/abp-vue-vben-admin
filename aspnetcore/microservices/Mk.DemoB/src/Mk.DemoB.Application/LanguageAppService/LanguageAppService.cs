@@ -16,11 +16,15 @@ namespace Mk.DemoB.Application
             _localizer = localizer;
         }
 
+        [HttpGet]
+        [Route("local")]
         public string StringLocal()
         {
             return _localizer["TextParams", "hyq", "beek"];
         }
 
+        [HttpGet]
+        [Route("local-zh")]
         public string StringLocal_ZH()
         {
             string text = "";
@@ -32,6 +36,8 @@ namespace Mk.DemoB.Application
             return text;
         }
 
+        [HttpGet]
+        [Route("local-en")]
         public string StringLocal_EN()
         {
             string text = "";

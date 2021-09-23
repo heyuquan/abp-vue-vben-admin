@@ -39,6 +39,8 @@ namespace Mk.DemoB.TimingAppService
             _timezoneProvider = timezoneProvider;
         }
 
+        [HttpGet]
+        [Route("getTimezone")]
         public virtual async Task GetTimezoneAsync()
         {
             // Africa/Abidjan
@@ -51,6 +53,8 @@ namespace Mk.DemoB.TimingAppService
             await Task.CompletedTask;
         }
 
+        [HttpGet]
+        [Route("abpClock")]
         public virtual async Task AbpClock()
         {
             // UTC即世界标准时间
@@ -74,6 +78,8 @@ namespace Mk.DemoB.TimingAppService
         /// </summary>
         /// <param name="time"></param>
         /// <returns></returns>
+        [HttpGet]
+        [Route("multiTimeType")]
         public virtual async Task<MultiTimeTypeResult> MultiTimeType(DateTime time)
         {
             // eg

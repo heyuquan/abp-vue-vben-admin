@@ -21,6 +21,8 @@ namespace Mk.DemoB.Application
             _remoteCallAppService = remoteCallAppService;
         }
 
+        [HttpGet]
+        [Route("democ")]
         public async Task<string> CallDemoCAction()
         {
             string ret = await _remoteCallAppService.WelcomeToCAsync();
