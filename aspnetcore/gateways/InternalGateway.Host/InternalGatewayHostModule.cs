@@ -1,14 +1,12 @@
 ﻿using Leopard.AspNetCore.Serilog;
-using Leopard.AspNetCore.Swashbuckle.Filter;
+using Leopard.AspNetCore.Swashbuckle;
 using Leopard.Consul;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.OpenApi.Models;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 using SSO.AuthServer;
 using System;
-using System.Collections.Generic;
 using Volo.Abp;
 using Volo.Abp.Autofac;
 using Volo.Abp.Modularity;
@@ -21,7 +19,8 @@ namespace InternalGateway.Host
         typeof(AbpSwashbuckleModule),
         typeof(AuthServerHttpApiClientModule),
         typeof(LeopardAspNetCoreSerilogModule),
-        typeof(LeopardConsulModule)
+        typeof(LeopardConsulModule),
+        typeof(LeopardAspNetCoreSwashbuckleModule)
         )]
     public class InternalGatewayHostModule : AbpModule
     {
@@ -38,24 +37,7 @@ namespace InternalGateway.Host
                     options.RequireHttpsMetadata = Convert.ToBoolean(configuration["AuthServer:RequireHttpsMetadata"]);
                 });
 
-            context.Services.AddAbpSwaggerGenWithOAuth(
-                configuration["AuthServer:Authority"],
-                new Dictionary<string, string>
-                {
-                    {"InternalGateway", "InternalGateway API"}
-                },
-                options =>
-                {
-                    options.SwaggerDoc("v1", new OpenApiInfo { Title = "InternalGateway API", Version = "v1" });
-                    options.DocInclusionPredicate((docName, description) => true);
-                    //options.SchemaFilter<EnumSchemaFilter>();
-                    options.CustomSchemaIds(type => type.FullName);
-                    // 为 Swagger JSON and UI设置xml文档注释路径
-                    //options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "Mk.DemoB.Application.xml"), true);
-                    //options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "Mk.DemoB.Application.Contracts.xml"), true);
-
-                    options.OperationFilter<SwaggerTagsFilter>();
-                });
+            context.Services.AddLepardSwaggerGen();
 
             context.Services.AddOcelot(context.Services.GetConfiguration());
         }
@@ -71,15 +53,7 @@ namespace InternalGateway.Host
             app.UseAbpClaimsMap();
 
             app.UseSwagger();
-            app.UseAbpSwaggerUI(options =>
-            {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "Internal Gateway API");
-
-                var configuration = context.GetConfiguration();
-                options.OAuthClientId(configuration["AuthServer:SwaggerClientId"]);
-                options.OAuthClientSecret(configuration["AuthServer:SwaggerClientSecret"]);
-                options.OAuthScopes("InternalGateway");
-            });
+            app.UseLepardSwaggerUI();
 
             app.MapWhen(
                 ctx =>

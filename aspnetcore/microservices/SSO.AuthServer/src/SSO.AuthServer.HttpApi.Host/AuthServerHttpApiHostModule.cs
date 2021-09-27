@@ -28,6 +28,7 @@ using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Volo.Abp.Swashbuckle;
 using Volo.Abp.VirtualFileSystem;
+using Leopard.AspNetCore.Swashbuckle;
 
 namespace SSO.AuthServer
 {
@@ -40,7 +41,8 @@ namespace SSO.AuthServer
         typeof(AuthServerEntityFrameworkCoreModule),
         typeof(LeopardAspNetCoreSerilogModule),
         typeof(AbpSwashbuckleModule),
-        typeof(LeopardConsulModule)
+        typeof(LeopardConsulModule),
+        typeof(LeopardAspNetCoreSwashbuckleModule)
     )]
     public class AuthServerHttpApiHostModule : AbpModule
     {
@@ -109,20 +111,7 @@ namespace SSO.AuthServer
 
         private static void ConfigureSwaggerServices(ServiceConfigurationContext context, IConfiguration configuration)
         {
-            context.Services.AddAbpSwaggerGenWithOAuth(
-                configuration["AuthServer:Authority"],
-                new Dictionary<string, string>
-                {
-                    {"SSOAuthServerService", "SSOAuthServerService API"}
-                },
-                options =>
-                {
-                    options.SwaggerDoc("v1", new OpenApiInfo {Title = "SSOAuthServerService API", Version = "v1"});
-                    options.DocInclusionPredicate((docName, description) => true);
-                    options.CustomSchemaIds(type => type.FullName);
-
-                    options.OperationFilter<SwaggerTagsFilter>();
-                });
+            context.Services.AddLepardSwaggerGen();
         }
 
         private void ConfigureLocalization()
@@ -201,15 +190,7 @@ namespace SSO.AuthServer
             app.UseAuthorization();
 
             app.UseSwagger();
-            app.UseAbpSwaggerUI(options =>
-            {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "SSOAuthServerService API");
-
-                var configuration = context.GetConfiguration();
-                options.OAuthClientId(configuration["AuthServer:SwaggerClientId"]);
-                options.OAuthClientSecret(configuration["AuthServer:SwaggerClientSecret"]);
-                options.OAuthScopes("SSOAuthServerService");
-            });
+            app.UseLepardSwaggerUI();
 
             app.UseAuditing();
             app.UseAbpSerilogEnrichers();

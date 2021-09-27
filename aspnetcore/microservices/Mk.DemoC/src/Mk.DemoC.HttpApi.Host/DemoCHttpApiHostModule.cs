@@ -1,6 +1,6 @@
 using Leopard.AspNetCore.Mvc.Filters;
 using Leopard.AspNetCore.Serilog;
-using Leopard.AspNetCore.Swashbuckle.Filter;
+using Leopard.AspNetCore.Swashbuckle;
 using Leopard.Consul;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -11,12 +11,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 using Mk.DemoC.EntityFrameworkCore;
 using MsDemo.Shared;
 using StackExchange.Redis;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Volo.Abp;
@@ -53,7 +51,8 @@ namespace Mk.DemoC
         typeof(AbpEventBusRabbitMqModule),
         typeof(AbpSwashbuckleModule),
         typeof(LeopardAspNetCoreSerilogModule),
-        typeof(LeopardConsulModule)  
+        typeof(LeopardConsulModule),
+        typeof(LeopardAspNetCoreSwashbuckleModule)
         )]
     public class DemoCHttpApiHostModule : AbpModule
     {
@@ -163,24 +162,7 @@ namespace Mk.DemoC
 
         private static void ConfigureSwaggerServices(ServiceConfigurationContext context, IConfiguration configuration)
         {
-            context.Services.AddAbpSwaggerGenWithOAuth(
-                configuration["AuthServer:Authority"],
-                new Dictionary<string, string>
-                {
-                    {"MkDemoCService", "MkDemoCService API"}
-                },
-                options =>
-                {
-                    options.SwaggerDoc("v1", new OpenApiInfo { Title = "MkDemoCService API", Version = "v1" });
-                    options.DocInclusionPredicate((docName, description) => true);
-                    //options.SchemaFilter<EnumSchemaFilter>();
-                    options.CustomSchemaIds(type => type.FullName);
-                    // 为 Swagger JSON and UI设置xml文档注释路径
-                    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "Mk.DemoC.Application.xml"), true);
-                    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "Mk.DemoC.Application.Contracts.xml"), true);
-
-                    options.OperationFilter<SwaggerTagsFilter>();
-                });
+            context.Services.AddLepardSwaggerGen();
         }
 
         private void ConfigureLocalization()
@@ -259,15 +241,7 @@ namespace Mk.DemoC
             }
             app.UseAuthorization();
             app.UseSwagger();
-            app.UseAbpSwaggerUI(options =>
-            {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "MkDemoCService API");
-
-                var configuration = context.GetConfiguration();
-                options.OAuthClientId(configuration["AuthServer:SwaggerClientId"]);
-                options.OAuthClientSecret(configuration["AuthServer:SwaggerClientSecret"]);
-                options.OAuthScopes("MkDemoCService");
-            });
+            app.UseLepardSwaggerUI();
 
             app.UseAuditing();
             app.UseAbpSerilogEnrichers();

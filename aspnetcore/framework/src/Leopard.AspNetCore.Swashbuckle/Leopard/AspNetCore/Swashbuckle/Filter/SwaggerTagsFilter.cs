@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace Leopard.AspNetCore.Swashbuckle.Filter
 {
     /// <summary>
-    /// 把abp vnext 提供的api 归档
+    /// 把abp vnext 提供的 api 归档
     /// </summary>
     public class SwaggerTagsFilter : IOperationFilter
     {
