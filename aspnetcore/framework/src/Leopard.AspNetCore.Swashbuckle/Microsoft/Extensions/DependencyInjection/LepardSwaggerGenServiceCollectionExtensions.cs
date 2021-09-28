@@ -31,18 +31,21 @@ namespace Microsoft.Extensions.DependencyInjection
                 options.CustomSchemaIds(type => type.FullName);
 
                 options.DocumentFilter<EnumDescriptionFilter>();
-
-                options.OperationFilter<CollectionAbpApiFilter>();                
-
+                options.OperationFilter<CollectionAbpApiFilter>();
+                
                 // 为 Swagger JSON and UI设置xml文档注释路径
                 // swagger只需要加载 *.Application.Contracts.xml 和 *.HttpApi.xml
                 var filePaths = System.IO.Directory.GetFiles(AppContext.BaseDirectory, "*.xml")
-                                                   .Where(x => x.EndsWith(".Application.Contracts.xml") || x.EndsWith(".HttpApi.xml"));
-                foreach (var xmlPath in filePaths)
+                                                   .Where(x =>
+                                                              x.EndsWith(".Application.xml")
+                                                           || x.EndsWith(".Application.Contracts.xml")
+                                                           || x.EndsWith(".HttpApi.xml")
+                                                       );
+                foreach (var xmlPath in filePaths)  
                 {
                     options.IncludeXmlComments(xmlPath);
                 }
-
+            
                 setupAction?.Invoke(options);
             };
 

@@ -50,7 +50,9 @@ docker-compose -f docker-compose-linux.yml up -d
 
 git 拉取远程代码
 https://blog.csdn.net/weijinqian0/article/details/76217014
-    git clone https://github.com/heyuquan/abp-vue-vben-admin.git
+git clone https://github.com/heyuquan/abp-vue-vben-admin.git
+Username: 369220123@qq.com
+Password: your_token
     进入代码目录，git pull 
 Git 本地的撤销修改和删除操作
 https://www.cnblogs.com/qlqwjy/p/8378851.html

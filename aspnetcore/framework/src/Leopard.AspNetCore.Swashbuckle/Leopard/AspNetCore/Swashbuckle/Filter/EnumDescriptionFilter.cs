@@ -21,7 +21,7 @@ namespace Leopard.AspNetCore.Swashbuckle.Filter
                 IList<IOpenApiAny> propertyEnums = property.Value.Enum;
                 if (propertyEnums != null && propertyEnums.Count > 0)
                 {
-                    property.Value.Description += DescribeEnum(propertyEnums, property.Key);
+                    property.Value.Description += $"==>{DescribeEnum(propertyEnums, property.Key)}";
                 }
             }
 
