@@ -8,7 +8,7 @@ namespace Leopard.AspNetCore.Swashbuckle.Filter
     /// <summary>
     /// 把abp vnext 提供的 api 归档
     /// </summary>
-    public class SwaggerTagsFilter : IOperationFilter
+    public class CollectionAbpApiFilter : IOperationFilter
     {
         public const string DefaultTagName = "ABP Vnext 默认 Api";
 

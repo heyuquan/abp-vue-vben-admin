@@ -2,11 +2,21 @@ version: '3.7'
 
 services:
   consul:
+    image: consul.img
+    build:
+      context: consul/
+    restart: always
     ports:
       - '8500:8500'
+    container_name: consul
     networks:
       - my-net
-      
+
+  redis:
+    ports:
+      - "6379:6379"
+    command: redis-server --requirepass admin123
+
   rabbitmq:
     ports:
       - '5672:5672'

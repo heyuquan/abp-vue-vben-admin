@@ -1,8 +1,13 @@
 version: '3.7'
 
 services:
-  consul:
-    network_mode: "host"
+  # local 不安装consul，直接使用exe安装consul。
+  # 因为安装到docker的consul做心跳检测，没办法检测本地调试的 localhost api
+  # 只能检查同样运行在docker中的 localhost api
+
+  redis:
+    ports:
+      - "6379:6379"
 
   rabbitmq:
     ports:
@@ -12,8 +17,5 @@ services:
       - type: bind
         source: /e/Docker/Data/RabbitMQ_Abp_Leapard
         target: /var/lib/rabbitmq
-    environment:
-      - RABBITMQ_DEFAULT_VHOST=my_vhost
-      - RABBITMQ_DEFAULT_USER=admin
-      - RABBITMQ_DEFAULT_PASS=admin123
+
 
