@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using System;
+using System.Linq;
 
 namespace Microsoft.AspNetCore.Builder
 {

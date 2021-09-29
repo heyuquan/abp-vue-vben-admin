@@ -29,6 +29,7 @@
 	</ItemGroup>
 
 	<ItemGroup>		
+		<ProjectReference Include="..\..\..\..\framework\src\Leopard.AspNetCore.Serilog\Leopard.AspNetCore.Serilog.csproj" />		
 		<ProjectReference Include="..\SSO.AuthServer.Application.Contracts\SSO.AuthServer.Application.Contracts.csproj" />
 		<ProjectReference Include="..\SSO.AuthServer.EntityFrameworkCore\SSO.AuthServer.EntityFrameworkCore.csproj" />
 	</ItemGroup>

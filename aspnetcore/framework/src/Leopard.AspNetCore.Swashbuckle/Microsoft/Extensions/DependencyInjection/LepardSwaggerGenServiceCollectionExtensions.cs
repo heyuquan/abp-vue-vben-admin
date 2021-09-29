@@ -32,7 +32,7 @@ namespace Microsoft.Extensions.DependencyInjection
 
                 options.DocumentFilter<EnumDescriptionFilter>();
                 options.OperationFilter<CollectionAbpApiFilter>();
-                
+
                 // 为 Swagger JSON and UI设置xml文档注释路径
                 // swagger只需要加载 *.Application.Contracts.xml 和 *.HttpApi.xml
                 var filePaths = System.IO.Directory.GetFiles(AppContext.BaseDirectory, "*.xml")
@@ -41,11 +41,11 @@ namespace Microsoft.Extensions.DependencyInjection
                                                            || x.EndsWith(".Application.Contracts.xml")
                                                            || x.EndsWith(".HttpApi.xml")
                                                        );
-                foreach (var xmlPath in filePaths)  
+                foreach (var xmlPath in filePaths)
                 {
                     options.IncludeXmlComments(xmlPath);
                 }
-            
+
                 setupAction?.Invoke(options);
             };
 

@@ -1,5 +1,7 @@
+using System;
 using System.IO;
 using System.Threading.Tasks;
+using Leopard.AspNetCore.Serilog;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -11,21 +13,13 @@ namespace SSO.AuthServer.DbMigrator
 {
     class Program
     {
+        private static readonly string env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
         static async Task Main(string[] args)
         {
-            Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Information()
-                .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
-                .MinimumLevel.Override("Volo.Abp", LogEventLevel.Warning)
-#if DEBUG
-                .MinimumLevel.Override("SSO.AuthServer", LogEventLevel.Debug)
-#else
-                .MinimumLevel.Override("SSO.AuthServer", LogEventLevel.Information)
-#endif
-                .Enrich.FromLogContext()
-                .WriteTo.Async(c => c.File("Logs/logs.txt"))
-                .WriteTo.Async(c => c.Console())
-                .CreateLogger();
+            var assemblyName = typeof(Program).Assembly.GetName().Name;
+
+            SerilogConfigurationHelper.Configure(env, assemblyName, true, false);
 
             await CreateHostBuilder(args).RunConsoleAsync();
         }

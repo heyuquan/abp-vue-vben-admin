@@ -19,7 +19,7 @@ namespace Mk.DemoB.Application
         /// <summary>
         /// test1
         /// </summary>
-        /// <param name="swaggerEmumTestType"><see cref="SwaggerEmumTestType" />123</param>
+        /// <param name="swaggerEmumTestType"><see cref="SwaggerEmumTestType" /></param>
         /// <returns></returns>
         [HttpPost]
         [Route("test1")]

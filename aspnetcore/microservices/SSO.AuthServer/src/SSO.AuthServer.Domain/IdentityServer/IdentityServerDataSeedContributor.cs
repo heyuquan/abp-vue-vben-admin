@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IdentityServer4;
 using IdentityServer4.Models;
 using Microsoft.Extensions.Configuration;
 using Volo.Abp.Authorization.Permissions;
@@ -64,15 +65,25 @@ namespace SSO.AuthServer.IdentityServer
             }
         }
 
+        IEnumerable<String> AllApiScopes
+        {
+            get
+            {
+                var result = _configuration.GetSection("IdentityServer:ApiScopes").GetChildren().Select(x => x.Value);
+                if (result == null)
+                {
+                    throw new Exception("配置文件缺少 IdentityServer:ApiScopes 节点");
+                }
+                return result;
+            }
+        }
+
         private async Task CreateApiScopesAsync()
         {
-            await CreateApiScopeAsync("SSOAuthServerService");
-            await CreateApiScopeAsync("MkDemoBService");
-            await CreateApiScopeAsync("MkDemoCService");
-
-            await CreateApiScopeAsync("BackendAdminAppGateway");
-            await CreateApiScopeAsync("InternalGateway");
-            await CreateApiScopeAsync("PublicWebSiteGateway");
+            foreach (var item in AllApiScopes)
+            {
+                await CreateApiScopeAsync(item);
+            }
         }
 
         private async Task CreateApiResourcesAsync()
@@ -87,13 +98,10 @@ namespace SSO.AuthServer.IdentityServer
                 "role"
             };
 
-            await CreateApiResourceAsync("SSOAuthServerService", commonApiUserClaims);
-            await CreateApiResourceAsync("MkDemoBService", commonApiUserClaims);
-            await CreateApiResourceAsync("MkDemoCService", commonApiUserClaims);
-
-            await CreateApiResourceAsync("BackendAdminAppGateway", commonApiUserClaims);
-            await CreateApiResourceAsync("InternalGateway", commonApiUserClaims);
-            await CreateApiResourceAsync("PublicWebSiteGateway", commonApiUserClaims);
+            foreach (var item in AllApiScopes)
+            {
+                await CreateApiResourceAsync(item, commonApiUserClaims);
+            }
         }
 
         private async Task<ApiResource> CreateApiResourceAsync(string name, IEnumerable<string> claims)
@@ -153,166 +161,137 @@ namespace SSO.AuthServer.IdentityServer
                 "SSOAuthServerService"
             };
 
+            // 完整的参数
+            //{
+            //    "ClientId": "",(必填)
+            //    "RedirectUris": [
+            //      "",
+            //      ""
+            //     ],(必填)
+            //    "PostLogoutRedirectUris": [
+            //      "",
+            //      ""
+            //     ],(选填，默认：空)
+            //    "Scopes": [],(选填，默认：公共范围)
+            //    "GrantTypes": [ "authorization_code" ],(必填)
+            //    "RequirePkce": （选填，默认：false）
+            //    "RequireClientSecret":（选填，默认：true）
+            //    "ClientSecret": （选填，默认：1q2w3E*）
+            //    "AllowAccessTokensViaBrowser"：（选填，默认：false）
+            //    "Permissions":（选填，默认：空）
+            //}
             var configurationSection = _configuration.GetSection("IdentityServer:Clients");
-
-            // BackendAdminAppGateway
-            var backendAdminAppGatewayClientId = configurationSection["BackendAdminAppGateway:ClientId"];
-            if (!backendAdminAppGatewayClientId.IsNullOrWhiteSpace())
+            foreach (var section in configurationSection.GetChildren())
             {
-                var clientRootUrl = configurationSection["BackendAdminAppGateway:RootUrl"]?.TrimEnd('/');
-
-                await CreateClientAsync(
-                    name: backendAdminAppGatewayClientId,
-                    scopes: commonScopes.Union(new[] { "BackendAdminAppGateway" }),
-                    grantTypes: new[] { "authorization_code" },
-                    secret: (configurationSection["BackendAdminAppGateway:ClientSecret"] ?? "1q2w3e*").Sha256(),
-                    requireClientSecret: false,
-                    redirectUri: clientRootUrl,
-                    postLogoutRedirectUri: $"{clientRootUrl}/swagger/oauth2-redirect.html",
-                    corsOrigins: new[] { clientRootUrl.RemovePostFix("/") }
-                );
-            }
-
-            // InternalGateway
-            var internalGatewayClientId = configurationSection["InternalGateway:ClientId"];
-            if (!internalGatewayClientId.IsNullOrWhiteSpace())
-            {
-                var clientRootUrl = configurationSection["InternalGateway:RootUrl"]?.TrimEnd('/');
-
-                await CreateClientAsync(
-                    name: internalGatewayClientId,
-                    scopes: commonScopes.Union(new[] { "InternalGateway" }),
-                    grantTypes: new[] { "authorization_code" },
-                    secret: (configurationSection["InternalGateway:ClientSecret"] ?? "1q2w3e*").Sha256(),
-                    requireClientSecret: false,
-                    redirectUri: clientRootUrl,
-                    postLogoutRedirectUri: $"{clientRootUrl}/swagger/oauth2-redirect.html",
-                    corsOrigins: new[] { clientRootUrl.RemovePostFix("/") }
-                );
-            }
-
-            // PublicWebSiteGateway
-            var publicWebSiteGatewayClientId = configurationSection["PublicWebSiteGateway:ClientId"];
-            if (!publicWebSiteGatewayClientId.IsNullOrWhiteSpace())
-            {
-                var clientRootUrl = configurationSection["PublicWebSiteGateway:RootUrl"]?.TrimEnd('/');
-
-                await CreateClientAsync(
-                    name: publicWebSiteGatewayClientId,
-                    scopes: commonScopes.Union(new[] { "PublicWebSiteGateway" }),
-                    grantTypes: new[] { "authorization_code" },
-                    secret: (configurationSection["PublicWebSiteGateway:ClientSecret"] ?? "1q2w3e*").Sha256(),
-                    requireClientSecret: false,
-                    redirectUri: clientRootUrl,
-                    postLogoutRedirectUri: $"{clientRootUrl}/swagger/oauth2-redirect.html",
-                    corsOrigins: new[] { clientRootUrl.RemovePostFix("/") }
-                );
-            }
-
-            // vben-admin-client
-            var vbenVueClientId = configurationSection["Vben_Admin_Web:ClientId"];
-            if (!vbenVueClientId.IsNullOrWhiteSpace())
-            {
-                var clientRootUrl = configurationSection["Vben_Admin_Web:RootUrl"]?.TrimEnd('/');
-
-                await CreateClientAsync(
-                    name: vbenVueClientId,
-                    scopes: commonScopes.Union(new[] { "BackendAdminAppGateway", "MkDemoBService", "MkDemoCService" }),
-                    grantTypes: new[] { "password", "client_credentials", "authorization_code" },
-                    secret: (configurationSection["Vben_Admin_Web:ClientSecret"] ?? "1q2w3e*").Sha256(),
-                    requireClientSecret: false,
-                    redirectUri: clientRootUrl,
-                    postLogoutRedirectUri: clientRootUrl,
-                    corsOrigins: new[] { clientRootUrl.RemovePostFix("/") }
-                );
-            }
-
-            // Mk_DemoB_API
-            var mkDemoBApiClientId = configurationSection["MkDemoBService:ClientId"];
-            if (!mkDemoBApiClientId.IsNullOrWhiteSpace())
-            {
-                var clientRootUrl = configurationSection["MkDemoBService:RootUrl"].TrimEnd('/');
-
-                await CreateClientAsync(
-                    name: mkDemoBApiClientId,
-                    scopes: commonScopes.Union(new[] { "InternalGateway", "MkDemoBService", "MkDemoCService" }),
-                    grantTypes: new[] { "authorization_code" },
-                    secret: (configurationSection["MkDemoBService:ClientSecret"] ?? "1q2w3e*").Sha256(),
-                    requireClientSecret: false,
-                    redirectUri: $"{clientRootUrl}/swagger/oauth2-redirect.html",
-                    corsOrigins: new[] { clientRootUrl.RemovePostFix("/") }
-                );
-            }
-
-            // Mk_DemoC_API
-            var mkDemoCApiClientId = configurationSection["MkDemoCService:ClientId"];
-            if (!mkDemoCApiClientId.IsNullOrWhiteSpace())
-            {
-                var clientRootUrl = configurationSection["MkDemoCService:RootUrl"].TrimEnd('/');
-
-                await CreateClientAsync(
-                    name: mkDemoCApiClientId,
-                    scopes: commonScopes.Union(new[] { "InternalGateway", "MkDemoCService" }),
-                    grantTypes: new[] { "authorization_code" },
-                    secret: (configurationSection["MkDemoCService:ClientSecret"] ?? "1q2w3e*").Sha256(),
-                    requireClientSecret: false,
-                    redirectUri: $"{clientRootUrl}/swagger/oauth2-redirect.html",
-                    corsOrigins: new[] { clientRootUrl.RemovePostFix("/") }
-                );
-            }
-
-            // SSO_AuthServer_API
-            var ssoAuthServerApiClientId = configurationSection["SSOAuthServerService:ClientId"];
-            if (!ssoAuthServerApiClientId.IsNullOrWhiteSpace())
-            {
-                var clientRootUrl = configurationSection["SSOAuthServerService:RootUrl"].TrimEnd('/');
-
-                await CreateClientAsync(
-                    name: ssoAuthServerApiClientId,
-                    scopes: commonScopes,
-                    grantTypes: new[] { "authorization_code" },
-                    secret: (configurationSection["SSOAuthServerService:ClientSecret"] ?? "1q2w3e*").Sha256(),
-                    requireClientSecret: false,
-                    redirectUri: $"{clientRootUrl}/swagger/oauth2-redirect.html",
-                    corsOrigins: new[] { clientRootUrl.RemovePostFix("/") }
-                );
+                var clientId = section["ClientId"];
+                if (!clientId.IsNullOrWhiteSpace())
+                {
+                    bool allowAccessTokensViaBrowser = false;
+                    IEnumerable<string> redirectUris = section.GetSection("RedirectUris").GetChildren().Select(x => x.Value); ;
+                    IEnumerable<string> cors = section.GetSection("Cors").GetChildren().Select(x => x.Value);
+                    IEnumerable<string> postLogoutRedirectUris = section.GetSection("PostLogoutRedirectUris").GetChildren().Select(x => x.Value); ;
+                    if (bool.TryParse(section["RequirePkce"], out bool requirePkce))
+                    {
+                        //设置值
+                    }
+                    bool requireClientSecret = true;
+                    if (bool.TryParse(section["RequireClientSecret"], out requireClientSecret))
+                    {
+                        //设置值
+                    }
+                    if (bool.TryParse(section["AllowAccessTokensViaBrowser"], out allowAccessTokensViaBrowser))
+                    {
+                        //设置值
+                    }
+                    await CreateClientAsync(
+                        clientId: clientId,
+                        scopes: commonScopes.Union(section.GetSection("Scopes").GetChildren().Select(x => x.Value)).Distinct(),
+                        grantTypes: section.GetSection("GrantTypes").GetChildren().Select(x => x.Value),
+                        secret: IdentityServer4.Models.HashExtensions.Sha256(section["ClientSecret"] ?? "1q2w3E*"),
+                        corsOrigins: cors,
+                        requirePkce: requirePkce,
+                        requireClientSecret: requireClientSecret,
+                        redirectUris: redirectUris,
+                        postLogoutRedirectUris: postLogoutRedirectUris,
+                        allowAccessTokensViaBrowser: allowAccessTokensViaBrowser,
+                        permissions: section.GetSection("Permissions").GetChildren().Select(x => x.Value)                                            
+                    );
+                }
             }
         }
 
+        /// <summary>
+        /// 创建身份标识客户端
+        /// </summary>
+        /// <param name="clientId">客户端Id</param>
+        /// <param name="scopes">允许访问的资源</param>
+        /// <param name="grantTypes">允许客户端使用的授权类型</param>
+        /// <param name="secret">客户端密码</param>
+        /// <param name="requirePkce">指定使用基于授权代码的授权类型的客户端是否必须发送校验密钥</param>
+        /// <param name="requireClientSecret">指定此客户端是否需要密钥才能从令牌端点请求令牌（默认为true）</param>
+        /// <param name="redirectUris"></param>
+        /// <param name="corsOrigins"></param>
+        /// <param name="postLogoutRedirectUris">允许登录后重定向的地址列表，可以有多个</param>
+        /// <param name="frontChannelLogoutUri"></param>
+        /// <param name="allowAccessTokensViaBrowser">允许将token通过浏览器传递</param>
+        /// <param name="permissions">默认赋权</param>
+        /// <param name=""></param>
+        /// <returns></returns>
         private async Task<Client> CreateClientAsync(
-            string name,
+            string clientId,
             IEnumerable<string> scopes,
             IEnumerable<string> grantTypes,
             string secret = null,
-            string redirectUri = null,
-            string postLogoutRedirectUri = null,
-            string frontChannelLogoutUri = null,
-            bool requireClientSecret = true,
             bool requirePkce = false,
-            IEnumerable<string> permissions = null,
-            IEnumerable<string> corsOrigins = null)
+            bool requireClientSecret = true,
+            IEnumerable<string> redirectUris = null,
+            IEnumerable<string> corsOrigins = null,
+            IEnumerable<string> postLogoutRedirectUris = null,
+            string frontChannelLogoutUri = null,
+            bool allowAccessTokensViaBrowser = false,
+            IEnumerable<string> permissions = null
+            )
         {
-            var client = await _clientRepository.FindByClientIdAsync(name);
+            // 参考：Client - Identity Server 4 中文文档(v1.0.0)
+            // https://www.cnblogs.com/thinksjay/p/10787349.html
+
+            var client = await _clientRepository.FindByClientIdAsync(clientId);
             if (client == null)
             {
                 client = await _clientRepository.InsertAsync(
                     new Client(
                         _guidGenerator.Create(),
-                        name
+                        clientId
                     )
                     {
-                        ClientName = name,
-                        ProtocolType = "oidc",
-                        Description = name,
+                        ClientName = clientId,
+                        ProtocolType = IdentityServerConstants.ProtocolTypes.OpenIdConnect,
+                        Description = clientId,
+                        // 允许ID_TOKEN附带Claims
                         AlwaysIncludeUserClaimsInIdToken = true,
+                        // 指定此客户端是否可以请求刷新令牌（请求offline_access范围）
                         AllowOfflineAccess = true,
-                        AbsoluteRefreshTokenLifetime = 31536000, //365 days
-                        AccessTokenLifetime = 31536000, //365 days
-                        AuthorizationCodeLifetime = 300,
-                        IdentityTokenLifetime = 300,
+                        // 允许将token通过浏览器传递
+                        AllowAccessTokensViaBrowser = allowAccessTokensViaBrowser,
+
+                        // 刷新令牌的最长生命周期（秒）。默认为2592000秒/ 30天
+                        AbsoluteRefreshTokenLifetime = 60 * 60 * 12, //1 days
+                        // 滑动刷新令牌的生命周期，以秒为单位。默认为1296000秒/ 15天
+                        SlidingRefreshTokenLifetime = 60 * 60 * 12,//1 days
+                        // 访问令牌的生命周期，以秒为单位（默认为3600秒/ 1小时）
+                        AccessTokenLifetime = 60 * 60 * 12, //1 days
+                        // 授权代码的生命周期，以秒为单位（默认为300秒/ 5分钟）
+                        AuthorizationCodeLifetime = 60 * 24 * 12,//1 days
+                        // 身份令牌的生命周期，以秒为单位（默认为300秒/ 5分钟）
+                        IdentityTokenLifetime = 60 * 60 * 12,//1 days
+
+                        // 指定是否需要同意屏幕。默认为true。
                         RequireConsent = false,
+                        // 指定客户端的注销URI，以用于基于HTTP的前端通道注销。
                         FrontChannelLogoutUri = frontChannelLogoutUri,
+                        // 指定此客户端是否需要密钥才能从令牌端点请求令牌（默认为true）
                         RequireClientSecret = requireClientSecret,
+                        // 指定使用基于授权代码的授权类型的客户端是否必须发送校验密钥
                         RequirePkce = requirePkce
                     },
                     autoSave: true
@@ -343,19 +322,31 @@ namespace SSO.AuthServer.IdentityServer
                 }
             }
 
-            if (redirectUri != null)
+            if (redirectUris != null)
             {
-                if (client.FindRedirectUri(redirectUri) == null)
+                foreach (var redirectUri in redirectUris)
                 {
-                    client.AddRedirectUri(redirectUri);
+                    if (!redirectUri.IsNullOrWhiteSpace())
+                    {
+                        if (client.FindRedirectUri(redirectUri) == null)
+                        {
+                            client.AddRedirectUri(redirectUri);
+                        }
+                    }
                 }
             }
 
-            if (postLogoutRedirectUri != null)
+            if (postLogoutRedirectUris != null)
             {
-                if (client.FindPostLogoutRedirectUri(postLogoutRedirectUri) == null)
+                foreach (var postLogoutRedirectUri in postLogoutRedirectUris)
                 {
-                    client.AddPostLogoutRedirectUri(postLogoutRedirectUri);
+                    if (!postLogoutRedirectUri.IsNullOrWhiteSpace())
+                    {
+                        if (client.FindPostLogoutRedirectUri(postLogoutRedirectUri) == null)
+                        {
+                            client.AddPostLogoutRedirectUri(postLogoutRedirectUri);
+                        }
+                    }
                 }
             }
 
@@ -363,7 +354,7 @@ namespace SSO.AuthServer.IdentityServer
             {
                 await _permissionDataSeeder.SeedAsync(
                     ClientPermissionValueProvider.ProviderName,
-                    name,
+                    clientId,
                     permissions,
                     null
                 );

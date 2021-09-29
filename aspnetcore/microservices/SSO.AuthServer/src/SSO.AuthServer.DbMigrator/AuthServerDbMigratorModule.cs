@@ -1,4 +1,5 @@
-﻿using SSO.AuthServer.EntityFrameworkCore;
+﻿using Leopard.AspNetCore.Serilog;
+using SSO.AuthServer.EntityFrameworkCore;
 using Volo.Abp.Autofac;
 using Volo.Abp.BackgroundJobs;
 using Volo.Abp.Modularity;
@@ -8,7 +9,8 @@ namespace SSO.AuthServer.DbMigrator
     [DependsOn(
         typeof(AbpAutofacModule),
         typeof(AuthServerEntityFrameworkCoreModule),
-        typeof(AuthServerApplicationContractsModule)
+        typeof(AuthServerApplicationContractsModule),
+        typeof(LeopardAspNetCoreSerilogModule)
         )]
     public class AuthServerDbMigratorModule : AbpModule
     {

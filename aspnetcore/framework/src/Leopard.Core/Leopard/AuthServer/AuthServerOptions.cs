@@ -48,7 +48,7 @@ namespace Leopard.AuthServer
         /// <summary>
         /// SwaggerClientScopes
         /// </summary>
-        public string[] SwaggerClientScopes { get; set; }
+        public string[] SwaggerClientScopes { get; set; } 
 
     }
 }
