@@ -59,6 +59,7 @@ namespace SSO.AuthServer
             ConfigureRedis(context, configuration, hostingEnvironment);
             ConfigureCors(context, configuration);
             ConfigureSwaggerServices(context, configuration);
+
         }
 
         private void ConfigureCache(IConfiguration configuration)

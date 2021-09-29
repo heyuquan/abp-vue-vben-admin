@@ -10,11 +10,17 @@ namespace Mk.DemoB
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddApplication<DemoBHttpApiHostModule>();
+            services.AddHealthChecks();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
             app.InitializeApplication();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapHealthChecks("/api/health");
+            });
         }
     }
 }

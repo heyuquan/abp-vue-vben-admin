@@ -16,7 +16,7 @@ namespace SSO.AuthServer
             var assemblyName = typeof(Program).Assembly.GetName().Name;
 
             SerilogConfigurationHelper.Configure(env, assemblyName, true, false);
-
+            
             try
             {
                 Log.Information($"Starting {assemblyName}.");

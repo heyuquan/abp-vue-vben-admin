@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Serilog;
+using Serilog.Events;
 using Serilog.Sinks.Elasticsearch;
 using System;
 using System.Collections.Generic;
@@ -22,10 +23,17 @@ namespace Leopard.AspNetCore.Serilog
             const string outputTemplate = "[{Timestamp:yyyy-MM-dd HH:mm:ss.FFF} {Level:w3}] {Message} {NewLine}{Exception}";
 
             var loggerConfiguration = new LoggerConfiguration()
+#if DEBUG
+                .MinimumLevel.Debug()
+#else
+                .MinimumLevel.Information()
+#endif
+            .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+            .MinimumLevel.Override("Microsoft.EntityFrameworkCore", LogEventLevel.Warning)
             .Enrich.FromLogContext()
             //.Enrich.WithExceptionDetails()
             .Enrich.WithProperty("Environment", env)
-            .Enrich.WithProperty("ProjectName", applicationName)
+            .Enrich.WithProperty("Application", applicationName)
 #if DEBUG
             .WriteTo.Async(c => c.Console());  // 在容器中，有时候挂载日志文件异常，导致查不出原因，会需要将日志打印到控制台上
 #endif
@@ -45,6 +53,23 @@ namespace Leopard.AspNetCore.Serilog
             {
                 loggerConfiguration = loggerConfiguration.WriteTo.Elasticsearch(ConfigureElasticSink(cfg, env, applicationName));
             }
+
+            loggerConfiguration.Filter.ByExcluding(logEvent =>
+            {
+                if (logEvent.Level <= LogEventLevel.Information)
+                {
+                    logEvent.Properties.TryGetValue("RequestPath", out LogEventPropertyValue requestPathValue);
+                    if (requestPathValue != null 
+                        && String.Compare(requestPathValue.ToString().Trim('"'), "/api/health", true) == 0)
+                    {
+                        // 过滤掉 健康检查 的 Verbose、Debug、Info 日志，因为健康检查打的日志太多了
+                        // 如果是异常的信息，则要显示出来
+                        return true;
+                    }
+                }
+
+                return false;
+            });
 
             Log.Logger = loggerConfiguration.ReadFrom.Configuration(cfg).CreateLogger();
         }

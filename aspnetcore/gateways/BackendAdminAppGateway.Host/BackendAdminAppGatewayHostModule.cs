@@ -74,7 +74,7 @@ namespace BackendAdminAppGateway.Host
                        ctx.Request.Path.ToString().StartsWith("/Abp/") ||
                        ctx.Request.Path.ToString().StartsWith("/api/permission-management/")||
                        ctx.Request.Path.ToString().StartsWith("/api/feature-management/") ||
-                       ctx.Request.Path.ToString().StartsWith("/api/backendAdminAppGateway/"),
+                       ctx.Request.Path.ToString().EndsWith("/api/health"),
                 app2 =>
                 {
                     app2.UseRouting();

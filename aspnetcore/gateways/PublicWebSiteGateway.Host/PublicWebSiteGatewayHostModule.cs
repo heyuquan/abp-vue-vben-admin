@@ -56,7 +56,7 @@ namespace PublicWebSiteGateway.Host
             app.MapWhen(
                 ctx => ctx.Request.Path.ToString().StartsWith("/api/abp/") ||
                        ctx.Request.Path.ToString().StartsWith("/Abp/") ||
-                       ctx.Request.Path.ToString().StartsWith("/api/publicWebSiteGateway/"),
+                       ctx.Request.Path.ToString().EndsWith("/api/health"),
                 app2 =>
                 {
                     app2.UseRouting();

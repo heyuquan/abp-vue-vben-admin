@@ -12,11 +12,17 @@ namespace PublicWebSiteGateway.Host
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddApplication<PublicWebSiteGatewayHostModule>();
+            services.AddHealthChecks();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
-           app.InitializeApplication();
+            app.InitializeApplication();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapHealthChecks("/api/health");
+            });
         }
     }
 }

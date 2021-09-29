@@ -10,11 +10,17 @@ namespace SSO.AuthServer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddApplication<AuthServerHttpApiHostModule>();
+            services.AddHealthChecks();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
-        {
+        {           
             app.InitializeApplication();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapHealthChecks("/api/health");  
+            });
         }
     }
 }
