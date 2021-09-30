@@ -12,7 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Mk.DemoB.Localization;
-using MsDemo.Shared;
+using Leopard.Buiness.Shared;
 using StackExchange.Redis;
 using System;
 using System.IO;
@@ -77,7 +77,7 @@ namespace Mk.DemoB
 
             Configure<AbpMultiTenancyOptions>(options =>
             {
-                options.IsEnabled = MsDemoConsts.IsMultiTenancyEnabled;
+                options.IsEnabled = MultiTenancyConsts.IsEnabled;
             });
 
             // guid的排序规则
@@ -247,7 +247,7 @@ namespace Mk.DemoB
             app.UseCors(DefaultCorsPolicyName);
             app.UseAuthentication();
 
-            if (MsDemoConsts.IsMultiTenancyEnabled)
+            if (MultiTenancyConsts.IsEnabled)
             {
                 app.UseMultiTenancy();
             }

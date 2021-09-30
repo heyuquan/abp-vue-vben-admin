@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.DataProtection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using MsDemo.Shared;
 using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
@@ -29,6 +28,7 @@ using Volo.Abp.PermissionManagement.EntityFrameworkCore;
 using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.Swashbuckle;
 using Volo.Abp.VirtualFileSystem;
+using Leopard.Buiness.Shared;
 
 namespace Leopard.Saas
 {
@@ -60,7 +60,7 @@ namespace Leopard.Saas
 
             Configure<AbpMultiTenancyOptions>(options =>
             {
-                options.IsEnabled = MsDemoConsts.IsMultiTenancyEnabled;
+                options.IsEnabled = MultiTenancyConsts.IsEnabled;
             });
 
             if (hostingEnvironment.IsDevelopment())
@@ -167,7 +167,7 @@ namespace Leopard.Saas
             app.UseRouting();
             app.UseCors();
             app.UseAuthentication();
-            if (MsDemoConsts.IsMultiTenancyEnabled)
+            if (MultiTenancyConsts.IsEnabled)
             {
                 app.UseMultiTenancy();
             }

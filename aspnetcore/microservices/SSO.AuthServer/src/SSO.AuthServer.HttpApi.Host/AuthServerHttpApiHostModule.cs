@@ -1,5 +1,6 @@
 using Leopard.AspNetCore.Serilog;
-using Leopard.AspNetCore.Swashbuckle.Filter;
+using Leopard.AspNetCore.Swashbuckle;
+using Leopard.Buiness.Shared;
 using Leopard.Consul;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -9,12 +10,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 using SSO.AuthServer.EntityFrameworkCore;
-using SSO.AuthServer.MultiTenancy;
 using StackExchange.Redis;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Volo.Abp;
@@ -28,7 +26,6 @@ using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Volo.Abp.Swashbuckle;
 using Volo.Abp.VirtualFileSystem;
-using Leopard.AspNetCore.Swashbuckle;
 
 namespace SSO.AuthServer
 {

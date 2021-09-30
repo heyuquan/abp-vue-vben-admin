@@ -113,8 +113,6 @@ namespace Mk.DemoB.SaleOrderMgr.Entities
         /// <summary>
         /// 改变SkuCode
         /// </summary>
-        /// <param name="item"></param>
-        /// <param name="newQuantity"></param>
         public void ChangeSku(SaleOrderDetail item, string productSkuCode, int quantity)
         {
             // 发布旧sku的变更事件

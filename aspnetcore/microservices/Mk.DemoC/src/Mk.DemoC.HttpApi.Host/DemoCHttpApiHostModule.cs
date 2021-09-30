@@ -12,7 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Mk.DemoC.EntityFrameworkCore;
-using MsDemo.Shared;
+using Leopard.Buiness.Shared;
 using StackExchange.Redis;
 using System;
 using System.IO;
@@ -79,7 +79,7 @@ namespace Mk.DemoC
 
             Configure<AbpMultiTenancyOptions>(options =>
             {
-                options.IsEnabled = MsDemoConsts.IsMultiTenancyEnabled;
+                options.IsEnabled = MultiTenancyConsts.IsEnabled;
             });
 
             Configure<AbpDbContextOptions>(options =>
@@ -89,7 +89,7 @@ namespace Mk.DemoC
 
             Configure<AbpMultiTenancyOptions>(options =>
             {
-                options.IsEnabled = MsDemoConsts.IsMultiTenancyEnabled;
+                options.IsEnabled = MultiTenancyConsts.IsEnabled;
             });
 
             Configure<MvcOptions>(mvcOptions =>
@@ -235,7 +235,7 @@ namespace Mk.DemoC
             app.UseCors(DefaultCorsPolicyName);
             app.UseAuthentication();
             app.UseAbpClaimsMap();
-            if (MsDemoConsts.IsMultiTenancyEnabled)
+            if (MultiTenancyConsts.IsEnabled)
             {
                 app.UseMultiTenancy();
             }

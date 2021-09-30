@@ -1,4 +1,5 @@
 using Leopard.AspNetCore.Serilog;
+using Leopard.Buiness.Shared;
 using Leopard.Consul;
 using Localization.Resources.AbpUi;
 using Microsoft.AspNetCore.Builder;
@@ -8,7 +9,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SSO.AuthServer.EntityFrameworkCore;
 using SSO.AuthServer.Localization;
-using SSO.AuthServer.MultiTenancy;
 using StackExchange.Redis;
 using System;
 using System.IO;

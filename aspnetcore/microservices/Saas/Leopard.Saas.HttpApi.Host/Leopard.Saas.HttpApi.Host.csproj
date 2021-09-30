@@ -28,7 +28,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\shared\MsDemo.Shared\MsDemo.Shared.csproj" />
+		<ProjectReference Include="..\..\shared\Leopard.Buiness.Shared\Leopard.Buiness.Shared.csproj" />
 		<ProjectReference Include="..\Leopard.Saas.Application\Leopard.Saas.Application.csproj" />
 		<ProjectReference Include="..\Leopard.Saas.EntityFrameworkCore\Leopard.Saas.EntityFrameworkCore.csproj" />
 		<ProjectReference Include="..\Leopard.Saas.HttpApi\Leopard.Saas.HttpApi.csproj" />

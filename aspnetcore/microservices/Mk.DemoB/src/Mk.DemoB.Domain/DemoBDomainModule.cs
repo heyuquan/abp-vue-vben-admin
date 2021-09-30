@@ -1,5 +1,5 @@
 using Mk.DemoB.ObjectExtending;
-using MsDemo.Shared;
+using Leopard.Buiness.Shared;
 using Volo.Abp.Modularity;
 using Volo.Abp.MultiTenancy;
 
@@ -19,7 +19,7 @@ namespace Mk.DemoB
         {
             Configure<AbpMultiTenancyOptions>(options =>
             {
-                options.IsEnabled = MsDemoConsts.IsMultiTenancyEnabled;
+                options.IsEnabled = MultiTenancyConsts.IsEnabled;
             });
         }
     }

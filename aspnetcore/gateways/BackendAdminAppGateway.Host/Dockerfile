@@ -8,7 +8,7 @@ COPY ["gateways/BackendAdminAppGateway.Host/BackendAdminAppGateway.Host.csproj",
 COPY ["modules/product/src/ProductManagement.HttpApi/ProductManagement.HttpApi.csproj", "modules/product/src/ProductManagement.HttpApi/"]
 COPY ["modules/product/src/ProductManagement.Application.Contracts/ProductManagement.Application.Contracts.csproj", "modules/product/src/ProductManagement.Application.Contracts/"]
 COPY ["modules/product/src/ProductManagement.Domain.Shared/ProductManagement.Domain.Shared.csproj", "modules/product/src/ProductManagement.Domain.Shared/"]
-COPY ["shared/MsDemo.Shared/MsDemo.Shared.csproj", "shared/MsDemo.Shared/"]
+COPY ["shared/Leopard.Host.Shared/Leopard.Host.Shared.csproj", "shared/Leopard.Host.Shared/"]
 RUN dotnet restore "gateways/BackendAdminAppGateway.Host/BackendAdminAppGateway.Host.csproj" -nowarn:msb3202,msb3277,nu1503
 COPY . .
 WORKDIR "/src/gateways/BackendAdminAppGateway.Host"
