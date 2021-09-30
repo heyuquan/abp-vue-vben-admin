@@ -37,7 +37,7 @@ namespace SSO.AuthServer
         typeof(AuthServerApplicationModule),
         typeof(AuthServerEntityFrameworkCoreModule),
         typeof(LeopardAspNetCoreSerilogModule),
-        typeof(AbpSwashbuckleModule),
+        typeof(LeopardAspNetCoreSwashbuckleModule),
         typeof(LeopardConsulModule),
         typeof(LeopardAspNetCoreSwashbuckleModule)
     )]

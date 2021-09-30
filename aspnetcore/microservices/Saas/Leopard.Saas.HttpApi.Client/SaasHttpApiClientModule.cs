@@ -5,17 +5,16 @@ using Volo.Abp.Modularity;
 namespace Leopard.Saas
 {
     [DependsOn(
-        typeof(SaasApplicationContractsModule),
-        typeof(AbpHttpClientModule))]
-    public class SaasHttpApiClientModule : AbpModule
+        typeof(AbpHttpClientModule),
+        typeof(SaasApplicationContractsModule)
+        )]
+    public class SaasServiceHttpApiClientModule : AbpModule
     {
-        public const string RemoteServiceName = "Saas";
-
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
             context.Services.AddHttpClientProxies(
                 typeof(SaasApplicationContractsModule).Assembly,
-                RemoteServiceName
+                SaasRemoteServiceConsts.RemoteServiceName
             );
         }
     }

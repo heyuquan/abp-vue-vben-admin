@@ -1,16 +1,67 @@
-﻿using Volo.Abp.Application;
+﻿using Leopard.Saas.Dtos;
+using Leopard.Saas.Localization;
+using System;
+using Volo.Abp.Application;
+using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
-using Volo.Abp.Authorization;
+using Volo.Abp.ObjectExtending;
+using Volo.Abp.ObjectExtending.Modularity;
+using Volo.Abp.VirtualFileSystem;
 
 namespace Leopard.Saas
 {
     [DependsOn(
-        typeof(SaasDomainSharedModule),
-        typeof(AbpDddApplicationContractsModule),
-        typeof(AbpAuthorizationModule)
-        )]
-    public class SaasApplicationContractsModule : AbpModule
-    {
+		typeof(SaasDomainSharedModule),
+		typeof(AbpDddApplicationModule)
+	)]
+	public class SaasApplicationContractsModule : AbpModule
+	{
+		public override void ConfigureServices(ServiceConfigurationContext context)
+		{
+			Configure<AbpVirtualFileSystemOptions>(options =>
+			{
+				options.FileSets.AddEmbedded<SaasApplicationContractsModule>();
+			});
 
-    }
+			Configure<AbpLocalizationOptions>(options =>
+			{
+				options.Resources.Get<SaasResource>().AddVirtualJson("/Leopard/Saas/Localization");
+			});
+		}
+
+		public override void PostConfigureServices(ServiceConfigurationContext context)
+		{
+			ModuleExtensionConfigurationHelper.ApplyEntityConfigurationToApi(
+				SaasModuleExtensionConsts.ModuleName,
+				SaasModuleExtensionConsts.EntityNames.Tenant,
+				new Type[]
+				{
+					typeof(SaasTenantDto)
+				}, 
+				new Type[]
+				{
+					typeof(SaasTenantCreateDto)
+				},
+				new Type[]
+				{
+					typeof(SaasTenantUpdateDto)
+				});
+
+			ModuleExtensionConfigurationHelper.ApplyEntityConfigurationToApi(
+				SaasModuleExtensionConsts.ModuleName, 
+				SaasModuleExtensionConsts.EntityNames.Edition, 
+				new Type[]
+				{
+					typeof(EditionDto)
+				}, 
+				new Type[]
+				{
+					typeof(EditionCreateDto)
+				}, 
+				new Type[]
+				{
+					typeof(EditionUpdateDto)
+				});
+		}
+	}
 }

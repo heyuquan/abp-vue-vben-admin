@@ -22,12 +22,12 @@
 		<PackageReference Include="Volo.Abp.EntityFrameworkCore.SqlServer" Version="4.4.2" />
 		<PackageReference Include="Volo.Abp.AspNetCore.Serilog" Version="4.4.2" />
 		<PackageReference Include="Volo.Abp.Swashbuckle" Version="4.4.2" />
-		<PackageReference Include="Volo.Abp.PermissionManagement.EntityFrameworkCore" Version="4.4.2" />
-		<PackageReference Include="Volo.Abp.SettingManagement.EntityFrameworkCore" Version="4.4.2" />
-		<PackageReference Include="Volo.Abp.AuditLogging.EntityFrameworkCore" Version="4.4.2" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\..\framework\src\Leopard.AspNetCore.Serilog\Leopard.AspNetCore.Serilog.csproj" />
+		<ProjectReference Include="..\..\..\framework\src\Leopard.AspNetCore.Swashbuckle\Leopard.AspNetCore.Swashbuckle.csproj" />
+		<ProjectReference Include="..\..\..\framework\src\Leopard.Consul\Leopard.Consul.csproj" />
 		<ProjectReference Include="..\..\shared\Leopard.Buiness.Shared\Leopard.Buiness.Shared.csproj" />
 		<ProjectReference Include="..\Leopard.Saas.Application\Leopard.Saas.Application.csproj" />
 		<ProjectReference Include="..\Leopard.Saas.EntityFrameworkCore\Leopard.Saas.EntityFrameworkCore.csproj" />

@@ -1,15 +1,14 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.AutoMapper;
+using Volo.Abp.Emailing;
 using Volo.Abp.Modularity;
-using Volo.Abp.Application;
 
 namespace Leopard.Saas
 {
     [DependsOn(
         typeof(SaasDomainModule),
         typeof(SaasApplicationContractsModule),
-        typeof(AbpDddApplicationModule),
-        typeof(AbpAutoMapperModule)
+        typeof(AbpEmailingModule)
         )]
     public class SaasApplicationModule : AbpModule
     {

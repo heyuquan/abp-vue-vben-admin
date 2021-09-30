@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<Import Project="..\..\..\common.props" />
 
@@ -9,16 +9,16 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<None Remove="Leopard\Saas\Localization\*.json" />
+		<EmbeddedResource Include="Leopard\Saas\Localization\*.json" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Volo.Abp.Validation" Version="4.4.2" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="5.0.*" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<EmbeddedResource Include="Localization\Saas\*.json" />
-		<Content Remove="Localization\Saas\*.json" />
 	</ItemGroup>
 
 </Project>
