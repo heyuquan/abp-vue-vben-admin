@@ -10,8 +10,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Serilog.AspNetCore" Version="4.1.0" />
-		<PackageReference Include="Serilog.Sinks.Async" Version="1.4.0" />
 		<PackageReference Include="IdentityModel" Version="5.1.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.*" />
 		<PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="5.0.*" />
@@ -28,6 +26,7 @@
 		<ProjectReference Include="..\..\..\framework\src\Leopard.AspNetCore.Serilog\Leopard.AspNetCore.Serilog.csproj" />
 		<ProjectReference Include="..\..\..\framework\src\Leopard.AspNetCore.Swashbuckle\Leopard.AspNetCore.Swashbuckle.csproj" />
 		<ProjectReference Include="..\..\..\framework\src\Leopard.Consul\Leopard.Consul.csproj" />
+		<ProjectReference Include="..\..\..\framework\src\Utils\Leopard.Utils.Host\Leopard.Utils.Host.csproj" />
 		<ProjectReference Include="..\..\shared\Leopard.Buiness.Shared\Leopard.Buiness.Shared.csproj" />
 		<ProjectReference Include="..\Leopard.Saas.Application\Leopard.Saas.Application.csproj" />
 		<ProjectReference Include="..\Leopard.Saas.EntityFrameworkCore\Leopard.Saas.EntityFrameworkCore.csproj" />

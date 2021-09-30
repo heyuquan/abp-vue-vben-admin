@@ -3,6 +3,7 @@ using Leopard.AspNetCore.Swashbuckle;
 using Leopard.Buiness.Shared;
 using Leopard.Consul;
 using Leopard.Saas.EntityFrameworkCore;
+using Leopard.Utils.Host.Leopard.Utils;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors;
@@ -35,17 +36,15 @@ namespace Leopard.Saas
         typeof(SaasApplicationModule),
         typeof(SaasEntityFrameworkCoreModule),
         typeof(SaasHttpApiModule),
-        typeof(AbpAspNetCoreMvcUiMultiTenancyModule),
         typeof(AbpAutofacModule),
-        typeof(AbpCachingStackExchangeRedisModule),
         typeof(AbpEntityFrameworkCoreSqlServerModule),
-        typeof(AbpAspNetCoreSerilogModule),
-        typeof(LeopardAspNetCoreSerilogModule),
-        typeof(LeopardConsulModule),
-        typeof(LeopardAspNetCoreSwashbuckleModule)
+        typeof(LeopardConsulModule)
         )]
-    public class SaasHttpApiHostModule : AbpModule
+    public class SaasHttpApiHostModule : HostCommonModule
     {
+        public SaasHttpApiHostModule():base("Saas", MultiTenancyConsts.IsEnabled)
+        { }
+
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
             var hostingEnvironment = context.Services.GetHostingEnvironment();
@@ -54,11 +53,6 @@ namespace Leopard.Saas
             Configure<AbpDbContextOptions>(options =>
             {
                 options.UseSqlServer();
-            });
-
-            Configure<AbpMultiTenancyOptions>(options =>
-            {
-                options.IsEnabled = MultiTenancyConsts.IsEnabled;
             });
 
             if (hostingEnvironment.IsDevelopment())
@@ -72,87 +66,12 @@ namespace Leopard.Saas
                 });
             }
 
-            context.Services.AddLepardSwaggerGen();
-
-            Configure<AbpLocalizationOptions>(options =>
-            {
-                options.Languages.Add(new LanguageInfo("en", "en", "English"));
-                options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "简体中文"));
-            });
-
-            context.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
-                {
-                    options.Authority = configuration["AuthServer:Authority"];
-                    options.RequireHttpsMetadata = Convert.ToBoolean(configuration["AuthServer:RequireHttpsMetadata"]);
-                    options.Audience = "Saas";
-                });
-
-            Configure<AbpDistributedCacheOptions>(options =>
-            {
-                options.KeyPrefix = "Saas:";
-            });
-
-            if (!hostingEnvironment.IsDevelopment())
-            {
-                var redis = ConnectionMultiplexer.Connect(configuration["Redis:Configuration"]);
-                context.Services
-                    .AddDataProtection()
-                    .PersistKeysToStackExchangeRedis(redis, "Saas-Protection-Keys");
-            }
-
-            context.Services.AddCors(options =>
-            {
-                options.AddDefaultPolicy(builder =>
-                {
-                    builder
-                        .WithOrigins(
-                            configuration["App:CorsOrigins"]
-                                .Split(",", StringSplitOptions.RemoveEmptyEntries)
-                                .Select(o => o.RemovePostFix("/"))
-                                .ToArray()
-                        )
-                        .WithAbpExposedHeaders()
-                        .SetIsOriginAllowedToAllowWildcardSubdomains()
-                        .AllowAnyHeader()
-                        .AllowAnyMethod()
-                        .AllowCredentials();
-                });
-            });
+            base.ConfigureServices(context);
         }
 
         public override void OnApplicationInitialization(ApplicationInitializationContext context)
         {
-            var app = context.GetApplicationBuilder();
-            var env = context.GetEnvironment();
-
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseErrorPage();
-                app.UseHsts();
-            }
-
-            app.UseHttpsRedirection();
-            app.UseCorrelationId();
-            app.UseStaticFiles();
-            app.UseRouting();
-            app.UseCors();
-            app.UseAuthentication();
-            if (MultiTenancyConsts.IsEnabled)
-            {
-                app.UseMultiTenancy();
-            }
-            app.UseAbpRequestLocalization();
-            app.UseAuthorization();
-            app.UseSwagger();
-            app.UseLepardSwaggerUI();
-            app.UseAuditing();
-            app.UseAbpSerilogEnrichers();
-            app.UseConfiguredEndpoints();
+            base.OnApplicationInitialization(context);
         }
     }
 }
