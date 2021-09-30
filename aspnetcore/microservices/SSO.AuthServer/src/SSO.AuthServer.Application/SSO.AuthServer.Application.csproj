@@ -1,11 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-	<Import Project="..\..\..\..\mk.demo.common.props" />
+	<Import Project="..\..\..\..\common.props" />
 
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
 		<RootNamespace>SSO.AuthServer</RootNamespace>
-		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>
