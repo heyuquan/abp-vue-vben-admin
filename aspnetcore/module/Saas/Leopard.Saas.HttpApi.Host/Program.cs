@@ -1,11 +1,6 @@
-﻿using Leopard.AspNetCore.Serilog;
-using Leopard.Utils;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
-using Serilog;
-using System;
+﻿using Leopard.Utils;
 
-namespace PublicWebSiteGateway.Host
+namespace Leopard.Saas
 {
     public class Program
     {

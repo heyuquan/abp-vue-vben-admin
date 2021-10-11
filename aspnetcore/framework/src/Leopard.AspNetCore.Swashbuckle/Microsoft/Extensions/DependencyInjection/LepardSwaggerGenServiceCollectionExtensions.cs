@@ -16,11 +16,12 @@ namespace Microsoft.Extensions.DependencyInjection
             Action<SwaggerGenOptions> setupAction = null)
         {
             var configuration = services.GetConfiguration();
-            var authServerOptions = configuration.GetSection(AuthServerOptions.SectionName).Get<AuthServerOptions>();
-            if (authServerOptions == null)
+            var authServerOptionsSection = configuration.GetSection(AuthServerOptions.SectionName);
+            if (!authServerOptionsSection.Exists())
             {
-                throw new Exception("配置文件中缺少SwaggerClient节点的配置");
+                throw new Exception($"配置文件中缺少{AuthServerOptions.SectionName}节点的配置");
             }
+            var authServerOptions = authServerOptionsSection.Get<AuthServerOptions>();
 
             bool isRequiredSetAuth = !authServerOptions.Authority.IsNullOrWhiteSpace();
 

@@ -1,28 +1,8 @@
-﻿using System;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Volo.Abp;
+﻿using Leopard.Utils;
 
 namespace BackendAdminAppGateway.Host
 {
-    public class Startup
+    public class Startup : HostCommonStartup<BackendAdminAppGatewayHostModule>
     {
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddApplication<BackendAdminAppGatewayHostModule>();
-            services.AddHealthChecks();
-        }
-
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
-        {
-            app.InitializeApplication();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapHealthChecks("/api/health");
-            });
-        }
     }
 }

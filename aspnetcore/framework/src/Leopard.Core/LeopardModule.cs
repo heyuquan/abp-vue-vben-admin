@@ -1,5 +1,7 @@
 ﻿using Leopard.AuthServer;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 using Volo.Abp.Modularity;
 
 namespace Leopard
@@ -10,7 +12,13 @@ namespace Leopard
         {
             var configuration = context.Services.GetConfiguration();
 
-            Configure<AuthServerOptions>(configuration.GetSection(AuthServerOptions.SectionName));
+            var authServerOptionsSection = configuration.GetSection(AuthServerOptions.SectionName);
+            if (!authServerOptionsSection.Exists())
+            {
+                throw new Exception($"配置文件中缺少{AuthServerOptions.SectionName}节点的配置");
+            }
+
+            Configure<AuthServerOptions>(authServerOptionsSection);
         }
     }
 }

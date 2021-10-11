@@ -20,6 +20,8 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\..\framework\src\Leopard.AspNetCore.Swashbuckle\Leopard.AspNetCore.Swashbuckle.csproj" />
 		<ProjectReference Include="..\..\..\..\framework\src\Leopard.Consul\Leopard.Consul.csproj" />
+		<ProjectReference Include="..\..\..\..\framework\src\Utils\Leopard.Utils.Host\Leopard.Utils.Host.csproj" />
+		<ProjectReference Include="..\..\..\..\shared\Leopard.Buiness.Shared\Leopard.Buiness.Shared.csproj" />
 		<ProjectReference Include="..\..\..\shared\Leopard.Buiness.Shared\Leopard.Buiness.Shared.csproj" />
 		<ProjectReference Include="..\SSO.AuthServer.Application\SSO.AuthServer.Application.csproj" />
 		<ProjectReference Include="..\SSO.AuthServer.EntityFrameworkCore\SSO.AuthServer.EntityFrameworkCore.csproj" />

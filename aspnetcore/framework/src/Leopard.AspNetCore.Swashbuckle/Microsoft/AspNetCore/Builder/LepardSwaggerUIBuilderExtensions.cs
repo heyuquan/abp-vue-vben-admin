@@ -17,7 +17,7 @@ namespace Microsoft.AspNetCore.Builder
             var authServerOptions = configuration.GetSection(AuthServerOptions.SectionName).Get<AuthServerOptions>();
             if (authServerOptions == null)
             {
-                throw new Exception("配置文件中缺少SwaggerClient节点的配置");
+                throw new Exception($"配置文件中缺少{AuthServerOptions.SectionName}节点的配置");
             }
 
             return app.UseAbpSwaggerUI(options =>

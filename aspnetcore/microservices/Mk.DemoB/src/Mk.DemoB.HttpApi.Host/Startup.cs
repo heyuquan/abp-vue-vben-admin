@@ -1,26 +1,8 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+﻿using Leopard.Utils;
 
 namespace Mk.DemoB
 {
-    public class Startup
+    public class Startup : HostCommonStartup<DemoBHttpApiHostModule>
     {
-        public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddApplication<DemoBHttpApiHostModule>();
-            services.AddHealthChecks();
-        }
-
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
-        {
-            app.InitializeApplication();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapHealthChecks("/api/health");
-            });
-        }
     }
 }

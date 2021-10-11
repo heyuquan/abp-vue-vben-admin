@@ -105,31 +105,33 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PublicWebSiteGateway.Host",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.AspNetCore.Serilog", "framework\src\Leopard.AspNetCore.Serilog\Leopard.AspNetCore.Serilog.csproj", "{29906DB2-CA4F-446D-B8CF-B95609F87C0E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02_Saas", "02_Saas", "{2723E4FD-5FBA-42CA-8DA6-238E11460EA3}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01_Saas", "01_Saas", "{2723E4FD-5FBA-42CA-8DA6-238E11460EA3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Saas.Application", "microservices\Saas\Leopard.Saas.Application\Leopard.Saas.Application.csproj", "{BC04C769-C9CB-447A-B3F4-F57E76A1E424}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Saas.Application", "module\Saas\Leopard.Saas.Application\Leopard.Saas.Application.csproj", "{BC04C769-C9CB-447A-B3F4-F57E76A1E424}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Saas.Application.Contracts", "microservices\Saas\Leopard.Saas.Application.Contracts\Leopard.Saas.Application.Contracts.csproj", "{A949FA1F-47A8-413B-B668-3B4EC652D74C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Saas.Application.Contracts", "module\Saas\Leopard.Saas.Application.Contracts\Leopard.Saas.Application.Contracts.csproj", "{A949FA1F-47A8-413B-B668-3B4EC652D74C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Saas.Domain", "microservices\Saas\Leopard.Saas.Domain\Leopard.Saas.Domain.csproj", "{85AC289B-936E-46A0-8C3B-2BD1A9651B30}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Saas.Domain", "module\Saas\Leopard.Saas.Domain\Leopard.Saas.Domain.csproj", "{85AC289B-936E-46A0-8C3B-2BD1A9651B30}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Saas.EntityFrameworkCore", "microservices\Saas\Leopard.Saas.EntityFrameworkCore\Leopard.Saas.EntityFrameworkCore.csproj", "{83FCA293-0497-480F-9CFC-A511EC64509D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Saas.EntityFrameworkCore", "module\Saas\Leopard.Saas.EntityFrameworkCore\Leopard.Saas.EntityFrameworkCore.csproj", "{83FCA293-0497-480F-9CFC-A511EC64509D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Saas.Domain.Shared", "microservices\Saas\Leopard.Saas.Domain.Shared\Leopard.Saas.Domain.Shared.csproj", "{C051638D-5512-4211-9B65-4499D678DD2B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Saas.Domain.Shared", "module\Saas\Leopard.Saas.Domain.Shared\Leopard.Saas.Domain.Shared.csproj", "{C051638D-5512-4211-9B65-4499D678DD2B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Saas.HttpApi", "microservices\Saas\Leopard.Saas.HttpApi\Leopard.Saas.HttpApi.csproj", "{BFFF2669-82FF-44D7-A479-4161137A0889}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Saas.HttpApi", "module\Saas\Leopard.Saas.HttpApi\Leopard.Saas.HttpApi.csproj", "{BFFF2669-82FF-44D7-A479-4161137A0889}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Saas.HttpApi.Client", "microservices\Saas\Leopard.Saas.HttpApi.Client\Leopard.Saas.HttpApi.Client.csproj", "{33CE2359-4CBB-4CA4-B9F9-BC22F1695F9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Saas.HttpApi.Client", "module\Saas\Leopard.Saas.HttpApi.Client\Leopard.Saas.HttpApi.Client.csproj", "{33CE2359-4CBB-4CA4-B9F9-BC22F1695F9B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Saas.HttpApi.Host", "microservices\Saas\Leopard.Saas.HttpApi.Host\Leopard.Saas.HttpApi.Host.csproj", "{465421FD-4731-463E-9B41-79547F8EC48D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Saas.HttpApi.Host", "module\Saas\Leopard.Saas.HttpApi.Host\Leopard.Saas.HttpApi.Host.csproj", "{465421FD-4731-463E-9B41-79547F8EC48D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "88_Test", "88_Test", "{F6A6FE17-37E6-4E0B-B583-43C37644A624}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Buiness.Shared", "microservices\shared\Leopard.Buiness.Shared\Leopard.Buiness.Shared.csproj", "{23463A7D-8CAC-4515-B766-9383F02DEA7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Buiness.Shared", "shared\Leopard.Buiness.Shared\Leopard.Buiness.Shared.csproj", "{23463A7D-8CAC-4515-B766-9383F02DEA7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leopard.Utils.Host", "framework\src\Utils\Leopard.Utils.Host\Leopard.Utils.Host.csproj", "{16530019-96EA-4395-8A37-C1AD2D46EE2A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Utils.Host", "framework\src\Utils\Leopard.Utils.Host\Leopard.Utils.Host.csproj", "{16530019-96EA-4395-8A37-C1AD2D46EE2A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utils", "Utils", "{602E5DC7-C181-4F08-9419-E7EBDAF41E2C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "06_Module", "06_Module", "{23C5DD87-55DF-4012-8B7B-E4107B38B0DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -370,7 +372,6 @@ Global
 		{01D5AB23-4029-4DC7-A041-0D510C099F49} = {408C61DE-C824-4BA2-8EE7-CE571EA864B5}
 		{7FEFE25B-8CBE-4625-9F83-EB069AADDFDC} = {408C61DE-C824-4BA2-8EE7-CE571EA864B5}
 		{DF5B844A-D99B-4F83-B0A8-0FD3C2DFF21C} = {09CFB583-D5A3-4631-A3FD-2C95226F4ACB}
-		{FC715BA7-0C2F-424C-8EA3-EB02AB3FDCB8} = {FCF83F0C-BF45-4348-93C5-B9E560C35553}
 		{AECD9C89-5353-49B0-A60A-0AF43D9B4573} = {FCF83F0C-BF45-4348-93C5-B9E560C35553}
 		{7F99D166-22C2-40A2-BD4F-1EF256407CD8} = {AECD9C89-5353-49B0-A60A-0AF43D9B4573}
 		{B27605CF-16E3-4BED-8062-91A36BD4CBC4} = {AECD9C89-5353-49B0-A60A-0AF43D9B4573}
@@ -386,7 +387,7 @@ Global
 		{5BE5E505-E93C-40FC-9D00-AFA9039AC64D} = {BFBA6DEE-2C3D-4695-A63C-9EC95A7D5400}
 		{971204CE-9AF8-453A-8FF9-BBC900A25285} = {BFBA6DEE-2C3D-4695-A63C-9EC95A7D5400}
 		{29906DB2-CA4F-446D-B8CF-B95609F87C0E} = {408C61DE-C824-4BA2-8EE7-CE571EA864B5}
-		{2723E4FD-5FBA-42CA-8DA6-238E11460EA3} = {FCF83F0C-BF45-4348-93C5-B9E560C35553}
+		{2723E4FD-5FBA-42CA-8DA6-238E11460EA3} = {23C5DD87-55DF-4012-8B7B-E4107B38B0DA}
 		{BC04C769-C9CB-447A-B3F4-F57E76A1E424} = {2723E4FD-5FBA-42CA-8DA6-238E11460EA3}
 		{A949FA1F-47A8-413B-B668-3B4EC652D74C} = {2723E4FD-5FBA-42CA-8DA6-238E11460EA3}
 		{85AC289B-936E-46A0-8C3B-2BD1A9651B30} = {2723E4FD-5FBA-42CA-8DA6-238E11460EA3}
