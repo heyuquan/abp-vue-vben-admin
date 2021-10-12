@@ -40,9 +40,6 @@ namespace BackendAdminAppGateway.Host
             var configuration = context.Services.GetConfiguration();
             var hostingEnvironment = context.Services.GetHostingEnvironment();
 
-            var a = configuration.GetSection("AuthServer");
-            AuthServerOptions jiguangConfig = configuration.GetSection("AuthServer").Get<AuthServerOptions>();
-
             context.Services.AddAuthentication("Bearer")
                 .AddIdentityServerAuthentication(options =>
                 {

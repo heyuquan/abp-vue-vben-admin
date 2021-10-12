@@ -1,30 +1,19 @@
-using Leopard.AspNetCore.Serilog;
 using Leopard.Buiness.Shared;
 using Leopard.Consul;
+using Leopard.Utils.Host.Leopard.Utils;
 using Localization.Resources.AbpUi;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.DataProtection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SSO.AuthServer.EntityFrameworkCore;
 using SSO.AuthServer.Localization;
-using StackExchange.Redis;
-using System;
 using System.IO;
-using System.Linq;
 using Volo.Abp;
 using Volo.Abp.Account;
 using Volo.Abp.Account.Web;
 using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic.Bundling;
-using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
-using Volo.Abp.Auditing;
 using Volo.Abp.Autofac;
-using Volo.Abp.BackgroundJobs;
-using Volo.Abp.Caching;
-using Volo.Abp.Caching.StackExchangeRedis;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Volo.Abp.UI.Navigation.Urls;
@@ -34,33 +23,21 @@ namespace SSO.AuthServer
 {
     [DependsOn(
         typeof(AbpAutofacModule),
-        typeof(AbpCachingStackExchangeRedisModule),
         typeof(AbpAccountWebIdentityServerModule),
         typeof(AbpAccountApplicationModule),
         typeof(AbpAspNetCoreMvcUiBasicThemeModule),
         typeof(AuthServerEntityFrameworkCoreModule),
-        typeof(LeopardAspNetCoreSerilogModule),
         typeof(LeopardConsulModule)
         )]
-    public class AuthServerIdentityServerModule : AbpModule
+    public class AuthServerIdentityServerModule : HostCommonModule
     {
+        public AuthServerIdentityServerModule() : base("AuthServerIdentityServer", MultiTenancyConsts.IsEnabled)
+        { }
+
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
             var hostingEnvironment = context.Services.GetHostingEnvironment();
             var configuration = context.Services.GetConfiguration();
-
-            Configure<AbpLocalizationOptions>(options =>
-            {
-                options.Resources
-                    .Get<AuthServerResource>()
-                    .AddBaseTypes(
-                        typeof(AbpUiResource)
-                    );
-
-
-                options.Languages.Add(new LanguageInfo("en", "en", "English"));
-                options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "简体中文"));
-            });
 
             Configure<AbpBundlingOptions>(options =>
             {
@@ -73,10 +50,13 @@ namespace SSO.AuthServer
                 );
             });
 
-            Configure<AbpAuditingOptions>(options =>
+            Configure<AbpLocalizationOptions>(options =>
             {
-                //options.IsEnabledForGetRequests = true;
-                options.ApplicationName = "AuthServer";
+                options.Resources
+                    .Get<AuthServerResource>()
+                    .AddBaseTypes(
+                        typeof(AbpUiResource)
+                    );
             });
 
             if (hostingEnvironment.IsDevelopment())
@@ -88,6 +68,7 @@ namespace SSO.AuthServer
                 });
             }
 
+
             Configure<AppUrlOptions>(options =>
             {
                 options.Applications["MVC"].RootUrl = configuration["App:SelfUrl"];
@@ -97,78 +78,12 @@ namespace SSO.AuthServer
                 options.Applications["Angular"].Urls[AccountUrlNames.PasswordReset] = "account/reset-password";
             });
 
-            Configure<AbpBackgroundJobOptions>(options =>
-            {
-                options.IsJobExecutionEnabled = false;
-            });
-
-            Configure<AbpDistributedCacheOptions>(options =>
-            {
-                options.KeyPrefix = "AuthServer:";
-            });
-
-            if (!hostingEnvironment.IsDevelopment())
-            {
-                var redis = ConnectionMultiplexer.Connect(configuration["Redis:Configuration"]);
-                context.Services
-                    .AddDataProtection()
-                    .PersistKeysToStackExchangeRedis(redis, "AuthServer-Protection-Keys");
-            }
-
-            context.Services.AddCors(options =>
-            {
-                options.AddDefaultPolicy(builder =>
-                {
-                    builder
-                        .WithOrigins(
-                            configuration["App:CorsOrigins"]
-                                .Split(",", StringSplitOptions.RemoveEmptyEntries)
-                                .Select(o => o.RemovePostFix("/"))
-                                .ToArray()
-                        )
-                        .WithAbpExposedHeaders()
-                        .SetIsOriginAllowedToAllowWildcardSubdomains()
-                        .AllowAnyHeader()
-                        .AllowAnyMethod()
-                        .AllowCredentials();
-                });
-            });
+            base.ConfigureServices(context);
         }
 
         public override void OnApplicationInitialization(ApplicationInitializationContext context)
         {
-            var app = context.GetApplicationBuilder();
-            var env = context.GetEnvironment();
-
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
-            app.UseAbpRequestLocalization();
-
-            if (!env.IsDevelopment())
-            {
-                app.UseErrorPage();
-            }
-
-            app.UseCorrelationId();
-            app.UseStaticFiles();
-            app.UseRouting();
-            app.UseCors();
-            app.UseAuthentication();
-
-            if (MultiTenancyConsts.IsEnabled)
-            {
-                app.UseMultiTenancy();
-            }
-
-            app.UseUnitOfWork();
-            app.UseIdentityServer();
-            app.UseAuthorization();
-            app.UseAuditing();
-            app.UseAbpSerilogEnrichers();
-            app.UseConfiguredEndpoints();
+            base.OnApplicationInitialization(context);
         }
     }
 }

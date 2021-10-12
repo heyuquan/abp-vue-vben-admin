@@ -64,14 +64,14 @@ namespace SSO.AuthServer.EntityFrameworkCore
 
             /* Include modules to your migration db context */
 
-            builder.ConfigurePermissionManagement();
-            builder.ConfigureSettingManagement();
-            builder.ConfigureBackgroundJobs();
-            builder.ConfigureAuditLogging();
+            //builder.ConfigurePermissionManagement();
+            //builder.ConfigureSettingManagement();
+           // builder.ConfigureBackgroundJobs();
+            //builder.ConfigureAuditLogging();
             builder.ConfigureIdentity();
             builder.ConfigureIdentityServer();
-            builder.ConfigureFeatureManagement();
-            builder.ConfigureTenantManagement();
+            //builder.ConfigureFeatureManagement();
+            //builder.ConfigureTenantManagement();
 
             /* Configure your own tables/entities inside here */
 

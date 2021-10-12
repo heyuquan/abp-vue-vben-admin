@@ -1,13 +1,13 @@
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.EntityFrameworkCore;
-using Volo.Abp.EntityFrameworkCore.SqlServer;
+using Volo.Abp.EntityFrameworkCore.MySQL;
 using Volo.Abp.Modularity;
 
 namespace Leopard.Saas.EntityFrameworkCore
 {
     [DependsOn(
         typeof(SaasDomainModule),
-        typeof(AbpEntityFrameworkCoreSqlServerModule)
+        typeof(AbpEntityFrameworkCoreMySQLModule)
     )]
     public class SaasEntityFrameworkCoreModule : AbpModule
     {
@@ -21,10 +21,7 @@ namespace Leopard.Saas.EntityFrameworkCore
 
             Configure<AbpDbContextOptions>(options =>
             {
-                options.Configure<SaasDbContext>(c =>
-                {
-                    c.UseSqlServer(b => { b.MigrationsHistoryTable("__Saas_Migrations"); });
-                });
+                options.UseMySQL();
             });
         }
     }

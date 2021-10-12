@@ -36,6 +36,7 @@ using Volo.Abp.MultiTenancy;
 using Volo.Abp.Swashbuckle;
 using Volo.Abp.Timing;
 using Volo.Abp.VirtualFileSystem;
+using Leopard.Utils.Host.Leopard.Utils;
 
 namespace Mk.DemoC
 {
@@ -45,18 +46,14 @@ namespace Mk.DemoC
         typeof(DemoCHttpApiModule),
         typeof(AbpAspNetCoreMvcUiMultiTenancyModule),
         typeof(AbpAutofacModule),
-        typeof(AbpCachingStackExchangeRedisModule),
-        typeof(AbpEntityFrameworkCoreMySQLModule),
-        typeof(AbpAspNetCoreSerilogModule),
+        
         typeof(AbpEventBusRabbitMqModule),
-        typeof(AbpSwashbuckleModule),
-        typeof(LeopardAspNetCoreSerilogModule),
-        typeof(LeopardConsulModule),
-        typeof(LeopardAspNetCoreSwashbuckleModule)
+        typeof(LeopardConsulModule)
         )]
-    public class DemoCHttpApiHostModule : AbpModule
+    public class DemoCHttpApiHostModule : HostCommonModule
     {
-        private const string DefaultCorsPolicyName = "Default";
+        public DemoCHttpApiHostModule() : base("MkDemoC", MultiTenancyConsts.IsEnabled)
+        { }
 
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
@@ -65,47 +62,8 @@ namespace Mk.DemoC
 
             // 自动API控制器
             ConfigureConventionalControllers();
-
-            ConfigureAuthentication(context, configuration);
-            ConfigureLocalization();
-            ConfigureCache(configuration);
-            ConfigureVirtualFileSystem(context);
-            ConfigureRedis(context, configuration, hostingEnvironment);
-            ConfigureCors(context, configuration);
-            ConfigureSwaggerServices(context, configuration);
-
-            // 设置分页默认返回20条数据   
-            LimitedResultRequestDto.DefaultMaxResultCount = 20;
-
-            Configure<AbpMultiTenancyOptions>(options =>
-            {
-                options.IsEnabled = MultiTenancyConsts.IsEnabled;
-            });
-
-            Configure<AbpDbContextOptions>(options =>
-            {
-                options.UseMySQL();
-            });
-
-            Configure<AbpMultiTenancyOptions>(options =>
-            {
-                options.IsEnabled = MultiTenancyConsts.IsEnabled;
-            });
-
-            Configure<MvcOptions>(mvcOptions =>
-            {
-                // 全局异常替换
-                // https://www.cnblogs.com/twoBcoder/p/12838913.html
-                var index = mvcOptions.Filters.ToList().FindIndex(filter => filter is ServiceFilterAttribute attr && attr.ServiceType.Equals(typeof(AbpExceptionFilter)));
-                if (index > -1)
-                    mvcOptions.Filters.RemoveAt(index);
-                mvcOptions.Filters.Add(typeof(LeopardExceptionFilter));
-            });
-
-            Configure<AbpClockOptions>(options =>
-            {
-                options.Kind = DateTimeKind.Utc;
-            });
+         
+            ConfigureLocalization();       
 
             //context.Services.AddHttpsRedirection(options =>
             //{
@@ -116,15 +74,7 @@ namespace Mk.DemoC
             //    options.HttpsPort = 44402;
             //});
         }
-
-        private void ConfigureCache(IConfiguration configuration)
-        {
-            Configure<AbpDistributedCacheOptions>(options =>
-            {
-                options.KeyPrefix = "MkDemoC:";
-            });
-        }
-
+   
         private void ConfigureVirtualFileSystem(ServiceConfigurationContext context)
         {
             var hostingEnvironment = context.Services.GetHostingEnvironment();
@@ -149,22 +99,6 @@ namespace Mk.DemoC
             });
         }
 
-        private void ConfigureAuthentication(ServiceConfigurationContext context, IConfiguration configuration)
-        {
-            context.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddIdentityServerAuthentication(options =>
-                {
-                    options.Authority = configuration["AuthServer:Authority"];
-                    options.RequireHttpsMetadata = Convert.ToBoolean(configuration["AuthServer:RequireHttpsMetadata"]);
-                    options.ApiName = configuration["AuthServer:SwaggerClientId"];
-                });
-        }
-
-        private static void ConfigureSwaggerServices(ServiceConfigurationContext context, IConfiguration configuration)
-        {
-            context.Services.AddLepardSwaggerGen();
-        }
-
         private void ConfigureLocalization()
         {
             Configure<AbpLocalizationOptions>(options =>
@@ -174,79 +108,9 @@ namespace Mk.DemoC
             });
         }
 
-        private void ConfigureRedis(
-            ServiceConfigurationContext context,
-            IConfiguration configuration,
-            IWebHostEnvironment hostingEnvironment)
-        {
-            if (!hostingEnvironment.IsDevelopment())
-            {
-                var redis = ConnectionMultiplexer.Connect(configuration["Redis:Configuration"]);
-                context.Services
-                    .AddDataProtection()
-                    .PersistKeysToStackExchangeRedis(redis, "MkDemoC-Protection-Keys");
-            }
-        }
-
-        private void ConfigureCors(ServiceConfigurationContext context, IConfiguration configuration)
-        {
-            context.Services.AddCors(options =>
-            {
-                options.AddPolicy(DefaultCorsPolicyName, builder =>
-                {
-                    builder
-                        .WithOrigins(
-                            configuration["App:CorsOrigins"]
-                                .Split(",", StringSplitOptions.RemoveEmptyEntries)
-                                .Select(o => o.RemovePostFix("/"))
-                                .ToArray()
-                        )
-                        .WithAbpExposedHeaders()
-                        .SetIsOriginAllowedToAllowWildcardSubdomains()
-                        .AllowAnyHeader()
-                        .AllowAnyMethod()
-                        .AllowCredentials();
-                });
-            });
-        }
-
         public override void OnApplicationInitialization(ApplicationInitializationContext context)
         {
-            var app = context.GetApplicationBuilder();
-            var env = context.GetEnvironment();
-
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
-            app.UseAbpRequestLocalization();
-
-            if (!env.IsDevelopment())
-            {
-                app.UseErrorPage();
-            }
-
-            //app.UseHttpsRedirection();
-            app.UseCorrelationId();
-
-            app.UseStaticFiles();
-            app.UseRouting();
-            app.UseCors(DefaultCorsPolicyName);
-            app.UseAuthentication();
-            app.UseAbpClaimsMap();
-            if (MultiTenancyConsts.IsEnabled)
-            {
-                app.UseMultiTenancy();
-            }
-            app.UseAuthorization();
-            app.UseSwagger();
-            app.UseLepardSwaggerUI();
-
-            app.UseAuditing();
-            app.UseAbpSerilogEnrichers();
-            app.UseUnitOfWork();
-            app.UseConfiguredEndpoints();
+            base.OnApplicationInitialization(context);
         }
     }
 }

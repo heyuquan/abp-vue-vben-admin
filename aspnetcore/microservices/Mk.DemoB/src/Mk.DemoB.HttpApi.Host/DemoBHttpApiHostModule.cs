@@ -1,38 +1,24 @@
 using Leopard.AspNetCore.Mvc.Filters;
-using Leopard.AspNetCore.Serilog;
-using Leopard.AspNetCore.Swashbuckle;
+using Leopard.Buiness.Shared;
 using Leopard.Consul;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.DataProtection;
+using Leopard.Utils.Host.Leopard.Utils;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Mk.DemoB.Localization;
-using Leopard.Buiness.Shared;
-using StackExchange.Redis;
 using System;
 using System.IO;
 using System.Linq;
 using Volo.Abp;
-using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc.ExceptionHandling;
 using Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy;
-using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
-using Volo.Abp.AspNetCore.Serilog;
 using Volo.Abp.Autofac;
-using Volo.Abp.Caching;
-using Volo.Abp.Caching.StackExchangeRedis;
 using Volo.Abp.EventBus.RabbitMq;
 using Volo.Abp.Guids;
-using Volo.Abp.Localization;
 using Volo.Abp.Localization.ExceptionHandling;
 using Volo.Abp.Modularity;
-using Volo.Abp.MultiTenancy;
 using Volo.Abp.Swashbuckle;
 using Volo.Abp.Timing;
 using Volo.Abp.VirtualFileSystem;
@@ -42,19 +28,16 @@ namespace Mk.DemoB
     [DependsOn(
         typeof(DemoBHttpApiModule),
         typeof(AbpAutofacModule),
-        typeof(AbpCachingStackExchangeRedisModule),
         typeof(AbpAspNetCoreMvcUiMultiTenancyModule),
         typeof(DemoBApplicationModule),
-        typeof(AbpAspNetCoreSerilogModule),
         typeof(AbpEventBusRabbitMqModule),
         typeof(AbpSwashbuckleModule),
-        typeof(LeopardAspNetCoreSerilogModule),
-        typeof(LeopardConsulModule),
-        typeof(LeopardAspNetCoreSwashbuckleModule)
+        typeof(LeopardConsulModule)
         )]
-    public class DemoBHttpApiHostModule : AbpModule
+    public class DemoBHttpApiHostModule  : HostCommonModule
     {
-        private const string DefaultCorsPolicyName = "Default";
+        public DemoBHttpApiHostModule() : base("MkDemoB", MultiTenancyConsts.IsEnabled)
+        { }
 
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
@@ -64,21 +47,7 @@ namespace Mk.DemoB
             // 自动API控制器
             ConfigureConventionalControllers();
 
-            ConfigureAuthentication(context, configuration);
-            ConfigureLocalization();
-            ConfigureCache(configuration);
             ConfigureVirtualFileSystem(context);
-            ConfigureRedis(context, configuration, hostingEnvironment);
-            ConfigureCors(context, configuration);
-            ConfigureSwaggerServices(context, configuration);
-
-            // 设置分页默认返回20条数据   
-            LimitedResultRequestDto.DefaultMaxResultCount = 20;
-
-            Configure<AbpMultiTenancyOptions>(options =>
-            {
-                options.IsEnabled = MultiTenancyConsts.IsEnabled;
-            });
 
             // guid的排序规则
             Configure<AbpSequentialGuidGeneratorOptions>(options =>
@@ -108,11 +77,6 @@ namespace Mk.DemoB
                 mvcOptions.Filters.Add(typeof(LeopardExceptionFilter));
             });
 
-            Configure<AbpClockOptions>(options =>
-            {
-                options.Kind = DateTimeKind.Utc;
-            });
-
             //Configure<AbpDistributedEntityEventOptions>(options =>
             //{
             //    options.AutoEventSelectors.AddAll();
@@ -127,14 +91,6 @@ namespace Mk.DemoB
             //    options.HttpsPort = 44305;
             //});
 
-        }
-
-        private void ConfigureCache(IConfiguration configuration)
-        {
-            Configure<AbpDistributedCacheOptions>(options =>
-            {
-                options.KeyPrefix = "MkDemoB:";
-            });
         }
 
         private void ConfigureVirtualFileSystem(ServiceConfigurationContext context)
@@ -161,106 +117,9 @@ namespace Mk.DemoB
             });
         }
 
-        private void ConfigureAuthentication(ServiceConfigurationContext context, IConfiguration configuration)
-        {
-            context.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddIdentityServerAuthentication(options =>
-                {
-                    options.Authority = configuration["AuthServer:Authority"];
-                    options.RequireHttpsMetadata = Convert.ToBoolean(configuration["AuthServer:RequireHttpsMetadata"]);
-                    options.ApiName = configuration["AuthServer:SwaggerClientId"]; 
-                });
-        }
-
-        private static void ConfigureSwaggerServices(ServiceConfigurationContext context, IConfiguration configuration)
-        {
-            context.Services.AddLepardSwaggerGen();
-        }
-
-        private void ConfigureLocalization()
-        {
-            Configure<AbpLocalizationOptions>(options =>
-            {
-                options.Languages.Add(new LanguageInfo("en", "en", "English"));
-                options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "简体中文"));
-            });
-        }
-
-        private void ConfigureRedis(
-            ServiceConfigurationContext context,
-            IConfiguration configuration,
-            IWebHostEnvironment hostingEnvironment)
-        {
-            if (!hostingEnvironment.IsDevelopment())
-            {
-                var redis = ConnectionMultiplexer.Connect(configuration["Redis:Configuration"]);
-                context.Services
-                    .AddDataProtection()
-                    .PersistKeysToStackExchangeRedis(redis, "MkDemoB-Protection-Keys");
-            }
-        }
-
-        private void ConfigureCors(ServiceConfigurationContext context, IConfiguration configuration)
-        {
-            context.Services.AddCors(options =>
-            {
-                options.AddPolicy(DefaultCorsPolicyName, builder =>
-                {
-                    builder
-                        .WithOrigins(
-                            configuration["App:CorsOrigins"]
-                                .Split(",", StringSplitOptions.RemoveEmptyEntries)
-                                .Select(o => o.RemovePostFix("/"))
-                                .ToArray()
-                        )
-                        .WithAbpExposedHeaders()
-                        .SetIsOriginAllowedToAllowWildcardSubdomains()
-                        .AllowAnyHeader()
-                        .AllowAnyMethod()
-                        .AllowCredentials();
-                });
-            });
-        }
-
         public override void OnApplicationInitialization(ApplicationInitializationContext context)
         {
-            var app = context.GetApplicationBuilder();
-            var env = context.GetEnvironment();
-
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
-            app.UseAbpRequestLocalization();
-
-            if (!env.IsDevelopment())
-            {
-                app.UseErrorPage();
-            }
-
-            app.UseCorrelationId();
-            //app.UseHttpsRedirection();
-
-            app.UseStaticFiles();
-            app.UseRouting();
-            app.UseCors(DefaultCorsPolicyName);
-            app.UseAuthentication();
-
-            if (MultiTenancyConsts.IsEnabled)
-            {
-                app.UseMultiTenancy();
-            }
-
-            app.UseAuthorization();
-
-            app.UseSwagger();
-            app.UseLepardSwaggerUI();
-
-            app.UseAuditing();
-            app.UseAbpSerilogEnrichers();
-            app.UseUnitOfWork();
-            app.UseConfiguredEndpoints();
+            base.OnApplicationInitialization(context);
         }
     }
 }

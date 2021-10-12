@@ -8,12 +8,6 @@
 		<RootNamespace>Mk.DemoB</RootNamespace>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<Compile Remove="Abp\**" />
-		<EmbeddedResource Remove="Abp\**" />
-		<None Remove="Abp\**" />
-	</ItemGroup>
-
 	<ItemGroup>	
 		<PackageReference Include="Volo.Abp.EntityFrameworkCore.MySQL" Version="4.4.2" />
 	</ItemGroup>
