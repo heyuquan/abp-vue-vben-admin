@@ -2,11 +2,13 @@ using Mk.DemoB.ObjectExtending;
 using Leopard.Buiness.Shared;
 using Volo.Abp.Modularity;
 using Volo.Abp.MultiTenancy;
+using Leopard.Saas;
 
 namespace Mk.DemoB
 {
     [DependsOn(
-        typeof(DemoBDomainSharedModule)
+        typeof(DemoBDomainSharedModule),
+        typeof(SaasDomainModule)
         )]
     public class DemoBDomainModule : AbpModule
     {

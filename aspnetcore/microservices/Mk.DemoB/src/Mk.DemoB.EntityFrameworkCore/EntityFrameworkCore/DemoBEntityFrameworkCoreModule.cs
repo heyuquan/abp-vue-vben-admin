@@ -1,4 +1,5 @@
 using Leopard.EntityFrameworkCore;
+using Leopard.Saas.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.MySQL;
@@ -9,7 +10,8 @@ namespace Mk.DemoB.EntityFrameworkCore
     [DependsOn(
         typeof(DemoBDomainModule),
         typeof(AbpEntityFrameworkCoreMySQLModule),
-        typeof(LeopardEntityFrameworkCoreModule)
+        typeof(LeopardEntityFrameworkCoreModule),
+        typeof(SaasEntityFrameworkCoreModule)
         )]
     public class DemoBEntityFrameworkCoreModule : AbpModule
     {

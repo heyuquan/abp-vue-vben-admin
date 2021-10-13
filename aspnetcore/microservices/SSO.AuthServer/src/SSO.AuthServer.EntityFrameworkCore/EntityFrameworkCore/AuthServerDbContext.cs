@@ -5,18 +5,14 @@ using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.Identity;
 using Volo.Abp.Identity.EntityFrameworkCore;
 using Volo.Abp.IdentityServer.EntityFrameworkCore;
-using Volo.Abp.TenantManagement;
-using Volo.Abp.TenantManagement.EntityFrameworkCore;
 
 namespace SSO.AuthServer.EntityFrameworkCore
 {
     [ReplaceDbContext(typeof(IIdentityDbContext))]
-    [ReplaceDbContext(typeof(ITenantManagementDbContext))]
     [ConnectionStringName("Default")]
     public class AuthServerDbContext : 
         AbpDbContext<AuthServerDbContext>,
-        IIdentityDbContext,
-        ITenantManagementDbContext
+        IIdentityDbContext
     {
         /* Add DbSet properties for your Aggregate Roots / Entities here. */
         
@@ -39,11 +35,7 @@ namespace SSO.AuthServer.EntityFrameworkCore
         public DbSet<IdentityClaimType> ClaimTypes { get; set; }
         public DbSet<OrganizationUnit> OrganizationUnits { get; set; }
         public DbSet<IdentitySecurityLog> SecurityLogs { get; set; }
-        public DbSet<IdentityLinkUser> LinkUsers { get; set; }
-        
-        // Tenant Management
-        public DbSet<Tenant> Tenants { get; set; }
-        public DbSet<TenantConnectionString> TenantConnectionStrings { get; set; }
+        public DbSet<IdentityLinkUser> LinkUsers { get; set; }        
 
         #endregion
         
@@ -61,7 +53,6 @@ namespace SSO.AuthServer.EntityFrameworkCore
 
             builder.ConfigureIdentity();
             builder.ConfigureIdentityServer();
-            builder.ConfigureTenantManagement();
 
             /* Configure your own tables/entities inside here */
 

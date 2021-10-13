@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Leopard.Saas.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;
@@ -46,7 +47,7 @@ namespace Leopard.BackendAdmin.EntityFrameworkCore
             builder.ConfigureSettingManagement();
             builder.ConfigureAuditLogging();
             builder.ConfigureFeatureManagement();
-
+            builder.ConfigureSaas();
 
             /* Configure your own tables/entities inside here */
 

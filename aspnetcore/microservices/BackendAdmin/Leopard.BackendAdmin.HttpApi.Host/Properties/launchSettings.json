@@ -3,8 +3,8 @@
     "windowsAuthentication": false, 
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "https://localhost:44388",
-      "sslPort": 44388
+      "applicationUrl": "https://localhost:44145",
+      "sslPort": 44145
     }
   },
   "profiles": {
@@ -18,7 +18,7 @@
     "Leopard.BackendAdmin.HttpApi.Host": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:44388",
+      "applicationUrl": "https://localhost:44145",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

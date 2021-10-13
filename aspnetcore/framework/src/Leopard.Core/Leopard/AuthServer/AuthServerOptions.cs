@@ -9,7 +9,7 @@ namespace Leopard.AuthServer
     // 配置案例
     //"AuthServer": {
     //  "ApiName": "BackendAdminAppGateway",
-    //  "Authority": "https://localhost:44395",
+    //  "Authority": "https://localhost:44115",
     //  "RequireHttpsMetadata": "true",
 
     //  "SwaggerClientId": "BackendAdminAppGateway",

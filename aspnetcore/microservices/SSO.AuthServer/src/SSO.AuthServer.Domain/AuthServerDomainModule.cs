@@ -7,6 +7,7 @@ using Volo.Abp.Identity;
 using Volo.Abp.IdentityServer;
 using Volo.Abp.Modularity;
 using Volo.Abp.MultiTenancy;
+using Volo.Abp.PermissionManagement;
 using Volo.Abp.PermissionManagement.Identity;
 using Volo.Abp.PermissionManagement.IdentityServer;
 
@@ -16,8 +17,9 @@ namespace SSO.AuthServer
         typeof(AuthServerDomainSharedModule),
         typeof(AbpIdentityDomainModule),        
         typeof(SaasDomainModule),
-        typeof(AbpPermissionManagementDomainIdentityModule),
         typeof(AbpIdentityServerDomainModule),
+        typeof(AbpPermissionManagementDomainModule),
+        typeof(AbpPermissionManagementDomainIdentityModule),
         typeof(AbpPermissionManagementDomainIdentityServerModule),
         typeof(AbpEmailingModule)
     )]

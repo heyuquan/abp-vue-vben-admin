@@ -1,19 +1,21 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Leopard.Saas.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.MySQL;
 using Volo.Abp.Identity.EntityFrameworkCore;
 using Volo.Abp.IdentityServer.EntityFrameworkCore;
 using Volo.Abp.Modularity;
-using Volo.Abp.TenantManagement.EntityFrameworkCore;
+using Volo.Abp.PermissionManagement.EntityFrameworkCore;
 
 namespace SSO.AuthServer.EntityFrameworkCore
 {
     [DependsOn(
         typeof(AuthServerDomainModule),
+        typeof(AbpPermissionManagementEntityFrameworkCoreModule),
         typeof(AbpIdentityEntityFrameworkCoreModule),
         typeof(AbpIdentityServerEntityFrameworkCoreModule),
         typeof(AbpEntityFrameworkCoreMySQLModule),
-        typeof(AbpTenantManagementEntityFrameworkCoreModule)
+        typeof(SaasEntityFrameworkCoreModule)
         )]
     public class AuthServerEntityFrameworkCoreModule : AbpModule
     {

@@ -3,7 +3,7 @@
     "windowsAuthentication": false, 
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "https://localhost:44395",
+      "applicationUrl": "https://localhost:44115",
       "sslPort": 44395
     }
   },
@@ -18,7 +18,7 @@
     "SSO.AuthServer.IdentityServer": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:44395",
+      "applicationUrl": "https://localhost:44115",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
