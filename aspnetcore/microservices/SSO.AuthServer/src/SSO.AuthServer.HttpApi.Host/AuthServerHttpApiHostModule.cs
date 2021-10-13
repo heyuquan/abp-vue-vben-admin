@@ -55,21 +55,18 @@ namespace SSO.AuthServer
             {
                 Configure<AbpVirtualFileSystemOptions>(options =>
                 {
-                    Configure<AbpVirtualFileSystemOptions>(options =>
-                    {
-                        options.FileSets.ReplaceEmbeddedByPhysical<AuthServerDomainSharedModule>(
-                            Path.Combine(hostingEnvironment.ContentRootPath,
-                                $"..{Path.DirectorySeparatorChar}SSO.AuthServer.Domain.Shared"));
-                        options.FileSets.ReplaceEmbeddedByPhysical<AuthServerDomainModule>(
-                            Path.Combine(hostingEnvironment.ContentRootPath,
-                                $"..{Path.DirectorySeparatorChar}SSO.AuthServer.Domain"));
-                        options.FileSets.ReplaceEmbeddedByPhysical<AuthServerApplicationContractsModule>(
-                            Path.Combine(hostingEnvironment.ContentRootPath,
-                                $"..{Path.DirectorySeparatorChar}SSO.AuthServer.Application.Contracts"));
-                        options.FileSets.ReplaceEmbeddedByPhysical<AuthServerApplicationModule>(
-                            Path.Combine(hostingEnvironment.ContentRootPath,
-                                $"..{Path.DirectorySeparatorChar}SSO.AuthServer.Application"));
-                    });
+                    options.FileSets.ReplaceEmbeddedByPhysical<AuthServerDomainSharedModule>(
+                        Path.Combine(hostingEnvironment.ContentRootPath,
+                            $"..{Path.DirectorySeparatorChar}SSO.AuthServer.Domain.Shared"));
+                    options.FileSets.ReplaceEmbeddedByPhysical<AuthServerDomainModule>(
+                        Path.Combine(hostingEnvironment.ContentRootPath,
+                            $"..{Path.DirectorySeparatorChar}SSO.AuthServer.Domain"));
+                    options.FileSets.ReplaceEmbeddedByPhysical<AuthServerApplicationContractsModule>(
+                        Path.Combine(hostingEnvironment.ContentRootPath,
+                            $"..{Path.DirectorySeparatorChar}SSO.AuthServer.Application.Contracts"));
+                    options.FileSets.ReplaceEmbeddedByPhysical<AuthServerApplicationModule>(
+                        Path.Combine(hostingEnvironment.ContentRootPath,
+                            $"..{Path.DirectorySeparatorChar}SSO.AuthServer.Application"));
                 });
             }
 
