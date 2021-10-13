@@ -1,5 +1,6 @@
 using Leopard.BackendAdmin.EntityFrameworkCore;
 using Leopard.Buiness.Shared;
+using Leopard.Consul;
 using Leopard.Utils.Host.Leopard.Utils;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -31,11 +32,12 @@ using Volo.Abp.VirtualFileSystem;
 namespace Leopard.BackendAdmin
 {
     [DependsOn(
-        typeof(BackendAdminHttpApiModule),
         typeof(AbpAutofacModule),
         typeof(AbpAspNetCoreMvcUiMultiTenancyModule),
+        typeof(LeopardConsulModule),
         typeof(BackendAdminApplicationModule),
-        typeof(BackendAdminEntityFrameworkCoreModule)
+        typeof(BackendAdminEntityFrameworkCoreModule),
+        typeof(BackendAdminHttpApiModule)
     )]
     public class BackendAdminHttpApiHostModule : HostCommonModule
     {

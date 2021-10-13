@@ -16,6 +16,13 @@ https	**05    (只需要启动一个http端口即可，在nginx上设置证书�
     InternalGateway             44811 （预留44811-44820）
     PublicWebSiteGateway        44821 （预留44821-44830）
 
+项目职责
+SSO.AuthServer.HttpApi.Host：封装Account、Identity服务
+SSO.AuthServer.IdentityServer：对接ids4，专门做身份认证
+Leopard.BackendAdmin.HttpApi.Host：后台管理服务，包含如：审计、特征、权限、设置管理、租户、版本、等
+
+
+
 --demob
 docker build -f Dockerfile -t mk.demob.api.img ../../../
 
