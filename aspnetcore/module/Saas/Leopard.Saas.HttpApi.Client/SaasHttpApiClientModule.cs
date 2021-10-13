@@ -8,7 +8,7 @@ namespace Leopard.Saas
         typeof(AbpHttpClientModule),
         typeof(SaasApplicationContractsModule)
         )]
-    public class SaasServiceHttpApiClientModule : AbpModule
+    public class SaasHttpApiClientModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {

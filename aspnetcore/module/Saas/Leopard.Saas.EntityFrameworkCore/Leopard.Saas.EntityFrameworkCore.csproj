@@ -4,7 +4,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>netstandard2.1</TargetFramework>
-		<RootNamespace>Leopard.Saas</RootNamespace>
+		<RootNamespace></RootNamespace>
 	</PropertyGroup>
 
 	<ItemGroup>

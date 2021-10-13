@@ -1,1 +1,0 @@
-﻿考虑重命名为  Lepard.SsoAuth

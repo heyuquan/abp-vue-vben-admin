@@ -4,10 +4,11 @@
 
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
-		<RootNamespace>SSO.AuthServer</RootNamespace>
+		<RootNamespace></RootNamespace>
 	</PropertyGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\..\..\module\Saas\Leopard.Saas.Domain\Leopard.Saas.Domain.csproj" />
 		<ProjectReference Include="..\..\..\..\shared\Leopard.Buiness.Shared\Leopard.Buiness.Shared.csproj" />
 		<ProjectReference Include="..\SSO.AuthServer.Domain.Shared\SSO.AuthServer.Domain.Shared.csproj" />
 	</ItemGroup>
@@ -15,14 +16,9 @@
 	<ItemGroup>
 		<PackageReference Include="Volo.Abp.Emailing" Version="4.4.2" />
 		<PackageReference Include="Volo.Abp.Identity.Domain" Version="4.4.2" />
-		<PackageReference Include="Volo.Abp.PermissionManagement.Domain.Identity" Version="4.4.2" />
 		<PackageReference Include="Volo.Abp.IdentityServer.Domain" Version="4.4.2" />
-		<PackageReference Include="Volo.Abp.PermissionManagement.Domain.IdentityServer" Version="4.4.2" />
-		<PackageReference Include="Volo.Abp.BackgroundJobs.Domain" Version="4.4.2" />
-		<PackageReference Include="Volo.Abp.AuditLogging.Domain" Version="4.4.2" />
-		<PackageReference Include="Volo.Abp.TenantManagement.Domain" Version="4.4.2" />
-		<PackageReference Include="Volo.Abp.FeatureManagement.Domain" Version="4.4.2" />
-		<PackageReference Include="Volo.Abp.SettingManagement.Domain" Version="4.4.2" />
+		<PackageReference Include="Volo.Abp.PermissionManagement.Domain.Identity" Version="4.4.2" />
+		<PackageReference Include="Volo.Abp.PermissionManagement.Domain.IdentityServer" Version="4.4.2" />	
 	</ItemGroup>
 
 </Project>

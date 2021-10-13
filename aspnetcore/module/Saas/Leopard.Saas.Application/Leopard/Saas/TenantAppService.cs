@@ -11,6 +11,7 @@ using Volo.Abp.MultiTenancy;
 using Volo.Abp.ObjectExtending;
 using Leopard.Saas.Dtos;
 using Leopard.Saas.Permissions;
+using System.Linq;
 
 namespace Leopard.Saas
 {
@@ -43,7 +44,14 @@ namespace Leopard.Saas
         {
             var tenant = await TenantRepository.GetAsync(id);
 
-            return ObjectMapper.Map<Tenant, SaasTenantDto>(tenant);
+            var returnData = ObjectMapper.Map<Tenant, SaasTenantDto>(tenant);
+
+            if (tenant.EditionId.HasValue)
+            {
+                returnData.EditionName = (await EditionRepository.GetAsync(tenant.EditionId.Value))?.DisplayName;
+            }
+
+            return returnData;
         }
 
         public virtual async Task<PagedResultDto<SaasTenantDto>> GetListAsync(GetTenantsInput input)
@@ -51,10 +59,25 @@ namespace Leopard.Saas
             var list = await TenantRepository.GetListAsync(input.Sorting, input.MaxResultCount, input.SkipCount, input.Filter);
             var totalCount = await TenantRepository.GetCountAsync(input.Filter);
 
-            return new PagedResultDto<SaasTenantDto>(
+            var editionIds = list.Select(x => x.EditionId).ToList();
+            var editionDic = (await EditionRepository.GetListAsync(x => editionIds.Contains(x.Id)))
+                              .ToDictionary(x => x.Id, x => x.DisplayName);
+
+            var returnData = new PagedResultDto<SaasTenantDto>(
                 totalCount,
                 ObjectMapper.Map<List<Tenant>, List<SaasTenantDto>>(list)
                 );
+
+            foreach (var item in returnData.Items)
+            {
+                if (item.EditionId.HasValue &&
+                    editionDic.TryGetValue(item.EditionId.Value, out string editionName))
+                {
+                    item.EditionName = editionName;
+                }
+            }
+
+            return returnData;
         }
 
         [Authorize(SaasPermissions.Tenants.Create)]
@@ -90,7 +113,14 @@ namespace Leopard.Saas
                                 );
             }
 
-            return ObjectMapper.Map<Tenant, SaasTenantDto>(tenant);
+            var returnData = ObjectMapper.Map<Tenant, SaasTenantDto>(tenant);
+
+            if (tenant.EditionId.HasValue)
+            {
+                returnData.EditionName = (await EditionRepository.GetAsync(tenant.EditionId.Value))?.DisplayName;
+            }
+
+            return returnData;
         }
 
         [Authorize(SaasPermissions.Tenants.Update)]
@@ -104,7 +134,16 @@ namespace Leopard.Saas
             input.MapExtraPropertiesTo(tenant);
             tenant.EditionId = input.EditionId;
 
-            return ObjectMapper.Map<Tenant, SaasTenantDto>(tenant);
+            await CurrentUnitOfWork.SaveChangesAsync();
+
+            var returnData = ObjectMapper.Map<Tenant, SaasTenantDto>(tenant);
+
+            if (tenant.EditionId.HasValue)
+            {
+                returnData.EditionName = (await EditionRepository.GetAsync(tenant.EditionId.Value))?.DisplayName;
+            }
+
+            return returnData;
         }
 
         [Authorize(SaasPermissions.Tenants.Delete)]
