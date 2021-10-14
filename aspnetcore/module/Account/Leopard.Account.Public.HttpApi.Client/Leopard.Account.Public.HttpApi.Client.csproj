@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace></RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Http.Client" Version="4.4.2" />
+    <ProjectReference Include="..\Leopard.Account.Public.Application.Contracts\Leopard.Account.Public.Application.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>

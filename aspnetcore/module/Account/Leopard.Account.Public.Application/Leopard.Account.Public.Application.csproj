@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<RootNamespace></RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>	
+		<PackageReference Include="Volo.Abp.Sms" Version="4.4.2" />		
+		<ProjectReference Include="..\..\Identity\Leopard.Identity.Application\Leopard.Identity.Application.csproj" />
+		<ProjectReference Include="..\Leopard.Account.Public.Application.Contracts\Leopard.Account.Public.Application.Contracts.csproj" />
+		<ProjectReference Include="..\Leopard.Account.Shared.Application\Leopard.Account.Shared.Application.csproj" />
+	</ItemGroup>
+
+</Project>
