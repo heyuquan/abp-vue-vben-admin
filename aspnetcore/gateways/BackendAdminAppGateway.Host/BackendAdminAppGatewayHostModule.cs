@@ -48,7 +48,7 @@ namespace BackendAdminAppGateway.Host
                     options.RequireHttpsMetadata = Convert.ToBoolean(configuration["AuthServer:RequireHttpsMetadata"]);
                 });
 
-            context.Services.AddLepardSwaggerGen();
+            context.Services.AddLeopardSwaggerGen();
 
             context.Services.AddOcelot(context.Services.GetConfiguration());
         }
@@ -64,7 +64,7 @@ namespace BackendAdminAppGateway.Host
             app.UseAbpClaimsMap();
 
             app.UseSwagger();
-            app.UseLepardSwaggerUI();
+            app.UseLeopardSwaggerUI();
 
             app.MapWhen(
                 ctx => ctx.Request.Path.ToString().StartsWith("/api/abp/") ||

@@ -117,7 +117,7 @@ namespace Leopard.Utils.Host.Leopard.Utils
                 }
             });
 
-            context.Services.AddLepardSwaggerGen();
+            context.Services.AddLeopardSwaggerGen();
 
             Configure<AbpLocalizationOptions>(options =>
             {
@@ -215,7 +215,7 @@ namespace Leopard.Utils.Host.Leopard.Utils
             app.UseAuthorization();
             // swagger
             app.UseSwagger();
-            app.UseLepardSwaggerUI();
+            app.UseLeopardSwaggerUI();
             // 审计日志
             app.UseAuditing();
             // Serilog
