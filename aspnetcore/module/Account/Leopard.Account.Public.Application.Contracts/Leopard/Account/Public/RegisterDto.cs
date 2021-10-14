@@ -5,7 +5,7 @@ using Volo.Abp.Identity;
 using Volo.Abp.ObjectExtending;
 using Volo.Abp.Validation;
 
-namespace Leopard.Account
+namespace Leopard.Account.Public
 {
 	/// <summary>
 	/// 注册账号Dto

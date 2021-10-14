@@ -9,7 +9,7 @@ using Volo.Abp.TextTemplating;
 using Volo.Abp.UI.Navigation.Urls;
 using Leopard.Account.Localization;
 
-namespace Leopard.Account.Emailing
+namespace Leopard.Account.Public.Emailing
 {
     public class AccountEmailer : IAccountEmailer, ITransientDependency
 	{

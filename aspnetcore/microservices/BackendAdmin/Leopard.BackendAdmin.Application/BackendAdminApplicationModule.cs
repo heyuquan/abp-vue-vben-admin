@@ -1,4 +1,6 @@
-﻿using Leopard.Saas;
+﻿using Leopard.Account.Admin;
+using Leopard.Identity;
+using Leopard.Saas;
 using Volo.Abp.AutoMapper;
 using Volo.Abp.FeatureManagement;
 using Volo.Abp.Modularity;
@@ -13,7 +15,9 @@ namespace Leopard.BackendAdmin
         typeof(AbpPermissionManagementApplicationModule),
         typeof(AbpFeatureManagementApplicationModule),
         typeof(AbpSettingManagementApplicationModule),
-        typeof(SaasApplicationModule)
+        typeof(SaasApplicationModule),
+        typeof(LeopardAccountAdminApplicationModule),
+        typeof(LeopardIdentityApplicationModule)
         )]
     public class BackendAdminApplicationModule : AbpModule
     {

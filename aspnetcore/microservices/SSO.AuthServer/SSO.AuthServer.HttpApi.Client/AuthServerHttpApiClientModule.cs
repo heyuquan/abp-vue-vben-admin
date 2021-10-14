@@ -12,7 +12,7 @@ namespace SSO.AuthServer
     )]
     public class AuthServerHttpApiClientModule : AbpModule
     {
-        public const string RemoteServiceName = "Default";
+        public const string RemoteServiceName = "AuthServer";
 
         public override void ConfigureServices(ServiceConfigurationContext context)
         {

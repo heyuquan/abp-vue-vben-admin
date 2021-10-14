@@ -2,7 +2,7 @@
 using Volo.Abp.Http.Client;
 using Volo.Abp.Modularity;
 
-namespace Leopard.Account
+namespace Leopard.Account.Public
 {
     [DependsOn(
         typeof(LeopardAccountPublicApplicationContractsModule),

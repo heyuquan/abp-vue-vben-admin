@@ -5,7 +5,7 @@ using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Leopard.Account.Localization;
 
-namespace Leopard.Account
+namespace Leopard.Account.Admin
 {
     [DependsOn(
         typeof(LeopardAccountAdminApplicationContractsModule),

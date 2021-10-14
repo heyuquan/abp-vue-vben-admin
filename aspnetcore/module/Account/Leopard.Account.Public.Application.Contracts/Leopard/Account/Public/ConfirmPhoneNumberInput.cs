@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Leopard.Account
+namespace Leopard.Account.Public
 {
 	/// <summary>
 	/// 确认电话号码Input

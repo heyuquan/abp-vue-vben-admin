@@ -5,7 +5,7 @@ using Volo.Abp;
 using Volo.Abp.Application.Services;
 using Volo.Abp.AspNetCore.Mvc;
 
-namespace Leopard.Account
+namespace Leopard.Account.Admin
 {
 	/// <summary>
 	/// 账户设置

@@ -2,7 +2,7 @@
 using Volo.Abp.Modularity;
 using Volo.Abp.Authorization;
 
-namespace Leopard.Account
+namespace Leopard.Account.Admin
 {
     [DependsOn(
         typeof(LeopardAccountSharedApplicationContractsModule)

@@ -3,7 +3,7 @@ using Volo.Abp;
 using Volo.Abp.Application.Services;
 using Leopard.Identity;
 
-namespace Leopard.Account
+namespace Leopard.Account.Public
 {
 	/// <summary>
 	/// 账户服务

@@ -4,6 +4,8 @@ using Volo.Abp.Modularity;
 using Volo.Abp.PermissionManagement;
 using Volo.Abp.SettingManagement;
 using Leopard.Saas;
+using Leopard.Account.Admin;
+using Leopard.Identity;
 
 namespace Leopard.BackendAdmin
 {
@@ -12,11 +14,13 @@ namespace Leopard.BackendAdmin
         typeof(AbpPermissionManagementHttpApiClientModule),
         typeof(AbpFeatureManagementHttpApiClientModule),
         typeof(AbpSettingManagementHttpApiClientModule),
-        typeof(SaasHttpApiClientModule)
+        typeof(SaasHttpApiClientModule),
+        typeof(LeopardAccountAdminHttpApiClientModule),
+        typeof(LeopardIdentityHttpApiClientModule)
     )]
     public class BackendAdminHttpApiClientModule : AbpModule
     {
-        public const string RemoteServiceName = "Default";
+        public const string RemoteServiceName = "BackendAdmin";
 
         public override void ConfigureServices(ServiceConfigurationContext context)
         {

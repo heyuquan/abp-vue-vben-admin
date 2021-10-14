@@ -1,4 +1,4 @@
-﻿namespace Leopard.Account
+﻿namespace Leopard.Account.Admin
 {
 	/// <summary>
 	/// 账户设置

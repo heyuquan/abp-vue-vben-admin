@@ -6,7 +6,7 @@ using Volo.Abp.SettingManagement;
 using Volo.Abp.Settings;
 using Leopard.Account.Settings;
 
-namespace Leopard.Account
+namespace Leopard.Account.Admin
 {
     [Authorize(AccountPermissions.SettingManagement)]
 	public class AccountSettingsAppService : ApplicationService, IRemoteService, IApplicationService, IAccountSettingsAppService

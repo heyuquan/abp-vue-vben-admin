@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Volo.Abp.UI.Navigation.Urls;
 
-namespace Leopard.Account.Emailing
+namespace Leopard.Account.Public.Emailing
 {
     public static class AppUrlProviderAccountExtensions
     {

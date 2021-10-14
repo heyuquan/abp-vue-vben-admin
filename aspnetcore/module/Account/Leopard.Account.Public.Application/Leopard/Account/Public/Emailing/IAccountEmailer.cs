@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Volo.Abp.Identity;
 
-namespace Leopard.Account.Emailing
+namespace Leopard.Account.Public.Emailing
 {
 	public interface IAccountEmailer
 	{

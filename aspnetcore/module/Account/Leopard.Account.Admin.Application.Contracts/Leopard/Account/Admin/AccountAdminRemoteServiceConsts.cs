@@ -1,4 +1,4 @@
-﻿namespace Leopard.Account
+﻿namespace Leopard.Account.Admin
 {
     public class AccountAdminRemoteServiceConsts
 	{

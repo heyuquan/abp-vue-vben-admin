@@ -3,7 +3,7 @@ using Volo.Abp.Localization;
 using Volo.Abp.MultiTenancy;
 using Leopard.Account.Localization;
 
-namespace Leopard.Account
+namespace Leopard.Account.Admin
 {
 	public class AccountPermissionDefinitionProvider : PermissionDefinitionProvider
 	{

@@ -7,7 +7,7 @@ using Volo.Abp.Sms;
 using Volo.Abp.UI.Navigation;
 using Leopard.Identity;
 
-namespace Leopard.Account
+namespace Leopard.Account.Public
 {
     [DependsOn( 
         typeof(AbpSmsModule),

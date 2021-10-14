@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Volo.Abp.Identity;
 using Volo.Abp.Validation;
 
-namespace Leopard.Account
+namespace Leopard.Account.Public
 {
 	/// <summary>
 	/// 发送密码重置码Dto

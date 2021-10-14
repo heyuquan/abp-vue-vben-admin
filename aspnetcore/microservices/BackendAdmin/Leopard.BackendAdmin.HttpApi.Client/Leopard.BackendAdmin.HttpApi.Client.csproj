@@ -8,6 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\module\Account\Leopard.Account.Admin.HttpApi.Client\Leopard.Account.Admin.HttpApi.Client.csproj" />
+    <ProjectReference Include="..\..\..\module\Identity\Leopard.Identity.HttpApi.Client\Leopard.Identity.HttpApi.Client.csproj" />
     <ProjectReference Include="..\..\..\module\Saas\Leopard.Saas.HttpApi.Client\Leopard.Saas.HttpApi.Client.csproj" />
     <ProjectReference Include="..\Leopard.BackendAdmin.Application.Contracts\Leopard.BackendAdmin.Application.Contracts.csproj" />
   </ItemGroup>

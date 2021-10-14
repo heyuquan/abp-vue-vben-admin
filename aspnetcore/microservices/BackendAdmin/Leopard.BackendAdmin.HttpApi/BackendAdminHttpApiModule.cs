@@ -1,4 +1,6 @@
-﻿using Leopard.BackendAdmin.Localization;
+﻿using Leopard.Account.Admin;
+using Leopard.BackendAdmin.Localization;
+using Leopard.Identity;
 using Leopard.Saas;
 using Localization.Resources.AbpUi;
 using Volo.Abp.FeatureManagement;
@@ -14,7 +16,9 @@ namespace Leopard.BackendAdmin
         typeof(AbpPermissionManagementHttpApiModule),
         typeof(AbpFeatureManagementHttpApiModule),
         typeof(AbpSettingManagementHttpApiModule),
-        typeof(SaasHttpApiModule)
+        typeof(SaasHttpApiModule),
+        typeof(LeopardAccountAdminHttpApiModule),
+        typeof(LeopardIdentityHttpApiModule)
         )]
     public class BackendAdminHttpApiModule : AbpModule
     {

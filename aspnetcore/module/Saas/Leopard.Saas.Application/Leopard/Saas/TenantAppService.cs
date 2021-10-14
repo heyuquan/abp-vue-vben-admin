@@ -134,7 +134,7 @@ namespace Leopard.Saas
             input.MapExtraPropertiesTo(tenant);
             tenant.EditionId = input.EditionId;
 
-            await CurrentUnitOfWork.SaveChangesAsync();
+            await TenantRepository.UpdateAsync(tenant);
 
             var returnData = ObjectMapper.Map<Tenant, SaasTenantDto>(tenant);
 

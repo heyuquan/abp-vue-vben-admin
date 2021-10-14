@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Leopard.Account
+namespace Leopard.Account.Public
 {
 	/// <summary>
 	/// 确认邮箱Input

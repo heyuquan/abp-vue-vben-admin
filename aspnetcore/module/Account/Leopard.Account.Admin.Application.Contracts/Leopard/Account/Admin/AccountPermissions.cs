@@ -1,6 +1,6 @@
 ﻿using Volo.Abp.Reflection;
 
-namespace Leopard.Account
+namespace Leopard.Account.Admin
 {
     public static class AccountPermissions
 	{

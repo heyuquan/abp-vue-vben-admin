@@ -7,7 +7,7 @@ using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.Identity;
 using Leopard.Identity;
 
-namespace Leopard.Account
+namespace Leopard.Account.Public
 {
 	/// <summary>
 	/// 账户服务

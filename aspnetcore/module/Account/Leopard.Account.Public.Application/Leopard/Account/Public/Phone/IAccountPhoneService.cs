@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Volo.Abp.Identity;
 
-namespace Leopard.Account.Phone
+namespace Leopard.Account.Public.Phone
 {
 	public interface IAccountPhoneService
 	{

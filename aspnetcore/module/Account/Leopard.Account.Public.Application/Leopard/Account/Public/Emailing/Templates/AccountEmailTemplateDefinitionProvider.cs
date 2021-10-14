@@ -2,7 +2,7 @@
 using Volo.Abp.TextTemplating;
 using Leopard.Account.Localization;
 
-namespace Leopard.Account.Emailing.Templates
+namespace Leopard.Account.Public.Emailing.Templates
 {
 	public class AccountEmailTemplateDefinitionProvider : TemplateDefinitionProvider
 	{

@@ -2,7 +2,7 @@
 using Volo.Abp;
 using Volo.Abp.Application.Services;
 
-namespace Leopard.Account
+namespace Leopard.Account.Admin
 {
 	/// <summary>
 	/// 账户设置

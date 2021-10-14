@@ -1,4 +1,4 @@
-﻿namespace Leopard.Account.Emailing.Templates
+﻿namespace Leopard.Account.Public.Emailing.Templates
 {
 	public static class AccountEmailTemplates
 	{

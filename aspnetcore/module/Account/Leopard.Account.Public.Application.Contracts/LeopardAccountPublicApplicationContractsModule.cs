@@ -4,7 +4,7 @@ using Volo.Abp.Authorization;
 using Volo.Abp.Identity;
 using Leopard.Identity;
 
-namespace Leopard.Account
+namespace Leopard.Account.Public
 {
     [DependsOn(
         typeof(LeopardAccountSharedApplicationContractsModule)

@@ -1,4 +1,5 @@
-﻿using Leopard.Saas;
+﻿using Leopard.Account.Admin;
+using Leopard.Saas;
 using Volo.Abp.FeatureManagement;
 using Volo.Abp.Modularity;
 using Volo.Abp.ObjectExtending;
@@ -13,7 +14,9 @@ namespace Leopard.BackendAdmin
         typeof(AbpPermissionManagementApplicationContractsModule),
         typeof(AbpSettingManagementApplicationContractsModule),
         typeof(AbpObjectExtendingModule),
-        typeof(SaasApplicationContractsModule)
+        typeof(SaasApplicationContractsModule),
+        typeof(LeopardAccountAdminApplicationContractsModule),
+        typeof(LeopardIdentityApplicationContractsModule)
     )]
     public class BackendAdminApplicationContractsModule : AbpModule
     {

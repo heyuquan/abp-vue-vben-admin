@@ -1,12 +1,21 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\..\..\common.props" />
 
 	<PropertyGroup>
 		<TargetFramework>netstandard2.0</TargetFramework>
 		<RootNamespace></RootNamespace>
+		<GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
 	</PropertyGroup>
 
-	<ItemGroup>	
-		<PackageReference Include="Volo.Abp.Sms" Version="4.4.2" />		
+	<ItemGroup>
+		<None Remove="Leopard\Account\Public\Emailing\Templates\EmailConfirmationLink.tpl" />
+		<EmbeddedResource Include="Leopard\Account\Public\Emailing\Templates\EmailConfirmationLink.tpl" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Volo.Abp.Sms" Version="4.4.2" />
+		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="$(MicrosoftPackageVersion)" />
 		<ProjectReference Include="..\..\Identity\Leopard.Identity.Application\Leopard.Identity.Application.csproj" />
 		<ProjectReference Include="..\Leopard.Account.Public.Application.Contracts\Leopard.Account.Public.Application.Contracts.csproj" />
 		<ProjectReference Include="..\Leopard.Account.Shared.Application\Leopard.Account.Shared.Application.csproj" />

@@ -5,13 +5,13 @@ using Volo.Abp.Application.Services;
 using Volo.Abp.Identity;
 using Volo.Abp.Settings;
 using Volo.Abp.Users;
-using Leopard.Account.Emailing;
+using Leopard.Account.Public.Emailing;
 using Leopard.Account.Localization;
-using Leopard.Account.Phone;
+using Leopard.Account.Public.Phone;
 using Leopard.Account.Settings;
 using Leopard.Identity;
 
-namespace Leopard.Account
+namespace Leopard.Account.Public
 {
     public class AccountAppService : ApplicationService, IAccountAppService, IApplicationService, IRemoteService
 	{

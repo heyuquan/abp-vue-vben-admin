@@ -3,7 +3,7 @@ using Volo.Abp.AutoMapper;
 using Volo.Abp.Modularity;
 using Volo.Abp.Application;
 
-namespace Leopard.Account
+namespace Leopard.Account.Admin
 {
     [DependsOn(
         typeof(LeopardAccountSharedApplicationModule),

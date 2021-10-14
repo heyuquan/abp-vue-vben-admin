@@ -6,7 +6,7 @@ using Volo.Abp.Identity;
 using Volo.Abp.Sms;
 using Leopard.Account.Localization;
 
-namespace Leopard.Account.Phone
+namespace Leopard.Account.Public.Phone
 {
     public class AccountPhoneService : IAccountPhoneService, ITransientDependency
 	{
