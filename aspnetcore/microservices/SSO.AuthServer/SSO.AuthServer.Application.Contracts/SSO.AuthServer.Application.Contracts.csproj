@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\..\..\common.props" />
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<RootNamespace></RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\SSO.AuthServer.Domain.Shared\SSO.AuthServer.Domain.Shared.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Volo.Abp.ObjectExtending" Version="4.4.2" />
+		<PackageReference Include="Volo.Abp.Account.Application.Contracts" Version="4.4.2" />
+		<PackageReference Include="Volo.Abp.Identity.Application.Contracts" Version="4.4.2" />	
+	</ItemGroup>
+
+</Project>
