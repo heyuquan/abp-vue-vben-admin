@@ -208,8 +208,16 @@ namespace Leopard.Utils.Host.Leopard.Utils
 
         public override void OnApplicationInitialization(ApplicationInitializationContext context)
         {
+            this.AppUseMiddleware(context);
+        }
+
+        protected void AppUseMiddleware(ApplicationInitializationContext context, Action<IApplicationBuilder> identityServerAction = null)
+        {
             var app = context.GetApplicationBuilder();
             var env = context.GetEnvironment();
+
+            // 本地化
+            app.UseAbpRequestLocalization();
 
             if (env.IsDevelopment())
             {
@@ -235,8 +243,12 @@ namespace Leopard.Utils.Host.Leopard.Utils
             {
                 app.UseMultiTenancy();
             }
-            // 本地化
-            app.UseAbpRequestLocalization();
+
+            if (identityServerAction != null)
+            {
+                identityServerAction(app);
+            }
+
             // 授权
             app.UseAuthorization();
             // swagger

@@ -98,38 +98,12 @@ namespace SSO.AuthServer
 
         public override void OnApplicationInitialization(ApplicationInitializationContext context)
         {
-            var app = context.GetApplicationBuilder();
-            var env = context.GetEnvironment();
-
-            if (env.IsDevelopment())
+            AppUseMiddleware(context, (app) =>
             {
-                app.UseDeveloperExceptionPage();
-            }
-
-            app.UseAbpRequestLocalization();
-
-            if (!env.IsDevelopment())
-            {
-                app.UseErrorPage();
-            }
-
-            app.UseCorrelationId();
-            app.UseStaticFiles();
-            app.UseRouting();
-            app.UseCors();
-            app.UseAuthentication();
-
-            if (MultiTenancyConsts.IsEnabled)
-            {
-                app.UseMultiTenancy();
-            }
-
-            app.UseUnitOfWork();
-            app.UseIdentityServer();    // 因为需要这个中间件，所以没有使用 HostCommonModule 中基类的方法
-            app.UseAuthorization();
-            app.UseAuditing();
-            app.UseAbpSerilogEnrichers();
-            app.UseConfiguredEndpoints();
+                app.UseIdentityServer();
+            });           
         }
+
+       
     }
 }
