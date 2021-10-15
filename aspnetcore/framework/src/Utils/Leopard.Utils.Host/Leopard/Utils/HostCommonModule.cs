@@ -20,6 +20,7 @@ using Volo.Abp;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc.ExceptionHandling;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
+using Volo.Abp.Auditing;
 using Volo.Abp.Caching;
 using Volo.Abp.Caching.StackExchangeRedis;
 using Volo.Abp.Json.SystemTextJson;
@@ -52,23 +53,39 @@ namespace Leopard.Utils.Host.Leopard.Utils
         /// </summary>
         protected bool IsEnableMultiTenancy { get; private set; }
         /// <summary>
+        /// 是否需要认证 （eg：IdentityServer本身是不需要认证的）
+        /// </summary>
+        protected bool IsRequireAuth { get; private set; }
+
+        /// <summary>
         /// 项目组合Key {ProjectKey}.{ModuleKey}
         /// </summary>
         protected readonly string ProjectCombinationKey;
 
 
-        public HostCommonModule(string moduleKey, bool isEnableMultiTenancy) 
-            : this("Leopard", moduleKey, isEnableMultiTenancy)
+        public HostCommonModule(string moduleKey, bool isEnableMultiTenancy)
+            : this("Leopard", moduleKey, isEnableMultiTenancy, true)
         {
             //todo： moduleKey 从这里获取 configuration["AuthServer:SwaggerClientId"]
         }
 
-        public HostCommonModule(string projectKey, string moduleKey, bool isEnableMultiTenancy) : base()
+        public HostCommonModule(string moduleKey, bool isEnableMultiTenancy, bool isRequireAuth)
+            : this("Leopard", moduleKey, isEnableMultiTenancy, isRequireAuth)
+        {
+            //todo： moduleKey 从这里获取 configuration["AuthServer:SwaggerClientId"]
+        }
+
+        public HostCommonModule(
+            string projectKey
+            , string moduleKey
+            , bool isEnableMultiTenancy
+            , bool isRequireAuth) : base()
         {
             ProjectKey = projectKey;
             ModuleKey = moduleKey;
             IsEnableMultiTenancy = isEnableMultiTenancy;
             ProjectCombinationKey = $"{ProjectKey}.{ModuleKey}";
+            IsRequireAuth = isRequireAuth;
         }
 
         public override void ConfigureServices(ServiceConfigurationContext context)
@@ -79,6 +96,12 @@ namespace Leopard.Utils.Host.Leopard.Utils
             Configure<AbpMultiTenancyOptions>(options =>
             {
                 options.IsEnabled = IsEnableMultiTenancy;
+            });
+
+            Configure<AbpAuditingOptions>(options =>
+            {
+                //options.IsEnabledForGetRequests = true;
+                options.ApplicationName = ModuleKey;
             });
 
             // 设置分页默认返回20条数据   
@@ -125,13 +148,16 @@ namespace Leopard.Utils.Host.Leopard.Utils
                 options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "简体中文"));
             });
 
-            context.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
-                {
-                    options.Authority = configuration["AuthServer:Authority"];
-                    options.RequireHttpsMetadata = Convert.ToBoolean(configuration["AuthServer:RequireHttpsMetadata"]);
-                    options.Audience = ModuleKey;
-                });
+            if (IsRequireAuth)
+            {
+                context.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                    .AddJwtBearer(options =>
+                    {
+                        options.Authority = configuration["AuthServer:Authority"];
+                        options.RequireHttpsMetadata = Convert.ToBoolean(configuration["AuthServer:RequireHttpsMetadata"]);
+                        options.Audience = ModuleKey;
+                    });
+            }
 
             var redisConfiguration = configuration.GetSection("Redis");
             if (redisConfiguration.Exists())

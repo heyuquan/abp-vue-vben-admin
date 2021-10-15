@@ -1,23 +1,16 @@
 ﻿using Leopard.AspNetCore.Serilog;
-using Leopard.AspNetCore.Swashbuckle.Filter;
+using Leopard.AspNetCore.Swashbuckle;
 using Leopard.Consul;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.OpenApi.Models;
-using Microsoft.Extensions.Configuration;
-using Mk.DemoB;
-using Mk.DemoC;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 using SSO.AuthServer;
 using System;
-using System.Collections.Generic;
 using Volo.Abp;
 using Volo.Abp.Autofac;
 using Volo.Abp.Modularity;
 using Volo.Abp.Swashbuckle;
-using Leopard.AspNetCore.Swashbuckle;
-using Leopard.AuthServer;
 
 namespace BackendAdminAppGateway.Host
 {
@@ -27,11 +20,7 @@ namespace BackendAdminAppGateway.Host
         typeof(LeopardAspNetCoreSerilogModule),
         typeof(LeopardConsulModule),
         typeof(LeopardAspNetCoreSwashbuckleModule),
-        typeof(AuthServerHttpApiClientModule),
-        typeof(DemoBHttpApiClientModule),
-        typeof(DemoBApplicationModule),
-        typeof(DemoCHttpApiClientModule),
-        typeof(DemoCApplicationModule)
+        typeof(AuthServerHttpApiClientModule)
     )]
     public class BackendAdminAppGatewayHostModule : AbpModule
     {
