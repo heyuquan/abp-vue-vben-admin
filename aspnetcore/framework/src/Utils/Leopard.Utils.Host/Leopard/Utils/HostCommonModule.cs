@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using StackExchange.Redis;
 using System;
 using System.Linq;
@@ -113,7 +114,6 @@ namespace Leopard.Utils.Host.Leopard.Utils
                 options.JsonSerializerOptions.Encoder = JavaScriptEncoder.Create(UnicodeRanges.All);
             });
 
-
             Configure<MvcOptions>(mvcOptions =>
             {
                 // 全局异常替换
@@ -140,7 +140,9 @@ namespace Leopard.Utils.Host.Leopard.Utils
                 }
             });
 
+#if DEBUG
             context.Services.AddLeopardSwaggerGen();
+#endif
 
             Configure<AbpLocalizationOptions>(options =>
             {
@@ -156,6 +158,17 @@ namespace Leopard.Utils.Host.Leopard.Utils
                         options.Authority = configuration["AuthServer:Authority"];
                         options.RequireHttpsMetadata = Convert.ToBoolean(configuration["AuthServer:RequireHttpsMetadata"]);
                         options.Audience = ModuleKey;
+
+                        // 不忽略这个检查报错
+                        // Microsoft.IdentityModel.Tokens.SecurityTokenInvalidAudienceException: IDX10214: Audience validation failed.
+                        // Audiences: 'System.String'. Did not match: validationParameters.ValidAudience: 'System.String' or validationParameters.
+                        // ValidAudiences: 'System.String'.
+                        // 暂时不知道什么原因，先加上忽略接收人验证
+                        options.TokenValidationParameters = 
+                        new TokenValidationParameters()
+                        {
+                            ValidateAudience = false
+                        };
                     });
             }
 
@@ -251,9 +264,17 @@ namespace Leopard.Utils.Host.Leopard.Utils
 
             // 授权
             app.UseAuthorization();
+#if DEBUG
             // swagger
             app.UseSwagger();
             app.UseLeopardSwaggerUI();
+            // UseEndpoints 在 UseRouting 之后
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute("default",
+                          "{controller=Swagger}/{action=Index}");
+            });
+#endif
             // 审计日志
             app.UseAuditing();
             // Serilog

@@ -1,4 +1,6 @@
-﻿定义端口规范
+﻿前端（英语：front-end）和后端（英语：back-end）
+
+定义端口规范
 http	**02
 https	**05    (只需要启动一个http端口即可，在nginx上设置证书，并启用https。这样子证书也不用每个应用端口都去设置一个了)
 
@@ -7,6 +9,8 @@ https	**05    (只需要启动一个http端口即可，在nginx上设置证书�
     #、每个服务，预留10个端口号，用于部署集群
     SSO.AuthServer.HttpApi.Host     44105 （预留44101-44110）   
     SSO.AuthServer.IdentityServer   44115 （预留44111-44120）   
+        identityserver配置链接
+        https://localhost:44115/.well-known/openid-configuration
     Leopard.BackendAdmin.HttpApi.Host   44145  （预留44141-44150）  
     demob.api         44305 （预留44301-44310）
     democ.api         44405 （预留44401-44410）
@@ -15,6 +19,9 @@ https	**05    (只需要启动一个http端口即可，在nginx上设置证书�
     BackendAdminAppGateway      44801 （预留44801-44810）
     InternalGateway             44811 （预留44811-44820）
     PublicWebSiteGateway        44821 （预留44821-44830）
+
+    Client
+        BackendAdmin_Web          4200
 
 项目职责
 SSO.AuthServer.HttpApi.Host：封装Account、Identity服务

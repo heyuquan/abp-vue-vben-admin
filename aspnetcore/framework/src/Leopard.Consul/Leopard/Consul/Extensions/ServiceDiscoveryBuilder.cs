@@ -46,6 +46,11 @@ namespace Leopard.Consul.Extensions
             IEnumerable<Uri> addresses = null;
             if (serviceDiscoveryOptions.Value.Endpoints != null && serviceDiscovery.Endpoints.Length > 0)
             {
+                // 在容器里面 IP 地址获取不到，所以加入手动设置IP  ，
+                // To do 这是有问题的，因为动态扩容就报错，后续再调整
+                // 参考：
+                // How do I get client IP address in ASP.NET CORE?
+                // https://stackoverflow.com/questions/28664686/how-do-i-get-client-ip-address-in-asp-net-core
                 logger.LogInformation($"Using {serviceDiscovery.Endpoints.Length} configured endpoints for service registration.");
                 addresses = serviceDiscovery.Endpoints.Select(p => new Uri(p));
             }
