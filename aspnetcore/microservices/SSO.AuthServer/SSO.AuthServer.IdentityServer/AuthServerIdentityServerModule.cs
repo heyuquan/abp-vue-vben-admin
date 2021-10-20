@@ -1,31 +1,22 @@
-using Leopard.AspNetCore.Serilog;
+using Leopard;
 using Leopard.Buiness.Shared;
 using Leopard.Consul;
-using Leopard.Utils.Host.Leopard.Utils;
+using Leopard.Utils;
 using Localization.Resources.AbpUi;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.DataProtection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SSO.AuthServer.EntityFrameworkCore;
 using SSO.AuthServer.Localization;
-using StackExchange.Redis;
-using System;
 using System.IO;
-using System.Linq;
 using Volo.Abp;
 using Volo.Abp.Account;
 using Volo.Abp.Account.Web;
 using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic.Bundling;
-using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
-using Volo.Abp.Auditing;
 using Volo.Abp.Autofac;
 using Volo.Abp.BackgroundJobs;
-using Volo.Abp.Caching;
-using Volo.Abp.Caching.StackExchangeRedis;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Volo.Abp.UI.Navigation.Urls;
@@ -43,7 +34,7 @@ namespace SSO.AuthServer
         )]
     public class AuthServerIdentityServerModule : HostCommonModule
     {
-        public AuthServerIdentityServerModule() : base("AuthServerIdentityServer", MultiTenancyConsts.IsEnabled, false)
+        public AuthServerIdentityServerModule() : base(ApplicationServiceType.AuthHost, "AuthServerIdentityServer", MultiTenancyConsts.IsEnabled)
         { }
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
@@ -98,8 +89,9 @@ namespace SSO.AuthServer
 
         public override void OnApplicationInitialization(ApplicationInitializationContext context)
         {
-            AppUseMiddleware(context, (app) =>
+            LeopardApplicationInitialization(context, (ctx) =>
             {
+                var app = ctx.GetApplicationBuilder();
                 app.UseIdentityServer();
             });           
         }

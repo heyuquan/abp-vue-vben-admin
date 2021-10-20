@@ -20,5 +20,11 @@
 	  <ProjectReference Include="..\..\Leopard.AspNetCore.Serilog\Leopard.AspNetCore.Serilog.csproj" />
 	  <ProjectReference Include="..\..\Leopard.AspNetCore.Swashbuckle\Leopard.AspNetCore.Swashbuckle.csproj" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="appconfig\*.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
 	
 </Project>

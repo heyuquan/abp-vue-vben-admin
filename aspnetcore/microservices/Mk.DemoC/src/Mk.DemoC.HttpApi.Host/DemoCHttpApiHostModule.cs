@@ -1,42 +1,20 @@
-using Leopard.AspNetCore.Mvc.Filters;
-using Leopard.AspNetCore.Serilog;
-using Leopard.AspNetCore.Swashbuckle;
+using Leopard;
+using Leopard.Buiness.Shared;
 using Leopard.Consul;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.DataProtection;
+using Leopard.Utils;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Mk.DemoC.EntityFrameworkCore;
-using Leopard.Buiness.Shared;
-using StackExchange.Redis;
-using System;
 using System.IO;
-using System.Linq;
 using Volo.Abp;
-using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc;
-using Volo.Abp.AspNetCore.Mvc.ExceptionHandling;
 using Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy;
-using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
-using Volo.Abp.AspNetCore.Serilog;
 using Volo.Abp.Autofac;
-using Volo.Abp.Caching;
-using Volo.Abp.Caching.StackExchangeRedis;
-using Volo.Abp.EntityFrameworkCore;
-using Volo.Abp.EntityFrameworkCore.MySQL;
 using Volo.Abp.EventBus.RabbitMq;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
-using Volo.Abp.MultiTenancy;
-using Volo.Abp.Swashbuckle;
-using Volo.Abp.Timing;
 using Volo.Abp.VirtualFileSystem;
-using Leopard.Utils.Host.Leopard.Utils;
 
 namespace Mk.DemoC
 {
@@ -52,7 +30,7 @@ namespace Mk.DemoC
         )]
     public class DemoCHttpApiHostModule : HostCommonModule
     {
-        public DemoCHttpApiHostModule() : base("MkDemoC", MultiTenancyConsts.IsEnabled)
+        public DemoCHttpApiHostModule() : base(ApplicationServiceType.ApiHost, "MkDemoC", MultiTenancyConsts.IsEnabled)
         { }
 
         public override void ConfigureServices(ServiceConfigurationContext context)

@@ -1,13 +1,13 @@
+using Leopard;
 using Leopard.AspNetCore.Mvc.Filters;
 using Leopard.Buiness.Shared;
 using Leopard.Consul;
-using Leopard.Utils.Host.Leopard.Utils;
+using Leopard.Utils;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Mk.DemoB.Localization;
-using System;
 using System.IO;
 using System.Linq;
 using Volo.Abp;
@@ -20,7 +20,6 @@ using Volo.Abp.Guids;
 using Volo.Abp.Localization.ExceptionHandling;
 using Volo.Abp.Modularity;
 using Volo.Abp.Swashbuckle;
-using Volo.Abp.Timing;
 using Volo.Abp.VirtualFileSystem;
 
 namespace Mk.DemoB
@@ -36,7 +35,7 @@ namespace Mk.DemoB
         )]
     public class DemoBHttpApiHostModule  : HostCommonModule
     {
-        public DemoBHttpApiHostModule() : base("MkDemoB", MultiTenancyConsts.IsEnabled)
+        public DemoBHttpApiHostModule() : base(ApplicationServiceType.ApiHost, "MkDemoB", MultiTenancyConsts.IsEnabled)
         { }
 
         public override void ConfigureServices(ServiceConfigurationContext context)

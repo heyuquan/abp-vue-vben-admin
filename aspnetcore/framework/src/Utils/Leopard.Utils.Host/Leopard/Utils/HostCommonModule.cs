@@ -31,8 +31,9 @@ using Volo.Abp.MultiTenancy;
 using Volo.Abp.Security.Encryption;
 using Volo.Abp.Timing;
 
-namespace Leopard.Utils.Host.Leopard.Utils
+namespace Leopard.Utils
 {
+
     [DependsOn(
         typeof(AbpCachingStackExchangeRedisModule),
         typeof(LeopardAspNetCoreSerilogModule),
@@ -58,60 +59,70 @@ namespace Leopard.Utils.Host.Leopard.Utils
         /// </summary>
         protected bool IsRequireAuth { get; private set; }
 
+        protected ApplicationServiceType ApplicationServiceType { get; private set; }
+
         /// <summary>
         /// 项目组合Key {ProjectKey}.{ModuleKey}
         /// </summary>
         protected readonly string ProjectCombinationKey;
 
-
-        public HostCommonModule(string moduleKey, bool isEnableMultiTenancy)
-            : this("Leopard", moduleKey, isEnableMultiTenancy, true)
-        {
-            //todo： moduleKey 从这里获取 configuration["AuthServer:SwaggerClientId"]
-        }
-
-        public HostCommonModule(string moduleKey, bool isEnableMultiTenancy, bool isRequireAuth)
-            : this("Leopard", moduleKey, isEnableMultiTenancy, isRequireAuth)
+        public HostCommonModule(ApplicationServiceType serviceType, string moduleKey, bool isEnableMultiTenancy)
+            : this(serviceType, "Leopard", moduleKey, isEnableMultiTenancy)
         {
             //todo： moduleKey 从这里获取 configuration["AuthServer:SwaggerClientId"]
         }
 
         public HostCommonModule(
-            string projectKey
+            ApplicationServiceType serviceType
+            , string projectKey
             , string moduleKey
-            , bool isEnableMultiTenancy
-            , bool isRequireAuth) : base()
+            , bool isEnableMultiTenancy) : base()
         {
             ProjectKey = projectKey;
             ModuleKey = moduleKey;
             IsEnableMultiTenancy = isEnableMultiTenancy;
             ProjectCombinationKey = $"{ProjectKey}.{ModuleKey}";
-            IsRequireAuth = isRequireAuth;
+            ApplicationServiceType = serviceType;
         }
 
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
+            this.LeopardConfigureServices(context);
+        }
+
+        public override void OnApplicationInitialization(ApplicationInitializationContext context)
+        {
+            this.LeopardApplicationInitialization(context);
+        }
+
+        /// <summary>
+        /// LeopardConfigureServices
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="otherConfigureServices">其他ConfigureServices，执行上没有顺序要求</param>
+        /// <param name="afterConfigureServices">在最后执行的ConfigureServices</param>
+        protected void LeopardConfigureServices(
+            ServiceConfigurationContext context,
+            Action<ServiceConfigurationContext> otherConfigureServices = null,
+            Action<ServiceConfigurationContext> afterConfigureServices = null
+            )
+        {
+            if (otherConfigureServices != null)
+            {
+                otherConfigureServices(context);
+            }
             var hostingEnvironment = context.Services.GetHostingEnvironment();
             var configuration = context.Services.GetConfiguration();
-
-            Configure<AbpMultiTenancyOptions>(options =>
-            {
-                options.IsEnabled = IsEnableMultiTenancy;
-            });
-
-            Configure<AbpAuditingOptions>(options =>
-            {
-                //options.IsEnabledForGetRequests = true;
-                options.ApplicationName = ModuleKey;
-            });
-
-            // 设置分页默认返回20条数据   
-            LimitedResultRequestDto.DefaultMaxResultCount = 20;
 
             // 中文序列化的编码问题
             Configure<AbpSystemTextJsonSerializerOptions>(options =>
             {
                 options.JsonSerializerOptions.Encoder = JavaScriptEncoder.Create(UnicodeRanges.All);
+            });
+
+            Configure<AbpMultiTenancyOptions>(options =>
+            {
+                options.IsEnabled = IsEnableMultiTenancy;
             });
 
             Configure<MvcOptions>(mvcOptions =>
@@ -124,142 +135,172 @@ namespace Leopard.Utils.Host.Leopard.Utils
                 mvcOptions.Filters.Add(typeof(LeopardExceptionFilter));
             });
 
-            // 加解密
-            Configure<AbpStringEncryptionOptions>(options =>
-            {
-                var encryptionConfiguration = configuration.GetSection("Encryption");
-                if (encryptionConfiguration.Exists())
-                {
-                    options.DefaultPassPhrase = encryptionConfiguration["PassPhrase"] ?? options.DefaultPassPhrase;
-                    options.DefaultSalt = encryptionConfiguration.GetSection("Salt").Exists()
-                        ? Encoding.ASCII.GetBytes(encryptionConfiguration["Salt"])
-                        : options.DefaultSalt;
-                    options.InitVectorBytes = encryptionConfiguration.GetSection("InitVector").Exists()
-                        ? Encoding.ASCII.GetBytes(encryptionConfiguration["InitVector"])
-                        : options.InitVectorBytes;
-                }
-            });
-
 #if DEBUG
             context.Services.AddLeopardSwaggerGen();
 #endif
-
-            Configure<AbpLocalizationOptions>(options =>
-            {
-                options.Languages.Add(new LanguageInfo("en", "en", "English"));
-                options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "简体中文"));
-            });
-
-            if (IsRequireAuth)
+            if (ApplicationServiceType == ApplicationServiceType.ApiHost)
             {
                 context.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddJwtBearer(options =>
                     {
                         options.Authority = configuration["AuthServer:Authority"];
                         options.RequireHttpsMetadata = Convert.ToBoolean(configuration["AuthServer:RequireHttpsMetadata"]);
-                        options.Audience = ModuleKey;
+                        options.Audience = configuration["AuthServer:SwaggerClientId"];
 
-                        // 不忽略这个检查报错
-                        // Microsoft.IdentityModel.Tokens.SecurityTokenInvalidAudienceException: IDX10214: Audience validation failed.
-                        // Audiences: 'System.String'. Did not match: validationParameters.ValidAudience: 'System.String' or validationParameters.
-                        // ValidAudiences: 'System.String'.
-                        // 暂时不知道什么原因，先加上忽略接收人验证
-                        options.TokenValidationParameters = 
-                        new TokenValidationParameters()
-                        {
-                            ValidateAudience = false
-                        };
+                        //// 不忽略这个检查报错
+                        //// Microsoft.IdentityModel.Tokens.SecurityTokenInvalidAudienceException: IDX10214: Audience validation failed.
+                        //// Audiences: 'System.String'. Did not match: validationParameters.ValidAudience: 'System.String' or validationParameters.
+                        //// ValidAudiences: 'System.String'.
+                        //// 暂时不知道什么原因，先加上忽略接收人验证
+                        //options.TokenValidationParameters =
+                        //    new TokenValidationParameters()
+                        //    {
+                        //        ValidateAudience = false
+                        //    };
                     });
             }
 
-            var redisConfiguration = configuration.GetSection("Redis");
-            if (redisConfiguration.Exists())
+            if (ApplicationServiceType == ApplicationServiceType.ApiHost || ApplicationServiceType == ApplicationServiceType.AuthHost)
             {
-                Configure<AbpDistributedCacheOptions>(options =>
+                Configure<AbpAuditingOptions>(options =>
                 {
-                    // 最好统一命名,不然某个缓存变动其他应用服务有例外发生
-                    options.KeyPrefix = $"{ProjectCombinationKey}:";
-                    // 滑动过期30天
-                    options.GlobalCacheEntryOptions.SlidingExpiration = TimeSpan.FromDays(30);
-                    // 绝对过期60天
-                    options.GlobalCacheEntryOptions.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(60);
+                    //options.IsEnabledForGetRequests = true;
+                    options.ApplicationName = ModuleKey;
                 });
 
-                if (!hostingEnvironment.IsDevelopment())
+                // 设置分页默认返回20条数据   
+                LimitedResultRequestDto.DefaultMaxResultCount = 20;
+
+                // 加解密
+                Configure<AbpStringEncryptionOptions>(options =>
                 {
-                    var redis = ConnectionMultiplexer.Connect(redisConfiguration["Configuration"]);
-                    context.Services
-                        .AddDataProtection()
-                        .PersistKeysToStackExchangeRedis(redis, $"{ProjectCombinationKey}-Protection-Keys");
+                    var encryptionConfiguration = configuration.GetSection("Encryption");
+                    if (encryptionConfiguration.Exists())
+                    {
+                        options.DefaultPassPhrase = encryptionConfiguration["PassPhrase"] ?? options.DefaultPassPhrase;
+                        options.DefaultSalt = encryptionConfiguration.GetSection("Salt").Exists()
+                            ? Encoding.ASCII.GetBytes(encryptionConfiguration["Salt"])
+                            : options.DefaultSalt;
+                        options.InitVectorBytes = encryptionConfiguration.GetSection("InitVector").Exists()
+                            ? Encoding.ASCII.GetBytes(encryptionConfiguration["InitVector"])
+                            : options.InitVectorBytes;
+                    }
+                });
+
+                Configure<AbpLocalizationOptions>(options =>
+                {
+                    options.Languages.Add(new LanguageInfo("en", "en", "English"));
+                    options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "简体中文"));
+                });
+
+                var redisConfiguration = configuration.GetSection("Redis");
+                if (redisConfiguration.Exists())
+                {
+                    Configure<AbpDistributedCacheOptions>(options =>
+                    {
+                        // 最好统一命名,不然某个缓存变动其他应用服务有例外发生
+                        options.KeyPrefix = $"{ProjectCombinationKey}:";
+                        // 滑动过期30天
+                        options.GlobalCacheEntryOptions.SlidingExpiration = TimeSpan.FromDays(30);
+                        // 绝对过期60天
+                        options.GlobalCacheEntryOptions.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(60);
+                    });
+
+                    if (!hostingEnvironment.IsDevelopment())
+                    {
+                        var redis = ConnectionMultiplexer.Connect(redisConfiguration["Configuration"]);
+                        context.Services
+                            .AddDataProtection()
+                            .PersistKeysToStackExchangeRedis(redis, $"{ProjectCombinationKey}-Protection-Keys");
+                    }
                 }
+
+                context.Services.AddCors(options =>
+                {
+                    options.AddDefaultPolicy(builder =>
+                    {
+                        builder
+                            .WithOrigins(
+                                configuration["App:CorsOrigins"]
+                                    .Split(",", StringSplitOptions.RemoveEmptyEntries)
+                                    .Select(o => o.RemovePostFix("/"))
+                                    .ToArray()
+                            )
+                            .WithAbpExposedHeaders()
+                            .SetIsOriginAllowedToAllowWildcardSubdomains()
+                            .AllowAnyHeader()
+                            .AllowAnyMethod()
+                            .AllowCredentials();
+                    });
+                });
+
+                Configure<AbpClockOptions>(options =>
+                {
+                    options.Kind = DateTimeKind.Utc;
+                });
             }
 
-            context.Services.AddCors(options =>
+            if (afterConfigureServices != null)
             {
-                options.AddDefaultPolicy(builder =>
-                {
-                    builder
-                        .WithOrigins(
-                            configuration["App:CorsOrigins"]
-                                .Split(",", StringSplitOptions.RemoveEmptyEntries)
-                                .Select(o => o.RemovePostFix("/"))
-                                .ToArray()
-                        )
-                        .WithAbpExposedHeaders()
-                        .SetIsOriginAllowedToAllowWildcardSubdomains()
-                        .AllowAnyHeader()
-                        .AllowAnyMethod()
-                        .AllowCredentials();
-                });
-            });
-
-            Configure<AbpClockOptions>(options =>
-            {
-                options.Kind = DateTimeKind.Utc;
-            });
+                afterConfigureServices(context);
+            }
         }
 
-        public override void OnApplicationInitialization(ApplicationInitializationContext context)
-        {
-            this.AppUseMiddleware(context);
-        }
-
-        protected void AppUseMiddleware(ApplicationInitializationContext context, Action<IApplicationBuilder> identityServerAction = null)
+        /// <summary>
+        /// LeopardApplicationInitialization
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="betweenAuthApplicationInitialization">在认证之后，授权之前执行</param>
+        /// <param name="afterApplicationInitialization">在最后执行</param>
+        protected void LeopardApplicationInitialization(
+            ApplicationInitializationContext context
+            , Action<ApplicationInitializationContext> betweenAuthApplicationInitialization = null
+            , Action<ApplicationInitializationContext> afterApplicationInitialization = null)
         {
             var app = context.GetApplicationBuilder();
             var env = context.GetEnvironment();
 
-            // 本地化
-            app.UseAbpRequestLocalization();
-
-            if (env.IsDevelopment())
+            if (ApplicationServiceType == ApplicationServiceType.ApiHost || ApplicationServiceType == ApplicationServiceType.AuthHost)
             {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseErrorPage();
-                app.UseHsts();
+                // 本地化
+                app.UseAbpRequestLocalization();
+
+                if (env.IsDevelopment())
+                {
+                    app.UseDeveloperExceptionPage();
+                }
+                else
+                {
+                    app.UseErrorPage();
+                    app.UseHsts();
+                }
+
+                app.UseHttpsRedirection();
             }
 
-            app.UseHttpsRedirection();
             // http调用链
             app.UseCorrelationId();
             // 虚拟文件系统
             app.UseStaticFiles();
             //路由
             app.UseRouting();
-            app.UseCors();
+            if (ApplicationServiceType == ApplicationServiceType.ApiHost || ApplicationServiceType == ApplicationServiceType.AuthHost)
+            {
+                app.UseCors();
+            }
             // 认证
             app.UseAuthentication();
-            if (IsEnableMultiTenancy)
+            if (ApplicationServiceType == ApplicationServiceType.ApiHost || ApplicationServiceType == ApplicationServiceType.AuthHost)
             {
-                app.UseMultiTenancy();
+                if (IsEnableMultiTenancy)
+                {
+                    app.UseMultiTenancy();
+                }
             }
 
-            if (identityServerAction != null)
+            if (betweenAuthApplicationInitialization != null)
             {
-                identityServerAction(app);
+                betweenAuthApplicationInitialization(context);
             }
 
             // 授权
@@ -275,12 +316,16 @@ namespace Leopard.Utils.Host.Leopard.Utils
                           "{controller=Swagger}/{action=Index}");
             });
 #endif
-            // 审计日志
-            app.UseAuditing();
             // Serilog
             app.UseAbpSerilogEnrichers();
-            app.UseUnitOfWork();
-            app.UseConfiguredEndpoints();
+
+            if (ApplicationServiceType == ApplicationServiceType.ApiHost || ApplicationServiceType == ApplicationServiceType.AuthHost)
+            {
+                // 审计日志
+                app.UseAuditing();
+                app.UseUnitOfWork();
+                app.UseConfiguredEndpoints();
+            }
         }
     }
 }

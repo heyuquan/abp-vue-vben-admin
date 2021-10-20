@@ -1,32 +1,16 @@
-using Leopard.AspNetCore.Serilog;
-using Leopard.AspNetCore.Swashbuckle;
+using Leopard;
 using Leopard.Buiness.Shared;
 using Leopard.Consul;
-using Leopard.Utils.Host.Leopard.Utils;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.DataProtection;
+using Leopard.Utils;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SSO.AuthServer.EntityFrameworkCore;
-using StackExchange.Redis;
-using System;
 using System.IO;
-using System.Linq;
 using Volo.Abp;
-using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy;
-using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
 using Volo.Abp.Autofac;
-using Volo.Abp.Caching;
-using Volo.Abp.Caching.StackExchangeRedis;
-using Volo.Abp.EntityFrameworkCore;
-using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
-using Volo.Abp.Swashbuckle;
 using Volo.Abp.VirtualFileSystem;
 
 namespace SSO.AuthServer
@@ -43,7 +27,7 @@ namespace SSO.AuthServer
     )]
     public class AuthServerHttpApiHostModule : HostCommonModule
     {
-        public AuthServerHttpApiHostModule() : base("AuthServer", MultiTenancyConsts.IsEnabled)
+        public AuthServerHttpApiHostModule() : base(ApplicationServiceType.AuthHost, "AuthServer", MultiTenancyConsts.IsEnabled)
         { }
 
         public override void ConfigureServices(ServiceConfigurationContext context)
