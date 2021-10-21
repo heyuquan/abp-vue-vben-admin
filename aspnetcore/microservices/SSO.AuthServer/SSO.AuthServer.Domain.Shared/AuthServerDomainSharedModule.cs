@@ -33,7 +33,7 @@ namespace SSO.AuthServer
                 options.Resources
                     .Add<AuthServerResource>("en")
                     .AddBaseTypes(typeof(AbpValidationResource))
-                    .AddVirtualJson("/Localization/AuthServer");
+                    .AddVirtualJson("/Localization/Resource");
 
                 options.DefaultResourceType = typeof(AuthServerResource);
             });

@@ -14,8 +14,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<EmbeddedResource Include="Localization\AuthServer\*.json" />
-		<Content Remove="Localization\AuthServer\*.json" />
+		<EmbeddedResource Include="Localization\Resources\*.json" />
+		<Content Remove="Localization\Resources\*.json" />
 	</ItemGroup>
 
 	<ItemGroup>

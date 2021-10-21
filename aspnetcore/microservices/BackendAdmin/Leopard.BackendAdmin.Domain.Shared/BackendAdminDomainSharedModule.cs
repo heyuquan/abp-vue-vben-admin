@@ -39,7 +39,7 @@ namespace Leopard.BackendAdmin
                 options.Resources
                     .Add<BackendAdminResource>("en")
                     .AddBaseTypes(typeof(AbpValidationResource))
-                    .AddVirtualJson("/Localization/BackendAdmin");
+                    .AddVirtualJson("/Localization/Resource");
 
                 options.DefaultResourceType = typeof(BackendAdminResource);
             });

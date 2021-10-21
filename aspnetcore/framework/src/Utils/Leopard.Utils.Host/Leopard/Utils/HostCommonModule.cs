@@ -146,17 +146,6 @@ namespace Leopard.Utils
                         options.Authority = configuration["AuthServer:Authority"];
                         options.RequireHttpsMetadata = Convert.ToBoolean(configuration["AuthServer:RequireHttpsMetadata"]);
                         options.Audience = configuration["AuthServer:SwaggerClientId"];
-
-                        //// 不忽略这个检查报错
-                        //// Microsoft.IdentityModel.Tokens.SecurityTokenInvalidAudienceException: IDX10214: Audience validation failed.
-                        //// Audiences: 'System.String'. Did not match: validationParameters.ValidAudience: 'System.String' or validationParameters.
-                        //// ValidAudiences: 'System.String'.
-                        //// 暂时不知道什么原因，先加上忽略接收人验证
-                        //options.TokenValidationParameters =
-                        //    new TokenValidationParameters()
-                        //    {
-                        //        ValidateAudience = false
-                        //    };
                     });
             }
 

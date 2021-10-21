@@ -9,7 +9,7 @@ using Volo.Abp.SettingManagement.EntityFrameworkCore;
 
 namespace Leopard.BackendAdmin.EntityFrameworkCore
 {
-    [ConnectionStringName("Default")]
+    [ConnectionStringName(BackendAdminDbProperties.ConnectionStringName)]
     public class BackendAdminDbContext : 
         AbpDbContext<BackendAdminDbContext>
     {

@@ -31,7 +31,7 @@ namespace Leopard.Identity
 				options.Resources.Get<IdentityResource>().AddBaseTypes(new Type[]
 				{
 					typeof(AbpValidationResource)
-				}).AddVirtualJson("/Leopard/Identity/Localization");
+				}).AddVirtualJson("/Leopard/Identity/Localization/Resources");
 			});
 			Configure<AbpExceptionLocalizationOptions>(options => options.MapCodeNamespace("Leopard.Identity", typeof(IdentityResource)));
 		}

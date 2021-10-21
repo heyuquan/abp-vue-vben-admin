@@ -13,6 +13,7 @@ using Volo.Abp;
 using Volo.Abp.Autofac;
 using Volo.Abp.Modularity;
 using Volo.Abp.Swashbuckle;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace BackendAdminAppGateway.Host
 {
@@ -36,7 +37,7 @@ namespace BackendAdminAppGateway.Host
                     {
                         var configuration = ctx.Services.GetConfiguration();
 
-                        ctx.Services.AddAuthentication("Bearer")
+                        ctx.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                             .AddIdentityServerAuthentication(options =>
                             {
                                 options.Authority = configuration["AuthServer:Authority"];
@@ -55,24 +56,24 @@ namespace BackendAdminAppGateway.Host
         {
             this.LeopardApplicationInitialization(context,
                     betweenAuthApplicationInitialization: (ctx) =>
-                     {
-                         var app = context.GetApplicationBuilder();
-                         app.UseAbpClaimsMap();
-                     },
+                    {
+                        var app = context.GetApplicationBuilder();
+                        app.UseAbpClaimsMap();
+                    },
                     afterApplicationInitialization: (ctx) =>
                     {
                         var app = context.GetApplicationBuilder();
                         app.MapWhen(
-                             ctx => ctx.Request.Path.ToString().StartsWith("/api/abp/") ||
-                                    ctx.Request.Path.ToString().StartsWith("/Abp/") ||
-                                    ctx.Request.Path.ToString().StartsWith("/api/permission-management/") ||
-                                    ctx.Request.Path.ToString().StartsWith("/api/feature-management/") ||
-                                    ctx.Request.Path.ToString().EndsWith("/api/health"),
-                             app2 =>
-                             {
-                                 app2.UseRouting();
-                                 app2.UseConfiguredEndpoints();
-                             }
+                            ctx => ctx.Request.Path.ToString().StartsWith("/api/abp/") ||
+                                   ctx.Request.Path.ToString().StartsWith("/Abp/") ||
+                                   ctx.Request.Path.ToString().StartsWith("/api/permission-management/") ||
+                                   ctx.Request.Path.ToString().StartsWith("/api/feature-management/") ||
+                                   ctx.Request.Path.ToString().EndsWith("/api/health"),
+                            app2 =>
+                            {
+                                app2.UseRouting();
+                                app2.UseConfiguredEndpoints();
+                            }
                          );
 
                         app.UseOcelot().Wait();

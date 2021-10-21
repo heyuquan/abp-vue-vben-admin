@@ -2,7 +2,7 @@
 
 namespace Leopard.BackendAdmin.Localization
 {
-    [LocalizationResourceName("Leopard.BackendAdmin")]
+    [LocalizationResourceName("LeopardBackendAdmin")]
     public class BackendAdminResource
     {
 

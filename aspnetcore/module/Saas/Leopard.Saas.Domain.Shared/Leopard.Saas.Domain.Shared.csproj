@@ -9,8 +9,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Remove="Leopard\Saas\Localization\*.json" />
-		<EmbeddedResource Include="Leopard\Saas\Localization\*.json" />
+		<EmbeddedResource Include="Leopard\Saas\Localization\Resources\*.json" />
+		<Content Remove="Leopard\Saas\Localization\Resources\*.json" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -2,7 +2,7 @@
 
 namespace Leopard.Saas.Localization
 {
-    [LocalizationResourceName("Leopard.Saas")]
+    [LocalizationResourceName("LeopardSaas")]
     public class SaasResource
     {
         

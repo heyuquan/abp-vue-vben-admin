@@ -9,7 +9,7 @@ using Volo.Abp.IdentityServer.EntityFrameworkCore;
 namespace SSO.AuthServer.EntityFrameworkCore
 {
     [ReplaceDbContext(typeof(IIdentityDbContext))]
-    [ConnectionStringName("Default")]
+    [ConnectionStringName(AuthServerDbProperties.ConnectionStringName)]
     public class AuthServerDbContext : 
         AbpDbContext<AuthServerDbContext>,
         IIdentityDbContext

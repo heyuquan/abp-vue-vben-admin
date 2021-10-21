@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<Import Project="..\..\..\common.props" />
 
@@ -9,8 +9,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<EmbeddedResource Include="Leopard\Identity\Localization\*.json" />
-		<Content Remove="Leopard\Identity\Localization\*.json" />
+		<EmbeddedResource Include="Leopard\Identity\Localization\Resources\*.json" />
+		<Content Remove="Leopard\Identity\Localization\Resources\*.json" />
 	</ItemGroup>
 
 	<ItemGroup>

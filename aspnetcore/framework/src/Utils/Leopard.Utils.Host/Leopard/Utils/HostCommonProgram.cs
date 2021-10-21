@@ -48,7 +48,7 @@ namespace Leopard.Utils
                 .ConfigureAppConfiguration(build =>
                 {
                     build.AddJsonFile("appsettings.secrets.json", optional: true);
-                    build.AddJsonFile("appconfig/commsettings.json", optional: true);
+                    build.AddJsonFile("AppConfig/commsettings.json", optional: true);
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {

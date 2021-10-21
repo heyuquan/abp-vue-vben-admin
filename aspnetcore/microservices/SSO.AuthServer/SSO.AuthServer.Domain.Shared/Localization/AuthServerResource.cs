@@ -2,7 +2,7 @@
 
 namespace SSO.AuthServer.Localization
 {
-    [LocalizationResourceName("SSO.AuthServer")]
+    [LocalizationResourceName("SSOAuthServer")]
     public class AuthServerResource
     {
 

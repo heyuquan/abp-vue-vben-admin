@@ -2,7 +2,7 @@
 
 namespace Leopard.Account.Localization
 {
-	[LocalizationResourceName("Leopard.Account")]
+	[LocalizationResourceName("LeopardAccount")]
 	public class LeopardAccountResource
 	{
 	}
