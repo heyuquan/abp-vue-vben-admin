@@ -149,7 +149,7 @@ namespace Leopard.Utils
                     });
             }
 
-            if (ApplicationServiceType == ApplicationServiceType.ApiHost || ApplicationServiceType == ApplicationServiceType.AuthHost)
+            if (IsHost())
             {
                 Configure<AbpAuditingOptions>(options =>
                 {
@@ -247,10 +247,11 @@ namespace Leopard.Utils
             , Action<ApplicationInitializationContext> afterApplicationInitialization = null)
         {
             var app = context.GetApplicationBuilder();
-            var env = context.GetEnvironment();
 
-            if (ApplicationServiceType == ApplicationServiceType.ApiHost || ApplicationServiceType == ApplicationServiceType.AuthHost)
+            if (IsHost())
             {
+                var env = context.GetEnvironment();
+
                 // 本地化
                 app.UseAbpRequestLocalization();
 
@@ -273,48 +274,66 @@ namespace Leopard.Utils
             app.UseStaticFiles();
             //路由
             app.UseRouting();
-            if (ApplicationServiceType == ApplicationServiceType.ApiHost || ApplicationServiceType == ApplicationServiceType.AuthHost)
+            if (IsHost())
             {
                 app.UseCors();
             }
             // 认证
             app.UseAuthentication();
-            if (ApplicationServiceType == ApplicationServiceType.ApiHost || ApplicationServiceType == ApplicationServiceType.AuthHost)
-            {
-                if (IsEnableMultiTenancy)
-                {
-                    app.UseMultiTenancy();
-                }
-            }
 
             if (betweenAuthApplicationInitialization != null)
             {
                 betweenAuthApplicationInitialization(context);
             }
 
-            // 授权
-            app.UseAuthorization();
+            if (IsHost())
+            {
+                if (IsEnableMultiTenancy)
+                {
+                    app.UseMultiTenancy();
+                }
+                // 授权
+                app.UseAuthorization();
+            }
 #if DEBUG
             // swagger
             app.UseSwagger();
             app.UseLeopardSwaggerUI();
-            // UseEndpoints 在 UseRouting 之后
-            app.UseEndpoints(endpoints =>
+            
+            if (IsHost())   // 设置这个后，网关项目启用ocelot会失败（不会进行路由跳转）
             {
-                endpoints.MapControllerRoute("default",
-                          "{controller=Swagger}/{action=Index}");
-            });
+                // UseEndpoints 在 UseRouting 之后
+                app.UseEndpoints(endpoints =>
+                {
+                    endpoints.MapControllerRoute("default",
+                              "{controller=Swagger}/{action=Index}");
+                });
+            }
 #endif
             // Serilog
             app.UseAbpSerilogEnrichers();
 
-            if (ApplicationServiceType == ApplicationServiceType.ApiHost || ApplicationServiceType == ApplicationServiceType.AuthHost)
+            if (IsHost())
             {
                 // 审计日志
                 app.UseAuditing();
                 app.UseUnitOfWork();
                 app.UseConfiguredEndpoints();
             }
+
+            if (afterApplicationInitialization != null)
+            {
+                afterApplicationInitialization(context);
+            }
+        }
+
+        private bool IsHost()
+        {
+            if (ApplicationServiceType == ApplicationServiceType.ApiHost || ApplicationServiceType == ApplicationServiceType.AuthHost)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

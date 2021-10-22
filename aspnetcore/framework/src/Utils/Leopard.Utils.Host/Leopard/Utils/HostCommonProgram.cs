@@ -47,8 +47,10 @@ namespace Leopard.Utils
            Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration(build =>
                 {
-                    build.AddJsonFile("appsettings.secrets.json", optional: true);
+                    // 先加载公共
                     build.AddJsonFile("AppConfig/commsettings.json", optional: true);
+                    // 再加载独立的
+                    build.AddJsonFile("appsettings.secrets.json", optional: true);                    
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {

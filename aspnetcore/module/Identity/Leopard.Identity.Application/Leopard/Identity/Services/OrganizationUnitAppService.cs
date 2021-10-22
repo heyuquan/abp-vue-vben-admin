@@ -139,6 +139,7 @@ namespace Leopard.Identity
         {
             var ou = await OrganizationUnitRepository.FindAsync(id);
 
+            ou.DisplayName = input.DisplayName;
             input.MapExtraPropertiesTo(ou);
 
             await OrganizationUnitManager.UpdateAsync(ou);

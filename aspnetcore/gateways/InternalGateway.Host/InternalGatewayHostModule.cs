@@ -56,17 +56,18 @@ namespace InternalGateway.Host
             this.LeopardApplicationInitialization(context,
                     betweenAuthApplicationInitialization: (ctx) =>
                     {
-                        var app = context.GetApplicationBuilder();
+                        var app = ctx.GetApplicationBuilder();
                         app.UseAbpClaimsMap();
                     },
                     afterApplicationInitialization: (ctx) =>
                     {
-                        var app = context.GetApplicationBuilder();
+                        var app = ctx.GetApplicationBuilder();
                         app.MapWhen(
                             ctx =>
                                 ctx.Request.Path.ToString().StartsWith("/api/abp/") ||
                                 ctx.Request.Path.ToString().StartsWith("/Abp/") ||
-                                ctx.Request.Path.ToString().EndsWith("/api/health"),
+                                ctx.Request.Path.ToString().EndsWith("/api/health") ||
+                                ctx.Request.Path.ToString().TrimEnd('/').Equals(""),
                             app2 =>
                             {
                                 app2.UseRouting();
