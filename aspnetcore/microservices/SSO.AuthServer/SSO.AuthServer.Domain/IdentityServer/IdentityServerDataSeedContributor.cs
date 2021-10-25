@@ -189,7 +189,7 @@ namespace SSO.AuthServer.IdentityServer
                     bool allowAccessTokensViaBrowser = false;
                     IEnumerable<string> redirectUris = section.GetSection("RedirectUris").GetChildren().Select(x => x.Value); ;
                     IEnumerable<string> cors = section.GetSection("Cors").GetChildren().Select(x => x.Value);
-                    IEnumerable<string> postLogoutRedirectUris = section.GetSection("PostLogoutRedirectUris").GetChildren().Select(x => x.Value); ;
+                    IEnumerable<string> postLogoutRedirectUris = section.GetSection("PostLogoutRedirectUris").GetChildren().Select(x => x.Value); 
                     if (bool.TryParse(section["RequirePkce"], out bool requirePkce))
                     {
                         //设置值
@@ -214,7 +214,7 @@ namespace SSO.AuthServer.IdentityServer
                         redirectUris: redirectUris,
                         postLogoutRedirectUris: postLogoutRedirectUris,
                         allowAccessTokensViaBrowser: allowAccessTokensViaBrowser,
-                        permissions: section.GetSection("Permissions").GetChildren().Select(x => x.Value)                                            
+                        permissions: section.GetSection("Permissions").GetChildren().Select(x => x.Value)
                     );
                 }
             }
@@ -231,8 +231,8 @@ namespace SSO.AuthServer.IdentityServer
         /// <param name="requireClientSecret">指定此客户端是否需要密钥才能从令牌端点请求令牌（默认为true）</param>
         /// <param name="redirectUris"></param>
         /// <param name="corsOrigins"></param>
-        /// <param name="postLogoutRedirectUris">允许登录后重定向的地址列表，可以有多个</param>
-        /// <param name="frontChannelLogoutUri"></param>
+        /// <param name="postLogoutRedirectUris">指定在注销后重定向到的允许URI.(一个clientId，多个url)</param>
+        /// <param name="frontChannelLogoutUri">指定客户端的注销URI，以用于基于HTTP的前端通道注销。</param>
         /// <param name="allowAccessTokensViaBrowser">允许将token通过浏览器传递</param>
         /// <param name="permissions">默认赋权</param>
         /// <param name=""></param>
@@ -258,8 +258,7 @@ namespace SSO.AuthServer.IdentityServer
             var client = await _clientRepository.FindByClientIdAsync(clientId);
             if (client == null)
             {
-                client = await _clientRepository.InsertAsync(
-                    new Client(
+                client = new Client(
                         _guidGenerator.Create(),
                         clientId
                     )
@@ -276,26 +275,25 @@ namespace SSO.AuthServer.IdentityServer
 
                         // 刷新令牌的最长生命周期（秒）。默认为2592000秒/ 30天
                         AbsoluteRefreshTokenLifetime = 60 * 60 * 12, //1 days
-                        // 滑动刷新令牌的生命周期，以秒为单位。默认为1296000秒/ 15天
+                                                                     // 滑动刷新令牌的生命周期，以秒为单位。默认为1296000秒/ 15天
                         SlidingRefreshTokenLifetime = 60 * 60 * 12,//1 days
-                        // 访问令牌的生命周期，以秒为单位（默认为3600秒/ 1小时）
+                                                                   // 访问令牌的生命周期，以秒为单位（默认为3600秒/ 1小时）
                         AccessTokenLifetime = 60 * 60 * 12, //1 days
-                        // 授权代码的生命周期，以秒为单位（默认为300秒/ 5分钟）
+                                                            // 授权代码的生命周期，以秒为单位（默认为300秒/ 5分钟）
                         AuthorizationCodeLifetime = 60 * 24 * 12,//1 days
-                        // 身份令牌的生命周期，以秒为单位（默认为300秒/ 5分钟）
+                                                                 // 身份令牌的生命周期，以秒为单位（默认为300秒/ 5分钟）
                         IdentityTokenLifetime = 60 * 60 * 12,//1 days
 
                         // 指定是否需要同意屏幕。默认为true。
-                        RequireConsent = false,
+                        RequireConsent = false,                        
                         // 指定客户端的注销URI，以用于基于HTTP的前端通道注销。
                         FrontChannelLogoutUri = frontChannelLogoutUri,
                         // 指定此客户端是否需要密钥才能从令牌端点请求令牌（默认为true）
                         RequireClientSecret = requireClientSecret,
                         // 指定使用基于授权代码的授权类型的客户端是否必须发送校验密钥
                         RequirePkce = requirePkce
-                    },
-                    autoSave: true
-                );
+                    };
+                client = await _clientRepository.InsertAsync(client, autoSave: true);
             }
 
             foreach (var scope in scopes)

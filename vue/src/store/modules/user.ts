@@ -4,10 +4,11 @@ import { defineStore } from 'pinia';
 import { store } from '/@/store';
 import { RoleEnum } from '/@/enums/roleEnum';
 import { PageEnum } from '/@/enums/pageEnum';
-import { ROLES_KEY, TOKEN_KEY, USER_INFO_KEY } from '/@/enums/cacheEnum';
+import { ROLES_KEY, TOKEN_KEY, REFRESH_TOKEN_KEY, USER_INFO_KEY } from '/@/enums/cacheEnum';
 import { getAuthCache, setAuthCache } from '/@/utils/auth';
 import { GetUserInfoModel, LoginParams } from '/@/api/sys/model/userModel';
 import { doLogout, getUserInfo, loginApi } from '/@/api/sys/user';
+import { useAbpStoreWidthOut } from './abp';
 import { useI18n } from '/@/hooks/web/useI18n';
 import { useMessage } from '/@/hooks/web/useMessage';
 import { router } from '/@/router';
@@ -20,6 +21,7 @@ import { h } from 'vue';
 interface UserState {
   userInfo: Nullable<UserInfo>;
   token?: string;
+  refreshToken?: string;
   roleList: RoleEnum[];
   sessionTimeout?: boolean;
   lastUpdateTime: number;
@@ -30,8 +32,10 @@ export const useUserStore = defineStore({
   state: (): UserState => ({
     // user info
     userInfo: null,
-    // token
+    // access token
     token: undefined,
+    // refresh_token
+    refreshToken: undefined,
     // roleList
     roleList: [],
     // Whether the login expired
@@ -45,6 +49,9 @@ export const useUserStore = defineStore({
     },
     getToken(): string {
       return this.token || getAuthCache<string>(TOKEN_KEY);
+    },
+    getRefreshToken(): string {
+      return this.refreshToken || getAuthCache<string>(REFRESH_TOKEN_KEY);
     },
     getRoleList(): RoleEnum[] {
       return this.roleList.length > 0 ? this.roleList : getAuthCache<RoleEnum[]>(ROLES_KEY);
@@ -61,6 +68,10 @@ export const useUserStore = defineStore({
       this.token = info ? info : ''; // for null or undefined value
       setAuthCache(TOKEN_KEY, info);
     },
+    setRefreshToken(info: string | undefined) {
+      this.refreshToken = info ? info : ''; // for null or undefined value
+      setAuthCache(REFRESH_TOKEN_KEY, info);
+    },
     setRoleList(roleList: RoleEnum[]) {
       this.roleList = roleList;
       setAuthCache(ROLES_KEY, roleList);
@@ -76,8 +87,13 @@ export const useUserStore = defineStore({
     resetState() {
       this.userInfo = null;
       this.token = '';
+      this.refreshToken = '';
+
       this.roleList = [];
       this.sessionTimeout = false;
+
+      const abpStore = useAbpStoreWidthOut();
+      abpStore.resetSession();
     },
     /**
      * @description: login
@@ -91,10 +107,11 @@ export const useUserStore = defineStore({
       try {
         const { goHome = true, mode, ...loginParams } = params;
         const data = await loginApi(loginParams, mode);
-        const { token } = data;
+        const { token_type, access_token, refresh_token } = data;
 
         // save token
-        this.setToken(token);
+        this.setToken(token_type + ' ' + access_token);
+        this.setRefreshToken(refresh_token);
         return this.afterLoginAction(goHome);
       } catch (error) {
         return Promise.reject(error);
@@ -124,10 +141,22 @@ export const useUserStore = defineStore({
     },
     async getUserInfoAction(): Promise<UserInfo | null> {
       if (!this.getToken) return null;
-      const userInfo = await getUserInfo();
+      const abpStore = useAbpStoreWidthOut();
+      await abpStore.initlizeAbpApplication();
+
+      const currentUser = abpStore.application.currentUser;
+      console.log(currentUser);
+      const userInfo = {
+        userId: currentUser.id!,
+        username: currentUser.userName!,
+        realName: currentUser.surName! || currentUser.userName!,
+        avatar: '',
+        roles: currentUser.roles,
+      };
+
       const { roles = [] } = userInfo;
       if (isArray(roles)) {
-        const roleList = roles.map((item) => item.value) as RoleEnum[];
+        const roleList = roles.map((item) => item) as RoleEnum[];
         this.setRoleList(roleList);
       } else {
         userInfo.roles = [];
@@ -142,12 +171,13 @@ export const useUserStore = defineStore({
     async logout(goLogin = false) {
       if (this.getToken) {
         try {
-          await doLogout();
+          await doLogout({ token: this.getToken });
         } catch {
           console.log('注销Token失败');
         }
       }
       this.setToken(undefined);
+      this.setRefreshToken(undefined);
       this.setSessionTimeout(false);
       this.setUserInfo(null);
       goLogin && router.push(PageEnum.BASE_LOGIN);

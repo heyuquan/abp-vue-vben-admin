@@ -135,6 +135,25 @@ namespace Leopard.Utils
                 mvcOptions.Filters.Add(typeof(LeopardExceptionFilter));
             });
 
+            context.Services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder
+                        .WithOrigins(
+                            configuration["App:CorsOrigins"]
+                                .Split(",", StringSplitOptions.RemoveEmptyEntries)
+                                .Select(o => o.RemovePostFix("/"))
+                                .ToArray()
+                        )
+                        .WithAbpExposedHeaders()
+                        .SetIsOriginAllowedToAllowWildcardSubdomains()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .AllowCredentials();
+                });
+            });
+
 #if DEBUG
             context.Services.AddLeopardSwaggerGen();
 #endif
@@ -204,25 +223,6 @@ namespace Leopard.Utils
                     }
                 }
 
-                context.Services.AddCors(options =>
-                {
-                    options.AddDefaultPolicy(builder =>
-                    {
-                        builder
-                            .WithOrigins(
-                                configuration["App:CorsOrigins"]
-                                    .Split(",", StringSplitOptions.RemoveEmptyEntries)
-                                    .Select(o => o.RemovePostFix("/"))
-                                    .ToArray()
-                            )
-                            .WithAbpExposedHeaders()
-                            .SetIsOriginAllowedToAllowWildcardSubdomains()
-                            .AllowAnyHeader()
-                            .AllowAnyMethod()
-                            .AllowCredentials();
-                    });
-                });
-
                 Configure<AbpClockOptions>(options =>
                 {
                     options.Kind = DateTimeKind.Utc;
@@ -274,10 +274,8 @@ namespace Leopard.Utils
             app.UseStaticFiles();
             //路由
             app.UseRouting();
-            if (IsHost())
-            {
-                app.UseCors();
-            }
+            app.UseCors();
+
             // 认证
             app.UseAuthentication();
 
@@ -299,7 +297,7 @@ namespace Leopard.Utils
             // swagger
             app.UseSwagger();
             app.UseLeopardSwaggerUI();
-            
+
             if (IsHost())   // 设置这个后，网关项目启用ocelot会失败（不会进行路由跳转）
             {
                 // UseEndpoints 在 UseRouting 之后

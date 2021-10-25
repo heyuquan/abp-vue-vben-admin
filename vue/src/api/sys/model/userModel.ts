@@ -6,25 +6,23 @@ export interface LoginParams {
   password: string;
 }
 
-export interface RoleInfo {
-  roleName: string;
-  value: string;
-}
-
 /**
  * @description: Login interface return value
  */
 export interface LoginResultModel {
-  userId: string | number;
-  token: string;
-  role: RoleInfo;
+  /** 令牌类型 */
+  token_type: string;
+  /** 访问令牌 */
+  access_token: string;
+  /** 刷新令牌 */
+  refresh_token: string;
 }
 
 /**
  * @description: Get user information return value
  */
 export interface GetUserInfoModel {
-  roles: RoleInfo[];
+  roles: Array<string>;
   // 用户id
   userId: string | number;
   // 用户名
@@ -35,4 +33,8 @@ export interface GetUserInfoModel {
   avatar: string;
   // 介绍
   desc?: string;
+}
+
+export interface LogoutParams {
+  token: String;
 }
