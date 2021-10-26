@@ -7,24 +7,27 @@
 		<RootNamespace></RootNamespace>
 		<PreserveCompilationReferences>true</PreserveCompilationReferences>
 		<UserSecretsId>SSO.AuthServer-4681b4fd-151f-4221-84a4-929d86723e4c</UserSecretsId>
+		<GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="$(MicrosoftPackageVersion)" />
-
+		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="$(MicrosoftPackageVersion)" />
 		<PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy" Version="4.4.2" />
 		<PackageReference Include="Volo.Abp.Autofac" Version="4.4.2" />
 		<PackageReference Include="Volo.Abp.Caching.StackExchangeRedis" Version="4.4.2" />
+		<PackageReference Include="Volo.Abp.EntityFrameworkCore.MySQL" Version="4.4.2" />
+		<PackageReference Include="Volo.Abp.Identity.EntityFrameworkCore" Version="4.4.2" />
+		<PackageReference Include="Volo.Abp.IdentityServer.EntityFrameworkCore" Version="4.4.2" />
+		<PackageReference Include="Volo.Abp.PermissionManagement.EntityFrameworkCore" Version="4.4.2" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\framework\src\Leopard.AspNetCore.Swashbuckle\Leopard.AspNetCore.Swashbuckle.csproj" />
 		<ProjectReference Include="..\..\..\framework\src\Leopard.Consul\Leopard.Consul.csproj" />
 		<ProjectReference Include="..\..\..\framework\src\Utils\Leopard.Utils.Host\Leopard.Utils.Host.csproj" />
+		<ProjectReference Include="..\..\..\module\Saas\Leopard.Saas.EntityFrameworkCore\Leopard.Saas.EntityFrameworkCore.csproj" />
 		<ProjectReference Include="..\..\..\shared\Leopard.Buiness.Shared\Leopard.Buiness.Shared.csproj" />
-		<ProjectReference Include="..\SSO.AuthServer.Application\SSO.AuthServer.Application.csproj" />
-		<ProjectReference Include="..\SSO.AuthServer.EntityFrameworkCore\SSO.AuthServer.EntityFrameworkCore.csproj" />
-		<ProjectReference Include="..\SSO.AuthServer.HttpApi\SSO.AuthServer.HttpApi.csproj" />
 		<ProjectReference Include="..\..\..\framework\src\Leopard.AspNetCore.Serilog\Leopard.AspNetCore.Serilog.csproj" />
 	</ItemGroup>
 
@@ -33,6 +36,11 @@
 		<Content Remove="Logs\**" />
 		<EmbeddedResource Remove="Logs\**" />
 		<None Remove="Logs\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Remove="Localization\Resources\*.json" />
+		<EmbeddedResource Include="Localization\Resources\*.json" />
 	</ItemGroup>
 
 </Project>

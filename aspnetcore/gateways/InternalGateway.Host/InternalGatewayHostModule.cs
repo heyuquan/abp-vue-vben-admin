@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
-using SSO.AuthServer;
 using System;
 using Volo.Abp;
 using Volo.Abp.Autofac;
@@ -20,7 +19,6 @@ namespace InternalGateway.Host
     [DependsOn(
         typeof(AbpAutofacModule),
         typeof(AbpSwashbuckleModule),
-        typeof(AuthServerHttpApiClientModule),
         typeof(LeopardAspNetCoreSerilogModule),
         typeof(LeopardConsulModule),
         typeof(LeopardAspNetCoreSwashbuckleModule)

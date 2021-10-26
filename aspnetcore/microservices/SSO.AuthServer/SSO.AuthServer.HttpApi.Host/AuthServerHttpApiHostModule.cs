@@ -2,15 +2,22 @@ using Leopard;
 using Leopard.Buiness.Shared;
 using Leopard.Consul;
 using Leopard.Utils;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using SSO.AuthServer.EntityFrameworkCore;
-using System.IO;
+using SSO.AuthServer.Localization;
 using Volo.Abp;
 using Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy;
 using Volo.Abp.Autofac;
+using Volo.Abp.Data;
+using Volo.Abp.EntityFrameworkCore;
+using Volo.Abp.EntityFrameworkCore.MySQL;
+using Volo.Abp.Identity.EntityFrameworkCore;
+using Volo.Abp.IdentityServer.EntityFrameworkCore;
+using Volo.Abp.Localization;
+using Volo.Abp.Localization.ExceptionHandling;
 using Volo.Abp.Modularity;
+using Volo.Abp.PermissionManagement.EntityFrameworkCore;
+using Volo.Abp.Threading;
+using Volo.Abp.Validation.Localization;
 using Volo.Abp.VirtualFileSystem;
 
 namespace SSO.AuthServer
@@ -19,11 +26,12 @@ namespace SSO.AuthServer
         typeof(AbpAutofacModule),
         typeof(AbpAspNetCoreMvcUiMultiTenancyModule),
 
-        typeof(LeopardConsulModule),
+        typeof(AbpEntityFrameworkCoreMySQLModule),
+        typeof(AbpPermissionManagementEntityFrameworkCoreModule),
+        typeof(AbpIdentityEntityFrameworkCoreModule),
+        typeof(AbpIdentityServerEntityFrameworkCoreModule),
 
-        typeof(AuthServerHttpApiModule),
-        typeof(AuthServerApplicationModule),
-        typeof(AuthServerEntityFrameworkCoreModule)
+        typeof(LeopardConsulModule)
     )]
     public class AuthServerHttpApiHostModule : HostCommonModule
     {
@@ -35,24 +43,32 @@ namespace SSO.AuthServer
             var configuration = context.Services.GetConfiguration();
             var hostingEnvironment = context.Services.GetHostingEnvironment();
 
-            if (hostingEnvironment.IsDevelopment())
+            Configure<AbpDbContextOptions>(options =>
             {
-                Configure<AbpVirtualFileSystemOptions>(options =>
-                {
-                    options.FileSets.ReplaceEmbeddedByPhysical<AuthServerDomainSharedModule>(
-                        Path.Combine(hostingEnvironment.ContentRootPath,
-                            $"..{Path.DirectorySeparatorChar}SSO.AuthServer.Domain.Shared"));
-                    options.FileSets.ReplaceEmbeddedByPhysical<AuthServerDomainModule>(
-                        Path.Combine(hostingEnvironment.ContentRootPath,
-                            $"..{Path.DirectorySeparatorChar}SSO.AuthServer.Domain"));
-                    options.FileSets.ReplaceEmbeddedByPhysical<AuthServerApplicationContractsModule>(
-                        Path.Combine(hostingEnvironment.ContentRootPath,
-                            $"..{Path.DirectorySeparatorChar}SSO.AuthServer.Application.Contracts"));
-                    options.FileSets.ReplaceEmbeddedByPhysical<AuthServerApplicationModule>(
-                        Path.Combine(hostingEnvironment.ContentRootPath,
-                            $"..{Path.DirectorySeparatorChar}SSO.AuthServer.Application"));
-                });
-            }
+                /* The main point to change your DBMS.
+                 * See also AuthServerMigrationsDbContextFactory for EF Core tooling. */
+                options.UseMySQL();
+            });
+
+            Configure<AbpVirtualFileSystemOptions>(options =>
+            {
+                options.FileSets.AddEmbedded<AuthServerHttpApiHostModule>();
+            });
+
+            Configure<AbpLocalizationOptions>(options =>
+            {
+                options.Resources
+                    .Add<AuthServerResource>("en")
+                    .AddBaseTypes(typeof(AbpValidationResource))
+                    .AddVirtualJson("/Localization/Resource");
+
+                options.DefaultResourceType = typeof(AuthServerResource);
+            });
+
+            Configure<AbpExceptionLocalizationOptions>(options =>
+            {
+                options.MapCodeNamespace("AuthServer", typeof(AuthServerResource));
+            });
 
             base.ConfigureServices(context);
 
@@ -61,6 +77,17 @@ namespace SSO.AuthServer
         public override void OnApplicationInitialization(ApplicationInitializationContext context)
         {
             base.OnApplicationInitialization(context);
+
+            SeedData(context);
+        }
+
+        private void SeedData(ApplicationInitializationContext context)
+        {
+            AsyncHelper.RunSync(async () =>
+            {
+                using var scope = context.ServiceProvider.CreateScope();
+                await scope.ServiceProvider.GetRequiredService<IDataSeeder>().SeedAsync();
+            });
         }
     }
 }

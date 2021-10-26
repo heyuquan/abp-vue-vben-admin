@@ -6,8 +6,6 @@ using Localization.Resources.AbpUi;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using SSO.AuthServer.EntityFrameworkCore;
-using SSO.AuthServer.Localization;
 using System.IO;
 using Volo.Abp;
 using Volo.Abp.Account;
@@ -29,7 +27,7 @@ namespace SSO.AuthServer
         typeof(AbpAccountWebIdentityServerModule),
         typeof(AbpAccountApplicationModule),
         typeof(AbpAspNetCoreMvcUiBasicThemeModule),
-        typeof(AuthServerEntityFrameworkCoreModule),
+
         typeof(LeopardConsulModule)
         )]
     public class AuthServerIdentityServerModule : HostCommonModule
@@ -41,14 +39,14 @@ namespace SSO.AuthServer
             var hostingEnvironment = context.Services.GetHostingEnvironment();
             var configuration = context.Services.GetConfiguration();
 
-            Configure<AbpLocalizationOptions>(options =>
-            {
-                options.Resources
-                    .Get<AuthServerResource>()
-                    .AddBaseTypes(
-                        typeof(AbpUiResource)
-                    );
-            });
+            //Configure<AbpLocalizationOptions>(options =>
+            //{
+            //    options.Resources
+            //        .Get<AuthServerResource>()
+            //        .AddBaseTypes(
+            //            typeof(AbpUiResource)
+            //        );
+            //});
 
             Configure<AbpBundlingOptions>(options =>
             {
@@ -60,15 +58,6 @@ namespace SSO.AuthServer
                     }
                 );
             });
-
-            if (hostingEnvironment.IsDevelopment())
-            {
-                Configure<AbpVirtualFileSystemOptions>(options =>
-                {
-                    options.FileSets.ReplaceEmbeddedByPhysical<AuthServerDomainSharedModule>(Path.Combine(hostingEnvironment.ContentRootPath, $"..{Path.DirectorySeparatorChar}SSO.AuthServer.Domain.Shared"));
-                    options.FileSets.ReplaceEmbeddedByPhysical<AuthServerDomainModule>(Path.Combine(hostingEnvironment.ContentRootPath, $"..{Path.DirectorySeparatorChar}SSO.AuthServer.Domain"));
-                });
-            }
 
             Configure<AppUrlOptions>(options =>
             {
@@ -93,9 +82,9 @@ namespace SSO.AuthServer
             {
                 var app = ctx.GetApplicationBuilder();
                 app.UseIdentityServer();
-            });           
+            });
         }
 
-       
+
     }
 }
