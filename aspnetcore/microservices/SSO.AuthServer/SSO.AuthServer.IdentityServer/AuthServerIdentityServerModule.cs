@@ -2,11 +2,8 @@ using Leopard;
 using Leopard.Buiness.Shared;
 using Leopard.Consul;
 using Leopard.Utils;
-using Localization.Resources.AbpUi;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using System.IO;
 using Volo.Abp;
 using Volo.Abp.Account;
 using Volo.Abp.Account.Web;
@@ -15,10 +12,12 @@ using Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic.Bundling;
 using Volo.Abp.Autofac;
 using Volo.Abp.BackgroundJobs;
-using Volo.Abp.Localization;
+using Volo.Abp.EntityFrameworkCore;
+using Volo.Abp.EntityFrameworkCore.MySQL;
+using Volo.Abp.Identity.EntityFrameworkCore;
+using Volo.Abp.IdentityServer.EntityFrameworkCore;
 using Volo.Abp.Modularity;
 using Volo.Abp.UI.Navigation.Urls;
-using Volo.Abp.VirtualFileSystem;
 
 namespace SSO.AuthServer
 {
@@ -27,6 +26,10 @@ namespace SSO.AuthServer
         typeof(AbpAccountWebIdentityServerModule),
         typeof(AbpAccountApplicationModule),
         typeof(AbpAspNetCoreMvcUiBasicThemeModule),
+
+        typeof(AbpEntityFrameworkCoreMySQLModule),
+        typeof(AbpIdentityEntityFrameworkCoreModule),
+        typeof(AbpIdentityServerEntityFrameworkCoreModule),
 
         typeof(LeopardConsulModule)
         )]
@@ -38,6 +41,11 @@ namespace SSO.AuthServer
         {
             var hostingEnvironment = context.Services.GetHostingEnvironment();
             var configuration = context.Services.GetConfiguration();
+
+            Configure<AbpDbContextOptions>(options =>
+            {
+                options.UseMySQL();
+            });
 
             //Configure<AbpLocalizationOptions>(options =>
             //{

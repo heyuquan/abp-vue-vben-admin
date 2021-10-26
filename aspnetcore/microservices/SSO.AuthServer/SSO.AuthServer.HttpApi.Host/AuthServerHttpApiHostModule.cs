@@ -5,11 +5,13 @@ using Leopard.Utils;
 using Microsoft.Extensions.DependencyInjection;
 using SSO.AuthServer.Localization;
 using Volo.Abp;
+using Volo.Abp.Account;
 using Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy;
 using Volo.Abp.Autofac;
 using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.MySQL;
+using Volo.Abp.Identity;
 using Volo.Abp.Identity.EntityFrameworkCore;
 using Volo.Abp.IdentityServer.EntityFrameworkCore;
 using Volo.Abp.Localization;
@@ -27,7 +29,13 @@ namespace SSO.AuthServer
         typeof(AbpAspNetCoreMvcUiMultiTenancyModule),
 
         typeof(AbpEntityFrameworkCoreMySQLModule),
-        typeof(AbpPermissionManagementEntityFrameworkCoreModule),
+        typeof(AbpPermissionManagementEntityFrameworkCoreModule),       
+
+        typeof(AbpAccountApplicationModule),
+        typeof(AbpAccountHttpApiClientModule),
+
+        typeof(AbpIdentityApplicationModule),
+        typeof(AbpIdentityHttpApiClientModule),
         typeof(AbpIdentityEntityFrameworkCoreModule),
         typeof(AbpIdentityServerEntityFrameworkCoreModule),
 
@@ -45,8 +53,6 @@ namespace SSO.AuthServer
 
             Configure<AbpDbContextOptions>(options =>
             {
-                /* The main point to change your DBMS.
-                 * See also AuthServerMigrationsDbContextFactory for EF Core tooling. */
                 options.UseMySQL();
             });
 

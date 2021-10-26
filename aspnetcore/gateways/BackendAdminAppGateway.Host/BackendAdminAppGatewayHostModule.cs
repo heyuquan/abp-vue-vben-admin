@@ -1,8 +1,12 @@
-﻿using Leopard.AspNetCore.Serilog;
+﻿using Leopard;
+using Leopard.Account.Admin;
+using Leopard.AspNetCore.Serilog;
 using Leopard.AspNetCore.Swashbuckle;
 using Leopard.Consul;
+using Leopard.Identity;
+using Leopard.Saas;
 using Leopard.Utils;
-using Leopard;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Ocelot.DependencyInjection;
@@ -10,10 +14,11 @@ using Ocelot.Middleware;
 using System;
 using Volo.Abp;
 using Volo.Abp.Autofac;
+using Volo.Abp.FeatureManagement;
 using Volo.Abp.Modularity;
+using Volo.Abp.PermissionManagement.HttpApi;
+using Volo.Abp.SettingManagement;
 using Volo.Abp.Swashbuckle;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Leopard.BackendAdmin;
 
 namespace BackendAdminAppGateway.Host
 {
@@ -23,7 +28,13 @@ namespace BackendAdminAppGateway.Host
         typeof(LeopardAspNetCoreSerilogModule),
         typeof(LeopardConsulModule),
         typeof(LeopardAspNetCoreSwashbuckleModule),
-        typeof(BackendAdminHttpApiModule)
+
+        typeof(AbpPermissionManagementHttpApiModule),
+        typeof(AbpFeatureManagementHttpApiModule),
+        typeof(AbpSettingManagementHttpApiModule),
+        typeof(SaasHttpApiModule),
+        typeof(LeopardAccountAdminHttpApiModule),
+        typeof(LeopardIdentityHttpApiModule)
     )]
     public class BackendAdminAppGatewayHostModule : HostCommonModule
     {

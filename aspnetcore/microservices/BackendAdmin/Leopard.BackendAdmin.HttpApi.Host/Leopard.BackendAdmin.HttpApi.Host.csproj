@@ -2,39 +2,69 @@
 
 	<Import Project="..\..\..\common.props" />
 
-  <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-	  <RootNamespace></RootNamespace>
-    <PreserveCompilationReferences>true</PreserveCompilationReferences>
-    <UserSecretsId>Leopard.BackendAdmin-4681b4fd-151f-4221-84a4-929d86723e4c</UserSecretsId>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<RootNamespace></RootNamespace>
+		<PreserveCompilationReferences>true</PreserveCompilationReferences>
+		<UserSecretsId>Leopard.BackendAdmin-4681b4fd-151f-4221-84a4-929d86723e4c</UserSecretsId>
+		<GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Serilog.AspNetCore" Version="4.1.0" />
-    <PackageReference Include="Serilog.Sinks.Async" Version="1.4.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.*" />
-    <PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="5.0.*" />
-    <PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy" Version="4.4.2" />
-    <PackageReference Include="Volo.Abp.Autofac" Version="4.4.2" />
-    <PackageReference Include="Volo.Abp.Caching.StackExchangeRedis" Version="4.4.2" />
-    <PackageReference Include="Volo.Abp.AspNetCore.Serilog" Version="4.4.2" />
-    <PackageReference Include="Volo.Abp.Swashbuckle" Version="4.4.2" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="$(MicrosoftPackageVersion)" />
+		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="$(MicrosoftPackageVersion)" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="$(MicrosoftPackageVersion)" />
+		<PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="$(MicrosoftPackageVersion)" />
+		<PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy" Version="4.4.2" />
+		<PackageReference Include="Volo.Abp.Autofac" Version="4.4.2" />
+		<PackageReference Include="Volo.Abp.Caching.StackExchangeRedis" Version="4.4.2" />
+		<PackageReference Include="Volo.Abp.AspNetCore.Serilog" Version="4.4.2" />
+		<PackageReference Include="Volo.Abp.Swashbuckle" Version="4.4.2" />
+		<PackageReference Include="Volo.Abp.EntityFrameworkCore.MySQL" Version="4.4.2" />	
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\framework\src\Leopard.Consul\Leopard.Consul.csproj" />
-    <ProjectReference Include="..\..\..\framework\src\Utils\Leopard.Utils.Host\Leopard.Utils.Host.csproj" />
-    <ProjectReference Include="..\..\..\shared\Leopard.Buiness.Shared\Leopard.Buiness.Shared.csproj" />
-    <ProjectReference Include="..\Leopard.BackendAdmin.Application\Leopard.BackendAdmin.Application.csproj" />
-    <ProjectReference Include="..\Leopard.BackendAdmin.EntityFrameworkCore\Leopard.BackendAdmin.EntityFrameworkCore.csproj" />
-    <ProjectReference Include="..\Leopard.BackendAdmin.HttpApi\Leopard.BackendAdmin.HttpApi.csproj" />
-  </ItemGroup>
+		<PackageReference Include="Volo.Abp.AuditLogging.EntityFrameworkCore" Version="4.4.2" />
+		
+		<PackageReference Include="Volo.Abp.PermissionManagement.Application" Version="4.4.2" />
+		<PackageReference Include="Volo.Abp.PermissionManagement.HttpApi" Version="4.4.2" />
+		<PackageReference Include="Volo.Abp.PermissionManagement.EntityFrameworkCore" Version="4.4.2" />
+		
+		<PackageReference Include="Volo.Abp.FeatureManagement.Application" Version="4.4.2" />
+		<PackageReference Include="Volo.Abp.FeatureManagement.HttpApi" Version="4.4.2" />
+		<PackageReference Include="Volo.Abp.FeatureManagement.EntityFrameworkCore" Version="4.4.2" />
+		
+		<PackageReference Include="Volo.Abp.SettingManagement.Application" Version="4.4.2" />
+		<PackageReference Include="Volo.Abp.SettingManagement.HttpApi" Version="4.4.2" />
+		<PackageReference Include="Volo.Abp.SettingManagement.EntityFrameworkCore" Version="4.4.2" />
+		<PackageReference Include="Volo.Abp.Identity.EntityFrameworkCore" Version="4.4.2" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Compile Remove="Logs\**" />
-    <Content Remove="Logs\**" />
-    <EmbeddedResource Remove="Logs\**" />
-    <None Remove="Logs\**" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\framework\src\Leopard.Consul\Leopard.Consul.csproj" />
+		<ProjectReference Include="..\..\..\framework\src\Utils\Leopard.Utils.Host\Leopard.Utils.Host.csproj" />
+		
+		<ProjectReference Include="..\..\..\module\Account\Leopard.Account.Admin.Application\Leopard.Account.Admin.Application.csproj" />
+		<ProjectReference Include="..\..\..\module\Account\Leopard.Account.Admin.HttpApi\Leopard.Account.Admin.HttpApi.csproj" />
+		
+		<ProjectReference Include="..\..\..\module\Identity\Leopard.Identity.Application\Leopard.Identity.Application.csproj" />
+		<ProjectReference Include="..\..\..\module\Identity\Leopard.Identity.HttpApi\Leopard.Identity.HttpApi.csproj" />
+		
+		<ProjectReference Include="..\..\..\module\Saas\Leopard.Saas.Application\Leopard.Saas.Application.csproj" />
+		<ProjectReference Include="..\..\..\module\Saas\Leopard.Saas.HttpApi\Leopard.Saas.HttpApi.csproj" />		
+		<ProjectReference Include="..\..\..\module\Saas\Leopard.Saas.EntityFrameworkCore\Leopard.Saas.EntityFrameworkCore.csproj" />
+		
+		<ProjectReference Include="..\..\..\shared\Leopard.Buiness.Shared\Leopard.Buiness.Shared.csproj" />	
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Remove="Logs\**" />
+		<Content Remove="Logs\**" />
+		<EmbeddedResource Remove="Logs\**" />
+		<None Remove="Logs\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Remove="Localization\Resources\*.json" />
+		<EmbeddedResource Include="Localization\Resources\*.json" />
+	</ItemGroup>
 
 </Project>
