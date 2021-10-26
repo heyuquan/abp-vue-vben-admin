@@ -126,7 +126,7 @@ namespace Leopard.Identity
         [Authorize(IdentityPermissions.OrganizationUnits.ManageOU)]
         public virtual async Task DeleteAsync(Guid id)
         {
-            var flag = OrganizationUnitRepository.FindAsync(id);
+            var flag = await OrganizationUnitRepository.FindAsync(id);
 
             if (flag != null)
             {
