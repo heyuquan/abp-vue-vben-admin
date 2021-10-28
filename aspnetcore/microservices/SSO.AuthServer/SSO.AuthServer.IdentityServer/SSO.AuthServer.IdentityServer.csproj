@@ -42,7 +42,7 @@
 		<ProjectReference Include="..\..\..\framework\src\Leopard.AspNetCore.Serilog\Leopard.AspNetCore.Serilog.csproj" />
 		<ProjectReference Include="..\..\..\framework\src\Leopard.Consul\Leopard.Consul.csproj" />
 		<ProjectReference Include="..\..\..\framework\src\Utils\Leopard.Utils.Host\Leopard.Utils.Host.csproj" />
-		<ProjectReference Include="..\..\..\shared\Leopard.Buiness.Shared\Leopard.Buiness.Shared.csproj" />
+		<ProjectReference Include="..\..\..\shared\Leopard.Buiness.Shared.Const\Leopard.Buiness.Shared.Const.csproj" />
 	</ItemGroup>
 
 </Project>

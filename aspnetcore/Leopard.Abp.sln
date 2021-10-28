@@ -107,7 +107,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Saas.HttpApi.Client
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "88_Test", "88_Test", "{F6A6FE17-37E6-4E0B-B583-43C37644A624}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Buiness.Shared", "shared\Leopard.Buiness.Shared\Leopard.Buiness.Shared.csproj", "{23463A7D-8CAC-4515-B766-9383F02DEA7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Buiness.Shared.Const", "shared\Leopard.Buiness.Shared.Const\Leopard.Buiness.Shared.Const.csproj", "{23463A7D-8CAC-4515-B766-9383F02DEA7A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Utils.Host", "framework\src\Utils\Leopard.Utils.Host\Leopard.Utils.Host.csproj", "{16530019-96EA-4395-8A37-C1AD2D46EE2A}"
 EndProject
@@ -150,6 +150,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Identity.HttpApi", "module\Identity\Leopard.Identity.HttpApi\Leopard.Identity.HttpApi.csproj", "{3C51BA97-74FA-42B4-9B0C-B83D37965DCA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Identity.HttpApi.Client", "module\Identity\Leopard.Identity.HttpApi.Client\Leopard.Identity.HttpApi.Client.csproj", "{E92CBEF6-EAF8-458B-8BF5-E0FDF03E40D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leopard.UI.Navigation", "framework\src\Leopard.UI.Navigation\Leopard.UI.Navigation.csproj", "{00287B32-DAF2-469F-9716-4B594C633B60}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leopard.Identity.Web", "module\Identity\Leopard.Identity.Web\Leopard.Identity.Web.csproj", "{9F6059C7-719D-4436-B01F-F0AAE75A8577}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -381,6 +385,14 @@ Global
 		{E92CBEF6-EAF8-458B-8BF5-E0FDF03E40D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E92CBEF6-EAF8-458B-8BF5-E0FDF03E40D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E92CBEF6-EAF8-458B-8BF5-E0FDF03E40D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00287B32-DAF2-469F-9716-4B594C633B60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00287B32-DAF2-469F-9716-4B594C633B60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00287B32-DAF2-469F-9716-4B594C633B60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00287B32-DAF2-469F-9716-4B594C633B60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F6059C7-719D-4436-B01F-F0AAE75A8577}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F6059C7-719D-4436-B01F-F0AAE75A8577}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F6059C7-719D-4436-B01F-F0AAE75A8577}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F6059C7-719D-4436-B01F-F0AAE75A8577}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -451,6 +463,8 @@ Global
 		{1317A2E7-F56E-4112-9A2C-E237E93507B4} = {C02DBF27-83A7-4094-8FAC-3B53C1677735}
 		{3C51BA97-74FA-42B4-9B0C-B83D37965DCA} = {C02DBF27-83A7-4094-8FAC-3B53C1677735}
 		{E92CBEF6-EAF8-458B-8BF5-E0FDF03E40D9} = {C02DBF27-83A7-4094-8FAC-3B53C1677735}
+		{00287B32-DAF2-469F-9716-4B594C633B60} = {408C61DE-C824-4BA2-8EE7-CE571EA864B5}
+		{9F6059C7-719D-4436-B01F-F0AAE75A8577} = {C02DBF27-83A7-4094-8FAC-3B53C1677735}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {28315BFD-90E7-4E14-A2EA-F3D23AF4126F}

@@ -1,79 +1,80 @@
-﻿using Volo.Abp.Reflection;
+﻿using Leopard.Buiness.Shared;
+using Volo.Abp.Reflection;
 
 namespace Leopard.Identity
 {
-	public static class IdentityPermissions
-	{
-		public static string[] GetAll()
-		{
-			return ReflectionHelper.GetPublicConstantsRecursively(typeof(IdentityPermissions));
-		}
+    public static class IdentityPermissions
+    {
+        public static string[] GetAll()
+        {
+            return ReflectionHelper.GetPublicConstantsRecursively(typeof(IdentityPermissions));
+        }
 
-		public const string GroupName = "AbpIdentity";
+        public const string GroupName = ModuleNames.Identity;
 
-		public const string SettingManagement = "AbpIdentity.SettingManagement";
+        public const string SettingManagement = ModuleNames.Identity + ".SettingManagement";
 
-		public static class Roles
-		{
-			public const string Default = "AbpIdentity.Roles";
+        public static class Roles
+        {
+            public const string Default = GroupName + ".Roles";
 
-			public const string Create = "AbpIdentity.Roles.Create";
+            public const string Create = Default + ".Create";
 
-			public const string Update = "AbpIdentity.Roles.Update";
+            public const string Update = Default + ".Update";
 
-			public const string Delete = "AbpIdentity.Roles.Delete";
+            public const string Delete = Default + ".Delete";
 
-			public const string ManagePermissions = "AbpIdentity.Roles.ManagePermissions";
+            public const string ManagePermissions = Default + ".ManagePermissions";
 
-			public const string ViewChangeHistory = "AuditLogging.ViewChangeHistory:Volo.Abp.Identity.IdentityRole";
-		}
+            public const string ViewChangeHistory = "AuditLogging.ViewChangeHistory:Volo.Abp.Identity.IdentityRole";
+        }
 
-		public static class Users
-		{
-			public const string Default = "AbpIdentity.Users";
+        public static class Users
+        {
+            public const string Default = GroupName + ".Users";
 
-			public const string Create = "AbpIdentity.Users.Create";
+            public const string Create = Default + ".Create";
 
-			public const string Update = "AbpIdentity.Users.Update";
+            public const string Update = Default + ".Update";
 
-			public const string Delete = "AbpIdentity.Users.Delete";
+            public const string Delete = Default + ".Delete";
 
-			public const string ManagePermissions = "AbpIdentity.Users.ManagePermissions";
+            public const string ManagePermissions = Default + ".ManagePermissions";
 
-			public const string ViewChangeHistory = "AuditLogging.ViewChangeHistory:Volo.Abp.Identity.IdentityUser";
-		}
+            public const string ViewChangeHistory = "AuditLogging.ViewChangeHistory:Volo.Abp.Identity.IdentityUser";
+        }
 
-		public static class ClaimTypes
-		{
-			public const string Default = "AbpIdentity.ClaimTypes";
+        public static class ClaimTypes
+        {
+            public const string Default = GroupName + ".ClaimTypes";
 
-			public const string Create = "AbpIdentity.ClaimTypes.Create";
+            public const string Create = Default + ".Create";
 
-			public const string Update = "AbpIdentity.ClaimTypes.Update";
+            public const string Update = Default + ".Update";
 
-			public const string Delete = "AbpIdentity.ClaimTypes.Delete";
-		}
+            public const string Delete = Default + ".Delete";
+        }
 
-		public static class UserLookup
-		{
-			public const string Default = "AbpIdentity.UserLookup";
-		}
+        public static class UserLookup
+        {
+            public const string Default = GroupName + ".UserLookup";
+        }
 
-		public static class OrganizationUnits
-		{
-			public const string Default = "AbpIdentity.OrganizationUnits";
+        public static class OrganizationUnits
+        {
+            public const string Default = GroupName + ".OrganizationUnits";
 
-			public const string ManageOU = "AbpIdentity.OrganizationUnits.ManageOU";
+            public const string ManageOU = Default + ".ManageOU";
 
-			public const string ManageRoles = "AbpIdentity.OrganizationUnits.ManageRoles";
+            public const string ManageRoles = Default + ".ManageRoles";
 
-			public const string ManageUsers = "AbpIdentity.OrganizationUnits.ManageMembers";
-		}
+            public const string ManageUsers = Default + ".ManageMembers";
+        }
 
-		public class SecurityLog
-		{
-			public const string Default = GroupName + ".SecurityLog";
-			public const string Delete = Default + ".Delete";
-		}
-	}
+        public class SecurityLog
+        {
+            public const string Default = GroupName + ".SecurityLog";
+            public const string Delete = Default + ".Delete";
+        }
+    }
 }
