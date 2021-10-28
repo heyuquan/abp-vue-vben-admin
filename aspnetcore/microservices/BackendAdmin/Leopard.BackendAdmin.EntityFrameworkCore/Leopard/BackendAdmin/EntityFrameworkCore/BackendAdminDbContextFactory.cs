@@ -23,7 +23,7 @@ namespace Leopard.BackendAdmin.EntityFrameworkCore
         private static IConfigurationRoot BuildConfiguration()
         {
             var builder = new ConfigurationBuilder()
-                .SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../Leopard.BackendAdmin.DbMigrator/"))
+                .SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../Leopard.BackendAdmin.HttpApi.Host/"))
                 .AddJsonFile("appsettings.json", optional: false);
 
             return builder.Build();

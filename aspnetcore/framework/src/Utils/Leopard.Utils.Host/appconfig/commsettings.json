@@ -1,6 +1,6 @@
 {
   "Settings": {
-    "Abp.Localization.DefaultLanguage": "zh-Hans",
+    "Abp.Localization.DefaultLanguage": "zh-Hans"
     //"Abp.Identity.Password.RequireLowercase": "false",
     //"Abp.Identity.Password.RequireDigit": "false",
     //"Abp.Identity.Password.RequireUppercase": "false",
@@ -16,5 +16,8 @@
     //"Abp.Mailing.Smtp.UseDefaultCredentials": "false",
     //"Abp.Mailing.DefaultFromAddress": "",
     //"Abp.Mailing.DefaultFromDisplayName": "Leopard"
+  },
+  "StringEncryption": {
+    "DefaultPassPhrase": "gWfzH4q9xH0wpqtA"
   }
 }

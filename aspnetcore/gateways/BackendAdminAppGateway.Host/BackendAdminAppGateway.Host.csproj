@@ -29,9 +29,7 @@
 		<ProjectReference Include="..\..\framework\src\Leopard.AspNetCore.Swashbuckle\Leopard.AspNetCore.Swashbuckle.csproj" />
 		<ProjectReference Include="..\..\framework\src\Leopard.Consul\Leopard.Consul.csproj" />
 		<ProjectReference Include="..\..\framework\src\Utils\Leopard.Utils.Host\Leopard.Utils.Host.csproj" />
-		<ProjectReference Include="..\..\module\Account\Leopard.Account.Admin.HttpApi\Leopard.Account.Admin.HttpApi.csproj" />
-		<ProjectReference Include="..\..\module\Identity\Leopard.Identity.HttpApi\Leopard.Identity.HttpApi.csproj" />
-		<ProjectReference Include="..\..\module\Saas\Leopard.Saas.HttpApi\Leopard.Saas.HttpApi.csproj" />
+		<ProjectReference Include="..\..\microservices\BackendAdmin\Leopard.BackendAdmin.HttpApi\Leopard.BackendAdmin.HttpApi.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

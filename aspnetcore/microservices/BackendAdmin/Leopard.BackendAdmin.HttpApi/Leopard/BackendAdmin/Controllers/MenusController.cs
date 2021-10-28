@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Volo.Abp.AspNetCore.Mvc;
+using System.Threading.Tasks;
 using Volo.Abp.UI.Navigation;
 
 namespace Leopard.BackendAdmin.Controllers
 {
-    [Route("api/menus")]
+    [Route("api/backend-admin/menus")]
     [Authorize]
-    public class MenusController : AbpController
+    public class MenusController : BackendAdminController
     {
         private readonly IMenuManager _menuManager;
 

@@ -11,5 +11,6 @@ namespace Leopard.Buiness.Shared
         public const string Saas = "LeopardSaas";
         public const string Identity = "LeopardIdentity";
         public const string AccountAdmin = "LeopardAccountAdmin";
+        public const string BackendAdmin = "BackendAdmin";
     }
 }

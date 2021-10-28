@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Volo.Abp.EntityFrameworkCore;
 
-namespace Leopard.BackendAdmin.HttpApi.Host.Migrations
+namespace Leopard.BackendAdmin.EntityFrameworkCore.Migrations
 {
     [DbContext(typeof(BackendAdminDbContext))]
     partial class BackendAdminDbContextModelSnapshot : ModelSnapshot

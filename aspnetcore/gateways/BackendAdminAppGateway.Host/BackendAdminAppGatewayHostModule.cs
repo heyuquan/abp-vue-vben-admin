@@ -75,9 +75,9 @@ namespace BackendAdminAppGateway.Host
                     {
                         var app = ctx.GetApplicationBuilder();
                         app.MapWhen(
-                            ctx => ctx.Request.Path.ToString().StartsWith("/api/abp/") ||
-                                   ctx.Request.Path.ToString().StartsWith("/Abp/") ||
-                                   ctx.Request.Path.ToString().EndsWith("/api/health") ||
+                            ctx => ctx.Request.Path.ToString().StartsWith("/api/abp/", StringComparison.OrdinalIgnoreCase) ||
+                                   ctx.Request.Path.ToString().StartsWith("/abp/", StringComparison.OrdinalIgnoreCase) ||
+                                   ctx.Request.Path.ToString().EndsWith("/api/health", StringComparison.OrdinalIgnoreCase) ||
                                    ctx.Request.Path.ToString().TrimEnd('/').Equals(""),
                             app2 =>
                             {

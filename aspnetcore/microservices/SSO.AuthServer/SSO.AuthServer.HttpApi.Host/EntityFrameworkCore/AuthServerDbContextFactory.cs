@@ -24,7 +24,7 @@ namespace SSO.AuthServer.EntityFrameworkCore
         private static IConfigurationRoot BuildConfiguration()
         {
             var builder = new ConfigurationBuilder()
-                .SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../SSO.AuthServer.DbMigrator/"))
+                .SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../SSO.AuthServer.HttpApi.Host/"))
                 .AddJsonFile("appsettings.json", optional: false);
 
             return builder.Build();

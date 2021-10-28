@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Leopard.BackendAdmin.HttpApi.Host.Migrations
+namespace Leopard.BackendAdmin.EntityFrameworkCore.Migrations
 {
     public partial class init : Migration
     {

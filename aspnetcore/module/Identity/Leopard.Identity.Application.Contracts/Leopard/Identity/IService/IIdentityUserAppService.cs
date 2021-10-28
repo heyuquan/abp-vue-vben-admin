@@ -52,6 +52,12 @@ namespace Leopard.Identity
 		/// <returns></returns>
 		Task UpdatePasswordAsync(Guid id, IdentityUserUpdatePasswordInput input);
 		/// <summary>
+		/// 获取指定用户是否启用双因素验证
+		/// </summary>
+		/// <param name="id"></param>
+		/// <returns></returns>
+		Task<bool> GetTwoFactorEnabledAsync(Guid id);
+		/// <summary>
 		/// 变更双因素验证
 		/// </summary>
 		/// <param name="id"></param>

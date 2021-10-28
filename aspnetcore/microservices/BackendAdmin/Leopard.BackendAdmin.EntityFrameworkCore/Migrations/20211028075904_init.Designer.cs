@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Volo.Abp.EntityFrameworkCore;
 
-namespace Leopard.BackendAdmin.HttpApi.Host.Migrations
+namespace Leopard.BackendAdmin.EntityFrameworkCore.Migrations
 {
     [DbContext(typeof(BackendAdminDbContext))]
-    [Migration("20211026091300_init")]
+    [Migration("20211028075904_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
