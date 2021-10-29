@@ -6,6 +6,16 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="appconfig\commsettings.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="commsettings.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Volo.Abp.Autofac" Version="4.4.2" />
 		<PackageReference Include="Volo.Abp.Caching.StackExchangeRedis" Version="4.4.2" />
 		<PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy" Version="4.4.2" />
@@ -16,15 +26,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\Leopard.AspNetCore.Mvc\Leopard.AspNetCore.Mvc.csproj" />
-	  <ProjectReference Include="..\..\Leopard.AspNetCore.Serilog\Leopard.AspNetCore.Serilog.csproj" />
-	  <ProjectReference Include="..\..\Leopard.AspNetCore.Swashbuckle\Leopard.AspNetCore.Swashbuckle.csproj" />
+		<ProjectReference Include="..\..\Leopard.AspNetCore.Mvc\Leopard.AspNetCore.Mvc.csproj" />
+		<ProjectReference Include="..\..\Leopard.AspNetCore.Serilog\Leopard.AspNetCore.Serilog.csproj" />
+		<ProjectReference Include="..\..\Leopard.AspNetCore.Swashbuckle\Leopard.AspNetCore.Swashbuckle.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Update="AppConfig\*.json">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </None>
+	  <Folder Include="appconfig\" />
 	</ItemGroup>
-	
+
 </Project>

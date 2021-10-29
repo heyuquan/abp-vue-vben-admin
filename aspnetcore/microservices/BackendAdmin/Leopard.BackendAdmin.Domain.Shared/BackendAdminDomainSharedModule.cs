@@ -37,7 +37,7 @@ namespace Leopard.BackendAdmin
             Configure<AbpLocalizationOptions>(options =>
             {
                 options.Resources
-                    .Add<BackendAdminResource>("en")
+                    .Add<BackendAdminResource>()
                     .AddBaseTypes(typeof(AbpValidationResource))
                     .AddVirtualJson("/Localization/Resource");
 

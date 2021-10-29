@@ -18,7 +18,7 @@ namespace Leopard.Saas
 
 			Configure<AbpLocalizationOptions>(options =>
 			{
-				options.Resources.Add<SaasResource>("en")
+				options.Resources.Add<SaasResource>()
 				.AddBaseTypes(typeof(AbpValidationResource))
 				.AddVirtualJson("/Leopard/Saas/Localization/Resource");
 			});

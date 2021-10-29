@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 using System;
+using System.Linq;
 
 namespace Leopard.Utils
 {
@@ -45,12 +46,9 @@ namespace Leopard.Utils
 
         internal IHostBuilder CreateHostBuilder<T>(string[] args) where T : class =>
            Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder(args)
-                .ConfigureAppConfiguration(build =>
+                .ConfigureAppConfiguration((hostingContext, config) =>
                 {
-                    // 先加载公共
-                    build.AddJsonFile("AppConfig/commsettings.json", optional: true);
-                    // 再加载独立的
-                    build.AddJsonFile("appsettings.secrets.json", optional: true);                    
+                    config.AddJsonFile("appsettings.secrets.json", optional: true, reloadOnChange: true);                    
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {

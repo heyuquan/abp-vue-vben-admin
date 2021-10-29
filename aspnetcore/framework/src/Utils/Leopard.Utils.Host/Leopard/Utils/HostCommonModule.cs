@@ -6,13 +6,14 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Tokens;
 using StackExchange.Redis;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
@@ -247,13 +248,17 @@ namespace Leopard.Utils
             , Action<ApplicationInitializationContext> afterApplicationInitialization = null)
         {
             var app = context.GetApplicationBuilder();
-
             if (IsHost())
             {
                 var env = context.GetEnvironment();
 
                 // 本地化
-                app.UseAbpRequestLocalization();
+                app.UseAbpRequestLocalization(options =>
+                {
+                    // 设置ABP默认使用中文
+                    // https://www.cnblogs.com/waku/p/11433242.html
+                    options.RequestCultureProviders.RemoveAll(provider => provider is AcceptLanguageHeaderRequestCultureProvider);
+                });
 
                 if (env.IsDevelopment())
                 {

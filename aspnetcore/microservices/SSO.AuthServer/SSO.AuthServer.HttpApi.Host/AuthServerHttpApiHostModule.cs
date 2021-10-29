@@ -64,7 +64,7 @@ namespace SSO.AuthServer
             Configure<AbpLocalizationOptions>(options =>
             {
                 options.Resources
-                    .Add<AuthServerResource>("en")
+                    .Add<AuthServerResource>()
                     .AddBaseTypes(typeof(AbpValidationResource))
                     .AddVirtualJson("/Localization/Resource");
 

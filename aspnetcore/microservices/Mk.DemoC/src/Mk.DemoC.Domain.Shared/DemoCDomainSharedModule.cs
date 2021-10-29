@@ -23,7 +23,7 @@ namespace Mk.DemoC
             Configure<AbpLocalizationOptions>(options =>
             {
                 options.Resources
-                    .Add<DemoCResource>("en")
+                    .Add<DemoCResource>()
                     .AddBaseTypes(typeof(AbpValidationResource))
                     .AddVirtualJson("/Localization/DemoC");
             });
