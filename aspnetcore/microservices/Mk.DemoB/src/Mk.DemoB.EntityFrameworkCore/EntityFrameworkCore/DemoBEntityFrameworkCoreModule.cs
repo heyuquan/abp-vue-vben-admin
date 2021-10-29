@@ -11,7 +11,7 @@ namespace Mk.DemoB.EntityFrameworkCore
         typeof(DemoBDomainModule),
         typeof(AbpEntityFrameworkCoreMySQLModule),
         typeof(LeopardEntityFrameworkCoreModule),
-        typeof(SaasEntityFrameworkCoreModule)
+        typeof(LeopardSaasEntityFrameworkCoreModule)
         )]
     public class DemoBEntityFrameworkCoreModule : AbpModule
     {

@@ -1,12 +1,20 @@
 ﻿using Leopard.Buiness.Shared;
+using Volo.Abp.Reflection;
 
 namespace Leopard.BackendAdmin.Permissions
 {
     public static class BackendAdminPermissions
     {
+        public static string[] GetAll()
+        {
+            return ReflectionHelper.GetPublicConstantsRecursively(typeof(BackendAdminPermissions));
+        }
+
         public const string GroupName = ModuleNames.BackendAdmin;
 
-        //Add your own permission names. Example:
-        //public const string MyPermission1 = GroupName + ".MyPermission1";
+        public static class Settings
+        {
+            public const string Default = GroupName + ".Settings";
+        }
     }
 }

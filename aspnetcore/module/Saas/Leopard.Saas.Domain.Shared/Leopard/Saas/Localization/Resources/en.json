@@ -3,6 +3,8 @@
   "texts": {
     "Leopard.Saas:DuplicateTenantName": "Tenant name already exist: {Name}",
     "Menu:Saas": "Saas",
+    "Menu:Tenants": "Tenants",
+    "Menu:Editions": "Editions",
     "Tenants": "Tenants",
     "NewTenant": "New tenant",
     "TenantName": "Tenant name",

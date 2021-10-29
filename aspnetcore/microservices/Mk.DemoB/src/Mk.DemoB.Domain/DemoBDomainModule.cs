@@ -8,7 +8,7 @@ namespace Mk.DemoB
 {
     [DependsOn(
         typeof(DemoBDomainSharedModule),
-        typeof(SaasDomainModule)
+        typeof(LeopardSaasDomainModule)
         )]
     public class DemoBDomainModule : AbpModule
     {

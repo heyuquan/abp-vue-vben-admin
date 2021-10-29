@@ -7,7 +7,7 @@ namespace Leopard.Saas
 	{
 		protected SaasAppServiceBase()
 		{
-			base.ObjectMapperContext = typeof(SaasApplicationModule);
+			base.ObjectMapperContext = typeof(LeopardSaasApplicationModule);
 			base.LocalizationResource = typeof(SaasResource);
 		}
 	}

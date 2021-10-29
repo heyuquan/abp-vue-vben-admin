@@ -6,18 +6,18 @@ using Volo.Abp.Modularity;
 namespace Leopard.Saas
 {
     [DependsOn(
-        typeof(SaasDomainModule),
-        typeof(SaasApplicationContractsModule),
+        typeof(LeopardSaasDomainModule),
+        typeof(LeopardSaasApplicationContractsModule),
         typeof(AbpEmailingModule)
         )]
-    public class SaasApplicationModule : AbpModule
+    public class LeopardSaasApplicationModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
-            context.Services.AddAutoMapperObjectMapper<SaasApplicationModule>();
+            context.Services.AddAutoMapperObjectMapper<LeopardSaasApplicationModule>();
             Configure<AbpAutoMapperOptions>(options =>
             {
-                options.AddMaps<SaasApplicationModule>(validate: true);
+                options.AddMaps<LeopardSaasApplicationModule>(validate: true);
             });
         }
     }

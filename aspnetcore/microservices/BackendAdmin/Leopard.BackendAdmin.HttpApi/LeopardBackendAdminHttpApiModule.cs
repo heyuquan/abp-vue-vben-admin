@@ -1,7 +1,7 @@
 ﻿using Leopard.Account.Admin;
 using Leopard.BackendAdmin.Localization;
+using Leopard.BackendAdmin.Web;
 using Leopard.Identity;
-using Leopard.Identity.Web;
 using Leopard.Saas;
 using Localization.Resources.AbpUi;
 using Volo.Abp.FeatureManagement;
@@ -13,16 +13,16 @@ using Volo.Abp.SettingManagement;
 namespace Leopard.BackendAdmin
 {
     [DependsOn(
-        typeof(BackendAdminApplicationContractsModule),
+        typeof(LeopardBackendAdminApplicationContractsModule),
         typeof(AbpPermissionManagementHttpApiModule),
         typeof(AbpFeatureManagementHttpApiModule),
         typeof(AbpSettingManagementHttpApiModule),
-        typeof(SaasHttpApiModule),
+        typeof(LeopardSaasHttpApiModule),
         typeof(LeopardAccountAdminHttpApiModule),
         typeof(LeopardIdentityHttpApiModule),
-        typeof(LeopardIdentityWebModule)
+        typeof(LeopardBackendAdminWebModule)
         )]
-    public class BackendAdminHttpApiModule : AbpModule
+    public class LeopardBackendAdminHttpApiModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {

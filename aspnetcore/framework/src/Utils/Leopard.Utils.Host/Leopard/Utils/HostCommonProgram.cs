@@ -15,10 +15,11 @@ namespace Leopard.Utils
     public class CommonProgram
     {
         private  string _assemblyName { get; set; }
-        
+        protected ApplicationServiceType ApplicationServiceType { get; private set; }
 
-        public CommonProgram(string assemblyName)
+        public CommonProgram(ApplicationServiceType serviceType, string assemblyName)
         {
+            ApplicationServiceType = serviceType;
             _assemblyName = assemblyName;
         }
 
@@ -48,6 +49,10 @@ namespace Leopard.Utils
            Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration((hostingContext, config) =>
                 {
+                    if (ApplicationServiceType == ApplicationServiceType.GateWay)
+                    {
+                        config.AddJsonFile("ocelot.json");
+                    }
                     config.AddJsonFile("appsettings.secrets.json", optional: true, reloadOnChange: true);                    
                 })
                 .ConfigureWebHostDefaults(webBuilder =>

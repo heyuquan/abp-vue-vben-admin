@@ -11,16 +11,16 @@ using Volo.Abp.VirtualFileSystem;
 namespace Leopard.Saas
 {
     [DependsOn(
-		typeof(SaasDomainSharedModule),
+		typeof(LeopardSaasDomainSharedModule),
 		typeof(AbpDddApplicationModule)
 	)]
-	public class SaasApplicationContractsModule : AbpModule
+	public class LeopardSaasApplicationContractsModule : AbpModule
 	{
 		public override void ConfigureServices(ServiceConfigurationContext context)
 		{
 			Configure<AbpVirtualFileSystemOptions>(options =>
 			{
-				options.FileSets.AddEmbedded<SaasApplicationContractsModule>();
+				options.FileSets.AddEmbedded<LeopardSaasApplicationContractsModule>();
 			});
 
 			Configure<AbpLocalizationOptions>(options =>

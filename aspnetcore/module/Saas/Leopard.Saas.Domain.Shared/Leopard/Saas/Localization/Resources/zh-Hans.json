@@ -1,8 +1,10 @@
 {
   "culture": "zh-Hans",
   "texts": {
-    "Yun.Saas:DuplicateTenantName": "租户名称已存在: {Name}",
+    "Leopard.Saas:DuplicateTenantName": "租户名称已存在: {Name}",
     "Menu:Saas": "Saas",
+    "Menu:Tenants": "租户",
+    "Menu:Editions": "版本",
     "Tenants": "租户",
     "NewTenant": "新建租户",
     "TenantName": "租户名称",

@@ -10,11 +10,11 @@ namespace Leopard.Saas
 	{
 		protected ITenantRepository TenantRepository { get; }
 
-		protected IObjectMapper<SaasDomainModule> ObjectMapper { get; }
+		protected IObjectMapper<LeopardSaasDomainModule> ObjectMapper { get; }
 
 		protected ICurrentTenant CurrentTenant { get; }
 
-		public TenantStore(ITenantRepository tenantRepository, IObjectMapper<SaasDomainModule> objectMapper, ICurrentTenant currentTenant)
+		public TenantStore(ITenantRepository tenantRepository, IObjectMapper<LeopardSaasDomainModule> objectMapper, ICurrentTenant currentTenant)
 		{
 			this.TenantRepository = tenantRepository;
 			this.ObjectMapper = objectMapper;

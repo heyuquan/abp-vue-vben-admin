@@ -32,7 +32,7 @@ namespace BackendAdminAppGateway.Host
         typeof(AbpPermissionManagementHttpApiModule),
         typeof(AbpFeatureManagementHttpApiModule),
         typeof(AbpSettingManagementHttpApiModule),
-        typeof(SaasHttpApiModule),
+        typeof(LeopardSaasHttpApiModule),
         typeof(LeopardAccountAdminHttpApiModule),
         typeof(LeopardIdentityHttpApiModule)
     )]

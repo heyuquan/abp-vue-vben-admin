@@ -10,22 +10,22 @@ using Volo.Abp.SettingManagement;
 namespace Leopard.BackendAdmin
 {
     [DependsOn(
-        typeof(BackendAdminDomainModule),
-        typeof(BackendAdminApplicationContractsModule),
+        typeof(LeopardBackendAdminDomainModule),
+        typeof(LeopardBackendAdminApplicationContractsModule),
         typeof(AbpPermissionManagementApplicationModule),
         typeof(AbpFeatureManagementApplicationModule),
         typeof(AbpSettingManagementApplicationModule),
-        typeof(SaasApplicationModule),
+        typeof(LeopardSaasApplicationModule),
         typeof(LeopardAccountAdminApplicationModule),
         typeof(LeopardIdentityApplicationModule)
         )]
-    public class BackendAdminApplicationModule : AbpModule
+    public class LeopardBackendAdminApplicationModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
             Configure<AbpAutoMapperOptions>(options =>
             {
-                options.AddMaps<BackendAdminApplicationModule>();
+                options.AddMaps<LeopardBackendAdminApplicationModule>();
             });
         }
     }

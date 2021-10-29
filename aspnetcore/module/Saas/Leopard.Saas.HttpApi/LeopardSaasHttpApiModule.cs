@@ -11,16 +11,16 @@ using Leopard.Saas.Localization;
 namespace Leopard.Saas
 {
 	[DependsOn(
-		typeof(SaasApplicationContractsModule),
+		typeof(LeopardSaasApplicationContractsModule),
 		typeof(AbpFeatureManagementHttpApiModule),
 		typeof(AbpAspNetCoreMvcModule)
 		)]
-	public class SaasHttpApiModule : AbpModule
+	public class LeopardSaasHttpApiModule : AbpModule
 	{
 		public override void PreConfigureServices(ServiceConfigurationContext context)
 		{
 			base.PreConfigure<IMvcBuilder>(builder =>
-				builder.AddApplicationPartIfNotExists(typeof(SaasHttpApiModule).Assembly));
+				builder.AddApplicationPartIfNotExists(typeof(LeopardSaasHttpApiModule).Assembly));
 		}
 
 		public override void ConfigureServices(ServiceConfigurationContext context)

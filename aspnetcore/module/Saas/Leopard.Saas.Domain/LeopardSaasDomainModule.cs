@@ -15,13 +15,13 @@ namespace Leopard.Saas
 {
 	[DependsOn(
 		typeof(AbpMultiTenancyModule),
-		typeof(SaasDomainSharedModule),
+		typeof(LeopardSaasDomainSharedModule),
 		typeof(AbpDataModule),
 		typeof(AbpDddDomainModule),
 		typeof(AbpAutoMapperModule),
 		typeof(AbpFeatureManagementDomainModule)
 	)]
-	public class SaasDomainModule : AbpModule
+	public class LeopardSaasDomainModule : AbpModule
 	{
 		public override void ConfigureServices(ServiceConfigurationContext context)
 		{
@@ -31,7 +31,7 @@ namespace Leopard.Saas
 				options.ProviderPolicies["E"] = "Saas.Editions.ManageFeatures";
 			});
 
-			context.Services.AddAutoMapperObjectMapper<SaasDomainModule>();
+			context.Services.AddAutoMapperObjectMapper<LeopardSaasDomainModule>();
 
 			Configure<AbpAutoMapperOptions>(options =>
 			{
@@ -40,8 +40,8 @@ namespace Leopard.Saas
 
 			Configure<AbpDistributedEntityEventOptions>(options =>
 			{
-				options.EtoMappings.Add<Edition, EditionEto>(typeof(SaasDomainModule));
-				options.EtoMappings.Add<Tenant, TenantEto>(typeof(SaasDomainModule));
+				options.EtoMappings.Add<Edition, EditionEto>(typeof(LeopardSaasDomainModule));
+				options.EtoMappings.Add<Tenant, TenantEto>(typeof(LeopardSaasDomainModule));
 			});
 
 			Configure<AbpExceptionLocalizationOptions>(options =>

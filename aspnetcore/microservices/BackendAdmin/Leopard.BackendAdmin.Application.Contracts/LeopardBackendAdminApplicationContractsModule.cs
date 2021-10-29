@@ -10,16 +10,16 @@ using Volo.Abp.SettingManagement;
 namespace Leopard.BackendAdmin
 {
     [DependsOn(
-        typeof(BackendAdminDomainSharedModule),
+        typeof(LeopardBackendAdminDomainSharedModule),
         typeof(AbpFeatureManagementApplicationContractsModule),
         typeof(AbpPermissionManagementApplicationContractsModule),
         typeof(AbpSettingManagementApplicationContractsModule),
         typeof(AbpObjectExtendingModule),
-        typeof(SaasApplicationContractsModule),
+        typeof(LeopardSaasApplicationContractsModule),
         typeof(LeopardAccountAdminApplicationContractsModule),
         typeof(LeopardIdentityApplicationContractsModule)
     )]
-    public class BackendAdminApplicationContractsModule : AbpModule
+    public class LeopardBackendAdminApplicationContractsModule : AbpModule
     {
         public override void PreConfigureServices(ServiceConfigurationContext context)
         {

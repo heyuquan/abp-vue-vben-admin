@@ -8,9 +8,9 @@ namespace Leopard.Buiness.Shared
 {
     public class ModuleNames
     {
-        public const string Saas = "LeopardSaas";
-        public const string Identity = "LeopardIdentity";
-        public const string AccountAdmin = "LeopardAccountAdmin";
+        public const string Saas = "Saas";
+        public const string Identity = "Identity";
+        public const string AccountAdmin = "AccountAdmin";
         public const string BackendAdmin = "BackendAdmin";
     }
 }

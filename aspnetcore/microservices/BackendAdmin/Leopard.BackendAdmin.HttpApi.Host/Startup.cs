@@ -2,7 +2,7 @@
 
 namespace Leopard.BackendAdmin
 {
-    public class Startup : HostCommonStartup<BackendAdminHttpApiHostModule>
+    public class Startup : HostCommonStartup<LeopardBackendAdminHttpApiHostModule>
     {
     }
 }

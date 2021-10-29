@@ -12,16 +12,16 @@ using Volo.Abp.SettingManagement.EntityFrameworkCore;
 namespace Leopard.BackendAdmin.EntityFrameworkCore
 {
     [DependsOn(
-        typeof(BackendAdminDomainModule),
+        typeof(LeopardBackendAdminDomainModule),
         typeof(AbpEntityFrameworkCoreMySQLModule),
         typeof(AbpPermissionManagementEntityFrameworkCoreModule),
         typeof(AbpSettingManagementEntityFrameworkCoreModule),       
         typeof(AbpAuditLoggingEntityFrameworkCoreModule),
         typeof(AbpFeatureManagementEntityFrameworkCoreModule),
         typeof(AbpIdentityEntityFrameworkCoreModule),
-        typeof(SaasEntityFrameworkCoreModule)
+        typeof(LeopardSaasEntityFrameworkCoreModule)
         )]
-    public class BackendAdminEntityFrameworkCoreModule : AbpModule
+    public class LeopardBackendAdminEntityFrameworkCoreModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {

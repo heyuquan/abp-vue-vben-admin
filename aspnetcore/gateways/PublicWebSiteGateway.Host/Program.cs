@@ -1,4 +1,5 @@
-﻿using Leopard.AspNetCore.Serilog;
+﻿using Leopard;
+using Leopard.AspNetCore.Serilog;
 using Leopard.Utils;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
@@ -11,7 +12,7 @@ namespace PublicWebSiteGateway.Host
     {
         public static int Main(string[] args)
         {
-            CommonProgram commonProgram = new CommonProgram(typeof(Program).Assembly.GetName().Name);
+            CommonProgram commonProgram = new CommonProgram(ApplicationServiceType.GateWay, typeof(Program).Assembly.GetName().Name);
             return commonProgram.CommonMain<Startup>(args);
         }
     }

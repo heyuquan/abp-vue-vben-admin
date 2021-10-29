@@ -20,13 +20,13 @@ namespace Leopard.BackendAdmin
         typeof(AbpAutofacModule),
         typeof(AbpAspNetCoreMvcUiMultiTenancyModule),
         typeof(LeopardConsulModule),
-        typeof(BackendAdminApplicationModule),
-        typeof(BackendAdminEntityFrameworkCoreModule),
-        typeof(BackendAdminHttpApiModule)
+        typeof(LeopardBackendAdminApplicationModule),
+        typeof(LeopardBackendAdminEntityFrameworkCoreModule),
+        typeof(LeopardBackendAdminHttpApiModule)
     )]
-    public class BackendAdminHttpApiHostModule : HostCommonModule
+    public class LeopardBackendAdminHttpApiHostModule : HostCommonModule
     {
-        public BackendAdminHttpApiHostModule() : base(ApplicationServiceType.ApiHost, "BackendAdmin", MultiTenancyConsts.IsEnabled)
+        public LeopardBackendAdminHttpApiHostModule() : base(ApplicationServiceType.ApiHost, "BackendAdmin", MultiTenancyConsts.IsEnabled)
         { }
 
         public override void ConfigureServices(ServiceConfigurationContext context)
@@ -47,16 +47,16 @@ namespace Leopard.BackendAdmin
             {
                 Configure<AbpVirtualFileSystemOptions>(options =>
                 {
-                    options.FileSets.ReplaceEmbeddedByPhysical<BackendAdminDomainSharedModule>(
+                    options.FileSets.ReplaceEmbeddedByPhysical<LeopardBackendAdminDomainSharedModule>(
                         Path.Combine(hostingEnvironment.ContentRootPath,
                             $"..{Path.DirectorySeparatorChar}Leopard.BackendAdmin.Domain.Shared"));
-                    options.FileSets.ReplaceEmbeddedByPhysical<BackendAdminDomainModule>(
+                    options.FileSets.ReplaceEmbeddedByPhysical<LeopardBackendAdminDomainModule>(
                         Path.Combine(hostingEnvironment.ContentRootPath,
                             $"..{Path.DirectorySeparatorChar}Leopard.BackendAdmin.Domain"));
-                    options.FileSets.ReplaceEmbeddedByPhysical<BackendAdminApplicationContractsModule>(
+                    options.FileSets.ReplaceEmbeddedByPhysical<LeopardBackendAdminApplicationContractsModule>(
                         Path.Combine(hostingEnvironment.ContentRootPath,
                             $"..{Path.DirectorySeparatorChar}Leopard.BackendAdmin.Application.Contracts"));
-                    options.FileSets.ReplaceEmbeddedByPhysical<BackendAdminApplicationModule>(
+                    options.FileSets.ReplaceEmbeddedByPhysical<LeopardBackendAdminApplicationModule>(
                         Path.Combine(hostingEnvironment.ContentRootPath,
                             $"..{Path.DirectorySeparatorChar}Leopard.BackendAdmin.Application"));
                 });

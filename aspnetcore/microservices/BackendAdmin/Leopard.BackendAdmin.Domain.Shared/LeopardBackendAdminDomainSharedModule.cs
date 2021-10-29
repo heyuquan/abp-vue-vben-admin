@@ -17,21 +17,16 @@ namespace Leopard.BackendAdmin
         typeof(AbpFeatureManagementDomainSharedModule),
         typeof(AbpPermissionManagementDomainSharedModule),
         typeof(AbpSettingManagementDomainSharedModule),
-        typeof(SaasDomainSharedModule)
+        typeof(LeopardSaasDomainSharedModule)
         )]
-    public class BackendAdminDomainSharedModule : AbpModule
+    public class LeopardBackendAdminDomainSharedModule : AbpModule
     {
-        public override void PreConfigureServices(ServiceConfigurationContext context)
-        {
-            BackendAdminGlobalFeatureConfigurator.Configure();
-            BackendAdminModuleExtensionConfigurator.Configure();
-        }
 
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
             Configure<AbpVirtualFileSystemOptions>(options =>
             {
-                options.FileSets.AddEmbedded<BackendAdminDomainSharedModule>();
+                options.FileSets.AddEmbedded<LeopardBackendAdminDomainSharedModule>();
             });
 
             Configure<AbpLocalizationOptions>(options =>
@@ -39,7 +34,7 @@ namespace Leopard.BackendAdmin
                 options.Resources
                     .Add<BackendAdminResource>()
                     .AddBaseTypes(typeof(AbpValidationResource))
-                    .AddVirtualJson("/Localization/Resource");
+                    .AddVirtualJson("Leopard/BackendAdmin/Localization/Resources");
 
                 options.DefaultResourceType = typeof(BackendAdminResource);
             });

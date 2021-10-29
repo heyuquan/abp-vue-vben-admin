@@ -8,6 +8,6 @@ namespace Leopard.BackendAdmin
 
         public static string DbSchema { get; set; } = AbpCommonDbProperties.DbSchema;
 
-        public const string ConnectionStringName = "LeopardBackendAdmin";
+        public const string ConnectionStringName = "Default";
     }
 }

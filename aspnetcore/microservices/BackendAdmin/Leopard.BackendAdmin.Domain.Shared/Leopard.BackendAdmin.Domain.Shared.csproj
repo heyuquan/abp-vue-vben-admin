@@ -16,8 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Localization\Resources\*.json" />
-    <Content Remove="Localization\Resources\*.json" />
+    <EmbeddedResource Include="Leopard\BackendAdmin\Localization\Resources\*.json" />
+    <Content Remove="Leopard\BackendAdmin\Localization\Resources\*.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,10 +26,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\module\Saas\Leopard.Saas.Domain.Shared\Leopard.Saas.Domain.Shared.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Leopard\BackendAdmin\" />
   </ItemGroup>
 
 </Project>

@@ -155,6 +155,12 @@ namespace Leopard.Utils
                 });
             });
 
+            Configure<AbpLocalizationOptions>(options =>
+            {
+                options.Languages.Add(new LanguageInfo("en", "en", "English"));
+                options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "简体中文"));
+            });
+
 #if DEBUG
             context.Services.AddLeopardSwaggerGen();
 #endif
@@ -194,12 +200,6 @@ namespace Leopard.Utils
                             ? Encoding.ASCII.GetBytes(encryptionConfiguration["InitVector"])
                             : options.InitVectorBytes;
                     }
-                });
-
-                Configure<AbpLocalizationOptions>(options =>
-                {
-                    options.Languages.Add(new LanguageInfo("en", "en", "English"));
-                    options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "简体中文"));
                 });
 
                 var redisConfiguration = configuration.GetSection("Redis");
@@ -248,17 +248,17 @@ namespace Leopard.Utils
             , Action<ApplicationInitializationContext> afterApplicationInitialization = null)
         {
             var app = context.GetApplicationBuilder();
+
+            // 本地化
+            app.UseAbpRequestLocalization(options =>
+            {
+                // 设置ABP默认使用中文
+                // https://www.cnblogs.com/waku/p/11433242.html
+                options.RequestCultureProviders.RemoveAll(provider => provider is AcceptLanguageHeaderRequestCultureProvider);
+            });
             if (IsHost())
             {
                 var env = context.GetEnvironment();
-
-                // 本地化
-                app.UseAbpRequestLocalization(options =>
-                {
-                    // 设置ABP默认使用中文
-                    // https://www.cnblogs.com/waku/p/11433242.html
-                    options.RequestCultureProviders.RemoveAll(provider => provider is AcceptLanguageHeaderRequestCultureProvider);
-                });
 
                 if (env.IsDevelopment())
                 {

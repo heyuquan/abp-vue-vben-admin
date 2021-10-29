@@ -6,14 +6,14 @@ namespace Leopard.Saas
 {
     [DependsOn(
         typeof(AbpHttpClientModule),
-        typeof(SaasApplicationContractsModule)
+        typeof(LeopardSaasApplicationContractsModule)
         )]
-    public class SaasHttpApiClientModule : AbpModule
+    public class LeopardSaasHttpApiClientModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
             context.Services.AddHttpClientProxies(
-                typeof(SaasApplicationContractsModule).Assembly,
+                typeof(LeopardSaasApplicationContractsModule).Assembly,
                 SaasRemoteServiceConsts.RemoteServiceName
             );
         }

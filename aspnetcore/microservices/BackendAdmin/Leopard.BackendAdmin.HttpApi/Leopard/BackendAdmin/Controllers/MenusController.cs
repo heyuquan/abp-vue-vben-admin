@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Leopard.UI.Navigation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Volo.Abp.UI.Navigation;
@@ -25,7 +26,7 @@ namespace Leopard.BackendAdmin.Controllers
         [Route("user-all")]
         public async Task<ApplicationMenu> GetUserAllAsync()
         {
-            return await _menuManager.GetAsync(StandardMenus.Main);
+            return await _menuManager.GetAsync(LeopardStandardMenus.Main);
         }        
     }
 }

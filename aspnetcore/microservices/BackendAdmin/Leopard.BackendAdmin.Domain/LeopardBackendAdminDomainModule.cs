@@ -9,15 +9,15 @@ using Volo.Abp.SettingManagement;
 namespace Leopard.BackendAdmin
 {
     [DependsOn(
-        typeof(BackendAdminDomainSharedModule),
+        typeof(LeopardBackendAdminDomainSharedModule),
         typeof(AbpAuditLoggingDomainModule),
         typeof(AbpFeatureManagementDomainModule),
         typeof(AbpPermissionManagementDomainModule),
         typeof(AbpSettingManagementDomainModule),
         typeof(AbpEmailingModule),
-        typeof(SaasDomainModule)
+        typeof(LeopardSaasDomainModule)
     )]
-    public class BackendAdminDomainModule : AbpModule
+    public class LeopardBackendAdminDomainModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {

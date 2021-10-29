@@ -6,10 +6,10 @@ using Volo.Abp.Modularity;
 namespace Leopard.Saas.EntityFrameworkCore
 {
     [DependsOn(
-        typeof(SaasDomainModule),
+        typeof(LeopardSaasDomainModule),
         typeof(AbpEntityFrameworkCoreMySQLModule)
     )]
-    public class SaasEntityFrameworkCoreModule : AbpModule
+    public class LeopardSaasEntityFrameworkCoreModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
