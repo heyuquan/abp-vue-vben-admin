@@ -10,7 +10,6 @@ enum Api {
   Login = '/api/connect/token',
   Logout = '/api/connect/revocation',
   GetUserInfo = '/api/connect/userinfo',
-  GetPermCode = '/getPermCode',
 }
 
 /**
@@ -51,10 +50,6 @@ export function getUserInfo() {
       isTransformResponse: false,
     },
   );
-}
-
-export function getPermCode() {
-  return defHttp.get<string[]>({ url: Api.GetPermCode });
 }
 
 export function doLogout(params: LogoutParams) {

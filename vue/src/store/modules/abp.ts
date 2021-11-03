@@ -87,6 +87,6 @@ export const useAbpStore = defineStore({
 });
 
 // Need to be used outside the setup
-export function useAbpStoreWidthOut() {
+export function useAbpStoreWithOut() {
   return useAbpStore(store);
 }

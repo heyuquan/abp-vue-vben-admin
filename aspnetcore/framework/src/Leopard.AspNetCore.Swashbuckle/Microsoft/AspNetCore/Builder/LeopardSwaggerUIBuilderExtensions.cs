@@ -23,7 +23,7 @@ namespace Microsoft.AspNetCore.Builder
             return app.UseAbpSwaggerUI(options =>
             {
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", authServerOptions.ApiName);
-
+                
                 options.OAuthClientId(authServerOptions.SwaggerClientId);
                 options.OAuthClientSecret(authServerOptions.SwaggerClientSecret);
                 options.OAuthScopes(authServerOptions.SwaggerClientScopes);

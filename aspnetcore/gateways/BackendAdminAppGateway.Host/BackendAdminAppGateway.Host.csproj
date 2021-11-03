@@ -19,9 +19,6 @@
 	<ItemGroup>
 		<PackageReference Include="Volo.Abp.Autofac" Version="4.4.2" />
 		<PackageReference Include="Volo.Abp.Swashbuckle" Version="4.4.2" />
-		<PackageReference Include="Volo.Abp.PermissionManagement.HttpApi" Version="4.4.2" />
-		<PackageReference Include="Volo.Abp.FeatureManagement.HttpApi" Version="4.4.2" />
-		<PackageReference Include="Volo.Abp.SettingManagement.HttpApi" Version="4.4.2" />
 	</ItemGroup>
 
 	<ItemGroup>

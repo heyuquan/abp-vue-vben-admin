@@ -8,7 +8,7 @@ import { ROLES_KEY, TOKEN_KEY, REFRESH_TOKEN_KEY, USER_INFO_KEY } from '/@/enums
 import { getAuthCache, setAuthCache } from '/@/utils/auth';
 import { GetUserInfoModel, LoginParams } from '/@/api/sys/model/userModel';
 import { doLogout, getUserInfo, loginApi } from '/@/api/sys/user';
-import { useAbpStoreWidthOut } from './abp';
+import { useAbpStoreWithOut } from './abp';
 import { useI18n } from '/@/hooks/web/useI18n';
 import { useMessage } from '/@/hooks/web/useMessage';
 import { router } from '/@/router';
@@ -92,7 +92,7 @@ export const useUserStore = defineStore({
       this.roleList = [];
       this.sessionTimeout = false;
 
-      const abpStore = useAbpStoreWidthOut();
+      const abpStore = useAbpStoreWithOut();
       abpStore.resetSession();
     },
     /**
@@ -141,7 +141,7 @@ export const useUserStore = defineStore({
     },
     async getUserInfoAction(): Promise<UserInfo | null> {
       if (!this.getToken) return null;
-      const abpStore = useAbpStoreWidthOut();
+      const abpStore = useAbpStoreWithOut();
       await abpStore.initlizeAbpApplication();
 
       const currentUser = abpStore.application.currentUser;

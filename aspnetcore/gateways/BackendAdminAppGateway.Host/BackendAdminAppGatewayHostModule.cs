@@ -2,6 +2,7 @@
 using Leopard.Account.Admin;
 using Leopard.AspNetCore.Serilog;
 using Leopard.AspNetCore.Swashbuckle;
+using Leopard.BackendAdmin;
 using Leopard.Consul;
 using Leopard.Identity;
 using Leopard.Saas;
@@ -29,12 +30,7 @@ namespace BackendAdminAppGateway.Host
         typeof(LeopardConsulModule),
         typeof(LeopardAspNetCoreSwashbuckleModule),
 
-        typeof(AbpPermissionManagementHttpApiModule),
-        typeof(AbpFeatureManagementHttpApiModule),
-        typeof(AbpSettingManagementHttpApiModule),
-        typeof(LeopardSaasHttpApiModule),
-        typeof(LeopardAccountAdminHttpApiModule),
-        typeof(LeopardIdentityHttpApiModule)
+        typeof(LeopardBackendAdminHttpApiModule)
     )]
     public class BackendAdminAppGatewayHostModule : HostCommonModule
     {
@@ -75,9 +71,7 @@ namespace BackendAdminAppGateway.Host
                     {
                         var app = ctx.GetApplicationBuilder();
                         app.MapWhen(
-                            ctx => ctx.Request.Path.ToString().StartsWith("/api/abp/", StringComparison.OrdinalIgnoreCase) ||
-                                   ctx.Request.Path.ToString().StartsWith("/abp/", StringComparison.OrdinalIgnoreCase) ||
-                                   ctx.Request.Path.ToString().EndsWith("/api/health", StringComparison.OrdinalIgnoreCase) ||
+                            ctx => ctx.Request.Path.ToString().EndsWith("/api/health", StringComparison.OrdinalIgnoreCase) ||
                                    ctx.Request.Path.ToString().TrimEnd('/').Equals(""),
                             app2 =>
                             {

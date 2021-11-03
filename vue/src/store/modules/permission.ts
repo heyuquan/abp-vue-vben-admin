@@ -4,6 +4,7 @@ import { defineStore } from 'pinia';
 import { store } from '/@/store';
 import { useI18n } from '/@/hooks/web/useI18n';
 import { useUserStore } from './user';
+import { useAbpStoreWithOut } from './abp';
 import { useAppStoreWithOut } from './app';
 import { toRaw } from 'vue';
 import { transformObjToRoute, flatMultiLevelRoutes } from '/@/router/helper/routeHelper';
@@ -19,7 +20,6 @@ import { ERROR_LOG_ROUTE, PAGE_NOT_FOUND_ROUTE } from '/@/router/routes/basic';
 import { filter } from '/@/utils/helper/treeHelper';
 
 import { getMenuList } from '/@/api/sys/menu';
-import { getPermCode } from '/@/api/sys/user';
 
 import { useMessage } from '/@/hooks/web/useMessage';
 import { PageEnum } from '/@/enums/pageEnum';
@@ -93,8 +93,17 @@ export const usePermissionStore = defineStore({
       this.lastBuildMenuTime = 0;
     },
     async changePermissionCode() {
-      const codeList = await getPermCode();
-      this.setPermCodeList(codeList);
+      const abpStore = useAbpStoreWithOut();
+      const grantedPolicies = abpStore.getApplication.auth.grantedPolicies;
+      const authPermissions = new Array<string>();
+      if (grantedPolicies) {
+        Object.keys(grantedPolicies).forEach((key) => {
+          if (grantedPolicies[key]) {
+            authPermissions.push(key);
+          }
+        });
+      }
+      this.setPermCodeList(authPermissions);
     },
     async buildRoutesAction(): Promise<AppRouteRecordRaw[]> {
       const { t } = useI18n();

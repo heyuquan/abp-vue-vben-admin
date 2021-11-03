@@ -10,6 +10,7 @@ using Volo.Abp;
 using Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy;
 using Volo.Abp.Autofac;
 using Volo.Abp.Data;
+using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Volo.Abp.Threading;
 using Volo.Abp.VirtualFileSystem;
@@ -35,6 +36,20 @@ namespace Leopard.BackendAdmin
             var hostingEnvironment = context.Services.GetHostingEnvironment();
 
             ConfigureVirtualFileSystem(context);
+
+            Configure<AbpLocalizationOptions>(options =>
+            {
+                // vben admin ”Ô—‘”≥…‰
+                options
+                    .AddLanguagesMapOrUpdate(
+                        "vben-admin-ui",
+                        new NameValue("zh_CN", "zh-Hans"));
+
+                options
+                    .AddLanguageFilesMapOrUpdate(
+                        "vben-admin-ui",
+                        new NameValue("zh_CN", "zh-Hans"));
+            });
 
             base.ConfigureServices(context);
         }

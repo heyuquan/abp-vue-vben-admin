@@ -20,7 +20,9 @@ namespace Leopard.AspNetCore.Serilog
                 .Build();
 
             // https://www.cnblogs.com/Quinnz/p/12202633.html
-            const string outputTemplate = "[{Timestamp:yyyy-MM-dd HH:mm:ss.FFF} {Level:w3}] {Message} {NewLine}{Exception}";
+            // {Message:lj} 格式选项使消息中嵌入的数据输出在 JSON（j）中，但字符串文本除外，这些文本是原样输出的。
+            // {Level:u3} 三个字符大写或 {Level:w3} 小写作为级别名称的格式
+            const string outputTemplate = "[{Timestamp:yyyy-MM-dd HH:mm:ss.FFF} {Level:w3}] {Message:lj} {NewLine}{Exception}";
 
             var loggerConfiguration = new LoggerConfiguration()
 #if DEBUG
@@ -46,6 +48,7 @@ namespace Leopard.AspNetCore.Serilog
                                 , fileSizeLimitBytes: (1024 * 10) * 1024    // 10k*1024=10M  最大单个文件10M
                                 , rollingInterval: RollingInterval.Day
                                 , outputTemplate: outputTemplate
+                                , retainedFileCountLimit: 108    // 最多保留最近的108个文件（PS：有时一天能产生几个日志文件）
                                 )
                             );
             }
@@ -59,7 +62,7 @@ namespace Leopard.AspNetCore.Serilog
                 if (logEvent.Level <= LogEventLevel.Information)
                 {
                     logEvent.Properties.TryGetValue("RequestPath", out LogEventPropertyValue requestPathValue);
-                    if (requestPathValue != null 
+                    if (requestPathValue != null
                         && String.Compare(requestPathValue.ToString().Trim('"'), "/api/health", true) == 0)
                     {
                         // 过滤掉 健康检查 的 Verbose、Debug、Info 日志，因为健康检查打的日志太多了

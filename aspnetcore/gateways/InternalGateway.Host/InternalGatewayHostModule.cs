@@ -61,11 +61,8 @@ namespace InternalGateway.Host
                     {
                         var app = ctx.GetApplicationBuilder();
                         app.MapWhen(
-                            ctx =>
-                                ctx.Request.Path.ToString().StartsWith("/api/abp/", StringComparison.OrdinalIgnoreCase) ||
-                                ctx.Request.Path.ToString().StartsWith("/api/abp/api-definition", StringComparison.OrdinalIgnoreCase) ||
-                                ctx.Request.Path.ToString().EndsWith("/api/health", StringComparison.OrdinalIgnoreCase) ||
-                                ctx.Request.Path.ToString().TrimEnd('/').Equals(""),
+                            ctx =>  ctx.Request.Path.ToString().EndsWith("/api/health", StringComparison.OrdinalIgnoreCase) ||
+                                    ctx.Request.Path.ToString().TrimEnd('/').Equals(""),
                             app2 =>
                             {
                                 app2.UseRouting();
