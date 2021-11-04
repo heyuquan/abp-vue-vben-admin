@@ -21,4 +21,8 @@
 		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="5.0.*" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\shared\Leopard.Buiness.Shared.Const\Leopard.Buiness.Shared.Const.csproj" />
+	</ItemGroup>
+
 </Project>

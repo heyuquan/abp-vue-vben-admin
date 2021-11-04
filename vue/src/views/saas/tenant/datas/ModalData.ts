@@ -61,8 +61,11 @@ export function getConnectionFormSchemas(): FormSchema[] {
       field: 'name',
       component: 'Input',
       label: t('LeopardSaas.DisplayName:Name'),
+      defaultValue: 'Default',
       colProps: { span: 24 },
       required: true,
+      // 目前暂时只支持 默认字符串连接
+      componentProps: { disabled: true },
     },
     {
       field: 'value',

@@ -2,50 +2,62 @@
   <BasicModal
     v-bind="$attrs"
     @register="registerModal"
-    :title="t('AbpFeatureManagement.ManageFeatures')"
+    :title="t('AbpFeatureManagement.Features')"
     :height="300"
     :min-height="300"
     @ok="handleSubmit"
     @cancel="onGroupChange(0)"
   >
-    <Form ref="formRel" :model="featureGroup" :label-col="{ span: 6 }" :wrapper-col="{ span: 18 }">
-      <Tabs v-model:activeKey="featureGroupKey" @change="onGroupChange">
-        <TabPane v-for="(group, gi) in featureGroup.groups" :key="gi" :tab="group.displayName">
-          <div v-for="(feature, fi) in group.features" :key="feature.name">
-            <FormItem
-              v-if="feature.valueType !== null"
-              :label="feature.displayName"
-              :name="['groups', gi, 'features', fi, 'value']"
-              :rules="validator(feature.valueType.validator)"
-              :help="feature.description"
-            >
-              <Checkbox
-                v-if="feature.valueType.name === 'ToggleStringValueType'"
-                v-model:checked="feature.value"
-              />
-              <div v-else-if="feature.valueType.name === 'FreeTextStringValueType'">
-                <InputNumber
-                  v-if="feature.valueType.validator.name === 'NUMERIC'"
-                  v-model:value="feature.value"
-                />
-                <Input v-else v-model:value="feature.value" />
-              </div>
-              <Select
-                v-else-if="feature.valueType.name === 'SelectionStringValueType'"
-                v-model="feature.value"
+    <div v-if="featureGroup.groups.count == 0">
+      <span>{{ t('AbpFeatureManagement.NoFeatureFoundMessage') }}</span>
+    </div>
+    <div v-else>
+      <Form
+        ref="formRel"
+        :model="featureGroup"
+        :label-col="{ span: 6 }"
+        :wrapper-col="{ span: 18 }"
+      >
+        <Tabs v-model:activeKey="featureGroupKey" @change="onGroupChange">
+          <TabPane v-for="(group, gi) in featureGroup.groups" :key="gi" :tab="group.displayName">
+            <div v-for="(feature, fi) in group.features" :key="feature.name">
+              <FormItem
+                v-if="feature.valueType !== null"
+                :label="feature.displayName"
+                :name="['groups', gi, 'features', fi, 'value']"
+                :rules="validator(feature.valueType.validator)"
+                :help="feature.description"
               >
-                <Option
-                  v-for="valueItem in feature.valueType.itemSource.items"
-                  :key="valueItem.value"
-                  v-model:value="valueItem.value"
-                  :label="t(valueItem.displayText.resourceName + '.' + valueItem.displayText.name)"
+                <Checkbox
+                  v-if="feature.valueType.name === 'ToggleStringValueType'"
+                  v-model:checked="feature.value"
                 />
-              </Select>
-            </FormItem>
-          </div>
-        </TabPane>
-      </Tabs>
-    </Form>
+                <div v-else-if="feature.valueType.name === 'FreeTextStringValueType'">
+                  <InputNumber
+                    v-if="feature.valueType.validator.name === 'NUMERIC'"
+                    v-model:value="feature.value"
+                  />
+                  <Input v-else v-model:value="feature.value" />
+                </div>
+                <Select
+                  v-else-if="feature.valueType.name === 'SelectionStringValueType'"
+                  v-model="feature.value"
+                >
+                  <Option
+                    v-for="valueItem in feature.valueType.itemSource.items"
+                    :key="valueItem.value"
+                    v-model:value="valueItem.value"
+                    :label="
+                      t(valueItem.displayText.resourceName + '.' + valueItem.displayText.name)
+                    "
+                  />
+                </Select>
+              </FormItem>
+            </div>
+          </TabPane>
+        </Tabs>
+      </Form>
+    </div>
   </BasicModal>
 </template>
 

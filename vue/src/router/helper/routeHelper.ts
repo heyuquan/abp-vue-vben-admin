@@ -67,7 +67,6 @@ function dynamicImport(
 export function transformObjToRoute<T = AppRouteModule>(routeList: AppRouteModule[]): T[] {
   routeList.forEach((route) => {
     const component = route.component as string;
-    debugger;
     if (component) {
       if (component.toUpperCase() === 'LAYOUT') {
         route.component = LayoutMap.get(component.toUpperCase());
@@ -82,7 +81,6 @@ export function transformObjToRoute<T = AppRouteModule>(routeList: AppRouteModul
         route.meta = meta;
       }
     }
-    debugger;
     route.children && asyncImportRoute(route.children);
   });
   return routeList as unknown as T[];

@@ -64,6 +64,7 @@ export class abpRequest {
     data?: any;
     params?: any;
   }) {
+    debugger;
     const abpStore = useAbpStoreWithOut();
     const module = this.getModule(options.service, abpStore.apidefinition.modules);
     const controller = this.getController(options.controller, module.controllers);

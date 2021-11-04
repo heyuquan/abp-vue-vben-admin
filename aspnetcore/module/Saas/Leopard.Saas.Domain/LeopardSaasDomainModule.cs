@@ -10,6 +10,7 @@ using Volo.Abp.MultiTenancy;
 using Volo.Abp.ObjectExtending;
 using Volo.Abp.ObjectExtending.Modularity;
 using Leopard.Saas.Localization;
+using Leopard.Buiness.Shared;
 
 namespace Leopard.Saas
 {
@@ -27,8 +28,8 @@ namespace Leopard.Saas
 		{
 			Configure<FeatureManagementOptions>(options =>
 			{
-				options.ProviderPolicies["T"] = "Saas.Tenants.ManageFeatures";
-				options.ProviderPolicies["E"] = "Saas.Editions.ManageFeatures";
+				options.ProviderPolicies["T"] = $"{ModuleNames.Saas}.Tenants.ManageFeatures";
+				options.ProviderPolicies["E"] = $"{ModuleNames.Saas}.Editions.ManageFeatures";
 			});
 
 			context.Services.AddAutoMapperObjectMapper<LeopardSaasDomainModule>();
@@ -46,7 +47,7 @@ namespace Leopard.Saas
 
 			Configure<AbpExceptionLocalizationOptions>(options =>
 			{
-				options.MapCodeNamespace("Saas", typeof(SaasResource));
+				options.MapCodeNamespace(ModuleNames.Saas, typeof(SaasResource));
 			});
 		}
 

@@ -157,25 +157,39 @@ namespace Leopard.Saas
         }
 
         [Authorize(SaasPermissions.Tenants.ManageConnectionStrings)]
-        public virtual async Task<string> GetDefaultConnectionStringAsync(Guid id)
+        public virtual async Task<ListResultDto<TenantConnectionStringDto>> GetConnectionStringListAsync(Guid id)
         {
             var tenant = await this.TenantRepository.GetAsync(id);
-            return (tenant != null) ? tenant.FindDefaultConnectionString() : null;
+            return (tenant != null)
+                ? new ListResultDto<TenantConnectionStringDto>(ObjectMapper.Map<List<TenantConnectionString>, List<TenantConnectionStringDto>>(tenant.ConnectionStrings))
+                : null;
         }
 
         [Authorize(SaasPermissions.Tenants.ManageConnectionStrings)]
-        public virtual async Task UpdateDefaultConnectionStringAsync(Guid id, string defaultConnectionString)
+        public virtual async Task<TenantConnectionStringDto> GetConnectionStringAsync(Guid id, string name)
         {
+            Check.NotNullOrEmpty(name, nameof(name));
             var tenant = await this.TenantRepository.GetAsync(id);
-            tenant.SetDefaultConnectionString(defaultConnectionString);
+            return (tenant != null)
+                ? ObjectMapper.Map<TenantConnectionString, TenantConnectionStringDto>(tenant.ConnectionStrings.FirstOrDefault(x => x.Name == name))
+                : null;
+        }
+
+        [Authorize(SaasPermissions.Tenants.ManageConnectionStrings)]
+        public virtual async Task UpdateConnectionStringAsync(Guid id, TenantConnectionStringUpdateDto dto)
+        {
+            Check.NotNullOrEmpty(dto.Name, nameof(dto.Name));
+            var tenant = await this.TenantRepository.GetAsync(id);
+            tenant.SetConnectionString(dto.Name, dto.Value);
             await this.TenantRepository.UpdateAsync(tenant);
         }
 
         [Authorize(SaasPermissions.Tenants.ManageConnectionStrings)]
-        public virtual async Task DeleteDefaultConnectionStringAsync(Guid id)
+        public virtual async Task DeleteConnectionStringAsync(Guid id, string name)
         {
+            Check.NotNullOrEmpty(name, nameof(name));
             var tenant = await this.TenantRepository.GetAsync(id);
-            tenant.RemoveDefaultConnectionString();
+            tenant.RemoveConnectionString(name);
             await this.TenantRepository.UpdateAsync(tenant);
         }
     }

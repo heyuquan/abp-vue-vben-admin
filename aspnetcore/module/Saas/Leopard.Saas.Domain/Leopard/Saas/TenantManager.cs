@@ -35,7 +35,7 @@ namespace Leopard.Saas
 			Tenant tenant = await this.TenantRepository.FindByNameAsync(name);
 			if (tenant != null && tenant.Id != expectedId)
 			{
-				throw new BusinessException("Yun.Saas:DuplicateTenantName").WithData("Name", name);
+				throw new BusinessException("Leopard.Saas:DuplicateTenantName").WithData("Name", name);
 			}
 		}
 	}

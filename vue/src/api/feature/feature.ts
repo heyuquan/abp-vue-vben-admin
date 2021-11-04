@@ -16,7 +16,7 @@ export const get = (provider: { providerName: string; providerKey: string | null
 
 export const update = (
   provider: { providerName: string; providerKey: string | null },
-  input: UpdateFeatures
+  input: UpdateFeatures,
 ) => {
   return defAbpHttp.put<void>({
     url: Api.Update,

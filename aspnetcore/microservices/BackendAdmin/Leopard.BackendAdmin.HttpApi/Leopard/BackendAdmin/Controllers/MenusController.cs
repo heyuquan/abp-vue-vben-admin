@@ -64,7 +64,10 @@ namespace Leopard.BackendAdmin.Controllers
             List<RouteItemForVben> result = new List<RouteItemForVben>();
             foreach (var menuItem in menuItems)
             {
-                PropertyInfo[] props = menuItem.CustomData.GetType().GetProperties();
+                PropertyInfo[] props = menuItem.CustomData.GetType()
+                                                    .GetProperties(BindingFlags.GetField |
+                                                                    BindingFlags.Public |
+                                                                    BindingFlags.Instance);
                 RouteItemForVben routeItem = new RouteItemForVben
                 {
                     Name = menuItem.Name,

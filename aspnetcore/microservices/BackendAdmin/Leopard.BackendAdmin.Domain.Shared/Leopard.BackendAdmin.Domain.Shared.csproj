@@ -2,30 +2,27 @@
 
 	<Import Project="..\..\..\common.props" />
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-	  <RootNamespace></RootNamespace>
-    <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<RootNamespace></RootNamespace>
+		<GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+	</PropertyGroup>
 
-  <ItemGroup>  
-    <PackageReference Include="Volo.Abp.AuditLogging.Domain.Shared" Version="4.4.2" />
-    <PackageReference Include="Volo.Abp.FeatureManagement.Domain.Shared" Version="4.4.2" />
-    <PackageReference Include="Volo.Abp.PermissionManagement.Domain.Shared" Version="4.4.2" />
-    <PackageReference Include="Volo.Abp.SettingManagement.Domain.Shared" Version="4.4.2" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Volo.Abp.AuditLogging.Domain.Shared" Version="4.4.2" />
+		<PackageReference Include="Volo.Abp.FeatureManagement.Domain.Shared" Version="4.4.2" />
+		<PackageReference Include="Volo.Abp.PermissionManagement.Domain.Shared" Version="4.4.2" />
+		<PackageReference Include="Volo.Abp.SettingManagement.Domain.Shared" Version="4.4.2" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Include="Leopard\BackendAdmin\Localization\Resources\*.json" />
-    <Content Remove="Leopard\BackendAdmin\Localization\Resources\*.json" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Remove="Leopard\BackendAdmin\Localization\*\*.json" />
+		<EmbeddedResource Include="Leopard\BackendAdmin\Localization\*\*.json" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="5.0.*" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\module\Saas\Leopard.Saas.Domain.Shared\Leopard.Saas.Domain.Shared.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\module\Saas\Leopard.Saas.Domain.Shared\Leopard.Saas.Domain.Shared.csproj" />
+		<ProjectReference Include="..\..\..\shared\Leopard.Buiness.Shared.Const\Leopard.Buiness.Shared.Const.csproj" />
+	</ItemGroup>
 
 </Project>

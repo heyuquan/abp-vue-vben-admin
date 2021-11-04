@@ -32,7 +32,7 @@ namespace Leopard.Identity.Web.Navigation
             var aboutMenuItem = new ApplicationMenuItem("Demo.About", "关于", order: 99999
                 , url: "/about", icon: "simple-icons:about-dot-me"
                 , customData: new { Component = "LAYOUT", Redirect = "/about/index", HideChildrenInMenu = true });
-            dashboardMenuItem.AddItem(new ApplicationMenuItem("Demo.About.AboutPage", "关于"
+            aboutMenuItem.AddItem(new ApplicationMenuItem("Demo.About.AboutPage", "关于"
                 , url: "/about/index", customData: new { Component = "/sys/about/index", HideMenu = true }));
 
             context.Menu.GetAdministration().AddItem(aboutMenuItem);
@@ -66,9 +66,9 @@ namespace Leopard.Identity.Web.Navigation
             saasMenuItem.AddItem(new ApplicationMenuItem(BackendAdminMenuNames.Saas.Tenants, saasLocalizer["Menu:Tenants"]
                 , url: "/saas/tenants", customData: new { Component = "/saas/tenant/index" })
                 .RequirePermissions(SaasPermissions.Tenants.Default));
-            saasMenuItem.AddItem(new ApplicationMenuItem(BackendAdminMenuNames.Saas.Editions, saasLocalizer["Menu:Editions"]
-                , url: "/saas/editions", customData: new { Component = "/saas/edition/index" })
-                .RequirePermissions(SaasPermissions.Editions.Default));
+            //saasMenuItem.AddItem(new ApplicationMenuItem(BackendAdminMenuNames.Saas.Editions, saasLocalizer["Menu:Editions"]
+            //    , url: "/saas/editions", customData: new { Component = "/saas/edition/index" })
+            //    .RequirePermissions(SaasPermissions.Editions.Default));
 
             context.Menu.GetAdministration().AddItem(saasMenuItem);
 

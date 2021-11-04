@@ -24,6 +24,8 @@
     "EditionUsageStatistics": "版本使用情况统计",
     "DisplayName:AdminEmailAddress": "租户管理员邮件地址",
     "DisplayName:AdminPassword": "租户管理员密码",
+    "DisplayName:Name": "名称",
+    "DisplayName:Value": "值",
     "ChangeHistory": "变更记录"
   }
 }

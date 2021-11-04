@@ -1,6 +1,6 @@
 <template>
   <BasicModal
-    :title="t('AbpTenantManagement.ConnectionStrings')"
+    :title="t('LeopardSaas.ConnectionStrings')"
     :width="800"
     :height="500"
     :showOkBtn="false"
@@ -10,7 +10,7 @@
     <BasicTable @register="registerTable">
       <template #toolbar>
         <a-button
-          v-if="hasPermission('AbpTenantManagement.Tenants.Create')"
+          v-if="hasPermission('LeopardSaas.Tenants.Create')"
           type="primary"
           @click="handleAddNew"
           >{{ '新建连接' }}</a-button
@@ -20,7 +20,7 @@
         <TableAction
           :actions="[
             {
-              auth: 'AbpTenantManagement.Tenants.ManageConnectionStrings',
+              auth: 'LeopardSaas.Tenants.ManageConnectionStrings',
               color: 'error',
               label: t('AbpUi.Delete'),
               icon: 'ant-design:delete-outlined',

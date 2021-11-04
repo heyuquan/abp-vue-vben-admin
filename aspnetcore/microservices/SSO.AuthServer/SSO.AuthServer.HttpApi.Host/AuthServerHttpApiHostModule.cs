@@ -43,7 +43,7 @@ namespace SSO.AuthServer
     )]
     public class AuthServerHttpApiHostModule : HostCommonModule
     {
-        public AuthServerHttpApiHostModule() : base(ApplicationServiceType.AuthHost, "AuthServer", MultiTenancyConsts.IsEnabled)
+        public AuthServerHttpApiHostModule() : base(ApplicationServiceType.AuthHost, ModuleNames.AuthServer, MultiTenancyConsts.IsEnabled)
         { }
 
         public override void ConfigureServices(ServiceConfigurationContext context)
@@ -73,7 +73,7 @@ namespace SSO.AuthServer
 
             Configure<AbpExceptionLocalizationOptions>(options =>
             {
-                options.MapCodeNamespace("AuthServer", typeof(AuthServerResource));
+                options.MapCodeNamespace(ModuleNames.AuthServer, typeof(AuthServerResource));
             });
 
             base.ConfigureServices(context);

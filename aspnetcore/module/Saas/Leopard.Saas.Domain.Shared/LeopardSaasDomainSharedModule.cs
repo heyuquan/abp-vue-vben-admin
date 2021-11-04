@@ -1,4 +1,5 @@
-﻿using Leopard.Saas.Localization;
+﻿using Leopard.Buiness.Shared;
+using Leopard.Saas.Localization;
 using Volo.Abp.Localization;
 using Volo.Abp.Localization.ExceptionHandling;
 using Volo.Abp.Modularity;
@@ -25,7 +26,7 @@ namespace Leopard.Saas
 
 			Configure<AbpExceptionLocalizationOptions>(options =>
 			{
-				options.MapCodeNamespace("Leopard.Saas", typeof(SaasResource));
+				options.MapCodeNamespace(ModuleNames.Saas, typeof(SaasResource));
 			});
 		}
 	}

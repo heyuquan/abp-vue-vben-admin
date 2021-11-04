@@ -38,9 +38,7 @@
         showActionButtonGroup: false,
       });
       const modalTitle = computed(() => {
-        return unref(tenantIdRef)
-          ? t('LeopardSaas.Edit')
-          : t('LeopardSaas.NewTenant');
+        return unref(tenantIdRef) ? t('LeopardSaas.Edit') : t('LeopardSaas.NewTenant');
       });
 
       function handleSubmit() {

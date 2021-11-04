@@ -8,24 +8,14 @@ enum Api {
 }
 
 export const getApplicationConfiguration = () => {
-  return defHttp.get<IApplicationConfiguration>(
-    {
-      url: Api.ApplicationConfiguration,
-    },
-    {
-      isTransformResponse: false,
-    },
-  );
+  return defHttp.get<IApplicationConfiguration>({
+    url: Api.ApplicationConfiguration,
+  });
 };
 
 export const getApiDefinition = (includeTypes = false) => {
-  return defHttp.get<ApplicationApiDescriptionModel>(
-    {
-      url: Api.ApiDefinition,
-      params: { includeTypes: includeTypes },
-    },
-    {
-      isTransformResponse: false,
-    },
-  );
+  return defHttp.get<ApplicationApiDescriptionModel>({
+    url: Api.ApiDefinition,
+    params: { includeTypes: includeTypes },
+  });
 };

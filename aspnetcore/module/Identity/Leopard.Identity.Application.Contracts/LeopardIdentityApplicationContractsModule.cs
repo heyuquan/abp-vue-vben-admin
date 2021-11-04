@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Leopard.Buiness.Shared;
+using System;
 using Volo.Abp.Application;
 using Volo.Abp.Authorization;
 using Volo.Abp.Identity;
@@ -33,7 +34,7 @@ namespace Leopard.Identity
 					typeof(AbpValidationResource)
 				}).AddVirtualJson("/Leopard/Identity/Localization/Resources");
 			});
-			Configure<AbpExceptionLocalizationOptions>(options => options.MapCodeNamespace("Leopard.Identity", typeof(IdentityResource)));
+			Configure<AbpExceptionLocalizationOptions>(options => options.MapCodeNamespace(ModuleNames.Identity, typeof(IdentityResource)));
 		}
 
 		public override void PostConfigureServices(ServiceConfigurationContext context)

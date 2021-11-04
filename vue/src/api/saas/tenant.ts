@@ -17,9 +17,9 @@ enum Api {
   GetById = '/api/saas/tenants/{id}',
   GetList = '/api/saas/tenants',
   Update = '/api/saas/tenants/{id}',
-  GetConnectionStrings = '/api/saas/tenants/{id}/default-connection-string',
-  SetConnectionString = '/api/saas/tenants/{id}/default-connection-string',
-  DeleteConnectionString = '/api/saas/tenants/{id}/default-connection-string/{name}',
+  GetConnectionStrings = '/api/saas/tenants/{id}/connection-string-list',
+  SetConnectionString = '/api/saas/tenants/{id}/connection-string',
+  DeleteConnectionString = '/api/saas/tenants/{id}/connection-string/{name}',
 }
 
 export const getById = (id: string) => {

@@ -7,7 +7,7 @@ using Volo.Abp.AspNetCore.Mvc;
 using Leopard.Identity;
 using Leopard.Identity.Security;
 
-namespace Yun.AuditLogging.Security
+namespace Leopard.AuditLogging.Security
 {
     [RemoteService(true, Name = IdentityProRemoteServiceConsts.RemoteServiceName)]
     [Area("auditing")]

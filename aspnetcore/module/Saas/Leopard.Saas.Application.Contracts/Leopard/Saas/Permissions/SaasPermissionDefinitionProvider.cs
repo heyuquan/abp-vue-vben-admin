@@ -10,6 +10,7 @@ namespace Leopard.Saas.Permissions
 		public override void Define(IPermissionDefinitionContext context)
 		{
 			var saasHostGroup = context.AddGroup(SaasPermissions.GroupName, L("Permission:Saas"), MultiTenancySides.Host);
+			
 			var tenantManagement = saasHostGroup.AddPermission(SaasPermissions.Tenants.Default, L("Permission:TenantManagement"), MultiTenancySides.Host);
 			tenantManagement.AddChild(SaasPermissions.Tenants.Create, L("Permission:Create"), MultiTenancySides.Host);
 			tenantManagement.AddChild(SaasPermissions.Tenants.Update, L("Permission:Edit"), MultiTenancySides.Host);
@@ -17,6 +18,7 @@ namespace Leopard.Saas.Permissions
 			tenantManagement.AddChild(SaasPermissions.Tenants.ManageFeatures, L("Permission:ManageFeatures"), MultiTenancySides.Host);
 			tenantManagement.AddChild(SaasPermissions.Tenants.ManageConnectionStrings, L("Permission:ManageConnectionStrings"), MultiTenancySides.Host);
 			tenantManagement.AddChild(SaasPermissions.Tenants.ViewChangeHistory, L("Permission:ViewChangeHistory"), MultiTenancySides.Host);
+			
 			var editionManagement = saasHostGroup.AddPermission(SaasPermissions.Editions.Default, L("Permission:EditionManagement"), MultiTenancySides.Host);
 			editionManagement.AddChild(SaasPermissions.Editions.Create, L("Permission:Create"), MultiTenancySides.Host);
 			editionManagement.AddChild(SaasPermissions.Editions.Update, L("Permission:Edit"), MultiTenancySides.Host);

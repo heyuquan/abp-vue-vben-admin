@@ -10,6 +10,8 @@ namespace Leopard.Saas
         {
             CreateMap<Tenant, SaasTenantDto>().Ignore(x => x.EditionName);
             CreateMap<Edition, EditionDto>();
+
+            CreateMap<TenantConnectionString, TenantConnectionStringDto>();
         }
     }
 }

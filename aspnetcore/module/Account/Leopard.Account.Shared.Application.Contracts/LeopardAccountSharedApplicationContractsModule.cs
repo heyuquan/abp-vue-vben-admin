@@ -7,6 +7,7 @@ using Volo.Abp.Validation.Localization;
 using Volo.Abp.VirtualFileSystem;
 using Leopard.Account.Localization;
 using Leopard.Identity;
+using Leopard.Buiness.Shared;
 
 namespace Leopard.Account
 {
@@ -27,7 +28,7 @@ namespace Leopard.Account
                         typeof(AbpValidationResource)
                     ).AddVirtualJson("/Leopard/Account/Localization/Resources");
             });
-            Configure<AbpExceptionLocalizationOptions>(options => options.MapCodeNamespace("Leopard.Account", typeof(LeopardAccountResource)));
+            Configure<AbpExceptionLocalizationOptions>(options => options.MapCodeNamespace(ModuleNames.Account, typeof(LeopardAccountResource)));
         }
     }
 }

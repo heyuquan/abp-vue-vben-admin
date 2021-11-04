@@ -1,8 +1,9 @@
-﻿using Volo.Abp.Localization;
+﻿using Leopard.Buiness.Shared;
+using Volo.Abp.Localization;
 
 namespace Leopard.BackendAdmin.Localization
 {
-    [LocalizationResourceName("LeopardBackendAdmin")]
+    [LocalizationResourceName(ModuleNames.BackendAdmin)]
     public class BackendAdminResource
     {
 

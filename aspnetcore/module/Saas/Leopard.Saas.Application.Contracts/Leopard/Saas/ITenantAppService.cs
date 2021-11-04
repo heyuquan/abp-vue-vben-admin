@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using Volo.Abp;
 using Volo.Abp.Application.Services;
 using Leopard.Saas.Dtos;
+using System.Collections.Generic;
+using Volo.Abp.Application.Dtos;
 
 namespace Leopard.Saas
 {
@@ -12,23 +14,31 @@ namespace Leopard.Saas
 	public interface ITenantAppService : IDeleteAppService<Guid>, IUpdateAppService<SaasTenantDto, Guid, SaasTenantUpdateDto>, ICreateAppService<SaasTenantDto, SaasTenantCreateDto>, ICreateUpdateAppService<SaasTenantDto, Guid, SaasTenantCreateDto, SaasTenantUpdateDto>, IReadOnlyAppService<SaasTenantDto, SaasTenantDto, Guid, GetTenantsInput>, ICrudAppService<SaasTenantDto, SaasTenantDto, Guid, GetTenantsInput, SaasTenantCreateDto, SaasTenantUpdateDto>, ICrudAppService<SaasTenantDto, Guid, GetTenantsInput, SaasTenantCreateDto, SaasTenantUpdateDto>, IRemoteService, IApplicationService
 	{
 		/// <summary>
-		/// 获取租户默认链接字符串
+		/// 获取指定租户的字符串连接列表
 		/// </summary>
-		/// <param name="id">租户Id</param>
+		/// <param name="id"></param>
 		/// <returns></returns>
-		Task<string> GetDefaultConnectionStringAsync(Guid id);
+		Task<ListResultDto<TenantConnectionStringDto>> GetConnectionStringListAsync(Guid id);
 		/// <summary>
-		/// 更新租户默认链接字符串
+		/// 获取指定租户，指定名称的字符串连接
 		/// </summary>
-		/// <param name="id">租户Id</param>
-		/// <param name="defaultConnectionString"></param>
+		/// <param name="id"></param>
+		/// <param name="name">字符串名称</param>
 		/// <returns></returns>
-		Task UpdateDefaultConnectionStringAsync(Guid id, string defaultConnectionString);
+		Task<TenantConnectionStringDto> GetConnectionStringAsync(Guid id, string name);
 		/// <summary>
-		/// 删除租户默认链接字符串
+		/// 更新指定租户的字符串连接
 		/// </summary>
-		/// <param name="id">租户Id</param>
+		/// <param name="id"></param>
+		/// <param name="dto"></param>
 		/// <returns></returns>
-		Task DeleteDefaultConnectionStringAsync(Guid id);
+		Task UpdateConnectionStringAsync(Guid id, TenantConnectionStringUpdateDto dto);
+		/// <summary>
+		/// 删除指定租户，指定名称的字符串连接
+		/// </summary>
+		/// <param name="id"></param>
+		/// <param name="name">字符串名称</param>
+		/// <returns></returns>
+		Task DeleteConnectionStringAsync(Guid id, string name);
 	}
 }

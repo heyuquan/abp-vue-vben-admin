@@ -34,7 +34,6 @@ export function loginApi(params: LoginParams, mode: ErrorMessageMode = 'modal') 
     },
     {
       errorMessageMode: mode,
-      isTransformResponse: false,
     },
   );
 }
@@ -47,7 +46,6 @@ export function getUserInfo() {
     { url: Api.GetUserInfo },
     {
       errorMessageMode: 'none',
-      isTransformResponse: false,
     },
   );
 }
@@ -59,14 +57,11 @@ export function doLogout(params: LogoutParams) {
     token: params.token,
     token_type_hint: 'access_token',
   };
-  return defHttp.post(
-    {
-      url: Api.Logout,
-      params: logoutParams,
-      headers: {
-        'Content-Type': ContentTypeEnum.FORM_URLENCODED,
-      },
+  return defHttp.post({
+    url: Api.Logout,
+    params: logoutParams,
+    headers: {
+      'Content-Type': ContentTypeEnum.FORM_URLENCODED,
     },
-    { isTransformResponse: false },
-  );
+  });
 }

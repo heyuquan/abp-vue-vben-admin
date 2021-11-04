@@ -34,13 +34,13 @@
           ]"
           :dropDownActions="[
             {
-              auth: 'FeatureManagement.ManageHostFeatures',
-              label: t('AbpFeatureManagement.ManageFeatures'),
+              auth: 'LeopardSaas.Tenants.ManageFeatures',
+              label: t('LeopardSaas.Features'),
               onClick: handleManageTenantFeature.bind(null, record),
             },
             {
-              auth: 'AbpTenantManagement.Tenants.ManageConnectionStrings',
-              label: t('AbpTenantManagement.ConnectionStrings'),
+              auth: 'LeopardSaas.Tenants.ManageConnectionStrings',
+              label: t('LeopardSaas.ConnectionStrings'),
               onClick: openConnectModal.bind(null, true, record),
             },
           ]"

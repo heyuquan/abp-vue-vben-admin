@@ -44,11 +44,7 @@ namespace Leopard.Utils
     public class HostCommonModule : AbpModule
     {
         /// <summary>
-        /// 项目名（项目key）
-        /// </summary>
-        protected string ProjectKey { get; private set; }
-        /// <summary>
-        /// 模块名（模块key）
+        /// 模块名（模块key）eg：Leopard.Saas
         /// </summary>
         protected string ModuleKey { get; private set; }
         /// <summary>
@@ -62,27 +58,14 @@ namespace Leopard.Utils
 
         protected ApplicationServiceType ApplicationServiceType { get; private set; }
 
-        /// <summary>
-        /// 项目组合Key {ProjectKey}.{ModuleKey}
-        /// </summary>
-        protected readonly string ProjectCombinationKey;
-
-        public HostCommonModule(ApplicationServiceType serviceType, string moduleKey, bool isEnableMultiTenancy)
-            : this(serviceType, "Leopard", moduleKey, isEnableMultiTenancy)
-        {
-            //todo： moduleKey 从这里获取 configuration["AuthServer:SwaggerClientId"]
-        }
 
         public HostCommonModule(
             ApplicationServiceType serviceType
-            , string projectKey
             , string moduleKey
             , bool isEnableMultiTenancy) : base()
         {
-            ProjectKey = projectKey;
             ModuleKey = moduleKey;
             IsEnableMultiTenancy = isEnableMultiTenancy;
-            ProjectCombinationKey = $"{ProjectKey}.{ModuleKey}";
             ApplicationServiceType = serviceType;
         }
 
@@ -208,7 +191,7 @@ namespace Leopard.Utils
                     Configure<AbpDistributedCacheOptions>(options =>
                     {
                         // 最好统一命名,不然某个缓存变动其他应用服务有例外发生
-                        options.KeyPrefix = $"{ProjectCombinationKey}:";
+                        options.KeyPrefix = $"{ModuleKey}:";
                         // 滑动过期30天
                         options.GlobalCacheEntryOptions.SlidingExpiration = TimeSpan.FromDays(30);
                         // 绝对过期60天
@@ -220,7 +203,7 @@ namespace Leopard.Utils
                         var redis = ConnectionMultiplexer.Connect(redisConfiguration["Configuration"]);
                         context.Services
                             .AddDataProtection()
-                            .PersistKeysToStackExchangeRedis(redis, $"{ProjectCombinationKey}-Protection-Keys");
+                            .PersistKeysToStackExchangeRedis(redis, $"{ModuleKey}-Protection-Keys");
                     }
                 }
 

@@ -1,7 +1,9 @@
 ﻿using Leopard.BackendAdmin.Localization;
+using Leopard.Buiness.Shared;
 using Leopard.Saas;
 using Volo.Abp.AuditLogging;
 using Volo.Abp.FeatureManagement;
+using Volo.Abp.FeatureManagement.Localization;
 using Volo.Abp.Localization;
 using Volo.Abp.Localization.ExceptionHandling;
 using Volo.Abp.Modularity;
@@ -36,12 +38,16 @@ namespace Leopard.BackendAdmin
                     .AddBaseTypes(typeof(AbpValidationResource))
                     .AddVirtualJson("Leopard/BackendAdmin/Localization/Resources");
 
+                options.Resources
+                    .Get<AbpFeatureManagementResource>()
+                    .AddVirtualJson("Leopard/BackendAdmin/Localization/Feature");
+
                 options.DefaultResourceType = typeof(BackendAdminResource);
             });
 
             Configure<AbpExceptionLocalizationOptions>(options =>
             {
-                options.MapCodeNamespace("BackendAdmin", typeof(BackendAdminResource));
+                options.MapCodeNamespace(ModuleNames.BackendAdmin, typeof(BackendAdminResource));
             });
         }
     }

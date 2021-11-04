@@ -1,8 +1,9 @@
-﻿using Volo.Abp.Localization;
+﻿using Leopard.Buiness.Shared;
+using Volo.Abp.Localization;
 
 namespace SSO.AuthServer.Localization
 {
-    [LocalizationResourceName("SSOAuthServer")]
+    [LocalizationResourceName(ModuleNames.AuthServer)]
     public class AuthServerResource
     {
 

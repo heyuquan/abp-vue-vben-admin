@@ -70,7 +70,6 @@ export function usePermission() {
       }
       return (intersection(value, userStore.getRoleList) as RoleEnum[]).length > 0;
     }
-
     if (PermissionModeEnum.BACK === permMode) {
       const allCodeList = permissionStore.getPermCodeList as string[];
       if (!isArray(value)) {
