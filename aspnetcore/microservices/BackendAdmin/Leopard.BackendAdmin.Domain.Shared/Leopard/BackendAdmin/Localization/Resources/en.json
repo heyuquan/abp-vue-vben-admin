@@ -2,6 +2,7 @@
   "culture": "en",
   "texts": {
     "Menu:Settings": "Settings",
-    "Permission:Settings": "Settings"
+    "Permission:Settings": "Settings",
+    "Menu:Administration": "Administration"
   }
 }

@@ -10,12 +10,7 @@ enum Api {
  */
 
 export const getMenuList = () => {
-  return defHttp.get<getMenuListResultModel>(
-    {
-      url: Api.GetMenuList,
-    },
-    {
-      isTransformResponse: false,
-    },
-  );
+  return defHttp.get<getMenuListResultModel>({
+    url: Api.GetMenuList,
+  });
 };

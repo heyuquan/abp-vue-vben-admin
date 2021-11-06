@@ -112,7 +112,7 @@ namespace Leopard.Identity
                 );
         }
 
-        [Authorize(IdentityPermissions.OrganizationUnits.ManageOU)]
+        [Authorize(IdentityPermissions.OrganizationUnits.Create)]
         public virtual async Task<OrganizationUnitWithDetailsDto> CreateAsync(OrganizationUnitCreateDto input)
         {
             var organizationUnit = new OrganizationUnit(GuidGenerator.Create(), input.DisplayName, input.ParentId, CurrentTenant.Id);
@@ -123,7 +123,7 @@ namespace Leopard.Identity
             return ObjectMapper.Map<OrganizationUnit, OrganizationUnitWithDetailsDto>(organizationUnit);
         }
 
-        [Authorize(IdentityPermissions.OrganizationUnits.ManageOU)]
+        [Authorize(IdentityPermissions.OrganizationUnits.Delete)]
         public virtual async Task DeleteAsync(Guid id)
         {
             var flag = await OrganizationUnitRepository.FindAsync(id);
@@ -134,7 +134,7 @@ namespace Leopard.Identity
             }
         }
 
-        [Authorize(IdentityPermissions.OrganizationUnits.ManageOU)]
+        [Authorize(IdentityPermissions.OrganizationUnits.Update)]
         public virtual async Task<OrganizationUnitWithDetailsDto> UpdateAsync(Guid id, OrganizationUnitUpdateDto input)
         {
             var ou = await OrganizationUnitRepository.FindAsync(id);
@@ -166,7 +166,7 @@ namespace Leopard.Identity
             }
         }
 
-        [Authorize(IdentityPermissions.OrganizationUnits.ManageOU)]
+        [Authorize(IdentityPermissions.OrganizationUnits.Update)]
         public virtual async Task MoveAsync(Guid id, OrganizationUnitMoveInput input)
         {
             await this.OrganizationUnitManager.MoveAsync(id, input.NewParentId);

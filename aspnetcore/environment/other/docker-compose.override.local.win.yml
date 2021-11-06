@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+
+
+  mysql:
+    ports:
+      - '8706:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: '123456'
+    volumes:
+      - type: bind
+        source: /e/Docker/Data/Leapard/Mysql/data
+        target: /var/lib/mysql
+      - type: bind
+        source: /e/Docker/Data/Leapard/Mysql/config/my.cnf
+        target: /etc/my.cnf
+

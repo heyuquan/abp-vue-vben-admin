@@ -25,7 +25,9 @@ namespace Leopard.Identity
 			users.AddChild(IdentityPermissions.Users.ViewChangeHistory, L("Permission:ViewChangeHistory"));
 
 			var organizationUnits = abpIdentity.AddPermission(IdentityPermissions.OrganizationUnits.Default, L("Permission:OrganizationUnitManagement"));
-			organizationUnits.AddChild(IdentityPermissions.OrganizationUnits.ManageOU, L("Permission:ManageOU"));
+			organizationUnits.AddChild(IdentityPermissions.OrganizationUnits.Create, L("Permission:Create"));
+			organizationUnits.AddChild(IdentityPermissions.OrganizationUnits.Update, L("Permission:Update"));
+			organizationUnits.AddChild(IdentityPermissions.OrganizationUnits.Delete, L("Permission:Delete"));
 			organizationUnits.AddChild(IdentityPermissions.OrganizationUnits.ManageRoles, L("Permission:ManageRoles"));
 			organizationUnits.AddChild(IdentityPermissions.OrganizationUnits.ManageUsers, L("Permission:ManageUsers"));
 

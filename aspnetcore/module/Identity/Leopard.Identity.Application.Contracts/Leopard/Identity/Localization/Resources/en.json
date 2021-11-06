@@ -38,6 +38,7 @@
     "OrganizationUnits{0}": "Org. units ({0})",
     "OrganizationUnit:Parent{0}": "Parent: {0}",
     "OrganizationUnit:Root": "Root unit",
+    "OrganizationUnit:OrganizationTree": "Organization Tree",
     "Type": "Type",
     "Claims": "Claims",
     "NewClaimType": "New claim type",
