@@ -28,6 +28,7 @@ enum Api {
 }
 
 export const create = (input: CreateOrganizationUnit) => {
+  debugger;
   return defAbpHttp.post<OrganizationUnit>({
     url: Api.Create,
     data: input,

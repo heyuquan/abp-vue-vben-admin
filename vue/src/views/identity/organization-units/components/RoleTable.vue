@@ -7,7 +7,7 @@
         :disabled="!addRoleEnabled"
         @click="handleAddNew"
       >
-        {{ t('AbpIdentity.OrganizationUnit:AddRole') }}
+        {{ t('AbpIdentity.AddRole') }}
       </a-button>
     </template>
     <template #action="{ record }">
@@ -15,7 +15,7 @@
         :stop-button-propagation="true"
         :actions="[
           {
-            auth: 'AbpIdentity.OrganizationUnits.ManageRoles',
+            auth: 'LeopardIdentity.Roles.Delete',
             color: 'error',
             label: t('AbpUi.Delete'),
             icon: 'ant-design:delete-outlined',
@@ -54,7 +54,7 @@
         if (!unref(getProps).ouId) {
           return false;
         }
-        return hasPermission('AbpIdentity.OrganizationUnits.ManageRoles');
+        return hasPermission('LeopardIdentity.Roles.Create');
       });
       const { registerTable, reloadRoles, handleDelete } = useRoleTable({ getProps });
       const [registerModal, { openModal }] = useModal();

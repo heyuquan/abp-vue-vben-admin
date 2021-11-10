@@ -2,16 +2,51 @@ import { computed, onMounted, ref } from 'vue';
 import { cloneDeep } from 'lodash-es';
 import { Modal } from 'ant-design-vue';
 import { useI18n } from '/@/hooks/web/useI18n';
+import { FormSchema } from '/@/components/Form';
 import { create, deleteById, getAll, move, update } from '/@/api/identity/organization-units';
 import { listToTree } from '/@/utils/helper/treeHelper';
-
-import { useOuModal } from './useOuModal';
+import { useModal } from '/@/components/Modal';
 
 export function useOuTree({ emit }: { emit: EmitType }) {
   const { t } = useI18n();
   const organizationUnitTree = ref([]);
 
-  const { registerModal, openModal, formTitle, formSchemas, handleSubmit } = useOuModal();
+  const formSchemas: FormSchema[] = [
+    {
+      field: 'id',
+      component: 'Input',
+      label: 'id',
+      colProps: { span: 24 },
+      ifShow: false,
+    },
+    {
+      field: 'parentId',
+      component: 'Input',
+      label: 'parentId',
+      colProps: { span: 24 },
+      ifShow: false,
+    },
+    {
+      field: 'parentDisplayName',
+      component: 'Input',
+      label: t('AbpIdentity.OrganizationUnit:Parent'),
+      colProps: { span: 24 },
+      ifShow: ({ values }) => {
+        debugger;
+        return values.parentId ? true : false;
+      },
+      dynamicDisabled: true,
+    },
+    {
+      field: 'displayName',
+      component: 'Input',
+      label: t('AbpIdentity.OrganizationUnit:DisplayName'),
+      colProps: { span: 24 },
+      required: true,
+    },
+  ];
+
+  const [registerModal, { openModal }] = useModal();
 
   const getContentMenus = computed(() => {
     return (node: any) => {
@@ -19,6 +54,7 @@ export function useOuTree({ emit }: { emit: EmitType }) {
         {
           label: t('AbpIdentity.Edit'),
           handler: () => {
+            debugger;
             openModal(true, cloneDeep(node.$attrs), true);
           },
           icon: 'ant-design:edit-outlined',
@@ -26,7 +62,7 @@ export function useOuTree({ emit }: { emit: EmitType }) {
         {
           label: t('AbpIdentity.OrganizationUnit:AddChildren'),
           handler: () => {
-            handleAddNew(node.$attrs.id);
+            handleAddChildren(node.$attrs.id, node.$attrs.displayName);
             // openModal(true, { parentId: node.$attrs.id }, true);
           },
           icon: 'ant-design:plus-outlined',
@@ -62,8 +98,12 @@ export function useOuTree({ emit }: { emit: EmitType }) {
     });
   }
 
-  function handleAddNew(parentId?: string) {
-    openModal(true, { parentId: parentId }, true);
+  function handleAddChildren(parentId?: string, parentDisplayName?: string) {
+    openModal(true, { parentId: parentId, parentDisplayName: parentDisplayName }, true);
+  }
+
+  function handleAddNew() {
+    openModal(true);
   }
 
   function handleSelect(selectedKeys) {
@@ -78,18 +118,26 @@ export function useOuTree({ emit }: { emit: EmitType }) {
     api.then(() => loadTree());
   }
 
+  function handleSubmit(val) {
+    const api = val.id
+      ? update(val.id, {
+          displayName: val.displayName,
+        })
+      : create(val);
+    return api.then(() => loadTree());
+  }
+
   onMounted(() => {
     loadTree();
   });
   return {
     organizationUnitTree,
     getContentMenus,
+    registerModal,
+    formSchemas,
     handleDrop,
     handleAddNew,
     handleSelect,
-    registerModal,
-    formTitle,
-    formSchemas,
     handleSubmit,
   };
 }

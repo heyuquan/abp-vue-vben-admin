@@ -24,18 +24,12 @@
       @select="handleSelect"
       @drop="handleDrop"
     />
-    <BasicModal v-bind="$attrs" @register="registerModal" @ok="handleSubmit" :title="formTitle">
-      <BasicForm
-        ref="formElRef"
-        :colon="true"
-        :schemas="formSchemas"
-        :label-width="120"
-        :show-action-button-group="false"
-        :action-col-options="{
-          span: 24,
-        }"
-      />
-    </BasicModal>
+    <BasicModalForm
+      @register="registerModal"
+      :form-items="formSchemas"
+      :title="t('AbpIdentity.OrganizationUnit:NewOrganizationUnit')"
+      :save-changes="handleSubmit"
+    />
   </Card>
 </template>
 
@@ -45,39 +39,37 @@
   import { usePermission } from '/@/hooks/web/usePermission';
   import { useI18n } from '/@/hooks/web/useI18n';
   import { BasicTree } from '/@/components/Tree';
+  import { BasicModalForm } from '/@/components/ModalForm';
   import { useOuTree } from '../hooks/useOuTree';
 
   export default defineComponent({
     name: 'OrganizationUnitTree',
-    components: { BasicTree, Card },
+    components: { BasicModalForm, BasicTree, Card },
     emits: ['change', 'select'],
     setup(_props, { emit }) {
       const { t } = useI18n();
       const {
+        formSchemas,
+        registerModal,
         organizationUnitTree,
         getContentMenus,
         handleDrop,
         handleAddNew,
         handleSelect,
-        registerModal,
-        formTitle,
-        formSchemas,
         handleSubmit,
       } = useOuTree({ emit });
-
       const { hasPermission } = usePermission();
 
       return {
         t,
+        formSchemas,
+        registerModal,
         organizationUnitTree,
         getContentMenus,
         hasPermission,
         handleDrop,
         handleAddNew,
         handleSelect,
-        registerModal,
-        formTitle,
-        formSchemas,
         handleSubmit,
       };
     },

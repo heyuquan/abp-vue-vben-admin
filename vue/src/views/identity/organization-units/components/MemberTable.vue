@@ -7,7 +7,7 @@
         :disabled="!addMemberEnabled"
         @click="handleAddNew"
       >
-        {{ t('AbpIdentity:AddMember') }}
+        {{ t('AbpIdentity.AddMember') }}
       </a-button>
     </template>
     <template #action="{ record }">
@@ -15,7 +15,7 @@
         :stop-button-propagation="true"
         :actions="[
           {
-            auth: 'AbpIdentity.OrganizationUnits.ManageUsers',
+            auth: 'LeopardIdentity.Users.Delete',
             color: 'error',
             label: t('AbpUi.Delete'),
             icon: 'ant-design:delete-outlined',
@@ -54,7 +54,7 @@
         if (!unref(getProps).ouId) {
           return false;
         }
-        return hasPermission('AbpIdentity.OrganizationUnits.ManageUsers');
+        return hasPermission('LeopardIdentity.Users.Delete');
       });
       const { registerTable, reloadMembers, handleDelete } = useMemberTable({ getProps });
       const [registerModal, { openModal }] = useModal();

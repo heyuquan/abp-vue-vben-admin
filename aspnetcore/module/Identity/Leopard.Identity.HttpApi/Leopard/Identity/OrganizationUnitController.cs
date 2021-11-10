@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 using Volo.Abp;
@@ -66,6 +66,7 @@ namespace Leopard.Identity
 		/// </summary>
 		/// <param name="id"></param>
 		/// <returns></returns>
+		[Route("{id}")]
 		[HttpDelete]
 		public virtual Task DeleteAsync(Guid id)
 		{

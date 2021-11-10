@@ -1,4 +1,4 @@
-﻿using Leopard.BackendAdmin.Localization;
+using Leopard.BackendAdmin.Localization;
 using Leopard.BackendAdmin.Permissions;
 using Leopard.Saas.Localization;
 using Leopard.Saas.Permissions;
@@ -69,10 +69,10 @@ namespace Leopard.Identity.Web.Navigation
                 , url: "/identity/organization-units", customData: new { Component = "/identity/organization-units/index" })
                 .RequirePermissions(IdentityPermissions.OrganizationUnits.Default));
             identityMenuItem.AddItem(new ApplicationMenuItem(BackendAdminMenuNames.BackendAdmin.Identity.Roles, identityLocalizer["Menu:Roles"]
-                , url: "/identity/roles", customData: new { Component = "/identity/roles/index" })
+                , url: "/identity/roles", customData: new { Component = "/identity/role/index" })
                 .RequirePermissions(IdentityPermissions.Roles.Default));
             identityMenuItem.AddItem(new ApplicationMenuItem(BackendAdminMenuNames.BackendAdmin.Identity.Users, identityLocalizer["Menu:Users"]
-                , url: "/identity/users", customData: new { Component = "/identity/users/index" })
+                , url: "/identity/users", customData: new { Component = "/identity/user/index" })
                 .RequirePermissions(IdentityPermissions.Users.Default));
             identityMenuItem.AddItem(new ApplicationMenuItem(BackendAdminMenuNames.BackendAdmin.Identity.ClaimTypes, identityLocalizer["Menu:ClaimTypes"]
                 , url: "/identity/claim-types", customData: new { Component = "/identity/claim-types/index" })
