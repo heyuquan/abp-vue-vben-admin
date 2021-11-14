@@ -144,9 +144,9 @@ namespace Leopard.Utils
                 options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "简体中文"));
             });
 
-#if DEBUG
+//#if DEBUG  没有swagger不方便调试
             context.Services.AddLeopardSwaggerGen();
-#endif
+//#endif
             if (ApplicationServiceType == ApplicationServiceType.ApiHost
                 // || ApplicationServiceType == ApplicationServiceType.GateWay   网关开启会报错，暂不清楚需不需要开启
                 )

@@ -72,7 +72,7 @@ namespace Leopard.Consul.Extensions
             {
                 var serviceId = $"{serviceDiscoveryOptions.Value.ServiceName}_{address.Scheme}_{address.Host}:{address.Port}";
 
-                logger.LogInformation($"Registering service {serviceId} for address {address}.");
+                logger.LogInformation($"consul:Registering service {serviceId} for address {address}.");
 
                 var serviceChecks = new List<AgentServiceCheck>();
 
@@ -91,7 +91,7 @@ namespace Leopard.Consul.Extensions
 #endif
                     });
 
-                    logger.LogInformation($"Adding healthcheck for service {serviceId}, checking {healthCheckUri}.");
+                    logger.LogInformation($"consul:Adding healthcheck for service {serviceId}, checking {healthCheckUri}.");
                 }
 
                 var registration = new AgentServiceRegistration()

@@ -1,4 +1,4 @@
-﻿前端（英语：front-end）和后端（英语：back-end）
+前端（英语：front-end）和后端（英语：back-end）
 
 定义端口规范
 http	**02
@@ -38,10 +38,13 @@ docker run --name mk.demob.api -p 44302:44302  -v /e/Code/open_source/Abp/Leopar
 docker exec -it mk.demob /bin/bash
 
 
+--SSO.AuthServer.HttpApi.Host
+docker build -f Dockerfile -t sso.auth-server.host.img ../../../
+docker run --name sso.auth-server.host -e ASPNETCORE_ENVIRONMENT=Development -p 44102:80  -d sso.auth-server.host.img 
 
 
 --democ
-docker build -f Dockerfile -t mk.democ.api.img ../../../
+docker build -f Dockerfile -t mk.democ.api.img ../../../ 
 
 docker run --name mk.democ.api -p 44402:44402  -v /e/Code/open_source/Abp/Leopard.Abp/Docker/App/Mk.DemoC/Logs:/app/Logs -d mk.democ.api.img
 

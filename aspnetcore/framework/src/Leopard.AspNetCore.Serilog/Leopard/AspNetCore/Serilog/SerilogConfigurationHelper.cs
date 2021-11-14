@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration;
 using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.Elasticsearch;
@@ -38,6 +38,8 @@ namespace Leopard.AspNetCore.Serilog
             .Enrich.WithProperty("Application", applicationName)
 #if DEBUG
             .WriteTo.Async(c => c.Console());  // 在容器中，有时候挂载日志文件异常，导致查不出原因，会需要将日志打印到控制台上
+#else
+            ;
 #endif
             if (isWriteToFile)
             {
