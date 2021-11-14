@@ -1,84 +1,17 @@
 version: '3.7'
+
 services:
-  mk.demo.gateway:
-    image: mk.demo.gateway.img
+  sso.auth-server.host:
+    image: sso.auth-server.host.img
     build:
       context: .
-      dockerfile: ./Gateways/Mk.Demo.Gateway/Dockerfile
-    ports:
-      - target: 44502                    
-        published: 44502              
-        protocol: tcp                 
-        mode: host  
+      dockerfile: ./microservices/BackendAdmin/Leopard.BackendAdmin.HttpApi.Host/Dockerfile
     environment:
-      - ASPNETCORE_URLS=http://0.0.0.0:44502
+      - ASPNETCORE_URLS=https://0.0.0.0:44105
       - ASPNETCORE_ENVIRONMENT=Production
-    volumes:
-      - type: bind
-        source: /usr/local/data/app/logs/Mk.Demo.Gateway
-        target: /app/Logs
-      - type: bind
-        source: /usr/local/data/app/config/Mk.Demo.Gateway/appsettings.Production.json
-        target: /app/appsettings.Production.json
-      - type: bind
-        source: /usr/local/data/app/config/Mk.Demo.Gateway/ocelot.Production.json
-        target: /app/ocelot.Production.json
-    container_name: mk.demo.gateway
+    container_name: sso.auth-server.host
     networks:
       - my-net
-
-  mk.demob.api:
-    image: mk.demob.api.img
-    build:
-      context: .
-      dockerfile: ./Mk.DemoB/src/Mk.DemoB.HttpApi.Host/Dockerfile
-    ports:
-      - target: 44302                    
-        published: 44302              
-        protocol: tcp                 
-        mode: host  
-    environment:
-      - ASPNETCORE_URLS=http://0.0.0.0:44302
-      - ASPNETCORE_ENVIRONMENT=Production
-    volumes:
-      - type: bind
-        source: /usr/local/data/app/logs/Mk.DemoB.Api
-        target: /app/Logs
-      - type: bind
-        source: /usr/local/data/app/config/Mk.DemoB.Api/appsettings.Production.json
-        target: /app/appsettings.Production.json
-    networks:
-      - my-net
-    container_name: mk.demob.api
-    depends_on:
-      - mk.demo.gateway
-      - mk.democ.api
-
-  mk.democ.api:
-    image: mk.democ.api.img
-    build:
-      context: .
-      dockerfile: ./Mk.DemoC/src/Mk.DemoC.HttpApi.Host/Dockerfile
-    ports:
-      - target: 44402                    
-        published: 44402              
-        protocol: tcp                 
-        mode: host  
-    environment:
-      - ASPNETCORE_URLS=http://0.0.0.0:44402
-      - ASPNETCORE_ENVIRONMENT=Production
-    volumes:
-      - type: bind
-        source: /usr/local/data/app/logs/Mk.DemoC.Api
-        target: /app/Logs
-      - type: bind
-        source: /usr/local/data/app/config/Mk.DemoC.Api/appsettings.Production.json
-        target: /app/appsettings.Production.json
-    networks:
-      - my-net
-    container_name: mk.democ.api
-    depends_on:
-      - mk.demo.gateway
 
 networks:
   my-net:
