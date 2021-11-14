@@ -34,7 +34,7 @@ export function useRoleModal({ roleRef, formElRef }: UseRoleFormContext) {
     },
     {
       immediate: true,
-    }
+    },
   );
 
   return {

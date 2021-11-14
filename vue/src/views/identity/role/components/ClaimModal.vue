@@ -15,13 +15,13 @@
         <TableAction
           :actions="[
             {
-              auth: 'AbpIdentity.Users.ManageClaims',
+              auth: 'LeopardIdentity.Users.ManageClaims',
               label: t('AbpUi.Edit'),
               icon: 'ant-design:edit-outlined',
               onClick: handleEdit.bind(null, record),
             },
             {
-              auth: 'AbpIdentity.Users.ManageClaims',
+              auth: 'LeopardIdentity.Users.ManageClaims',
               color: 'error',
               label: t('AbpUi.Delete'),
               icon: 'ant-design:delete-outlined',

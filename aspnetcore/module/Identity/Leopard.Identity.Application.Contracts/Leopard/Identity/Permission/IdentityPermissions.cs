@@ -1,4 +1,4 @@
-﻿using Leopard.Buiness.Shared;
+using Leopard.Buiness.Shared;
 using Volo.Abp.Reflection;
 
 namespace Leopard.Identity
@@ -26,6 +26,8 @@ namespace Leopard.Identity
 
             public const string ManagePermissions = Default + ".ManagePermissions";
 
+            public const string ManageClaims = Default + ".ManageClaims";
+
             public const string ViewChangeHistory = "AuditLogging.ViewChangeHistory:Volo.Abp.Identity.IdentityRole";
         }
 
@@ -40,6 +42,8 @@ namespace Leopard.Identity
             public const string Delete = Default + ".Delete";
 
             public const string ManagePermissions = Default + ".ManagePermissions";
+
+            public const string ManageClaims = Default + ".ManageClaims";
 
             public const string ViewChangeHistory = "AuditLogging.ViewChangeHistory:Volo.Abp.Identity.IdentityUser";
         }

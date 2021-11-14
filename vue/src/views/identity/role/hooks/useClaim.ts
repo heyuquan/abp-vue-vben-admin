@@ -4,7 +4,7 @@ import { useI18n } from '/@/hooks/web/useI18n';
 import { Modal } from 'ant-design-vue';
 import { FormSchema } from '/@/components/Form';
 import { useModal } from '/@/components/Modal';
-import { getActivedList } from '/@/api/identity/claim';
+import { getAllList } from '/@/api/identity/claim';
 import { getClaimColumns } from '../datas/TableData';
 import { createClaim, deleteClaim, getClaimList, updateClaim } from '/@/api/identity/role';
 import { useTable } from '/@/components/Table';
@@ -31,7 +31,7 @@ export function useClaim({ roleIdRef }: UseClaim) {
       colProps: { span: 24 },
       required: true,
       componentProps: {
-        api: () => getActivedList(),
+        api: () => getAllList(),
         resultField: 'items',
         labelField: 'name',
         valueField: 'name',
@@ -95,7 +95,7 @@ export function useClaim({ roleIdRef }: UseClaim) {
         Object.assign(model, {
           newClaimValue: model.claimValue,
         }),
-        true
+        true,
       );
     } else {
       openModal(true, {}, true);
@@ -132,7 +132,7 @@ export function useClaim({ roleIdRef }: UseClaim) {
           id: id,
         },
       });
-    }
+    },
   );
 
   return {

@@ -32,7 +32,6 @@ export function useOuTree({ emit }: { emit: EmitType }) {
       label: t('AbpIdentity.OrganizationUnit:Parent'),
       colProps: { span: 24 },
       ifShow: ({ values }) => {
-        debugger;
         return values.parentId ? true : false;
       },
       dynamicDisabled: true,
@@ -54,7 +53,6 @@ export function useOuTree({ emit }: { emit: EmitType }) {
         {
           label: t('AbpIdentity.Edit'),
           handler: () => {
-            debugger;
             openModal(true, cloneDeep(node.$attrs), true);
           },
           icon: 'ant-design:edit-outlined',

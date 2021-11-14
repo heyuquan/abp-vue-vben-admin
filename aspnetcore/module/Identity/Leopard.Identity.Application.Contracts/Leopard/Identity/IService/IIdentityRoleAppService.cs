@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Volo.Abp;
@@ -23,19 +23,41 @@ namespace Leopard.Identity
 		/// <param name="input"></param>
 		/// <returns></returns>
 		Task<PagedResultDto<IdentityRoleDto>> GetListAsync(GetIdentityRoleListInput input);
-		/// <summary>
-		/// 更新角色声明
-		/// </summary>
-		/// <param name="id"></param>
-		/// <param name="input"></param>
-		/// <returns></returns>
-		Task UpdateClaimsAsync(Guid id, List<IdentityRoleClaimDto> input);
+		///// <summary>
+		///// 更新角色声明
+		///// </summary>
+		///// <param name="id"></param>
+		///// <param name="input"></param>
+		///// <returns></returns>
+		//Task UpdateClaimsAsync(Guid id, List<IdentityRoleClaimDto> input);
 		/// <summary>
 		/// 获取角色声明
 		/// </summary>
 		/// <param name="id"></param>
 		/// <returns></returns>
 		Task<List<IdentityRoleClaimDto>> GetClaimsAsync(Guid id);
+		/// <summary>
+		/// 添加角色声明
+		/// </summary>
+		/// <param name="id"></param>
+		/// <param name="input"></param>
+		/// <returns></returns>
+		Task AddClaimAsync(Guid id, IdentityRoleClaimCreateInput input);
+		/// <summary>
+		/// 更新角色声明
+		/// </summary>
+		/// <param name="id"></param>
+		/// <param name="input"></param>
+		/// <returns></returns>
+		Task UpdateClaimAsync(Guid id, IdentityRoleClaimUpdateInput input);
+		/// <summary>
+		/// 删除角色声明
+		/// </summary>
+		/// <param name="id"></param>
+		/// <param name="input"></param>
+		/// <returns></returns>
+		Task DeleteClaimAsync(Guid id, IdentityRoleClaimDeleteInput input);
+
 		/// <summary>
 		/// 创建角色
 		/// </summary>

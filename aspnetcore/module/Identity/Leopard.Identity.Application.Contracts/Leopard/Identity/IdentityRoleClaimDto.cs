@@ -1,11 +1,12 @@
-﻿using System;
+using System;
+using Volo.Abp.Application.Dtos;
 
 namespace Leopard.Identity
 {
 	/// <summary>
 	/// 身份标识角色声明
 	/// </summary>
-	public class IdentityRoleClaimDto
+	public class IdentityRoleClaimDto : EntityDto<Guid>
 	{
 		/// <summary>
 		/// 角色

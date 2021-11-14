@@ -14,7 +14,7 @@ enum Api {
   Update = '/api/identity/claim-types/{id}',
   GetById = '/api/identity/claim-types/{id}',
   GetList = '/api/identity/claim-types',
-  GetActivedList = '/api/identity/claim-types/actived-list',
+  GetAllList = '/api/identity/claim-types/all',
 }
 
 export const create = (input: CreateIdentityClaimType) => {
@@ -50,8 +50,8 @@ export const getList = (input: GetIdentityClaimTypePagedRequest) => {
   });
 };
 
-export const getActivedList = () => {
+export const getAllList = () => {
   return defAbpHttp.get<IdentityClaimTypeListResult>({
-    url: Api.GetActivedList,
+    url: Api.GetAllList,
   });
 };

@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -47,36 +47,7 @@ namespace Leopard.Identity
 				totalCount,
 				ObjectMapper.Map<List<IdentityRole>, List<IdentityRoleDto>>(list)
 				);
-		}
-
-		[Authorize(IdentityPermissions.Roles.Update)]
-		public virtual async Task UpdateClaimsAsync(Guid id, List<IdentityRoleClaimDto> input)
-		{
-			var role = await this.RoleRepository.GetAsync(id);
-			foreach (var roleClaim in input)
-			{
-				if (role.FindClaim(new Claim(roleClaim.ClaimType, roleClaim.ClaimValue)) == null)
-				{
-					role.AddClaim(base.GuidGenerator, new Claim(roleClaim.ClaimType, roleClaim.ClaimValue));
-				}
-			}
-
-			var list = role.Claims.ToList<IdentityRoleClaim>();
-			foreach(var claim in list)
-			{
-				if (!input.Any((IdentityRoleClaimDto c) => claim.ClaimType == c.ClaimType && claim.ClaimValue == c.ClaimValue))
-				{
-					role.RemoveClaim(new Claim(claim.ClaimType, claim.ClaimValue));
-				}
-			}
-		}
-
-		[Authorize(IdentityPermissions.Roles.Default)]
-		public virtual async Task<List<IdentityRoleClaimDto>> GetClaimsAsync(Guid id)
-		{
-			IdentityRole identityRole = await this.RoleRepository.GetAsync(id);
-			return new List<IdentityRoleClaimDto>(base.ObjectMapper.Map<List<IdentityRoleClaim>, List<IdentityRoleClaimDto>>(identityRole.Claims.ToList<IdentityRoleClaim>()));
-		}
+		}		
 
 		[Authorize(IdentityPermissions.Roles.Create)]
 		public virtual async Task<IdentityRoleDto> CreateAsync(IdentityRoleCreateDto input)
@@ -127,5 +98,81 @@ namespace Leopard.Identity
 				(await this.RoleManager.DeleteAsync(identityRole)).CheckErrors();
 			}
 		}
+
+		#region ClaimType
+
+		[Authorize(IdentityPermissions.Roles.Update)]
+		public virtual async Task UpdateClaimsAsync(Guid id, List<IdentityRoleClaimDto> input)
+		{
+			var role = await this.RoleRepository.GetAsync(id);
+			foreach (var roleClaim in input)
+			{
+				if (role.FindClaim(new Claim(roleClaim.ClaimType, roleClaim.ClaimValue)) == null)
+				{
+					role.AddClaim(base.GuidGenerator, new Claim(roleClaim.ClaimType, roleClaim.ClaimValue));
+				}
+			}
+
+			var list = role.Claims.ToList<IdentityRoleClaim>();
+			foreach (var claim in list)
+			{
+				if (!input.Any((IdentityRoleClaimDto c) => claim.ClaimType == c.ClaimType && claim.ClaimValue == c.ClaimValue))
+				{
+					role.RemoveClaim(new Claim(claim.ClaimType, claim.ClaimValue));
+				}
+			}
+		}
+
+		[Authorize(IdentityPermissions.Roles.Default)]
+		public virtual async Task<List<IdentityRoleClaimDto>> GetClaimsAsync(Guid id)
+		{
+			IdentityRole identityRole = await this.RoleRepository.GetAsync(id);
+			return new List<IdentityRoleClaimDto>(base.ObjectMapper.Map<List<IdentityRoleClaim>, List<IdentityRoleClaimDto>>(identityRole.Claims.ToList<IdentityRoleClaim>()));
+		}
+
+		[Authorize(IdentityPermissions.Roles.ManageClaims)]
+		public virtual async Task AddClaimAsync(Guid id, IdentityRoleClaimCreateInput input)
+		{
+			var role = await RoleRepository.GetAsync(id);
+			var claim = new Claim(input.ClaimType, input.ClaimValue);
+			if (role.FindClaim(claim) != null)
+			{
+				throw new UserFriendlyException(L["RoleClaimAlreadyExists"]);
+			}
+
+			role.AddClaim(GuidGenerator, claim);
+			await RoleRepository.UpdateAsync(role);
+
+			await CurrentUnitOfWork.SaveChangesAsync();
+		}
+
+		[Authorize(IdentityPermissions.Roles.ManageClaims)]
+		public virtual async Task UpdateClaimAsync(Guid id, IdentityRoleClaimUpdateInput input)
+		{
+			var role = await RoleRepository.GetAsync(id);
+			var oldClaim = role.FindClaim(new Claim(input.ClaimType, input.ClaimValue));
+			if (oldClaim != null)
+			{
+				role.RemoveClaim(oldClaim.ToClaim());
+				role.AddClaim(GuidGenerator, new Claim(input.ClaimType, input.NewClaimValue));
+
+				await RoleRepository.UpdateAsync(role);
+
+				await CurrentUnitOfWork.SaveChangesAsync();
+			}
+		}
+
+		[Authorize(IdentityPermissions.Roles.ManageClaims)]
+		public virtual async Task DeleteClaimAsync(Guid id, IdentityRoleClaimDeleteInput input)
+		{
+			var role = await RoleRepository.GetAsync(id);
+			role.RemoveClaim(new Claim(input.ClaimType, input.ClaimValue));
+
+			await RoleRepository.UpdateAsync(role);
+
+			await CurrentUnitOfWork.SaveChangesAsync();
+		}
+
+		#endregion
 	}
 }

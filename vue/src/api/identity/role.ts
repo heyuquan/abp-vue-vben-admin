@@ -18,7 +18,6 @@ enum Api {
   Controller = 'IdentityRole',
   Create = '/api/identity/roles',
   CreateClaim = '/api/identity/roles/{id}/claims',
-  DeleteClaim = '',
   Update = '/api/identity/roles/{id}',
   UpdateClaim = '',
   GetById = '/api/identity/roles/{id}',
@@ -65,7 +64,7 @@ export const deleteById = (id: string) => {
 export const deleteClaim = (id: string, input: RoleClaim) => {
   return defAbpHttp.delete<void>(
     {
-      url: format(Api.DeleteClaim, { id: id }),
+      url: format(Api.CreateClaim, { id: id }),
       params: {
         claimType: input.claimType,
         claimValue: input.claimValue,

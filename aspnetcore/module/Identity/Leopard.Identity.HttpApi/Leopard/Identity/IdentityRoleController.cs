@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -95,18 +95,18 @@ namespace Leopard.Identity
 			return this.RoleAppService.GetListAsync(input);
 		}
 
-		/// <summary>
-		/// 更新角色声明
-		/// </summary>
-		/// <param name="id"></param>
-		/// <param name="input"></param>
-		/// <returns></returns>
-		[HttpPut]
-		[Route("{id}/claims")]
-		public virtual Task UpdateClaimsAsync(Guid id, List<IdentityRoleClaimDto> input)
-		{
-			return this.RoleAppService.UpdateClaimsAsync(id, input);
-		}
+		///// <summary>
+		///// 更新角色声明
+		///// </summary>
+		///// <param name="id"></param>
+		///// <param name="input"></param>
+		///// <returns></returns>
+		//[HttpPut]
+		//[Route("{id}/claims")]
+		//public virtual Task UpdateClaimsAsync(Guid id, List<IdentityRoleClaimDto> input)
+		//{
+		//	return this.RoleAppService.UpdateClaimsAsync(id, input);
+		//}
 
 		/// <summary>
 		/// 获取角色声明
@@ -118,6 +118,43 @@ namespace Leopard.Identity
 		public virtual Task<List<IdentityRoleClaimDto>> GetClaimsAsync(Guid id)
 		{
 			return this.RoleAppService.GetClaimsAsync(id);
+		}
+
+		/// <summary>
+		/// 添加角色声明
+		/// </summary>
+		/// <param name="id"></param>
+		/// <param name="input"></param>
+		/// <returns></returns>
+		[HttpPost]
+		[Route("{id}/claims")]
+		public virtual Task AddClaimAsync(Guid id, IdentityRoleClaimCreateInput input)
+		{
+			return this.RoleAppService.AddClaimAsync(id, input);
+		}
+		/// <summary>
+		/// 更新角色声明
+		/// </summary>
+		/// <param name="id"></param>
+		/// <param name="input"></param>
+		/// <returns></returns>
+		[HttpPut]
+		[Route("{id}/claims")]
+		public virtual Task UpdateClaimAsync(Guid id, IdentityRoleClaimUpdateInput input)
+		{
+			return this.RoleAppService.UpdateClaimAsync(id, input);
+		}
+		/// <summary>
+		/// 删除角色声明
+		/// </summary>
+		/// <param name="id"></param>
+		/// <param name="input"></param>
+		/// <returns></returns>
+		[HttpDelete]
+		[Route("{id}/claims")]
+		public virtual Task DeleteClaimAsync(Guid id, IdentityRoleClaimDeleteInput input)
+		{
+			return this.RoleAppService.DeleteClaimAsync(id, input);
 		}
 	}
 }

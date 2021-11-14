@@ -61,7 +61,6 @@ export function useMemberTable({ getProps }: UseMemberTable) {
   });
 
   function handleDelete(user) {
-    debugger;
     Modal.warning({
       title: t('AbpIdentity.AreYouSure'),
       content: t('AbpIdentity.OrganizationUnit:AreYouSureRemoveUser', [

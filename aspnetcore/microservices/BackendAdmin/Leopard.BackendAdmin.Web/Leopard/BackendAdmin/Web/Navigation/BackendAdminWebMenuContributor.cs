@@ -71,15 +71,16 @@ namespace Leopard.Identity.Web.Navigation
             identityMenuItem.AddItem(new ApplicationMenuItem(BackendAdminMenuNames.BackendAdmin.Identity.Roles, identityLocalizer["Menu:Roles"]
                 , url: "/identity/roles", customData: new { Component = "/identity/role/index" })
                 .RequirePermissions(IdentityPermissions.Roles.Default));
-            identityMenuItem.AddItem(new ApplicationMenuItem(BackendAdminMenuNames.BackendAdmin.Identity.Users, identityLocalizer["Menu:Users"]
-                , url: "/identity/users", customData: new { Component = "/identity/user/index" })
-                .RequirePermissions(IdentityPermissions.Users.Default));
-            identityMenuItem.AddItem(new ApplicationMenuItem(BackendAdminMenuNames.BackendAdmin.Identity.ClaimTypes, identityLocalizer["Menu:ClaimTypes"]
-                , url: "/identity/claim-types", customData: new { Component = "/identity/claim-types/index" })
-                .RequirePermissions(IdentityPermissions.ClaimTypes.Default));
-            identityMenuItem.AddItem(new ApplicationMenuItem(BackendAdminMenuNames.BackendAdmin.Identity.SecurityLog, identityLocalizer["Menu:SecurityLog"]
-                , url: "/identity/security-log", customData: new { Component = "/identity/security-log/index" })
-                .RequirePermissions(IdentityPermissions.SecurityLog.Default));
+
+            //identityMenuItem.AddItem(new ApplicationMenuItem(BackendAdminMenuNames.BackendAdmin.Identity.Users, identityLocalizer["Menu:Users"]
+            //    , url: "/identity/users", customData: new { Component = "/identity/user/index" })
+            //    .RequirePermissions(IdentityPermissions.Users.Default));
+            //identityMenuItem.AddItem(new ApplicationMenuItem(BackendAdminMenuNames.BackendAdmin.Identity.ClaimTypes, identityLocalizer["Menu:ClaimTypes"]
+            //    , url: "/identity/claim-types", customData: new { Component = "/identity/claim-types/index" })
+            //    .RequirePermissions(IdentityPermissions.ClaimTypes.Default));
+            //identityMenuItem.AddItem(new ApplicationMenuItem(BackendAdminMenuNames.BackendAdmin.Identity.SecurityLog, identityLocalizer["Menu:SecurityLog"]
+            //    , url: "/identity/security-log", customData: new { Component = "/identity/security-log/index" })
+            //    .RequirePermissions(IdentityPermissions.SecurityLog.Default));
 
             manageMenuItem.AddItem(identityMenuItem);
             context.Menu.GetAdministration().AddItem(manageMenuItem);
