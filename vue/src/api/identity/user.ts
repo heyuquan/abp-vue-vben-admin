@@ -30,7 +30,6 @@ enum Api {
   UpdateClaim = '/api/identity/users/{id}/claims',
   Lock = '/api/identity/users/{id}/lock/{seconds}',
   UnLock = '/api/identity/users/{id}/unlock',
-  RemoveOrganizationUnit = '/api/identity/users/{id}/organization-units/{ouId}',
 }
 
 export const create = (input: CreateUser) => {
@@ -74,7 +73,7 @@ export const deleteClaim = (id: string, input: UserClaim) => {
     },
     {
       joinParamsToUrl: true,
-    }
+    },
   );
 };
 
@@ -132,11 +131,5 @@ export const lock = (id: string, seconds: number) => {
 export const unlock = (id: string) => {
   return defAbpHttp.put<void>({
     url: format(Api.UnLock, { id: id }),
-  });
-};
-
-export const removeOrganizationUnit = (id: string, ouId: string) => {
-  return defAbpHttp.delete<void>({
-    url: format(Api.RemoveOrganizationUnit, { id: id, ouId: ouId }),
   });
 };

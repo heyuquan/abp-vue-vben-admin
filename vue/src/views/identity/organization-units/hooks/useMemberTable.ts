@@ -4,8 +4,7 @@ import { watch, ref, unref } from 'vue';
 import { useI18n } from '/@/hooks/web/useI18n';
 import { BasicColumn, useTable } from '/@/components/Table';
 import { User } from '/@/api/identity/model/userModel';
-import { removeOrganizationUnit } from '/@/api/identity/user';
-import { getMemberList } from '/@/api/identity/organization-units';
+import { getMemberList, removeMember } from '/@/api/identity/organization-units';
 import { MemberProps } from '../types/props';
 
 interface UseMemberTable {
@@ -62,6 +61,7 @@ export function useMemberTable({ getProps }: UseMemberTable) {
   });
 
   function handleDelete(user) {
+    debugger;
     Modal.warning({
       title: t('AbpIdentity.AreYouSure'),
       content: t('AbpIdentity.OrganizationUnit:AreYouSureRemoveUser', [
@@ -69,7 +69,7 @@ export function useMemberTable({ getProps }: UseMemberTable) {
       ] as Recordable),
       okCancel: true,
       onOk: () => {
-        removeOrganizationUnit(user.id, unref(getProps).ouId).then(() => reloadMembers());
+        removeMember(unref(getProps).ouId, user.id).then(() => reloadMembers());
       },
     });
   }
@@ -91,7 +91,7 @@ export function useMemberTable({ getProps }: UseMemberTable) {
       if (id) {
         reloadMembers();
       }
-    }
+    },
   );
 
   return {

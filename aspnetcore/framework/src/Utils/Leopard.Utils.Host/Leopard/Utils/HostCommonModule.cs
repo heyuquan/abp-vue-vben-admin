@@ -1,4 +1,4 @@
-﻿using Leopard.AspNetCore.Mvc;
+using Leopard.AspNetCore.Mvc;
 using Leopard.AspNetCore.Mvc.Filters;
 using Leopard.AspNetCore.Serilog;
 using Leopard.AspNetCore.Swashbuckle;
@@ -147,7 +147,9 @@ namespace Leopard.Utils
 #if DEBUG
             context.Services.AddLeopardSwaggerGen();
 #endif
-            if (ApplicationServiceType == ApplicationServiceType.ApiHost)
+            if (ApplicationServiceType == ApplicationServiceType.ApiHost
+                // || ApplicationServiceType == ApplicationServiceType.GateWay   网关开启会报错，暂不清楚需不需要开启
+                )
             {
                 context.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddJwtBearer(options =>

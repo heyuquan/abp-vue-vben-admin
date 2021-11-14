@@ -4,6 +4,7 @@ services:
   # local 不安装consul，直接使用exe安装consul。
   # 因为安装到docker的consul做心跳检测，没办法检测本地调试的 localhost api
   # 只能检查同样运行在docker中的 localhost api (属于不同局域网)
+  # https://www.cnblogs.com/taomylife/p/9997614.html   (注意sc.exe create中创建服务时，consul拼错了)
 
   redis:
     ports:

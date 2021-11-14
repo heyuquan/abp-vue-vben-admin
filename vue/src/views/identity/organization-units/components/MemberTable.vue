@@ -54,7 +54,7 @@
         if (!unref(getProps).ouId) {
           return false;
         }
-        return hasPermission('LeopardIdentity.Users.Delete');
+        return hasPermission('LeopardIdentity.Users.Create');
       });
       const { registerTable, reloadMembers, handleDelete } = useMemberTable({ getProps });
       const [registerModal, { openModal }] = useModal();

@@ -5,9 +5,8 @@ import { useTable } from '/@/components/Table';
 import { useI18n } from '/@/hooks/web/useI18n';
 import { getDataColumns } from '../../role/datas/TableData';
 import { Role } from '/@/api/identity/model/roleModel';
-import { getRoleList } from '/@/api/identity/organization-units';
+import { getRoleList, removeRole } from '/@/api/identity/organization-units';
 import { MemberProps } from '../types/props';
-import { removeOrganizationUnit } from '/@/api/identity/role';
 
 interface UseRoleTable {
   getProps: ComputedRef<MemberProps>;
@@ -46,7 +45,7 @@ export function useRoleTable({ getProps }: UseRoleTable) {
       content: t('AbpIdentity.OrganizationUnit:AreYouSureRemoveRole', [role.name] as Recordable),
       okCancel: true,
       onOk: () => {
-        removeOrganizationUnit(role.id, unref(getProps).ouId).then(() => reloadRoles());
+        removeRole(unref(getProps).ouId, role.id).then(() => reloadRoles());
       },
     });
   }
@@ -68,7 +67,7 @@ export function useRoleTable({ getProps }: UseRoleTable) {
       if (id) {
         reloadRoles();
       }
-    }
+    },
   );
 
   return {

@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -99,6 +99,22 @@ namespace Leopard.Identity
                 ObjectMapper.Map<List<IdentityRole>, List<IdentityRoleDto>>(list)
                 );
         }
+   
+        public virtual async Task<PagedResultDto<IdentityRoleDto>> GetUnaddedRolesAsync(Guid id, OrganizationUnitGetUnaddedRoleInput input)
+        {
+            var origanizationUnit = await OrganizationUnitRepository.GetAsync(id);
+
+            var origanizationUnitRoleCount = await OrganizationUnitRepository
+                .GetUnaddedRolesCountAsync(origanizationUnit, input.Filter);
+
+            var origanizationUnitRoles = await OrganizationUnitRepository
+                .GetUnaddedRolesAsync(origanizationUnit,
+                input.Sorting, input.MaxResultCount,
+                input.SkipCount, input.Filter);
+
+            return new PagedResultDto<IdentityRoleDto>(origanizationUnitRoleCount,
+                ObjectMapper.Map<List<IdentityRole>, List<IdentityRoleDto>>(origanizationUnitRoles));
+        }
 
         public virtual async Task<PagedResultDto<IdentityUserDto>> GetMembersAsync(Guid id, GetIdentityUsersInput input)
         {
@@ -110,6 +126,21 @@ namespace Leopard.Identity
                 count,
                 ObjectMapper.Map<List<IdentityUser>, List<IdentityUserDto>>(list)
                 );
+        }
+
+        public virtual async Task<PagedResultDto<IdentityUserDto>> GetUnaddedMembersAsync(Guid id, OrganizationUnitGetUnaddedUserInput input)
+        {
+            var origanizationUnit = await OrganizationUnitRepository.GetAsync(id);
+
+            var origanizationUnitUserCount = await OrganizationUnitRepository
+                .GetUnaddedUsersCountAsync(origanizationUnit, input.Filter);
+            var origanizationUnitUsers = await OrganizationUnitRepository
+                .GetUnaddedUsersAsync(origanizationUnit,
+                input.Sorting, input.MaxResultCount,
+                input.SkipCount, input.Filter);
+
+            return new PagedResultDto<IdentityUserDto>(origanizationUnitUserCount,
+                ObjectMapper.Map<List<IdentityUser>, List<IdentityUserDto>>(origanizationUnitUsers));
         }
 
         [Authorize(IdentityPermissions.OrganizationUnits.Create)]

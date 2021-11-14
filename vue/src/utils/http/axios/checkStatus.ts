@@ -106,22 +106,23 @@ export function checkResponse(response: any): void {
     }
     return;
   }
+  if (response.data) {
+    // oauth错误信息
+    if (response.data.error_description) {
+      error(response.data.error_description);
+      return;
+    }
 
-  // oauth错误信息
-  if (response.data.error_description) {
-    error(response.data.error_description);
-    return;
-  }
+    // 其他错误
+    if (response.data.error.details) {
+      error(response.data.error.details);
+      return;
+    }
 
-  // 其他错误
-  if (response.data.error.details) {
-    error(response.data.error.details);
-    return;
-  }
-
-  if (response.data.error.message) {
-    error(response.data.error.message);
-    return;
+    if (response.data.error.message) {
+      error(response.data.error.message);
+      return;
+    }
   }
 
   // 都没捕获到则提示默认错误信息

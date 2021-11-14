@@ -43,6 +43,8 @@
     "OrganizationUnit:SelectUsers": "选择用户",
     "OrganizationUnit:SelectRoles": "选择角色",
     "OrganizationUnit:WillDelete": "你确定要删除组织机构{0}吗？",
+    "OrganizationUnit:AreYouSureRemoveUser": "你确定要从当前组织机构中，删除成员{0}吗？",
+    "OrganizationUnit:AreYouSureRemoveRole": "你确定要从当前组织机构中，删除角色{0}吗？",
     "ClaimTypes": "声明类型",
     "Claims": "声明",
     "Type": "类型",

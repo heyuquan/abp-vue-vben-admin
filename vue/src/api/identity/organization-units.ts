@@ -18,13 +18,15 @@ enum Api {
   GetById = '/api/identity/organization-units​/{id}',
   GetList = '/api​/identity​/organization-units​',
   GetAllList = '/api/identity/organization-units/all',
-  GetUnaddedMemberList = '/api/identity/organization-units/{id}/unadded-users',
-  GetMemberList = '/api/identity/organization-units/{id}/users',
+  GetUnaddedMemberList = '/api/identity/organization-units/{id}/unadded-members',
+  GetMemberList = '/api/identity/organization-units/{id}/members',
   GetUnaddedRoleList = '/api/identity/organization-units/{id}/unadded-roles',
   GetRoleList = '/api/identity/organization-units/{id}/roles',
   Move = 'api/identity/organization-units/{id}/move',
-  AddMembers = '/api/identity/organization-units/{id}/users',
+  AddMembers = '/api/identity/organization-units/{id}/members',
   AddRoles = '/api/identity/organization-units/{id}/roles',
+  RemoveMember = '/api/identity/organization-units/{id}/members/{memberId}',
+  RemoveRole = '/api/identity/organization-units/{id}/roles/{roleId}',
 }
 
 export const create = (input: CreateOrganizationUnit) => {
@@ -109,15 +111,27 @@ export const move = (id: string, parentId?: string) => {
 };
 
 export const addMembers = (id: string, userIdList: string[]) => {
-  return defAbpHttp.post<void>({
+  return defAbpHttp.put<void>({
     url: format(Api.AddMembers, { id: id }),
     data: { userIds: userIdList },
   });
 };
 
 export const addRoles = (id: string, roleIdList: string[]) => {
-  return defAbpHttp.post<void>({
+  return defAbpHttp.put<void>({
     url: format(Api.AddRoles, { id: id }),
     data: { roleIds: roleIdList },
+  });
+};
+
+export const removeMember = (id: string, memberId: string) => {
+  return defAbpHttp.delete<void>({
+    url: format(Api.RemoveMember, { id: id, memberId: memberId }),
+  });
+};
+
+export const removeRole = (id: string, roleId: string) => {
+  return defAbpHttp.delete<void>({
+    url: format(Api.RemoveRole, { id: id, roleId: roleId }),
   });
 };
