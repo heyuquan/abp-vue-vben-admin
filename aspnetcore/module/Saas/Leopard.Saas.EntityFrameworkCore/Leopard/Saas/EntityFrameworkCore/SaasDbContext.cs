@@ -8,7 +8,7 @@ using Volo.Abp.EntityFrameworkCore;
 namespace Leopard.Saas.EntityFrameworkCore
 {
     [ConnectionStringName(SaasServiceDbProperties.ConnectionStringName)]
-    public class SaasDbContext : AbpDbContext<SaasDbContext>, ISaasDbContext, IInfrastructure<IServiceProvider>, IResettableService, IDbContextPoolable, IDbSetCache, IDbContextDependencies, IDisposable, IEfCoreDbContext
+    public class SaasDbContext : AbpDbContext<SaasDbContext>, ISaasDbContext
     {
         public DbSet<Tenant> Tenants { get; set; }
         public DbSet<Edition> Editions { get; set; }

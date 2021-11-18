@@ -2,7 +2,8 @@
 
 定义端口规范
 http	**02
-https	**05    (只需要启动一个http端口即可，在nginx上设置证书，并启用https。这样子证书也不用每个应用端口都去设置一个了)
+https	**05    
+（应当同时启用http和https，因为对于内部访问，直接访问http效率更高。对于外部访问，走https更安全）
 
 每个大项目都划分好端口范围：
     #、一个大项目预留1000个端口号足矣。eg：这个项目以44***开头
@@ -39,8 +40,8 @@ docker exec -it mk.demob /bin/bash
 
 
 --SSO.AuthServer.HttpApi.Host
-docker build -f Dockerfile -t sso.auth-server.host.img ../../../
-docker run --name sso.auth-server.host -e ASPNETCORE_ENVIRONMENT=Development -p 44102:80  -d sso.auth-server.host.img 
+docker build -f Dockerfile -t sso.auth-server.api.img ../../../ 
+docker run --name sso.auth-server.api -p 44102:80  -d sso.auth-server.api.img 
 
 
 --democ

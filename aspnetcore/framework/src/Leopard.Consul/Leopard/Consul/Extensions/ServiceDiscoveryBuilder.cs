@@ -27,14 +27,19 @@ namespace Leopard.Consul.Extensions
         {
             Check.NotNull(app, nameof(app));
 
+            var serviceDiscoveryOptions = app.ApplicationServices.GetService(typeof(IOptions<ServiceDiscoveryOptions>)) as IOptions<ServiceDiscoveryOptions>;
+            var serviceDiscovery = serviceDiscoveryOptions.Value;
+
+            if (!serviceDiscovery.IsEnable)
+            {
+                return app;
+            }
+
             var lifetime = app.ApplicationServices.GetService(typeof(IHostApplicationLifetime)) as IHostApplicationLifetime;
             Check.NotNull(lifetime, nameof(lifetime));
 
             var loggerFactory = app.ApplicationServices.GetRequiredService<ILoggerFactory>();
             var logger = loggerFactory.CreateLogger("ServiceDiscoveryBuilder");
-
-            var serviceDiscoveryOptions = app.ApplicationServices.GetService(typeof(IOptions<ServiceDiscoveryOptions>)) as IOptions<ServiceDiscoveryOptions>;
-            var serviceDiscovery = serviceDiscoveryOptions.Value;
 
             var consul = app.ApplicationServices.GetService(typeof(IConsulClient)) as IConsulClient;
 

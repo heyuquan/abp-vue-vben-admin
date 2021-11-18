@@ -1,10 +1,14 @@
-﻿namespace Leopard.Consul
+namespace Leopard.Consul
 {
     /// <summary>
     /// 服务发现Options
     /// </summary>
     public class ServiceDiscoveryOptions
     {
+        /// <summary>
+        /// 是否启用
+        /// </summary>
+        public bool IsEnable { get; set; }
         /// <summary>
         /// 注册的服务名
         /// </summary>

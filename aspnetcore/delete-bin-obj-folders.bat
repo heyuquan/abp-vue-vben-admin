@@ -5,6 +5,7 @@ ECHO Deleting all BIN and OBJ folders...
 ECHO.
 
 FOR /d /r . %%d in (bin,obj) DO (
+	ECHO %%d
 	IF EXIST "%%d" (		 	 
 		ECHO %%d | FIND /I "\node_modules\" > Nul && ( 
 			ECHO.Skipping: %%d

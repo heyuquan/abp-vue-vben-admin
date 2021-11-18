@@ -6,7 +6,9 @@ FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
 COPY . .
 WORKDIR /src/microservices/SSO.AuthServer/SSO.AuthServer.HttpApi.Host
-RUN dotnet restore -nowarn:msb3202,nu1503
+
+# RUN curl https://api.nuget.org/v3/index.json
+RUN dotnet restore --disable-parallel -nowarn:msb3202,nu1503 
 RUN dotnet build -nowarn:cs1998,cs1572,cs1573 --no-restore -c Release -o /app/build
 
 FROM build AS publish

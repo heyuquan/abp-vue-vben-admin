@@ -1,18 +1,23 @@
 version: '3.7'
 
 services:
-  sso.auth-server.host:
-    image: sso.auth-server.host.img
+  sso.auth-server.api:
+    image: sso.auth-server.api.img
     build:
       context: .
-      dockerfile: ./microservices/BackendAdmin/Leopard.BackendAdmin.HttpApi.Host/Dockerfile
+      dockerfile: ./microservices/SSO.AuthServer/SSO.AuthServer.HttpApi.Host/Dockerfile
     environment:
-      - ASPNETCORE_URLS=https://0.0.0.0:44105
-      - ASPNETCORE_ENVIRONMENT=Production
-    container_name: sso.auth-server.host
-    networks:
-      - my-net
-
-networks:
-  my-net:
-    driver: bridge
+      - TZ=Asia/Shanghai
+      # Production 、 Development
+      - ASPNETCORE_ENVIRONMENT:Production
+      - ASPNETCORE_URLS=http://0.0.0.0:44102
+    #  - ASPNETCORE_Kestrel__Certificates__Default__Password=a369220123
+    #  - ASPNETCORE_Kestrel__Certificates__Default__Path=/root/.dotnet/https/test.pfx
+    #volumes:
+    ##  - type: bind
+    ##    source: ./docker.local/sso.auth-server.api
+    ##    target: /app/Logs
+    #  - /E/Code/my_code/abp-vue-vben-admin/aspnetcore/README.md:/root/.dotnet/https:rw
+    container_name: sso.auth-server.api
+    ports:
+      - 44102:80

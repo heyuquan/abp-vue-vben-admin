@@ -35,16 +35,16 @@
 		<ProjectReference Include="..\..\..\framework\src\Leopard.AspNetCore.Serilog\Leopard.AspNetCore.Serilog.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<Compile Remove="Logs\**" />
-		<Content Remove="Logs\**" />
-		<EmbeddedResource Remove="Logs\**" />
-		<None Remove="Logs\**" />
-	</ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Logs\**" />
+    <Content Remove="Logs\**" />
+    <EmbeddedResource Remove="Logs\**" />
+    <None Remove="Logs\**" />
+  </ItemGroup>
 
-	<ItemGroup>
-		<Content Remove="Localization\Resources\*.json" />
-		<EmbeddedResource Include="Localization\Resources\*.json" />
-	</ItemGroup>
+  <ItemGroup>
+    <Content Remove="Localization\Resources\*.json" />
+    <EmbeddedResource Include="Localization\Resources\*.json" />
+  </ItemGroup>
 
 </Project>

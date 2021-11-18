@@ -1,4 +1,4 @@
-﻿using Consul;
+using Consul;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -18,17 +18,22 @@ namespace Leopard.Consul.Extensions
             IConfiguration configuration = serviceProvider.GetService<IConfiguration>();
             Check.NotNull(configuration, nameof(configuration));
 
-            services.Configure<ServiceDiscoveryOptions>(configuration.GetSection("ServiceDiscovery"));
-
-            services.AddSingleton<IConsulClient>(p => new ConsulClient(cfg =>
+            var serviceDisvoverySection = configuration.GetSection("ServiceDiscovery");
+            bool isEnable = serviceDisvoverySection.GetValue<bool>("IsEnable");
+            if (isEnable)
             {
-                var serviceConfiguration = p.GetRequiredService<IOptions<ServiceDiscoveryOptions>>().Value;
+                services.Configure<ServiceDiscoveryOptions>(serviceDisvoverySection);
 
-                if (!string.IsNullOrEmpty(serviceConfiguration.Consul.HttpEndpoint))
+                services.AddSingleton<IConsulClient>(p => new ConsulClient(cfg =>
                 {
-                    cfg.Address = new Uri(serviceConfiguration.Consul.HttpEndpoint);
-                }
-            }));
+                    var serviceConfiguration = p.GetRequiredService<IOptions<ServiceDiscoveryOptions>>().Value;
+
+                    if (!string.IsNullOrEmpty(serviceConfiguration.Consul.HttpEndpoint))
+                    {
+                        cfg.Address = new Uri(serviceConfiguration.Consul.HttpEndpoint);
+                    }
+                }));
+            }
 
             return services;
         }

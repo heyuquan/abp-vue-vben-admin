@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,12 +25,12 @@ namespace Leopard.Saas.EntityFrameworkCore
 
 		public Tenant FindByName(string name, bool includeDetails = true)
 		{
-			return DbSet.IncludeDetails(includeDetails).FirstOrDefault(x => x.Name == name);
+			return GetDbSetAsync().Result.IncludeDetails(includeDetails).FirstOrDefault(x => x.Name == name);
 		}
 
 		public Tenant FindById(Guid id, bool includeDetails = true)
 		{
-			return DbSet.IncludeDetails(includeDetails).FirstOrDefault(x => x.Id == id);
+			return GetDbSetAsync().Result.IncludeDetails(includeDetails).FirstOrDefault(x => x.Id == id);
 		}
 
 		public virtual async Task<List<Tenant>> GetListAsync(string sorting = null, int maxResultCount = 2147483647, int skipCount = 0, string filter = null, bool includeDetails = false, CancellationToken cancellationToken = default(CancellationToken))

@@ -1,10 +1,12 @@
-﻿using Leopard.AspNetCore.Serilog;
+using Leopard.AspNetCore.Serilog;
+using Leopard.Helpers;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 using System;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Leopard.Utils
 {
@@ -14,7 +16,7 @@ namespace Leopard.Utils
     /// </summary>
     public class CommonProgram
     {
-        private  string _assemblyName { get; set; }
+        private string _assemblyName { get; set; }
         protected ApplicationServiceType ApplicationServiceType { get; private set; }
 
         public CommonProgram(ApplicationServiceType serviceType, string assemblyName)
@@ -53,11 +55,22 @@ namespace Leopard.Utils
                     {
                         config.AddJsonFile("ocelot.json");
                     }
-                    config.AddJsonFile("appsettings.secrets.json", optional: true, reloadOnChange: true);                    
+                    config.AddJsonFile("appsettings.secrets.json", optional: true, reloadOnChange: true);
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    string certFilePath = PathHelper.GetRuntimeDirectory(AppContext.BaseDirectory + "Configs/Cert/test.pfx");
+                    Console.WriteLine(certFilePath);
+
                     webBuilder.UseStartup<T>();
+                   // .UseKestrel(option =>
+                   //{
+                       
+                   //     //option.ConfigureHttpsDefaults(o =>
+                   //     //{
+                   //     //    o.ServerCertificate = new X509Certificate2(certFilePath, "a369220123");
+                   //     //});
+                   // });
                 })
                 .UseAutofac()
                 .UseSerilog();
