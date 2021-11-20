@@ -59,18 +59,7 @@ namespace Leopard.Utils
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    string certFilePath = PathHelper.GetRuntimeDirectory(AppContext.BaseDirectory + "Configs/Cert/test.pfx");
-                    Console.WriteLine(certFilePath);
-
                     webBuilder.UseStartup<T>();
-                   // .UseKestrel(option =>
-                   //{
-                       
-                   //     //option.ConfigureHttpsDefaults(o =>
-                   //     //{
-                   //     //    o.ServerCertificate = new X509Certificate2(certFilePath, "a369220123");
-                   //     //});
-                   // });
                 })
                 .UseAutofac()
                 .UseSerilog();

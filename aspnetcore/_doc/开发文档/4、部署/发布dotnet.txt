@@ -1,9 +1,9 @@
 前端（英语：front-end）和后端（英语：back-end）
 
 定义端口规范
-http	**02
-https	**05    
 （应当同时启用http和https，因为对于内部访问，直接访问http效率更高。对于外部访问，走https更安全）
+    http	**02
+    https	**05    
 
 每个大项目都划分好端口范围：
     #、一个大项目预留1000个端口号足矣。eg：这个项目以44***开头
@@ -17,9 +17,9 @@ https	**05
     democ.api         44405 （预留44401-44410）
 
 
-    BackendAdminAppGateway      44801 （预留44801-44810）
-    InternalGateway             44811 （预留44811-44820）
-    PublicWebSiteGateway        44821 （预留44821-44830）
+    BackendAdminAppGateway      44805 （预留44801-44810）
+    InternalGateway             44815 （预留44811-44820）
+    PublicWebSiteGateway        44825 （预留44821-44830）
 
     Client
         BackendAdmin_Web          4200

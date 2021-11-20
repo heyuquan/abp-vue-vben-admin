@@ -1,0 +1,5 @@
+keyUsage = nonRepudiation, digitalSignature, keyEncipherment
+extendedKeyUsage = serverAuth, clientAuth
+subjectAltName=@SubjectAlternativeName
+[ SubjectAlternativeName ]
+DNS.1=134.175.121.78

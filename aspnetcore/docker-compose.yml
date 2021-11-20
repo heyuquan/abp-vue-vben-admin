@@ -3,6 +3,7 @@ version: '3.7'
 services:
   sso.auth-server.api:
     image: sso.auth-server.api.img
+    restart: always
     build:
       context: .
       dockerfile: ./microservices/SSO.AuthServer/SSO.AuthServer.HttpApi.Host/Dockerfile
@@ -10,14 +11,120 @@ services:
       - TZ=Asia/Shanghai
       # Production 、 Development
       - ASPNETCORE_ENVIRONMENT:Production
-      - ASPNETCORE_URLS=http://0.0.0.0:44102
-    #  - ASPNETCORE_Kestrel__Certificates__Default__Password=a369220123
-    #  - ASPNETCORE_Kestrel__Certificates__Default__Path=/root/.dotnet/https/test.pfx
-    #volumes:
-    ##  - type: bind
-    ##    source: ./docker.local/sso.auth-server.api
-    ##    target: /app/Logs
-    #  - /E/Code/my_code/abp-vue-vben-admin/aspnetcore/README.md:/root/.dotnet/https:rw
+      - ASPNETCORE_URLS=http://+80;https://+443
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=a123456
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/app/config/certificate/test.pfx
+    volumes:
+      - /usr/local/application/config:/app/config:rw
+      - /usr/local/application/logs/sso.auth-server.api:/app/Logs:rw
     container_name: sso.auth-server.api
     ports:
       - 44102:80
+      - 44105:443
+
+  sso.auth-server.identityserver:
+    image: sso.auth-server.api.img
+    restart: always
+    build:
+      context: .
+      dockerfile: ./microservices/SSO.AuthServer/SSO.AuthServer.IdentityServer/Dockerfile
+    environment:
+      - TZ=Asia/Shanghai
+      # Production 、 Development
+      - ASPNETCORE_ENVIRONMENT:Production
+      - ASPNETCORE_URLS=http://+80;https://+443
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=a123456
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/app/config/certificate/test.pfx
+    volumes:
+      - /usr/local/application/config:/app/config:rw
+      - /usr/local/application/logs/sso.auth-server.identityserver:/app/Logs:rw
+    container_name: sso.auth-server.identityserver
+    ports:
+      - 44112:80
+      - 44115:443
+    depends_on: 
+      - sso.auth-server.api
+
+  leopard.backend-admin.api:
+    image: leopard.backend-admin.api.img
+    restart: always
+    build:
+      context: .
+      dockerfile: ./microservices/BackendAdmin/Leopard.BackendAdmin.HttpApi.Host/Dockerfile
+    environment:
+      - TZ=Asia/Shanghai
+      # Production 、 Development
+      - ASPNETCORE_ENVIRONMENT:Production
+      - ASPNETCORE_URLS=http://+80;https://+443
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=a123456
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/app/config/certificate/test.pfx
+    volumes:
+      - /usr/local/application/config:/app/config:rw
+      - /usr/local/application/logs/leopard.backend-admin.api:/app/Logs:rw
+    container_name: leopard.backend-admin.api
+    ports:
+      - 44112:80
+      - 44115:443
+
+  backend-admin-app.gateway:
+    image: backend-admin-app.gateway.img
+    restart: always
+    build:
+      context: .
+      dockerfile: ./gateways/BackendAdminAppGateway.Host/Dockerfile
+    environment:
+      - TZ=Asia/Shanghai
+      # Production 、 Development
+      - ASPNETCORE_ENVIRONMENT:Production
+      - ASPNETCORE_URLS=http://+80;https://+443
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=a123456
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/app/config/certificate/test.pfx
+    volumes:
+      - /usr/local/application/config:/app/config:rw
+      - /usr/local/application/logs/backend-admin-app.gateway:/app/Logs:rw
+    container_name: backend-admin-app.gateway
+    ports:
+      - 44802:80
+      - 44805:443
+
+  internal.gateway:
+    image: internal.gateway.img
+    restart: always
+    build:
+      context: .
+      dockerfile: ./gateways/InternalGateway.Host/Dockerfile
+    environment:
+      - TZ=Asia/Shanghai
+      # Production 、 Development
+      - ASPNETCORE_ENVIRONMENT:Production
+      - ASPNETCORE_URLS=http://+80;https://+443
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=a123456
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/app/config/certificate/test.pfx
+    volumes:
+      - /usr/local/application/config:/app/config:rw
+      - /usr/local/application/logs/internal.gateway:/app/Logs:rw
+    container_name: internal.gateway
+    ports:
+      - 44812:80
+      - 44815:443
+
+  public-web-site.gateway:
+    image: public-web-site.gateway.img
+    restart: always
+    build:
+      context: .
+      dockerfile: ./gateways/PublicWebSiteGateway.Host/Dockerfile
+    environment:
+      - TZ=Asia/Shanghai
+      # Production 、 Development
+      - ASPNETCORE_ENVIRONMENT:Production
+      - ASPNETCORE_URLS=http://+80;https://+443
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=a123456
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/app/config/certificate/test.pfx
+    volumes:
+      - /usr/local/application/config:/app/config:rw
+      - /usr/local/application/logs/public-web-site.gateway:/app/Logs:rw
+    container_name: public-web-site.gateway
+    ports:
+      - 44822:80
+      - 44825:443

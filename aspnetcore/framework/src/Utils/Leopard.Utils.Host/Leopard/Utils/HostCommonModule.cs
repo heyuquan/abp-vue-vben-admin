@@ -251,11 +251,14 @@ namespace Leopard.Utils
                 }
                 else
                 {
-                    app.UseErrorPage();
+                    // app.UseErrorPage();
+                    // useErrorPage() 是 volo.abp 定制的页面，需要注册abp 的主题，暂时没去看这些东西，先用aspnetcore 默认的页面
+                    app.UseDeveloperExceptionPage();
+
                     app.UseHsts();
                 }
 
-                app.UseHttpsRedirection();
+                //app.UseHttpsRedirection();
             }
 
             // http调用链
@@ -283,7 +286,7 @@ namespace Leopard.Utils
                 // 授权
                 app.UseAuthorization();
             }
-#if DEBUG
+//#if DEBUG
             // swagger
             app.UseSwagger();
             app.UseLeopardSwaggerUI();
@@ -297,7 +300,7 @@ namespace Leopard.Utils
                               "{controller=Swagger}/{action=Index}");
                 });
             }
-#endif
+//#endif
             // Serilog
             app.UseAbpSerilogEnrichers();
 

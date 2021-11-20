@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -56,13 +56,11 @@ namespace System
             if (Uri.TryCreate(str, UriKind.Absolute, out resultURI))
                 return (resultURI.Scheme == Uri.UriSchemeHttp ||
                         resultURI.Scheme == Uri.UriSchemeHttps);
-
             return false;
         }
 
         /// <summary>
         /// 检查一个 string 是否为有效的 File url 格式
-        /// str格式：file://<host>/<path>
         /// </summary>
         /// <param name="resultURI"></param>
         /// <returns></returns>

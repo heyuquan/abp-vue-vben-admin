@@ -1,13 +1,13 @@
 FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
 WORKDIR /app
 EXPOSE 80
+EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
 COPY . .
 WORKDIR /src/microservices/SSO.AuthServer/SSO.AuthServer.HttpApi.Host
 
-# RUN curl https://api.nuget.org/v3/index.json
 RUN dotnet restore --disable-parallel -nowarn:msb3202,nu1503 
 RUN dotnet build -nowarn:cs1998,cs1572,cs1573 --no-restore -c Release -o /app/build
 

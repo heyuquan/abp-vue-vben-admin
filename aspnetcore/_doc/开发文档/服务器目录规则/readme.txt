@@ -1,0 +1,16 @@
+
+应用站点、服务目录
+/usr/local/application
+/usr/local/application/src/app-name/
+/usr/local/application/config/app-name/
+/usr/local/application/config/certificate/
+/usr/local/application/logs/app-name/
+
+
+环境相关数据目录
+/usr/local/environment
+/usr/local/environment/rabbitmq
+/usr/local/environment/nginx
+/usr/local/environment/mysql
+/usr/local/environment/elasticsearch
+	

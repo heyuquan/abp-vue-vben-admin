@@ -1,9 +1,9 @@
-﻿{
+{
   "iisSettings": {
     "windowsAuthentication": false, 
-    "anonymousAuthentication": true, 
+    "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "https://localhost:44801",
+      "applicationUrl": "https://localhost:44805",
       "sslPort": 0
     }
   },
@@ -18,7 +18,7 @@
     "BackendAdminAppGateway.Host": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "https://localhost:44801",
+      "applicationUrl": "https://localhost:44805",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
