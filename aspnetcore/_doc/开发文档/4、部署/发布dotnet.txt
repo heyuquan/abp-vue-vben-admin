@@ -24,6 +24,15 @@
     Client
         BackendAdmin_Web          4200
 
+es 默认端口9200 老是被攻击，导致数据篡改，elk运行异常
+elastic：http://134.175.121.78:59210
+elasticsearch-head：elastic：http://134.175.121.78:9100
+kibana：http://134.175.121.78:5601/
+consul:http://134.175.121.78:8500/
+
+nginx:http://134.175.121.78:8081/
+
+
 项目职责
 SSO.AuthServer.HttpApi.Host：封装Account、Identity服务
 SSO.AuthServer.IdentityServer：对接ids4，专门做身份认证
@@ -31,26 +40,13 @@ Leopard.BackendAdmin.HttpApi.Host：后台管理服务，包含如：审计、�
 
 
 
---demob
-docker build -f Dockerfile -t mk.demob.api.img ../../../
-
-docker run --name mk.demob.api -p 44302:44302  -v /e/Code/open_source/Abp/Leopard.Abp/Docker/App/Mk.DemoB/Logs:/app/Logs -d mk.demob.api.img
-
-docker exec -it mk.demob /bin/bash
-
-
 --SSO.AuthServer.HttpApi.Host
 docker build -f Dockerfile -t sso.auth-server.api.img ../../../ 
 docker run --name sso.auth-server.api -p 44102:80  -d sso.auth-server.api.img 
 
-
---democ
-docker build -f Dockerfile -t mk.democ.api.img ../../../ 
-
-docker run --name mk.democ.api -p 44402:44402  -v /e/Code/open_source/Abp/Leopard.Abp/Docker/App/Mk.DemoC/Logs:/app/Logs -d mk.democ.api.img
+docker exec -it sso.auth-server.api /bin/bash
 
 
-docker exec -it mk.democ /bin/bash
 docker stop [container id or name]：停止运行指定容器
 
 构建：docker-compose build
@@ -65,7 +61,7 @@ docker stop [container id or name]：停止运行指定容器
 
 docker-compose -f docker-compose-linux.yml up -d
 
-程序代码目录linux：/usr/local/source-code/abp-vue-vben-admin/aspnetcore
+程序代码目录linux：/usr/local/application/src
 
 git 拉取远程代码
 https://blog.csdn.net/weijinqian0/article/details/76217014
@@ -78,14 +74,3 @@ https://www.cnblogs.com/qlqwjy/p/8378851.html
 git reset --hard
 
 
-mk.demo.gateway:http://134.175.121.78:44502/swagger/index.html
-mk.demob.api:http://134.175.121.78:44302/swagger/index.html
-mk.democ.api:http://134.175.121.78:44402/swagger/index.html
-
-es 默认端口9200 老是被攻击，导致数据篡改，elk运行异常
-elastic：http://134.175.121.78:59210
-elasticsearch-head：elastic：http://134.175.121.78:9100
-kibana：http://134.175.121.78:5601/
-consul:http://134.175.121.78:8500/
-
-nginx:http://134.175.121.78:8081/
