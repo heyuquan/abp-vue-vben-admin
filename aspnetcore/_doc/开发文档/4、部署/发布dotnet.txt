@@ -59,7 +59,7 @@ docker stop [container id or name]：停止运行指定容器
 创建服务（不启动）：docker-compose create
 删除服务：docker-compose rm 服务名
 
-docker-compose -f docker-compose-linux.yml up -d
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
 
 程序代码目录linux：/usr/local/application/src
 

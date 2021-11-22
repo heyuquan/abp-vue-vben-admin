@@ -3,7 +3,7 @@
 /usr/local/application
 /usr/local/application/src/app-name/
 /usr/local/application/config/app-name/
-/usr/local/application/config/certificate/
+/usr/local/application/certificate/
 /usr/local/application/logs/app-name/
 
 

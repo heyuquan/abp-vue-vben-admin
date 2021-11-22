@@ -6,11 +6,10 @@ services:
       - TZ=Asia/Shanghai
       # Production 、 Development
       - ASPNETCORE_ENVIRONMENT:Production
-      - ASPNETCORE_URLS=http://+80;https://+443
       - ASPNETCORE_Kestrel__Certificates__Default__Password=a123456
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/app/config/certificate/test.pfx
     volumes:
-      - /usr/local/application/config:/app/config:rw
+      - /usr/local/application/certificate:/app/config/certificate:rw
       - /usr/local/application/logs/sso.auth-server.api:/app/Logs:rw
       - /usr/local/application/config/sso.auth-server.api/appsettings.json:/app/appsettings.json:rw
       - /usr/local/application/config/sso.auth-server.api/appsettings.Production.json:/app/appsettings.Production.json:rw
@@ -20,11 +19,10 @@ services:
       - TZ=Asia/Shanghai
       # Production 、 Development
       - ASPNETCORE_ENVIRONMENT:Production
-      - ASPNETCORE_URLS=http://+80;https://+443
       - ASPNETCORE_Kestrel__Certificates__Default__Password=a123456
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/app/config/certificate/test.pfx
     volumes:
-      - /usr/local/application/config:/app/config:rw
+      - /usr/local/application/certificate:/app/config/certificate:rw
       - /usr/local/application/logs/sso.auth-server.identityserver:/app/Logs:rw
       - /usr/local/application/config/sso.auth-server.identityserver/appsettings.json:/app/appsettings.json:rw
       - /usr/local/application/config/sso.auth-server.identityserver/appsettings.Production.json:/app/appsettings.Production.json:rw
@@ -34,11 +32,10 @@ services:
       - TZ=Asia/Shanghai
       # Production 、 Development
       - ASPNETCORE_ENVIRONMENT:Production
-      - ASPNETCORE_URLS=http://+80;https://+443
       - ASPNETCORE_Kestrel__Certificates__Default__Password=a123456
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/app/config/certificate/test.pfx
     volumes:
-      - /usr/local/application/config:/app/config:rw
+      - /usr/local/application/certificate:/app/config/certificate:rw
       - /usr/local/application/logs/leopard.backend-admin.api:/app/Logs:rw
       - /usr/local/application/config/leopard.backend-admin.api/appsettings.json:/app/appsettings.json:rw
       - /usr/local/application/config/leopard.backend-admin.api/appsettings.Production.json:/app/appsettings.Production.json:rw
@@ -48,11 +45,10 @@ services:
       - TZ=Asia/Shanghai
       # Production 、 Development
       - ASPNETCORE_ENVIRONMENT:Production
-      - ASPNETCORE_URLS=http://+80;https://+443
       - ASPNETCORE_Kestrel__Certificates__Default__Password=a123456
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/app/config/certificate/test.pfx
     volumes:
-      - /usr/local/application/config:/app/config:rw
+      - /usr/local/application/certificate:/app/config/certificate:rw
       - /usr/local/application/logs/backend-admin-app.gateway:/app/Logs:rw
       - /usr/local/application/config/backend-admin-app.gateway/appsettings.json:/app/appsettings.json:rw
       - /usr/local/application/config/backend-admin-app.gateway/appsettings.Production.json:/app/appsettings.Production.json:rw
@@ -62,11 +58,10 @@ services:
       - TZ=Asia/Shanghai
       # Production 、 Development
       - ASPNETCORE_ENVIRONMENT:Production
-      - ASPNETCORE_URLS=http://+80;https://+443
       - ASPNETCORE_Kestrel__Certificates__Default__Password=a123456
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/app/config/certificate/test.pfx
     volumes:
-      - /usr/local/application/config:/app/config:rw
+      - /usr/local/application/certificate:/app/config/certificate:rw
       - /usr/local/application/logs/internal.gateway:/app/Logs:rw
       - /usr/local/application/config/internal.gateway/appsettings.json:/app/appsettings.json:rw
       - /usr/local/application/config/internal.gateway/appsettings.Production.json:/app/appsettings.Production.json:rw
@@ -76,11 +71,10 @@ services:
       - TZ=Asia/Shanghai
       # Production 、 Development
       - ASPNETCORE_ENVIRONMENT:Production
-      - ASPNETCORE_URLS=http://+80;https://+443
       - ASPNETCORE_Kestrel__Certificates__Default__Password=a123456
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/app/config/certificate/test.pfx
     volumes:
-      - /usr/local/application/config:/app/config:rw
+      - /usr/local/application/certificate:/app/config/certificate:rw
       - /usr/local/application/logs/public-web-site.gateway:/app/Logs:rw
       - /usr/local/application/config/public-web-site.gateway/appsettings.json:/app/appsettings.json:rw
       - /usr/local/application/config/public-web-site.gateway/appsettings.Production.json:/app/appsettings.Production.json:rw
