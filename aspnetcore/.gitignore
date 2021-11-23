@@ -257,4 +257,3 @@ paket-files/
 /Environment/elasticsearch/plugins/
 **/tempkey.jwk
 **.local
-**/ocelot.json
