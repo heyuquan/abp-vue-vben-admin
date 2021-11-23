@@ -1,4 +1,4 @@
-﻿using Leopard;
+using Leopard;
 using Leopard.AspNetCore.Serilog;
 using Leopard.Utils;
 using Microsoft.AspNetCore.Hosting;
@@ -12,7 +12,7 @@ namespace PublicWebSiteGateway.Host
     {
         public static int Main(string[] args)
         {
-            CommonProgram commonProgram = new CommonProgram(ApplicationServiceType.GateWay, typeof(Program).Assembly.GetName().Name);
+            GatewayCommonProgram commonProgram = new GatewayCommonProgram(ApplicationServiceType.GateWay, typeof(Program).Assembly.GetName().Name);
             return commonProgram.CommonMain<Startup>(args);
         }
     }

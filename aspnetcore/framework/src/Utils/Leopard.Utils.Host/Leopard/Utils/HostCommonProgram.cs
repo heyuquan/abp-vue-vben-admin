@@ -51,10 +51,7 @@ namespace Leopard.Utils
            Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration((hostingContext, config) =>
                 {
-                    if (ApplicationServiceType == ApplicationServiceType.GateWay)
-                    {
-                        config.AddJsonFile("ocelot.json");
-                    }
+                    this.ConfigureAppConfiguration(hostingContext, config);
                     config.AddJsonFile("appsettings.secrets.json", optional: true, reloadOnChange: true);
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
@@ -63,5 +60,10 @@ namespace Leopard.Utils
                 })
                 .UseAutofac()
                 .UseSerilog();
+
+        protected virtual void ConfigureAppConfiguration(HostBuilderContext hostingContext, IConfigurationBuilder config)
+        {
+            // 给子类重写用
+        }
     }
 }

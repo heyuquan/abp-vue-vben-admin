@@ -52,6 +52,8 @@ services:
       - /usr/local/application/logs/backend-admin-app.gateway:/app/Logs:rw
       - /usr/local/application/config/backend-admin-app.gateway/appsettings.json:/app/appsettings.json:rw
       - /usr/local/application/config/backend-admin-app.gateway/appsettings.Production.json:/app/appsettings.Production.json:rw
+      - /usr/local/application/config/backend-admin-app.gateway/ocelot.Production.json:/app/ocelot.Production.json:rw
+      - /usr/local/application/config/backend-admin-app.gateway/ocelot.json:/app/ocelot.json:rw
 
   internal.gateway:
     environment:

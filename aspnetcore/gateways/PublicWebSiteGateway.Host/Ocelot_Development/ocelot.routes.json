@@ -12,8 +12,5 @@
       "UpstreamPathTemplate": "/api/blogging/{everything}",
       "UpstreamHttpMethod": [ "Put", "Delete", "Get", "Post" ]
     }
-  ],
-  "GlobalConfiguration": {
-    "BaseUrl": "https://localhost:44825"
-  }
+  ]
 }

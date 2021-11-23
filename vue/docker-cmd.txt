@@ -1,4 +1,8 @@
 第一步：yarn install
 第二步：yarn build
-第三步：docker build -f Dockerfile -t leopard.vben.backend.admin.img
-第四步：docker run --name leopard.vben.backend.admin -p 4200:443  -d leopard.vben.backend.admin.img
+第三步：docker build -f Dockerfile -t leopard.vben.backend.admin.img .
+第四步：
+docker run --name leopard.vben.backend.admin -p 4200:443 -v /usr/local/application/certificate/:/etc/nginx/ssl/ -d leopard.vben.backend.admin.img
+
+
+

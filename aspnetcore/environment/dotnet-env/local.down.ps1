@@ -1,1 +1,1 @@
-﻿docker-compose -f docker-compose.yml -f docker-compose.override.local.yml down
+﻿docker-compose -f docker-compose.yml -f docker-compose.override.local.win.yml down

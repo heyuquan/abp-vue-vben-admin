@@ -22,7 +22,7 @@
         <ProjectReference Include="..\..\framework\src\Leopard.AspNetCore.Serilog\Leopard.AspNetCore.Serilog.csproj" />
         <ProjectReference Include="..\..\framework\src\Leopard.AspNetCore.Swashbuckle\Leopard.AspNetCore.Swashbuckle.csproj" />
         <ProjectReference Include="..\..\framework\src\Leopard.Consul\Leopard.Consul.csproj" />
-        <ProjectReference Include="..\..\framework\src\Utils\Leopard.Utils.Host\Leopard.Utils.Host.csproj" />
+        <ProjectReference Include="..\..\framework\src\Utils\Leopard.Utils.Gateway\Leopard.Utils.Gateway.csproj" />
     </ItemGroup>
 
     <ItemGroup>

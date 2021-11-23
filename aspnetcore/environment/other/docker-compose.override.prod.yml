@@ -1,0 +1,23 @@
+version: '3.7'
+
+services:
+  nginx:
+    ports:
+      - '80:80'
+    volumes:
+      - /usr/local/environment/nginx/logs:/var/log/nginx
+      - /usr/local/environment/nginx/conf/nginx.conf:/etc/nginx/nginx.conf
+      - /usr/local/environment/nginx/env.js:/etc/nginx/env.js
+      - /usr/local/environment/nginx/conf/conf.d/default.conf:/etc/nginx/conf.d/default.conf
+      - /usr/local/environment/nginx/html/leopard:/usr/share/nginx/html/leopard
+
+  mysql:
+    ports:
+      - '8706:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: '123456'
+    volumes:
+      - /usr/local/environment/mysql/data:/var/lib/mysql
+      - ./config/my.cnf:/etc/my.cnf
+
+
