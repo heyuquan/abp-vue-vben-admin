@@ -63,37 +63,37 @@ services:
     networks:
       - my-net
 
-  internal.gateway:
-    image: internal.gateway.img
-    restart: always
-    build:
-      context: .
-      dockerfile: ./gateways/InternalGateway.Host/Dockerfile
-    environment:
-      - TZ=Asia/Shanghai
-      - ASPNETCORE_URLS=http://+80;https://+443
-    container_name: internal.gateway
-    ports:
-      - 44812:80
-      - 44815:443
-    networks:
-      - my-net
+  #internal.gateway:
+  #  image: internal.gateway.img
+  #  restart: always
+  #  build:
+  #    context: .
+  #    dockerfile: ./gateways/InternalGateway.Host/Dockerfile
+  #  environment:
+  #    - TZ=Asia/Shanghai
+  #    - ASPNETCORE_URLS=http://+80;https://+443
+  #  container_name: internal.gateway
+  #  ports:
+  #    - 44812:80
+  #    - 44815:443
+  #  networks:
+  #    - my-net
 
-  public-web-site.gateway:
-    image: public-web-site.gateway.img
-    restart: always
-    build:
-      context: .
-      dockerfile: ./gateways/PublicWebSiteGateway.Host/Dockerfile
-    environment:
-      - TZ=Asia/Shanghai
-      - ASPNETCORE_URLS=http://+80;https://+443
-    container_name: public-web-site.gateway
-    ports:
-      - 44822:80
-      - 44825:443
-    networks:
-      - my-net
+  #public-web-site.gateway:
+  #  image: public-web-site.gateway.img
+  #  restart: always
+  #  build:
+  #    context: .
+  #    dockerfile: ./gateways/PublicWebSiteGateway.Host/Dockerfile
+  #  environment:
+  #    - TZ=Asia/Shanghai
+  #    - ASPNETCORE_URLS=http://+80;https://+443
+  #  container_name: public-web-site.gateway
+  #  ports:
+  #    - 44822:80
+  #    - 44825:443
+  #  networks:
+  #    - my-net
 
 networks:
   my-net:
