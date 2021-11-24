@@ -52,8 +52,7 @@ services:
       - /usr/local/application/logs/backend-admin-app.gateway:/app/Logs:rw
       - /usr/local/application/config/backend-admin-app.gateway/appsettings.json:/app/appsettings.json:rw
       - /usr/local/application/config/backend-admin-app.gateway/appsettings.Production.json:/app/appsettings.Production.json:rw
-      - /usr/local/application/config/backend-admin-app.gateway/ocelot.Production.json:/app/ocelot.Production.json:rw
-      - /usr/local/application/config/backend-admin-app.gateway/ocelot.json:/app/ocelot.json:rw
+      - /usr/local/application/config/backend-admin-app.gateway/Ocelot_Production:/app/Ocelot_Production:rw
 
   internal.gateway:
     environment:
@@ -67,6 +66,7 @@ services:
       - /usr/local/application/logs/internal.gateway:/app/Logs:rw
       - /usr/local/application/config/internal.gateway/appsettings.json:/app/appsettings.json:rw
       - /usr/local/application/config/internal.gateway/appsettings.Production.json:/app/appsettings.Production.json:rw
+      - /usr/local/application/config/internal.gateway/Ocelot_Production:/app/Ocelot_Production:rw
 
   public-web-site.gateway:
     environment:
@@ -80,3 +80,5 @@ services:
       - /usr/local/application/logs/public-web-site.gateway:/app/Logs:rw
       - /usr/local/application/config/public-web-site.gateway/appsettings.json:/app/appsettings.json:rw
       - /usr/local/application/config/public-web-site.gateway/appsettings.Production.json:/app/appsettings.Production.json:rw
+      - /usr/local/application/config/public-web-site.gateway/Ocelot_Production:/app/Ocelot_Production:rw
+
