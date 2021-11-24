@@ -144,20 +144,27 @@ namespace Leopard.Utils
                 options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "简体中文"));
             });
 
-//#if DEBUG  没有swagger不方便调试
+            //#if DEBUG  没有swagger不方便调试
             context.Services.AddLeopardSwaggerGen();
-//#endif
+            //#endif
             if (ApplicationServiceType == ApplicationServiceType.ApiHost
-                // || ApplicationServiceType == ApplicationServiceType.GateWay   网关开启会报错，暂不清楚需不需要开启
+                 || ApplicationServiceType == ApplicationServiceType.GateWay   // 网关开启会报错，暂不清楚需不需要开启
                 )
             {
+                //context.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                //    .AddJwtBearer(options =>
+                //    {
+                //        options.Authority = configuration["AuthServer:Authority"];
+                //        options.RequireHttpsMetadata = Convert.ToBoolean(configuration["AuthServer:RequireHttpsMetadata"]);
+                //        options.Audience = configuration["AuthServer:SwaggerClientId"];
+                //        options.TokenValidationParameters.ValidateAudience = false;
+                //    });
                 context.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                    .AddJwtBearer(options =>
+                    .AddIdentityServerAuthentication(options =>
                     {
                         options.Authority = configuration["AuthServer:Authority"];
+                        options.ApiName = configuration["AuthServer:ApiName"];
                         options.RequireHttpsMetadata = Convert.ToBoolean(configuration["AuthServer:RequireHttpsMetadata"]);
-                        options.Audience = configuration["AuthServer:SwaggerClientId"];
-                        options.TokenValidationParameters.ValidateAudience = false;
                     });
             }
 
@@ -273,35 +280,33 @@ namespace Leopard.Utils
             // 认证
             app.UseAuthentication();
 
+            if (ApplicationServiceType == ApplicationServiceType.ApiHost
+                 || ApplicationServiceType == ApplicationServiceType.GateWay
+                )
+            {
+                app.UseAbpClaimsMap();
+            }
+
             if (betweenAuthApplicationInitialization != null)
             {
                 betweenAuthApplicationInitialization(context);
             }
 
+            if (IsEnableMultiTenancy)
+            {
+                app.UseMultiTenancy();
+            }
+
             if (IsHost())
             {
-                if (IsEnableMultiTenancy)
-                {
-                    app.UseMultiTenancy();
-                }
                 // 授权
                 app.UseAuthorization();
             }
-//#if DEBUG
+            //#if DEBUG
             // swagger
             app.UseSwagger();
             app.UseLeopardSwaggerUI();
-
-            if (IsHost())   // 设置这个后，网关项目启用ocelot会失败（不会进行路由跳转）
-            {
-                // UseEndpoints 在 UseRouting 之后
-                app.UseEndpoints(endpoints =>
-                {
-                    endpoints.MapControllerRoute("default",
-                              "{controller=Swagger}/{action=Index}");
-                });
-            }
-//#endif
+            //#endif
             // Serilog
             app.UseAbpSerilogEnrichers();
 
@@ -317,6 +322,14 @@ namespace Leopard.Utils
             {
                 afterApplicationInitialization(context);
             }
+
+            // UseEndpoints 在 UseRouting 之后
+            // 放到 afterApplicationInitialization 之后，是因为gateway会在 after 中做一些转发处理。否则网关的ocelot会无法工作
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute("default",
+                          "{controller=Swagger}/{action=Index}");
+            });
         }
 
         private bool IsHost()

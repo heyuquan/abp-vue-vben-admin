@@ -31,19 +31,8 @@ namespace Leopard.Utils
 
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
-            this.LeopardConfigureServices(context,
-                otherConfigureServices: (ctx) =>
-                {
-                    var configuration = ctx.Services.GetConfiguration();
-
-                    ctx.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                        .AddIdentityServerAuthentication(options =>
-                        {
-                            options.Authority = configuration["AuthServer:Authority"];
-                            options.ApiName = configuration["AuthServer:SwaggerClientId"];
-                            options.RequireHttpsMetadata = Convert.ToBoolean(configuration["AuthServer:RequireHttpsMetadata"]);
-                        });
-                },
+            this.LeopardConfigureServices(
+                context,
                 afterConfigureServices: (ctx) =>
                 {
                     ctx.Services.AddOcelot(ctx.Services.GetConfiguration());
@@ -53,17 +42,14 @@ namespace Leopard.Utils
 
         public override void OnApplicationInitialization(ApplicationInitializationContext context)
         {
-            this.LeopardApplicationInitialization(context,
-                    betweenAuthApplicationInitialization: (ctx) =>
-                    {
-                        var app = ctx.GetApplicationBuilder();
-                        app.UseAbpClaimsMap();
-                    },
+            this.LeopardApplicationInitialization(
+                    context,
                     afterApplicationInitialization: (ctx) =>
                     {
                         var app = ctx.GetApplicationBuilder();
                         app.MapWhen(
                             ctx => ctx.Request.Path.ToString().EndsWith("/api/health", StringComparison.OrdinalIgnoreCase) ||
+                                   ctx.Request.Path.ToString().EndsWith("/swagger/index", StringComparison.OrdinalIgnoreCase) ||
                                    // ocelot configuration api
                                    ctx.Request.Path.ToString().EndsWith("/configuration", StringComparison.OrdinalIgnoreCase) ||
                                    ctx.Request.Path.ToString().TrimEnd('/').Equals(""),
