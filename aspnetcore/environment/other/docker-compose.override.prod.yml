@@ -10,6 +10,7 @@ services:
       - /usr/local/environment/nginx/env.js:/etc/nginx/env.js
       - /usr/local/environment/nginx/conf/conf.d/default.conf:/etc/nginx/conf.d/default.conf
       - /usr/local/environment/nginx/html/leopard:/usr/share/nginx/html/leopard
+      #- /usr/local/application/certificate/:/etc/nginx/ssl/
 
   mysql:
     ports:

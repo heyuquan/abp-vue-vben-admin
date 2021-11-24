@@ -2,123 +2,123 @@
   "Routes": [
     {
       "DownstreamPathTemplate": "/connect/{everything}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "134.175.121.78",
-          "Port": 44115
+          "Port": 44112
         }
       ],
       "UpstreamPathTemplate": "/api/connect/{everything}",
-      "UpstreamhttpsMethod": [ "Put", "Delete", "Get", "Post", "OPTIONS" ]
+      "UpstreamhttpMethod": [ "Put", "Delete", "Get", "Post", "OPTIONS" ]
     },
     {
       "DownstreamPathTemplate": "/api/abp/{everything}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "134.175.121.78",
-          "Port": 44145
+          "Port": 44142
         }
       ],
       "UpstreamPathTemplate": "/api/abp/{everything}",
-      "UpstreamhttpsMethod": [ "Put", "Delete", "Get", "Post", "OPTIONS" ]
+      "UpstreamhttpMethod": [ "Put", "Delete", "Get", "Post", "OPTIONS" ]
     },
     {
       "DownstreamPathTemplate": "/api/backend-admin/{everything}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "134.175.121.78",
-          "Port": 44145
+          "Port": 44142
         }
       ],
       "UpstreamPathTemplate": "/api/backend-admin/{everything}",
-      "UpstreamhttpsMethod": [ "Put", "Delete", "Get", "Post", "OPTIONS" ]
+      "UpstreamhttpMethod": [ "Put", "Delete", "Get", "Post", "OPTIONS" ]
     },
     {
       "DownstreamPathTemplate": "/api/identity/{everything}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "134.175.121.78",
-          "Port": 44145
+          "Port": 44142
         }
       ],
       "UpstreamPathTemplate": "/api/identity/{everything}",
-      "UpstreamhttpsMethod": [ "Put", "Delete", "Get", "Post" ]
+      "UpstreamhttpMethod": [ "Put", "Delete", "Get", "Post" ]
     },
     {
       "DownstreamPathTemplate": "/api/multi-tenancy/{everything}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "134.175.121.78",
-          "Port": 44145
+          "Port": 44142
         }
       ],
       "UpstreamPathTemplate": "/api/multi-tenancy/{everything}",
-      "UpstreamhttpsMethod": [ "Put", "Delete", "Get", "Post" ]
+      "UpstreamhttpMethod": [ "Put", "Delete", "Get", "Post" ]
     },
     {
       "DownstreamPathTemplate": "/api/permission-management/{everything}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "134.175.121.78",
-          "Port": 44145
+          "Port": 44142
         }
       ],
       "UpstreamPathTemplate": "/api/permission-management/{everything}",
-      "UpstreamhttpsMethod": [ "Put", "Delete", "Get", "Post" ]
+      "UpstreamhttpMethod": [ "Put", "Delete", "Get", "Post" ]
     },
     {
       "DownstreamPathTemplate": "/api/setting-management/{everything}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "134.175.121.78",
-          "Port": 44145
+          "Port": 44142
         }
       ],
       "UpstreamPathTemplate": "/api/setting-management/{everything}",
-      "UpstreamhttpsMethod": [ "Put", "Delete", "Get", "Post" ]
+      "UpstreamhttpMethod": [ "Put", "Delete", "Get", "Post" ]
     },
     {
       "DownstreamPathTemplate": "/api/account-admin/{everything}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "134.175.121.78",
-          "Port": 44145
+          "Port": 44142
         }
       ],
       "UpstreamPathTemplate": "/api/account-admin/{everything}",
-      "UpstreamhttpsMethod": [ "Put", "Delete", "Get", "Post" ]
+      "UpstreamhttpMethod": [ "Put", "Delete", "Get", "Post" ]
     },
     {
       "DownstreamPathTemplate": "/api/saas/{everything}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "134.175.121.78",
-          "Port": 44145
+          "Port": 44142
         }
       ],
       "UpstreamPathTemplate": "/api/saas/{everything}",
-      "UpstreamhttpsMethod": [ "Put", "Delete", "Get", "Post" ]
+      "UpstreamhttpMethod": [ "Put", "Delete", "Get", "Post" ]
     },
     {
       "DownstreamPathTemplate": "/api/feature-management/{everything}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
           "Host": "134.175.121.78",
-          "Port": 44145
+          "Port": 44142
         }
       ],
       "UpstreamPathTemplate": "/api/feature-management/{everything}",
-      "UpstreamhttpsMethod": [ "Put", "Delete", "Get", "Post" ]
+      "UpstreamhttpMethod": [ "Put", "Delete", "Get", "Post" ]
     }
   ]
 }
