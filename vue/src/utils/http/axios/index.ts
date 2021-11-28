@@ -17,6 +17,8 @@ import { setObjToUrlParams, deepMerge } from '/@/utils';
 import { useErrorLogStoreWithOut } from '/@/store/modules/errorLog';
 import { useI18n } from '/@/hooks/web/useI18n';
 import { joinTimestamp, formatRequestDate } from './helper';
+import { useLocaleStoreWithOut } from '/@/store/modules/locale';
+import { Persistent } from '../../cache/persistent';
 
 const globSetting = useGlobSetting();
 const urlPrefix = globSetting.urlPrefix;
@@ -145,6 +147,15 @@ const transform: AxiosTransform = {
         ? `${options.authenticationScheme} ${token}`
         : token;
     }
+
+    config.headers = config.headers ?? {};
+    const localeStore = useLocaleStoreWithOut();
+    config.headers['Accept-Language'] = localeStore.getLocale;
+    const tenantId = Persistent.getTenant();
+    if (tenantId) {
+      config.headers[globSetting.multiTenantKey] = tenantId;
+    }
+
     return config;
   },
 

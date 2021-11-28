@@ -35,7 +35,17 @@ services:
   #   container_name: baget-nuget
   #   networks:
   #     - my-net
-      
+
+  # 初始账户  admin  a123456789
+  portainer:
+    image: portainer.img
+    build:
+      context: portainer/
+    container_name: portainer
+    restart: always
+    networks:
+      - my-net
+
 networks:
   my-net:
     driver: bridge

@@ -149,6 +149,8 @@ export interface GlobConfig {
   // Client
   clientId: string;
   clientSecret: string;
+  // Tenant key
+  multiTenantKey: string;
 }
 export interface GlobEnvConfig {
   // Site title
@@ -164,4 +166,7 @@ export interface GlobEnvConfig {
   // identityserver4 clientId
   VITE_GLOB_CLIENT_ID: string;
   VITE_GLOB_CLIENT_SECRET: string;
+
+  // tenant
+  VITE_GLOB_MULTITENANCY_KEY: string;
 }

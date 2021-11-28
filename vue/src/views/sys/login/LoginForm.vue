@@ -8,6 +8,9 @@
     v-show="getShow"
     @keypress.enter="handleLogin"
   >
+    <FormItem>
+      <MultiTenancyBox />
+    </FormItem>
     <FormItem name="account" class="enter-x">
       <Input
         size="large"
@@ -93,6 +96,7 @@
     TwitterCircleFilled,
   } from '@ant-design/icons-vue';
   import LoginFormTitle from './LoginFormTitle.vue';
+  import { MultiTenancyBox } from '/@/components/MultiTenancyBox';
 
   import { useI18n } from '/@/hooks/web/useI18n';
   import { useMessage } from '/@/hooks/web/useMessage';

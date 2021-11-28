@@ -21,4 +21,12 @@ services:
       - /usr/local/environment/mysql/data:/var/lib/mysql
       - ./config/my.cnf:/etc/my.cnf
 
-
+  portainer:
+    ports:
+      - '9000:9000'
+    environment:
+      - TZ=Asia/Shanghai
+      - LANG=en_US.UTF-8
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/local/environment/portainer/data:/data
