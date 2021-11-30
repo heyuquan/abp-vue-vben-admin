@@ -85,7 +85,7 @@
       "UpstreamhttpMethod": [ "Put", "Delete", "Get", "Post" ]
     },
     {
-      "DownstreamPathTemplate": "/api/account-admin/{everything}",
+      "DownstreamPathTemplate": "/api/account/admin/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -93,7 +93,7 @@
           "Port": 44142
         }
       ],
-      "UpstreamPathTemplate": "/api/account-admin/{everything}",
+      "UpstreamPathTemplate": "/api/account/admin/{everything}",
       "UpstreamhttpMethod": [ "Put", "Delete", "Get", "Post" ]
     },
     {

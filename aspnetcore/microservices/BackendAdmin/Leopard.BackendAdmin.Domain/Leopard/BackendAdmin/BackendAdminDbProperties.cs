@@ -1,4 +1,4 @@
-﻿using Volo.Abp.Data;
+using Volo.Abp.Data;
 
 namespace Leopard.BackendAdmin
 {

@@ -39,7 +39,7 @@ namespace Leopard.BackendAdmin
 
             Configure<AbpLocalizationOptions>(options =>
             {
-                // vben admin ”Ô—‘”≥…‰
+                // vben admin ËØ≠Ë®ÄÊò†Â∞Ñ
                 options
                     .AddLanguagesMapOrUpdate(
                         "vben-admin-ui",

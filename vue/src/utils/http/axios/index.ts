@@ -148,6 +148,8 @@ const transform: AxiosTransform = {
         : token;
     }
 
+    // Abp vNext 租户使用API登录的方法
+    // https://blog.csdn.net/li_sj/article/details/108120242
     config.headers = config.headers ?? {};
     const localeStore = useLocaleStoreWithOut();
     config.headers['Accept-Language'] = localeStore.getLocale;

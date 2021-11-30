@@ -1,4 +1,4 @@
-﻿namespace Leopard.Buiness.Shared
+namespace Leopard.Buiness.Shared
 {
     public class MultiTenancyConsts
     {

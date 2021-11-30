@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -24,10 +24,18 @@ namespace Leopard
         /// </summary>
         [Description("认证服务")]
         AuthHost = 4,
+
+        /// <summary>
+        /// 认证服务
+        /// eg：AuthServer.HttpApi.Host ， AuthServer.IdentityServer
+        /// </summary>
+        [Description("认证服务")]
+        AuthIdentityServer = 8,
+
         /// <summary>
         /// 网关服务
         /// </summary>
         [Description("网关服务")]
-        GateWay = 8,
+        GateWay = 16,
     }
 }

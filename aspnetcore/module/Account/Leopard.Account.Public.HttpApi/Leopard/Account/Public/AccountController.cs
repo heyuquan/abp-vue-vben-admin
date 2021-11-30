@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Volo.Abp;
@@ -13,8 +13,7 @@ namespace Leopard.Account.Public
 	/// 账户服务
 	/// </summary>
 	[RemoteService(true, Name = AccountPublicRemoteServiceConsts.RemoteServiceName)]
-	[Route("api/account")]
-	[Area("account")]
+	[Route("api/account/public/")]
 	public class AccountController : AbpController, IAccountAppService, IRemoteService, IApplicationService
 	{
 		protected IAccountAppService AccountAppService { get; }

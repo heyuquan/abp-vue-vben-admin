@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Volo.Abp;
@@ -10,8 +10,7 @@ namespace Leopard.Account.Admin
 	/// <summary>
 	/// 账户设置
 	/// </summary>
-	[Route("api/account-admin/settings")]
-	[Area("accountAdmin")]
+	[Route("api/account/admin/settings")]
 	[RemoteService(true, Name = AccountAdminRemoteServiceConsts.RemoteServiceName)]
 	public class AccountSettingsController : AbpController, IAccountSettingsAppService, IRemoteService, IApplicationService
 	{

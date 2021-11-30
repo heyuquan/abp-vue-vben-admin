@@ -51,13 +51,8 @@ namespace Leopard.Utils
         /// 是否启用多租户
         /// </summary>
         protected bool IsEnableMultiTenancy { get; private set; }
-        /// <summary>
-        /// 是否需要认证 （eg：IdentityServer本身是不需要认证的）
-        /// </summary>
-        protected bool IsRequireAuth { get; private set; }
 
         protected ApplicationServiceType ApplicationServiceType { get; private set; }
-
 
         public HostCommonModule(
             ApplicationServiceType serviceType
@@ -148,7 +143,7 @@ namespace Leopard.Utils
             context.Services.AddLeopardSwaggerGen();
             //#endif
             if (ApplicationServiceType == ApplicationServiceType.ApiHost
-                 || ApplicationServiceType == ApplicationServiceType.GateWay   // 网关开启会报错，暂不清楚需不需要开启
+                 || ApplicationServiceType == ApplicationServiceType.GateWay
                 )
             {
                 //context.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -168,7 +163,7 @@ namespace Leopard.Utils
                     });
             }
 
-            if (IsHost())
+            if (IsHost() || IsIdentityServer())
             {
                 Configure<AbpAuditingOptions>(options =>
                 {
@@ -249,25 +244,29 @@ namespace Leopard.Utils
                 // https://www.cnblogs.com/waku/p/11433242.html
                 options.RequestCultureProviders.RemoveAll(provider => provider is AcceptLanguageHeaderRequestCultureProvider);
             });
-            if (IsHost())
-            {
-                var env = context.GetEnvironment();
 
-                if (env.IsDevelopment())
+            var env = context.GetEnvironment();
+
+            if (env.IsDevelopment())
+            {
+                if (IsHost() || IsIdentityServer())
                 {
                     app.UseDeveloperExceptionPage();
                 }
-                else
+            }
+            else
+            {
+                if (IsHost() || IsIdentityServer())
                 {
                     // app.UseErrorPage();
                     // useErrorPage() 是 volo.abp 定制的页面，需要注册abp 的主题，暂时没去看这些东西，先用aspnetcore 默认的页面
                     app.UseDeveloperExceptionPage();
-
-                    app.UseHsts();
                 }
 
-                //app.UseHttpsRedirection();
+                app.UseHsts();
             }
+
+            //app.UseHttpsRedirection();
 
             // http调用链
             app.UseCorrelationId();
@@ -280,6 +279,8 @@ namespace Leopard.Utils
             // 认证
             app.UseAuthentication();
 
+            app.UseTestMiddleware();
+
             if (ApplicationServiceType == ApplicationServiceType.ApiHost
                  || ApplicationServiceType == ApplicationServiceType.GateWay
                 )
@@ -287,14 +288,13 @@ namespace Leopard.Utils
                 app.UseAbpClaimsMap();
             }
 
+            if (IsEnableMultiTenancy)
+            {
+                app.UseMultiTenancy();   // 必须在 UseIdentityServer 之前，在做ids4之前从 UseMultiTenancy 获取到tenant信息
+            }
             if (betweenAuthApplicationInitialization != null)
             {
                 betweenAuthApplicationInitialization(context);
-            }
-
-            if (IsEnableMultiTenancy)
-            {
-                app.UseMultiTenancy();
             }
 
             if (IsHost())
@@ -310,7 +310,7 @@ namespace Leopard.Utils
             // Serilog
             app.UseAbpSerilogEnrichers();
 
-            if (IsHost())
+            if (IsHost() || IsIdentityServer())
             {
                 // 审计日志
                 app.UseAuditing();
@@ -335,6 +335,15 @@ namespace Leopard.Utils
         private bool IsHost()
         {
             if (ApplicationServiceType == ApplicationServiceType.ApiHost || ApplicationServiceType == ApplicationServiceType.AuthHost)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool IsIdentityServer()
+        {
+            if (ApplicationServiceType == ApplicationServiceType.AuthIdentityServer)
             {
                 return true;
             }

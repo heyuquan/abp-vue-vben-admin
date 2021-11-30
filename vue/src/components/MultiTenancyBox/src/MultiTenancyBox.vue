@@ -14,9 +14,10 @@
   <BasicModal
     v-bind="$attrs"
     :minHeight="80"
-    :closable="false"
+    :closable="true"
     :maskClosable="false"
     :canFullscreen="false"
+    :showCancelBtn="true"
     @register="registerModal"
     :title="t('AbpUiMultiTenancy.SwitchTenant')"
     @ok="switchToTenant"

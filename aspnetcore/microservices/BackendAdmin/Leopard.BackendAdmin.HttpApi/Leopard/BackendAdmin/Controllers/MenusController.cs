@@ -1,4 +1,4 @@
-﻿using JetBrains.Annotations;
+using JetBrains.Annotations;
 using Leopard.BackendAdmin.Dto.Output;
 using Leopard.UI.Navigation;
 using Microsoft.AspNetCore.Authorization;
@@ -64,30 +64,37 @@ namespace Leopard.BackendAdmin.Controllers
             List<RouteItemForVben> result = new List<RouteItemForVben>();
             foreach (var menuItem in menuItems)
             {
+
                 PropertyInfo[] props = menuItem.CustomData.GetType()
                                                     .GetProperties(BindingFlags.GetField |
                                                                     BindingFlags.Public |
                                                                     BindingFlags.Instance);
-                RouteItemForVben routeItem = new RouteItemForVben
-                {
-                    Name = menuItem.Name,
-                    Path = menuItem.Url,
-                    Component = props.FirstOrDefault(x => x.Name == "Component")?.GetValue(menuItem.CustomData).ToString(),
-                    Redirect = props.FirstOrDefault(x => x.Name == "Redirect")?.GetValue(menuItem.CustomData).ToString(),
-                    Meta = new RouteItemMetaForVben
-                    {
-                        OrderNo = menuItem.Order,
-                        Title = menuItem.DisplayName,
-                        Icon = menuItem.Icon,
-                        CssClass = menuItem.CssClass,
-                        HideChildrenInMenu = Convert.ToBoolean(props.FirstOrDefault(x => x.Name == "HideChildrenInMenu")?.GetValue(menuItem.CustomData)),
-                        HideMenu = Convert.ToBoolean(props.FirstOrDefault(x => x.Name == "HideMenu")?.GetValue(menuItem.CustomData)),
-                        HideTab = Convert.ToBoolean(props.FirstOrDefault(x => x.Name == "HideTab")?.GetValue(menuItem.CustomData)),
-                    },
-                    Children = ConvertToRouteItemForVben(menuItem.Items)
-                };
 
-                result.Add(routeItem);
+                bool.TryParse(props.FirstOrDefault(x => x.Name == "IsGroup")?.GetValue(menuItem.CustomData).ToString(), out bool IsGroup);
+
+                if (!IsGroup || (IsGroup && menuItem.Items.Count > 0))   // 没有子菜单的一级IsGroup菜单，就不需要显示了
+                {
+                    RouteItemForVben routeItem = new RouteItemForVben
+                    {
+                        Name = menuItem.Name,
+                        Path = menuItem.Url,
+                        Component = props.FirstOrDefault(x => x.Name == "Component")?.GetValue(menuItem.CustomData).ToString(),
+                        Redirect = props.FirstOrDefault(x => x.Name == "Redirect")?.GetValue(menuItem.CustomData).ToString(),
+                        Meta = new RouteItemMetaForVben
+                        {
+                            OrderNo = menuItem.Order,
+                            Title = menuItem.DisplayName,
+                            Icon = menuItem.Icon,
+                            CssClass = menuItem.CssClass,
+                            HideChildrenInMenu = Convert.ToBoolean(props.FirstOrDefault(x => x.Name == "HideChildrenInMenu")?.GetValue(menuItem.CustomData)),
+                            HideMenu = Convert.ToBoolean(props.FirstOrDefault(x => x.Name == "HideMenu")?.GetValue(menuItem.CustomData)),
+                            HideTab = Convert.ToBoolean(props.FirstOrDefault(x => x.Name == "HideTab")?.GetValue(menuItem.CustomData)),
+                        },
+                        Children = ConvertToRouteItemForVben(menuItem.Items)
+                    };
+
+                    result.Add(routeItem);
+                }
             }
 
             return result;
