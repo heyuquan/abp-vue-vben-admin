@@ -49,15 +49,13 @@ docker exec -it sso.auth-server.api /bin/bash
 
 docker stop [container id or name]：停止运行指定容器
 
-构建：docker-compose build
-
-启动：docker-compose up
+构建：docker-compose build [服务名],[服务名]
+创建服务（不启动）：docker-compose create
+启动：docker-compose up [服务名],[服务名]
       docker-compose up -d    -d代表在后台运行
+删除服务：docker-compose rm [服务名],[服务名]
 销毁：docker-compose down
 重启：docker-compose restart
-
-创建服务（不启动）：docker-compose create
-删除服务：docker-compose rm 服务名
 
 docker-compose -f docker-compose.yml -f docker-compose.override.prod.yml up -d
 

@@ -263,7 +263,7 @@ namespace Leopard.Utils
                     app.UseDeveloperExceptionPage();
                 }
 
-                app.UseHsts();
+                // app.UseHsts();  服务端目前启用证书有问题，去掉https相关
             }
 
             //app.UseHttpsRedirection();
@@ -297,7 +297,7 @@ namespace Leopard.Utils
                 betweenAuthApplicationInitialization(context);
             }
 
-            if (IsHost())
+            if (IsHost() || IsIdentityServer())
             {
                 // 授权
                 app.UseAuthorization();

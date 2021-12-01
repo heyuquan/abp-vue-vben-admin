@@ -16,7 +16,7 @@ services:
       - 44105:443
 
   sso.auth-server.identityserver:
-    image: sso.auth-server.identityserver
+    image: sso.auth-server.identityserver.img
     restart: always
     build:
       context: .
