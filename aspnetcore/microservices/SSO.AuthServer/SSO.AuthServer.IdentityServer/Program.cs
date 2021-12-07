@@ -1,4 +1,5 @@
 using Leopard;
+using Leopard.Buiness.Shared;
 using Leopard.Utils;
 
 namespace SSO.AuthServer
@@ -7,7 +8,7 @@ namespace SSO.AuthServer
     {
         public static int Main(string[] args)
         {
-            CommonProgram commonProgram = new CommonProgram(ApplicationServiceType.AuthIdentityServer, typeof(Program).Assembly.GetName().Name);
+            CommonProgram commonProgram = new CommonProgram(ModuleIdentity.AuthIdentityServer.ServiceType, ModuleIdentity.AuthIdentityServer.Name);
             return commonProgram.CommonMain<Startup>(args);
         }
     }

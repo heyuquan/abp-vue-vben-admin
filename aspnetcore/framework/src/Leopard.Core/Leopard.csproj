@@ -15,6 +15,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Leopard.Ddd.Application.Contracts\Leopard.Ddd.Application.Contracts.csproj" />
+		<ProjectReference Include="..\Leopard.Shared\Leopard.Shared.csproj" />
 	</ItemGroup>
 
 </Project>

@@ -1,7 +1,4 @@
-﻿
 
-DemoB初始化数据使用到Tenant，要改为使用AppServices，因为DemoB中已经没有租户库，移到了SSO.AuthServer中
-解决方案：暂时先将 DemoBDbMigrationService 关于 TenantService 的代码移除。
 
 
 退出时，执行的ids4的connect/revocation方法，注销了指定token，但是使用该token还是可以访问用户信息（connect/userinfo）。

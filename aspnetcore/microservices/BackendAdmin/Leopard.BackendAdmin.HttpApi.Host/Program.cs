@@ -1,4 +1,5 @@
-﻿using Leopard.Utils;
+using Leopard.Buiness.Shared;
+using Leopard.Utils;
 
 namespace Leopard.BackendAdmin
 {
@@ -6,7 +7,7 @@ namespace Leopard.BackendAdmin
     {
         public static int Main(string[] args)
         {
-            CommonProgram commonProgram = new CommonProgram(ApplicationServiceType.ApiHost, typeof(Program).Assembly.GetName().Name);
+            CommonProgram commonProgram = new CommonProgram(ModuleIdentity.BackendAdmin.ServiceType, ModuleIdentity.BackendAdmin.Name);
             return commonProgram.CommonMain<Startup>(args);
         }
 

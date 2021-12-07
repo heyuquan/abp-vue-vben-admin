@@ -2,6 +2,7 @@ using Leopard.AspNetCore.Serilog;
 using Leopard.Helpers;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 using System;
@@ -16,29 +17,43 @@ namespace Leopard.Utils
     /// </summary>
     public class CommonProgram
     {
-        private string _assemblyName { get; set; }
+        /// <summary>
+        /// 模块名（模块key）eg：Leopard.Saas
+        /// </summary>
+        protected string ModuleKey { get; private set; }
         protected ApplicationServiceType ApplicationServiceType { get; private set; }
 
-        public CommonProgram(ApplicationServiceType serviceType, string assemblyName)
+        public CommonProgram(ApplicationServiceType serviceType, string moduleKey)
         {
             ApplicationServiceType = serviceType;
-            _assemblyName = assemblyName;
+            ModuleKey = moduleKey;
         }
 
         private static readonly string env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
         public int CommonMain<T>(string[] args) where T : class
         {
-            SerilogConfigurationHelper.Configure(env, _assemblyName, true, false);
+            SerilogConfigurationHelper.Configure(env, ModuleKey, true, false);
 
             try
             {
-                Log.Information($"Starting {_assemblyName}.");
-                CreateHostBuilder<T>(args).Build().Run();
+                Log.Information($"Starting {ModuleKey}.");
+                var host = CreateHostBuilder<T>(args).Build();
+
+                // 如何实现 asp.net core 安全优雅退出 ?
+                // https://mp.weixin.qq.com/s/TwPNPwD-XlmKiuuYYk1MeQ
+                var life = host.Services.GetRequiredService<IHostApplicationLifetime>();
+                life.ApplicationStopped.Register(() =>
+                {
+                    Console.WriteLine($"{ModuleKey} is shut down");
+                });
+
+
+                host.Run();
                 return 0;
             }
             catch (Exception ex)
             {
-                Log.Fatal(ex, $"{_assemblyName} terminated unexpectedly!");
+                Log.Fatal(ex, $"{ModuleKey} terminated unexpectedly!");
                 return 1;
             }
             finally

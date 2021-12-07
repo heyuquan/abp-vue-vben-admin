@@ -27,7 +27,7 @@ namespace Leopard.BackendAdmin
     )]
     public class LeopardBackendAdminHttpApiHostModule : HostCommonModule
     {
-        public LeopardBackendAdminHttpApiHostModule() : base(ApplicationServiceType.ApiHost, ModuleNames.BackendAdmin, MultiTenancyConsts.IsEnabled)
+        public LeopardBackendAdminHttpApiHostModule() : base(ModuleIdentity.BackendAdmin.ServiceType, ModuleIdentity.BackendAdmin.Name, MultiTenancyConsts.IsEnabled)
         { }
 
         public override void ConfigureServices(ServiceConfigurationContext context)

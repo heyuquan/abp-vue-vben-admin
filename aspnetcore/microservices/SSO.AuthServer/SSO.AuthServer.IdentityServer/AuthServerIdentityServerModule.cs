@@ -45,7 +45,7 @@ namespace SSO.AuthServer
         )]
     public class AuthServerIdentityServerModule : HostCommonModule
     {
-        public AuthServerIdentityServerModule() : base(ApplicationServiceType.AuthIdentityServer, ModuleNames.AuthServerIdentityServer, MultiTenancyConsts.IsEnabled)
+        public AuthServerIdentityServerModule() : base(ModuleIdentity.AuthIdentityServer.ServiceType, ModuleIdentity.AuthIdentityServer.Name, MultiTenancyConsts.IsEnabled)
         { }
         public override void ConfigureServices(ServiceConfigurationContext context)
         {

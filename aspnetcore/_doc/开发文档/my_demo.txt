@@ -1,26 +1,28 @@
 
-02_Framework£º¿ò¼Ü´úÂë
+02_Frameworkï¼šæ¡†æ¶ä»£ç 
 
 
-03_DemoB£ºÓÃabp appÄ£°å´´½¨¡£°üº¬abpÍê³ÉµÄÄ£¿éÒÀÀµ£¬´øÓĞweb½çÃæ
+03_DemoBï¼šç”¨abp appæ¨¡æ¿åˆ›å»ºã€‚åŒ…å«abpå®Œæˆçš„æ¨¡å—ä¾èµ–ï¼Œå¸¦æœ‰webç•Œé¢
 DemoB:https://localhost:44304
 IdentityServer:https://localhost:44325
 
-04_DemoC£ºÓÃabp moduleÄ£°å´´½¨¡£Ö»ÒÀÀµ×ÔÉíµÄÄ£¿éºÍAbp¿ò¼ÜµÄÄ£¿é£¬´¿WEB API
+04_DemoCï¼šç”¨abp moduleæ¨¡æ¿åˆ›å»ºã€‚åªä¾èµ–è‡ªèº«çš„æ¨¡å—å’ŒAbpæ¡†æ¶çš„æ¨¡å—ï¼Œçº¯WEB API
 DemoC:https://localhost:44356
 
 
 
-Êı¾İÀï²Ù×÷»¹ÊÇÒª·Åµ½ Mk.DemoB.EntityFrameworkCore ²ãµÄ¶ÔÓ¦µÄRepositoryÖĞ¡£·ÅÔÚÈçDomainºÍApplicationÖĞÓĞÁ½¸öÎÊÌâ
-1¡¢ÕâÁ½¸ö²ãĞèÒªÒıÓÃMicrosoft.EntityFrameworkCore £¬·ñÔòÒ»Ğ©À©Õ¹·½·¨Ã»ÓĞ£¬eg£ºToListAsync()  ----  ½â¾ö·½°¸£ºÊ¹ÓÃ£ºAsyncExecuter.ToListAsync()
-2¡¢Èç Mk.DemoB.EntityFrameworkCore ÖĞ¶¨ÒåµÄ IncludeDetails Ã»°ì·¨Ê¹ÓÃÉÏ
-Ã¿¸öÊµÌå¶¨Òå²Ö´¢µÄºÃ´¦
-1¡¢¿ÉÒÔÇ¿ÖÆ°ÑÊı¾İ¿âÒµÎñĞ´µ½²Ö´¢ÖĞ
-2¡¢¸üºÃµÄ·â×°ÁËÊı¾İ¿â²Ù×÷¡£  ·½±ãÔÚÆäËû²ã×¢Èë²Ö´¢£¬»ñÈ¡Êı¾İ²Ù×÷
+æ•°æ®é‡Œæ“ä½œè¿˜æ˜¯è¦æ”¾åˆ° Mk.DemoB.EntityFrameworkCore å±‚çš„å¯¹åº”çš„Repositoryä¸­ã€‚æ”¾åœ¨å¦‚Domainå’ŒApplicationä¸­æœ‰ä¸¤ä¸ªé—®é¢˜
+1ã€è¿™ä¸¤ä¸ªå±‚éœ€è¦å¼•ç”¨Microsoft.EntityFrameworkCore ï¼Œå¦åˆ™ä¸€äº›æ‰©å±•æ–¹æ³•æ²¡æœ‰ï¼Œegï¼šToListAsync()  ----  è§£å†³æ–¹æ¡ˆï¼šä½¿ç”¨ï¼šAsyncExecuter.ToListAsync()
+2ã€å¦‚ Mk.DemoB.EntityFrameworkCore ä¸­å®šä¹‰çš„ IncludeDetails æ²¡åŠæ³•ä½¿ç”¨ä¸Š
+æ¯ä¸ªå®ä½“å®šä¹‰ä»“å‚¨çš„å¥½å¤„
+1ã€å¯ä»¥å¼ºåˆ¶æŠŠæ•°æ®åº“ä¸šåŠ¡å†™åˆ°ä»“å‚¨ä¸­
+2ã€æ›´å¥½çš„å°è£…äº†æ•°æ®åº“æ“ä½œã€‚  æ–¹ä¾¿åœ¨å…¶ä»–å±‚æ³¨å…¥ä»“å‚¨ï¼Œè·å–æ•°æ®æ“ä½œ
 
 
 
-
-MSSQL-Á´½Ó×Ö·û´®±¸×¢
-windowsÉí·İÈÏÖ¤£º "Server=(LocalDb)\\MSSQLLocalDB; Database=MsDemo_Identity;Trusted_Connection=True"
+é“¾æ¥å­—ç¬¦ä¸²å¤‡æ³¨
+MSSQL
+windowsèº«ä»½è®¤è¯ï¼š "Server=(LocalDb)\\MSSQLLocalDB; Database=MsDemo_Identity;Trusted_Connection=True"
+MYSQL
+server=134.175.121.78;userid=root;pwd=***;port=8706;database=Leopard_SSO_Identity;sslmode=none;Allow User Variables=true;
 

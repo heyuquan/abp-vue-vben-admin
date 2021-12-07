@@ -2,6 +2,7 @@ using Leopard;
 using Leopard.AspNetCore.Serilog;
 using Leopard.AspNetCore.Swashbuckle;
 using Leopard.BackendAdmin;
+using Leopard.Buiness.Shared;
 using Leopard.Consul;
 using Leopard.Utils;
 using Volo.Abp.Autofac;
@@ -21,7 +22,7 @@ namespace BackendAdminAppGateway.Host
     )]
     public class BackendAdminAppGatewayHostModule : GatewayCommonModule
     {
-        public BackendAdminAppGatewayHostModule() : base(ApplicationServiceType.GateWay, "BackendAdminAppGateway", false)
+        public BackendAdminAppGatewayHostModule() : base(ModuleIdentity.BackendAdminAppGateway.ServiceType, ModuleIdentity.BackendAdminAppGateway.Name, false)
         { }        
     }
 }

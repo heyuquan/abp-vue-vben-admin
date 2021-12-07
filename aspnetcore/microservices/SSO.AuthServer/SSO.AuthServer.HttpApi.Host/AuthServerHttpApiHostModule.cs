@@ -29,7 +29,7 @@ namespace SSO.AuthServer
         typeof(AbpAspNetCoreMvcUiMultiTenancyModule),
 
         typeof(AbpEntityFrameworkCoreMySQLModule),
-        typeof(AbpPermissionManagementEntityFrameworkCoreModule),       
+        typeof(AbpPermissionManagementEntityFrameworkCoreModule),
 
         typeof(AbpAccountApplicationModule),
         typeof(AbpAccountHttpApiClientModule),
@@ -39,11 +39,12 @@ namespace SSO.AuthServer
         typeof(AbpIdentityEntityFrameworkCoreModule),
         typeof(AbpIdentityServerEntityFrameworkCoreModule),
 
+        typeof(LeopardModule),
         typeof(LeopardConsulModule)
     )]
     public class AuthServerHttpApiHostModule : HostCommonModule
     {
-        public AuthServerHttpApiHostModule() : base(ApplicationServiceType.AuthHost, ModuleNames.AuthServer, MultiTenancyConsts.IsEnabled)
+        public AuthServerHttpApiHostModule() : base(ModuleIdentity.Auth.ServiceType, ModuleIdentity.Auth.Name, MultiTenancyConsts.IsEnabled)
         { }
 
         public override void ConfigureServices(ServiceConfigurationContext context)
