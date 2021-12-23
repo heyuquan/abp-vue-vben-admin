@@ -5,9 +5,9 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Leopard.Helpers
+namespace System
 {
-    public static class UrlHelper
+    public static class UriExtensions
     {
         /// <summary>
         /// 判断一个 uri 是本机还是远程
@@ -15,7 +15,7 @@ namespace Leopard.Helpers
         /// </summary>
         /// <param name="uri">uri</param>
         /// <returns></returns>
-        public static bool IsLocal(Uri uri)
+        public static bool IsLocal(this Uri uri)
         {
             IPAddress[] host;
             IPAddress[] local;
