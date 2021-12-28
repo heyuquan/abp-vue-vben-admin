@@ -163,6 +163,11 @@ namespace Leopard.Utils
                     });
             }
 
+            if (IsHost())
+            {
+                context.Services.ConfigureModelBindingExceptionHandling();
+            }
+
             if (IsHost() || IsIdentityServer())
             {
                 Configure<AbpAuditingOptions>(options =>
