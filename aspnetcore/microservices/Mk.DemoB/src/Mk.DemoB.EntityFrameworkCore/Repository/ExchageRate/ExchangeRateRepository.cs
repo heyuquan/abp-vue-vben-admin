@@ -34,6 +34,7 @@ namespace Mk.DemoB.Repository
         /// <param name="sorting">Eg：Name asc,Id desc</param>
         /// <param name="skipCount"></param>
         /// <param name="maxResultCount"></param>
+        /// <param name="isGetTotalCount">是否获取记录总数</param>
         /// <returns></returns>
         public async Task<PageData<ExchangeRate>> GetPagingAsync(
             string currencyCodeFrom = null

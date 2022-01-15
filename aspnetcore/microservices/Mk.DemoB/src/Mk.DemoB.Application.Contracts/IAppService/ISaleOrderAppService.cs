@@ -1,4 +1,4 @@
-﻿using Leopard.Results;
+﻿using Leopard.Requests;
 using Mk.DemoB.Dto.SaleOrders;
 using System;
 using System.Collections.Generic;

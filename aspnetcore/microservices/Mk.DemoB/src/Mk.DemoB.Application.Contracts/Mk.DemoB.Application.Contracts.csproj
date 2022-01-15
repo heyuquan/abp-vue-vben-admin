@@ -9,7 +9,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\..\framework\src\Leopard.Ddd.Application.Contracts\Leopard.Ddd.Application.Contracts.csproj" />
+		<ProjectReference Include="..\..\..\..\framework\src\Leopard.Shared\Leopard.Shared.csproj" />
 		<ProjectReference Include="..\Mk.DemoB.Domain.Shared\Mk.DemoB.Domain.Shared.csproj" />
 	</ItemGroup>
 

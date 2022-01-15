@@ -1,4 +1,4 @@
-using Leopard.Results;
+using Leopard.Requests;
 using Microsoft.AspNetCore.Mvc;
 using Mk.DemoC.Domain.Consts.ElastcSearchs;
 using Mk.DemoC.Dto.ElastcSearchs;

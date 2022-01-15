@@ -1,4 +1,4 @@
-using Leopard.Results;
+using Leopard.Requests;
 using Microsoft.AspNetCore.Mvc;
 using Mk.DemoB.Dto.ExchangeRates;
 using Mk.DemoB.ExchangeRateMgr;

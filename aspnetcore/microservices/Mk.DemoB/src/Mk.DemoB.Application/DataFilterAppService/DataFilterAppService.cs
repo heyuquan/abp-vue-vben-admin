@@ -1,4 +1,4 @@
-﻿using Leopard.Results;
+﻿using Leopard.Requests;
 using Microsoft.AspNetCore.Mvc;
 using Mk.DemoB.Dto.SaleOrders;
 using Mk.DemoB.IAppService;

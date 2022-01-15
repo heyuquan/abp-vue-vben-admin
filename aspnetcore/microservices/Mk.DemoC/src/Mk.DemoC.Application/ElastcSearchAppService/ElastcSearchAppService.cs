@@ -1,6 +1,6 @@
 using HtmlAgilityPack;
 using Leopard.Paging;
-using Leopard.Results;
+using Leopard.Requests;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Mk.DemoC.SearchDocumentMgr;

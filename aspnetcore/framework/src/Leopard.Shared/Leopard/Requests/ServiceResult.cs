@@ -5,7 +5,7 @@ using System.Text;
 using Volo.Abp;
 using Volo.Abp.Http;
 
-namespace Leopard.Results
+namespace Leopard.Requests
 {
     // to do 
     // 保留 IsSuccess 字段，用于常规判断调用是否成功。成功即Payload里面会返回接口数据。   失败errors里面会包含错误信息

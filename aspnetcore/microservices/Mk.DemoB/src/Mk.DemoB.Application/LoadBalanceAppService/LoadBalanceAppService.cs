@@ -1,4 +1,4 @@
-﻿using Leopard.Results;
+﻿using Leopard.Requests;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
