@@ -6,7 +6,7 @@ namespace Leopard.Helpers
     /// <summary>
     /// 路径帮助类
     /// </summary>
-    public class PathHelper
+    public static class PathHelper
     {
         /// <summary>
         /// 将传入的路径，转为当前运行系统的路径
