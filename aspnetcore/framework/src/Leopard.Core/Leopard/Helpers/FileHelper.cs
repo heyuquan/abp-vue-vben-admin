@@ -45,5 +45,6 @@ namespace Leopard.Helpers
         {
             return !IsDir(path);
         }
+
     }
 }

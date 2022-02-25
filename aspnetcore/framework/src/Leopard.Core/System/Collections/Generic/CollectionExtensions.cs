@@ -7,6 +7,8 @@ namespace System.Collections.Generic
     /// </summary>
     public static class CollectionExtensions
     {
+
+        #region Dictionary
         /// <summary>
         /// 累加，若字典中不存在key，则将key，value加入到字典中
         /// </summary>
@@ -87,6 +89,28 @@ namespace System.Collections.Generic
         }
 
         /// <summary>
+        /// 往集合里添加键值对，如果已经存在，则覆盖.
+        /// </summary>
+        /// <typeparam name="TKey"></typeparam>
+        /// <typeparam name="TValue"></typeparam>
+        /// <param name="dict"></param>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        public static void TryAddWithReplace<TKey, TValue>(this Dictionary<TKey, TValue> dict, TKey key, TValue value) where TKey : IComparable
+        {
+            if (dict.ContainsKey(key))
+            {
+                dict[key] = value;
+            }
+            else
+            {
+                dict.Add(key, value);
+            }
+        }
+
+        #endregion
+
+        /// <summary>
         /// 根据 keyFunc 将 List 转为 字典
         /// </summary>
         /// <typeparam name="TValue"></typeparam>
@@ -109,26 +133,6 @@ namespace System.Collections.Generic
             }
 
             return dict;
-        }
-
-        /// <summary>
-        /// 往集合里添加键值对，如果已经存在，则覆盖.
-        /// </summary>
-        /// <typeparam name="TKey"></typeparam>
-        /// <typeparam name="TValue"></typeparam>
-        /// <param name="dict"></param>
-        /// <param name="key"></param>
-        /// <param name="value"></param>
-        public static void TryAddWithReplace<TKey, TValue>(this Dictionary<TKey, TValue> dict, TKey key, TValue value) where TKey : IComparable
-        {
-            if (dict.ContainsKey(key))
-            {
-                dict[key] = value;
-            }
-            else
-            {
-                dict.Add(key, value);
-            }
         }
 
         /// <summary>

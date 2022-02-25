@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Leopard;
+using System;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Serialization;
 
 namespace System
 {
@@ -12,12 +14,33 @@ namespace System
         /// <summary>
         /// 获取枚举类型的描述 [DescriptionAttribute]
         /// </summary>
-        /// <returns></returns>
-        public static string GetDescription(this Enum enumeration)
+        /// <returns>找不到 value 对应的enum，则返回String.Empty</returns>
+        public static string GetDescription(this Enum value, string defaultValue = Constants.String_Empty)
         {
-            Type type = enumeration.GetType();
-            MemberInfo member = type.GetMember(enumeration.ToString()).FirstOrDefault();
-            return member != null ? member.GetDescription() : enumeration.ToString();
+            Type type = value.GetType();
+            MemberInfo member = type.GetMember(value.ToString()).FirstOrDefault();
+            string result = member?.GetDescription();
+
+            return result.IsNullOrEmpty() ? defaultValue : result;
+        }
+
+        /// <summary>
+        /// 获取 [EnumMemberAttribute] 的value
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="value"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
+        public static string GetEnumMemberValue<T>(this T value, string defaultValue = Constants.String_Empty) where T : Enum
+        {
+            string result = typeof(T)
+                .GetTypeInfo()
+                .DeclaredMembers
+                .SingleOrDefault(x => x.Name == value.ToString())
+                ?.GetCustomAttribute<EnumMemberAttribute>(false)
+                ?.Value;
+
+            return result.IsNullOrEmpty() ? defaultValue : result;
         }
     }
 }

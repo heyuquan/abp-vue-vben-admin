@@ -8,15 +8,20 @@ namespace Leopard.Crypto
 {
     /// <summary>
     /// base64 编码 解码
+    /// （使用 CryptoGuide 静态类进行访问）
     /// </summary>
     public class Base64
     {
+        /// <summary>
+        /// 使用 CryptoGuide 静态类进行访问
+        /// </summary>
+        internal Base64() { }
         /// <summary>
         /// Base64加密，采用utf8编码方式加密
         /// </summary>
         /// <param name="source">待加密的明文</param>
         /// <returns>加密后的字符串</returns>
-        public static string Base64Encode(string source)
+        public string Base64Encode(string source)
         {
             return Base64Encode(Encoding.UTF8, source);
         }
@@ -27,7 +32,7 @@ namespace Leopard.Crypto
         /// <param name="encodeType">加密采用的编码方式</param>
         /// <param name="source">待加密的明文</param>
         /// <returns></returns>
-        public static string Base64Encode(Encoding encodeType, string source)
+        public string Base64Encode(Encoding encodeType, string source)
         {
             string encode = string.Empty;
             byte[] bytes = encodeType.GetBytes(source);
@@ -47,7 +52,7 @@ namespace Leopard.Crypto
         /// </summary>
         /// <param name="result">待解密的密文</param>
         /// <returns>解密后的字符串</returns>
-        public static string Base64Decode(string result)
+        public string Base64Decode(string result)
         {
             return Base64Decode(Encoding.UTF8, result);
         }
@@ -59,7 +64,7 @@ namespace Leopard.Crypto
         /// <param name="encodeType">解密采用的编码方式，注意和加密时采用的方式一致</param>
         /// <param name="result">待解密的密文</param>
         /// <returns>解密后的字符串</returns>
-        public static string Base64Decode(Encoding encodeType, string result)
+        public string Base64Decode(Encoding encodeType, string result)
         {
             string decode = string.Empty;
             byte[] bytes = Convert.FromBase64String(result);

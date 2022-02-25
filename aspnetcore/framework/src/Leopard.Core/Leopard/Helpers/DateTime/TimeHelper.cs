@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -96,26 +97,36 @@ namespace Leopard.Helpers
 
         #region DateTime 与 Unix时间戳格式 转换
 
-        private static readonly DateTime UtcStartTime = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-        private static readonly DateTime LocalStartTime = TimeZone.CurrentTimeZone.ToLocalTime(UtcStartTime);
+        private static readonly TimeZoneInfo gmt8 = TimeZoneInfo.CreateCustomTimeZone("GMT+8", TimeSpan.FromHours(8), "China Standard Time", "(UTC+8)China Standard Time");
 
         /// <summary>
         /// 将c# DateTime时间格式转换为Unix时间戳格式(默认精度为毫秒)
         /// </summary>
-        /// <param name="time">时间</param>
+        /// <param name="datetime">时间</param>
         /// <param name="digit">时间精度</param>
         /// <returns>Unix时间戳格式</returns> 
-        public static long DateTimeToStamp(DateTime time, DateTimeStampDigit digit = DateTimeStampDigit.Millisecond)
+        public static long ToUnixTime(DateTime datetime, DateTimeStampDigit digit = DateTimeStampDigit.Millisecond)
         {
+            DateTime dateTimeUtc = datetime;
+            if (datetime.Kind != DateTimeKind.Utc)
+            {
+                dateTimeUtc = datetime.ToUniversalTime();
+            }
+
+            if (dateTimeUtc.ToUniversalTime() <= DateTime.UnixEpoch)
+            {
+                return 0;
+            }
+
             long timeStamp = 0;
 
             switch (digit)
             {
                 case DateTimeStampDigit.Second:
-                    timeStamp = (long)(Math.Floor((TimeHelper.ToUniversalTime(time) - TimeHelper.UtcStartTime).TotalSeconds));
+                    timeStamp = (long)((dateTimeUtc - DateTime.UnixEpoch).TotalSeconds);
                     break;
                 case DateTimeStampDigit.Millisecond:
-                    timeStamp = (long)(Math.Floor((TimeHelper.ToUniversalTime(time) - TimeHelper.UtcStartTime).TotalMilliseconds));
+                    timeStamp = (long)((dateTimeUtc - DateTime.UnixEpoch).TotalMilliseconds);
                     break;
             }
 
@@ -123,26 +134,29 @@ namespace Leopard.Helpers
         }
 
         /// <summary>
-        /// Unix时间戳转为本地时间   (13位)     
+        /// Unix时间戳转为本地时间        
         /// </summary>
-        /// <param name="timeStamp">Unix时间戳格式</param>
+        /// <param name="unixTimestamp">Unix时间戳格式</param>
         /// <param name="digit">Unix时间戳精度</param>
         /// <returns>本地时间</returns>       
-        public static DateTime StampToDateTime(long timeStamp, DateTimeStampDigit digit = DateTimeStampDigit.Millisecond)
+        public static DateTime ToDateTime(long unixTimestamp, DateTimeStampDigit digit = DateTimeStampDigit.Millisecond)
         {
-            long lTime = 0;
+            DateTime time ;
+
             switch (digit)
             {
                 case DateTimeStampDigit.Second:
-                    lTime = long.Parse(timeStamp + "0000000");
+                    time = DateTime.UnixEpoch.AddSeconds(unixTimestamp);
                     break;
                 case DateTimeStampDigit.Millisecond:
-                    lTime = long.Parse(timeStamp + "0000");
+                    time = DateTime.UnixEpoch.AddMilliseconds(unixTimestamp);
+                    break;
+                default:
+                    time = DateTime.UnixEpoch.AddMilliseconds(unixTimestamp);
                     break;
             }
 
-            TimeSpan toNow = new TimeSpan(lTime);
-            return LocalStartTime.Add(toNow);
+            return TimeZoneInfo.ConvertTimeFromUtc(time, gmt8);
         }
 
         /// <summary>

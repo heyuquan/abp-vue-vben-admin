@@ -7,6 +7,14 @@ using System.Threading.Tasks;
 
 namespace Leopard.Helpers
 {
+    
+    //private const string ISO8601_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss'Z'";
+    //private static String FormatIso8601Date(DateTime date)
+    //{
+    //    // 注意使用UTC时间
+    //    return date.ToUniversalTime().ToString(ISO8601_DATE_FORMAT, CultureInfo.CreateSpecificCulture("en-US"));
+    //}
+
     // 参考：https://www.cnblogs.com/zhuzhongxing/p/14147087.html
 
     /// <summary>
@@ -57,7 +65,7 @@ namespace Leopard.Helpers
         public static readonly TimeFormat TIME_MILLI_UNDERLINE = new TimeFormat("HH_mm_ss_fff");
 
         /// <summary> 日期时间格式 <c>[yyyy-MM-dd HH:mm:ss]</c> </summary>
-        public static readonly TimeFormat DATE_TIME = new TimeFormat("yyyy-MM-dd HH:mm:ss");
+        public static readonly TimeFormat DATE_TIME = new TimeFormat(Constants.DATE_TIME_FORMAT);
 
         /// <summary> 日期时间格式 <c>[yyyy-MM-dd HH:mm:ss]</c> </summary>
         public static readonly TimeFormat DATE_TIME_CHINESE = new TimeFormat("yyyy年MM月dd日 HH时mm分ss秒");
@@ -69,7 +77,7 @@ namespace Leopard.Helpers
         public static readonly TimeFormat DATE_TIME_UNDERLINE = new TimeFormat("yyyy_MM_dd_HH_mm_ss");
 
         /// <summary> 日期时间格式 <c>[yyyy-MM-dd HH:mm:ss.fff]</c> </summary>
-        public static readonly TimeFormat DATE_TIME_MILLI = new TimeFormat("yyyy-MM-dd HH:mm:ss.fff");
+        public static readonly TimeFormat DATE_TIME_MILLI = new TimeFormat(Constants.DATE_TIME_MS_FORMAT);
 
         /// <summary> 日期时间格式 <c>[yyyyMMddHHmmssfff]</c> </summary>
         public static readonly TimeFormat DATE_TIME_MILLI_COMPACT = new TimeFormat("yyyyMMddHHmmssfff");
