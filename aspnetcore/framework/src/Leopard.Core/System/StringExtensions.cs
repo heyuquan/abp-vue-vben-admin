@@ -1,73 +1,191 @@
+﻿using System;
+using System.Reflection;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace System
 {
-    public static class StringExtensions
+    /// <summary>
+    /// 字符串方法扩展
+    /// </summary>
+    public static partial class StringExtentions
     {
         /// <summary>
-        /// 功能：驼峰命名转下划线命名（AbpUser>>abp_user）
-        /// 小写和大写紧挨一起的地方,加上分隔符,然后全部转小写
+        /// 删除字符串头部和尾部的回车/换行/空格
         /// </summary>
-        /// <param name="str"></param>
-        /// <returns></returns>
-        public static String CamelToUnder(this String str)
+        /// <param name="str">字符串</param>
+        /// <returns>清除回车/换行/空格之后的字符串</returns>
+        public static string TrimBlank(this string str)
         {
-            String separator = "_";
-            str = Regex.Replace(str, "([a-z])([A-Z])", "$1" + separator + "$2").ToLower();
+            if (str.IsNullOrEmpty())
+            {
+                throw new NullReferenceException("字符串不可为空");
+            }
+            return str.TrimLeft().TrimRight();
+        }
+
+        /// <summary>
+        /// 删除字符串尾部的回车/换行/空格
+        /// </summary>
+        /// <param name="str">字符串</param>
+        /// <returns>清除回车/换行/空格之后的字符串</returns>
+        public static string TrimRight(this string str)
+        {
+            if (!str.IsNullOrEmpty())
+            {
+                int i = 0;
+                while ((i = str.Length) > 0)
+                {
+                    if (!str[i - 1].Equals(' ') && !str[i - 1].Equals('\r') && !str[i - 1].Equals('\n'))
+                    {
+                        break;
+                    }
+                    str = str.Substring(0, i - 1);
+                }
+            }
             return str;
         }
 
+        /// <summary>
+        /// 删除字符串头部的回车/换行/空格
+        /// </summary>
+        /// <param name="str">字符串</param>
+        /// <returns>清除回车/换行/空格之后的字符串</returns>
+        public static string TrimLeft(this string str)
+        {
+            if (!str.IsNullOrEmpty())
+            {
+                while (str.Length > 0)
+                {
+                    if (!str[0].Equals(' ') && !str[0].Equals('\r') && !str[0].Equals('\n'))
+                    {
+                        break;
+                    }
+                    str = str.Substring(1);
+                }
+            }
+            return str;
+        }
 
         /// <summary>
-        /// 功能：下划线命名转大驼峰命名（abp_user>>AbpUser）
-        /// 将下划线替换为空格,将字符串根据空格分割成数组,再将每个单词首字母大写
+        /// 移除换行
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
-        public static String UnderToCamel(this String str)
+        public static string RemoveLine(this string str)
         {
-            String separator = "_";
-            String under = "";
-            str = str.ToLower().Replace(separator, " ");
-            string[] sarr = str.Split(new char[] { ' ' });
-            for (int i = 0; i < sarr.Length; i++)
+            if (str.IsNullOrEmpty())
             {
-                String w = sarr[i].Substring(0, 1).ToUpper() + sarr[i].Substring(1);
-                under += w;
+                return str;
             }
-            return under;
+            return str.Replace("\r", "").Replace("\n", "");
         }
 
         /// <summary>
-        /// 检查一个 string 是否为有效的 HTTP url 格式
-        /// str格式：(eg：www.baidu.com|http://www.baidu.com|https://www.baidu.com)
+        /// 相同字符串的数量
         /// </summary>
-        /// <param name="resultURI"></param>
+        /// <param name="source">字符串</param>
+        /// <param name="pattern">相比较字符串</param>
         /// <returns></returns>
-        public static bool ValidHttpURL(this string str, out Uri resultURI)
+        public static int MatchesCount(this string source, string pattern)
         {
-            if (str.StartsWith("www."))
-            {
-                str = "http://" + str;
-            }
-            if (Uri.TryCreate(str, UriKind.Absolute, out resultURI))
-                return (resultURI.Scheme == Uri.UriSchemeHttp ||
-                        resultURI.Scheme == Uri.UriSchemeHttps);
-            return false;
+            var result = source.IsNullOrEmpty() ? 0 : Regex.Matches(source, pattern).Count;
+            return result;
         }
 
         /// <summary>
-        /// 检查一个 string 是否为有效的 File url 格式
+        /// 获取字符串长度，计算方式：中文计2位，英文计1位
         /// </summary>
-        /// <param name="resultURI"></param>
+        /// <param name="source">字符串</param>
         /// <returns></returns>
-        public static bool ValidFileURL(this string str, out Uri resultURI)
+        public static int CharCodeLength(string source)
         {
-            if (Uri.TryCreate(str, UriKind.Absolute, out resultURI))
-                return (resultURI.Scheme == Uri.UriSchemeFile);
+            var n = 0;
+            foreach (var c in source.ToCharArray())
+            {
+                if (c < 128)
+                    n++;
+                else
+                    n += 2;
+            }
 
-            return false;
+            return n;
         }
 
+
+        #region Substring扩展
+
+        /// <summary>
+        /// SubString方法扩展
+        /// </summary>
+        /// <param name="str">截取字符串</param>
+        /// <param name="length">要截取的长度</param>
+        /// <returns>string</returns>
+        public static string Substring(this string str, int length)
+        {
+            if (string.IsNullOrEmpty(str) || str.Length <= length)
+            {
+                return str;
+            }
+            return str.Substring(0, length);
+        }
+
+        /// <summary>
+        /// 截取字符并显示...符号
+        /// </summary>
+        /// <param name="str">截取字符串</param>
+        /// <param name="length">要截取的长度</param>
+        /// <returns>string</returns>
+        public static string SubstringToSx(this string str, int length)
+        {
+            if (string.IsNullOrEmpty(str) || str.Length <= length)
+            {
+                return str;
+            }
+            return str.Substring(0, length) + "...";
+        }
+
+        /// <summary>
+        /// 截取 指定字符 之前的文本
+        /// </summary>
+        /// <param name="text">要截取的字符串</param>
+        /// <param name="delimiter">指定字符</param>
+        /// <returns>返回 指定字符 之前的文本</returns>
+        public static string SubstringUpToFirst(this string text, char delimiter)
+        {
+            if (text == null)
+            {
+                return null;
+            }
+            var num = text.IndexOf(delimiter);
+            if (num >= 0)
+            {
+                return text.Substring(0, num);
+            }
+            return text;
+        }
+
+        #endregion
+
+        /// <summary>
+        /// 反射获取属性值
+        /// </summary>
+        /// <typeparam name="T">匿名对象</typeparam>
+        /// <param name="t">匿名对象集合</param>
+        /// <param name="propertyname">属性名</param>
+        /// <returns></returns>
+        public static string GetPropertyValue<T>(this T t, string propertyname)
+        {
+            Type type = typeof(T);
+            PropertyInfo property = type.GetProperty(propertyname);
+
+            if (property == null) return string.Empty;
+
+            object o = property.GetValue(t, null);
+
+            if (o == null) return string.Empty;
+
+            return o.ToString();
+        }      
     }
 }

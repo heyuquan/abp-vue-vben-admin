@@ -32,6 +32,11 @@ namespace Leopard.Requests
     public class ServiceRequestHeader
     {
         /// <summary>
+        /// 请求时间戳
+        /// </summary>
+        public DateTime Timestamp { get; set; }
+
+        /// <summary>
         /// 用于唯一标识客户端  eg:APP=4，H5=5，pc web=6
         /// </summary>
         public string ClientId { get; set; }
@@ -47,7 +52,7 @@ namespace Leopard.Requests
         public string ServerVersion { get; set; }
 
         /// <summary>
-        /// 系统标示Code
+        /// 系统标识Code
         /// </summary>
         public string SystemCode { get; set; }
 

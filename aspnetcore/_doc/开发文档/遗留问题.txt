@@ -3,3 +3,19 @@
 
 退出时，执行的ids4的connect/revocation方法，注销了指定token，但是使用该token还是可以访问用户信息（connect/userinfo）。
 暂不清楚啥情况
+
+
+
+
+Leopard/Url
+
+把 Leopard 中的帮助类，移到 Leopard.Utils 项目中。   （拆吧，以后还有比较大的工具功能eg：Leopard.Utils.** ）
+这样如果有小项目不想使用abp这个框架，直接引用 Leopard.Utils 和 Leopard.Shared 两个程序集即可。没有模块引用的，移入Leopard.Pure文件夹
+（Pure：纯净）
+
+Leopard.Utils.Gateway
+Leopard.Utils.Host
+重命名为 Leopard.Common.**  放入Leopard/Common文件夹下。改为Common是因为这里面的方法并不是一些工具函数，只是通用的封装
+
+
+Leopard.Domain.Share  不放到框架中，因为具体长度都是业务相关。所以改名为 或移入 Leopard.Buiness.Shared.Const 中

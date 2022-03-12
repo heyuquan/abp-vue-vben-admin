@@ -23,4 +23,12 @@
       <CopyToPublishDirectory>Never</CopyToPublishDirectory>
     </None>
   </ItemGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <WarningsAsErrors>$(WarningsAsErrors);NU1605;CS4014</WarningsAsErrors>
+	</PropertyGroup>
+	
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+	  <WarningsAsErrors>$(WarningsAsErrors);NU1605;CS4014</WarningsAsErrors>
+	</PropertyGroup>
 </Project>
