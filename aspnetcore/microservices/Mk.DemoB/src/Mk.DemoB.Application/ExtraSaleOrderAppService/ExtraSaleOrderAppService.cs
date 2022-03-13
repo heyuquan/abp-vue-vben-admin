@@ -38,7 +38,7 @@ namespace Mk.DemoB.ExtraSaleOrderAppService
         /// <returns></returns>
         [HttpPost("create")]
         [UnitOfWork]
-        public virtual async Task<ServiceResult<SaleOrderDto>> CreateAsync(ExtraSaleOrderCreateDto input)
+        public virtual async Task<ServiceResponse<SaleOrderDto>> CreateAsync(ExtraSaleOrderCreateDto input)
         {
             SaleOrderCreateDto saleOrderCreateDto = input;
             saleOrderCreateDto.SetProperty("CustomerName", input.CustomerName);

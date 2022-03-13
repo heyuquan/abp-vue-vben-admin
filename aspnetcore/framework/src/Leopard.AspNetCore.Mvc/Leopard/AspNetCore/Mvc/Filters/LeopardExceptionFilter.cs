@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Leopard.Requests;
 using Microsoft.AspNetCore.Http;
@@ -94,22 +95,31 @@ namespace Leopard.AspNetCore.Mvc.Filters
         {
             //TODO: Trigger an AbpExceptionHandled event or something like that.
 
+            // 代码中应始终抛出异常：UserFriendlyException、AbpValidationException、EntityNotFoundException、AbpAuthorizationException、BusinessException
+
             context.HttpContext.Response.Headers.Add(AbpHttpConsts.AbpErrorFormat, "true");
             context.HttpContext.Response.StatusCode = (int)_statusCodeFinder.GetStatusCode(context.HttpContext, context.Exception);
             context.HttpContext.Response.OnStarting(_clearCacheHeadersDelegate, context.HttpContext.Response);
 
             var remoteServiceErrorInfo = _errorInfoConverter.Convert(context.Exception, _exceptionHAndlingOptions.SendExceptionsDetailsToClients);
 
-            if (_env.IsDevelopment())
+            StringBuilder sbuilder = new StringBuilder(128);
+            if (string.IsNullOrWhiteSpace(remoteServiceErrorInfo.Details))
             {
-                if (string.IsNullOrWhiteSpace(remoteServiceErrorInfo.Details))
-                {
-                    remoteServiceErrorInfo.Details = $"{context.Exception.GetType()}. {context.Exception.Message}";
-                }
+                sbuilder.Append($"{context.Exception.GetType()}. {context.Exception.Message}");
+            }
+            else
+            {
+                sbuilder.Append(remoteServiceErrorInfo.Details);
             }
 
-            ServiceResult<RemoteServiceErrorInfo> ret = new ServiceResult<RemoteServiceErrorInfo>(_correlationIdProvider.Get());
-            ret.SetFailed(remoteServiceErrorInfo);
+            if (remoteServiceErrorInfo.ValidationErrors.Any())
+            {
+                sbuilder.Append($"ValidationErrors:{_jsonSerializer.Serialize(remoteServiceErrorInfo.ValidationErrors, indented: true)}");
+            }
+
+            ServiceResponse<RemoteServiceErrorInfo> ret = new ServiceResponse<RemoteServiceErrorInfo>(_correlationIdProvider.Get());
+            ret.Messages.Add(ServiceResponseMessage.CreateError(remoteServiceErrorInfo.Code, remoteServiceErrorInfo.Message, sbuilder.ToString()));
 
             context.Result = new ObjectResult(ret);
 

@@ -14,11 +14,11 @@ namespace Mk.DemoB.IAppService
         /// <summary>
         /// 创建订单
         /// </summary>
-        Task<ServiceResult<SaleOrderDto>> CreateAsync(SaleOrderCreateDto input);
+        Task<ServiceResponse<SaleOrderDto>> CreateAsync(SaleOrderCreateDto input);
 
         /// <summary>
         /// 获取订单分页数据
         /// </summary>
-       Task<ServiceResult<PagedResultDto<SaleOrderDto>>> GetOrderPagingAsync(GetSaleOrderPagingRequest req);
+       Task<ServiceResponse<PagedResultDto<SaleOrderDto>>> GetOrderPagingAsync(GetSaleOrderPagingRequest req);
     }
 }

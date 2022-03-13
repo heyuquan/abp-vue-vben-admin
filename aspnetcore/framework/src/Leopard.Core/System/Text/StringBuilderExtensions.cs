@@ -42,7 +42,7 @@ namespace System.Text
         /// 去除<seealso cref="StringBuilder"/>开头的指定字符数组
         /// </summary>
         /// <param name="sb"></param>
-        /// <param name="cs">要去掉的字符数组</param>
+        /// <param name="chars">要去掉的字符数组</param>
         /// <returns></returns>
         public static StringBuilder TrimStart(this StringBuilder sb, char[] chars)
         {

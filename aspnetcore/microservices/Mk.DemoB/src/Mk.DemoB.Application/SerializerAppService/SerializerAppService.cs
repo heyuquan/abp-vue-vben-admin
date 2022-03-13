@@ -41,8 +41,8 @@ namespace Mk.DemoB.SerializerAppService
             {
                 MaxResultCount = 1
             };
-            ServiceResult<PagedResultDto<SaleOrderDto>> reqResult = await _saleOrderAppService.GetOrderPagingAsync(req);
-            SaleOrderDto saleOrderDto = reqResult.Data.Items[0];
+            ServiceResponse<PagedResultDto<SaleOrderDto>> reqResult = await _saleOrderAppService.GetOrderPagingAsync(req);
+            SaleOrderDto saleOrderDto = reqResult.Payload.Items[0];
             return _jsonSerializer.Serialize(saleOrderDto);
         }
 
@@ -62,8 +62,8 @@ namespace Mk.DemoB.SerializerAppService
             {
                 MaxResultCount = 1
             };
-            ServiceResult<PagedResultDto<SaleOrderDto>> reqResult = await _saleOrderAppService.GetOrderPagingAsync(req);
-            SaleOrderDto saleOrderDto = reqResult.Data.Items[0];
+            ServiceResponse<PagedResultDto<SaleOrderDto>> reqResult = await _saleOrderAppService.GetOrderPagingAsync(req);
+            SaleOrderDto saleOrderDto = reqResult.Payload.Items[0];
             return _objectSerializer.Serialize(saleOrderDto);
         }
 

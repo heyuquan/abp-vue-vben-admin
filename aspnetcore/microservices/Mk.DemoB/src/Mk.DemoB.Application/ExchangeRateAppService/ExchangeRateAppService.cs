@@ -39,15 +39,15 @@ namespace Mk.DemoB.ExchangeRateAppService
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost("capture-currency/create")]
-        public virtual async Task<ServiceResult<CaptureCurrencyDto>> CreateCaptureCurrencyAsync(CaptureCurrencyCreateRequest input)
+        public virtual async Task<ServiceResponse<CaptureCurrencyDto>> CreateCaptureCurrencyAsync(CaptureCurrencyCreateRequest input)
         {
-            ServiceResult<CaptureCurrencyDto> ret = new ServiceResult<CaptureCurrencyDto>(CorrelationIdIdProvider.Get());
+            ServiceResponse<CaptureCurrencyDto> ret = new ServiceResponse<CaptureCurrencyDto>(CorrelationIdIdProvider.Get());
 
             CaptureCurrency entity = new CaptureCurrency(GuidGenerator.Create(), input.CurrencyCodeFrom, input.CurrencyCodeTo);
             await _captureCurrencyRepository.InsertAsync(entity);
 
             CaptureCurrencyDto dto = ObjectMapper.Map<CaptureCurrency, CaptureCurrencyDto>(entity);
-            ret.SetSuccess(dto);
+            ret.Payload = dto;
             return ret;
         }
 
@@ -55,13 +55,13 @@ namespace Mk.DemoB.ExchangeRateAppService
         /// 抓取所有CaptureCurrency表中指定的汇率
         /// </summary>
         [HttpPost("capture/all")]
-        public virtual async Task<ServiceResult<List<ExchangeRateDto>>> CaptureAllRateAndSaveAsync()
+        public virtual async Task<ServiceResponse<List<ExchangeRateDto>>> CaptureAllRateAndSaveAsync()
         {
-            ServiceResult<List<ExchangeRateDto>> ret = new ServiceResult<List<ExchangeRateDto>>(CorrelationIdIdProvider.Get());
+            ServiceResponse<List<ExchangeRateDto>> ret = new ServiceResponse<List<ExchangeRateDto>>(CorrelationIdIdProvider.Get());
 
             var exchangeRates = await _exchangeRateManager.CaptureAllRateAndSaveAsync();
             List<ExchangeRateDto> dtos = ObjectMapper.Map<List<ExchangeRate>, List<ExchangeRateDto>>(exchangeRates);
-            ret.SetSuccess(dtos);
+            ret.Payload = dtos;
             return ret;
         }
 
@@ -70,9 +70,9 @@ namespace Mk.DemoB.ExchangeRateAppService
         /// </summary>
         /// <returns></returns>
         [HttpGet("batch/latest")]
-        public virtual async Task<ServiceResult<ExchangeRateBatchDto>> GetLatestBatchPagingAsync()
+        public virtual async Task<ServiceResponse<ExchangeRateBatchDto>> GetLatestBatchPagingAsync()
         {
-            ServiceResult<ExchangeRateBatchDto> ret = new ServiceResult<ExchangeRateBatchDto>(CorrelationIdIdProvider.Get());
+            ServiceResponse<ExchangeRateBatchDto> ret = new ServiceResponse<ExchangeRateBatchDto>(CorrelationIdIdProvider.Get());
             ExchangeRateBatchDto retDto = new ExchangeRateBatchDto();
             ExchangeRateCaptureBatch batch = await _exchangeRateCaptureBatchRepository.GetTopOneAsync();
 
@@ -94,7 +94,7 @@ namespace Mk.DemoB.ExchangeRateAppService
                 retDto.ExchangeRates = new List<ExchangeRateDto>();
             }
 
-            ret.SetSuccess(retDto);
+            ret.Payload = retDto;
             return ret;
         }
 
@@ -105,9 +105,9 @@ namespace Mk.DemoB.ExchangeRateAppService
         /// 
         /// <returns></returns>
         [HttpGet("paging")]
-        public virtual async Task<ServiceResult<PagedResultDto<ExchangeRateDto>>> GetExchangeRatePagingRequest(GetExchangeRatePagingRequest req)
+        public virtual async Task<ServiceResponse<PagedResultDto<ExchangeRateDto>>> GetExchangeRatePagingRequest(GetExchangeRatePagingRequest req)
         {
-            ServiceResult<PagedResultDto<ExchangeRateDto>> ret = new ServiceResult<PagedResultDto<ExchangeRateDto>>(CorrelationIdIdProvider.Get());
+            ServiceResponse<PagedResultDto<ExchangeRateDto>> ret = new ServiceResponse<PagedResultDto<ExchangeRateDto>>(CorrelationIdIdProvider.Get());
 
             // 写个Filter处理，这样可以对每个action指定  MaxResultCount  的判断值
             req.SkipCount = req.SkipCount < 0 ? 0 : req.SkipCount;
@@ -136,7 +136,7 @@ namespace Mk.DemoB.ExchangeRateAppService
 
             List<ExchangeRateDto> dtos = ObjectMapper.Map<List<ExchangeRate>, List<ExchangeRateDto>>(pageData.Items);
             var pagDto = new PagedResultDto<ExchangeRateDto>(pageData.TotalCount, dtos);
-            ret.SetSuccess(pagDto);
+            ret.Payload = pagDto;
 
             return ret;
         }

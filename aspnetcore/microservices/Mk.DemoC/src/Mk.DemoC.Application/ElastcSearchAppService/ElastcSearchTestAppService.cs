@@ -77,7 +77,7 @@ namespace Mk.DemoC.ElastcSearchAppService
         public ElastcSearchTestAppService(
             ILogger<ElastcSearchAppService> logger
             , ElasticSearchClient elasticSearchClient
-            ):base(elasticSearchClient)
+            ) : base(elasticSearchClient)
         {
             _logger = logger;
         }
@@ -94,9 +94,9 @@ namespace Mk.DemoC.ElastcSearchAppService
         /// </summary>
         /// <returns></returns>
         [HttpPost("doc/init")]
-        public async Task<ServiceResult<List<ProductSpuDocumentDto>>> InitDocument()
+        public async Task<ServiceResponse<List<ProductSpuDocumentDto>>> InitDocument()
         {
-            ServiceResult<List<ProductSpuDocumentDto>> ret = new ServiceResult<List<ProductSpuDocumentDto>>(CorrelationIdIdProvider.Get());
+            ServiceResponse<List<ProductSpuDocumentDto>> ret = new ServiceResponse<List<ProductSpuDocumentDto>>(CorrelationIdIdProvider.Get());
 
             // id相同的Document，会自行变成更新而不是新增
             // 39f792fdc909816aeda1bbb97faa18a5
@@ -182,15 +182,15 @@ namespace Mk.DemoC.ElastcSearchAppService
             dtos.Add(ObjectMapper.Map<ProductSpuDocument, ProductSpuDocumentDto>(doc2));
             dtos.Add(ObjectMapper.Map<ProductSpuDocument, ProductSpuDocumentDto>(doc3));
             dtos.Add(ObjectMapper.Map<ProductSpuDocument, ProductSpuDocumentDto>(doc4));
-            ret.SetSuccess(dtos);
+            ret.Payload = dtos;
             return ret;
 
         }
 
         [HttpPost("doc/get")]
-        public async Task<ServiceResult<List<ProductSpuDocumentDto>>> GetAsync()
+        public async Task<ServiceResponse<List<ProductSpuDocumentDto>>> GetAsync()
         {
-            ServiceResult<List<ProductSpuDocumentDto>> ret = new ServiceResult<List<ProductSpuDocumentDto>>(CorrelationIdIdProvider.Get());
+            ServiceResponse<List<ProductSpuDocumentDto>> ret = new ServiceResponse<List<ProductSpuDocumentDto>>(CorrelationIdIdProvider.Get());
 
             #region 获取doc的方式
             var rp1 = await client.GetAsync<ProductSpuDocument>("39f792fdc909816aeda1bbb97faa18a5"
@@ -220,15 +220,15 @@ namespace Mk.DemoC.ElastcSearchAppService
             List<ProductSpuDocumentDto> dtos = ObjectMapper
                 .Map<List<ProductSpuDocument>, List<ProductSpuDocumentDto>>(list);
 
-            ret.SetSuccess(dtos);
+            ret.Payload = dtos;
             return ret;
         }
 
         [HttpPost("doc/update")]
-        public async Task<ServiceResult> UpdateDocumentAsync()
+        public async Task<ServiceResponse> UpdateDocumentAsync()
         {
             string id = "39f792fdc909816aeda1bbb97faa18a5";
-            ServiceResult ret = new ServiceResult(CorrelationIdIdProvider.Get());
+            ServiceResponse ret = new ServiceResponse(CorrelationIdIdProvider.Get());
             var getResponse = await client.GetAsync<ProductSpuDocument>(id
                                         , idx => idx.Index(ElasticSearchClient.MALL_SEARCH_PRODUCT));
             var doc = getResponse.Source;
@@ -268,7 +268,7 @@ namespace Mk.DemoC.ElastcSearchAppService
             var rp3 = await client.UpdateByQueryAsync<ProductSpuDocument>(
                                 s => s
                                     .Index(ElasticSearchClient.MALL_SEARCH_PRODUCT)
-                                    .Query(q => q.MatchAll())                                    
+                                    .Query(q => q.MatchAll())
                                     .Script(ss => ss.Source("ctx._source.minPrice=8;ctx._source.currency='CNY';"))
                                 );
             if (rp3.OriginalException != null)
@@ -276,7 +276,6 @@ namespace Mk.DemoC.ElastcSearchAppService
                 throw rp3.OriginalException;
             }
 
-            ret.SetSuccess();
             return ret;
         }
 

@@ -25,12 +25,12 @@ namespace Mk.DemoB.LoadBalanceAppService
         }
 
         [HttpGet("location")]
-        public async Task<ServiceResult<string>> Location()
+        public async Task<ServiceResponse<string>> Location()
         {
-            ServiceResult<string> ret = new ServiceResult<string>(CorrelationIdIdProvider.Get());
+            ServiceResponse<string> ret = new ServiceResponse<string>(CorrelationIdIdProvider.Get());
             var context = _httpContextAccessor.HttpContext;
 
-            ret.SetSuccess($"负载|demob|{context.Request.Host.Value}|{context.Request.Path}");
+            ret.Payload = $"负载|demob|{context.Request.Host.Value}|{context.Request.Path}";
             return await Task.FromResult(ret);
         }
     }

@@ -297,7 +297,7 @@ namespace System
         }
 
         /// <summary>
-        /// 是否存在<see cref="T"/>集合中
+        /// 是否存在集合中
         /// </summary>
         /// <typeparam name="T">集合类型</typeparam>
         /// <param name="value">要判断的值</param>

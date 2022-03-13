@@ -46,9 +46,9 @@ namespace Mk.DemoB.SaleOrderAppService
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost("create")]
-        public virtual async Task<ServiceResult<SaleOrderDto>> CreateAsync(SaleOrderCreateDto input)
+        public virtual async Task<ServiceResponse<SaleOrderDto>> CreateAsync(SaleOrderCreateDto input)
         {
-            ServiceResult<SaleOrderDto> retValue = new ServiceResult<SaleOrderDto>(CorrelationIdIdProvider.Get());
+            ServiceResponse<SaleOrderDto> retValue = new ServiceResponse<SaleOrderDto>(CorrelationIdIdProvider.Get());
 
             SaleOrder saleOrder = new SaleOrder(
                 GuidGenerator.Create()
@@ -76,7 +76,7 @@ namespace Mk.DemoB.SaleOrderAppService
             await CurrentUnitOfWork.SaveChangesAsync();
 
             var dto = ObjectMapper.Map<SaleOrder, SaleOrderDto>(saleOrder);
-            retValue.SetSuccess(dto);
+            retValue.Payload = dto;
             return retValue;
 
         }
@@ -87,9 +87,9 @@ namespace Mk.DemoB.SaleOrderAppService
         /// <param name="req"></param>
         /// <returns></returns>
         [HttpGet("paging")]
-        public virtual async Task<ServiceResult<PagedResultDto<SaleOrderDto>>> GetOrderPagingAsync(GetSaleOrderPagingRequest req)
+        public virtual async Task<ServiceResponse<PagedResultDto<SaleOrderDto>>> GetOrderPagingAsync(GetSaleOrderPagingRequest req)
         {
-            ServiceResult<PagedResultDto<SaleOrderDto>> retValue = new ServiceResult<PagedResultDto<SaleOrderDto>>(CorrelationIdIdProvider.Get());
+            ServiceResponse<PagedResultDto<SaleOrderDto>> retValue = new ServiceResponse<PagedResultDto<SaleOrderDto>>(CorrelationIdIdProvider.Get());
 
             // 写个Filter处理，这样可以对每个action指定  MaxResultCount  的判断值
             req.SkipCount = req.SkipCount < 0 ? 0 : req.SkipCount;
@@ -118,7 +118,7 @@ namespace Mk.DemoB.SaleOrderAppService
 
             List<SaleOrderDto> dtos = ObjectMapper.Map<List<SaleOrder>, List<SaleOrderDto>>(pageData.Items);
             var pageResult = new PagedResultDto<SaleOrderDto>(pageData.TotalCount, dtos);
-            retValue.SetSuccess(pageResult);
+            retValue.Payload = pageResult;
             return retValue;
         }
 
@@ -128,12 +128,12 @@ namespace Mk.DemoB.SaleOrderAppService
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpPost("id/{id}")]
-        public virtual async Task<ServiceResult<SaleOrderDto>> GetByIdAsync(Guid id)
+        public virtual async Task<ServiceResponse<SaleOrderDto>> GetByIdAsync(Guid id)
         {
-            ServiceResult<SaleOrderDto> retValue = new ServiceResult<SaleOrderDto>(CorrelationIdIdProvider.Get());
+            ServiceResponse<SaleOrderDto> retValue = new ServiceResponse<SaleOrderDto>(CorrelationIdIdProvider.Get());
             var saleOrder = await _saleOrderRepository.FindAsync(id);
 
-            retValue.SetSuccess(ObjectMapper.Map<SaleOrder, SaleOrderDto>(saleOrder));
+            retValue.Payload = ObjectMapper.Map<SaleOrder, SaleOrderDto>(saleOrder);
             return retValue;
         }
 
@@ -143,14 +143,14 @@ namespace Mk.DemoB.SaleOrderAppService
         /// <param name="orderNo"></param>
         /// <returns></returns>
         [HttpPost("orderno/{orderNo}")]
-        public virtual async Task<ServiceResult<SaleOrderDto>> GetByOrderNoAsync(string orderNo)
+        public virtual async Task<ServiceResponse<SaleOrderDto>> GetByOrderNoAsync(string orderNo)
         {
             Check.NotNullOrEmpty(orderNo, nameof(orderNo));
 
-            ServiceResult<SaleOrderDto> retValue = new ServiceResult<SaleOrderDto>(CorrelationIdIdProvider.Get());
+            ServiceResponse<SaleOrderDto> retValue = new ServiceResponse<SaleOrderDto>(CorrelationIdIdProvider.Get());
             var saleOrder = await _saleOrderRepository.GetByOrderNoAsync(orderNo);
 
-            retValue.SetSuccess(ObjectMapper.Map<SaleOrder, SaleOrderDto>(saleOrder));
+            retValue.Payload = ObjectMapper.Map<SaleOrder, SaleOrderDto>(saleOrder);
             return retValue;
         }
 
@@ -160,9 +160,9 @@ namespace Mk.DemoB.SaleOrderAppService
         /// <param name="input"></param>
         /// <returns></returns>
         [HttpPost("update")]
-        public virtual async Task<ServiceResult<SaleOrderDto>> UpdateAsync(SaleOrderUpdateDto input)
+        public virtual async Task<ServiceResponse<SaleOrderDto>> UpdateAsync(SaleOrderUpdateDto input)
         {
-            ServiceResult<SaleOrderDto> retValue = new ServiceResult<SaleOrderDto>(CorrelationIdIdProvider.Get());
+            ServiceResponse<SaleOrderDto> retValue = new ServiceResponse<SaleOrderDto>(CorrelationIdIdProvider.Get());
             var saleOrder = await _saleOrderRepository.FindAsync(input.Id);
 
             // ConcurrencyStamp 并发检查，发生并发会抛出异常：AbpDbConcurrencyException
@@ -221,7 +221,7 @@ namespace Mk.DemoB.SaleOrderAppService
             saleOrder.SumDetail();
             await _saleOrderRepository.UpdateAsync(saleOrder);
             var dto = ObjectMapper.Map<SaleOrder, SaleOrderDto>(saleOrder);
-            retValue.SetSuccess(dto);
+            retValue.Payload = dto;
             return retValue;
         }
 
@@ -231,16 +231,16 @@ namespace Mk.DemoB.SaleOrderAppService
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete("{id}")]
-        public virtual async Task<ServiceResult> DeleteByIdAsync(Guid id)
+        public virtual async Task<ServiceResponse> DeleteByIdAsync(Guid id)
         {
-            ServiceResult<SaleOrderDto> retValue = new ServiceResult<SaleOrderDto>(CorrelationIdIdProvider.Get());
+            ServiceResponse<SaleOrderDto> retValue = new ServiceResponse<SaleOrderDto>(CorrelationIdIdProvider.Get());
 
             // 直接通过 id 删除实体，并不会把关联的子表一起删除。所以需要将实体和实体的子表查出来，再删除
             //await _saleOrderRepository.DeleteAsync(id);
             var saleOrder = await _saleOrderRepository.FindAsync(id);
 
             await _saleOrderRepository.DeleteAsync(saleOrder);
-            retValue.SetSuccess();
+
             return retValue;
         }
     }

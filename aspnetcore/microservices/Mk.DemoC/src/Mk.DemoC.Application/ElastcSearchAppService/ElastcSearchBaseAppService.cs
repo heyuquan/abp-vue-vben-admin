@@ -22,9 +22,9 @@ namespace Mk.DemoC.ElastcSearchAppService
         }
 
         [HttpPost("doc/search")]
-        public async Task<ServiceResult<PagedResultDto<ProductSpuDocumentDto>>> SearchAsync(EsSearchRequest req)
+        public async Task<ServiceResponse<PagedResultDto<ProductSpuDocumentDto>>> SearchAsync(EsSearchRequest req)
         {
-            ServiceResult<PagedResultDto<ProductSpuDocumentDto>> ret = new ServiceResult<PagedResultDto<ProductSpuDocumentDto>>(CorrelationIdIdProvider.Get());
+            ServiceResponse<PagedResultDto<ProductSpuDocumentDto>> ret = new ServiceResponse<PagedResultDto<ProductSpuDocumentDto>>(CorrelationIdIdProvider.Get());
 
             var shouldQuerys = new List<Func<QueryContainerDescriptor<ProductSpuDocument>, QueryContainer>>();
             shouldQuerys.Add(t => t.Match(f => f
@@ -99,7 +99,7 @@ namespace Mk.DemoC.ElastcSearchAppService
             PagedResultDto<ProductSpuDocumentDto> pageDtos = new PagedResultDto<ProductSpuDocumentDto>();
             pageDtos.Items = ObjectMapper.Map<List<ProductSpuDocument>, List<ProductSpuDocumentDto>>(productSpuDocuments);
             pageDtos.TotalCount = rp.Total;
-            ret.SetSuccess(pageDtos);
+            ret.Payload = pageDtos;
             return ret;
         }
 

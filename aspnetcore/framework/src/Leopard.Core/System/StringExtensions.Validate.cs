@@ -10,45 +10,29 @@ namespace System
     /// </summary>
     public static partial class StringExtentions
     {
-        // abp 中定义了，会冲突
-        ///// <summary>
-        ///// 是否为空
-        ///// </summary>
-        ///// <param name="source">字符串</param>
-        ///// <returns></returns>
-        //public static bool IsNullOrEmpty(this string source)
-        //{
-        //    return string.IsNullOrEmpty(source);
-        //}
+        // IsNullOrEmpty和IsNullOrWhiteSpace的区别
+        // https://www.cnblogs.com/liushen/p/6756849.html
 
         /// <summary>
         /// 是否为空
+        /// abp 中定义了同样功效的方法，会冲突，所以命名此处为2
         /// </summary>
         /// <param name="source">字符串</param>
         /// <returns></returns>
-        public static bool IsNotNullOrEmpty(this string source)
+        public static bool IsNullOrEmpty2(this string source)
         {
-            return !string.IsNullOrEmpty(source);
+            return string.IsNullOrEmpty(source);
         }
 
         /// <summary>
-        /// 指示指定的字符串是 null、空还是仅由空白字符组成
+        /// 指示指定的字符串是 null、string.empty、""、只有空格、换行符的字符串
+        /// abp 中定义了同样功效的方法，会冲突，所以命名此处为2
         /// </summary>
         /// <param name="source">要测试的字符串</param>
-        /// <returns>如果 value 参数为 null 或 System.String.Empty，或者如果 value 仅由空白字符组成，则为 true。</returns>
-        public static bool IsNullOrWhiteSpace(this string source)
+        /// <returns>如果 value 参数为 null、string.empty、""、只有空格、换行符的字符串，则为 true。</returns>
+        public static bool IsNullOrWhiteSpace2(this string source)
         {
             return string.IsNullOrWhiteSpace(source);
-        }
-
-        /// <summary>
-        /// 字符串是否为Null或Empty或WhiteSpace
-        /// </summary>
-        /// <param name="source">字符串</param>
-        /// <returns>是否为Null或Empty或WhiteSpace</returns>
-        public static bool IsNullOrEmptyOrWhiteSpace(this string source)
-        {
-            return string.IsNullOrEmpty(source) || string.IsNullOrWhiteSpace(source);
         }
 
         /// <summary>
@@ -281,6 +265,7 @@ namespace System
         /// 检查一个 string 是否为有效的 HTTP url 格式
         /// str格式：(eg：www.baidu.com|http://www.baidu.com|https://www.baidu.com)
         /// </summary>
+        /// <param name="str"></param>
         /// <param name="resultURI"></param>
         /// <returns></returns>
         public static bool ValidHttpURL(this string str, out Uri resultURI)
@@ -298,6 +283,7 @@ namespace System
         /// <summary>
         /// 检查一个 string 是否为有效的 File url 格式
         /// </summary>
+        /// <param name="str"></param>
         /// <param name="resultURI"></param>
         /// <returns></returns>
         public static bool ValidFileURL(this string str, out Uri resultURI)

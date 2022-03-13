@@ -53,7 +53,7 @@ namespace System
         /// <returns>首字母大写的字符串</returns>
         public static string ToUpperHead(this string str)
         {
-            if (str.IsNullOrEmptyOrWhiteSpace() || (str[0] >= 'A' && str[0] <= 'Z'))
+            if (str.IsNullOrWhiteSpace2() || (str[0] >= 'A' && str[0] <= 'Z'))
             {
                 return str;
             }

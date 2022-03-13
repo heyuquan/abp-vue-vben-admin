@@ -38,9 +38,9 @@ namespace Mk.DemoC.ElastcSearchAppService
         //https://www.zyccst.com/yaocai-192.html		枸杞子
         //https://www.zyccst.com/yaocai-526.html		石斛
         [HttpPost("product/capture")]
-        public async Task<ServiceResult<long>> CaptureProductDocAsync()
+        public async Task<ServiceResponse<long>> CaptureProductDocAsync()
         {
-            ServiceResult<long> ret = new ServiceResult<long>(CorrelationIdIdProvider.Get());
+            ServiceResponse<long> ret = new ServiceResponse<long>(CorrelationIdIdProvider.Get());
             long hadCaptureCount = 0;
             HttpClient client = _clientFactory.CreateClient();
 
@@ -101,16 +101,15 @@ namespace Mk.DemoC.ElastcSearchAppService
                     }
                 }
             }
-            ret.SetSuccess(hadCaptureCount);
+            ret.Payload = hadCaptureCount;
             return ret;
         }
 
         [HttpDelete("product/delete/all")]
-        public async Task<ServiceResult> DeleteProductDocAsync()
+        public async Task<ServiceResponse> DeleteProductDocAsync()
         {
-            ServiceResult ret = new ServiceResult(CorrelationIdIdProvider.Get());
+            ServiceResponse ret = new ServiceResponse(CorrelationIdIdProvider.Get());
             await _productSpuDocRepository.DeleteAllAsync();
-            ret.SetSuccess();
             return ret;
         }
 

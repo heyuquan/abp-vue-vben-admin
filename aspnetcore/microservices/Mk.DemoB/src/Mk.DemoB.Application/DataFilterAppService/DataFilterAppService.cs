@@ -51,12 +51,12 @@ namespace Mk.DemoB.DataFilterAppService
         /// <param name="req"></param>
         /// <returns></returns>
         [HttpGet("not-contain-delete-count")]
-        public virtual async Task<ServiceResult<long>> GetSaleOrderCountAsync(GetSaleOrderPagingRequest req)
+        public virtual async Task<ServiceResponse<long>> GetSaleOrderCountAsync(GetSaleOrderPagingRequest req)
         {
-            ServiceResult<long> result = new ServiceResult<long>(CorrelationIdIdProvider.Get());
+            ServiceResponse<long> result = new ServiceResponse<long>(CorrelationIdIdProvider.Get());
 
-            ServiceResult<PagedResultDto<SaleOrderDto>> retValue = await _saleOrderAppService.GetOrderPagingAsync(req);
-            result.SetSuccess(retValue.Data.TotalCount);
+            ServiceResponse<PagedResultDto<SaleOrderDto>> retValue = await _saleOrderAppService.GetOrderPagingAsync(req);
+            result.Payload = retValue.Payload.TotalCount;
 
             return result;
         }
@@ -67,14 +67,14 @@ namespace Mk.DemoB.DataFilterAppService
         /// <param name="req"></param>
         /// <returns></returns>
         [HttpGet("contain-delete-count")]
-        public virtual async Task<ServiceResult<long>> GetAllSaleOrderCountAsync(GetSaleOrderPagingRequest req)
+        public virtual async Task<ServiceResponse<long>> GetAllSaleOrderCountAsync(GetSaleOrderPagingRequest req)
         {
-            ServiceResult<long> result = new ServiceResult<long>(CorrelationIdIdProvider.Get());
+            ServiceResponse<long> result = new ServiceResponse<long>(CorrelationIdIdProvider.Get());
 
             using (_dataFilter.Disable<ISoftDelete>())
             {
-                ServiceResult<PagedResultDto<SaleOrderDto>> retValue = await _saleOrderAppService.GetOrderPagingAsync(req);
-                result.SetSuccess(retValue.Data.TotalCount);
+                ServiceResponse<PagedResultDto<SaleOrderDto>> retValue = await _saleOrderAppService.GetOrderPagingAsync(req);
+                result.Payload = retValue.Payload.TotalCount;
             }
 
             return result;
