@@ -2,7 +2,7 @@ using Leopard;
 using Leopard.AspNetCore.Mvc.Filters;
 using Leopard.Buiness.Shared;
 using Leopard.Consul;
-using Leopard.Utils;
+using Leopard.Host;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,7 +33,7 @@ namespace Mk.DemoB
         typeof(AbpSwashbuckleModule),
         typeof(LeopardConsulModule)
         )]
-    public class DemoBHttpApiHostModule  : HostCommonModule
+    public class DemoBHttpApiHostModule  : CommonHostModule
     {
         public DemoBHttpApiHostModule() : base(ApplicationServiceType.ApiHost, "MkDemoB", MultiTenancyConsts.IsEnabled)
         { }

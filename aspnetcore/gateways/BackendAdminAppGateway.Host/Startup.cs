@@ -1,8 +1,8 @@
-﻿using Leopard.Utils;
+﻿using Leopard.Host;
 
 namespace BackendAdminAppGateway.Host
 {
-    public class Startup : HostCommonStartup<BackendAdminAppGatewayHostModule>
+    public class Startup : CommonHostStartup<BackendAdminAppGatewayHostModule>
     {
     }
 }

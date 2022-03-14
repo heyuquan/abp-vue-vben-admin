@@ -1,8 +1,8 @@
-﻿using Leopard.Utils;
+﻿using Leopard.Host;
 
 namespace InternalGateway.Host
 {
-    public class Startup : HostCommonStartup<InternalGatewayHostModule>
+    public class Startup : CommonHostStartup<InternalGatewayHostModule>
     {
     }
 }

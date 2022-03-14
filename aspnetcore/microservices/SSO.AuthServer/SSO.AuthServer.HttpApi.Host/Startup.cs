@@ -1,8 +1,8 @@
-﻿using Leopard.Utils;
+﻿using Leopard.Host;
 
 namespace SSO.AuthServer
 {
-    public class Startup : HostCommonStartup<AuthServerHttpApiHostModule>
+    public class Startup : CommonHostStartup<AuthServerHttpApiHostModule>
     {
     }
 }

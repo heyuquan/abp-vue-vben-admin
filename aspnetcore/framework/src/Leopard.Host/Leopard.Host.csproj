@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <Import Project="..\..\..\..\configureawait.props" />
-  <Import Project="..\..\..\..\common.props" />
-  
+	<Import Project="..\..\..\configureawait.props" />
+	<Import Project="..\..\..\common.props" />
+
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
 		<RootNamespace />
@@ -11,16 +11,16 @@
 		<PackageReference Include="Volo.Abp.Autofac" Version="4.4.2" />
 		<PackageReference Include="Volo.Abp.Caching.StackExchangeRedis" Version="4.4.2" />
 		<PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy" Version="4.4.2" />
-    <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="3.0.1" />
+		<PackageReference Include="IdentityServer4.AccessTokenValidation" Version="3.0.1" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="$(MicrosoftPackageVersion)" />
 		<PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="$(MicrosoftPackageVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Hosting" Version="$(MicrosoftPackageVersion)" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\Leopard.AspNetCore.Mvc\Leopard.AspNetCore.Mvc.csproj" />
-		<ProjectReference Include="..\..\Leopard.AspNetCore.Serilog\Leopard.AspNetCore.Serilog.csproj" />
-		<ProjectReference Include="..\..\Leopard.AspNetCore.Swashbuckle\Leopard.AspNetCore.Swashbuckle.csproj" />
+		<ProjectReference Include="..\Leopard.AspNetCore.Mvc\Leopard.AspNetCore.Mvc.csproj" />
+		<ProjectReference Include="..\Leopard.AspNetCore.Serilog\Leopard.AspNetCore.Serilog.csproj" />
+		<ProjectReference Include="..\Leopard.AspNetCore.Swashbuckle\Leopard.AspNetCore.Swashbuckle.csproj" />
 	</ItemGroup>
 
 </Project>

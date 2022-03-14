@@ -1,17 +1,18 @@
 using Leopard.Helpers;
+using Leopard.Host;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Ocelot.DependencyInjection;
 
-namespace Leopard.Utils
+namespace Leopard.Gateway
 {
     // 备注：为什么不做成 Program 的基类。因为Program中必须要求显示定义 public static int Main(string[] args) 方法
     /// <summary>
     /// 共用 Program
     /// </summary>
-    public class GatewayCommonProgram : CommonProgram
+    public class CommonGatewayProgram : CommonProgram
     {
-        public GatewayCommonProgram(ApplicationServiceType serviceType, string assemblyName) : base(serviceType, assemblyName)
+        public CommonGatewayProgram(ApplicationServiceType serviceType, string assemblyName) : base(serviceType, assemblyName)
         {
         }
 

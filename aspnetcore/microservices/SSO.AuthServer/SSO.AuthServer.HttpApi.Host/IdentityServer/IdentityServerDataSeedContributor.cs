@@ -235,7 +235,6 @@ namespace SSO.AuthServer.IdentityServer
         /// <param name="frontChannelLogoutUri">指定客户端的注销URI，以用于基于HTTP的前端通道注销。</param>
         /// <param name="allowAccessTokensViaBrowser">允许将token通过浏览器传递</param>
         /// <param name="permissions">默认赋权</param>
-        /// <param name=""></param>
         /// <returns></returns>
         private async Task<Client> CreateClientAsync(
             string clientId,

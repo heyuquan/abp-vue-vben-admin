@@ -1,10 +1,9 @@
-using Leopard;
 using Leopard.AspNetCore.Serilog;
 using Leopard.AspNetCore.Swashbuckle;
 using Leopard.BackendAdmin;
 using Leopard.Buiness.Shared;
 using Leopard.Consul;
-using Leopard.Utils;
+using Leopard.Gateway;
 using Volo.Abp.Autofac;
 using Volo.Abp.Modularity;
 using Volo.Abp.Swashbuckle;
@@ -20,7 +19,7 @@ namespace BackendAdminAppGateway.Host
 
         typeof(LeopardBackendAdminHttpApiModule)
     )]
-    public class BackendAdminAppGatewayHostModule : GatewayCommonModule
+    public class BackendAdminAppGatewayHostModule : CommonGatewayModule
     {
         public BackendAdminAppGatewayHostModule() : base(ModuleIdentity.BackendAdminAppGateway.ServiceType, ModuleIdentity.BackendAdminAppGateway.Name, false)
         { }        

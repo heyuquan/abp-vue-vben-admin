@@ -1,8 +1,8 @@
-﻿using Leopard.Utils;
+﻿using Leopard.Host;
 
 namespace PublicWebSiteGateway.Host
 {
-    public class Startup : HostCommonStartup<PublicWebSiteGatewayHostModule>
+    public class Startup : CommonHostStartup<PublicWebSiteGatewayHostModule>
     {
     }
 }

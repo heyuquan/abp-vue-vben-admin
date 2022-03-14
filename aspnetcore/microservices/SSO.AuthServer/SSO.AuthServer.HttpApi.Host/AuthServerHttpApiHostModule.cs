@@ -1,7 +1,7 @@
 using Leopard;
 using Leopard.Buiness.Shared;
 using Leopard.Consul;
-using Leopard.Utils;
+using Leopard.Host;
 using Microsoft.Extensions.DependencyInjection;
 using SSO.AuthServer.Localization;
 using Volo.Abp;
@@ -42,7 +42,7 @@ namespace SSO.AuthServer
         typeof(LeopardModule),
         typeof(LeopardConsulModule)
     )]
-    public class AuthServerHttpApiHostModule : HostCommonModule
+    public class AuthServerHttpApiHostModule : CommonHostModule
     {
         public AuthServerHttpApiHostModule() : base(ModuleIdentity.Auth.ServiceType, ModuleIdentity.Auth.Name, MultiTenancyConsts.IsEnabled)
         { }

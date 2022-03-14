@@ -1,8 +1,8 @@
-﻿using Leopard.Utils;
+﻿using Leopard.Host;
 
 namespace Leopard.BackendAdmin
 {
-    public class Startup : HostCommonStartup<LeopardBackendAdminHttpApiHostModule>
+    public class Startup : CommonHostStartup<LeopardBackendAdminHttpApiHostModule>
     {
     }
 }

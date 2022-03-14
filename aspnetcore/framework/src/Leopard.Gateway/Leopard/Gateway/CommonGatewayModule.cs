@@ -1,7 +1,7 @@
 using Leopard.AspNetCore.Mvc;
 using Leopard.AspNetCore.Serilog;
 using Leopard.AspNetCore.Swashbuckle;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Leopard.Host;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Ocelot.DependencyInjection;
@@ -11,7 +11,7 @@ using Volo.Abp;
 using Volo.Abp.Caching.StackExchangeRedis;
 using Volo.Abp.Modularity;
 
-namespace Leopard.Utils
+namespace Leopard.Gateway
 {
 
     [DependsOn(
@@ -20,9 +20,9 @@ namespace Leopard.Utils
         typeof(LeopardAspNetCoreSwashbuckleModule),
         typeof(LeopardAspNetCoreMvcModule)
     )]
-    public class GatewayCommonModule : HostCommonModule
+    public class CommonGatewayModule : CommonHostModule
     {
-        public GatewayCommonModule(
+        public CommonGatewayModule(
             ApplicationServiceType serviceType
             , string moduleKey
             , bool isEnableMultiTenancy) : base(serviceType, moduleKey, isEnableMultiTenancy)

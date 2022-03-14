@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <Import Project="..\..\..\..\configureawait.props" />
-  <Import Project="..\..\..\..\common.props" />
+  <Import Project="..\..\..\configureawait.props" />
+  <Import Project="..\..\..\common.props" />
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -10,8 +10,8 @@
   <ItemGroup>
     <PackageReference Include="Ocelot" Version="17.0.0" />
     <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="3.0.1" />
-    <ProjectReference Include="..\..\Leopard.Consul\Leopard.Consul.csproj" />
-    <ProjectReference Include="..\Leopard.Utils.Host\Leopard.Utils.Host.csproj" />
+    <ProjectReference Include="..\Leopard.Consul\Leopard.Consul.csproj" />
+    <ProjectReference Include="..\Leopard.Host\Leopard.Host.csproj" />
   </ItemGroup>
 
 </Project>

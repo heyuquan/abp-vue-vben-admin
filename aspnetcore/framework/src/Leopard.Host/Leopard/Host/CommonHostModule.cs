@@ -32,7 +32,7 @@ using Volo.Abp.MultiTenancy;
 using Volo.Abp.Security.Encryption;
 using Volo.Abp.Timing;
 
-namespace Leopard.Utils
+namespace Leopard.Host
 {
 
     [DependsOn(
@@ -41,7 +41,7 @@ namespace Leopard.Utils
         typeof(LeopardAspNetCoreSwashbuckleModule),
         typeof(LeopardAspNetCoreMvcModule)
     )]
-    public class HostCommonModule : AbpModule
+    public class CommonHostModule : AbpModule
     {
         /// <summary>
         /// 模块名（模块key）eg：Leopard.Saas
@@ -54,7 +54,7 @@ namespace Leopard.Utils
 
         protected ApplicationServiceType ApplicationServiceType { get; private set; }
 
-        public HostCommonModule(
+        public CommonHostModule(
             ApplicationServiceType serviceType
             , string moduleKey
             , bool isEnableMultiTenancy) : base()

@@ -1,6 +1,5 @@
-using Leopard;
 using Leopard.Buiness.Shared;
-using Leopard.Utils;
+using Leopard.Gateway;
 
 namespace InternalGateway.Host
 {
@@ -8,7 +7,7 @@ namespace InternalGateway.Host
     {
         public static int Main(string[] args)
         {
-            GatewayCommonProgram commonProgram = new GatewayCommonProgram(ModuleIdentity.InternalGateway.ServiceType, ModuleIdentity.InternalGateway.Name);
+            CommonGatewayProgram commonProgram = new CommonGatewayProgram(ModuleIdentity.InternalGateway.ServiceType, ModuleIdentity.InternalGateway.Name);
             return commonProgram.CommonMain<Startup>(args);
         }
     }

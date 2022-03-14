@@ -1,7 +1,7 @@
 using Leopard;
 using Leopard.Buiness.Shared;
 using Leopard.Consul;
-using Leopard.Utils;
+using Leopard.Host;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -28,7 +28,7 @@ namespace Mk.DemoC
         typeof(AbpEventBusRabbitMqModule),
         typeof(LeopardConsulModule)
         )]
-    public class DemoCHttpApiHostModule : HostCommonModule
+    public class DemoCHttpApiHostModule : CommonHostModule
     {
         public DemoCHttpApiHostModule() : base(ApplicationServiceType.ApiHost, "MkDemoC", MultiTenancyConsts.IsEnabled)
         { }

@@ -1,9 +1,8 @@
-using Leopard;
 using Leopard.Buiness.Shared;
 using Leopard.Consul;
+using Leopard.Host;
 using Leopard.Saas;
 using Leopard.Saas.EntityFrameworkCore;
-using Leopard.Utils;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp;
@@ -43,7 +42,7 @@ namespace SSO.AuthServer
 
         typeof(LeopardConsulModule)
         )]
-    public class AuthServerIdentityServerModule : HostCommonModule
+    public class AuthServerIdentityServerModule : CommonHostModule
     {
         public AuthServerIdentityServerModule() : base(ModuleIdentity.AuthIdentityServer.ServiceType, ModuleIdentity.AuthIdentityServer.Name, MultiTenancyConsts.IsEnabled)
         { }

@@ -1,7 +1,7 @@
 using Leopard.BackendAdmin.EntityFrameworkCore;
 using Leopard.Buiness.Shared;
 using Leopard.Consul;
-using Leopard.Utils;
+using Leopard.Host;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,7 +25,7 @@ namespace Leopard.BackendAdmin
         typeof(LeopardBackendAdminEntityFrameworkCoreModule),
         typeof(LeopardBackendAdminHttpApiModule)
     )]
-    public class LeopardBackendAdminHttpApiHostModule : HostCommonModule
+    public class LeopardBackendAdminHttpApiHostModule : CommonHostModule
     {
         public LeopardBackendAdminHttpApiHostModule() : base(ModuleIdentity.BackendAdmin.ServiceType, ModuleIdentity.BackendAdmin.Name, MultiTenancyConsts.IsEnabled)
         { }

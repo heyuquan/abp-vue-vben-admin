@@ -3,7 +3,7 @@ using Leopard.AspNetCore.Serilog;
 using Leopard.AspNetCore.Swashbuckle;
 using Leopard.Buiness.Shared;
 using Leopard.Consul;
-using Leopard.Utils;
+using Leopard.Gateway;
 using Volo.Abp.Autofac;
 using Volo.Abp.Modularity;
 using Volo.Abp.Swashbuckle;
@@ -18,7 +18,7 @@ namespace InternalGateway.Host
         typeof(LeopardConsulModule),
         typeof(LeopardAspNetCoreSwashbuckleModule)
         )]
-    public class InternalGatewayHostModule : GatewayCommonModule
+    public class InternalGatewayHostModule : CommonGatewayModule
     {
         public InternalGatewayHostModule() : base(ModuleIdentity.InternalGateway.ServiceType, ModuleIdentity.InternalGateway.Name, false)
         { }

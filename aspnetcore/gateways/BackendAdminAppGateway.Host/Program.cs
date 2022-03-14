@@ -1,6 +1,5 @@
-using Leopard;
 using Leopard.Buiness.Shared;
-using Leopard.Utils;
+using Leopard.Gateway;
 
 namespace BackendAdminAppGateway.Host
 {
@@ -8,7 +7,7 @@ namespace BackendAdminAppGateway.Host
     {
         public static int Main(string[] args)
         {
-            GatewayCommonProgram commonProgram = new GatewayCommonProgram(ModuleIdentity.BackendAdminAppGateway.ServiceType, ModuleIdentity.BackendAdminAppGateway.Name);
+            CommonGatewayProgram commonProgram = new CommonGatewayProgram(ModuleIdentity.BackendAdminAppGateway.ServiceType, ModuleIdentity.BackendAdminAppGateway.Name);
             return commonProgram.CommonMain<Startup>(args);
         }
     }

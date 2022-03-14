@@ -9,7 +9,7 @@ using System;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 
-namespace Leopard.Utils
+namespace Leopard.Host
 {
     // 备注：为什么不做成 Program 的基类。因为Program中必须要求显示定义 public static int Main(string[] args) 方法
     /// <summary>

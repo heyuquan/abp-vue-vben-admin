@@ -2,9 +2,9 @@
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.Modularity;
 
-namespace Leopard.Utils
+namespace Leopard.Host
 {
-    public class HostCommonStartup<T> where T : AbpModule
+    public class CommonHostStartup<T> where T : AbpModule
     {
         public void ConfigureServices(IServiceCollection services)
         {

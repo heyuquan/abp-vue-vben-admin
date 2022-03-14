@@ -150,7 +150,7 @@ namespace System
         #endregion
 
         /// <summary>
-        /// 再进行Get请求时，调用此方法将对象转化为url参数(多个&符号连接，不带?)
+        /// 再进行Get请求时，调用此方法将对象转化为url参数(多个 与 符号连接，不带?)
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>

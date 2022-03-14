@@ -1,8 +1,8 @@
-﻿using Leopard.Utils;
+﻿using Leopard.Host;
 
 namespace Mk.DemoC
 {
-    public class Startup : HostCommonStartup<DemoCHttpApiHostModule>
+    public class Startup : CommonHostStartup<DemoCHttpApiHostModule>
     {
     }
 }
