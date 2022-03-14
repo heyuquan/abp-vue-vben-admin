@@ -4,12 +4,12 @@ namespace Mk.DemoB.Domain.Consts.ExchangeRates
 {
     public class ExchangeRateConsts
     {
-        public const int MaxCurrencyCodeFromLength = StringLengthConsts.MaxCurrencyCodeLength;
+        public const int MaxCurrencyCodeFromLength = StringLengthConvention.MaxCurrencyCodeLength;
 
-        public const int MaxCurrencyCodeToLength = StringLengthConsts.MaxCurrencyCodeLength;
+        public const int MaxCurrencyCodeToLength = StringLengthConvention.MaxCurrencyCodeLength;
 
         public const int MaxCaptureBatchNumberLength = ExchangeRateCaptureBatchConsts.MaxCaptureBatchNumberLength;
 
-        public const int MaxDataFromUrlLength = StringLengthConsts.MaxUrlLength;
+        public const int MaxDataFromUrlLength = StringLengthConvention.MaxUrlLength;
     }
 }

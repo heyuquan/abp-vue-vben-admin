@@ -5,9 +5,9 @@ using System.Text;
 namespace Leopard.Buiness.Consts
 {
     /// <summary>
-    /// 通用字符串长度
+    /// 通用字符串长度约定
     /// </summary>
-    public class StringLengthConsts
+    public class StringLengthConvention
     {
         /// <summary>
         /// 人名长度
