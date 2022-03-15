@@ -7,12 +7,8 @@
 
 
 
-Leopard/Url
 
 
-暂时不拆。管他需不需要模块，都使用abp
-把 Leopard 中的帮助类，移到 Leopard.Utils 项目中。   （拆吧，以后还有比较大的工具功能eg：Leopard.Utils.** ）
-这样如果有小项目不想使用abp这个框架，直接引用 Leopard.Utils 和 Leopard.Shared 两个程序集即可。没有模块引用的，移入Leopard.Pure文件夹
-（Pure：纯净）
+
 
 

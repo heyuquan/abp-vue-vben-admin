@@ -9,11 +9,11 @@
 	</PropertyGroup>
 	
 	<ItemGroup>
+		<PackageReference Include="Volo.Abp.Core" Version="4.4.2" />
+		<PackageReference Include="Volo.Abp.Http" Version="4.4.2" />
 		<PackageReference Include="Mono.Posix.NETStandard" Version="1.0.0" />
 		<PackageReference Include="System.Drawing.Common" Version="6.0.0" />
 		<PackageReference Include="System.Security.Principal.Windows" Version="5.0.0" />
-		<PackageReference Include="Volo.Abp.Core" Version="4.4.2" />
-		<PackageReference Include="Volo.Abp.Http" Version="4.4.2" />
 	</ItemGroup>
 
 	<ItemGroup>

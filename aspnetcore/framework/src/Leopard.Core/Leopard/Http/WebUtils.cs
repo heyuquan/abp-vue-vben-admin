@@ -16,13 +16,19 @@ namespace Leopard.Http
         private int _timeout = 100000;
 
         /// <summary>
-        /// 请求与响应的超时时间
+        /// 请求与响应的超时时间（毫秒）
+        /// 默认100000毫秒（即100秒）
         /// </summary>
         public int Timeout
         {
             get { return this._timeout; }
             set { this._timeout = value; }
         }
+
+        /// <summary>
+        /// UserAgent
+        /// </summary>
+        public string UserAgent { get; set; } = string.Empty;
 
         /// <summary>
         /// 执行HTTP POST请求。
@@ -147,12 +153,12 @@ namespace Leopard.Http
             return GetResponseAsString(rsp, encoding);
         }
 
-        public bool CheckValidationResult(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors errors)
+        private bool CheckValidationResult(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors errors)
         { //直接确认，否则打不开
             return true;
         }
 
-        public HttpWebRequest GetWebRequest(string url, string method)
+        private HttpWebRequest GetWebRequest(string url, string method)
         {
             HttpWebRequest req = null;
             if (url.Contains("https"))
@@ -168,7 +174,7 @@ namespace Leopard.Http
             req.ServicePoint.Expect100Continue = false;
             req.Method = method;
             req.KeepAlive = true;
-            // req.UserAgent = "Top4Net";
+            req.UserAgent = UserAgent;
             req.Timeout = this._timeout;
 
             return req;
@@ -180,7 +186,7 @@ namespace Leopard.Http
         /// <param name="rsp">响应流对象</param>
         /// <param name="encoding">编码方式</param>
         /// <returns>响应文本</returns>
-        public string GetResponseAsString(HttpWebResponse rsp, Encoding encoding)
+        private string GetResponseAsString(HttpWebResponse rsp, Encoding encoding)
         {
             System.IO.Stream stream = null;
             StreamReader reader = null;
