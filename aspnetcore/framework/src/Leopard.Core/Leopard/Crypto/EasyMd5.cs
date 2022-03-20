@@ -7,7 +7,7 @@ using System.Text;
 namespace Leopard.Crypto
 {
     /// <summary>
-    /// MD5 Hash和验证
+    /// MD5 Hash和验证（md5不可逆加密方式，所以没有解码方法）
     /// （使用 CryptoGuide 静态类进行访问）
     /// </summary>
     public class EasyMd5
@@ -38,11 +38,21 @@ namespace Leopard.Crypto
         {
             return Hash(data, Encoding.UTF8);
         }
+
+        /// <summary>
+        /// Md5 Hash
+        /// </summary>
+        /// <returns></returns>
         public string Hash(string data, Encoding encode)
         {
             using (var md5 = MD5.Create())
                 return GetMd5Hash(md5.ComputeHash(encode.GetBytes(data)));
         }
+
+        /// <summary>
+        /// Md5 Hash
+        /// </summary>
+        /// <returns></returns>
         public string Hash(FileStream data)
         {
             using (var md5 = MD5.Create())
@@ -57,12 +67,18 @@ namespace Leopard.Crypto
             return Verify(data, hash, Encoding.UTF8);
         }
 
+        /// <summary>
+        /// Md5 验证
+        /// </summary>
         public bool Verify(string data, string hash, Encoding encode)
         {
             using (var md5 = MD5.Create())
                 return VerifyMd5Hash(md5.ComputeHash(encode.GetBytes(data)), hash);
         }
 
+        /// <summary>
+        /// Md5 验证
+        /// </summary>
         public bool Verify(FileStream data, string hash)
         {
             using (var md5 = MD5.Create())
