@@ -3,10 +3,14 @@ using System.IO.Compression;
 
 namespace Leopard.Compression
 {
+
+    // 1、GZIP：可以减少存储空间，通过网络传输文件时，可以减少传输的时间。
+    // 2、ZIP：支持基于对称加密系统的一个简单的密码，已知有严重的缺陷，已知明文攻击，字典攻击和暴力攻击。
+
     /// <summary>
     /// zip压缩
     /// </summary>
-    public class ZipCompression
+    public class GZipCompression
     {
         //压缩字节
         //1.创建压缩的数据流 
@@ -51,8 +55,6 @@ namespace Leopard.Compression
                     }
                 }
             }
-
-             
         }
     }
 }

@@ -10,18 +10,24 @@ namespace Leopard.Crypto
     /// MD5 Hash和验证（md5不可逆加密方式，所以没有解码方法）
     /// （使用 CryptoGuide 静态类进行访问）
     /// </summary>
-    public class EasyMd5
+    public class Md5Crypto
     {
         /// <summary>
         /// 使用 CryptoGuide 静态类进行访问
         /// </summary>
-        internal EasyMd5() { }
+        internal Md5Crypto() { }
 
+        /// <summary>
+        /// hex(md5) 将md5的byte数组转为十六进制字符串
+        ///  十六进制（简写为hex或下标16）
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         private string GetMd5Hash(byte[] data)
         {
             StringBuilder sBuilder = new StringBuilder();
             for (int i = 0; i < data.Length; i++)
-                sBuilder.Append(data[i].ToString("x2"));
+                sBuilder.Append(data[i].ToString("x2"));    // 小写十六进制。 另外大写：ToString("X2")
             return sBuilder.ToString();
         }
 
@@ -31,7 +37,7 @@ namespace Leopard.Crypto
         }
 
         /// <summary>
-        /// Md5 Hash（默认UTF8编码）
+        /// hex(md5)  md5十六进制字符串（默认UTF8编码）
         /// </summary>
         /// <returns></returns>
         public string Hash(string data)
@@ -40,7 +46,7 @@ namespace Leopard.Crypto
         }
 
         /// <summary>
-        /// Md5 Hash
+        /// hex(md5)  md5十六进制字符串
         /// </summary>
         /// <returns></returns>
         public string Hash(string data, Encoding encode)
@@ -50,7 +56,7 @@ namespace Leopard.Crypto
         }
 
         /// <summary>
-        /// Md5 Hash
+        /// hex(md5)  md5十六进制字符串
         /// </summary>
         /// <returns></returns>
         public string Hash(FileStream data)

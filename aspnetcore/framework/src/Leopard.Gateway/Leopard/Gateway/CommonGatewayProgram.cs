@@ -20,7 +20,7 @@ namespace Leopard.Gateway
         {
             base.ConfigureAppConfiguration(hostingContext, config);
             config.AddOcelot(
-                PathHelper.GetRuntimeDirectory($"./Ocelot_{hostingContext.HostingEnvironment?.EnvironmentName}")
+                FileHelper.GetRuntimeDirectory($"./Ocelot_{hostingContext.HostingEnvironment?.EnvironmentName}")
                 , hostingContext.HostingEnvironment?.EnvironmentName);
         }
     }

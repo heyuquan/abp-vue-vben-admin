@@ -101,6 +101,7 @@ namespace Leopard.Helpers
 
         /// <summary>
         /// 将c# DateTime时间格式转换为Unix时间戳格式(默认精度为毫秒)
+        /// (从1970年1月1日到现在)
         /// </summary>
         /// <param name="datetime">时间</param>
         /// <param name="digit">时间精度</param>

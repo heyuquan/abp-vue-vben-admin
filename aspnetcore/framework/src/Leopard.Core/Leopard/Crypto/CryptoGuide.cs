@@ -23,8 +23,8 @@ namespace Leopard.Crypto
         public static Base64 Base64 { get { return _base64; } }
 
 
-        private static readonly EasyMd5 _easyMd5 = new EasyMd5();
-        public static EasyMd5 EasyMd5 { get { return _easyMd5; } }
+        private static readonly Md5Crypto _md5 = new Md5Crypto();
+        public static Md5Crypto Md5 { get { return _md5; } }
 
 
         private static readonly RSACrypto _rsa = new RSACrypto();

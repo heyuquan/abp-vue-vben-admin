@@ -1,0 +1,15 @@
+﻿
+
+
+#、uap-csharp
+https://github.com/ua-parser/uap-csharp.git
+对 Request.Headers["User-Agent"] 做解析
+能解析出：使用的浏览器、浏览器版本、使用的设备（IOS、Iphone、android、windows、linux、Mac OS）等等
+
+#、ObjectsComparer 一个对象到对象的比较器
+场景：获取两个对象之间值是否有改变，如果没有改变，我们就给出"数据未修改，请问是否关闭窗体“等提示
+https://github.com/ValeraT1982/ObjectsComparer
+https://mp.weixin.qq.com/s/YRTARPbj3ql6LEs7O-3-2w
+
+
+

@@ -17,6 +17,68 @@ namespace Leopard.Crypto
         /// </summary>
         internal Base64() { }
 
+        #region  判断是否base64值
+
+        private static readonly char[] CA = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".ToCharArray();
+        private static readonly int[] IA = InitIA();
+        private static int[] InitIA()
+        {
+            int len = 256;
+            int[] a = new int[len];
+            for (int i = 0; i < len; i++)
+            {
+                a[i] = -1;
+            }
+
+            for (int i = 0, iS = CA.Length; i < iS; i++)
+            {
+                a[CA[i]] = i;
+            }
+            a['='] = 0;
+            return a;
+        }
+
+        /// <summary>
+        /// 判断是否base64值
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public bool IsBase64Value(string str)
+        {
+            // Check special case
+            int sLen = str != null ? str.Length : 0;
+            if (sLen == 0)
+                return false;
+
+            // Count illegal characters (including '\r', '\n') to know what size the returned array will be,
+            // so we don't have to reallocate & copy it later.
+            int sepCnt = 0; // Number of separator characters. (Actually illegal characters, but that's a bonus...)
+            for (int i = 0; i < sLen; i++)  // If input is "pure" (I.e. no line separators or illegal chars) base64 this loop can be commented out.
+            {
+                char currentChar = str[i];
+                if (currentChar >= IA.Length)
+                {
+                    return false;
+                }
+
+                if (IA[currentChar] < 0)
+                {
+                    sepCnt++;
+                }
+
+            }
+
+
+            // Check so that legal chars (including '=') are evenly divideable by 4 as specified in RFC 2045.
+            if ((sLen - sepCnt) % 4 != 0)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        #endregion
+
         /// <summary>
         /// Base64加密
         /// </summary>
