@@ -26,7 +26,7 @@ public class AESCrypto
     /// </summary>
     /// <param name="password">用户输入的口令</param>
     /// <returns>返回包含utf8密钥和utf8向量的元组</returns>
-    public (string Key, string IV) GenerateKeyAndIV(string password)
+    public (byte[] Key, byte[] IV) GenerateKeyAndIV(string password)
     {
         byte[] key = new byte[32];
         byte[] iv = new byte[16];
@@ -42,7 +42,18 @@ public class AESCrypto
         Array.Copy(hash, 0, key, 0, 32);//生成256位密钥（32*8=256）
         Array.Copy(hash, 32, iv, 0, 16);//生成128位向量（16*8=128）
 
-        return (Key: Encoding.UTF8.GetString(key), IV: Encoding.UTF8.GetString(iv));
+        return (Key: key, IV: iv);
+    }
+
+    /// <summary>
+    /// 使用用户口令，生成符合AES标准的key和iv。
+    /// </summary>
+    /// <param name="password">用户输入的口令</param>
+    /// <returns>返回包含utf8密钥和utf8向量的元组</returns>
+    public (string Key, string IV) GenerateKeyAndIV_Utf8(string password)
+    {
+        var keyAndIv = GenerateKeyAndIV(password);
+        return (Key: Encoding.UTF8.GetString(keyAndIv.Key), IV: Encoding.UTF8.GetString(keyAndIv.IV));
     }
 
 
@@ -74,18 +85,30 @@ public class AESCrypto
         byte[] keyBytes = UTF8Encoding.UTF8.GetBytes(key_utf8);
         byte[] ivBytes = UTF8Encoding.UTF8.GetBytes(iv_utf8);
 
-        //创建加密器对象（加解密方法不同处仅仅这一句话）
-        var encryptor = GetCryptoAlgorithm().CreateEncryptor(keyBytes, ivBytes);
-
         byte[] encrypted;
-        using (MemoryStream memoryStream = new MemoryStream())
+        using (Aes aes = Aes.Create())
         {
-            using (CryptoStream cryptoStream = new CryptoStream(memoryStream, encryptor, CryptoStreamMode.Write))
-            {
-                cryptoStream.Write(source, 0, source.Length);   //对原数组加密并写入流中
-                cryptoStream.FlushFinalBlock();
+            //设定密钥和向量
+            aes.Key = keyBytes;
+            aes.IV = ivBytes;
+            //设定运算模式和填充模式
+            aes.Mode = CipherMode.CBC;//默认
+            aes.Padding = PaddingMode.PKCS7;//默认
+            // KeySize 默认 256
+            aes.KeySize = 256;
+            aes.BlockSize = 128;
 
-                encrypted = memoryStream.ToArray();
+            //创建加密器对象
+            var encryptor = aes.CreateEncryptor(aes.Key, aes.IV);
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                using (CryptoStream cryptoStream = new CryptoStream(memoryStream, encryptor, CryptoStreamMode.Write))
+                {
+                    cryptoStream.Write(source, 0, source.Length);   //对原数组加密并写入流中
+                    cryptoStream.FlushFinalBlock();     //使用Read模式不能有此句，但write模式必须要有。
+
+                    encrypted = memoryStream.ToArray();
+                }
             }
         }
 
@@ -121,38 +144,99 @@ public class AESCrypto
         byte[] keyBytes = UTF8Encoding.UTF8.GetBytes(key_utf8);
         byte[] ivBytes = UTF8Encoding.UTF8.GetBytes(iv_utf8);
 
-        //创建解密器对象（加解密方法不同处仅仅这一句话）
-        var decryptor = GetCryptoAlgorithm().CreateDecryptor(keyBytes, ivBytes);
-
         byte[] decrypted;
-        using (MemoryStream memoryStream = new MemoryStream(source))
+        using (Aes aes = Aes.Create())
         {
-            using (CryptoStream cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Read))
+            //设定密钥和向量
+            aes.Key = keyBytes;
+            aes.IV = ivBytes;
+            //设定运算模式和填充模式
+            aes.Mode = CipherMode.CBC;//默认
+            aes.Padding = PaddingMode.PKCS7;//默认
+            // KeySize 默认 256
+            aes.KeySize = 256;
+            aes.BlockSize = 128;
+
+            //创建解密器对象
+            var decryptor = aes.CreateDecryptor(aes.Key, aes.IV);
+            using (MemoryStream memoryStream = new MemoryStream(source))
             {
-                byte[] buffer_T = new byte[source.Length];/*--s1:创建临时数组，用于包含可用字节+无用字节--*/
+                using (CryptoStream cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Read))
+                {
+                    byte[] buffer_T = new byte[source.Length];/*--s1:创建临时数组，用于包含可用字节+无用字节--*/
 
-                int i = cryptoStream.Read(buffer_T, 0, source.Length);/*--s2:对加密数组进行解密，并通过i确定实际多少字节可用--*/
+                    int i = cryptoStream.Read(buffer_T, 0, source.Length);/*--s2:对加密数组进行解密，并通过i确定实际多少字节可用--*/
 
-                //csDecrypt.FlushFinalBlock();//使用Read模式不能有此句，但write模式必须要有。
+                    //cryptoStream.FlushFinalBlock();     //使用Read模式不能有此句，但write模式必须要有。
 
-                decrypted = new byte[i];/*--s3:创建只容纳可用字节的数组--*/
+                    decrypted = new byte[i];/*--s3:创建只容纳可用字节的数组--*/
 
-                Array.Copy(buffer_T, 0, decrypted, 0, i);/*--s4:从bufferT拷贝出可用字节到decrypted--*/
+                    Array.Copy(buffer_T, 0, decrypted, 0, i);/*--s4:从bufferT拷贝出可用字节到decrypted--*/
+                }
             }
         }
         return decrypted;
     }
 
 
-    private RijndaelManaged GetCryptoAlgorithm()
-    {
-        RijndaelManaged algorithm = new RijndaelManaged();
-        //set the mode, padding and block size
-        algorithm.Padding = PaddingMode.PKCS7;
-        algorithm.Mode = CipherMode.CBC;
-        // KeySize 默认 256
-        algorithm.KeySize = 256;
-        algorithm.BlockSize = 128;
-        return algorithm;
-    }
+    ///***---声明CancellationTokenSource对象--***/
+    //private CancellationTokenSource cts;//using System.Threading;引用
+    //public Task EnOrDecryptFileAsync(Stream inStream, long inStream_Seek, Stream outStream, long outStream_Seek, string password, ActionDirection direction, IProgress<int> progress)
+    //{
+    //    /***---实例化CancellationTokenSource对象--***/
+    //    cts?.Dispose();//cts为空，不动作，cts不为空，执行Dispose。
+    //    cts = new CancellationTokenSource();
+
+    //    Task mytask = new Task(
+    //      () =>
+    //      {
+    //          EnOrDecryptFile(inStream, inStream_Seek, outStream, outStream_Seek, password, direction, progress);
+    //      }, cts.Token, TaskCreationOptions.LongRunning);
+    //    mytask.Start();
+    //    return mytask;
+    //}
+    //private void EnOrDecryptFile(Stream inStream, long inStream_Seek, Stream outStream, long outStream_Seek, string password, ActionDirection direction, IProgress<int> progress)
+    //{
+    //    if (inStream == null || outStream == null)
+    //        throw new ArgumentException("输入流与输出流是必须的");
+    //    //--调整流的位置(通常是为了避开文件头部分)
+    //    inStream.Seek(inStream_Seek, SeekOrigin.Begin);
+    //    outStream.Seek(outStream_Seek, SeekOrigin.Begin);
+    //    //用于记录处理进度
+    //    long total_Length = inStream.Length - inStream_Seek;
+    //    long totalread_Length = 0;
+    //    //初始化报告进度
+    //    progress.Report(0);
+
+    //    var keyAndIv = GenerateKeyAndIV(password);
+
+    //    using (Aes aes = Aes.Create())
+    //    {
+    //        //设定密钥和向量
+    //        (aes.Key, aes.IV) = GenerateKeyAndIV(password);
+    //        //创建加密器解密器对象（加解密方法不同处仅仅这一句话）
+    //        ICryptoTransform cryptor;
+    //        if (direction == ActionDirection.EnCrypt)
+    //            cryptor = aes.CreateEncryptor(aes.Key, aes.IV);
+    //        else
+    //            cryptor = aes.CreateDecryptor(aes.Key, aes.IV);
+    //        using (CryptoStream cstream = new CryptoStream(outStream, cryptor, CryptoStreamMode.Write))
+    //        {
+    //            byte[] buffer = new byte[512 * 1024];//每次读取512kb的数据
+    //            int readLen = 0;
+    //            while ((readLen = inStream.Read(buffer, 0, buffer.Length)) != 0)
+    //            {
+    //                // 向加密流写入数据
+    //                cstream.Write(buffer, 0, readLen);
+    //                totalread_Length += readLen;
+    //                //汇报处理进度
+    //                if (progress != null)
+    //                {
+    //                    long per = 100 * totalread_Length / total_Length;
+    //                    progress.Report(Convert.ToInt32(per));
+    //                }
+    //            }
+    //        }
+    //    }
+    //}
 }
