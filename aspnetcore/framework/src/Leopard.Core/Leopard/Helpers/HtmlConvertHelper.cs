@@ -11,7 +11,7 @@ namespace Leopard.Helpers
     /// <summary>
     /// html 处理类
     /// </summary>
-    public static class HtmlHelper
+    public static class HtmlConvertHelper
     {
         /// <summary>
         /// 将html文本转化为 文本内容方法
