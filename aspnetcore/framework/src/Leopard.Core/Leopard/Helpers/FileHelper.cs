@@ -220,27 +220,53 @@ namespace Leopard.Helpers
         /// </summary>
         /// <param name="fullPath">文件全路径，如果没带后缀，会自动补上默认.xml</param>
         /// <param name="source">数据源</param>
-        /// <param name="isAppend">是否追加到已有文本后面</param>
+        /// <param name="isAppend">是否追加到已有文本后面；不追加则先清空，再写入文件</param>
         public static void SaveXmlFile<T>(string fullPath, T source, bool isAppend = false)
         {
-            Check.NotNullOrWhiteSpace(fullPath, nameof(fullPath));
-            Check.NotNull(source, nameof(source));
-
             EnsureDirExists(fullPath);
             string extension = Path.GetExtension(fullPath);
             if (string.IsNullOrWhiteSpace(extension))
             {
                 fullPath = $"{fullPath}.xml";
             }
-            using (Stream stream = new FileStream(fullPath, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None))
+
+            FileMode mode = FileMode.OpenOrCreate;
+            if (File.Exists(fullPath))
             {
-                if (isAppend)
-                {
-                    stream.Seek(stream.Length, SeekOrigin.Begin);
-                }
+                mode = isAppend ? FileMode.Append : FileMode.Truncate;
+            }
+
+            using (Stream stream = new FileStream(fullPath, mode, FileAccess.Write, FileShare.None))
+            {
                 XmlSerializer serializer = new XmlSerializer(typeof(T));
                 serializer.Serialize(stream, source);
                 stream.Flush();
+            }
+        }
+
+        /// <summary>
+        /// 保存text到文件
+        /// </summary>
+        /// <param name="fullPath">文件全路径，如果没带后缀，会自动补上默认.xml</param>
+        /// <param name="text">数据源</param>
+        /// <param name="isAppend">是否追加到已有文本后面；不追加则先清空，再写入文件</param>
+        public static void SaveFile(string fullPath, string text, bool isAppend = false)
+        {
+            EnsureDirExists(fullPath);
+
+            FileMode mode = FileMode.OpenOrCreate;
+            if (File.Exists(fullPath))
+            {
+                mode = isAppend ? FileMode.Append : FileMode.Truncate;
+            }
+
+            using (Stream stream = new FileStream(fullPath, mode, FileAccess.Write, FileShare.None))
+            {
+                using (StreamWriter sw = new StreamWriter(stream))
+                {
+                    sw.Write(text);
+                    sw.Flush();
+                }
             }
         }
 
