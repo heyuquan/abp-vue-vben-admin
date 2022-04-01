@@ -9,4 +9,5 @@
 
 
 
-SpiUtils.cs 参考下，发请求的安全检查，后面再研究
+1、参考Furion中对cors的处理方式  。CorsAccessor
+2、引入MiniProfiler.AspNetCore.Mvc
