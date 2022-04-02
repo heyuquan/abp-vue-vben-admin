@@ -18,6 +18,44 @@ namespace System
         #region 序列化、反序列化
 
         #region json
+        // c＃-Json.Net中的PreserveReferencesHandling和ReferenceLoopHandling有什么区别？
+        // https://www.itranslater.com/qa/details/2582250669625312256
+
+        readonly static JsonSerializerSettings defaultSettings = new JsonSerializerSettings
+        {
+            // 日期类型默认格式化处理
+            DateFormatHandling = Newtonsoft.Json.DateFormatHandling.MicrosoftDateFormat,
+            DateFormatString = "yyyy-MM-dd HH:mm:ss",
+
+            // 设置序列化的最大层数
+            MaxDepth = 10,
+            // 避免循环引用
+            ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+
+            // 如果您正在寻找更紧凑的JSON，并且将使用Json.Net或Web  API（或另一个兼容的库）对数据进行反序列化，
+            // 则可以选择使用PreserveReferencesHandling.Objects。如果您的数据是没有重复引用的有向无环图，则无需任何设置。
+            PreserveReferencesHandling = PreserveReferencesHandling.Objects,
+        };
+
+        readonly static JsonSerializerSettings defaultSettings_Indented = new JsonSerializerSettings
+        {
+            // 日期类型默认格式化处理
+            DateFormatHandling = Newtonsoft.Json.DateFormatHandling.MicrosoftDateFormat,
+            DateFormatString = "yyyy-MM-dd HH:mm:ss",
+
+            // 设置序列化的最大层数
+            MaxDepth = 10,
+            // 避免循环引用
+            ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+
+            // 如果您正在寻找更紧凑的JSON，并且将使用Json.Net或Web  API（或另一个兼容的库）对数据进行反序列化，
+            // 则可以选择使用PreserveReferencesHandling.Objects。如果您的数据是没有重复引用的有向无环图，则无需任何设置。
+            PreserveReferencesHandling = PreserveReferencesHandling.Objects,
+
+            //是否缩进显示
+            Formatting = Newtonsoft.Json.Formatting.Indented,
+        };
+
         /// <summary>
         /// json反序列化
         /// </summary>
@@ -26,17 +64,20 @@ namespace System
         /// <returns></returns>
         public static T ToObject<T>(this string json) where T : class
         {
-            return JsonConvert.DeserializeObject<T>(json);
+            return JsonConvert.DeserializeObject<T>(json, defaultSettings);
         }
 
         /// <summary>
         /// json序列化
         /// </summary>
         /// <param name="obj"></param>
+        /// <param name="isIndented">是否缩进显示</param>
         /// <returns></returns>
-        public static string ToJson(this object obj)
+        public static string ToJson(this object obj, bool isIndented = false)
         {
-            return JsonConvert.SerializeObject(obj);
+            JsonSerializerSettings settings = isIndented ? defaultSettings_Indented : defaultSettings;
+
+            return JsonConvert.SerializeObject(obj, settings);
         }
         #endregion
 

@@ -14,7 +14,7 @@ namespace Leopard.Helpers
     public static class HtmlConvertHelper
     {
         /// <summary>
-        /// 将html文本转化为 文本内容方法
+        /// 移除html文本中的标签
         /// </summary>
         /// <param name="Htmlstring">HTML文本值</param>
         /// <returns></returns>
@@ -69,13 +69,33 @@ namespace Leopard.Helpers
         }
 
         /// <summary>
-        /// TextToHtml
+        /// Text转为Html显示
         /// </summary>
         /// <param name="text"></param>
         /// <returns></returns>
         public static string TextToHtml(string text)
         {
             return $"<pre>{HttpUtility.HtmlEncode(text)}</pre>";
+        }
+
+        /// <summary>
+        /// html编码
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public static string HtmlDecode(string text)
+        {
+            return HttpUtility.HtmlDecode(text);
+        }
+
+        /// <summary>
+        /// html解码
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public static string HtmlEncode(string text)
+        {
+            return HttpUtility.HtmlEncode(text);
         }
 
     }

@@ -52,6 +52,10 @@ BANNER   09
         {
         }
 
+        /// <summary>
+        /// ServiceResponse
+        /// </summary>
+        /// <param name="requestId">确保唯一的Id</param>
         public ServiceResponse(string requestId)
         {
             RequestId = requestId;
@@ -59,7 +63,10 @@ BANNER   09
         }
 
         /// <summary>
-        /// 请求Id
+        /// 请求Id（也可称：服务端处理Id）
+        /// 服务端生成的ID，注意：不能由调用端传入（因为无法确保调用方传入的是唯一值）。   
+        /// 这个ID返回到调用端，调用端可使用这个ID与接口负责人员进行沟通
+        /// 服务端会通过RequestId进行定位这次调用相关的request参数和response参数
         /// </summary>
         public string RequestId { get; protected set; }
 

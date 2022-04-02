@@ -23,16 +23,14 @@ namespace Leopard.Http
     }
 
     /// <summary>
-    /// SPI服务提供方工具类。
+    /// 服务提供方工具类。
     /// </summary>
     public class DefaultRequestSignCheck
     {
-        private const string Header_SIGN_LIST = "header-sign-list";
-        private static readonly string[] HEADER_FIELDS_IP = {"X-Real-IP", "X-Forwarded-For", "Proxy-Client-IP",
-        "WL-Proxy-Client-IP", "HTTP_CLIENT_IP", "HTTP_X_FORWARDED_FOR"};
+        private const string HEADER_SIGN_LIST = "header-sign-list";
 
         /// <summary>
-        /// 校验SPI请求签名，不支持带上传文件的HTTP请求。
+        /// 校验请求签名，不支持带上传文件的HTTP请求。
         /// </summary>
         /// <param name="request">HttpRequest对象实例</param>
         /// <param name="secret">APP密钥</param>
@@ -41,7 +39,7 @@ namespace Leopard.Http
         {
             CheckResult result = new CheckResult();
             string ctype = request.ContentType;
-            if (ctype.StartsWith(Constants.CTYPE_APP_JSON) || ctype.StartsWith(Constants.CTYPE_TEXT_XML) || ctype.StartsWith(Constants.CTYPE_TEXT_PLAIN))
+            if (ctype.StartsWith(Constants.CTYPE_APP_JSON) || ctype.StartsWith(Constants.CTYPE_TEXT_XML) || ctype.StartsWith(Constants.CTYPE_TEXT_PLAIN) || ctype.StartsWith(Constants.CTYPE_APPLICATION_XML))
             {
                 result.Body = GetStreamAsString(request, GetRequestCharset(ctype));
                 result.Success = CheckSignInternal(request, result.Body, secret);
@@ -52,13 +50,13 @@ namespace Leopard.Http
             }
             else
             {
-                throw new Exception("Unspported SPI request");
+                throw new Exception("Unspported request");
             }
             return result;
         }
 
         /// <summary>
-        /// 校验SPI请求签名，适用于Content-Type为application/x-www-form-urlencoded或multipart/form-data的GET或POST请求。
+        /// 校验请求签名，适用于Content-Type为application/x-www-form-urlencoded或multipart/form-data的GET或POST请求。
         /// </summary>
         /// <param name="request">请求对象</param>
         /// <param name="secret">app对应的secret</param>
@@ -69,7 +67,7 @@ namespace Leopard.Http
         }
 
         /// <summary>
-        /// 校验SPI请求签名，适用于Content-Type为text/xml或text/json的POST请求。
+        /// 校验请求签名，适用于Content-Type为text/xml或text/json的POST请求。
         /// </summary>
         /// <param name="request">请求对象</param>
         /// <param name="body">请求体的文本内容</param>
@@ -203,7 +201,7 @@ namespace Leopard.Http
         public static Dictionary<string, string> GetHeaderMap(HttpRequest request, string charset)
         {
             Dictionary<string, string> headerMap = new Dictionary<string, string>();
-            string signList = request.Headers[Header_SIGN_LIST];    // Header_SIGN_LIST 里面标注的header才进行签名
+            string signList = request.Headers[HEADER_SIGN_LIST];    // Header_SIGN_LIST 里面标注的 项 才进行签名
             if (!string.IsNullOrEmpty(signList))
             {
                 string[] keys = signList.Split(',');
@@ -278,7 +276,7 @@ namespace Leopard.Http
             try
             {
                 // 以字符流的方式读取HTTP请求体
-                stream = request.InputStream;
+                stream = request.Body;
                 reader = new StreamReader(stream, Encoding.GetEncoding(charset));
                 return reader.ReadToEnd();
             }
@@ -291,12 +289,12 @@ namespace Leopard.Http
         }
 
         /// <summary>
-        /// 检查SPI请求到达服务器端是否已经超过指定的分钟数，如果超过则拒绝请求。
+        /// 检查请求到达服务器端是否已经超过指定的分钟数，如果超过则拒绝请求。
         /// </summary>
         /// <returns>true代表不超过，false代表超过。</returns>
         public static bool CheckTimestamp(HttpRequest request, int minutes)
         {
-            string ts = request.QueryString[Constants.TIMESTAMP];
+            string ts = request.Query[Constants.TIMESTAMP];
             if (!string.IsNullOrEmpty(ts))
             {
                 DateTime remote = DateTime.ParseExact(ts, Constants.DATE_TIME_FORMAT, null);
@@ -307,38 +305,6 @@ namespace Leopard.Http
             {
                 return false;
             }
-        }
-
-        /// <summary>
-        /// 检查发起SPI请求的来源IP是否是TOP机房的出口IP。
-        /// </summary>
-        /// <param name="request">HTTP请求对象</param>
-        /// <param name="topIpList">TOP网关IP出口地址段列表，通过taobao.top.ipout.get获得</param>
-        /// <returns>true表达IP来源合法，false代表IP来源不合法</returns>
-        public static bool CheckRemoteIp(HttpRequest request, List<string> topIpList)
-        {
-            string ip = request.UserHostAddress;
-            foreach (string ipHeader in HEADER_FIELDS_IP)
-            {
-                string realIp = request.Headers[ipHeader];
-                if (!string.IsNullOrEmpty(realIp) && !"unknown".Equals(realIp))
-                {
-                    ip = realIp;
-                    break;
-                }
-            }
-
-            if (topIpList != null)
-            {
-                foreach (string topIp in topIpList)
-                {
-                    if (StringUtil.IsIpInRange(ip, topIp))
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
         }
     }
 }

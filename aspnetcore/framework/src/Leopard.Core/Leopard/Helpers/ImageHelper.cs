@@ -1,7 +1,9 @@
 ﻿using Leopard.Crypto;
+using Leopard.Drawing;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -55,5 +57,188 @@ namespace Leopard.Helpers
                 return Image.FromStream(ms, true);
             }
         }
+
+        /// <summary>
+        /// 改变图片大小
+        /// </summary>  
+        /// <param name="sFile">原图片绝对路径</param>    
+        /// <param name="dFile">图片要保存的绝对路径</param>    
+        /// <param name="dHeight">高度（像素）</param>    
+        /// <param name="dWidth">宽度（像素）</param>    
+        /// <param name="imageQualityValue">图片要保存的压缩质量，该参数的值为1至100的整数，数值越大，保存质量越好</param>
+        /// <returns></returns>    
+        public static bool Reseize(string sFile, string dFile, int dHeight, int dWidth, int imageQualityValue = 100)
+        {
+            System.Drawing.Image iSource = System.Drawing.Image.FromFile(sFile);
+            ImageFormat tFormat = iSource.RawFormat;
+            int sW = 0, sH = 0;
+
+            //按比例缩放  
+            Size tem_size = new Size(iSource.Width, iSource.Height);
+
+            if (tem_size.Width > dHeight || tem_size.Width > dWidth)
+            {
+                if ((tem_size.Width * dHeight) > (tem_size.Width * dWidth))
+                {
+                    sW = dWidth;
+                    sH = (dWidth * tem_size.Height) / tem_size.Width;
+                }
+                else
+                {
+                    sH = dHeight;
+                    sW = (tem_size.Width * dHeight) / tem_size.Height;
+                }
+            }
+            else
+            {
+                sW = tem_size.Width;
+                sH = tem_size.Height;
+            }
+
+            Bitmap ob = new Bitmap(dWidth, dHeight);
+            Graphics g = Graphics.FromImage(ob);
+
+            g.Clear(Color.WhiteSmoke);
+            DrawHelper.SetGraphicsHighQuality(g);
+
+            g.DrawImage(iSource, new Rectangle((dWidth - sW) / 2, (dHeight - sH) / 2, sW, sH), 0, 0, iSource.Width, iSource.Height, GraphicsUnit.Pixel);
+
+            g.Dispose();
+
+            try
+            {
+                return SaveImageForSpecifiedQuality(ob, dFile, tFormat, imageQualityValue);
+            }
+            catch
+            {
+                return false;
+            }
+            finally
+            {
+                iSource.Dispose();
+                ob.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// 按指定的压缩质量及格式保存图片（微软的Image.Save方法保存到图片压缩质量为75)
+        /// </summary>
+        /// <param name="sourceImage">要保存的图片的Image对象</param>
+        /// <param name="savePath">图片要保存的绝对路径</param>
+        /// <param name="dFormat">指定图片保存的格式(传null默认取：Jpeg处理方式)</param>
+        /// <param name="imageQualityValue">图片要保存的压缩质量，该参数的值为1至100的整数，数值越大，保存质量越好</param>
+        /// <returns>保存成功，返回true；反之，返回false</returns>
+        public static bool SaveImageForSpecifiedQuality(Image sourceImage, string savePath, ImageFormat dFormat, int imageQualityValue = 100)
+        {
+            // C# System.Drawing.Imaging下的 Encoder 的一些属性
+            // https://blog.csdn.net/linjf520/article/details/7405844
+            // 已经可以实现高质量图片保存，但是还没有photoshop清楚，应该是net内置的处理类没有ps那么牛逼
+
+            //以下代码为保存图片时，设置压缩质量
+            EncoderParameters encoderParameters = new EncoderParameters(1);
+            EncoderParameter encoderParameter = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, imageQualityValue);
+            encoderParameters.Param[0] = encoderParameter;
+            try
+            {
+                if (dFormat == null)
+                    dFormat = ImageFormat.Jpeg;
+                ImageCodecInfo imageCodecInfo = ImageCodecInfo.GetImageDecoders().FirstOrDefault(c => c.FormatID == dFormat.Guid);
+                FileHelper.EnsureDirExists(savePath);
+                if (imageCodecInfo != null)
+                {
+                    sourceImage.Save(savePath, imageCodecInfo, encoderParameters);
+                }
+                else
+                {
+                    if (dFormat == null)
+                        sourceImage.Save(savePath);
+                    else
+                        sourceImage.Save(savePath, dFormat);
+                }
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// 无损压缩图片
+        /// </summary>
+        /// <param name="sFile">原图片地址的绝对路径</param>
+        /// <param name="dFile">压缩后保存图片地址的绝对路径</param>
+        /// <param name="size">压缩后,图片的最大大小。若压缩一次后比这个尺寸大，那么会将flag-10再进行一次压缩，直到最后尺寸小于size</param>
+        /// <param name="imageQualityValue">压缩质量（数字越小压缩率越高）1-100</param>
+        /// <returns></returns>
+        public static bool Compress(string sFile, string dFile, int size, int imageQualityValue = 90)
+        {
+            return Inner_Compress(sFile, dFile, size, imageQualityValue);
+        }
+
+        /// <summary>
+        /// 无损压缩图片
+        /// </summary>
+        /// <param name="sFile">原图片地址的绝对路径</param>
+        /// <param name="dFile">压缩后保存图片地址的绝对路径</param>
+        /// <param name="size">压缩后图片的最大大小(kb)</param>
+        /// <param name="imageQualityValue">压缩质量（数字越小压缩率越高）1-100</param>
+        /// <param name="sfsc">是否是第一次调用</param>
+        /// <returns></returns>
+        private static bool Inner_Compress(string sFile, string dFile, int size, int imageQualityValue = 90, bool sfsc = true)
+        {
+            //如果是第一次调用，原始图像的大小小于要压缩的大小，则直接复制文件，并且返回true
+            FileInfo firstFileInfo = new FileInfo(sFile);
+            if (sfsc == true && firstFileInfo.Length < size * 1024)
+            {
+                firstFileInfo.CopyTo(dFile); return true;
+            }
+            Image iSource = Image.FromFile(sFile);
+            ImageFormat tFormat = iSource.RawFormat;
+            int dHeight = iSource.Height / 2;
+            int dWidth = iSource.Width / 2;
+            int sW = 0, sH = 0;
+            //按比例缩放
+            Size tem_size = new Size(iSource.Width, iSource.Height);
+            if (tem_size.Width > dHeight || tem_size.Width > dWidth)
+            {
+                if ((tem_size.Width * dHeight) > (tem_size.Width * dWidth))
+                {
+                    sW = dWidth; sH = (dWidth * tem_size.Height) / tem_size.Width;
+                }
+                else
+                {
+                    sH = dHeight;
+                    sW = (tem_size.Width * dHeight) / tem_size.Height;
+                }
+            }
+            else
+            {
+                sW = tem_size.Width;
+                sH = tem_size.Height;
+            }
+            Bitmap ob = new Bitmap(dWidth, dHeight);
+            Graphics g = Graphics.FromImage(ob);
+            g.Clear(Color.WhiteSmoke);
+            DrawHelper.SetGraphicsHighQuality(g);
+
+            g.DrawImage(iSource, new Rectangle((dWidth - sW) / 2, (dHeight - sH) / 2, sW, sH), 0, 0, iSource.Width, iSource.Height, GraphicsUnit.Pixel);
+            g.Dispose();
+
+            try
+            {
+                return SaveImageForSpecifiedQuality(ob, dFile, tFormat, imageQualityValue);
+            }
+            catch
+            {
+                return false;
+            }
+            finally
+            {
+                iSource.Dispose();
+                ob.Dispose();
+            }
+        }
     }
+
 }

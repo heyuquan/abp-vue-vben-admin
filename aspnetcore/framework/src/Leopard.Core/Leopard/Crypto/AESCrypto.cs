@@ -9,6 +9,8 @@ using System.Text;
 
 namespace Leopard.Crypto;
 
+// https://www.jb51.net/article/199524.htm
+
 /// <summary>
 /// AES 加解密
 /// （使用 CryptoGuide 静态类进行访问）
@@ -25,7 +27,7 @@ public class AESCrypto
     /// 使用用户口令，生成符合AES标准的key和iv。
     /// </summary>
     /// <param name="password">用户输入的口令</param>
-    /// <returns>返回包含utf8密钥和utf8向量的元组</returns>
+    /// <returns>返回包含utf8密钥（256位）和utf8向量（128位）的元组</returns>
     public (byte[] Key, byte[] IV) GenerateKeyAndIV(string password)
     {
         byte[] key = new byte[32];

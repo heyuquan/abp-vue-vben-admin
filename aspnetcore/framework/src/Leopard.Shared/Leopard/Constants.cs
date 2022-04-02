@@ -23,6 +23,7 @@ namespace Leopard
         public const string CTYPE_FILE_UPLOAD = "multipart/form-data";
         public const string CTYPE_TEXT_XML = "text/xml";
         public const string CTYPE_TEXT_PLAIN = "text/plain";
+        public const string CTYPE_APPLICATION_XML = "application/xml";
         public const string CTYPE_APP_JSON = "application/json";
 
         public const string TIMESTAMP = "timestamp";

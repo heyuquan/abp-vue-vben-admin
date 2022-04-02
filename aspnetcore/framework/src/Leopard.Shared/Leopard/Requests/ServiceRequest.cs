@@ -11,10 +11,6 @@ namespace Leopard.Requests
     public class ServiceRequest<T>
     {
         /// <summary>
-        /// 请求Id
-        /// </summary>
-        public string RequestId { get; set; } = Guid.NewGuid().ToString("N");
-        /// <summary>
         /// 请求头
         /// </summary>
         public ServiceRequestHeader Header { get; set; }
@@ -23,7 +19,6 @@ namespace Leopard.Requests
         /// 请求数据
         /// </summary>
         public T Data { get; set; }
-
     }
 
     /// <summary>

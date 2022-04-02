@@ -62,9 +62,16 @@ namespace Leopard.Drawing
         /// <param name="g"></param>
         public static void SetGraphicsHighQuality(Graphics g)
         {
+            // Graphics 关于呈现质量与合成模式
+            // https://www.cnblogs.com/del/archive/2009/12/22/1630120.html
+
+            // 绘图质量
             g.SmoothingMode = SmoothingMode.HighQuality;
+            // 插补模式
             g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+            // 像素的偏移模式
             g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+            // 图像合成质量
             g.CompositingQuality = CompositingQuality.HighQuality;
         }
     }
