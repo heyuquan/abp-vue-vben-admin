@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using Volo.Abp;
@@ -245,6 +246,21 @@ namespace System
         public static string GetFullNameWithModule(this Type type)
         {
             return $"{type.FullName},{type.Module.Name.Replace(".dll", "").Replace(".exe", "")}";
+        }
+
+        /// <summary>
+        /// 判断是否是匿名类型
+        /// </summary>
+        /// <param name="obj">对象</param>
+        /// <returns></returns>
+        public static bool IsAnonymous(this object obj)
+        {
+            var type = obj.GetType();
+
+            return Attribute.IsDefined(type, typeof(CompilerGeneratedAttribute), false)
+                   && type.IsGenericType && type.Name.Contains("AnonymousType")
+                   && (type.Name.StartsWith("<>") || type.Name.StartsWith("VB$"))
+                   && type.Attributes.HasFlag(TypeAttributes.NotPublic);
         }
 
         /// <summary>

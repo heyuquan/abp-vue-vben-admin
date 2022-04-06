@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Text.Json;
 using System.Xml;
 
 namespace System
@@ -364,6 +365,46 @@ namespace System
             }
             byte[] temp = obj.ToByteArray();
             return temp.ToObject<T>();
+        }
+
+        /// <summary>
+        /// JsonElement 转 Object
+        /// </summary>
+        /// <param name="jsonElement"></param>
+        /// <returns></returns>
+        public static object ToObject(this JsonElement jsonElement)
+        {
+            switch (jsonElement.ValueKind)
+            {
+                case JsonValueKind.String:
+                    return jsonElement.GetString();
+                case JsonValueKind.Undefined:
+                case JsonValueKind.Null:
+                    return default;
+                case JsonValueKind.Number:
+                    return jsonElement.GetDecimal();
+                case JsonValueKind.True:
+                case JsonValueKind.False:
+                    return jsonElement.GetBoolean();
+                case JsonValueKind.Object:
+                    var enumerateObject = jsonElement.EnumerateObject();
+                    var dic = new Dictionary<string, object>();
+                    foreach (var item in enumerateObject)
+                    {
+                        dic.Add(item.Name, item.Value.ToObject());
+                    }
+                    return dic;
+                case JsonValueKind.Array:
+                    var enumerateArray = jsonElement.EnumerateArray();
+                    var list = new List<object>();
+                    foreach (var item in enumerateArray)
+                    {
+                        list.Add(item.ToObject());
+                    }
+                    return list;
+                default:
+                    return default;
+            }
         }
     }
 }
