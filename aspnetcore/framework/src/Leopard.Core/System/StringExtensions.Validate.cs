@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -33,6 +35,43 @@ namespace System
         public static bool IsNullOrWhiteSpace2(this string source)
         {
             return string.IsNullOrWhiteSpace(source);
+        }
+
+        /// <summary>
+        /// 是否有值
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        [DebuggerStepThrough]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool HasValue(this string value)
+        {
+            return !string.IsNullOrWhiteSpace(value);
+        }
+
+        /// <summary>
+        /// Determines whether the string is all white space. Empty string will return false.
+        /// </summary>
+        /// <param name="value">The string to test whether it is all white space.</param>
+        /// <returns>
+        /// 	<c>true</c> if the string is all white space; otherwise, <c>false</c>.
+        /// </returns>
+        [DebuggerStepThrough]
+        public static bool IsWhiteSpace(this string value)
+        {
+            if (value == null)
+                throw new ArgumentNullException(nameof(value));
+
+            if (value.Length == 0)
+                return false;
+
+            for (int i = 0; i < value.Length; i++)
+            {
+                if (!char.IsWhiteSpace(value[i]))
+                    return false;
+            }
+
+            return true;
         }
 
         /// <summary>

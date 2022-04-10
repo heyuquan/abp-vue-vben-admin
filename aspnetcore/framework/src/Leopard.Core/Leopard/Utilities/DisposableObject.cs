@@ -2,7 +2,7 @@
 using System;
 using System.Runtime.ConstrainedExecution;
 
-namespace Leopard
+namespace Leopard.Utilities
 {
     /// <summary>
     /// 可以被释放类的基类

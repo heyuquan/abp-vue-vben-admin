@@ -51,5 +51,17 @@ namespace System
         {
             ExceptionDispatchInfo.Capture(exception).Throw();
         }
+
+        public static void DebugDump(this Exception ex)
+        {
+            try
+            {
+                ex.StackTrace.DebugDump();
+                ex.Message.DebugDump();
+            }
+            catch
+            {
+            }
+        }
     }
 }
