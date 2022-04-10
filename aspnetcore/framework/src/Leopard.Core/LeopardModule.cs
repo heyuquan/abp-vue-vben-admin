@@ -1,7 +1,10 @@
 ﻿using Leopard.AuthServer;
+using Leopard.Options;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using Volo.Abp;
 using Volo.Abp.Modularity;
 
 namespace Leopard
@@ -17,8 +20,33 @@ namespace Leopard
             {
                 throw new Exception($"配置文件中缺少{AuthServerOptions.SectionName}节点的配置");
             }
-
             Configure<AuthServerOptions>(authServerOptionsSection);
+
+            #region AppSettings 不注册为Options了，直接使用 App 来访问
+            //var appSettings = configuration.GetSection(AppSettingsOptions.SectionName);
+            //Configure<AppSettingsOptions>(appSettings);
+            #endregion
+
+            App.Init(configuration);
+
+            if (App.Settings.EnableMiniProfiler == true)
+            {
+                context.Services.AddMiniProfiler(options =>
+                {
+                    // profiler的路径 /profiler
+                    // 分析报告路径   /profiler/results
+                    options.RouteBasePath = "/profiler";
+                });
+            }
+        }
+
+        public override void OnApplicationInitialization(ApplicationInitializationContext context)
+        {
+            var app = context.GetApplicationBuilder();
+            if (App.Settings.EnableMiniProfiler == true)
+            {
+                app.UseMiniProfiler();
+            }
         }
     }
 }
