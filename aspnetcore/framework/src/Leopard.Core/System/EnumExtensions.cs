@@ -1,5 +1,6 @@
 ﻿using Leopard;
 using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
@@ -41,6 +42,30 @@ namespace System
                 ?.Value;
 
             return result.IsNullOrEmpty() ? defaultValue : result;
+        }
+
+        /// <summary>
+        /// 把字符串转为枚举值
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="value"></param>
+        /// <param name="defaultValue"></param>
+        /// <returns></returns>
+        [DebuggerStepThrough]
+        public static T ToEnum<T>(this string value, T defaultValue)
+        {
+            if (!value.HasValue())
+            {
+                return defaultValue;
+            }
+            try
+            {
+                return (T)Enum.Parse(typeof(T), value, true);
+            }
+            catch (ArgumentException)
+            {
+                return defaultValue;
+            }
         }
     }
 }

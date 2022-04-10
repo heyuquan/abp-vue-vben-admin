@@ -37,5 +37,6 @@ namespace Leopard.Helper
 
             return new Guid(guidArray);
         }
+
     }
 }

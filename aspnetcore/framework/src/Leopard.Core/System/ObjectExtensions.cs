@@ -131,7 +131,7 @@ namespace System
         /// <returns></returns>
         public static object CastTo(this object value, Type conversionType)
         {
-            if (value == null)
+            if (value == null || value == DBNull.Value)
             {
                 return null;
             }

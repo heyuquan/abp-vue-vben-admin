@@ -6,10 +6,15 @@
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
 		<RootNamespace />
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
 	</PropertyGroup>
 	
 	<ItemGroup>
+		<PackageReference Include="AsyncEnumerator" Version="4.0.2" />
 		<PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+		<PackageReference Include="Microsoft.Extensions.ObjectPool" Version="6.0.3" />
+		<PackageReference Include="Microsoft.Net.Http.Headers" Version="2.2.8" />
+		<PackageReference Include="Nito.AsyncEx" Version="5.1.2" />
 		<PackageReference Include="ObjectsComparer" Version="1.4.1" />
 		<PackageReference Include="Volo.Abp.Core" Version="4.4.2" />
 		<PackageReference Include="Volo.Abp.AspNetCore" Version="4.4.2" />

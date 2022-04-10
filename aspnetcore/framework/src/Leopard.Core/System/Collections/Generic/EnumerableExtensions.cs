@@ -1,5 +1,10 @@
-﻿using System.Linq;
+﻿using Dasync.Collections;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading.Tasks;
 using Volo.Abp;
 
 namespace System.Collections.Generic
@@ -9,6 +14,27 @@ namespace System.Collections.Generic
     /// </summary>
     public static class EnumerableExtensions
     {
+        #region Nested classes
+
+        private static class DefaultReadOnlyCollection<T>
+        {
+            private static ReadOnlyCollection<T> defaultCollection;
+
+            internal static ReadOnlyCollection<T> Empty
+            {
+                get
+                {
+                    if (defaultCollection == null)
+                    {
+                        defaultCollection = new ReadOnlyCollection<T>(new T[0]);
+                    }
+                    return defaultCollection;
+                }
+            }
+        }
+
+        #endregion
+
         /// <summary>
         /// 根据第三方条件是否为真来决定是否 附加 指定查询条件
         /// </summary>
@@ -210,5 +236,167 @@ namespace System.Collections.Generic
             return source.GroupBy(keySelector).Select(group => group.First());
         }
 
+        /// <summary>
+        /// Performs an action on each item while iterating through a list. 
+        /// This is a handy shortcut for <c>foreach(item in list) { ... }</c>
+        /// </summary>
+        /// <typeparam name="T">The type of the items.</typeparam>
+        /// <param name="source">The list, which holds the objects.</param>
+        /// <param name="action">The action delegate which is called on each item while iterating.</param>
+        [DebuggerStepThrough]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Each<T>(this IEnumerable<T> source, Action<T> action)
+        {
+            if (source is List<T> list)
+            {
+                list.ForEach(action);
+                return;
+            }
+
+            foreach (T t in source)
+            {
+                action(t);
+            }
+        }
+
+        /// <summary>
+        /// Performs an action on each item while iterating through a list. 
+        /// This is a handy shortcut for <c>foreach(item in list) { await ... }</c>
+        /// </summary>
+        /// <typeparam name="T">The type of the items.</typeparam>
+        /// <param name="source">The list, which holds the objects.</param>
+        /// <param name="action">The action delegate which is called on each item while iterating.</param>
+        [DebuggerStepThrough]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static async Task EachAsync<T>(this IEnumerable<T> source, Func<T, Task> action)
+        {
+            foreach (T t in source)
+            {
+                await action(t).ConfigureAwait(false);
+            }
+        }
+
+        /// <summary>
+        /// Performs an action on each item while iterating through a list. 
+        /// This is a handy shortcut for <c>foreach(item in list) { ... }</c>
+        /// </summary>
+        /// <typeparam name="T">The type of the items.</typeparam>
+        /// <param name="source">The list, which holds the objects.</param>
+        /// <param name="action">The action delegate which is called on each item while iterating.</param>
+        [DebuggerStepThrough]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void Each<T>(this IEnumerable<T> source, Action<T, int> action)
+        {
+            int i = 0;
+            foreach (T t in source)
+            {
+                action(t, i++);
+            }
+        }
+
+        public static ReadOnlyCollection<T> AsReadOnly<T>(this IEnumerable<T> source)
+        {
+            if (source == null || !source.Any())
+                return DefaultReadOnlyCollection<T>.Empty;
+
+            if (source is ReadOnlyCollection<T> readOnly)
+            {
+                return readOnly;
+            }
+            else if (source is List<T> list)
+            {
+                return list.AsReadOnly();
+            }
+
+            return new ReadOnlyCollection<T>(source.ToList());
+        }
+
+        #region Async
+
+        /// <summary>
+        /// Performs an action on each item while iterating through a list. 
+        /// This is a handy shortcut for <c>foreach(item in list) { ... }</c>
+        /// </summary>
+        /// <typeparam name="T">The type of the items.</typeparam>
+        /// <param name="source">The list, which holds the objects.</param>
+        /// <param name="action">The action delegate which is called on each item while iterating.</param>
+        public static async Task EachAsync<T>(this IEnumerable<T> source, Func<T, int, Task> action)
+        {
+            int i = 0;
+            foreach (T t in source)
+            {
+                await action(t, i++);
+            }
+        }
+
+        /// <summary>
+        /// Filters a sequence of values based on an async predicate.
+        /// </summary>
+        /// <typeparam name="T">The type of the elements of source.</typeparam>
+        /// <param name="source">A sequence to filter.</param>
+        /// <param name="predicate">An async task function to test each element for a condition.</param>
+        /// <returns>An <see cref="IAsyncEnumerable{T}"/> that contains elements from the input sequence that satisfy the condition.</returns>
+        public static async IAsyncEnumerable<T> WhereAsync<T>(this IEnumerable<T> source, Func<T, Task<bool>> predicate)
+        {
+            await foreach (var item in source.ToAsyncEnumerable())
+            {
+                if (await predicate(item))
+                {
+                    yield return item;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Projects each element of a sequence into a new form in parallel.
+        /// </summary>
+        /// <param name="source">A sequence of values to invoke a transform function on.</param>
+        /// <param name="selector">A transform function to apply to each source element.</param>
+        public static async Task<IEnumerable<TResult>> SelectAsyncParallel<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, Task<TResult>> selector)
+        {
+            return await Task.WhenAll(source.Select(async x => await selector(x)));
+        }
+
+        /// <summary>
+        /// Projects each element of a sequence into a new form.
+        /// </summary>
+        /// <param name="source">A sequence of values to invoke a transform function on.</param>
+        /// <param name="selector">A transform function to apply to each source element.</param>
+        public static async IAsyncEnumerable<TResult> SelectAsync<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, Task<TResult>> selector)
+        {
+            await foreach (var item in source.ToAsyncEnumerable())
+            {
+                yield return await selector(item);
+            }
+        }
+
+        /// <summary>
+        /// Awaits all tasks in a sequence to complete.
+        /// </summary>
+        public static async Task<IEnumerable<T>> WhenAll<T>(this IEnumerable<Task<T>> source)
+        {
+            return await Task.WhenAll(source);
+        }
+
+        /// <summary>
+        /// Determines whether any element of a sequence satisfies a condition. 
+        /// </summary>
+        /// <typeparam name="T">The type of the elements of source.</typeparam>
+        /// <param name="source">The source sequence whose elements to apply the predicate to.</param>
+        /// <param name="predicate">A function to test each element for a condition.</param>
+        public static async Task<bool> AnyAsync<T>(this IEnumerable<T> source, Func<T, Task<bool>> predicate)
+        {
+            foreach (T t in source)
+            {
+                if (await predicate(t))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        #endregion
     }
 }

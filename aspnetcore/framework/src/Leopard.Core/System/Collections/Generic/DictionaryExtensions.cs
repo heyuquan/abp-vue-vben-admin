@@ -160,11 +160,12 @@ namespace System.Collections.Generic
         /// <summary>
         /// 合并两个字典。相同键的使用srcDic的值覆盖destDic的值
         /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="TKey"></typeparam>
+        /// <typeparam name="TValue"></typeparam>
         /// <param name="destDic">目的字典</param>
         /// <param name="srcDic">来源字典</param>
         /// <returns></returns>
-        public static Dictionary<string, T> AddOrUpdate<T>(this Dictionary<string, T> destDic, IDictionary<string, T> srcDic)
+        public static Dictionary<TKey, TValue> AddOrUpdate<TKey, TValue>(this Dictionary<TKey, TValue> destDic, IDictionary<TKey, TValue> srcDic)
         {
             foreach (var key in srcDic.Keys)
             {
@@ -175,6 +176,52 @@ namespace System.Collections.Generic
             }
 
             return destDic;
+        }
+
+        public static bool TryAdd<TKey, TValue>(this IDictionary<TKey, TValue> source, TKey key, TValue value, bool updateIfExists = false)
+        {
+            if (source == null || key == null)
+            {
+                return false;
+            }
+
+            if (source.ContainsKey(key))
+            {
+                if (updateIfExists)
+                {
+                    source[key] = value;
+                    return true;
+                }
+            }
+            else
+            {
+                source.Add(key, value);
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// 移除元素，并且返回该移除的元素
+        /// </summary>
+        /// <typeparam name="TKey"></typeparam>
+        /// <typeparam name="TValue"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static bool TryRemove<TKey, TValue>(this IDictionary<TKey, TValue> source, TKey key, out TValue value)
+        {
+            value = default;
+
+            if (source != null && key != null && source.TryGetValue(key, out value))
+            {
+                source.Remove(key);
+                return true;
+            }
+
+            return false;
         }
     }
 }

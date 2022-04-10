@@ -12,3 +12,4 @@
 1、参考Furion中对cors的处理方式  。CorsAccessor
 2、引入MiniProfiler.AspNetCore.Mvc
 3、引入Apollo,参考 Blog.Core项目
+4、xml namespace

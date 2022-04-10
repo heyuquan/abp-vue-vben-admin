@@ -279,6 +279,51 @@ namespace Leopard.Helpers
             }
         }
 
+        public static async Task<bool> SaveFileAsync(Stream srcStream, string destFilePath, bool isAppend = false)
+        {
+            if (srcStream == null)
+                return false;
+
+            const int BuffSize = 32768;
+            var result = true;
+            Stream dstStream = null;
+            var buffer = new byte[BuffSize];
+
+            EnsureDirExists(destFilePath);
+
+            FileMode mode = FileMode.OpenOrCreate;
+            if (File.Exists(destFilePath))
+            {
+                mode = isAppend ? FileMode.Append : FileMode.Truncate;
+            }
+
+            try
+            {
+                await using (dstStream = File.Open(destFilePath, mode))
+                {
+                    int len;
+                    while ((len = await srcStream.ReadAsync(buffer.AsMemory(0, BuffSize))) > 0)
+                    {
+                        await dstStream.WriteAsync(buffer.AsMemory(0, len));
+                    }
+                }
+            }
+            catch
+            {
+                result = false;
+            }
+            finally
+            {
+                if (dstStream != null)
+                {
+                    dstStream.Close();
+                    await dstStream.DisposeAsync();
+                }
+            }
+
+            return (result && File.Exists(destFilePath));
+        }
+
         /// <summary>
         /// 读取文件，并对其stream做处理
         /// </summary>

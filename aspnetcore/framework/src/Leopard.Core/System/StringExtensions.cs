@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Globalization;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
+using Volo.Abp;
 
 namespace System
 {
@@ -10,6 +14,60 @@ namespace System
     /// </summary>
     public static partial class StringExtentions
     {
+        #region Format
+        /// <summary>
+        /// Formats a string to an invariant culture
+        /// </summary>
+        /// <param name="format">The format string.</param>
+        /// <param name="objects">The objects.</param>
+        /// <returns></returns>
+        [DebuggerStepThrough]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static string FormatInvariant(this string format, params object[] objects)
+            => string.Format(CultureInfo.InvariantCulture, format, objects);
+
+        /// <summary>
+        /// Formats a string to the current culture.
+        /// </summary>
+        /// <param name="format">The format string.</param>
+        /// <param name="objects">The objects.</param>
+        /// <returns></returns>
+        [DebuggerStepThrough]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static string FormatCurrent(this string format, params object[] objects)
+            => string.Format(CultureInfo.CurrentCulture, format, objects);
+
+        /// <summary>
+        /// Formats a string to the current UI culture.
+        /// </summary>
+        /// <param name="format">The format string.</param>
+        /// <param name="objects">The objects.</param>
+        /// <returns></returns>
+        [DebuggerStepThrough]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static string FormatCurrentUI(this string format, params object[] objects)
+            => string.Format(CultureInfo.CurrentUICulture, format, objects);
+
+        [DebuggerStepThrough]
+        public static string FormatWith(this string format, IFormatProvider provider, params object[] args)
+            => string.Format(provider, format, args);
+        #endregion
+
+        /// <summary>
+        /// Determines whether this instance and given <paramref name="other"/> have the same value (ignoring case)
+        /// </summary>
+        /// <param name="value">The string to check equality.</param>
+        /// <param name="other">The comparing with string.</param>
+        /// <returns>
+        /// <c>true</c> if the value of the comparing parameter is the same as this string; otherwise, <c>false</c>.
+        /// </returns>
+        [DebuggerStepThrough]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool EqualsNoCase(this string value, string other)
+        {
+            return string.Compare(value, other, StringComparison.OrdinalIgnoreCase) == 0;
+        }
+
         /// <summary>
         /// 删除字符串头部和尾部的回车/换行/空格
         /// </summary>
@@ -186,6 +244,45 @@ namespace System
             if (o == null) return string.Empty;
 
             return o.ToString();
-        }      
+        }
+
+        /// <summary>
+        /// 截取指定长度的字符串
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="maxLength">指定长度</param>
+        /// <param name="end">多余的字符怎么显示，默认(...)</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="ArgumentException"></exception>
+        [DebuggerStepThrough]
+        public static string Truncate(this string value, int maxLength, string end = "...")
+        {
+            if (end == null)
+                throw new ArgumentNullException(nameof(end));
+
+            int subStringLength = maxLength - end.Length;
+
+            if (subStringLength <= 0)
+                throw new ArgumentException("Length of suffix string is greater or equal to maximumLength", nameof(maxLength));
+
+            if (value != null && value.Length > maxLength)
+            {
+                return value[..subStringLength].Trim() + end;
+            }
+            else
+            {
+                return value;
+            }
+        }
+
+        private const string DumpStr = "------------------------------------------------";
+        [DebuggerStepThrough]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void DebugDump(this string value, bool appendMarks = false)
+        {
+            Debug.WriteLine(value);
+            Debug.WriteLineIf(appendMarks, DumpStr);
+        }
     }
 }
