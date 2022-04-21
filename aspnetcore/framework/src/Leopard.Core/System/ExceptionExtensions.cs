@@ -10,7 +10,19 @@ namespace System
     public static class ExceptionExtensions
     {
         /// <summary>
-        /// 转换成日志相关信息
+        /// 获取原始异常信息（即最内部的InnerException对象）
+        /// </summary>
+        /// <param name="ex"></param>
+        /// <returns></returns>
+        public static Exception GetOriginalException(this Exception ex)
+        {
+            if (ex.InnerException == null) return ex;
+
+            return ex.InnerException.GetOriginalException();
+        }
+
+        /// <summary>
+        /// 转换成日志相关信息，如有InnerException，会递归获取错误信息
         /// </summary>
         /// <param name="exception">异常</param>
         /// <param name="isHideStackTrace">是否隐藏异常堆栈信息</param>
@@ -46,8 +58,9 @@ namespace System
 
         /// <summary>
         /// 将异常重新抛出
+        /// Abp 里面已经定义了 ReThrow ，所以此处为 ReThrow2
         /// </summary>
-        public static void ReThrow(this Exception exception)
+        public static void ReThrow2(this Exception exception)
         {
             ExceptionDispatchInfo.Capture(exception).Throw();
         }

@@ -38,5 +38,14 @@ namespace Leopard.Helper
             return new Guid(guidArray);
         }
 
+        /// <summary>
+        /// 使用 Guid.NewGuid() 获取一个 Guid
+        /// </summary>
+        /// <param name="hasDash">是否需要分隔符"-"</param>
+        /// <returns></returns>
+        public static string NewGuid(bool hasDash = true)
+        {
+            return hasDash ? Guid.NewGuid().ToString() : Guid.NewGuid().ToString("N");
+        }
     }
 }

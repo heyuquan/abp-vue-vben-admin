@@ -25,10 +25,7 @@ namespace Leopard.Crypto
         /// <returns></returns>
         private string GetMd5Hash(byte[] data)
         {
-            StringBuilder sBuilder = new StringBuilder();
-            for (int i = 0; i < data.Length; i++)
-                sBuilder.Append(data[i].ToString("x2"));    // 小写十六进制。 另外大写：ToString("X2")
-            return sBuilder.ToString();
+            return CryptoGuide.Hex.ByteArrToHex(data, true);
         }
 
         private bool VerifyMd5Hash(byte[] data, string hash)

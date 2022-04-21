@@ -12,6 +12,13 @@ namespace Leopard.Requests
     {
         private ServiceResponseMessage() { }
 
+        /// <summary>
+        /// 私有构造函数，只能通过静态方法来创建该实例
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="messageLevel"></param>
+        /// <param name="content"></param>
+        /// <param name="details"></param>
         private ServiceResponseMessage(string code, ServiceResponseMessageLevel messageLevel, string content, string details)
         {
             Code = code;
@@ -25,17 +32,17 @@ namespace Leopard.Requests
         /// </summary>
         public string Code { get; private set; }
         /// <summary>
-        /// 服务调用返回消息类型级别  
+        /// [必填] 服务调用返回消息类型级别  
         /// ServiceResponseMessageLevel 枚举的字符串表示
         /// </summary>
         public string MessageLevel { get; private set; }
         /// <summary>
-        /// 信息内容
+        /// [必填] 信息内容
         /// </summary>
         public string Content { get; private set; }
 
         /// <summary>
-        /// 详细信息
+        /// [选填] 详细信息
         /// </summary>
         public string Details { get; private set; }
 
@@ -43,9 +50,9 @@ namespace Leopard.Requests
         /// <summary>
         /// 创建 INFO ServiceResponseMessage
         /// </summary>
-        /// <param name="code"></param>
-        /// <param name="content"></param>
-        /// <param name="details"></param>
+        /// <param name="code">code，选填</param>
+        /// <param name="content">[必填] 信息内容</param>
+        /// <param name="details">[选填] 详细信息</param>
         /// <returns></returns>
         public static ServiceResponseMessage CreateInfo(string code, [NotNull] string content, string details)
         {
@@ -55,9 +62,9 @@ namespace Leopard.Requests
         /// <summary>
         /// 创建 Warn ServiceResponseMessage
         /// </summary>
-        /// <param name="code"></param>
-        /// <param name="content"></param>
-        /// <param name="details"></param>
+        /// <param name="code">code，选填</param>
+        /// <param name="content">[必填] 信息内容</param>
+        /// <param name="details">[选填] 详细信息</param>
         /// <returns></returns>
         public static ServiceResponseMessage CreateWarn(string code, [NotNull] string content, string details)
         {
@@ -67,9 +74,9 @@ namespace Leopard.Requests
         /// <summary>
         /// 创建 ERROR ServiceResponseMessage
         /// </summary>
-        /// <param name="code"></param>
-        /// <param name="content"></param>
-        /// <param name="details"></param>
+        /// <param name="code">code，选填</param>
+        /// <param name="content">[必填] 信息内容</param>
+        /// <param name="details">[选填] 详细信息</param>
         /// <returns></returns>
         public static ServiceResponseMessage CreateError(string code, [NotNull] string content, string details)
         {
@@ -79,10 +86,10 @@ namespace Leopard.Requests
         /// <summary>
         /// 创建 ServiceResponseMessage
         /// </summary>
-        /// <param name="code"></param>
+        /// <param name="code">code，选填</param>
         /// <param name="level"></param>
-        /// <param name="content"></param>
-        /// <param name="details"></param>
+        /// <param name="content">[必填] 信息内容</param>
+        /// <param name="details">[选填] 详细信息</param>
         /// <returns></returns>
         private static ServiceResponseMessage InnerCreateMessage(string code, ServiceResponseMessageLevel level, [NotNull] string content, string details)
         {

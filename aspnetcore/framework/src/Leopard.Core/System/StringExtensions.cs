@@ -284,5 +284,19 @@ namespace System
             Debug.WriteLine(value);
             Debug.WriteLineIf(appendMarks, DumpStr);
         }
+
+        /// <summary>
+        /// 若文本是空，则返回默认值
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="defaultValue">默认值</param>
+        /// <returns>返回 指定字符 之前的文本</returns>
+        public static string GetValue(this string text, string defaultValue)
+        {
+            if (text.IsNullOrWhiteSpace())
+                return defaultValue;
+            else
+                return text;
+        }
     }
 }

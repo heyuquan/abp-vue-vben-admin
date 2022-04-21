@@ -5,6 +5,11 @@
 暂不清楚啥情况
 
 
+文件夹下划线开头的，不记录命名空间。
+eg：
+Leopard._App  下面的文件只是做归类，但是并不像多一层 App 的命名空间。所以命名空间为
+Leopard
+Leopard.Options
 
 
 
@@ -13,3 +18,7 @@
 2、引入MiniProfiler.AspNetCore.Mvc
 3、引入Apollo,参考 Blog.Core项目
 4、xml namespace
+$、Abp 实现通过手机号注册用户   https://www.cnblogs.com/qiu-gu/p/16130602.html
+#、参考 一沙 的登录日志。 ip地址，ip位置，浏览器，操作系统
+#、Helper等工具类还是拆出去  Leopard.Utils
+#、浏览器参数获取参考  yisha  YiSha.Util

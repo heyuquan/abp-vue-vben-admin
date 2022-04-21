@@ -36,3 +36,43 @@ https://github.com/StephenCleary/Comparers
 Site: github.com/tnfe/csijs
 CSI.JS是一个前端日志系统，它将错误信息记录于本地localStorage中。无任何依赖、无入侵性。
 使用非常简单，很容易引入你的系统中，而且不会造成任何影响。 它可以帮你快速重建犯罪现场。
+
+#、CacheManager
+https://github.com/MichaCo/CacheManager
+支持redis、memcache、couchbase等缓存，支持bond、json、protobuf、datacontract等序列化方式
+支持.net4.5，.net standard 2.0
+
+#、HtmlSanitizer
+清楚文本中html标记，避免xss攻击
+https://github.com/mganss/HtmlSanitizer
+
+#、AngleSharp
+AngleSharp是基于.NET（C#）开发的专门解析HTML源码的DLL组件。
+根据HTML的DOM结构操作HTML，整个DOM已传输到逻辑类结构中。这种结构可以更好的操作DOM元素。
+且AngleSharp的性能优于HtmlAgilityPack。
+https://github.com/AngleSharp/AngleSharp
+
+#、.net core EPPlus npoi_.NET导出Excel的四种方法及评测
+https://blog.csdn.net/weixin_39978444/article/details/111040277
+2022-4-19：
+    EPPlus星1.1k ； 下载量46.8M
+    EPPlus星4.3k ； 下载量17.7M
+性能测试：
+    次数	        分配内存	    内存占比	耗时‍	耗时占比
+    基准(仅反射)	9,853,936	    1.85%	    133	    4.82%
+    NPOI	        1,589,237,064	297.83%	    10355	375.32%
+    EPPlus	        533,598,440	    100%	    2759	100%        以EPPlus的测试数据为100%基准：
+    OpenXML	        555,985,936	    104.19%	    3884	140.78%
+    Aspose	        357,933,360	    67%	        2007	72.74%
+    可以得出以下结论：
+        Demo基于反射，但反射总损耗的性能不高，内存、耗时均不超过5%；
+        NPOI的性能表现是所有项目中最差的，每次需要分配1.5GB的内存和超过10秒的耗时；
+        EPPlus表现不错，内存和耗时在开源组中表现最佳；
+        收费的Aspose.Cells表现最佳，内存占用最低，用时也最短；
+        较为底层的OpenXML表现非常一般，比EPPlus要差，更不能与收费的Aspose相提并论；
+EPPlus
+    EPPlus仅依赖基础类库BCL，完全没有第三方包依赖，也是.NET原生库。
+    EPPlus只支持导出Office 2007之后的格式，也就是xlsx。（不支持xls）
+
+
+

@@ -35,6 +35,13 @@ namespace Leopard
 
         public const int READ_BUFFER_SIZE = 1024 * 4;
 
+        // sql server datetime类型的的范围不到0001-01-01，所以转成1970-01-01
+        // 考虑：在保存数据的时候，统一给没有值的dateTime 赋默认值 MinTime
+        /// <summary>
+        /// 最小时间
+        /// </summary>
+        public static DateTime MinTime = DateTime.Parse("1970-01-01 00:00:00");
+
         /// <summary>
         /// 媒体协议类型
         /// </summary>

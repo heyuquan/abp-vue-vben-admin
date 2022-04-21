@@ -254,7 +254,7 @@ namespace Leopard.Helpers
         }
 
         /// <summary>
-        /// 保存text到文件
+        /// 保存text到文件(没有文件会创建新文件)
         /// </summary>
         /// <param name="destFilePath">文件全路径，如果没带后缀，会自动补上默认.xml</param>
         /// <param name="text">数据源</param>
@@ -279,6 +279,35 @@ namespace Leopard.Helpers
             }
         }
 
+        /// <summary>
+        /// 保存data到文件
+        /// </summary>
+        /// <param name="destFilePath">文件全路径</param>
+        /// <param name="data">数据源字节数组</param>
+        /// <param name="isAppend">是否追加到已有文本后面；不追加则先清空，再写入文件</param>
+        public static void SaveFile(string destFilePath, byte[] data, bool isAppend = false)
+        {
+            EnsureDirExists(destFilePath);
+
+            FileMode mode = FileMode.OpenOrCreate;
+            if (File.Exists(destFilePath))
+            {
+                mode = isAppend ? FileMode.Append : FileMode.Truncate;
+            }
+
+            using (Stream stream = new FileStream(destFilePath, mode, FileAccess.Write, FileShare.None))
+            {
+                using (BinaryWriter sw = new BinaryWriter(stream))
+                {
+                    sw.Write(data);
+                    sw.Flush();
+                }
+            }
+        }
+
+        /// <summary>
+        /// 保存text到文件(没有文件会创建新文件)
+        /// </summary>
         public static async Task<bool> SaveFileAsync(Stream srcStream, string destFilePath, bool isAppend = false)
         {
             if (srcStream == null)
