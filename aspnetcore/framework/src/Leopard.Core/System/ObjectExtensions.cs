@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Text.Json;
@@ -14,7 +15,7 @@ namespace System
     /// <summary>
     /// object类型扩展
     /// </summary>
-    public static class ObjectExtensions
+    public static partial class ObjectExtensions
     {
         #region 序列化、反序列化
 
@@ -351,23 +352,6 @@ namespace System
         }
 
         /// <summary>
-        /// 对象深度拷贝，复制出一个数据一样，但内存地址不一样的新版本
-        /// </summary>
-        public static T DeepClone<T>(this T obj) where T : class
-        {
-            if (obj == null)
-            {
-                return default(T);
-            }
-            if (typeof(T).HasAttribute<SerializableAttribute>())
-            {
-                throw new NotSupportedException(string.Format("当前对象未标记特性“{0}”，无法进行DeepClone操作", typeof(SerializableAttribute)));
-            }
-            byte[] temp = obj.ToByteArray();
-            return temp.ToObject<T>();
-        }
-
-        /// <summary>
         /// JsonElement 转 Object
         /// </summary>
         /// <param name="jsonElement"></param>
@@ -406,5 +390,7 @@ namespace System
                     return default;
             }
         }
+
+       
     }
 }
