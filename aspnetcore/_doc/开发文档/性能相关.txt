@@ -1,5 +1,5 @@
 ﻿
 
-无论读还是写Dictionary性能都大幅领先Hashtable（版本：core3.1）
+无论读还是写Dictionary性能都大幅领先Hashtable（版本：core3.1） 
 https://www.cnblogs.com/lulianqi/p/15925005.html
 
