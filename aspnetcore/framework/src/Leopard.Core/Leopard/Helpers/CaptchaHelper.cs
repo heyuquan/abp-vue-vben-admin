@@ -10,7 +10,21 @@ namespace Leopard.Helpers
     /// </summary>
     public class CaptchaHelper
     {
-        #region 得到验证码
+        // .net core，跨平台的验证码生成工具包，支持动态gif验证码。
+        // https://github.com/gebiWangshushu/Hei.Captcha
+
+        // LazySlideCaptcha 基于.Net Standard 2.1的滑动验证码模块。
+        // https://www.cnblogs.com/readafterme/p/16098532.html
+        // https://www.cnblogs.com/BFMC/p/16172817.html
+        //实现分析：
+　　      //滑动验证码的逻辑也很简单。大概说一下：
+　　      //1，服务器生成主图+附图（从主图裁剪下来的不需要管y坐标）并且存储X坐标；
+　　      //2，前端传入本地X坐标到服务器。
+　　      //3，服务器进行计算存储X坐标和本地X坐标相差值；
+　　      //4，验证相差值是否在 0-2 之间，判断 true | false
+
+
+        #region 生成验证码
 
         // 使用案例
         // Tuple<string, int> captchaCode = CaptchaHelper.GetCaptchaCode();
@@ -21,7 +35,7 @@ namespace Leopard.Helpers
         /// 一个表达式验证码
         /// </summary>
         /// <returns>Tuple第一个值是表达式，第二个值是表达式结果</returns>
-        public static Tuple<string, int> GetCaptchaCode()
+        public static Tuple<string, int> CreateCaptchaCode()
         {
             int value = 0;
             char[] operators = { '+', '-', '*' };

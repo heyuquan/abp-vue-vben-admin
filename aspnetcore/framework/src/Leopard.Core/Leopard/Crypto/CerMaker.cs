@@ -17,7 +17,7 @@ namespace Leopard.Crypto
         internal CerMaker() { }
 
 
-        #region 【ASP.NET Core】自己编程来生成自签名的服务器证书
+        #region 生成自签名的服务器证书
         // 【ASP.NET Core】自己编程来生成自签名的服务器证书
         // https://www.cnblogs.com/tcjiaan/p/16170870.html
 
@@ -36,10 +36,10 @@ namespace Leopard.Crypto
         /// 创建证书文件（.pfx） 
         /// </summary>
         /// <param name="subName">证书名</param>
-        /// <param name="bgDate"></param>
-        /// <param name="endDate"></param>
-        /// <param name="outFile">完整路径</param>
-        /// <param name="passWd"></param>
+        /// <param name="bgDate">开始有效期</param>
+        /// <param name="endDate">结束有效期</param>
+        /// <param name="outFile">证书输出存放的完整路径</param>
+        /// <param name="passWd">证书密码</param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException"></exception>
         /// <exception cref="ArgumentException"></exception>

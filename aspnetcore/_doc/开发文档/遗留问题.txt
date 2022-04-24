@@ -22,3 +22,4 @@ $、Abp 实现通过手机号注册用户   https://www.cnblogs.com/qiu-gu/p/161
 #、参考 一沙 的登录日志。 ip地址，ip位置，浏览器，操作系统
 #、Helper等工具类还是拆出去  Leopard.Utils
 #、浏览器参数获取参考  yisha  YiSha.Util
+#、方法支持JsonSerializerSettings参数，并且内部使用clone，相同设置只保留一份JsonSerializerSettings

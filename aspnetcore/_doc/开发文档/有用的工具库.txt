@@ -54,10 +54,8 @@ https://github.com/AngleSharp/AngleSharp
 
 #、.net core EPPlus npoi_.NET导出Excel的四种方法及评测
 https://blog.csdn.net/weixin_39978444/article/details/111040277
-2022-4-19：
-    EPPlus星1.1k ； 下载量46.8M
-    EPPlus星4.3k ； 下载量17.7M
-性能测试：
+另外：https://blog.csdn.net/waterstar50/article/details/80590355
+性能测试：（2021年11月的数据）
     次数	        分配内存	    内存占比	耗时‍	耗时占比
     基准(仅反射)	9,853,936	    1.85%	    133	    4.82%
     NPOI	        1,589,237,064	297.83%	    10355	375.32%
@@ -70,9 +68,16 @@ https://blog.csdn.net/weixin_39978444/article/details/111040277
         EPPlus表现不错，内存和耗时在开源组中表现最佳；
         收费的Aspose.Cells表现最佳，内存占用最低，用时也最短；
         较为底层的OpenXML表现非常一般，比EPPlus要差，更不能与收费的Aspose相提并论；
-EPPlus
-    EPPlus仅依赖基础类库BCL，完全没有第三方包依赖，也是.NET原生库。
-    EPPlus只支持导出Office 2007之后的格式，也就是xlsx。（不支持xls）
+2022-4-19：
+    EPPlus星1.1k ； 下载量46.8M  （目前收费）   支持Excel 2007+ (.xlsx, .xlsm)
+        EPPlus 老版本：https://github.com/JanKallman/EPPlus         3.6k星，已经两年没有维护。license：LGPL    
+        EPPlus 新版本：https://github.com/EPPlusSoftware/EPPlus     1.1k星，license授权改为：license：Polyform Noncommercial 。用于商业软件，需要购买授权
+        EPPlus仅依赖基础类库BCL，完全没有第三方包依赖，也是.NET原生库。
+        EPPlus只支持导出Office 2007之后的格式，也就是xlsx。（不支持xls）
+    NPOI星4.3k ； 下载量17.7M    （免费）Apache-2.0 License  https://github.com/nissl-lab/npoi  支持Office 2003/2007(.xls .xlsx, .xlsm)
+    ClosedXML星3k； 下载量19.9M  （免费）MIT  https://github.com/ClosedXML/ClosedXML   支持Excel 2007+ (.xlsx, .xlsm)+
+        ClosedXML 是基于 OpenXML API 封装的 .NET 类库
+        ClosedXML.Report  创建一份xlsx 模板，设置数据填充规则，就可传入模型，自动填充  https://blog.csdn.net/chinaherolts2008/article/details/111773031
 
 
 

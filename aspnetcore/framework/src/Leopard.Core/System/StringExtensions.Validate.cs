@@ -119,6 +119,12 @@ namespace System
         }
 
         #region 验证身份证是否有效
+        // https://www.cnblogs.com/ChineseMoonGod/p/5193606.html
+        /// 身份证号验证
+        /// eg:
+        /// 正确的：522324197508045617
+        /// 错误的：612427199901281214
+
         /// <summary>
         /// 验证身份证是否有效
         /// </summary>
@@ -174,7 +180,11 @@ namespace System
             }
             int y = -1;
             Math.DivRem(sum, 11, out y);
-            return arrVarifyCode[y] == source.Substring(17, 1).ToLower();
+            if (arrVarifyCode[y] != source.Substring(17, 1).ToLower())
+            {
+                return false;//校验码验证  
+            }
+            return true;//符合GB11643-1999标准  
         }
         /// <summary>
         /// 验证输入字符串为15位的身份证号码
@@ -195,7 +205,11 @@ namespace System
             }
             string birth = source.Substring(6, 6).Insert(4, "-").Insert(2, "-");
             DateTime time;
-            return DateTime.TryParse(birth, out time) != false;
+            if (DateTime.TryParse(birth, out time) == false)
+            {
+                return false;//生日验证  
+            }
+            return true;
         }
         #endregion
 

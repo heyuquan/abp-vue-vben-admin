@@ -1,4 +1,5 @@
-﻿using Leopard.Options;
+﻿using Leopard.Helpers;
+using Leopard.Options;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -29,5 +30,17 @@ namespace Leopard
         /// 全局配置选项
         /// </summary>
         public static IConfiguration Configuration { get; private set; }
+
+        /// <summary>
+        /// 获取应用程序当前目录，如果参数为空，返回目录名.目录名最后是带下划线的.
+        /// </summary>
+        /// <returns></returns>
+        public static string BaseDirectory
+        {
+            get
+            {
+                return FileHelper.AppBaseDirectory();
+            }
+        }
     }
 }
