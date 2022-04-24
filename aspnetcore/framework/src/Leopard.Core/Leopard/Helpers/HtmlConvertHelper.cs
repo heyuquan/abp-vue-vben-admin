@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ganss.XSS;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,22 @@ namespace Leopard.Helpers
     /// </summary>
     public static class HtmlConvertHelper
     {
+        //初始化HtmlSanitizer
+        static HtmlSanitizer htmlSanitizer = new HtmlSanitizer();
+
+        /// <summary>
+        /// 去掉html中可能存在的xss攻击脚本
+        /// </summary>
+        /// <param name="html">html代码</param>
+        /// <returns>过滤后的代码</returns>
+        public static string SafeHtml(string html)
+        {
+            if (!string.IsNullOrWhiteSpace(html) && htmlSanitizer != null)
+                html = htmlSanitizer.Sanitize(html);
+
+            return html;
+        }
+
         /// <summary>
         /// 移除html文本中的标签
         /// </summary>

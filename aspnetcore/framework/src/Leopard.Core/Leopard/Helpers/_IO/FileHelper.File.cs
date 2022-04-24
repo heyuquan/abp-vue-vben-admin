@@ -1,50 +1,20 @@
 ﻿using Leopard.Http;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.IO.Compression;
-using System.Linq;
 using System.Net;
-using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
-using Volo.Abp;
 
 namespace Leopard.Helpers
 {
     /// <summary>
     /// 文件相关帮助类
     /// </summary>
-    public static class FileHelper
+    public static partial class FileHelper
     {
-        /// <summary>
-        /// 确保目录存在，不存在，则创建
-        /// （若传递的是文件全路径，会截取其对应的目录）
-        /// </summary>
-        /// <returns></returns>
-        public static void EnsureDirExists(string path)
-        {
-            string dir = IsDir(path) ? path : Path.GetDirectoryName(path);
-            if (!Directory.Exists(dir))
-            {
-                Directory.CreateDirectory(dir);
-            }
-        }
-
-        /// <summary>
-        /// 判断目标是文件夹还是文件
-        /// 前提：保证路径不带符号 "."
-        /// </summary>
-        /// <param name="path">路径</param>
-        /// <returns>true-文件夹，false-文件</returns>
-        public static bool IsDir(string path)
-        {
-            return string.IsNullOrEmpty(Path.GetExtension(path));
-        }
-
         /// <summary>
         /// 判断目标是文件夹还是文件
         /// </summary>
@@ -53,92 +23,6 @@ namespace Leopard.Helpers
         public static bool IsFile(string path)
         {
             return !IsDir(path);
-        }
-
-        /// <summary>
-        /// 将传入的路径，转为当前运行系统的路径
-        /// </summary>
-        /// <param name="path"></param>
-        /// <returns></returns>
-        public static string GetRuntimeDirectory(string path)
-        {
-            //ForLinux
-            if (IsLinuxRunTime())
-                return GetLinuxDirectory(path);
-            //ForWindows
-            if (IsWindowRunTime())
-                return GetWindowDirectory(path);
-            return path;
-        }
-
-        /// <summary>
-        /// 是否 windows 运行环境
-        /// </summary>
-        /// <returns></returns>
-        public static bool IsWindowRunTime()
-        {
-            return System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
-        }
-
-        /// <summary>
-        /// 是否 linux 运行环境
-        /// </summary>
-        /// <returns></returns>
-        public static bool IsLinuxRunTime()
-        {
-            return System.Runtime.InteropServices.RuntimeInformation.IsOSPlatform(OSPlatform.Linux);
-        }
-        /// <summary>
-        /// 将传入的路径，转为 linux 运行系统的路径
-        /// </summary>
-        /// <param name="path"></param>
-        /// <returns></returns>
-        public static string GetLinuxDirectory(string path)
-        {
-            string pathTemp = Path.Combine(path);
-            return pathTemp.Replace("\\", "/");
-        }
-
-        /// <summary>
-        /// 将传入的路径，转为 windows 运行系统的路径
-        /// </summary>
-        /// <param name="path"></param>
-        /// <returns></returns>
-        public static string GetWindowDirectory(string path)
-        {
-            string pathTemp = Path.Combine(path);
-            return pathTemp.Replace("/", "\\");
-        }
-
-        /// <summary>
-        /// 获取应用程序当前目录，如果参数为空，返回目录名.目录名最后是带下划线的.
-        /// </summary>
-        /// <param name="name">xxx.xx</param>
-        /// <returns></returns>
-        public static string Local(string name = null)
-        {
-            if (string.IsNullOrEmpty(name))
-            {
-                return AppDomain.CurrentDomain.BaseDirectory;
-            }
-            else
-            {
-                return $"{AppDomain.CurrentDomain.BaseDirectory}{name}";
-            }
-        }
-
-        /// <summary>
-        /// 是否有效的本地文件夹路径
-        /// </summary>
-        /// <param name="val"></param>
-        /// <returns>是，返回true；不是返回false</returns>
-        public static bool IsValidLocalFolderPath(string val)
-        {
-            // 参考：https://www.cnblogs.com/whr2071/p/16084937.html
-
-            Regex regex = new Regex(@"^([a-zA-Z]:\\)([-\u4e00-\u9fa5\w\s.()~!@#$%^&()\[\]{}+=]+\\?)*$");
-            Match result = regex.Match(val);
-            return result.Success;
         }
 
         #region 下载
@@ -254,7 +138,7 @@ namespace Leopard.Helpers
         }
 
         /// <summary>
-        /// 保存text到文件
+        /// 保存text到文件(没有文件会创建新文件)
         /// </summary>
         /// <param name="destFilePath">文件全路径，如果没带后缀，会自动补上默认.xml</param>
         /// <param name="text">数据源</param>
@@ -279,6 +163,35 @@ namespace Leopard.Helpers
             }
         }
 
+        /// <summary>
+        /// 保存data到文件
+        /// </summary>
+        /// <param name="destFilePath">文件全路径</param>
+        /// <param name="data">数据源字节数组</param>
+        /// <param name="isAppend">是否追加到已有文本后面；不追加则先清空，再写入文件</param>
+        public static void SaveFile(string destFilePath, byte[] data, bool isAppend = false)
+        {
+            EnsureDirExists(destFilePath);
+
+            FileMode mode = FileMode.OpenOrCreate;
+            if (File.Exists(destFilePath))
+            {
+                mode = isAppend ? FileMode.Append : FileMode.Truncate;
+            }
+
+            using (Stream stream = new FileStream(destFilePath, mode, FileAccess.Write, FileShare.None))
+            {
+                using (BinaryWriter sw = new BinaryWriter(stream))
+                {
+                    sw.Write(data);
+                    sw.Flush();
+                }
+            }
+        }
+
+        /// <summary>
+        /// 保存text到文件(没有文件会创建新文件)
+        /// </summary>
         public static async Task<bool> SaveFileAsync(Stream srcStream, string destFilePath, bool isAppend = false)
         {
             if (srcStream == null)

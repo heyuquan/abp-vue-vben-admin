@@ -5,6 +5,7 @@ using System.Text;
 using Volo.Abp;
 using Volo.Abp.Http;
 using System.Linq;
+using System.Collections.ObjectModel;
 
 namespace Leopard.Requests
 {
@@ -44,7 +45,7 @@ BANNER   09
 
     /// <summary>
     /// 服务层响应实体.适用于没有返回值的情况
-    /// 如果要返回失败，则需在 Messages 中加入error错误信息
+    /// 只有 Messages 包含Error级别的消息，则IsSuccess=false，否则为true
     /// </summary>
     public class ServiceResponse
     {
@@ -59,8 +60,10 @@ BANNER   09
         public ServiceResponse(string requestId)
         {
             RequestId = requestId;
-            Messages = new List<ServiceResponseMessage>();
+            _messages = new List<ServiceResponseMessage>();
         }
+
+        private List<ServiceResponseMessage> _messages = null;
 
         /// <summary>
         /// 请求Id（也可称：服务端处理Id）
@@ -121,7 +124,7 @@ BANNER   09
         {
             get
             {
-                var hadError = Messages.Any(x => x.MessageLevel == ServiceResponseMessageLevel.ERROR.GetEnumMemberValue());
+                var hadError = _messages.Any(x => x.MessageLevel == ServiceResponseMessageLevel.ERROR.GetEnumMemberValue());
                 return !hadError;
             }
         }
@@ -131,10 +134,17 @@ BANNER   09
         /// </summary>
         public long Timestamp { get; } = (DateTime.UtcNow.Ticks - 621355968000000000) / 10000;
 
+
         /// <summary>
-        /// 消息集合
+        /// 只读的消息集合
         /// </summary>
-        public List<ServiceResponseMessage> Messages { get; protected set; }
+        public ReadOnlyCollection<ServiceResponseMessage> Messages
+        {
+            get
+            {
+                return _messages.AsReadOnly();
+            }
+        }
 
         /// <summary>
         /// 设置返回的特殊错误状态（eg：未登录，未授权，超时等等）
@@ -147,6 +157,24 @@ BANNER   09
             {
                 StatusCode = statusCode;
             }
+        }
+
+        /// <summary>
+        /// 添加消息
+        /// </summary>
+        /// <param name="msg"></param>
+        public void AddMessage(ServiceResponseMessage msg)
+        {
+            _messages.Add(msg);
+        }
+
+        /// <summary>
+        /// 添加消息
+        /// </summary>
+        /// <param name="msgList"></param>
+        public void AddMessageList(List<ServiceResponseMessage> msgList)
+        {
+            _messages.AddRange(msgList);
         }
     }
     /// <summary>

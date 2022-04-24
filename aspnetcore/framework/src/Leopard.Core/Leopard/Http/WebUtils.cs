@@ -65,24 +65,63 @@ namespace Leopard.Http
         }
 
         /// <summary>
-        /// 执行HTTP POST请求。
-        /// </summary>
-        /// <param name="url">请求地址</param>
-        /// <param name="textParams">请求文本参数</param>
-        /// <returns>HTTP响应</returns>
-        public string DoPost(string url, IDictionary<string, string> textParams)
-        {
-            return DoPost(url, textParams, null);
-        }
-
-        /// <summary>
-        /// 执行HTTP POST请求。
+        /// 执行HTTP GET请求。
+        /// application/x-www-form-urlencoded
         /// </summary>
         /// <param name="url">请求地址</param>
         /// <param name="textParams">请求文本参数</param>
         /// <param name="headerParams">请求头部参数</param>
         /// <returns>HTTP响应</returns>
-        public string DoPost(string url, IDictionary<string, string> textParams, IDictionary<string, string> headerParams)
+        public string DoGet(string url, IDictionary<string, string> textParams, IDictionary<string, string> headerParams = null)
+        {
+            return this.DoGetWithContentType(url, "application/x-www-form-urlencoded;charset=gbk", textParams, headerParams);
+        }
+
+        /// <summary>
+        /// 执行HTTP GET请求。
+        /// text/html; charset=gb2312
+        /// </summary>
+        /// <param name="url">请求地址</param>
+        /// <param name="textParams">请求文本参数</param>
+        /// <param name="headerParams">请求头部参数</param>
+        /// <returns>HTTP响应</returns>
+        public string DoGetHtml(string url, IDictionary<string, string> textParams, IDictionary<string, string> headerParams = null)
+        {
+            return this.DoGetWithContentType(url, "text/html; charset=gb2312", textParams, headerParams);
+        }
+
+        /// <summary>
+        /// 执行HTTP GET请求。
+        /// </summary>
+        /// <param name="url">请求地址</param>
+        /// <param name="contentType">contentType</param>
+        /// <param name="textParams">请求文本参数</param>
+        /// <param name="headerParams">请求头部参数</param>
+        /// <returns>HTTP响应</returns>
+        public string DoGetWithContentType(string url, string contentType, IDictionary<string, string> textParams, IDictionary<string, string> headerParams)
+        {
+            if (textParams != null && textParams.Count > 0)
+            {
+                url = BuildRequestUrl(url, textParams);
+            }
+
+            HttpWebRequest req = GetWebRequest(url, "GET", headerParams);
+            req.ContentType = contentType;
+
+            HttpWebResponse rsp = (HttpWebResponse)req.GetResponse();
+            Encoding encoding = GetResponseEncoding(rsp);
+            return GetResponseAsString(rsp, encoding);
+        }
+
+        /// <summary>
+        /// 执行HTTP POST请求。
+        /// application/x-www-form-urlencoded
+        /// </summary>
+        /// <param name="url">请求地址</param>
+        /// <param name="textParams">请求文本参数</param>
+        /// <param name="headerParams">请求头部参数</param>
+        /// <returns>HTTP响应</returns>
+        public string DoPost(string url, IDictionary<string, string> textParams, IDictionary<string, string> headerParams = null)
         {
             HttpWebRequest req = GetWebRequest(url, "POST", headerParams);
             req.ContentType = "application/x-www-form-urlencoded;charset=utf-8";
@@ -98,47 +137,15 @@ namespace Leopard.Http
         }
 
         /// <summary>
-        /// 执行HTTP GET请求。
-        /// </summary>
-        /// <param name="url">请求地址</param>
-        /// <param name="textParams">请求文本参数</param>
-        /// <returns>HTTP响应</returns>
-        public string DoGet(string url, IDictionary<string, string> textParams)
-        {
-            return DoGet(url, textParams, null);
-        }
-
-        /// <summary>
-        /// 执行HTTP GET请求。
-        /// </summary>
-        /// <param name="url">请求地址</param>
-        /// <param name="textParams">请求文本参数</param>
-        /// <param name="headerParams">请求头部参数</param>
-        /// <returns>HTTP响应</returns>
-        public string DoGet(string url, IDictionary<string, string> textParams, IDictionary<string, string> headerParams)
-        {
-            if (textParams != null && textParams.Count > 0)
-            {
-                url = BuildRequestUrl(url, textParams);
-            }
-
-            HttpWebRequest req = GetWebRequest(url, "GET", headerParams);
-            req.ContentType = "application/x-www-form-urlencoded;charset=gbk";
-
-            HttpWebResponse rsp = (HttpWebResponse)req.GetResponse();
-            Encoding encoding = GetResponseEncoding(rsp);
-            return GetResponseAsString(rsp, encoding);
-        }
-
-        /// <summary>
         /// 执行带文件上传的HTTP POST请求。
+        /// multipart/form-data
         /// </summary>
         /// <param name="url">请求地址</param>
         /// <param name="textParams">请求文本参数</param>
         /// <param name="fileParams">请求文件参数</param>
         /// <param name="headerParams">请求头部参数</param>
         /// <returns>HTTP响应</returns>
-        public string DoPost(string url, IDictionary<string, string> textParams, IDictionary<string, FileItem> fileParams, IDictionary<string, string> headerParams)
+        public string DoPostWithFile(string url, IDictionary<string, string> textParams, IDictionary<string, FileItem> fileParams, IDictionary<string, string> headerParams)
         {
             // 如果没有文件参数，则走普通POST请求
             if (fileParams == null || fileParams.Count == 0)
@@ -194,14 +201,14 @@ namespace Leopard.Http
         }
 
         /// <summary>
-        /// 执行带body体的POST请求。
+        /// 执行带body体的POST请求。指定 contentType
         /// </summary>
         /// <param name="url">请求地址，含URL参数</param>
         /// <param name="body">请求body体字节流</param>
         /// <param name="contentType">body内容类型</param>
         /// <param name="headerParams">请求头部参数</param>
         /// <returns>HTTP响应</returns>
-        public string DoPost(string url, byte[] body, string contentType, IDictionary<string, string> headerParams)
+        public string DoPostWithContentType(string url, byte[] body, string contentType, IDictionary<string, string> headerParams)
         {
             HttpWebRequest req = GetWebRequest(url, "POST", headerParams);
             req.ContentType = contentType;
@@ -226,18 +233,10 @@ namespace Leopard.Http
         /// <param name="headerParams">Header parameters.</param>
         public string DoPostWithJson(string url, IDictionary<string, Object> textParams, IDictionary<string, string> headerParams)
         {
-            HttpWebRequest req = GetWebRequest(url, "POST", headerParams);
-            req.ContentType = "application/json;charset=utf-8";
-
             String body = textParams.ToJson();
             byte[] postData = Encoding.UTF8.GetBytes(body);
-            System.IO.Stream reqStream = req.GetRequestStream();
-            reqStream.Write(postData, 0, postData.Length);
-            reqStream.Close();
 
-            HttpWebResponse rsp = (HttpWebResponse)req.GetResponse();
-            Encoding encoding = GetResponseEncoding(rsp);
-            return GetResponseAsString(rsp, encoding);
+            return this.DoPostWithContentType(url, postData, "application/json;charset=utf-8", headerParams);
         }
 
         public HttpWebRequest GetWebRequest(string url, string method, IDictionary<string, string> headerParams)

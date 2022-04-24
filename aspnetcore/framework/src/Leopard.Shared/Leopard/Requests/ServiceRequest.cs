@@ -4,6 +4,14 @@ using System.Text;
 
 namespace Leopard.Requests
 {
+    // request 和 response 序列化字段名都约定一个规则   但是Leopard.Shared这个程序集又不打算引用json相关的
+    // #、全部小写
+    // #、多单词，用下划线号隔开。   集C#这边命名的大写字母开头的都用 "_" 隔开
+
+    // todo 参照 https://www.cnblogs.com/wucy/p/16124449.html
+    // Controller里面弄些快捷方法，或者rsp里面定义一些static方法
+    // 加一个 ResultWrapperFilter ，当没有返回统一结构时，直接报错
+
     /// <summary>
     /// Service 请求实体
     /// </summary>

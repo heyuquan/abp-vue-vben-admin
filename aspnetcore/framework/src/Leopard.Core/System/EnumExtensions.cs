@@ -1,5 +1,6 @@
 ﻿using Leopard;
-using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
@@ -67,5 +68,51 @@ namespace System
                 return defaultValue;
             }
         }
+
+        #region 枚举成员转成dictionary类型
+        /// <summary>
+        /// 转成dictionary类型
+        /// </summary>
+        /// <param name="enumType"></param>
+        /// <returns></returns>
+        public static Dictionary<int, string> EnumToDictionary(this Type enumType)
+        {
+            Dictionary<int, string> dictionary = new Dictionary<int, string>();
+            Type typeDescription = typeof(DescriptionAttribute);
+            FieldInfo[] fields = enumType.GetFields();
+            int sValue = 0;
+            string sText = string.Empty;
+            foreach (FieldInfo field in fields)
+            {
+                if (field.FieldType.IsEnum)
+                {
+                    sValue = ((int)enumType.InvokeMember(field.Name, BindingFlags.GetField, null, null, null));
+                    object[] arr = field.GetCustomAttributes(typeDescription, true);
+                    if (arr.Length > 0)
+                    {
+                        DescriptionAttribute da = (DescriptionAttribute)arr[0];
+                        sText = da.Description;
+                    }
+                    else
+                    {
+                        sText = field.Name;
+                    }
+                    dictionary.Add(sValue, sText);
+                }
+            }
+            return dictionary;
+        }
+        /// <summary>
+        /// 枚举成员转成键值对Json字符串
+        /// </summary>
+        /// <param name="enumType"></param>
+        /// <returns></returns>
+        public static string EnumToDictionaryString(this Type enumType)
+        {
+            List<KeyValuePair<int, string>> dictionaryList = EnumToDictionary(enumType).ToList();
+            var sJson = dictionaryList.ToJson();
+            return sJson;
+        }
+        #endregion
     }
 }

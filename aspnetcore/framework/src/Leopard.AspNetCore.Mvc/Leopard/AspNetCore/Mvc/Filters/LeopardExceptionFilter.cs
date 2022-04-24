@@ -119,7 +119,7 @@ namespace Leopard.AspNetCore.Mvc.Filters
             }
 
             ServiceResponse<RemoteServiceErrorInfo> ret = new ServiceResponse<RemoteServiceErrorInfo>(_correlationIdProvider.Get());
-            ret.Messages.Add(ServiceResponseMessage.CreateError(remoteServiceErrorInfo.Code, remoteServiceErrorInfo.Message, sbuilder.ToString()));
+            ret.AddMessage(ServiceResponseMessage.CreateError(remoteServiceErrorInfo.Code, remoteServiceErrorInfo.Message, sbuilder.ToString()));
 
             context.Result = new ObjectResult(ret);
 

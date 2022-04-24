@@ -164,16 +164,16 @@ namespace Leopard.Helpers
         }
 
         /// <summary>
-        /// 无损压缩图片
+        /// 压缩图片
+        /// (内部原理：每次将图片质量降低一点，直到图片尺寸小于size)
         /// </summary>
         /// <param name="sFile">原图片地址的绝对路径</param>
         /// <param name="dFile">压缩后保存图片地址的绝对路径</param>
-        /// <param name="size">压缩后,图片的最大大小。若压缩一次后比这个尺寸大，那么会将flag-10再进行一次压缩，直到最后尺寸小于size</param>
-        /// <param name="imageQualityValue">压缩质量（数字越小压缩率越高）1-100</param>
+        /// <param name="size">压缩后,图片的最大大小</param>
         /// <returns></returns>
-        public static bool Compress(string sFile, string dFile, int size, int imageQualityValue = 90)
+        public static bool Compress(string sFile, string dFile, int size)
         {
-            return Inner_Compress(sFile, dFile, size, imageQualityValue);
+            return Inner_Compress(sFile, dFile, size, 90);
         }
 
         /// <summary>
@@ -185,7 +185,7 @@ namespace Leopard.Helpers
         /// <param name="imageQualityValue">压缩质量（数字越小压缩率越高）1-100</param>
         /// <param name="sfsc">是否是第一次调用</param>
         /// <returns></returns>
-        private static bool Inner_Compress(string sFile, string dFile, int size, int imageQualityValue = 90, bool sfsc = true)
+        private static bool Inner_Compress(string sFile, string dFile, int size, int imageQualityValue, bool sfsc = true)
         {
             //如果是第一次调用，原始图像的大小小于要压缩的大小，则直接复制文件，并且返回true
             FileInfo firstFileInfo = new FileInfo(sFile);
@@ -227,7 +227,21 @@ namespace Leopard.Helpers
 
             try
             {
-                return SaveImageForSpecifiedQuality(ob, dFile, tFormat, imageQualityValue);
+                bool isSaveOk = SaveImageForSpecifiedQuality(ob, dFile, tFormat, imageQualityValue);
+                if (isSaveOk)
+                {
+                    FileInfo fi = new FileInfo(dFile);
+                    if (fi.Length > 1024 * size)
+                    {
+                        imageQualityValue = imageQualityValue - 10;
+                        return Inner_Compress(sFile, dFile, size, imageQualityValue, false);
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+                return true;
             }
             catch
             {
