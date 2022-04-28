@@ -89,6 +89,18 @@ namespace Leopard.Helpers
         #endregion
 
         /// <summary>
+        /// 检查文件是否存在，不存在则抛出Exception异常
+        /// </summary>
+        /// <param name="filePath"></param>
+        public static void CheckFileExistWithException(string filePath)
+        {
+            if (!File.Exists(filePath))
+            {
+                throw new FileNotFoundException("文件不存在", filePath);
+            }
+        }
+
+        /// <summary>
         /// 检查指定文件的md5sum和指定的检验码是否一致。
         /// </summary>
         /// <param name="fileName">需要检验的文件</param>

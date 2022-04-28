@@ -175,5 +175,52 @@ namespace System.Collections.Generic
 
             return count;
         }
+
+        #region 为集合的ForEach方法添加break功能
+
+        // break和continue是需要编译器支持的C＃语言关键字。 ForEach，对C＃编译器来说，只是一种方法
+
+        // 【continue】在ForEach中 return 即可实现continue
+        //var list = new List<int>() { 1, 2, 3, 4 };
+        //list.ForEach(i => 
+        //    {
+        //        if (i == 3)
+        //            return;
+        //        Console.WriteLine(i);
+        //    }
+        //);
+        // 打印1,2,4。 3 - 跳过。
+
+
+        // break示例
+        // 参考：https://stackoverflow.com/questions/3145563/list-foreach-break
+        // Enumerable.Range(0,10)
+        //    .ForEach((int i, ref bool doBreak) => {    // (int i, ref bool doBreak) 全部显示指定类型，这样不用单独再定义 doBreak 变量
+        //        System.Windows.MessageBox.Show(i.ToString());
+        //        if (i > 2) { doBreak = true; }
+        //    });
+
+        public delegate void ForEachAction<T>(T value, ref bool doBreak);
+        /// <summary>
+        /// 为集合的ForEach方法添加break功能
+        /// 【continue】在ForEach中 return 即可实现continue
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="enumerable"></param>
+        /// <param name="action"></param>
+        public static void ForEach<T>(this IEnumerable<T> enumerable, ForEachAction<T> action)
+        {
+            var doBreak = false;
+            foreach (var cur in enumerable)
+            {
+                action(cur, ref doBreak);
+                if (doBreak)
+                {
+                    break;
+                }
+            }
+        }
+
+        #endregion
     }
 }

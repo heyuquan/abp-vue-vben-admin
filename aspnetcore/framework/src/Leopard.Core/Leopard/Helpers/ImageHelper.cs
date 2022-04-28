@@ -23,6 +23,7 @@ namespace Leopard.Helpers
         /// <returns></returns>
         public static string ConvertImageToBase64(string imageFilePath)
         {
+            FileHelper.CheckFileExistWithException(imageFilePath);
             Image image = Image.FromFile(imageFilePath);
             return ConvertImageToBase64(image);
         }
@@ -69,6 +70,8 @@ namespace Leopard.Helpers
         /// <returns></returns>    
         public static bool Reseize(string sFile, string dFile, int dHeight, int dWidth, int imageQualityValue = 100)
         {
+            FileHelper.CheckFileExistWithException(sFile);
+
             System.Drawing.Image iSource = System.Drawing.Image.FromFile(sFile);
             ImageFormat tFormat = iSource.RawFormat;
             int sW = 0, sH = 0;
@@ -187,6 +190,7 @@ namespace Leopard.Helpers
         /// <returns></returns>
         private static bool Inner_Compress(string sFile, string dFile, int size, int imageQualityValue, bool sfsc = true)
         {
+            FileHelper.CheckFileExistWithException(sFile);
             //如果是第一次调用，原始图像的大小小于要压缩的大小，则直接复制文件，并且返回true
             FileInfo firstFileInfo = new FileInfo(sFile);
             if (sfsc == true && firstFileInfo.Length < size * 1024)
