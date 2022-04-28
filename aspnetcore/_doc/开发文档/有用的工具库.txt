@@ -24,7 +24,7 @@ https://mp.weixin.qq.com/s/YRTARPbj3ql6LEs7O-3-2w
     }
 https://github.com/StephenCleary/AsyncEx
 
-#、Microsoft.AspNetCore.HeaderPropagation
+#、Microsoft.AspNetCore.HeaderPropagation 
 在 ASP.NET Core 中使用 HTTP 标头传播
 https://mp.weixin.qq.com/s/shCiGlkjxIC9d17WqY1fKg
 
@@ -80,4 +80,5 @@ https://blog.csdn.net/weixin_39978444/article/details/111040277
         ClosedXML.Report  创建一份xlsx 模板，设置数据填充规则，就可传入模型，自动填充  https://blog.csdn.net/chinaherolts2008/article/details/111773031
 
 
-
+#、DeepCloner  实现深拷贝、浅拷贝的扩展方法
+https://github.com/force-net/DeepCloner

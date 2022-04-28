@@ -24,7 +24,17 @@ namespace Leopard
         /// <summary>
         /// 应用全局配置
         /// </summary>
-        public static AppSettingsOptions Settings => _settings ??= Configuration.GetSection(AppSettingsOptions.SectionName).Get<AppSettingsOptions>();
+        public static AppSettingsOptions Settings
+        {
+            get
+            {
+                if (_settings == null)
+                {
+                    _settings = Configuration.GetSection(AppSettingsOptions.SectionName).Get<AppSettingsOptions>() ?? new AppSettingsOptions();
+                }
+                return _settings;
+            }
+        }
 
         /// <summary>
         /// 全局配置选项

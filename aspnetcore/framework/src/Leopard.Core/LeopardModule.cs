@@ -31,6 +31,8 @@ namespace Leopard
 
             if (App.Settings.EnableMiniProfiler == true)
             {
+                // 为什么在 Leopard 程序集中引入 MiniProfiler。
+                // 因为，在任何一个程序集中，都可能调用 MiniProfiler 中定义的收集性能的方法
                 context.Services.AddMiniProfiler(options =>
                 {
                     // profiler的路径 /profiler
