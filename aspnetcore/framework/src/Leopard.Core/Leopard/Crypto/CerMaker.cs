@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Leopard.Helpers;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -58,6 +59,11 @@ namespace Leopard.Crypto
             {
                 throw new ArgumentException("结束日期应大于开始日期");
             }
+            if (FileHelper.IsFile(outFile))
+            {
+                throw new ArgumentException("应该输入文件完整路径", nameof(outFile));
+            }
+
             // 随机密钥
             RSA key = RSA.Create(1024);
             // 创建CRT

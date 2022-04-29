@@ -90,8 +90,7 @@ namespace Leopard.Helpers
         }
 
         /// <summary>
-        /// 判断目标是文件夹还是文件
-        /// 前提：保证路径不带符号 "."
+        /// 判断目标是文件夹还是文件.(通过获取路径是否包含扩展后缀)
         /// </summary>
         /// <param name="path">路径</param>
         /// <returns>true-文件夹，false-文件</returns>
