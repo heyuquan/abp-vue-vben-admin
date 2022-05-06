@@ -18,74 +18,128 @@ namespace Leopard.Crypto
         internal Md5Crypto() { }
 
         /// <summary>
-        /// hex(md5) 将md5的byte数组转为十六进制字符串
-        ///  十六进制（简写为hex或下标16）
+        /// MD5 加密
         /// </summary>
-        /// <param name="data"></param>
+        /// <param name="input"></param>
         /// <returns></returns>
-        private string GetMd5Hash(byte[] data)
+        private byte[] Encrypt(byte[] input)
         {
-            return CryptoGuide.Hex.ByteArrToHex(data, true);
-        }
-
-        private bool VerifyMd5Hash(byte[] data, string hash)
-        {
-            return 0 == StringComparer.OrdinalIgnoreCase.Compare(GetMd5Hash(data), hash);
+            MD5 md5 = MD5.Create();
+            return md5.ComputeHash(input);
         }
 
         /// <summary>
-        /// hex(md5)  md5十六进制字符串（默认UTF8编码）
+        /// 32位MD5加密 (默认utf-8)
         /// </summary>
+        /// <param name="input"></param>
         /// <returns></returns>
-        public string Hash(string data)
+        public string Encrypt32(string input)
         {
-            return Hash(data, Encoding.UTF8);
+            return Encrypt32(input, Constants.DEFAULT_ENCODING);
+        }
+
+
+        public string Encrypt32(string input, Encoding encode)
+        {
+            return Encrypt32(encode.GetBytes(input));
         }
 
         /// <summary>
-        /// hex(md5)  md5十六进制字符串
+        /// 32位MD5加密
         /// </summary>
+        /// <param name="input"></param>
         /// <returns></returns>
-        public string Hash(string data, Encoding encode)
+        public string Encrypt32(byte[] input)
         {
-            using (var md5 = MD5.Create())
-                return GetMd5Hash(md5.ComputeHash(encode.GetBytes(data)));
+            // 加密后是一个字节类型的数组，这里要注意编码UTF8/Unicode等的选择　
+            byte[] s = Encrypt(input);
+
+            return CryptoGuide.Hex.ByteArrToHex(s, true);
         }
 
         /// <summary>
-        /// hex(md5)  md5十六进制字符串
+        /// 64位MD5加密 (默认utf-8)
         /// </summary>
+        /// <param name="input"></param>
         /// <returns></returns>
-        public string Hash(FileStream data)
+        public string Encrypt64(string input)
         {
-            using (var md5 = MD5.Create())
-                return GetMd5Hash(md5.ComputeHash(data));
+            return Encrypt64(input, Constants.DEFAULT_ENCODING);
         }
 
         /// <summary>
-        /// Md5 验证（默认UTF8编码）
+        /// 64位MD5加密 (默认utf-8)
         /// </summary>
-        public bool Verify(string data, string hash)
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public string Encrypt64(string input, Encoding encode)
         {
-            return Verify(data, hash, Encoding.UTF8);
+            return Encrypt64(encode.GetBytes(input));
         }
 
         /// <summary>
-        /// Md5 验证
+        /// 64位MD5加密
         /// </summary>
-        public bool Verify(string data, string hash, Encoding encode)
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public string Encrypt64(byte[] input)
         {
-            using (var md5 = MD5.Create())
-                return VerifyMd5Hash(md5.ComputeHash(encode.GetBytes(data)), hash);
+            byte[] result = Encrypt(input);
+            return Convert.ToBase64String(result);
         }
 
         /// <summary>
-        /// Md5 验证
+        /// 验证Md5 hash
         /// </summary>
-        public bool Verify(FileStream data, string hash)
+        /// <param name="input">原字符串</param>
+        /// <param name="encrypt32Str">原字符串的md5码</param>
+        /// <returns></returns>
+        public bool Verify32Hash(string input, string encrypt32Str)
         {
-            using (var md5 = MD5.Create())
-                return VerifyMd5Hash(md5.ComputeHash(data), hash);
+            return Verify32Hash(input, encrypt32Str, Constants.DEFAULT_ENCODING);
+        }
+
+        /// <summary>
+        /// 验证Md5 hash
+        /// </summary>
+        /// <param name="input">原字符串</param>
+        /// <param name="encrypt32Str">原字符串的md5码</param>
+        /// <returns></returns>
+        public bool Verify32Hash(string input, string encrypt32Str, Encoding encode)
+        {
+            string hashOfInput = Encrypt32(input, encode);
+            StringComparer comparer = StringComparer.OrdinalIgnoreCase;
+            if (0 == comparer.Compare(hashOfInput, encrypt32Str))
+                return true;
+            else
+                return false;
+        }
+
+        /// <summary>
+        /// 验证Md5 hash
+        /// </summary>
+        /// <param name="input">原字符串</param>
+        /// <param name="encrypt64Str">原字符串的md5码</param>
+        /// <returns></returns>
+        public bool Verify64Hash(string input, string encrypt64Str)
+        {
+            return Verify64Hash(input, encrypt64Str, Constants.DEFAULT_ENCODING);
+        }
+
+        /// <summary>
+        /// 验证Md5 hash
+        /// </summary>
+        /// <param name="input">原字符串</param>
+        /// <param name="encrypt64Str">原字符串的md5码</param>
+        /// <returns></returns>
+        public bool Verify64Hash(string input, string encrypt64Str, Encoding encode)
+        {
+            string hashOfInput = Encrypt64(input, encode);
+            StringComparer comparer = StringComparer.OrdinalIgnoreCase;
+            if (0 == comparer.Compare(hashOfInput, encrypt64Str))
+                return true;
+            else
+                return false;
         }
     }
 }

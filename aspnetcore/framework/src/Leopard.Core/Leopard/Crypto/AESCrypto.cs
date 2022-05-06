@@ -145,7 +145,7 @@ public class AESCrypto
     {
         byte[] keyBytes = UTF8Encoding.UTF8.GetBytes(key_utf8);
         byte[] ivBytes = UTF8Encoding.UTF8.GetBytes(iv_utf8);
-
+        
         byte[] decrypted;
         using (Aes aes = Aes.Create())
         {

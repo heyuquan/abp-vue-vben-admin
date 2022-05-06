@@ -80,6 +80,16 @@ namespace Leopard.Crypto
         #endregion
 
         /// <summary>
+        /// Base64加密 (默认utf-8)
+        /// </summary>
+        /// <param name="plaintext">待编码的明文</param>
+        /// <returns>编码后的字符串</returns>
+        public string Encode(string plaintext)
+        {
+            return Encode(Constants.DEFAULT_ENCODING, plaintext);
+        }
+
+        /// <summary>
         /// Base64加密
         /// </summary>
         /// <param name="encodeType">对plaintext进行编码采用的编码方式</param>
@@ -111,6 +121,16 @@ namespace Leopard.Crypto
         }
 
         /// <summary>
+        /// Base64 解码 (默认utf-8)
+        /// </summary>
+        /// <param name="cipherText">待解密的密文</param>
+        /// <returns>解码后的字符串</returns>
+        public string Decode(string cipherText)
+        {
+            return Decode(Constants.DEFAULT_ENCODING, cipherText);
+        }
+
+        /// <summary>
         /// Base64 解码
         /// </summary>
         /// <param name="encodeType">对cipherText进行解码采用的解码方式，注意和编码时采用的方式一致</param>
@@ -119,7 +139,7 @@ namespace Leopard.Crypto
         public string Decode(Encoding encodeType, string cipherText)
         {
             string decode = string.Empty;
-            byte[] bytes = Decode(cipherText);
+            byte[] bytes = DecodeToByte(cipherText);
             try
             {
                 decode = encodeType.GetString(bytes);
@@ -136,7 +156,7 @@ namespace Leopard.Crypto
         /// </summary>
         /// <param name="cipherText">待解密的密文</param>
         /// <returns>解码后的字符串</returns>
-        public byte[] Decode(string cipherText)
+        public byte[] DecodeToByte(string cipherText)
         {
             byte[] decode = null;
             try

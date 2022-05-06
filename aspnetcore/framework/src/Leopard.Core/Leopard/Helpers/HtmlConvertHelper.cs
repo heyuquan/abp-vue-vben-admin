@@ -33,35 +33,35 @@ namespace Leopard.Helpers
         /// <summary>
         /// 移除html文本中的标签
         /// </summary>
-        /// <param name="Htmlstring">HTML文本值</param>
+        /// <param name="htmlText">HTML文本值</param>
         /// <returns></returns>
-        public static string TextNoHTML(string Htmlstring)
+        public static string TextNoHTML(string htmlText)
         {
             //删除脚本
-            Htmlstring = Regex.Replace(Htmlstring, @"<script[^>]*?>.*?</script>", "", RegexOptions.IgnoreCase);
+            htmlText = Regex.Replace(htmlText, @"<script[^>]*?>.*?</script>", "", RegexOptions.IgnoreCase);
             //删除HTML
-            Htmlstring = Regex.Replace(Htmlstring, @"<(.[^>]*)>", "", RegexOptions.IgnoreCase);
-            Htmlstring = Regex.Replace(Htmlstring, @"([/r/n])[/s]+", "", RegexOptions.IgnoreCase);
-            Htmlstring = Regex.Replace(Htmlstring, @"-->", "", RegexOptions.IgnoreCase);
-            Htmlstring = Regex.Replace(Htmlstring, @"<!--.*", "", RegexOptions.IgnoreCase);
-            Htmlstring = Regex.Replace(Htmlstring, @"&(quot|#34);", "/", RegexOptions.IgnoreCase);
-            Htmlstring = Regex.Replace(Htmlstring, @"&(amp|#38);", "&", RegexOptions.IgnoreCase);
-            Htmlstring = Regex.Replace(Htmlstring, @"&(lt|#60);", "<", RegexOptions.IgnoreCase);
-            Htmlstring = Regex.Replace(Htmlstring, @"&(gt|#62);", ">", RegexOptions.IgnoreCase);
-            Htmlstring = Regex.Replace(Htmlstring, @"&(nbsp|#160);", "   ", RegexOptions.IgnoreCase);
-            Htmlstring = Regex.Replace(Htmlstring, @"&(iexcl|#161);", "/xa1", RegexOptions.IgnoreCase);
-            Htmlstring = Regex.Replace(Htmlstring, @"&(cent|#162);", "/xa2", RegexOptions.IgnoreCase);
-            Htmlstring = Regex.Replace(Htmlstring, @"&(pound|#163);", "/xa3", RegexOptions.IgnoreCase);
-            Htmlstring = Regex.Replace(Htmlstring, @"&(copy|#169);", "/xa9", RegexOptions.IgnoreCase);
-            Htmlstring = Regex.Replace(Htmlstring, @"&#(/d+);", "", RegexOptions.IgnoreCase);
+            htmlText = Regex.Replace(htmlText, @"<(.[^>]*)>", "", RegexOptions.IgnoreCase);
+            htmlText = Regex.Replace(htmlText, @"([/r/n])[/s]+", "", RegexOptions.IgnoreCase);
+            htmlText = Regex.Replace(htmlText, @"-->", "", RegexOptions.IgnoreCase);
+            htmlText = Regex.Replace(htmlText, @"<!--.*", "", RegexOptions.IgnoreCase);
+            htmlText = Regex.Replace(htmlText, @"&(quot|#34);", "/", RegexOptions.IgnoreCase);
+            htmlText = Regex.Replace(htmlText, @"&(amp|#38);", "&", RegexOptions.IgnoreCase);
+            htmlText = Regex.Replace(htmlText, @"&(lt|#60);", "<", RegexOptions.IgnoreCase);
+            htmlText = Regex.Replace(htmlText, @"&(gt|#62);", ">", RegexOptions.IgnoreCase);
+            htmlText = Regex.Replace(htmlText, @"&(nbsp|#160);", "   ", RegexOptions.IgnoreCase);
+            htmlText = Regex.Replace(htmlText, @"&(iexcl|#161);", "/xa1", RegexOptions.IgnoreCase);
+            htmlText = Regex.Replace(htmlText, @"&(cent|#162);", "/xa2", RegexOptions.IgnoreCase);
+            htmlText = Regex.Replace(htmlText, @"&(pound|#163);", "/xa3", RegexOptions.IgnoreCase);
+            htmlText = Regex.Replace(htmlText, @"&(copy|#169);", "/xa9", RegexOptions.IgnoreCase);
+            htmlText = Regex.Replace(htmlText, @"&#(/d+);", "", RegexOptions.IgnoreCase);
             //替换掉 < 和 > 标记
-            Htmlstring = Htmlstring.Replace("<", "");
-            Htmlstring = Htmlstring.Replace(">", "");
-            Htmlstring = Htmlstring.Replace("\r\n", "");
-            Htmlstring = Htmlstring.Replace("\r", "");
-            Htmlstring = Htmlstring.Replace("\n", "");
+            htmlText = htmlText.Replace("<", "");
+            htmlText = htmlText.Replace(">", "");
+            htmlText = htmlText.Replace("\r\n", "");
+            htmlText = htmlText.Replace("\r", "");
+            htmlText = htmlText.Replace("\n", "");
             //返回去掉html标记的字符串
-            return Htmlstring;
+            return htmlText;
         }
 
         /// <summary>  
@@ -84,6 +84,12 @@ namespace Leopard.Helpers
             }
             return sUrlList;
         }
+
+        // 把富文本的回车转为br标签
+        // https://www.ddpool.cn/article/12913.html
+        // 方式一：string.replace(/(rn|n|r)/gm, "<br/>")
+        // 方式二：用 <pre></pre>标签，<pre> 标签的一个常见应用就是用来表示计算机的源代码。可以识别字符串中的‘/n’，‘/r/n’, 制表符，空格...
+        // 方式三：用<textarea></textarea>展示，这样那边编辑的什么，这边就会显示什么
 
         /// <summary>
         /// Text转为Html显示

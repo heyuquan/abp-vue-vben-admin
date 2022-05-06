@@ -169,7 +169,7 @@ namespace Leopard.Http
             query.Append(secret);
 
             // 第2步：使用MD5加密
-            return CryptoGuide.Md5.Hash(query.ToString(), Encoding.GetEncoding(charset));
+            return CryptoGuide.Md5.Encrypt32(query.ToString(), Encoding.GetEncoding(charset));
         }
 
         private static string GetRequestCharset(string ctype)

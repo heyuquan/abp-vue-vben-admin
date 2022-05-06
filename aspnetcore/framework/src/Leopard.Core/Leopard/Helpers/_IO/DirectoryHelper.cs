@@ -88,9 +88,8 @@ namespace Leopard.Helpers
                 Directory.CreateDirectory(dir);
             }
         }
-
+         
         /// <summary>
-<<<<<<< HEAD:aspnetcore/framework/src/Leopard.Core/Leopard/Helpers/_IO/DirectoryHelper.cs
         /// 删除目录
         /// </summary>
         /// <param name="directory"></param>
@@ -114,11 +113,7 @@ namespace Leopard.Helpers
         }
 
         /// <summary>
-        /// 判断目标是文件夹还是文件
-        /// 前提：保证路径不带符号 "."
-=======
         /// 判断目标是文件夹还是文件.(通过获取路径是否包含扩展后缀)
->>>>>>> 62eb8cfcb21e5aab30626c5ec5c15140bb0e8328:aspnetcore/framework/src/Leopard.Core/Leopard/Helpers/_IO/FileHelper.Directory.cs
         /// </summary>
         /// <param name="path">路径</param>
         /// <returns>true-文件夹，false-文件</returns>

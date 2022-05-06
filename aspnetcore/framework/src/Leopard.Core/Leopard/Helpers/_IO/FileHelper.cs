@@ -11,14 +11,13 @@ using System.Xml.Serialization;
 using Volo.Abp;
 
 namespace Leopard.Helpers
-{
+{ 
     /// <summary>
     /// 文件相关帮助类
     /// </summary>
     public static class FileHelper
     {
         /// <summary>
-<<<<<<< HEAD:aspnetcore/framework/src/Leopard.Core/Leopard/Helpers/_IO/FileHelper.cs
         /// Checks and deletes given file if it does exists.
         /// </summary>
         /// <param name="filePath">Path of the file</param>
@@ -56,11 +55,8 @@ namespace Leopard.Helpers
         }
 
         /// <summary>
-        /// 判断目标是文件夹还是文件
-=======
         /// 判断目标是文件夹还是文件。(通过获取路径是否包含扩展后缀)
         /// (PS：在保存文件时，如果没有给文件设置后缀，则路径会被识别为目录，会报：拒绝访问的异常)
->>>>>>> 62eb8cfcb21e5aab30626c5ec5c15140bb0e8328:aspnetcore/framework/src/Leopard.Core/Leopard/Helpers/_IO/FileHelper.File.cs
         /// </summary>
         /// <param name="path">路径</param>
         /// <returns>true-文件，false-文件夹</returns>
@@ -216,17 +212,13 @@ namespace Leopard.Helpers
         /// <param name="source">数据源，会序列化为xml再存储</param>
         /// <param name="isAppend">是否追加到已有文本后面；不追加则先清空，再写入文件</param>
         public static void SaveXmlFile<T>(string destFilePath, T source, bool isAppend = false)
-        {
-<<<<<<< HEAD:aspnetcore/framework/src/Leopard.Core/Leopard/Helpers/_IO/FileHelper.cs
-            DirectoryHelper.CreateIfNotExists(destFilePath);
-=======
+        {          
             if (FileHelper.IsFile(destFilePath))
             {
                 throw new ArgumentException("应该输入文件完整路径", nameof(destFilePath));
             }
 
-            EnsureDirExists(destFilePath);
->>>>>>> 62eb8cfcb21e5aab30626c5ec5c15140bb0e8328:aspnetcore/framework/src/Leopard.Core/Leopard/Helpers/_IO/FileHelper.File.cs
+            DirectoryHelper.CreateIfNotExists(destFilePath);
 
             FileMode mode = FileMode.OpenOrCreate;
             if (File.Exists(destFilePath))
@@ -250,16 +242,12 @@ namespace Leopard.Helpers
         /// <param name="isAppend">是否追加到已有文本后面；不追加则先清空，再写入文件</param>
         public static void SaveFile(string destFilePath, string text, bool isAppend = false)
         {
-<<<<<<< HEAD:aspnetcore/framework/src/Leopard.Core/Leopard/Helpers/_IO/FileHelper.cs
-            DirectoryHelper.CreateIfNotExists(destFilePath);
-=======
             if (FileHelper.IsFile(destFilePath))
             {
                 throw new ArgumentException("应该输入文件完整路径", nameof(destFilePath));
             }
 
-            EnsureDirExists(destFilePath);
->>>>>>> 62eb8cfcb21e5aab30626c5ec5c15140bb0e8328:aspnetcore/framework/src/Leopard.Core/Leopard/Helpers/_IO/FileHelper.File.cs
+            DirectoryHelper.CreateIfNotExists(destFilePath);
 
             FileMode mode = FileMode.OpenOrCreate;
             if (File.Exists(destFilePath))
@@ -285,16 +273,12 @@ namespace Leopard.Helpers
         /// <param name="isAppend">是否追加到已有文本后面；不追加则先清空，再写入文件</param>
         public static void SaveFile(string destFilePath, byte[] data, bool isAppend = false)
         {
-<<<<<<< HEAD:aspnetcore/framework/src/Leopard.Core/Leopard/Helpers/_IO/FileHelper.cs
-            DirectoryHelper.CreateIfNotExists(destFilePath);
-=======
             if (FileHelper.IsFile(destFilePath))
             {
                 throw new ArgumentException("应该输入文件完整路径", nameof(destFilePath));
             }
 
-            EnsureDirExists(destFilePath);
->>>>>>> 62eb8cfcb21e5aab30626c5ec5c15140bb0e8328:aspnetcore/framework/src/Leopard.Core/Leopard/Helpers/_IO/FileHelper.File.cs
+            DirectoryHelper.CreateIfNotExists(destFilePath);
 
             FileMode mode = FileMode.OpenOrCreate;
             if (File.Exists(destFilePath))

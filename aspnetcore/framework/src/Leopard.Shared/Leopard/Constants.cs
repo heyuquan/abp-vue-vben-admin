@@ -8,6 +8,8 @@ namespace Leopard
 {
     public sealed class Constants
     {
+        public static Encoding DEFAULT_ENCODING = Encoding.UTF8;
+
         public const string Framework_Name = "Leopard";
 
         public const string String_Empty = "";

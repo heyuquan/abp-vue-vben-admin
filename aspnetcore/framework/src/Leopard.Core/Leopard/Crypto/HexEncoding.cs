@@ -53,7 +53,7 @@ namespace Leopard.Crypto
         //}
 
         /// <summary>
-        /// 
+        /// byte数组转为十六进制
         /// </summary>
         /// <param name="btArr"></param>
         /// <param name="isLower">是否小写</param>
@@ -69,6 +69,11 @@ namespace Leopard.Crypto
             return sb.ToString();
         }
 
+        /// <summary>
+        /// 十六进制转为byte数组
+        /// </summary>
+        /// <param name="hexStr"></param>
+        /// <returns></returns>
         public byte[] HexToByteArr(string hexStr)
         {
             byte[] inputArr = new byte[hexStr.Length / 2];

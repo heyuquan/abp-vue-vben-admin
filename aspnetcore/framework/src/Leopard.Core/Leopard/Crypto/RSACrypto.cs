@@ -134,7 +134,7 @@ public class RSACrypto
         RSACryptoServiceProvider provider = new RSACryptoServiceProvider();
         provider.FromXmlString(publicKey);
         byte[] byteData = Encoding.UTF8.GetBytes(originalText);
-        byte[] signData = CryptoGuide.Base64.Decode(signedData);
+        byte[] signData = CryptoGuide.Base64.DecodeToByte(signedData);
         return provider.VerifyData(byteData, new SHA1CryptoServiceProvider(), signData);
     }
 

@@ -9,6 +9,14 @@ namespace Leopard.Crypto
     // 利用静态构造函数实现单例模式
     // 由CLR保证，在程序第一次使用该类之前被调用，而且只调用一次。同静态变量一样, 它会随着程序运行, 就被实例化, 同静态变量一个道理。
 
+    // 单钥密码体制/对称密码体制              ：DES、AES
+    // 双钥密码体制/非对称密码体制/公钥秘钥   ：RSA、DSA
+    // 摘要算法/Hash算法/散列算法：是一种将任意长度的输入浓缩成固定长度的字符串的算法(不同算法散列值长度不一样)
+    // 消息摘要算法分为三类：
+    //   #、MD(Message Digest)：消息摘要 eg：md5
+    //   #、SHA(Secure Hash Algorithm)：安全散列
+    //   #、MAC(Message Authentication Code)：消息认证码
+
     /// <summary>
     /// 编码、加密相关类的导航
     /// </summary>
@@ -59,5 +67,11 @@ namespace Leopard.Crypto
         /// 创建证书
         /// </summary>
         public static CerMaker CerMaker { get { return _cerMaker; } }
+
+        private static readonly SHA1Crypto _sha1 = new SHA1Crypto();
+        /// <summary>
+        /// Sha1
+        /// </summary>
+        public static SHA1Crypto Sha1 { get { return _sha1; } }
     }
 }
