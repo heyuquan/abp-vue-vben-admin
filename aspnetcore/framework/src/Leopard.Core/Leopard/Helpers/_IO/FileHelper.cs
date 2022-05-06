@@ -18,6 +18,7 @@ namespace Leopard.Helpers
     public static class FileHelper
     {
         /// <summary>
+<<<<<<< HEAD:aspnetcore/framework/src/Leopard.Core/Leopard/Helpers/_IO/FileHelper.cs
         /// Checks and deletes given file if it does exists.
         /// </summary>
         /// <param name="filePath">Path of the file</param>
@@ -56,6 +57,10 @@ namespace Leopard.Helpers
 
         /// <summary>
         /// 判断目标是文件夹还是文件
+=======
+        /// 判断目标是文件夹还是文件。(通过获取路径是否包含扩展后缀)
+        /// (PS：在保存文件时，如果没有给文件设置后缀，则路径会被识别为目录，会报：拒绝访问的异常)
+>>>>>>> 62eb8cfcb21e5aab30626c5ec5c15140bb0e8328:aspnetcore/framework/src/Leopard.Core/Leopard/Helpers/_IO/FileHelper.File.cs
         /// </summary>
         /// <param name="path">路径</param>
         /// <returns>true-文件，false-文件夹</returns>
@@ -212,7 +217,16 @@ namespace Leopard.Helpers
         /// <param name="isAppend">是否追加到已有文本后面；不追加则先清空，再写入文件</param>
         public static void SaveXmlFile<T>(string destFilePath, T source, bool isAppend = false)
         {
+<<<<<<< HEAD:aspnetcore/framework/src/Leopard.Core/Leopard/Helpers/_IO/FileHelper.cs
             DirectoryHelper.CreateIfNotExists(destFilePath);
+=======
+            if (FileHelper.IsFile(destFilePath))
+            {
+                throw new ArgumentException("应该输入文件完整路径", nameof(destFilePath));
+            }
+
+            EnsureDirExists(destFilePath);
+>>>>>>> 62eb8cfcb21e5aab30626c5ec5c15140bb0e8328:aspnetcore/framework/src/Leopard.Core/Leopard/Helpers/_IO/FileHelper.File.cs
 
             FileMode mode = FileMode.OpenOrCreate;
             if (File.Exists(destFilePath))
@@ -236,7 +250,16 @@ namespace Leopard.Helpers
         /// <param name="isAppend">是否追加到已有文本后面；不追加则先清空，再写入文件</param>
         public static void SaveFile(string destFilePath, string text, bool isAppend = false)
         {
+<<<<<<< HEAD:aspnetcore/framework/src/Leopard.Core/Leopard/Helpers/_IO/FileHelper.cs
             DirectoryHelper.CreateIfNotExists(destFilePath);
+=======
+            if (FileHelper.IsFile(destFilePath))
+            {
+                throw new ArgumentException("应该输入文件完整路径", nameof(destFilePath));
+            }
+
+            EnsureDirExists(destFilePath);
+>>>>>>> 62eb8cfcb21e5aab30626c5ec5c15140bb0e8328:aspnetcore/framework/src/Leopard.Core/Leopard/Helpers/_IO/FileHelper.File.cs
 
             FileMode mode = FileMode.OpenOrCreate;
             if (File.Exists(destFilePath))
@@ -262,7 +285,16 @@ namespace Leopard.Helpers
         /// <param name="isAppend">是否追加到已有文本后面；不追加则先清空，再写入文件</param>
         public static void SaveFile(string destFilePath, byte[] data, bool isAppend = false)
         {
+<<<<<<< HEAD:aspnetcore/framework/src/Leopard.Core/Leopard/Helpers/_IO/FileHelper.cs
             DirectoryHelper.CreateIfNotExists(destFilePath);
+=======
+            if (FileHelper.IsFile(destFilePath))
+            {
+                throw new ArgumentException("应该输入文件完整路径", nameof(destFilePath));
+            }
+
+            EnsureDirExists(destFilePath);
+>>>>>>> 62eb8cfcb21e5aab30626c5ec5c15140bb0e8328:aspnetcore/framework/src/Leopard.Core/Leopard/Helpers/_IO/FileHelper.File.cs
 
             FileMode mode = FileMode.OpenOrCreate;
             if (File.Exists(destFilePath))
@@ -283,10 +315,20 @@ namespace Leopard.Helpers
         /// <summary>
         /// 保存text到文件(没有文件会创建新文件)
         /// </summary>
+        /// <param name="srcStream"></param>
+        /// <param name="destFilePath">文件全路径</param>
+        /// <param name="isAppend">是否追加到已有文本后面；不追加则先清空，再写入文件</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
         public static async Task<bool> SaveFileAsync(Stream srcStream, string destFilePath, bool isAppend = false)
         {
             if (srcStream == null)
                 return false;
+
+            if (FileHelper.IsFile(destFilePath))
+            {
+                throw new ArgumentException("应该输入文件完整路径", nameof(destFilePath));
+            }
 
             const int BuffSize = 32768;
             var result = true;
@@ -335,6 +377,10 @@ namespace Leopard.Helpers
         /// <param name="action">读取后，处理数据</param>
         public static void HandleFile(string destFilePath, Action<Stream> action)
         {
+            if (FileHelper.IsFile(destFilePath))
+            {
+                throw new ArgumentException("应该输入文件完整路径", nameof(destFilePath));
+            }
             if (action == null)
             {
                 throw new ArgumentNullException(nameof(action));

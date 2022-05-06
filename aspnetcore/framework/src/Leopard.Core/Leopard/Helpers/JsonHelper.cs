@@ -7,6 +7,36 @@ namespace Leopard.Helpers
     #region JsonHelper
     public static class JsonHelper
     {
+        static JsonHelper()
+        {
+            JsonSerializerSettings common = new JsonSerializerSettings
+            {
+                // 日期类型默认格式化处理
+                DateFormatHandling = Newtonsoft.Json.DateFormatHandling.MicrosoftDateFormat,
+                DateFormatString = "yyyy-MM-dd HH:mm:ss",
+
+                // 设置序列化的最大层数
+                MaxDepth = 10,
+                // 避免循环引用 【指定如何处理循环引用，None--不序列化，Error-抛出异常，Serialize--仍要序列化】
+                // Serialize--仍要序列化，配合 MaxDepth 来控制循环引用
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+
+                // 如果您正在寻找更紧凑的JSON，并且将使用Json.Net或Web  API（或另一个兼容的库）对数据进行反序列化，
+                // 则可以选择使用PreserveReferencesHandling.Objects。如果您的数据是没有重复引用的有向无环图，则无需任何设置。
+                PreserveReferencesHandling = PreserveReferencesHandling.Objects,
+            };
+
+
+
+            defaultSettings = common;
+
+
+            JsonSerializerSettings temp = common.DeepClone();
+            // 是否缩进显示
+            temp.Formatting = Newtonsoft.Json.Formatting.Indented;
+            defaultSettings_Indented = temp;
+        }
+
         // [循环引用问题]c＃-Json.Net中的PreserveReferencesHandling和ReferenceLoopHandling有什么区别？
         // https://www.itranslater.com/qa/details/2582250669625312256
 
@@ -15,43 +45,10 @@ namespace Leopard.Helpers
         // https://blog.csdn.net/lovegonghui/article/details/50259439
         // eg："Name": null  整个字段会被删掉
 
-        readonly static JsonSerializerSettings defaultSettings = new JsonSerializerSettings
-        {
-            // 日期类型默认格式化处理
-            DateFormatHandling = Newtonsoft.Json.DateFormatHandling.MicrosoftDateFormat,
-            DateFormatString = "yyyy-MM-dd HH:mm:ss",
-
-            // 设置序列化的最大层数
-            MaxDepth = 10,
-            // 避免循环引用 【指定如何处理循环引用，None--不序列化，Error-抛出异常，Serialize--仍要序列化】
-            // Serialize--仍要序列化，配合 MaxDepth 来控制循环引用
-            ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-
-            // 如果您正在寻找更紧凑的JSON，并且将使用Json.Net或Web  API（或另一个兼容的库）对数据进行反序列化，
-            // 则可以选择使用PreserveReferencesHandling.Objects。如果您的数据是没有重复引用的有向无环图，则无需任何设置。
-            PreserveReferencesHandling = PreserveReferencesHandling.Objects,
-        };
+        readonly static JsonSerializerSettings defaultSettings = null;
 
         // todo 改为 深拷贝
-        readonly static JsonSerializerSettings defaultSettings_Indented = new JsonSerializerSettings
-        {
-            // 日期类型默认格式化处理
-            DateFormatHandling = Newtonsoft.Json.DateFormatHandling.MicrosoftDateFormat,
-            DateFormatString = "yyyy-MM-dd HH:mm:ss",
-
-            // 设置序列化的最大层数
-            MaxDepth = 10,
-            // 避免循环引用 【指定如何处理循环引用，None--不序列化，Error-抛出异常，Serialize--仍要序列化】
-            // Serialize--仍要序列化，配合 MaxDepth 来控制循环引用
-            ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-
-            // 如果您正在寻找更紧凑的JSON，并且将使用Json.Net或Web  API（或另一个兼容的库）对数据进行反序列化，
-            // 则可以选择使用PreserveReferencesHandling.Objects。如果您的数据是没有重复引用的有向无环图，则无需任何设置。
-            PreserveReferencesHandling = PreserveReferencesHandling.Objects,
-
-            //是否缩进显示
-            Formatting = Newtonsoft.Json.Formatting.Indented,
-        };
+        readonly static JsonSerializerSettings defaultSettings_Indented = null;
 
         public static JObject ToJObject(this string json)
         {
