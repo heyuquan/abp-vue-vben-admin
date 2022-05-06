@@ -49,7 +49,7 @@ namespace Leopard
         {
             get
             {
-                return FileHelper.AppBaseDirectory();
+                return DirectoryHelper.AppBaseDirectory();
             }
         }
     }

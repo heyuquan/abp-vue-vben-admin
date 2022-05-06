@@ -11,7 +11,7 @@ namespace Leopard.Helpers
     /// <summary>
     /// 本地目录相关
     /// </summary>
-    public static partial class FileHelper
+    public static class DirectoryHelper
     {
         /// <summary>
         /// 获取应用程序当前目录，如果参数为空，返回目录名.目录名最后是带下划线的.
@@ -80,12 +80,35 @@ namespace Leopard.Helpers
         /// （若传递的是文件全路径，会截取其对应的目录）
         /// </summary>
         /// <returns></returns>
-        public static void EnsureDirExists(string path)
+        public static void CreateIfNotExists(string path)
         {
             string dir = IsDir(path) ? path : Path.GetDirectoryName(path);
             if (!Directory.Exists(dir))
             {
                 Directory.CreateDirectory(dir);
+            }
+        }
+
+        /// <summary>
+        /// 删除目录
+        /// </summary>
+        /// <param name="directory"></param>
+        public static void DeleteIfExists(string directory)
+        {
+            if (Directory.Exists(directory))
+            {
+                Directory.Delete(directory);
+            }
+        }
+
+        /// <summary>
+        /// 删除目录（循环删除子目录）
+        /// </summary>
+        public static void DeleteIfExists(string directory, bool recursive)
+        {
+            if (Directory.Exists(directory))
+            {
+                Directory.Delete(directory, recursive);
             }
         }
 

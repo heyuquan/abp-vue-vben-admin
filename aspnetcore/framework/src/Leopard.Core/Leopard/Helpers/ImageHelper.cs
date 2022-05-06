@@ -146,7 +146,7 @@ namespace Leopard.Helpers
                 if (dFormat == null)
                     dFormat = ImageFormat.Jpeg;
                 ImageCodecInfo imageCodecInfo = ImageCodecInfo.GetImageDecoders().FirstOrDefault(c => c.FormatID == dFormat.Guid);
-                FileHelper.EnsureDirExists(savePath);
+                DirectoryHelper.CreateIfNotExists(savePath);
                 if (imageCodecInfo != null)
                 {
                     sourceImage.Save(savePath, imageCodecInfo, encoderParameters);
