@@ -213,7 +213,7 @@ namespace Leopard.Helpers
         /// <param name="isAppend">是否追加到已有文本后面；不追加则先清空，再写入文件</param>
         public static void SaveXmlFile<T>(string destFilePath, T source, bool isAppend = false)
         {          
-            if (FileHelper.IsFile(destFilePath))
+            if (IsFile(destFilePath))
             {
                 throw new ArgumentException("应该输入文件完整路径", nameof(destFilePath));
             }
@@ -242,7 +242,7 @@ namespace Leopard.Helpers
         /// <param name="isAppend">是否追加到已有文本后面；不追加则先清空，再写入文件</param>
         public static void SaveFile(string destFilePath, string text, bool isAppend = false)
         {
-            if (FileHelper.IsFile(destFilePath))
+            if (IsFile(destFilePath))
             {
                 throw new ArgumentException("应该输入文件完整路径", nameof(destFilePath));
             }
@@ -273,7 +273,7 @@ namespace Leopard.Helpers
         /// <param name="isAppend">是否追加到已有文本后面；不追加则先清空，再写入文件</param>
         public static void SaveFile(string destFilePath, byte[] data, bool isAppend = false)
         {
-            if (FileHelper.IsFile(destFilePath))
+            if (IsFile(destFilePath))
             {
                 throw new ArgumentException("应该输入文件完整路径", nameof(destFilePath));
             }
@@ -309,7 +309,7 @@ namespace Leopard.Helpers
             if (srcStream == null)
                 return false;
 
-            if (FileHelper.IsFile(destFilePath))
+            if (IsFile(destFilePath))
             {
                 throw new ArgumentException("应该输入文件完整路径", nameof(destFilePath));
             }
@@ -361,7 +361,7 @@ namespace Leopard.Helpers
         /// <param name="action">读取后，处理数据</param>
         public static void HandleFile(string destFilePath, Action<Stream> action)
         {
-            if (FileHelper.IsFile(destFilePath))
+            if (IsFile(destFilePath))
             {
                 throw new ArgumentException("应该输入文件完整路径", nameof(destFilePath));
             }
