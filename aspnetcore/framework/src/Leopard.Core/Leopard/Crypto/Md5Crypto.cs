@@ -6,6 +6,12 @@ using System.Text;
 
 namespace Leopard.Crypto
 {
+    // MD5 32位，md5.ComputeHash(input) 转为hex十六进制，就是32位
+
+    // MD5 16位，md5.ComputeHash(input) 转为hex十六进制，再取中间十六位.  即：Encrypt32(***).Substring(8, 16);
+
+    // MD5 64位，md5.ComputeHash(input) 后取 Convert.ToBase64String
+
     /// <summary>
     /// MD5 Hash和验证（md5不可逆加密方式，所以没有解码方法）
     /// （使用 CryptoGuide 静态类进行访问）
@@ -29,6 +35,39 @@ namespace Leopard.Crypto
         }
 
         /// <summary>
+        /// 16位MD5加密 (默认utf-8)
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public string Encrypt16(string input)
+        {
+            return Encrypt16(input, Constants.DEFAULT_ENCODING);
+        }
+
+        /// <summary>
+        /// 16位MD5加密
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="encode"></param>
+        /// <returns></returns>
+        public string Encrypt16(string input, Encoding encode)
+        {
+            return Encrypt16(encode.GetBytes(input));
+        }
+
+        /// <summary>
+        /// 16位MD5加密
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public string Encrypt16(byte[] input)
+        {
+            string md5_32 = Encrypt32(input);
+
+            return md5_32.Substring(8, 16);
+        }
+
+        /// <summary>
         /// 32位MD5加密 (默认utf-8)
         /// </summary>
         /// <param name="input"></param>
@@ -38,7 +77,12 @@ namespace Leopard.Crypto
             return Encrypt32(input, Constants.DEFAULT_ENCODING);
         }
 
-
+        /// <summary>
+        /// 32位MD5加密
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="encode"></param>
+        /// <returns></returns>
         public string Encrypt32(string input, Encoding encode)
         {
             return Encrypt32(encode.GetBytes(input));
@@ -71,6 +115,7 @@ namespace Leopard.Crypto
         /// 64位MD5加密 (默认utf-8)
         /// </summary>
         /// <param name="input"></param>
+        /// <param name="encode"></param>
         /// <returns></returns>
         public string Encrypt64(string input, Encoding encode)
         {
@@ -92,6 +137,34 @@ namespace Leopard.Crypto
         /// 验证Md5 hash
         /// </summary>
         /// <param name="input">原字符串</param>
+        /// <param name="encrypt16Str">原字符串的md5码</param>
+        /// <returns></returns>
+        public bool Verify16Hash(string input, string encrypt16Str)
+        {
+            return Verify16Hash(input, encrypt16Str, Constants.DEFAULT_ENCODING);
+        }
+
+        /// <summary>
+        /// 验证Md5 hash
+        /// </summary>
+        /// <param name="input">原字符串</param>
+        /// <param name="encrypt16Str">原字符串的md5码</param>
+        /// <param name="encode"></param>
+        /// <returns></returns>
+        public bool Verify16Hash(string input, string encrypt16Str, Encoding encode)
+        {
+            string hashOfInput = Encrypt16(input, encode);
+            StringComparer comparer = StringComparer.OrdinalIgnoreCase;
+            if (0 == comparer.Compare(hashOfInput, encrypt16Str))
+                return true;
+            else
+                return false;
+        }
+
+        /// <summary>
+        /// 验证Md5 hash
+        /// </summary>
+        /// <param name="input">原字符串</param>
         /// <param name="encrypt32Str">原字符串的md5码</param>
         /// <returns></returns>
         public bool Verify32Hash(string input, string encrypt32Str)
@@ -104,6 +177,7 @@ namespace Leopard.Crypto
         /// </summary>
         /// <param name="input">原字符串</param>
         /// <param name="encrypt32Str">原字符串的md5码</param>
+        /// <param name="encode"></param>
         /// <returns></returns>
         public bool Verify32Hash(string input, string encrypt32Str, Encoding encode)
         {
@@ -131,6 +205,7 @@ namespace Leopard.Crypto
         /// </summary>
         /// <param name="input">原字符串</param>
         /// <param name="encrypt64Str">原字符串的md5码</param>
+        /// <param name="encode"></param>
         /// <returns></returns>
         public bool Verify64Hash(string input, string encrypt64Str, Encoding encode)
         {
