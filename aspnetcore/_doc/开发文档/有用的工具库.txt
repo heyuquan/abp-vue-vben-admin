@@ -79,6 +79,12 @@ https://blog.csdn.net/weixin_39978444/article/details/111040277
         ClosedXML 是基于 OpenXML API 封装的 .NET 类库
         ClosedXML.Report  创建一份xlsx 模板，设置数据填充规则，就可传入模型，自动填充  https://blog.csdn.net/chinaherolts2008/article/details/111773031
 
+    当数据量很大导出到Excel表格的时候(几十万条甚至上百万条的数据导出到Excel中)通常会遇到两个问题：
+    #、一个是内存溢出，由于需要处理的数据量比较大，导致Excel占用的内存过多从而导致数据还没有导出完就因为内存溢出而失败；
+    #、Excel 中提示不能超过256列或65536行的处理
+        #、在Office2003及之前版本的Excel中，xls格式的表格，支持最大的列为256列，最大的行为65536行。（https://zhuanlan.zhihu.com/p/71361385?ivk_sa=1024320u）
+        #、数据多于65536行时，这时候需要考虑Excel分页功能。即在Excel文件中创建多个 worksheet 
+        #、升级xls版本为xlsx。目前一些excel组件也只支持Excel 2007+ (.xlsx, .xlsm)
 
 #、DeepCloner  实现深拷贝、浅拷贝的扩展方法
 https://github.com/force-net/DeepCloner
