@@ -16,7 +16,6 @@ Leopard._App  下面的文件只是做归类，但是并不像多一层 App 的�
 1、参考Furion中对cors的处理方式  。CorsAccessor
 2、引入MiniProfiler.AspNetCore.Mvc
 3、引入Apollo,参考 Blog.Core项目
-4、xml namespace
 $、Abp 实现通过手机号注册用户   https://www.cnblogs.com/qiu-gu/p/16130602.html
 #、参考 一沙 的登录日志。 ip地址，ip位置，浏览器，操作系统
 #、Helper等工具类还是拆出去  Leopard.Utils

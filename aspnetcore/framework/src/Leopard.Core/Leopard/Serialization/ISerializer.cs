@@ -4,6 +4,6 @@
     {
         string Serialize<TPayload>(TPayload item);
 
-        TPayload Deserialize<TPayload>(string content);
+        TPayload Deserialize<TPayload>(string content) where TPayload : class;
     }
 }

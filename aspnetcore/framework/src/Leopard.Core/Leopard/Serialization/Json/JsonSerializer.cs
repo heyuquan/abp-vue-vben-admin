@@ -5,11 +5,6 @@ namespace Leopard.Serialization.Json
 {
     public class JsonSerializer : ISerializer
     {
-        public TPayload Deserialize<TPayload>(string jsonString)
-        {
-            return (TPayload)JsonConvert.DeserializeObject<TPayload>(jsonString);
-        }
-
         /// <summary>
         /// Converts to json string and returns
         /// </summary>
@@ -23,6 +18,11 @@ namespace Leopard.Serialization.Json
                 serializer.Serialize(jsonWriter, item);
             }
             return stringWriter.ToString();
+        }
+
+        public TPayload Deserialize<TPayload>(string jsonString) where TPayload : class
+        {
+            return JsonConvert.DeserializeObject<TPayload>(jsonString);
         }
     }
 }

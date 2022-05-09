@@ -4,47 +4,48 @@
     using System.IO;
     using System.Text;
 
-    // 改进 https://www.cnblogs.com/linyefeilyft/p/3379063.html
-    // Encoding
-    // Namespaces
-    // 验证：item.GetType().IsBaseOn(typeof(IXmlPayload))
-    // xml文档的操作类封装   https://www.cnblogs.com/Can-daydayup/p/16058817.html
+    // XmlSerializer参考： https://www.cnblogs.com/linyefeilyft/p/3379063.html
+    // 另外：xml文档的操作类封装   https://www.cnblogs.com/Can-daydayup/p/16058817.html
+
+    // xmlns:前缀="命名空间"
+    // XML命名空间详解
+    // https://blog.csdn.net/zisgood/article/details/98942674
+    // xml序列化帮助类不考虑命名空间，太复杂了。只做简单的封装。遇到命名空间场景再考虑
 
     public class XmlSerializer : ISerializer
     {
-        public sealed class Utf8StringWriter : StringWriter
-        {
-            public override Encoding Encoding => Encoding.UTF8;
-        }
-
-        public TPayload Deserialize<TPayload>(string content)
-        {
-            var serializer = new System.Xml.Serialization.XmlSerializer(typeof(TPayload));
-            using (var reader = new StringReader(content))
-            {
-                return (TPayload)serializer.Deserialize(reader);
-            }
-        }
-
         /// <summary>
         /// Converts to xml string and returns
         /// </summary>
         /// <returns></returns>
         public string Serialize<TPayload>(TPayload item)
         {
-            var serializer = new System.Xml.Serialization.XmlSerializer(typeof(TPayload));
-            var stringWriter = new Utf8StringWriter();
-            if (item.GetType().IsBaseOn(typeof(IXmlPayload)))   // 待验证  
-            {
-                if (((IXmlPayload)item).Xmlns.Count > 0)
-                    serializer.Serialize(stringWriter, item, ((IXmlPayload)item).Xmlns);
-                else
-                    serializer.Serialize(stringWriter, item);
-            }
-            else
-                serializer.Serialize(stringWriter, item);
+            string result = string.Empty;
+            Encoding encode = Encoding.UTF8;
 
-            return stringWriter.ToString();
+            using (MemoryStream output = new MemoryStream())
+            {
+                var serializer = new System.Xml.Serialization.XmlSerializer(typeof(TPayload));
+                serializer.Serialize(output, item);
+                result = encode.GetString(output.ToArray());
+            }
+
+            return result;
         }
+
+        public TPayload Deserialize<TPayload>(string content) where TPayload : class
+        {
+            TPayload result = null;
+            Encoding encode = Encoding.UTF8;
+            
+            using (MemoryStream input = new MemoryStream(encode.GetBytes(content)))
+            {
+                var serializer = new System.Xml.Serialization.XmlSerializer(typeof(TPayload));
+                result = serializer.Deserialize(input) as TPayload;
+            }
+
+            return result;
+        }
+
     }
 }
