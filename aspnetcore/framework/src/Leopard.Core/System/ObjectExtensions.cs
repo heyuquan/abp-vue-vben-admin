@@ -29,7 +29,7 @@ namespace System
         /// <returns></returns>
         public static T ToObject<T>(this string json) where T : class
         {
-            return JsonHelper.ToObject<T>(json);
+            return JsonHelper.Deserialize<T>(json);
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace System
         /// <returns></returns>
         public static string ToJson(this object obj, bool isIndented = false)
         {
-            return JsonHelper.ToJson(obj, isIndented);
+            return JsonHelper.Serialize(obj, isIndented);
         }
         #endregion
 

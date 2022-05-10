@@ -52,9 +52,17 @@ namespace Leopard.Helpers
         // todo 改为 深拷贝
         readonly static JsonSerializerSettings defaultSettings_Indented = null;
 
-        public static JObject ToJObject(this string json)
+        /// <summary>
+        /// json序列化
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="isIndented">是否缩进显示</param>
+        /// <returns></returns>
+        public static string Serialize(object obj, bool isIndented = false)
         {
-            return json == null ? JObject.Parse("{}") : JObject.Parse(json.Replace("&nbsp;", ""));
+            JsonSerializerSettings settings = isIndented ? defaultSettings_Indented : defaultSettings;
+
+            return JsonConvert.SerializeObject(obj, settings);
         }
 
         /// <summary>
@@ -63,23 +71,15 @@ namespace Leopard.Helpers
         /// <typeparam name="T"></typeparam>
         /// <param name="json"></param>
         /// <returns></returns>
-        public static T ToObject<T>(this string json) where T : class
+        public static T Deserialize<T>(this string json) where T : class
         {
             json = json.Replace("&nbsp;", "");
             return JsonConvert.DeserializeObject<T>(json, defaultSettings);
         }
 
-        /// <summary>
-        /// json序列化
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <param name="isIndented">是否缩进显示</param>
-        /// <returns></returns>
-        public static string ToJson(object obj, bool isIndented = false)
+        public static JObject ToJObject(this string json)
         {
-            JsonSerializerSettings settings = isIndented ? defaultSettings_Indented : defaultSettings;
-
-            return JsonConvert.SerializeObject(obj, settings);
+            return json == null ? JObject.Parse("{}") : JObject.Parse(json.Replace("&nbsp;", ""));
         }
     }
     #endregion
