@@ -103,3 +103,10 @@ https://blog.csdn.net/fengyuyeguirenenen/article/details/123754926
     // 所有位数加起来共64位，恰好是一个Long型（转换为字符串长度为18）
     // eg:412992501465481216
     // C#：https://github.com/RobThree/IdGen
+
+#、Json.NET + Json.NET Schema
+   https://www.cnblogs.com/mulaba/p/16264557.html
+   Newtonsoft.Json.Schema   
+   #、支持从类生成 JSON Schema
+   #、支持验证一个json或类是否满足 JSON Schema 
+
