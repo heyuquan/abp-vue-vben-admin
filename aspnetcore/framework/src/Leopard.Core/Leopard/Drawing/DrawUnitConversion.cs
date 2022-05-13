@@ -15,6 +15,11 @@ namespace Leopard.Drawing
     // 1英寸=25.4mm=96DPI，那么1mm=96/25.4DPI
     // 毫米和英寸的换算：打印机是以英寸为单位的，纸张设置是以毫米为单位的，所以需要转换
 
+    // 像素与毫米的转换
+    // 转换还需要知道另一个参数：DPI（每英寸多少点）
+    // 象素数 / DPI = 英寸数
+    // 英寸数* 25.4 = 毫米数
+
     /// <summary>
     /// Drawing相关单位转换类
     /// 毫米数 ＝（像素/DPI）* 25.4
@@ -32,6 +37,26 @@ namespace Leopard.Drawing
         /// 1英寸的物理长度：2.54厘米，这里表示25.4毫米
         /// </summary>
         public readonly static decimal singleLengthM = 25.4m;
+
+        ///// <summary>
+        ///// 毫米转像素。根据显示器的分辨率计算像素（windows）
+        ///// </summary>
+        ///// <param name="mm">毫米</param>
+        ///// <returns></returns>
+        //public static double MMToPXByDisplay(double mm)
+        //{
+        //    // https://blog.csdn.net/weixin_39630855/article/details/111820301
+
+        //    System.Windows.Forms.Panel p = new System.Windows.Forms.Panel();
+        //    System.Drawing.Graphics g = System.Drawing.Graphics.FromHwnd(p.Handle);
+        //    IntPtr hdc = g.GetHdc();
+        //    int width = GetDeviceCaps(hdc, 4);      // HORZRES
+        //    int pixels = GetDeviceCaps(hdc, 8);     // BITSPIXEL
+        //    g.ReleaseHdc(hdc);
+        //    return (((double)pixels / (double)width) * (double)mm);
+        //}
+        //[DllImport("gdi32.dll")]
+        //private static extern int GetDeviceCaps(IntPtr hdc, int Index);
 
         /// <summary>
         /// 毫米转像素
@@ -117,14 +142,46 @@ namespace Leopard.Drawing
         }
 
         /// <summary>
-        /// 转换毫米到百分之一英寸
+        /// 毫米到百分之一英寸
         /// eg：PrintDocument对象识别到打印机设置默认纸张大小对象 PrinterSettings.DefaultPageSettings.PaperSize 就是将毫米转到百分之一英寸后的值
         /// </summary>
         /// <param name="mm">毫米</param>
         /// <returns></returns>
-        private double MM2Inch(int mm)
+        public static double MMToInch100(double mm)
         {
             return (mm * 100.0D / 25.4D);
+        }
+
+        /// <summary>
+        /// 百分之一英寸转毫米
+        /// </summary>
+        /// <param name="inch"></param>
+        /// <returns></returns>
+        public static double Inch100ToMM(double inch)
+        {
+            return ((inch * 25.4) / 100);
+        }
+
+        /// <summary>
+        /// 像素到百分之一英寸
+        /// </summary>
+        /// <param name="px">像素</param>
+        /// <param name="dpi"></param>
+        /// <returns></returns>
+        public static double PXToInch100(double px, Dpi dpi)
+        {
+            return MMToInch100(PXToMM(px, dpi, 1));
+        }
+
+        /// <summary>
+        /// 百分之一英寸转像素
+        /// </summary>
+        /// <param name="inch"></param>
+        /// <param name="dpi"></param>
+        /// <returns></returns>
+        public static double Inch100ToPX(double inch, Dpi dpi)
+        {
+            return MMToPX(Inch100ToMM(inch), dpi, 1);
         }
 
     }

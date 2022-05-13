@@ -181,7 +181,7 @@ public class AESCrypto
     }
 
 
-    ///***---声明CancellationTokenSource对象--***/
+    //***---声明CancellationTokenSource对象--***//
     //private CancellationTokenSource cts;//using System.Threading;引用
     //public Task EnOrDecryptFileAsync(Stream inStream, long inStream_Seek, Stream outStream, long outStream_Seek, string password, ActionDirection direction, IProgress<int> progress)
     //{

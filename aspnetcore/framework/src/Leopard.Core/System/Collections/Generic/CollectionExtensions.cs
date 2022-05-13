@@ -222,5 +222,23 @@ namespace System.Collections.Generic
         }
 
         #endregion
+
+        /// <summary>
+        /// 将集合按指定大小拆分
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <param name="groupSize">默认1000</param>
+        /// <returns></returns>
+        public static List<List<T>> Split<T>(this List<T> list, int groupSize = 1000)
+        {
+            List<List<T>> group = new List<List<T>>();
+            for (int i = 0; i < list.Count; i += groupSize)
+            {
+                group.Add(list.Skip(i).Take(groupSize).ToList());
+            }
+
+            return group;
+        }
     }
 }

@@ -79,6 +79,7 @@ namespace Leopard.Helpers
 
         /// <summary>
         /// 序列化时不⽣成XML声明和XML命名空间
+        /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
         public static string SerializeNoNamespacesNoXmlDeclaration(object obj)

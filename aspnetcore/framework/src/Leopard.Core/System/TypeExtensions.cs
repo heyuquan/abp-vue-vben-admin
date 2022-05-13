@@ -457,6 +457,51 @@ namespace System
                 return properties;
             }
         }
+
+        /// <summary>
+        /// Gets value of a property by it's full path from given object
+        /// Path eg: Name ; Children.Name ; Volo.Abp.Reflection.ReflectionHelper_Tests+GetValueByPathTestClass.Name ; 
+        /// </summary>
+        public static object GetValueByPath(this object obj, string propertyPath)
+        {
+            return obj.GetValueByPath(obj.GetType(), propertyPath);
+        }
+
+        /// <summary>
+        /// Gets value of a property by it's full path from given object
+        /// Path eg: Name ; Children.Name ; Volo.Abp.Reflection.ReflectionHelper_Tests+GetValueByPathTestClass.Name ; 
+        /// </summary>
+        public static object GetValueByPath(this object obj, Type objectType, string propertyPath)
+        {
+            var value = obj;
+            var currentType = obj.GetType();
+            var objectPath = currentType.FullName;
+            var absolutePropertyPath = propertyPath;
+            if (objectPath != null && absolutePropertyPath.StartsWith(objectPath))
+            {
+                absolutePropertyPath = absolutePropertyPath.Replace(objectPath + ".", "");
+            }
+
+            foreach (var propertyName in absolutePropertyPath.Split('.'))
+            {
+                var property = currentType.GetProperty(propertyName);
+                if (property != null)
+                {
+                    if (value != null)
+                    {
+                        value = property.GetValue(value, null);
+                    }
+                    currentType = property.PropertyType;
+                }
+                else
+                {
+                    value = null;
+                    break;
+                }
+            }
+
+            return value;
+        }
         #endregion
     }
 }

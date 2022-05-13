@@ -10,6 +10,11 @@ namespace Leopard.Drawing
 {
     // C#用Graphics书写文字时计算字符串所占的像素单位大小  (比如做冒号对齐时需要)
     // https://blog.csdn.net/Libby1984/article/details/77879119
+    // System.Drawing.Graphics g = e.Graphics; // 获得一个Graphics实例
+    // string str = "string";
+    // System.Drawing.Font font = new System.Drawing.Font(new System.Drawing.FontFamily(this.FontFamily.Source), 32);
+    // System.Drawing.SizeF size = g.MeasureString(str, font);  // 计算字符串所需要的大小
+
 
     public class DrawHelper
     {
@@ -73,6 +78,12 @@ namespace Leopard.Drawing
             g.PixelOffsetMode = PixelOffsetMode.HighQuality;
             // 图像合成质量
             g.CompositingQuality = CompositingQuality.HighQuality;
+
+            // rawImage 是设备相关的函数，换言之就是，DrawImage会把屏幕的参数带上，所以，它绘制图像的DPI基本都是96。
+            // Graphics.DrawImage 打出来的图片变模糊问题 
+            // https://www.nuomiphp.com/eplan/399743.html
+            // https://blog.csdn.net/pengcwl/article/details/7868344
+            g.InterpolationMode = InterpolationMode.NearestNeighbor;
         }
     }
 }
