@@ -240,7 +240,7 @@ namespace Leopard.Drawing
         /// <summary>
         /// 获取打印的字符大小。默认获取常规大小
         /// </summary>
-        /// <param name="isBig"></param>
+        /// <param name="size"></param>
         /// <returns></returns>
         protected float GetFontSize(SimplePrintFontSize size = SimplePrintFontSize.Medium)
         {
