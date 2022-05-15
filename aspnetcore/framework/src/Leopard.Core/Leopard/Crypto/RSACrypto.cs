@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Leopard.Utilities;
+using System;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -8,12 +9,12 @@ namespace Leopard.Crypto;
 /// RSA 加密
 /// （使用 CryptoGuide 静态类进行访问）
 /// </summary>
-public class RSACrypto
+public class RSACrypto : Singleton<RSACrypto>
 {
-    /// <summary>
-    /// 使用 CryptoGuide 静态类进行访问
-    /// </summary>
-    internal RSACrypto() { }
+    static RSACrypto()
+    {
+        Instance = new RSACrypto();
+    }
 
     /// <summary>
     /// 生成 RSA 秘钥

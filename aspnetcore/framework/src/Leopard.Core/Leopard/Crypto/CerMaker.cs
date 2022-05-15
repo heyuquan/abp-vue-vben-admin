@@ -1,22 +1,19 @@
-﻿using Leopard.Helpers;
-using Leopard.Helpers.IO;
+﻿using Leopard.Helpers.IO;
+using Leopard.Utilities;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Leopard.Crypto
 {
-    public class CerMaker
+    public class CerMaker : Singleton<CerMaker>
     {
-        /// <summary>
-        /// 使用 CryptoGuide 静态类进行访问
-        /// </summary>
-        internal CerMaker() { }
+        static CerMaker()
+        {
+            Instance = new CerMaker();
+        }
 
 
         #region 生成自签名的服务器证书

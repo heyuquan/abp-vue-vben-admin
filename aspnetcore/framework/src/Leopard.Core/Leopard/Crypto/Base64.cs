@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Leopard.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,12 +11,12 @@ namespace Leopard.Crypto
     /// base64 编码 解码
     /// （使用 CryptoGuide 静态类进行访问）
     /// </summary>
-    public class Base64
+    public class Base64 : Singleton<Base64>
     {
-        /// <summary>
-        /// 使用 CryptoGuide 静态类进行访问
-        /// </summary>
-        internal Base64() { }
+        static Base64()
+        {
+            Instance = new Base64();
+        }
 
         #region  判断是否base64值
 

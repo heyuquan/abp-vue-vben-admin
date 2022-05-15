@@ -1,4 +1,5 @@
 ﻿
+using Leopard.Utilities;
 using System;
 using System.Buffers.Text;
 using System.IO;
@@ -15,13 +16,12 @@ namespace Leopard.Crypto;
 /// AES 加解密
 /// （使用 CryptoGuide 静态类进行访问）
 /// </summary>
-public class AESCrypto
+public class AESCrypto : Singleton<AESCrypto>
 {
-
-    /// <summary>
-    /// 使用 CryptoGuide 静态类进行访问
-    /// </summary>
-    internal AESCrypto() { }
+    static AESCrypto()
+    {
+        Instance = new AESCrypto();
+    }
 
     /// <summary>
     /// 使用用户口令，生成符合AES标准的key和iv。
@@ -145,7 +145,7 @@ public class AESCrypto
     {
         byte[] keyBytes = UTF8Encoding.UTF8.GetBytes(key_utf8);
         byte[] ivBytes = UTF8Encoding.UTF8.GetBytes(iv_utf8);
-        
+
         byte[] decrypted;
         using (Aes aes = Aes.Create())
         {

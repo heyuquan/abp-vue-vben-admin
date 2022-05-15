@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Leopard.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,9 +19,12 @@ namespace Leopard.Crypto
     /// 十六进制编码
     /// （使用 CryptoGuide 静态类进行访问）
     /// </summary>
-    public class HexEncoding
+    public class HexEncoding : Singleton<HexEncoding>
     {
-        internal HexEncoding() { }
+        static HexEncoding()
+        {
+            Instance = new HexEncoding();
+        }
 
         //private static string HexStr = "0123456789abcdef";
         //private static char[] HexCharArr = HexStr.ToCharArray();

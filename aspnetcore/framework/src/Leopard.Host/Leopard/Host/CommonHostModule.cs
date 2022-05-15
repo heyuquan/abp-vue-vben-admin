@@ -8,12 +8,14 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
+using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
@@ -93,7 +95,7 @@ namespace Leopard.Host
             var hostingEnvironment = context.Services.GetHostingEnvironment();
             var configuration = context.Services.GetConfiguration();
 
-            // 中文序列化的编码问题
+            // 中文序列化的编码问题   ？？ 确认 使用newtonsoft是不是就没必要配置？？ [todo]
             Configure<AbpSystemTextJsonSerializerOptions>(options =>
             {
                 options.JsonSerializerOptions.Encoder = JavaScriptEncoder.Create(UnicodeRanges.All);
@@ -165,7 +167,8 @@ namespace Leopard.Host
 
             if (IsHost())
             {
-                context.Services.ConfigureModelBindingExceptionHandling();
+                // 全局异常统一处理
+                context.Services.ConfigureModelBindingExceptionHandling();      // [todo] IsIdentityServer不要吗？？？
             }
 
             if (IsHost() || IsIdentityServer())
@@ -221,6 +224,50 @@ namespace Leopard.Host
                 {
                     options.Kind = DateTimeKind.Utc;
                 });
+
+                #region 注册响应压缩
+
+                context.Services.AddResponseCompression(options =>
+                 {
+                     options.EnableForHttps = true;  // 是否对https请求压缩.因为存在安全风险，默认禁用此选项。 
+
+                     // NET 6 webapi自定义响应压缩
+                     // https://blog.csdn.net/superQuestion/article/details/122494493
+                     // 使用自定义压缩，来更多的决策什么内容需要被压缩
+                     // 不要压缩小于 150 - 1000 字节的文件，具体取决于文件的内容和压缩效率。 压缩小文件的开销可能会产生比未压缩文件更大的压缩文件。
+
+                     // 当客户端可以处理压缩内容时，客户端必须通过随请求发送 Accept-Encoding 标头来通知服务器其功能。 
+                     // 当服务器发送压缩的内容时，它必须在 Content-Encoding 标头中包含有关如何对压缩响应进行编码的信息。
+                     // Gzip 有更好的 user-agent 兼容性，而 Brotli 有更好的性能。
+                     options.Providers.Add<BrotliCompressionProvider>();    // brotli
+                     options.Providers.Add<GzipCompressionProvider>();      // gzip
+
+                     // 压缩的默认 MIME 类型集：
+                     // application / javascript
+                     // application / json
+                     // application / xml
+                     // text / css
+                     // text / html
+                     // text / json
+                     // text / plain
+                     // text / xml
+                     // 使用Concat添加额外的压缩类型
+                     options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[]
+                      {
+                        "image/svg+xml"
+                     });
+                 });
+
+                Configure<BrotliCompressionProviderOptions>(options =>
+                {
+                    options.Level = CompressionLevel.Optimal;
+                });
+                Configure<GzipCompressionProviderOptions>(options =>
+                {
+                    options.Level = CompressionLevel.Optimal;
+                });
+                
+                #endregion
             }
 
             if (afterConfigureServices != null)
@@ -240,6 +287,9 @@ namespace Leopard.Host
             , Action<ApplicationInitializationContext> betweenAuthApplicationInitialization = null
             , Action<ApplicationInitializationContext> afterApplicationInitialization = null)
         {
+            // ASP.NET Core 中间件顺序
+            // https://docs.microsoft.com/zh-cn/aspnet/core/fundamentals/middleware/?view=aspnetcore-6.0#middleware-order
+
             var app = context.GetApplicationBuilder();
 
             // 本地化
@@ -320,6 +370,9 @@ namespace Leopard.Host
                 // 审计日志
                 app.UseAuditing();
                 app.UseUnitOfWork();
+
+                // 在需要缓存的组件之前。 UseCORS 必须在 UseResponseCaching 之前。
+                app.UseResponseCompression();
                 app.UseConfiguredEndpoints();
             }
 

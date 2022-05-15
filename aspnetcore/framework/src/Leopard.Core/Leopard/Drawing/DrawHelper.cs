@@ -20,6 +20,10 @@ namespace Leopard.Drawing
     {
         public class DPI
         {
+            // C# 获取DPI的几种方式
+            // https://blog.csdn.net/htiannuo/article/details/77086550
+
+
             /// <summary>
             /// 从传入的图片获取DPI（仅适用于windows）
             /// </summary>

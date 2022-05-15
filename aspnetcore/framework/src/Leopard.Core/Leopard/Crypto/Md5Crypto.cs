@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Leopard.Utilities;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
@@ -16,12 +17,12 @@ namespace Leopard.Crypto
     /// MD5 Hash和验证（md5不可逆加密方式，所以没有解码方法）
     /// （使用 CryptoGuide 静态类进行访问）
     /// </summary>
-    public class Md5Crypto
+    public class Md5Crypto : Singleton<Md5Crypto>
     {
-        /// <summary>
-        /// 使用 CryptoGuide 静态类进行访问
-        /// </summary>
-        internal Md5Crypto() { }
+        static Md5Crypto()
+        {
+            Instance = new Md5Crypto();
+        }
 
         /// <summary>
         /// MD5 加密

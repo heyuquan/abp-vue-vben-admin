@@ -1,21 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Leopard.Utilities;
+using System;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Leopard.Crypto
 {
     /// <summary>
     /// 安全哈希算法（Secure Hash Algorithm）主要适用于数字签名标准 
     /// </summary>
-    public class SHA1Crypto
+    public class SHA1Crypto : Singleton<SHA1Crypto>
     {
         /// <summary>
         /// 使用 CryptoGuide 静态类进行访问
         /// </summary>
-        internal SHA1Crypto() { }
+        static SHA1Crypto()
+        {
+            Instance = new SHA1Crypto();
+        }
 
         /// <summary>
         /// SHA1加密

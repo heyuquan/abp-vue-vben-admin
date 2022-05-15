@@ -20,58 +20,41 @@ namespace Leopard.Crypto
     /// <summary>
     /// 编码、加密相关类的导航
     /// </summary>
-    public class CryptoGuide
+    public static class CryptoGuide
     {
-        private CryptoGuide()
-        {
-
-        }
-
-        private static readonly Base64 _base64 = new Base64();
         /// <summary>
         /// Base64 单例
         /// </summary>
-        public static Base64 Base64 { get { return _base64; } }
+        public static Base64 Base64 { get { return Base64.Instance; } }
 
-
-        private static readonly Md5Crypto _md5 = new Md5Crypto();
         /// <summary>
         /// Md5 单例
         /// </summary>
-        public static Md5Crypto Md5 { get { return _md5; } }
+        public static Md5Crypto Md5 { get { return Md5Crypto.Instance; } }
 
-
-        private static readonly RSACrypto _rsa = new RSACrypto();
         /// <summary>
         /// RSA 单例
         /// </summary>
-        public static RSACrypto RSA { get { return _rsa; } }
+        public static RSACrypto RSA { get { return RSACrypto.Instance; } }
 
-
-        private static readonly AESCrypto _aes = new AESCrypto();
         /// <summary>
         /// AES 单例
         /// </summary>
-        public static AESCrypto AES { get { return _aes; } }
+        public static AESCrypto AES { get { return AESCrypto.Instance; } }
 
-
-        private static readonly HexEncoding _hex = new HexEncoding();
         /// <summary>
         /// Hex（十六进制） 单例
         /// </summary>
-        public static HexEncoding Hex { get { return _hex; } }
+        public static HexEncoding Hex { get { return HexEncoding.Instance; } }
 
-
-        private static readonly CerMaker _cerMaker = new CerMaker();
         /// <summary>
         /// 创建证书
         /// </summary>
-        public static CerMaker CerMaker { get { return _cerMaker; } }
+        public static CerMaker CerMaker { get { return CerMaker.Instance; } }
 
-        private static readonly SHA1Crypto _sha1 = new SHA1Crypto();
         /// <summary>
         /// Sha1
         /// </summary>
-        public static SHA1Crypto Sha1 { get { return _sha1; } }
+        public static SHA1Crypto Sha1 { get { return SHA1Crypto.Instance; } }
     }
 }
