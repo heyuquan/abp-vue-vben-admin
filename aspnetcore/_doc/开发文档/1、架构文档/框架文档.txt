@@ -4,3 +4,5 @@
 		拆的时候发现，utils里面的工具类有用到abp.core里面的一些公共函数。eg：Chcked.检查函数。   
 		如果确实只是单独想使用工具函数，也依然可以引入 Leopard 程序集，而不使用abp的module。
 		但不好的是Leopard也会把如abp.core这种基础类库引入，但不影响使用
+2、02_Framework\Utils 文件夹
+   文件夹中的程序集不使用模块，也就不依赖abp。可以被其他非abp项目使用

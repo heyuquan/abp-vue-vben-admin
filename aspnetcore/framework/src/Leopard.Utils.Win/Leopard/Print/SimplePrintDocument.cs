@@ -1,10 +1,11 @@
-﻿using Leopard.Helpers.IO;
+﻿using Leopard.Drawing;
+using Leopard.Helpers.IO;
 using System;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.Linq;
 
-namespace Leopard.Drawing
+namespace Leopard.Print
 {
     /// <summary>
     /// PrintDocument的简单封装类，更加方便测试

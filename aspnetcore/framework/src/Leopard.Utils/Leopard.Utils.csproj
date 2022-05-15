@@ -31,8 +31,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Update="Leopard\Drawing\SimplePrintDocument.cs">
-			<SubType>Component</SubType>
-		</Compile>
+	  <Folder Include="Leopard\Drawing\" />
 	</ItemGroup>
 </Project>

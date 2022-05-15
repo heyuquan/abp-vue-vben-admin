@@ -86,12 +86,12 @@ namespace Leopard.Helpers.Ip
         {
             bool isInnerIp = false;
             long ipNum = GetIpNum(ipAddress);
-            /**
+            /*
                 私有IP：A类 10.0.0.0-10.255.255.255
                             B类 172.16.0.0-172.31.255.255
                             C类 192.168.0.0-192.168.255.255
                 当然，还有127这个网段是环回地址 
-           **/
+            */
             long aBegin = GetIpNum("10.0.0.0");
             long aEnd = GetIpNum("10.255.255.255");
             long bBegin = GetIpNum("172.16.0.0");

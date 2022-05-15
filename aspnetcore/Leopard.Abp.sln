@@ -176,6 +176,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utils", "Utils", "{E557CC6C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leopard.Utils", "framework\src\Leopard.Utils\Leopard.Utils.csproj", "{71E3F56F-7A07-47AF-9235-0B330E8629E3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leopard.Utils.Win", "framework\src\Leopard.Utils.Win\Leopard.Utils.Win.csproj", "{D5234479-F2B9-4207-871F-155AF01EDB89}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -712,6 +714,14 @@ Global
 		{71E3F56F-7A07-47AF-9235-0B330E8629E3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{71E3F56F-7A07-47AF-9235-0B330E8629E3}.Release|x86.ActiveCfg = Release|Any CPU
 		{71E3F56F-7A07-47AF-9235-0B330E8629E3}.Release|x86.Build.0 = Release|Any CPU
+		{D5234479-F2B9-4207-871F-155AF01EDB89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5234479-F2B9-4207-871F-155AF01EDB89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5234479-F2B9-4207-871F-155AF01EDB89}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D5234479-F2B9-4207-871F-155AF01EDB89}.Debug|x86.Build.0 = Debug|Any CPU
+		{D5234479-F2B9-4207-871F-155AF01EDB89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5234479-F2B9-4207-871F-155AF01EDB89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5234479-F2B9-4207-871F-155AF01EDB89}.Release|x86.ActiveCfg = Release|Any CPU
+		{D5234479-F2B9-4207-871F-155AF01EDB89}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -792,6 +802,7 @@ Global
 		{D12FA885-CC57-4FEE-A2CA-E8A4F956D70D} = {408C61DE-C824-4BA2-8EE7-CE571EA864B5}
 		{E557CC6C-E93A-433D-A1ED-D3DEDA6669CC} = {408C61DE-C824-4BA2-8EE7-CE571EA864B5}
 		{71E3F56F-7A07-47AF-9235-0B330E8629E3} = {E557CC6C-E93A-433D-A1ED-D3DEDA6669CC}
+		{D5234479-F2B9-4207-871F-155AF01EDB89} = {E557CC6C-E93A-433D-A1ED-D3DEDA6669CC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {28315BFD-90E7-4E14-A2EA-F3D23AF4126F}
