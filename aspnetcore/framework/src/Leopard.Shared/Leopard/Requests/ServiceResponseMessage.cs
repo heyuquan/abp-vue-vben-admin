@@ -1,7 +1,5 @@
 ﻿using JetBrains.Annotations;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Leopard.Requests
 {
@@ -93,10 +91,10 @@ namespace Leopard.Requests
         /// <returns></returns>
         private static ServiceResponseMessage InnerCreateMessage(string code, ServiceResponseMessageLevel level, [NotNull] string content, string details)
         {
-            if (code.IsNullOrWhiteSpace())
+            if (string.IsNullOrWhiteSpace(code))
                 code = String.Empty;
 
-            if (content.IsNullOrWhiteSpace())
+            if (string.IsNullOrWhiteSpace(content))
                 throw new ArgumentNullException(nameof(content));
 
             return new ServiceResponseMessage(code, level, content, details);

@@ -1,5 +1,4 @@
 ﻿using Leopard;
-using System;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
@@ -27,7 +26,7 @@ namespace System
                 ?.GetCustomAttribute<EnumMemberAttribute>(false)
                 ?.Value;
 
-            return result.IsNullOrEmpty() ? defaultValue : result;
+            return String.IsNullOrEmpty(result) ? defaultValue : result;
         }
     }
 }

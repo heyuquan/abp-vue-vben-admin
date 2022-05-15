@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-using Volo.Abp;
-using Volo.Abp.Http;
-using System.Linq;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace Leopard.Requests
 {
