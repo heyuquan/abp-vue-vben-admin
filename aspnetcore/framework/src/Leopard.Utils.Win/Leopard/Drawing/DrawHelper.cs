@@ -83,7 +83,7 @@ namespace Leopard.Drawing
             // 图像合成质量
             g.CompositingQuality = CompositingQuality.HighQuality;
 
-            // rawImage 是设备相关的函数，换言之就是，DrawImage会把屏幕的参数带上，所以，它绘制图像的DPI基本都是96。
+            // DrawImage 是设备相关的函数，换言之就是，DrawImage会把屏幕的参数带上，所以，它绘制图像的DPI基本都是96。
             // Graphics.DrawImage 打出来的图片变模糊问题 
             // https://www.nuomiphp.com/eplan/399743.html
             // https://blog.csdn.net/pengcwl/article/details/7868344

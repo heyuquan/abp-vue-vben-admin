@@ -18,5 +18,4 @@ Leopard._App  下面的文件只是做归类，但是并不像多一层 App 的�
 3、引入Apollo,参考 Blog.Core项目
 $、Abp 实现通过手机号注册用户   https://www.cnblogs.com/qiu-gu/p/16130602.html
 #、参考 一沙 的登录日志。 ip地址，ip位置，浏览器，操作系统
-#、Helper等工具类还是拆出去  Leopard.Utils   .(windows 不跨平台的，独立一个程序集eg：Leopard.Utils.Windows)
 #、浏览器参数获取参考  yisha  YiSha.Util
