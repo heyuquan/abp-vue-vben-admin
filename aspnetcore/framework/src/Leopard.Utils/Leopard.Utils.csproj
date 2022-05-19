@@ -10,6 +10,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Leopard\Drawing\**" />
+	  <EmbeddedResource Remove="Leopard\Drawing\**" />
+	  <None Remove="Leopard\Drawing\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="JetBrains.Annotations" Version="2022.1.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
 		<PackageReference Include="Microsoft.Net.Http.Headers" Version="2.2.8" />
@@ -28,9 +34,5 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\Leopard.Shared\Leopard.Shared.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Leopard\Drawing\" />
 	</ItemGroup>
 </Project>

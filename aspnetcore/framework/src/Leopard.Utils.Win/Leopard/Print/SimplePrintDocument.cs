@@ -58,7 +58,20 @@ namespace Leopard.Print
         /// 自动获取已安装或所选打印机的最大Dpi
         /// </summary>
         public Dpi PrintDpi { get; private set; }
-        public int PageCount { get; set; } = 1;
+
+        private int pageCount = 1;
+        /// <summary>
+        /// 打印张数，默认 1
+        /// </summary>
+        public int PageCount
+        {
+            get { return pageCount; }
+            set
+            {
+                if (value > 0)
+                    pageCount = value;
+            }
+        }
         /// <summary>
         /// 上一次保存图片文件的路径
         /// </summary>
@@ -82,11 +95,15 @@ namespace Leopard.Print
         private double width_px = 0;
         private double height_px = 0;
 
+        private Guid printBatchId;
+
         public T Data { get; private set; }
 
         protected override void OnBeginPrint(PrintEventArgs e)
         {
             base.OnBeginPrint(e);
+
+            printBatchId = Guid.NewGuid();
 
             OnBeginPrintValid();
         }
@@ -105,12 +122,31 @@ namespace Leopard.Print
             {
                 LastTimeSaveImgFilePath = BuildSavePath();
                 bmp.Save(LastTimeSaveImgFilePath);
-                // LOG.INFO($"此次打印的图片保存在：{LastTimeSaveImgFilePath}");
+                string msg = $"打印批次[{printBatchId}].此次打印的图片保存在：{LastTimeSaveImgFilePath}";
+                // LOG.INFO(msg);
             }
 
+            // 最后打印 ，使用 百分之一英寸   
+            // 因为会绘制一个框，所以 *0.05 四周留白多一点，方便打印调整偏移       
+            int interval_width = (int)(Size.Width * 0.05);
+            int interval_height = (int)(Size.Height * 0.05);
+
+            #region 测试 看最后打印的图片是否居中
+            //if (EnableSaveImg)
+            //{
+            //    Bitmap bmp2 = new Bitmap(Size.Width, Size.Height);
+            //    Graphics bmpGraphics2 = Graphics.FromImage(bmp2);
+            //    DrawHelper.SetGraphicsHighQuality(bmpGraphics2);
+            //    bmpGraphics2.DrawImage(bmp, interval_width, interval_height
+            //         , Size.Width - interval_width * 2, Size.Height - interval_height * 2);
+            //    LastTimeSaveImgFilePath = BuildSavePath();
+            //    bmp2.Save(LastTimeSaveImgFilePath);
+            //}
+            #endregion
+
             DrawHelper.SetGraphicsHighQuality(e.Graphics);
-            // 最后打印 ，使用 百分之一英寸
-            e.Graphics.DrawImage(bmp, 0, 0, Size.Width - 20, Size.Height - 10);
+            e.Graphics.DrawImage(bmp, interval_width, interval_height
+                , Size.Width - interval_width * 2, Size.Height - interval_height * 2);
 
             if (--PageCount > 0)
             {
@@ -129,13 +165,13 @@ namespace Leopard.Print
         protected virtual void OnBeginPrintValid()
         {
             if (Data == null)
-                throw new Exception($"请调用{nameof(SetData)}方法设置要打印的数据");
+                throw new Exception($"打印批次[{printBatchId}].请调用{nameof(SetData)}方法设置要打印的数据");
 
             if (EnableSaveImg)
             {
                 if (saveDirectory.IsNullOrEmpty2() || saveFileName.IsNullOrEmpty2())
                 {
-                    throw new Exception($"请调用{nameof(SetEnableSaveImg)}方法正确设置图片要保存的路径");
+                    throw new Exception($"打印批次[{printBatchId}].请调用{nameof(SetEnableSaveImg)}方法正确设置图片要保存的路径");
                 }
             }
         }

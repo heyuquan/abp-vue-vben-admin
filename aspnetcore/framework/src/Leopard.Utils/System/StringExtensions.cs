@@ -243,36 +243,6 @@ namespace System
             return o.ToString();
         }
 
-        /// <summary>
-        /// 截取指定长度的字符串
-        /// </summary>
-        /// <param name="value"></param>
-        /// <param name="maxLength">指定长度</param>
-        /// <param name="end">多余的字符怎么显示，默认(...)</param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentNullException"></exception>
-        /// <exception cref="ArgumentException"></exception>
-        [DebuggerStepThrough]
-        public static string Truncate(this string value, int maxLength, string end = "...")
-        {
-            if (end == null)
-                throw new ArgumentNullException(nameof(end));
-
-            int subStringLength = maxLength - end.Length;
-
-            if (subStringLength <= 0)
-                throw new ArgumentException("Length of suffix string is greater or equal to maximumLength", nameof(maxLength));
-
-            if (value != null && value.Length > maxLength)
-            {
-                return value[..subStringLength].Trim() + end;
-            }
-            else
-            {
-                return value;
-            }
-        }
-
         private const string DumpStr = "------------------------------------------------";
         [DebuggerStepThrough]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -294,6 +264,80 @@ namespace System
                 return defaultValue;
             else
                 return text;
+        }
+
+        /// <summary>
+        /// Gets a substring of a string from beginning of the string.
+        /// </summary>
+        /// <exception cref="ArgumentNullException">Thrown if <paramref name="str"/> is null</exception>
+        /// <exception cref="ArgumentException">Thrown if <paramref name="len"/> is bigger that string's length</exception>
+        public static string Left2(this string str, int len)
+        {
+            if (str.Length < len)
+            {
+                throw new ArgumentException("len argument can not be bigger than given string's length!");
+            }
+
+            return str.Substring(0, len);
+        }
+
+        /// <summary>
+        /// Gets a substring of a string from beginning of the string if it exceeds maximum length.
+        /// It adds a "..." postfix to end of the string if it's truncated.
+        /// Returning string can not be longer than maxLength.
+        /// </summary>
+        /// <exception cref="ArgumentNullException">Thrown if <paramref name="str"/> is null</exception>
+        public static string TruncateWithPostfix2(this string str, int maxLength)
+        {
+            return TruncateWithPostfix2(str, maxLength, "...");
+        }
+
+        /// <summary>
+        /// Gets a substring of a string from beginning of the string if it exceeds maximum length.
+        /// It adds given <paramref name="postfix"/> to end of the string if it's truncated.
+        /// Returning string can not be longer than maxLength.
+        /// </summary>
+        /// <exception cref="ArgumentNullException">Thrown if <paramref name="str"/> is null</exception>
+        public static string TruncateWithPostfix2(this string str, int maxLength, string postfix)
+        {
+            if (str == null)
+            {
+                return null;
+            }
+
+            if (str == string.Empty || maxLength == 0)
+            {
+                return string.Empty;
+            }
+
+            if (str.Length <= maxLength)
+            {
+                return str;
+            }
+
+            if (maxLength <= postfix.Length)
+            {
+                return postfix.Left2(maxLength);
+            }
+
+            return str.Left2(maxLength - postfix.Length) + postfix;
+        }
+
+        /// <summary>
+        /// 把字符串中间的字符用...代替
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="count">前后各显示多少字符</param>
+        /// <returns></returns>
+        public static string TruncateMiddle(this string str, int count)
+        {
+
+            if (str.Length <= (count * 2 + 3))      // 两边各count个字符，中间 3个 点儿.
+            {
+                return str;
+            }
+
+            return $"{str.Substring(0, count)}...{str.Substring(str.Length - count)}";
         }
     }
 }

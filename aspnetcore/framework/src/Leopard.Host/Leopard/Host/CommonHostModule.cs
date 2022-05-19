@@ -327,6 +327,7 @@ namespace Leopard.Host
             app.UseCorrelationId();
             // 虚拟文件系统
             app.UseStaticFiles();
+            app.UseAbpSecurityHeaders();
             //路由
             app.UseRouting();
             app.UseCors();
