@@ -174,9 +174,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utils", "Utils", "{E557CC6C-E93A-433D-A1ED-D3DEDA6669CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leopard.Utils", "framework\src\Leopard.Utils\Leopard.Utils.csproj", "{71E3F56F-7A07-47AF-9235-0B330E8629E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Utils", "framework\src\Leopard.Utils\Leopard.Utils.csproj", "{71E3F56F-7A07-47AF-9235-0B330E8629E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leopard.Utils.Win", "framework\src\Leopard.Utils.Win\Leopard.Utils.Win.csproj", "{D5234479-F2B9-4207-871F-155AF01EDB89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Utils.Win", "framework\src\Leopard.Utils.Win\Leopard.Utils.Win.csproj", "{D5234479-F2B9-4207-871F-155AF01EDB89}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Leopard.Utils.JsonSchema", "framework\src\Leopard.Utils.JsonSchema\Leopard.Utils.JsonSchema.csproj", "{C0A09230-7711-4942-B2E4-23147A33B76C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -722,6 +724,14 @@ Global
 		{D5234479-F2B9-4207-871F-155AF01EDB89}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D5234479-F2B9-4207-871F-155AF01EDB89}.Release|x86.ActiveCfg = Release|Any CPU
 		{D5234479-F2B9-4207-871F-155AF01EDB89}.Release|x86.Build.0 = Release|Any CPU
+		{C0A09230-7711-4942-B2E4-23147A33B76C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0A09230-7711-4942-B2E4-23147A33B76C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0A09230-7711-4942-B2E4-23147A33B76C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C0A09230-7711-4942-B2E4-23147A33B76C}.Debug|x86.Build.0 = Debug|Any CPU
+		{C0A09230-7711-4942-B2E4-23147A33B76C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0A09230-7711-4942-B2E4-23147A33B76C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0A09230-7711-4942-B2E4-23147A33B76C}.Release|x86.ActiveCfg = Release|Any CPU
+		{C0A09230-7711-4942-B2E4-23147A33B76C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -803,6 +813,7 @@ Global
 		{E557CC6C-E93A-433D-A1ED-D3DEDA6669CC} = {408C61DE-C824-4BA2-8EE7-CE571EA864B5}
 		{71E3F56F-7A07-47AF-9235-0B330E8629E3} = {E557CC6C-E93A-433D-A1ED-D3DEDA6669CC}
 		{D5234479-F2B9-4207-871F-155AF01EDB89} = {E557CC6C-E93A-433D-A1ED-D3DEDA6669CC}
+		{C0A09230-7711-4942-B2E4-23147A33B76C} = {E557CC6C-E93A-433D-A1ED-D3DEDA6669CC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {28315BFD-90E7-4E14-A2EA-F3D23AF4126F}

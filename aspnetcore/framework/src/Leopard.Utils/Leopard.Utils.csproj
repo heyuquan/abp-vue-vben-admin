@@ -10,12 +10,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Remove="Leopard\Drawing\**" />
-	  <EmbeddedResource Remove="Leopard\Drawing\**" />
-	  <None Remove="Leopard\Drawing\**" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<PackageReference Include="JetBrains.Annotations" Version="2022.1.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
 		<PackageReference Include="Microsoft.Net.Http.Headers" Version="2.2.8" />
@@ -23,13 +17,10 @@
 		<PackageReference Include="AsyncEnumerator" Version="4.0.2" />
 		<PackageReference Include="HtmlSanitizer" Version="7.1.488" />
 		<PackageReference Include="DeepCloner" Version="0.10.3" />
-		<PackageReference Include="IdGen" Version="3.0.0" />		
-		<PackageReference Include="Newtonsoft.Json.Schema" Version="3.0.13" />
+		<PackageReference Include="IdGen" Version="3.0.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />		
 		<PackageReference Include="Nito.AsyncEx" Version="5.1.2" />
-		<PackageReference Include="ObjectsComparer" Version="1.4.1" />
-		<PackageReference Include="Mono.Posix.NETStandard" Version="1.0.0" />
-		<PackageReference Include="System.Drawing.Common" Version="6.0.0" />
-		<PackageReference Include="System.Security.Principal.Windows" Version="5.0.0" />
+		<PackageReference Include="ObjectsComparer" Version="1.4.1" />		
 	</ItemGroup>
 
 	<ItemGroup>

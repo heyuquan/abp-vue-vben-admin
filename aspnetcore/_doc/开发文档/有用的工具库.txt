@@ -110,3 +110,23 @@ https://blog.csdn.net/fengyuyeguirenenen/article/details/123754926
    #、支持从类生成 JSON Schema
    #、支持验证一个json或类是否满足 JSON Schema 
 
+#、ImageMagick 图片处理的终极工具
+   在图像格式之间进行转换以及调整图像的大小，模糊，裁剪，去斑点，抖动，绘制，翻转，合并，重新采样等等。
+   https://github.com/dlemstra/Magick.NET
+   https://zhuanlan.zhihu.com/p/341328099
+
+#、集合性能优化
+   Collections.Pooled：通过池化内存来达到降低内存占用和GC的目的
+   Pooled类型实现了IDispose接口，它通过Dispose()方法将使用的内存归还到池中，所以我们需要在使用完Pooled集合对象以后调用它的Dispose()方法。或者可以直接使用using var关键字。
+   https://github.com/jtmueller/Collections.Pooled
+   https://github.com/jtmueller/Collections.Pooled
+    .NET原生	                Collections.Pooled	                备注
+    List<T>	                    PooledList<T>	                    泛型集合类
+    Dictionary<TKey, TValue>	PooledDictionary<TKey, TValue>	    泛型字典类
+    HashSet<T>	                PooledSet<T>	                    泛型哈希集合类
+    Stack<T>	                Stack<T>	                        泛型栈
+    Queue<T>	                PooledQueue<T>	                    泛型队列
+
+#、pdf
+    https://github.com/UglyToad/PdfPig
+    https://github.com/QuestPDF/QuestPDF

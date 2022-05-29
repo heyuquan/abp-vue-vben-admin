@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<RootNamespace />
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Newtonsoft.Json.Schema" Version="3.0.13" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Leopard.Utils\Leopard.Utils.csproj" />
+	</ItemGroup>
+
+</Project>

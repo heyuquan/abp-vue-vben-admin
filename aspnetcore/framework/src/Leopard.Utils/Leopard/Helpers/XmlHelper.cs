@@ -19,6 +19,15 @@ namespace Leopard.Helpers
     // XML命名空间详解
     // https://blog.csdn.net/yi412/article/details/70158876
 
+
+    //xml序列化对XmlArrayItemAttribute特性存在支持不足问题。无法正常识别这个标签的一些用法。
+    //    有些工具会根据xsd生成
+    //      [XmlArrayItemAttribute("orderLine", IsNullable = false, ElementName = "orderLines")]
+    //    需改为：
+    //      [XmlArray("orderLines", IsNullable = false)]
+    //      [XmlArrayItem("orderLine", Type = typeof(子元素类型))]
+
+
     /// <summary>
     /// xml帮助类
     /// </summary>

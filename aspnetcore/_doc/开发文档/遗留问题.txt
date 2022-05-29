@@ -5,13 +5,6 @@
 暂不清楚啥情况
 
 
-文件夹下划线开头的，不记录命名空间。
-eg：
-Leopard._App  下面的文件只是做归类，但是并不像多一层 App 的命名空间。所以命名空间为 Leopard
-
-
-
-
 
 1、参考Furion中对cors的处理方式  。CorsAccessor
 2、引入MiniProfiler.AspNetCore.Mvc

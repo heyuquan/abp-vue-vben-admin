@@ -1,8 +1,7 @@
 ﻿
-1、为什么不把 Leopard 中的帮助类，移到 Leopard.Utils 项目中？？这样就可以在不使用abp的module情况下使用工具函数
-   因为：
-		拆的时候发现，utils里面的工具类有用到abp.core里面的一些公共函数。eg：Chcked.检查函数。   
-		如果确实只是单独想使用工具函数，也依然可以引入 Leopard 程序集，而不使用abp的module。
-		但不好的是Leopard也会把如abp.core这种基础类库引入，但不影响使用
-2、02_Framework\Utils 文件夹
-   文件夹中的程序集不使用模块，也就不依赖abp。可以被其他非abp项目使用
+#、文件夹下划线开头的，不记录命名空间。
+	eg：
+	Leopard._App  下面的文件只是做归类，但是并不像多一层 App 的命名空间。所以命名空间为 Leopard
+
+#、02_Framework\Utils 文件夹中的项目，不依赖abp
+   若项目不使用abp module开发方式，也可以引用 Utils

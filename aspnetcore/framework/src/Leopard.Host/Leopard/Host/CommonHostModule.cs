@@ -131,7 +131,10 @@ namespace Leopard.Host
                         .SetIsOriginAllowedToAllowWildcardSubdomains()
                         .AllowAnyHeader()
                         .AllowAnyMethod()
-                        .AllowCredentials();
+                        .AllowCredentials()
+                        // 预检请求的性能
+                        // https://jishuin.proginn.com/p/763bfbd36f2f
+                        .SetPreflightMaxAge(CacheTimeSpan.DayOther.TwentyFourHour);
                 });
             });
 
