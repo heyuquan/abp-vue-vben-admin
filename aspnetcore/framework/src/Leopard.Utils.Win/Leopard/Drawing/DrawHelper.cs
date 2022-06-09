@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Drawing.Text;
 
 namespace Leopard.Drawing
 {
@@ -74,20 +71,32 @@ namespace Leopard.Drawing
             // Graphics 关于呈现质量与合成模式
             // https://www.cnblogs.com/del/archive/2009/12/22/1630120.html
 
-            // 绘图质量
-            g.SmoothingMode = SmoothingMode.HighQuality;
-            // 插补模式
-            g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-            // 像素的偏移模式
-            g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+            // （AntiAlias：反锯齿）
+
+            // 绘图质量  
+            g.SmoothingMode = SmoothingMode.AntiAlias;  //使绘图质量最高，即消除锯齿   // ps 使用HighQuality在画矩形边框后打印出来，有锯齿
             // 图像合成质量
             g.CompositingQuality = CompositingQuality.HighQuality;
+            // drawstring画图，消除锯齿
+            g.TextRenderingHint = TextRenderingHint.AntiAlias;
 
+            // 使用内插模式在缩放期间控制图像质量
+            // https://docs.microsoft.com/zh-cn/windows/win32/gdiplus/-gdiplus-using-interpolation-mode-to-control-image-quality-during-scaling-use?redirectedfrom=MSDN
+            // g.InterpolationMode = InterpolationMode.HighQualityBicubic;   设置为这个，DrawImage会模糊...从上面微软官方文档看，这个是最好的，再验证下看看
             // DrawImage 是设备相关的函数，换言之就是，DrawImage会把屏幕的参数带上，所以，它绘制图像的DPI基本都是96。
             // Graphics.DrawImage 打出来的图片变模糊问题 
             // https://www.nuomiphp.com/eplan/399743.html
             // https://blog.csdn.net/pengcwl/article/details/7868344
             g.InterpolationMode = InterpolationMode.NearestNeighbor;
+            // 对于NearestNeighbor，您需要将PixelOffsetMode设置为Half，否则顶部和左侧会占用图像的一半像素。这实际上在上方的蓝色边框上可见。
+            // https://www.nuomiphp.com/eplan/399743.html
+            // https://stackoverflow.com/questions/20776605/missing-half-of-first-pixel-column-after-a-graphics-transform-scale
+            // https://stackoverflow.com/questions/10222774/bitmap-not-aligning-properly-in-panel
+            // 像素的偏移模式
+            g.PixelOffsetMode = PixelOffsetMode.Half;
+
+            // C#下解决DrawImage画出来的Image变⼤了的问题
+            // https://wenku.baidu.com/view/8bbb1928b91aa8114431b90d6c85ec3a87c28bc2.html
         }
     }
 }
