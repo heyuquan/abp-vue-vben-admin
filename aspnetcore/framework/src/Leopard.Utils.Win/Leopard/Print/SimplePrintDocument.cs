@@ -122,7 +122,7 @@ namespace Leopard.Print
             // 中间使用像素绘制，像素比较直观
             Bitmap bmp = new Bitmap(pxPrintInfo.PageWidth, pxPrintInfo.PageHeight);
             Graphics bmpGraphics = Graphics.FromImage(bmp);
-            DrawHelper.SetGraphicsHighQuality(bmpGraphics);
+            DrawHelper.SetGraphicsHighQuality(bmpGraphics, true);
             DoDrawing(bmpGraphics, pxPrintInfo.PageWidth, pxPrintInfo.PageHeight);
 
             #region 测试 看最后打印的图片是否居中
@@ -130,7 +130,7 @@ namespace Leopard.Print
             {
                 Bitmap bmp2 = new Bitmap(pxPrintInfo.PageWidth, pxPrintInfo.PageHeight);
                 Graphics bmpGraphics2 = Graphics.FromImage(bmp2);
-                DrawHelper.SetGraphicsHighQuality(bmpGraphics2);
+                DrawHelper.SetGraphicsHighQuality(bmpGraphics2, true);
                 bmpGraphics2.DrawImage(bmp, pxPrintInfo.StartX, pxPrintInfo.StartY
                      , pxPrintInfo.PrintWidth, pxPrintInfo.PrintHeight);
                 LastTimeSaveImgFilePath = BuildSavePath();
@@ -143,7 +143,7 @@ namespace Leopard.Print
 
             // 最后打印 ，使用 百分之一英寸   
             var lastPrintInfo = PrintSizeInfo.Create((int)Size.Width, (int)Size.Height, SpaceScale);
-            DrawHelper.SetGraphicsHighQuality(e.Graphics);
+            DrawHelper.SetGraphicsHighQuality(e.Graphics, true);
             e.Graphics.DrawImage(bmp, lastPrintInfo.StartX, lastPrintInfo.StartY
                 , lastPrintInfo.PrintWidth, lastPrintInfo.PrintHeight);
 

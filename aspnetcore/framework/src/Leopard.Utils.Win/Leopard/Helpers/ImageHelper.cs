@@ -103,7 +103,7 @@ namespace Leopard.Helpers
             Graphics g = Graphics.FromImage(ob);
 
             g.Clear(Color.WhiteSmoke);
-            DrawHelper.SetGraphicsHighQuality(g);
+            DrawHelper.SetGraphicsHighQuality(g, false);
 
             g.DrawImage(iSource, new Rectangle((dWidth - sW) / 2, (dHeight - sH) / 2, sW, sH), 0, 0, iSource.Width, iSource.Height, GraphicsUnit.Pixel);
 
@@ -225,7 +225,7 @@ namespace Leopard.Helpers
             Bitmap ob = new Bitmap(dWidth, dHeight);
             Graphics g = Graphics.FromImage(ob);
             g.Clear(Color.WhiteSmoke);
-            DrawHelper.SetGraphicsHighQuality(g);
+            DrawHelper.SetGraphicsHighQuality(g, false);
 
             g.DrawImage(iSource, new Rectangle((dWidth - sW) / 2, (dHeight - sH) / 2, sW, sH), 0, 0, iSource.Width, iSource.Height, GraphicsUnit.Pixel);
             g.Dispose();
