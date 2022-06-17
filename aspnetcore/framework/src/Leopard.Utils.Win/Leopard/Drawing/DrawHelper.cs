@@ -83,6 +83,7 @@ namespace Leopard.Drawing
                 // 原因：http://cn.voidcc.com/question/p-effcogqr-uh.html
                 // 当进行插值时，GDI +通常将像素的中心偏移半个像素。这在缩放时可能会产生不良影响，出现将缩放后的图像向上和向左移动的现象。使用PixelOffsetMode.Half将像素移回到它们“所属”的位置。
                 // 原因：高质量的双线性和双三次插值模式似乎将边缘像素与图像边界之外的假设透明像素混合在一起，从而在边缘创建半透明边缘。
+                //       这个半透明边缘导致实际打出来会出现坑坑洼洼的
 
                 // 所以：打印设置为 NearestNeighbor + Half
 
