@@ -119,7 +119,7 @@ namespace Leopard.Print
 
             var pxPrintInfo = PrintSizeInfo.Create((int)width_px, (int)height_px, SpaceScale);
 
-            // 中间使用像素绘制，像素比较直观
+            // 中间使用像素绘制，像素比较直观（这也是为什么多走一步，在新建的Bitmap上先画的原因）
             Bitmap bmp = new Bitmap(pxPrintInfo.PageWidth, pxPrintInfo.PageHeight);
             Graphics bmpGraphics = Graphics.FromImage(bmp);
             DrawHelper.SetGraphicsHighQuality(bmpGraphics, true);
