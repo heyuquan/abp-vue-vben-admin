@@ -5,7 +5,7 @@ using System;
 namespace Leopard.Helpers
 {
     #region JsonHelper
-    public static partial class JsonHelper
+    public static class JsonHelper
     {
 
         // [循环引用问题]c＃-Json.Net中的PreserveReferencesHandling和ReferenceLoopHandling有什么区别？

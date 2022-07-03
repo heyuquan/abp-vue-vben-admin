@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
@@ -144,6 +145,38 @@ namespace Leopard.Host
                 options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "简体中文"));
             });
 
+            #region 请求长度限制
+            // ASP.NET中maxRequestLength和maxAllowedContentLength的区别
+            // https://blog.csdn.net/qq_23663693/article/details/89920039
+
+            // 使用 POST 向 ASP.NET Core 传递数据时的长度限制与解决方案
+            // https://mp.weixin.qq.com/s/xnz1wnZqvvuZJ4K56BfPQg
+
+            // .Net Core 3.1 解决数据大小限制
+            // http://t.zoukankan.com/qtiger-p-13886356.html
+
+            // 对于特殊长度限制的方法，使用特性做标注
+            // 使用[DisableRequestSizeLimit]或者[RequestSizeLimit]特性在action上做限制
+
+            // 另外：IIS 中 Post 默认长度限制为 4M 。  Nginx中 Post 默认长度限制为2M。
+            // https://www.freesion.com/article/55561320633/
+            Configure<FormOptions>(options =>
+            {
+                // 默认情况下，ASP.NET Core 限制了每个 POST 数据值的长度为 4 MB 大小，超过就会抛出 InvalidDataException 异常。
+                // 请求的单个字段
+                options.ValueLengthLimit = Constants.RequestLimit.MaxValueLength_Byte;
+
+                // 请求的整个正文长度
+                options.MultipartBodyLengthLimit = Constants.RequestLimit.MaxBodyLength_Byte;
+            });
+
+            Configure<IISServerOptions>(options =>
+            {
+                options.MaxRequestBodySize = Constants.RequestLimit.MaxBodyLength_Byte;
+            });
+
+            #endregion
+
             //#if DEBUG  没有swagger不方便调试
             context.Services.AddLeopardSwaggerGen();
             //#endif
@@ -269,7 +302,7 @@ namespace Leopard.Host
                 {
                     options.Level = CompressionLevel.Optimal;
                 });
-                
+
                 #endregion
             }
 

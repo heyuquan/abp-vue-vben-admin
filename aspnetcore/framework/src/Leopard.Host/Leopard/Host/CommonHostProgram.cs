@@ -71,6 +71,12 @@ namespace Leopard.Host
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
+                    webBuilder.ConfigureKestrel((context, options) =>
+                    {
+                        // 对于 Kestrel 托管的应用，默认的最大请求正文大小为 30,000,000 个字节，约为 28.6 MB
+                        // options.Limits.MaxRequestBodySize=null表示不限制
+                        options.Limits.MaxRequestBodySize = Constants.RequestLimit.MaxBodyLength_Byte;
+                    });
                     webBuilder.UseStartup<T>();
                 })
                 .UseAutofac()

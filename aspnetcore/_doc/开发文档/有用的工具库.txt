@@ -106,9 +106,16 @@ https://blog.csdn.net/fengyuyeguirenenen/article/details/123754926
 
 #、Json.NET + Json.NET Schema
    https://www.cnblogs.com/mulaba/p/16264557.html
-   Newtonsoft.Json.Schema   
-   #、支持从类生成 JSON Schema
-   #、支持验证一个json或类是否满足 JSON Schema 
+   Newtonsoft.Json.Schema   （收费）
+       https://github.com/JamesNK/Newtonsoft.Json.Schema
+       https://www.newtonsoft.com/jsonschema
+       #、支持从类生成 JSON Schema
+       #、支持验证一个json或类是否满足 JSON Schema 
+   NJsonSchema  （MIT）
+   https://github.com/RicoSuter/NJsonSchema
+   JSON Schema reader, generator and validator for .NET
+   generate C# and TypeScript classes or interfaces from a schema
+
 
 #、ImageMagick 图片处理的终极工具
    在图像格式之间进行转换以及调整图像的大小，模糊，裁剪，去斑点，抖动，绘制，翻转，合并，重新采样等等。

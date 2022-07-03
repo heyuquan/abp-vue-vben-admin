@@ -60,5 +60,21 @@ namespace Leopard
 
             public const string OctetStream = "application/octet-stream";
         }
+
+        /// <summary>
+        /// 请求限制
+        /// </summary>
+        public class RequestLimit
+        {
+            /// <summary>
+            /// 请求中单个字段值，最大长度（单位 byte）
+            /// </summary>
+            public const int MaxValueLength_Byte = 20 * 1024 * 1024;  // 20M
+
+            /// <summary>
+            /// 请求的整个正文，最大长度（单位 byte）
+            /// </summary>
+            public const int MaxBodyLength_Byte = 200 * 1024 * 1024;   // 200M
+        }
     }
 }
