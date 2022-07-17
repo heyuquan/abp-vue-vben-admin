@@ -16,6 +16,10 @@ namespace Leopard.Helpers
         // https://blog.csdn.net/lovegonghui/article/details/50259439
         // eg："Name": null  整个字段会被删掉
 
+        // 有条件地 [JsonIgnore]
+        // [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]   Always ,Never ,WhenWritingDefault ,WhenWritingNull 
+        // https://mp.weixin.qq.com/s/uDOsD8yIup26U0IQYrVSyA
+
         static JsonHelper()
         {
             JsonSerializerSettings common = new JsonSerializerSettings

@@ -29,7 +29,7 @@ namespace Leopard.Helpers.IO
         /// 实例化
         /// </summary>
         /// <param name="base64">base64字符串</param>
-        /// <param name="extension">文件扩展（可选：如果实例化时，传入了Extension，则取传入的，没有则先从base64中获取，没有再从stream中提取）</param>
+        /// <param name="extension">不带点的文件扩展名（可选：如果实例化时，传入了Extension，则取传入的，没有则先从base64中获取，没有再从stream中提取）</param>
         /// <param name="contentType">浏览器下载文件时需要（可选：如果实例化时，传入了ContentType，则取传入的，没有则先从base64中获取，没有再从stream中提取）</param>
         public FileBase64Helper(string base64, string extension, string contentType)
         {
@@ -66,7 +66,7 @@ namespace Leopard.Helpers.IO
                 string extension = Path.GetExtension(filePath);
                 if (!extension.IsNullOrWhiteSpace2())
                 {
-                    extension = extension.Substring(extension.IndexOf("."));
+                    extension = extension.Substring(extension.IndexOf(".") + 1);
                 }
                
                 return new FileBase64Helper(base64Str, extension, contentType);

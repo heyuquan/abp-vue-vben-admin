@@ -1,4 +1,5 @@
 ﻿using Leopard;
+using Leopard.Utils;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -17,10 +18,10 @@ namespace System
         /// 获取枚举类型的描述 [DescriptionAttribute]
         /// </summary>
         /// <returns>找不到 value 对应的enum，则返回String.Empty</returns>
-        public static string GetDescription(this Enum value, string defaultValue = Constants.String_Empty)
+        public static string GetDescription(this Enum @enum, string defaultValue = Constants.String_Empty)
         {
-            Type type = value.GetType();
-            MemberInfo member = type.GetMember(value.ToString()).FirstOrDefault();
+            Type type = @enum.GetType();
+            MemberInfo member = type.GetMember(@enum.ToString()).FirstOrDefault();
             string result = member?.GetDescription();
 
             return result.IsNullOrEmpty2() ? defaultValue : result;
@@ -30,38 +31,96 @@ namespace System
         /// 获取 [EnumMemberAttribute] 的value
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="value"></param>
+        /// <param name="enum"></param>
         /// <param name="defaultValue"></param>
         /// <returns></returns>
-        public static string GetEnumMemberValue<T>(this T value, string defaultValue = Constants.String_Empty) where T : Enum
+        public static string GetEnumMemberValue<T>(this T @enum, string defaultValue = Constants.String_Empty) where T : Enum
         {
             string result = typeof(T)
                 .GetTypeInfo()
                 .DeclaredMembers
-                .SingleOrDefault(x => x.Name == value.ToString())
+                .SingleOrDefault(x => x.Name == @enum.ToString())
                 ?.GetCustomAttribute<EnumMemberAttribute>(false)
                 ?.Value;
 
             return result.IsNullOrEmpty2() ? defaultValue : result;
         }
 
+        #region 枚举 特性使用 小技巧
+
+        // 使用 案例
+        // public enum MeliSite
+        // {
+        //     [MeliSiteId("MLA")]
+        //     [MeliCountryCode("AR")]
+        //     [MeliDomain("mercadolibre.com.ar")]
+        //     Argentina,
+        // }
+        // public class MeliCountryCodeAttribute : BaseValueAttribute
+        // MeliSite.Argentina.GetValue<MeliCountryCodeAttribute>()
+
+        // 可以为枚举定义扩展方法
+        // public static class MeliSiteExtensions
+        // {
+        //     public static string ToSiteId(this MeliSite @enum)
+        //     {
+        //         return @enum.GetValue<MeliSiteIdAttribute>();
+        //     }
+        // }
+
+        /// <summary>
+        /// Gets the attribute from enum constant.
+        /// </summary>
+        /// <typeparam name="T">The type of attribute to obtain.</typeparam>
+        /// <param name="enum">The enumeration value.</param>
+        /// <returns></returns>
+        public static IEnumerable<T> GetAttributesFromEnumConstant<T>(this Enum @enum) where T : Attribute
+        {
+            var type = @enum.GetType();
+
+            var memberInfo = type.GetMember(@enum.ToString());
+
+            if (memberInfo.Length == 0) yield break;
+
+            var attrs = memberInfo[0].GetCustomAttributes(typeof(T), true);
+
+            foreach (var attr in attrs)
+            {
+                yield return (T)attr;
+            }
+        }
+
+        /// <summary>
+        /// Gets the value of the first relevant attribute on the given enum value.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="enum">The enum.</param>
+        /// <returns></returns>
+        public static string GetValue<T>(this Enum @enum) where T : BaseValueAttribute
+        {
+            return GetAttributesFromEnumConstant<T>(@enum)
+                             .First()
+                             .Value;
+        }
+        #endregion
+
         /// <summary>
         /// 把字符串转为枚举值
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="value"></param>
+        /// <param name="enum"></param>
         /// <param name="defaultValue"></param>
         /// <returns></returns>
         [DebuggerStepThrough]
-        public static T ToEnum<T>(this string value, T defaultValue)
+        public static T ToEnum<T>(this string @enum, T defaultValue)
         {
-            if (!value.HasValue())
+            if (!@enum.HasValue())
             {
                 return defaultValue;
             }
             try
             {
-                return (T)Enum.Parse(typeof(T), value, true);
+                return (T)Enum.Parse(typeof(T), @enum, true);
             }
             catch (ArgumentException)
             {
