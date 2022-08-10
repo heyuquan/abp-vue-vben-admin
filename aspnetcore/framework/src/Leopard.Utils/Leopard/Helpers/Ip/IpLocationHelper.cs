@@ -40,6 +40,9 @@ namespace Leopard.Helpers.Ip
 
         private static string GetIpLocationFromTaoBao(string ipAddress)
         {
+            // 改进：https://juejin.cn/post/7118954784853327903
+
+            // https://ip.taobao.com/     (taobao IP地址库)   访问限制：为了保障服务正常运行，每个用户的访问频率需小于1qps。
             string url = "http://ip.taobao.com/service/getIpInfo2.php";
             Dictionary<string, string> postData = new Dictionary<string, string>()
             {
