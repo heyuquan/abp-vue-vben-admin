@@ -8,6 +8,14 @@ namespace Leopard.Helpers
     public static class JsonHelper
     {
 
+        // 枚举和字符串互转
+        //JsonConvert.DefaultSettings = (() =>
+        //{
+        //    var settings = new JsonSerializerSettings();
+        //        settings.Converters.Add(new StringEnumConverter {CamelCaseText = true});
+        //    return settings;
+        //});
+
         // [循环引用问题]c＃-Json.Net中的PreserveReferencesHandling和ReferenceLoopHandling有什么区别？
         // https://www.itranslater.com/qa/details/2582250669625312256
 
