@@ -8,7 +8,7 @@ namespace Leopard.Collections
 {
     // C# Distinct使用，支持对象的相等比较
     // https://www.cnblogs.com/danlis/p/5353749.html
-    // 使用：**.Distinct(new SimpleCompare<DrawPlay>((x, y) => (x != null && y != null && x.UserID == y.UserID))).**
+    // 使用：**.Distinct(new SimpleCompare<DrawPlay>((x, y) => (x != null && y != null && x.UserID == y.UserID))).ToList()
     // 大部分场景下可以通用
 
     // C# List对象用Distinct方法为 指定某字段去重复

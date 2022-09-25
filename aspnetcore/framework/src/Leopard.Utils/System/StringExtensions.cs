@@ -186,27 +186,12 @@ namespace System
         }
 
         /// <summary>
-        /// 截取字符并显示...符号
-        /// </summary>
-        /// <param name="str">截取字符串</param>
-        /// <param name="length">要截取的长度</param>
-        /// <returns>string</returns>
-        public static string SubstringToSx(this string str, int length)
-        {
-            if (string.IsNullOrEmpty(str) || str.Length <= length)
-            {
-                return str;
-            }
-            return str.Substring(0, length) + "...";
-        }
-
-        /// <summary>
         /// 截取 指定字符 之前的文本
         /// </summary>
         /// <param name="text">要截取的字符串</param>
         /// <param name="delimiter">指定字符</param>
         /// <returns>返回 指定字符 之前的文本</returns>
-        public static string SubstringUpToFirst(this string text, char delimiter)
+        public static string SubstringToFirst(this string text, char delimiter)
         {
             if (text == null)
             {
@@ -267,21 +252,6 @@ namespace System
         }
 
         /// <summary>
-        /// Gets a substring of a string from beginning of the string.
-        /// </summary>
-        /// <exception cref="ArgumentNullException">Thrown if <paramref name="str"/> is null</exception>
-        /// <exception cref="ArgumentException">Thrown if <paramref name="len"/> is bigger that string's length</exception>
-        public static string Left2(this string str, int len)
-        {
-            if (str.Length < len)
-            {
-                throw new ArgumentException("len argument can not be bigger than given string's length!");
-            }
-
-            return str.Substring(0, len);
-        }
-
-        /// <summary>
         /// Gets a substring of a string from beginning of the string if it exceeds maximum length.
         /// It adds a "..." postfix to end of the string if it's truncated.
         /// Returning string can not be longer than maxLength.
@@ -317,10 +287,10 @@ namespace System
 
             if (maxLength <= postfix.Length)
             {
-                return postfix.Left2(maxLength);
+                return postfix.Substring(maxLength);
             }
 
-            return str.Left2(maxLength - postfix.Length) + postfix;
+            return str.Substring(maxLength - postfix.Length) + postfix;
         }
 
         /// <summary>
@@ -331,6 +301,10 @@ namespace System
         /// <returns></returns>
         public static string TruncateMiddle(this string str, int count)
         {
+            if (str.IsNullOrWhiteSpace2() || count <= 0)
+            {
+                return str;
+            }
 
             if (str.Length <= (count * 2 + 3))      // 两边各count个字符，中间 3个 点儿.
             {

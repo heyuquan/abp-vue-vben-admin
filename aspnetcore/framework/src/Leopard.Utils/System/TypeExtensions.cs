@@ -206,15 +206,6 @@ namespace System
         }
 
         /// <summary>
-        /// 方法是否是异步
-        /// </summary>
-        public static bool IsAsync(this MethodInfo method)
-        {
-            return method.ReturnType == typeof(Task)
-                || method.ReturnType.IsGenericType && method.ReturnType.GetGenericTypeDefinition() == typeof(Task<>);
-        }
-
-        /// <summary>
         /// 返回当前类型是否是指定基类的派生类
         /// </summary>
         /// <param name="type">当前类型</param>

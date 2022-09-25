@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Leopard.Helpers
 {
-    public class Result
+    public class CompareResult
     {
         public bool IsEqual { get; set; }
         public string Msg { get; set; }
@@ -18,9 +18,9 @@ namespace Leopard.Helpers
     /// </summary>
     public static class ComparerHelper
     {
-        public static Result ObjectCompare<T>(T t, T s)
+        public static CompareResult ObjectCompare<T>(T t, T s)
         {
-            Result result = new Result();
+            CompareResult result = new CompareResult();
             var comparer = new ObjectsComparer.Comparer<T>();
             IEnumerable<Difference> differences;
             bool isEqual = comparer.Compare(t, s, out differences);

@@ -39,7 +39,7 @@ namespace System.Xml
             {
                 if (node != null)
                 {
-                    if (xpath.IsNullOrEmpty2())
+                    if (xpath.IsNullOrEmpty2 ())
                         return node.InnerText.CastTo<T>();
 
                     var n = node.SelectSingleNode(xpath);

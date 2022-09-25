@@ -38,17 +38,17 @@ namespace System.Text
             return sb;
         }
 
-        /// <summary>
-        /// 去除<seealso cref="StringBuilder"/>开头的指定字符数组
-        /// </summary>
-        /// <param name="sb"></param>
-        /// <param name="chars">要去掉的字符数组</param>
-        /// <returns></returns>
-        public static StringBuilder TrimStart(this StringBuilder sb, char[] chars)
-        {
-            Checked.NotNull(chars, "chars");
-            return sb.TrimStart(new string(chars));
-        }
+        ///// <summary>
+        ///// 去除<seealso cref="StringBuilder"/>开头的指定字符数组
+        ///// </summary>
+        ///// <param name="sb"></param>
+        ///// <param name="chars">要去掉的字符数组</param>
+        ///// <returns></returns>
+        //public static StringBuilder TrimStart(this StringBuilder sb, char[] chars)
+        //{
+        //    Checked.NotNull(chars, "chars");
+        //    return sb.TrimStart(new string(chars));
+        //}
 
         /// <summary>
         /// 去除<see cref="StringBuilder"/>开头的指定的<seealso cref="string"/>
@@ -108,17 +108,17 @@ namespace System.Text
             return sb;
         }
 
-        /// <summary>
-        /// 去除<see cref="StringBuilder"/>结尾指定字符数组
-        /// </summary>
-        /// <param name="sb"></param>
-        /// <param name="chars">要去除的字符数组</param>
-        /// <returns></returns>
-        public static StringBuilder TrimEnd(this StringBuilder sb, char[] chars)
-        {
-            Checked.NotNull(chars, "chars");
-            return sb.TrimEnd(new string(chars));
-        }
+        ///// <summary>
+        ///// 去除<see cref="StringBuilder"/>结尾指定字符数组
+        ///// </summary>
+        ///// <param name="sb"></param>
+        ///// <param name="chars">要去除的字符数组</param>
+        ///// <returns></returns>
+        //public static StringBuilder TrimEnd(this StringBuilder sb, char[] chars)
+        //{
+        //    Checked.NotNull(chars, "chars");
+        //    return sb.TrimEnd(new string(chars));
+        //}
 
         /// <summary>
         /// 去除<see cref="StringBuilder"/>结尾指定字符串

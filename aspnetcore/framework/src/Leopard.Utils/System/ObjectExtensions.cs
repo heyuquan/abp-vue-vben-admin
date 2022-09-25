@@ -47,6 +47,7 @@ namespace System
         #region 二进制
         /// <summary>
         /// 二进制反序列化
+        /// 引用类型必须实现 Serializable 特性
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="data"></param>
@@ -65,6 +66,7 @@ namespace System
 
         /// <summary>
         /// 二进制序列化
+        /// 引用类型必须实现 Serializable 特性
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>

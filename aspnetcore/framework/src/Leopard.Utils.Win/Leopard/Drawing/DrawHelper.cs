@@ -101,7 +101,7 @@ namespace Leopard.Drawing
             }
             else
             {
-                // 设置 NearestNeighbor 在大图转小图的时候，小图会带锯齿
+                // 设置 NearestNeighbor 在大图转小图后，再进行小图保存会带锯齿
                 g.InterpolationMode = InterpolationMode.HighQualityBicubic;
                 g.PixelOffsetMode = PixelOffsetMode.HighQuality;
             }

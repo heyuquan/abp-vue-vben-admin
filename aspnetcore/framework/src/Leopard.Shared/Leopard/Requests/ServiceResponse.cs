@@ -173,6 +173,9 @@ BANNER   09
             _messages.AddRange(msgList);
         }
     }
+
+    // list ServiceResponse<PagedResultDto<SaleOrderDto>>
+    // one  ServiceResponse<SaleOrderDto>
     /// <summary>
     /// 服务层响应实体
     /// 如果要返回失败，则需在 Messages 中加入error错误信息

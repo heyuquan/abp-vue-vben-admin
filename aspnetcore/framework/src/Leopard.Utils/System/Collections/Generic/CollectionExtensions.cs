@@ -97,14 +97,6 @@ namespace System.Collections.Generic
         }
 
         /// <summary>
-        /// Checks whatever given collection object is null or has no item.
-        /// </summary>
-        public static bool IsNullOrEmpty<T>(this ICollection<T> source)
-        {
-            return source == null || !source.Any();
-        }
-
-        /// <summary>
         /// Adds an item to the collection if it's not already in the collection.
         /// </summary>
         /// <param name="source">Collection</param>

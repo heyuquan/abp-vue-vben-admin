@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace System
+namespace Leopard.Helpers
 {
-    public static partial class StringExtentions
+    public static class StringHelper
     {
         // private static readonly char[] CA = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".ToCharArray();
         private static char[] strs = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz".ToCharArray();
@@ -17,7 +17,7 @@ namespace System
         /// <param name="str"></param>
         /// <param name="strleg">长度</param>
         /// <returns></returns>
-        public static string CreateRandomChar(this string str, long strleg = 15)
+        public static string CreateRandomChar(long strleg = 15)
         {
             Random r = new Random();
             StringBuilder sb = new StringBuilder();
@@ -37,7 +37,7 @@ namespace System
         /// <param name="str"></param>
         /// <param name="numleg"></param>
         /// <returns></returns>
-        public static string CreateRandomNumber(this string str, int numleg = 4)
+        public static string CreateRandomNumber(int numleg = 4)
         {
             Random r = new Random();
             StringBuilder sb = new StringBuilder();

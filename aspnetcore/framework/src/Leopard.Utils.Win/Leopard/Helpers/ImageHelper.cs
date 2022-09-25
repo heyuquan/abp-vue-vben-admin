@@ -71,6 +71,9 @@ namespace Leopard.Helpers
         /// <returns></returns>    
         public static bool Reseize(string sFile, string dFile, int dHeight, int dWidth, int imageQualityValue = 100)
         {
+            // 另外一些开源库做的调整图片尺寸的方法，有能跨平台的
+            // https://mp.weixin.qq.com/s/wVQ0J8idO_D5kQBX7Jqlaw
+
             FileHelper.CheckFileExistWithException(sFile);
 
             System.Drawing.Image iSource = System.Drawing.Image.FromFile(sFile);

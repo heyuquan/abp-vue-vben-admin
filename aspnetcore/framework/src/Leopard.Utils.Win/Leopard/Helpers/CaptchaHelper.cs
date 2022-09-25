@@ -32,7 +32,7 @@ namespace Leopard.Helpers
 
 
         /// <summary>
-        /// 一个表达式验证码
+        /// 一个表达式验证码(eg: 3*4=12 )
         /// </summary>
         /// <returns>Tuple第一个值是表达式，第二个值是表达式结果</returns>
         public static Tuple<string, int> CreateCaptchaCode()

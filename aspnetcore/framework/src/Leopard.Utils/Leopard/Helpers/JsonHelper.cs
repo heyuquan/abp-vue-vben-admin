@@ -61,7 +61,6 @@ namespace Leopard.Helpers
 
         readonly static JsonSerializerSettings defaultSettings = null;
 
-        // todo 改为 深拷贝
         readonly static JsonSerializerSettings defaultSettings_Indented = null;
 
         /// <summary>

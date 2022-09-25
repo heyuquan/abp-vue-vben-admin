@@ -9,7 +9,7 @@ namespace System
     public static class StackExtensions
     {
         /// <summary>
-        /// 返回堆栈对一个元素 （不进行移除）
+        /// 返回堆栈第一个元素 （不进行移除）
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="stack"></param>
@@ -29,7 +29,7 @@ namespace System
         }
 
         /// <summary>
-        /// 返回堆栈对一个元素，并且从堆栈移除
+        /// 返回堆栈第一个元素，并且从堆栈移除
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="stack"></param>

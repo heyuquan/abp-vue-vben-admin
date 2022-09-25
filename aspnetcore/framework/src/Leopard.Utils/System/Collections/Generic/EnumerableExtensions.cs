@@ -39,11 +39,11 @@ namespace System.Collections.Generic
         /// 根据第三方条件是否为真来决定是否 附加 指定查询条件
         /// </summary>
         /// <param name="source"> 要查询的源 </param>
-        /// <param name="predicate"> 查询条件 </param>
         /// <param name="condition"> 第三方条件 </param>
+        /// <param name="predicate"> 查询条件 </param>
         /// <typeparam name="T"> 动态类型 </typeparam>
         /// <returns> 查询的结果 </returns>
-        public static IEnumerable<T> WhereIf<T>(this IEnumerable<T> source, Func<T, bool> predicate, bool condition)
+        public static IEnumerable<T> WhereIf<T>(this IEnumerable<T> source, bool condition, Func<T, bool> predicate)
         {
             Checked.NotNull(predicate, "predicate");
             source = source as IList<T> ?? source.ToList();
@@ -64,35 +64,7 @@ namespace System.Collections.Generic
                 throw new ArgumentNullException("source");
             }
             Random random = new Random();
-            if (source is ICollection)
-            {
-                ICollection collection = source as ICollection;
-                int count = collection.Count;
-                if (count == 0)
-                {
-                    throw new Exception("IEnumerable没有数据");
-                }
-                int index = random.Next(count);
-                return source.ElementAt(index);
-            }
-            using (IEnumerator<T> iterator = source.GetEnumerator())
-            {
-                if (!iterator.MoveNext())
-                {
-                    throw new Exception("IEnumerable没有数据");
-                }
-                int count = 1;
-                T current = iterator.Current;
-                while (iterator.MoveNext())
-                {
-                    count++;
-                    if (random.Next(count) == 0)
-                    {
-                        current = iterator.Current;
-                    }
-                }
-                return current;
-            }
+            return source.Random(random);
         }
 
         /// <summary>
@@ -198,6 +170,14 @@ namespace System.Collections.Generic
         }
 
         /// <summary>
+        /// Checks whatever given collection object is null or has no item.
+        /// </summary>
+        public static bool IsNullOrEmpty<T>(this IEnumerable<T> source)
+        {
+            return source.IsNull() || !source.Any();
+        }
+
+        /// <summary>
         /// 判断IEnumerable是否有元素
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -205,7 +185,7 @@ namespace System.Collections.Generic
         /// <returns></returns>
         public static bool HasItems<T>(this IEnumerable<T> values)
         {
-            return values.IsNotNull() && values.Any();
+            return !values.IsNullOrEmpty();
         }
 
         /// <summary>
@@ -261,23 +241,6 @@ namespace System.Collections.Generic
 
         /// <summary>
         /// Performs an action on each item while iterating through a list. 
-        /// This is a handy shortcut for <c>foreach(item in list) { await ... }</c>
-        /// </summary>
-        /// <typeparam name="T">The type of the items.</typeparam>
-        /// <param name="source">The list, which holds the objects.</param>
-        /// <param name="action">The action delegate which is called on each item while iterating.</param>
-        [DebuggerStepThrough]
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static async Task EachAsync<T>(this IEnumerable<T> source, Func<T, Task> action)
-        {
-            foreach (T t in source)
-            {
-                await action(t).ConfigureAwait(false);
-            }
-        }
-
-        /// <summary>
-        /// Performs an action on each item while iterating through a list. 
         /// This is a handy shortcut for <c>foreach(item in list) { ... }</c>
         /// </summary>
         /// <typeparam name="T">The type of the items.</typeparam>
@@ -312,6 +275,23 @@ namespace System.Collections.Generic
         }
 
         #region Async
+
+        /// <summary>
+        /// Performs an action on each item while iterating through a list. 
+        /// This is a handy shortcut for <c>foreach(item in list) { await ... }</c>
+        /// </summary>
+        /// <typeparam name="T">The type of the items.</typeparam>
+        /// <param name="source">The list, which holds the objects.</param>
+        /// <param name="action">The action delegate which is called on each item while iterating.</param>
+        [DebuggerStepThrough]
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static async Task EachAsync<T>(this IEnumerable<T> source, Func<T, Task> action)
+        {
+            foreach (T t in source)
+            {
+                await action(t).ConfigureAwait(false);
+            }
+        }
 
         /// <summary>
         /// Performs an action on each item while iterating through a list. 

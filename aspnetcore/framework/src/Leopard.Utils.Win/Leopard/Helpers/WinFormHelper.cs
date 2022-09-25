@@ -5,9 +5,30 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Leopard.Helpers
 {
+
+    //// 案例
+    //static class Program
+    //{
+    //    /// <summary>
+    //    /// 应用程序的主入口点。
+    //    /// </summary>
+    //    [STAThread]
+    //    static void Main()
+    //    {
+    //        string formUniqueName = "xxx服务"; // 窗体标题（form.Text属性值），最好起一个不会和别的程序重名的标题
+    //        WinFormHelper.OpenUniqueProcess(formUniqueName, () =>
+    //        {
+    //            Application.EnableVisualStyles();
+    //            Application.SetCompatibleTextRenderingDefault(false);
+    //            Application.Run(new FrmClient());
+    //        });
+    //    }
+    //}
+
     /// <summary>
     /// windows窗体程序的相关帮助类
     /// </summary>

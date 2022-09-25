@@ -59,6 +59,7 @@ namespace System
 
 		///// <summary>
 		///// 对象深度拷贝，复制出一个数据一样，但内存地址不一样的新版本
+		///// 序列化方式
 		///// </summary>
 		//public static T DeepClone<T>(this T obj) where T : class
 		//{
