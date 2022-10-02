@@ -67,14 +67,14 @@ namespace Leopard
         public class RequestLimit
         {
             /// <summary>
-            /// 请求中单个字段值，最大长度（单位 byte）
+            /// 请求中单个字段值，最大长度（单位 byte），默认 20M
             /// </summary>
-            public const int MaxValueLength_Byte = 20 * 1024 * 1024;  // 20M
+            public const int MaxValueLength_Byte = 20 * 1024 * 1024;  
 
             /// <summary>
-            /// 请求的整个正文，最大长度（单位 byte）
+            /// 请求的整个正文，最大长度（单位 byte），默认 200M
             /// </summary>
-            public const int MaxBodyLength_Byte = 200 * 1024 * 1024;   // 200M
+            public const int MaxBodyLength_Byte = 200 * 1024 * 1024;  
         }
     }
 }

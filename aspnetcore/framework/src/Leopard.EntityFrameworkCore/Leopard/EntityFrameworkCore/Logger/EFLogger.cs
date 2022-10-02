@@ -12,7 +12,7 @@ namespace Leopard.EntityFrameworkCore.Logger
 
     // 方案来源：https://www.cnblogs.com/lwqlun/p/13551149.html
     // 在10楼评论，直接改.net core配置文件即可实现打印ef sql ，
-    // 如下 ，但这边还是保留 EFLogger 实现方案。可做学习或者做更多日志输出的控制
+    // 如下 ，但这边还是保留 EFLogger 实现方案。可做学习或者做更多日志输出的控制（比如控制耗时长的进行记录）
     //"Logging": {
     //    "LogLevel": {
     //      "Default": "Information",

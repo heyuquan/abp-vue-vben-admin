@@ -99,6 +99,7 @@ Ec.Admin.Domain.Shared
 	MVC页面模型（继承PageModel或AbpPageModel）被注册为transient.
 	MVC视图组件（继承ViewComponent或AbpViewComponent）被注册为transient.
 	应用程序服务（实现IApplicationService接口或继承ApplicationService类）注册为transient.
+	DbContext注册为transient.
 	存储库（实现IRepository接口）注册为transient.
 	域服务（实现IDomainService接口）注册为transient.
 

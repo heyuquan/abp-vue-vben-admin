@@ -44,7 +44,7 @@ namespace Leopard.Host
                 var life = host.Services.GetRequiredService<IHostApplicationLifetime>();
                 life.ApplicationStopped.Register(() =>
                 {
-                    Console.WriteLine($"{ModuleKey} is shut down");
+                    Log.Information($"{ModuleKey} is shut down");
                 });
 
 

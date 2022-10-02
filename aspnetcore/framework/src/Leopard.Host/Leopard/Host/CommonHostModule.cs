@@ -239,7 +239,6 @@ namespace Leopard.Host
                 {
                     Configure<AbpDistributedCacheOptions>(options =>
                     {
-                        // 最好统一命名,不然某个缓存变动其他应用服务有例外发生
                         options.KeyPrefix = $"{ModuleKey}:";
                         // 滑动过期30天
                         options.GlobalCacheEntryOptions.SlidingExpiration = TimeSpan.FromDays(30);
@@ -371,7 +370,10 @@ namespace Leopard.Host
             // 认证
             app.UseAuthentication();
 
-            app.UseTestMiddleware();
+            if (env.IsDevelopment())
+            {
+                app.UseTestMiddleware();
+            }
 
             if (ApplicationServiceType == ApplicationServiceType.ApiHost
                  || ApplicationServiceType == ApplicationServiceType.GateWay

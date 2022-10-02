@@ -19,7 +19,7 @@ namespace Leopard.EntityFrameworkCore.Logger
         /// </summary>
         public int ExecuteTimeSpent { get; set; }
         /// <summary>
-        /// 是否显示sql中过得参数值
+        /// 是否显示sql中的参数值
         /// </summary>
         public bool EnableSensitiveData { get; set; }
 

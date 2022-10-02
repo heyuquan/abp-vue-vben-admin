@@ -18,16 +18,16 @@ namespace Leopard
             var authServerOptionsSection = configuration.GetSection(AuthServerOptions.SectionName);
             if (!authServerOptionsSection.Exists())
             {
-                throw new Exception($"配置文件中缺少{AuthServerOptions.SectionName}节点的配置");
+                throw new Exception($"配置文件中缺少【{AuthServerOptions.SectionName}】节点的配置");
             }
             Configure<AuthServerOptions>(authServerOptionsSection);
 
             #region AppSettings 不注册为Options了，直接使用 App 来访问
             //var appSettings = configuration.GetSection(AppSettingsOptions.SectionName);
-            //Configure<AppSettingsOptions>(appSettings);
-            #endregion
+            //Configure<AppSettingsOptions>(appSettings);            
 
             App.Init(configuration);
+            #endregion
         }
 
         public override void OnApplicationInitialization(ApplicationInitializationContext context)
