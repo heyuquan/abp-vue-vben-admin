@@ -1,0 +1,8 @@
+<Project>
+  <PropertyGroup>
+
+    <!-- All Microsoft packages -->
+    <MicrosoftPackageVersion>5.0.*</MicrosoftPackageVersion>
+
+  </PropertyGroup>
+</Project>

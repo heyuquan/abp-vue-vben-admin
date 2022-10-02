@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\..\..\configureawait.props" />
+	<Import Project="..\..\..\common.props" />
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<RootNamespace />
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="FileSignatures" Version="4.3.1" />
+		<PackageReference Include="JetBrains.Annotations" Version="2022.1.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+		<PackageReference Include="Microsoft.Net.Http.Headers" Version="2.2.8" />
+		<PackageReference Include="Microsoft.Extensions.ObjectPool" Version="6.0.3" />
+		<PackageReference Include="AsyncEnumerator" Version="4.0.2" />
+		<PackageReference Include="HtmlSanitizer" Version="7.1.488" />
+		<PackageReference Include="DeepCloner" Version="0.10.3" />
+		<PackageReference Include="IdGen" Version="3.0.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />		
+		<PackageReference Include="Nito.AsyncEx" Version="5.1.2" />
+		<PackageReference Include="ObjectsComparer" Version="1.4.1" />		
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Leopard.Shared\Leopard.Shared.csproj" />
+	</ItemGroup>
+</Project>

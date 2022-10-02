@@ -1,0 +1,7 @@
+﻿
+#、文件夹下划线开头的，不记录命名空间。
+	eg：
+	Leopard._App  下面的文件只是做归类，但是并不像多一层 App 的命名空间。所以命名空间为 Leopard
+
+#、02_Framework\Utils 文件夹中的项目，不依赖abp
+   若项目不使用abp module开发方式，也可以引用 Utils
