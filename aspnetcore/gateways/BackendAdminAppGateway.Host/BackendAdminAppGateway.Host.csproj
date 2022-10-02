@@ -22,10 +22,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\framework\src\Leopard.AspNetCore.Serilog\Leopard.AspNetCore.Serilog.csproj" />
-		<ProjectReference Include="..\..\framework\src\Leopard.AspNetCore.Swashbuckle\Leopard.AspNetCore.Swashbuckle.csproj" />
-		<ProjectReference Include="..\..\framework\src\Leopard.Consul\Leopard.Consul.csproj" />
-		<ProjectReference Include="..\..\framework\src\Leopard.Gateway\Leopard.Gateway.csproj" />
+		<ProjectReference Include="..\..\..\framework.aspnetcore\src\Leopard.AspNetCore.Serilog\Leopard.AspNetCore.Serilog.csproj" />
+		<ProjectReference Include="..\..\..\framework.aspnetcore\src\Leopard.AspNetCore.Swashbuckle\Leopard.AspNetCore.Swashbuckle.csproj" />
+		<ProjectReference Include="..\..\..\framework.aspnetcore\src\Leopard.Consul\Leopard.Consul.csproj" />
+		<ProjectReference Include="..\..\..\framework.aspnetcore\src\Leopard.Gateway\Leopard.Gateway.csproj" />
 		<ProjectReference Include="..\..\microservices\BackendAdmin\Leopard.BackendAdmin.HttpApi\Leopard.BackendAdmin.HttpApi.csproj" />
 	</ItemGroup>
 

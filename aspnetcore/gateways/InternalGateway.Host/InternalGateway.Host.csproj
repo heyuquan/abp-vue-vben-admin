@@ -19,11 +19,11 @@
     <ItemGroup>
         <PackageReference Include="Volo.Abp.Autofac" Version="4.4.2" />
 		<PackageReference Include="Volo.Abp.Swashbuckle" Version="4.4.2" />
-        <ProjectReference Include="..\..\framework\src\Leopard.AspNetCore.Serilog\Leopard.AspNetCore.Serilog.csproj" />
-        <ProjectReference Include="..\..\framework\src\Leopard.AspNetCore.Swashbuckle\Leopard.AspNetCore.Swashbuckle.csproj" />
-        <ProjectReference Include="..\..\framework\src\Leopard.Consul\Leopard.Consul.csproj" />
-        <ProjectReference Include="..\..\framework\src\Leopard.Core\Leopard.csproj" />
-        <ProjectReference Include="..\..\framework\src\Leopard.Gateway\Leopard.Gateway.csproj" />
+        <ProjectReference Include="..\..\..\framework.aspnetcore\src\Leopard.AspNetCore.Serilog\Leopard.AspNetCore.Serilog.csproj" />
+        <ProjectReference Include="..\..\..\framework.aspnetcore\src\Leopard.AspNetCore.Swashbuckle\Leopard.AspNetCore.Swashbuckle.csproj" />
+        <ProjectReference Include="..\..\..\framework.aspnetcore\src\Leopard.Consul\Leopard.Consul.csproj" />
+        <ProjectReference Include="..\..\..\framework.aspnetcore\src\Leopard.Core\Leopard.csproj" />
+        <ProjectReference Include="..\..\..\framework.aspnetcore\src\Leopard.Gateway\Leopard.Gateway.csproj" />
         <ProjectReference Include="..\..\shared\Leopard.Buiness.Shared.Const\Leopard.Buiness.Shared.Const.csproj" />
     </ItemGroup>
 

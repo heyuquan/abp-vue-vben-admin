@@ -15,7 +15,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\..\framework\src\Leopard.Core\Leopard.csproj" />
+		<ProjectReference Include="..\..\..\..\..\framework.aspnetcore\src\Leopard.Core\Leopard.csproj" />
 		<ProjectReference Include="..\..\..\..\module\Saas\Leopard.Saas.Domain\Leopard.Saas.Domain.csproj" />
 		<ProjectReference Include="..\..\..\..\shared\Leopard.Buiness.Shared.Const\Leopard.Buiness.Shared.Const.csproj" />
 		<ProjectReference Include="..\Mk.DemoB.Domain.Shared\Mk.DemoB.Domain.Shared.csproj" />

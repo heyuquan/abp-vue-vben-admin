@@ -9,7 +9,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\..\framework\src\Leopard.Core\Leopard.csproj" />
+		<ProjectReference Include="..\..\..\..\..\framework.aspnetcore\src\Leopard.Core\Leopard.csproj" />
 		<ProjectReference Include="..\..\..\Mk.DemoC\src\Mk.DemoC.HttpApi.Client\Mk.DemoC.HttpApi.Client.csproj" />
 		<ProjectReference Include="..\Mk.DemoB.Domain\Mk.DemoB.Domain.csproj" />
 		<ProjectReference Include="..\Mk.DemoB.Application.Contracts\Mk.DemoB.Application.Contracts.csproj" />
