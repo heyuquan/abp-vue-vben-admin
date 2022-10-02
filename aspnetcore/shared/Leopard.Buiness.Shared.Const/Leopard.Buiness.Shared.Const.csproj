@@ -6,7 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\..\framework.aspnetcore\src\Leopard.Shared\Leopard.Shared.csproj" />
+      <ProjectReference Include="..\..\..\framework-aspnetcore\src\Leopard.Shared\Leopard.Shared.csproj" />
     </ItemGroup>
 
 </Project>

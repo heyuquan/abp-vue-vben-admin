@@ -25,9 +25,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.DbMigrator", "micr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02_Framework", "02_Framework", "{408C61DE-C824-4BA2-8EE7-CE571EA864B5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard", "..\framework.aspnetcore\src\Leopard.Core\Leopard.csproj", "{8B34E5EC-1B0E-41ED-872B-7905023E966A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard", "..\framework-aspnetcore\src\Leopard.Core\Leopard.csproj", "{8B34E5EC-1B0E-41ED-872B-7905023E966A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.EntityFrameworkCore", "..\framework.aspnetcore\src\Leopard.EntityFrameworkCore\Leopard.EntityFrameworkCore.csproj", "{F34CB1A6-4FF2-4161-8365-CAE4E0DD654E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.EntityFrameworkCore", "..\framework-aspnetcore\src\Leopard.EntityFrameworkCore\Leopard.EntityFrameworkCore.csproj", "{F34CB1A6-4FF2-4161-8365-CAE4E0DD654E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.BackgroundJobs", "microservices\Mk.DemoB\src\Mk.DemoB.BackgroundJobs\Mk.DemoB.BackgroundJobs.csproj", "{E7E1C844-2434-44D8-8060-8F145785722C}"
 EndProject
@@ -49,9 +49,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoC.HttpApi.Host", "mi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoC.HttpApi.Client", "microservices\Mk.DemoC\src\Mk.DemoC.HttpApi.Client\Mk.DemoC.HttpApi.Client.csproj", "{AC7A3EB0-B9DB-4396-B646-1F236433600E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.AspNetCore.Mvc", "..\framework.aspnetcore\src\Leopard.AspNetCore.Mvc\Leopard.AspNetCore.Mvc.csproj", "{BA1218D5-7F58-4209-91AF-44761CBE9421}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.AspNetCore.Mvc", "..\framework-aspnetcore\src\Leopard.AspNetCore.Mvc\Leopard.AspNetCore.Mvc.csproj", "{BA1218D5-7F58-4209-91AF-44761CBE9421}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Domain.Share", "..\framework.aspnetcore\src\Leopard.Domain.Share\Leopard.Domain.Share.csproj", "{E09BC551-2A2E-4A8B-B903-40CD0969A51A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Domain.Share", "..\framework-aspnetcore\src\Leopard.Domain.Share\Leopard.Domain.Share.csproj", "{E09BC551-2A2E-4A8B-B903-40CD0969A51A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03_Other", "03_Other", "{9A9EAD65-2DBA-4E8C-8A9A-D3C75EA55FA6}"
 	ProjectSection(SolutionItems) = preProject
@@ -61,9 +61,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03_Other", "03_Other", "{9A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04_Gateways", "04_Gateways", "{BFBA6DEE-2C3D-4695-A63C-9EC95A7D5400}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Consul", "..\framework.aspnetcore\src\Leopard.Consul\Leopard.Consul.csproj", "{01D5AB23-4029-4DC7-A041-0D510C099F49}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Consul", "..\framework-aspnetcore\src\Leopard.Consul\Leopard.Consul.csproj", "{01D5AB23-4029-4DC7-A041-0D510C099F49}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.AspNetCore.Swashbuckle", "..\framework.aspnetcore\src\Leopard.AspNetCore.Swashbuckle\Leopard.AspNetCore.Swashbuckle.csproj", "{7FEFE25B-8CBE-4625-9F83-EB069AADDFDC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.AspNetCore.Swashbuckle", "..\framework-aspnetcore\src\Leopard.AspNetCore.Swashbuckle\Leopard.AspNetCore.Swashbuckle.csproj", "{7FEFE25B-8CBE-4625-9F83-EB069AADDFDC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_doc", "_doc", "{09CFB583-D5A3-4631-A3FD-2C95226F4ACB}"
 EndProject
@@ -85,7 +85,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InternalGateway.Host", "gat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PublicWebSiteGateway.Host", "gateways\PublicWebSiteGateway.Host\PublicWebSiteGateway.Host.csproj", "{971204CE-9AF8-453A-8FF9-BBC900A25285}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.AspNetCore.Serilog", "..\framework.aspnetcore\src\Leopard.AspNetCore.Serilog\Leopard.AspNetCore.Serilog.csproj", "{29906DB2-CA4F-446D-B8CF-B95609F87C0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.AspNetCore.Serilog", "..\framework-aspnetcore\src\Leopard.AspNetCore.Serilog\Leopard.AspNetCore.Serilog.csproj", "{29906DB2-CA4F-446D-B8CF-B95609F87C0E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01_Saas", "01_Saas", "{2723E4FD-5FBA-42CA-8DA6-238E11460EA3}"
 EndProject
@@ -107,7 +107,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "88_Test", "88_Test", "{F6A6
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Buiness.Shared.Const", "shared\Leopard.Buiness.Shared.Const\Leopard.Buiness.Shared.Const.csproj", "{23463A7D-8CAC-4515-B766-9383F02DEA7A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Host", "..\framework.aspnetcore\src\Leopard.Host\Leopard.Host.csproj", "{16530019-96EA-4395-8A37-C1AD2D46EE2A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Host", "..\framework-aspnetcore\src\Leopard.Host\Leopard.Host.csproj", "{16530019-96EA-4395-8A37-C1AD2D46EE2A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "06_Module", "06_Module", "{23C5DD87-55DF-4012-8B7B-E4107B38B0DA}"
 EndProject
@@ -147,7 +147,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Identity.HttpApi", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Identity.HttpApi.Client", "module\Identity\Leopard.Identity.HttpApi.Client\Leopard.Identity.HttpApi.Client.csproj", "{E92CBEF6-EAF8-458B-8BF5-E0FDF03E40D9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.UI.Navigation", "..\framework.aspnetcore\src\Leopard.UI.Navigation\Leopard.UI.Navigation.csproj", "{00287B32-DAF2-469F-9716-4B594C633B60}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.UI.Navigation", "..\framework-aspnetcore\src\Leopard.UI.Navigation\Leopard.UI.Navigation.csproj", "{00287B32-DAF2-469F-9716-4B594C633B60}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.BackendAdmin.Application", "microservices\BackendAdmin\Leopard.BackendAdmin.Application\Leopard.BackendAdmin.Application.csproj", "{0EB54C90-807B-4806-91FD-6232F32400C4}"
 EndProject
@@ -163,17 +163,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.BackendAdmin.HttpAp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.BackendAdmin.Web", "microservices\BackendAdmin\Leopard.BackendAdmin.Web\Leopard.BackendAdmin.Web.csproj", "{105EB71C-98BA-4494-8150-5C1F5143C683}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Gateway", "..\framework.aspnetcore\src\Leopard.Gateway\Leopard.Gateway.csproj", "{ACF99A77-9C15-47AE-BCCA-86D1E41143E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Gateway", "..\framework-aspnetcore\src\Leopard.Gateway\Leopard.Gateway.csproj", "{ACF99A77-9C15-47AE-BCCA-86D1E41143E9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Shared", "..\framework.aspnetcore\src\Leopard.Shared\Leopard.Shared.csproj", "{D12FA885-CC57-4FEE-A2CA-E8A4F956D70D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Shared", "..\framework-aspnetcore\src\Leopard.Shared\Leopard.Shared.csproj", "{D12FA885-CC57-4FEE-A2CA-E8A4F956D70D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utils", "Utils", "{E557CC6C-E93A-433D-A1ED-D3DEDA6669CC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Utils", "..\framework.aspnetcore\src\Leopard.Utils\Leopard.Utils.csproj", "{71E3F56F-7A07-47AF-9235-0B330E8629E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Utils", "..\framework-aspnetcore\src\Leopard.Utils\Leopard.Utils.csproj", "{71E3F56F-7A07-47AF-9235-0B330E8629E3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Utils.Win", "..\framework.aspnetcore\src\Leopard.Utils.Win\Leopard.Utils.Win.csproj", "{D5234479-F2B9-4207-871F-155AF01EDB89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Utils.Win", "..\framework-aspnetcore\src\Leopard.Utils.Win\Leopard.Utils.Win.csproj", "{D5234479-F2B9-4207-871F-155AF01EDB89}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Utils.JsonSchema", "..\framework.aspnetcore\src\Leopard.Utils.JsonSchema\Leopard.Utils.JsonSchema.csproj", "{C0A09230-7711-4942-B2E4-23147A33B76C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Utils.JsonSchema", "..\framework-aspnetcore\src\Leopard.Utils.JsonSchema\Leopard.Utils.JsonSchema.csproj", "{C0A09230-7711-4942-B2E4-23147A33B76C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

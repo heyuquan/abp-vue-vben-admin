@@ -27,13 +27,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\..\framework.aspnetcore\src\Leopard.AspNetCore.Swashbuckle\Leopard.AspNetCore.Swashbuckle.csproj" />
-		<ProjectReference Include="..\..\..\..\framework.aspnetcore\src\Leopard.Consul\Leopard.Consul.csproj" />
-		<ProjectReference Include="..\..\..\..\framework.aspnetcore\src\Leopard.Core\Leopard.csproj" />
-		<ProjectReference Include="..\..\..\..\framework.aspnetcore\src\Leopard.Host\Leopard.Host.csproj" />
+		<ProjectReference Include="..\..\..\..\framework-aspnetcore\src\Leopard.AspNetCore.Swashbuckle\Leopard.AspNetCore.Swashbuckle.csproj" />
+		<ProjectReference Include="..\..\..\..\framework-aspnetcore\src\Leopard.Consul\Leopard.Consul.csproj" />
+		<ProjectReference Include="..\..\..\..\framework-aspnetcore\src\Leopard.Core\Leopard.csproj" />
+		<ProjectReference Include="..\..\..\..\framework-aspnetcore\src\Leopard.Host\Leopard.Host.csproj" />
 		<ProjectReference Include="..\..\..\module\Saas\Leopard.Saas.EntityFrameworkCore\Leopard.Saas.EntityFrameworkCore.csproj" />
 		<ProjectReference Include="..\..\..\shared\Leopard.Buiness.Shared.Const\Leopard.Buiness.Shared.Const.csproj" />
-		<ProjectReference Include="..\..\..\..\framework.aspnetcore\src\Leopard.AspNetCore.Serilog\Leopard.AspNetCore.Serilog.csproj" />
+		<ProjectReference Include="..\..\..\..\framework-aspnetcore\src\Leopard.AspNetCore.Serilog\Leopard.AspNetCore.Serilog.csproj" />
 	</ItemGroup>
 
   <ItemGroup>

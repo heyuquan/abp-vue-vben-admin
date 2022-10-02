@@ -17,8 +17,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\..\..\framework.aspnetcore\src\Leopard.Core\Leopard.csproj" />
-		<ProjectReference Include="..\..\..\..\..\framework.aspnetcore\src\Leopard.EntityFrameworkCore\Leopard.EntityFrameworkCore.csproj" />
+		<ProjectReference Include="..\..\..\..\..\framework-aspnetcore\src\Leopard.Core\Leopard.csproj" />
+		<ProjectReference Include="..\..\..\..\..\framework-aspnetcore\src\Leopard.EntityFrameworkCore\Leopard.EntityFrameworkCore.csproj" />
 		<ProjectReference Include="..\..\..\..\module\Saas\Leopard.Saas.EntityFrameworkCore\Leopard.Saas.EntityFrameworkCore.csproj" />
 		<ProjectReference Include="..\Mk.DemoB.Domain\Mk.DemoB.Domain.csproj" />		
 	</ItemGroup>
