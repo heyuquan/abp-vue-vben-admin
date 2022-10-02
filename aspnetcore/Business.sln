@@ -3,25 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.Domain", "microservices\Mk.DemoB\src\Mk.DemoB.Domain\Mk.DemoB.Domain.csproj", "{554AD327-6DBA-4F8F-96F8-81CE7A0C863F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.Domain", "services\Mk.DemoB\src\Mk.DemoB.Domain\Mk.DemoB.Domain.csproj", "{554AD327-6DBA-4F8F-96F8-81CE7A0C863F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.Application", "microservices\Mk.DemoB\src\Mk.DemoB.Application\Mk.DemoB.Application.csproj", "{1A94A50E-06DC-43C1-80B5-B662820EC3EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.Application", "services\Mk.DemoB\src\Mk.DemoB.Application\Mk.DemoB.Application.csproj", "{1A94A50E-06DC-43C1-80B5-B662820EC3EB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.EntityFrameworkCore", "microservices\Mk.DemoB\src\Mk.DemoB.EntityFrameworkCore\Mk.DemoB.EntityFrameworkCore.csproj", "{C956DD76-69C8-4A9C-83EA-D17DF83340FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.EntityFrameworkCore", "services\Mk.DemoB\src\Mk.DemoB.EntityFrameworkCore\Mk.DemoB.EntityFrameworkCore.csproj", "{C956DD76-69C8-4A9C-83EA-D17DF83340FD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04_DemoB", "04_DemoB", "{CA9AC87F-097E-4F15-8393-4BC07735A5B0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.Domain.Shared", "microservices\Mk.DemoB\src\Mk.DemoB.Domain.Shared\Mk.DemoB.Domain.Shared.csproj", "{42F719ED-8413-4895-B5B4-5AB56079BC66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.Domain.Shared", "services\Mk.DemoB\src\Mk.DemoB.Domain.Shared\Mk.DemoB.Domain.Shared.csproj", "{42F719ED-8413-4895-B5B4-5AB56079BC66}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.Application.Contracts", "microservices\Mk.DemoB\src\Mk.DemoB.Application.Contracts\Mk.DemoB.Application.Contracts.csproj", "{520659C8-C734-4298-A3DA-B539DB9DFC0B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.Application.Contracts", "services\Mk.DemoB\src\Mk.DemoB.Application.Contracts\Mk.DemoB.Application.Contracts.csproj", "{520659C8-C734-4298-A3DA-B539DB9DFC0B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.HttpApi", "microservices\Mk.DemoB\src\Mk.DemoB.HttpApi\Mk.DemoB.HttpApi.csproj", "{4164BDF7-F527-4E85-9CE6-E3C2D7426A27}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.HttpApi", "services\Mk.DemoB\src\Mk.DemoB.HttpApi\Mk.DemoB.HttpApi.csproj", "{4164BDF7-F527-4E85-9CE6-E3C2D7426A27}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.HttpApi.Client", "microservices\Mk.DemoB\src\Mk.DemoB.HttpApi.Client\Mk.DemoB.HttpApi.Client.csproj", "{3B5A0094-670D-4BB1-BFDD-61B88A8773DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.HttpApi.Client", "services\Mk.DemoB\src\Mk.DemoB.HttpApi.Client\Mk.DemoB.HttpApi.Client.csproj", "{3B5A0094-670D-4BB1-BFDD-61B88A8773DC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.HttpApi.Host", "microservices\Mk.DemoB\src\Mk.DemoB.HttpApi.Host\Mk.DemoB.HttpApi.Host.csproj", "{E6D5BF0E-DE92-4D82-A352-EF04B37CB11C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.HttpApi.Host", "services\Mk.DemoB\src\Mk.DemoB.HttpApi.Host\Mk.DemoB.HttpApi.Host.csproj", "{E6D5BF0E-DE92-4D82-A352-EF04B37CB11C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.DbMigrator", "microservices\Mk.DemoB\src\Mk.DemoB.DbMigrator\Mk.DemoB.DbMigrator.csproj", "{AA94D832-1CCC-4715-95A9-A483F23A1A5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.DbMigrator", "services\Mk.DemoB\src\Mk.DemoB.DbMigrator\Mk.DemoB.DbMigrator.csproj", "{AA94D832-1CCC-4715-95A9-A483F23A1A5D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02_Framework", "02_Framework", "{408C61DE-C824-4BA2-8EE7-CE571EA864B5}"
 EndProject
@@ -29,25 +29,25 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard", "..\framework-asp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.EntityFrameworkCore", "..\framework-aspnetcore\src\Leopard.EntityFrameworkCore\Leopard.EntityFrameworkCore.csproj", "{F34CB1A6-4FF2-4161-8365-CAE4E0DD654E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.BackgroundJobs", "microservices\Mk.DemoB\src\Mk.DemoB.BackgroundJobs\Mk.DemoB.BackgroundJobs.csproj", "{E7E1C844-2434-44D8-8060-8F145785722C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoB.BackgroundJobs", "services\Mk.DemoB\src\Mk.DemoB.BackgroundJobs\Mk.DemoB.BackgroundJobs.csproj", "{E7E1C844-2434-44D8-8060-8F145785722C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05_DemoC", "05_DemoC", "{F88A0388-EC61-4CB3-852F-FBE3FE15BCB3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoC.Application", "microservices\Mk.DemoC\src\Mk.DemoC.Application\Mk.DemoC.Application.csproj", "{ED27BCE7-D646-4C3A-9477-176474070E54}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoC.Application", "services\Mk.DemoC\src\Mk.DemoC.Application\Mk.DemoC.Application.csproj", "{ED27BCE7-D646-4C3A-9477-176474070E54}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoC.Application.Contracts", "microservices\Mk.DemoC\src\Mk.DemoC.Application.Contracts\Mk.DemoC.Application.Contracts.csproj", "{D842810D-DF59-4E1B-A71E-91D8483FFDAC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoC.Application.Contracts", "services\Mk.DemoC\src\Mk.DemoC.Application.Contracts\Mk.DemoC.Application.Contracts.csproj", "{D842810D-DF59-4E1B-A71E-91D8483FFDAC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoC.Domain", "microservices\Mk.DemoC\src\Mk.DemoC.Domain\Mk.DemoC.Domain.csproj", "{A6C695A9-F94B-4773-87C1-0E40B5F77DC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoC.Domain", "services\Mk.DemoC\src\Mk.DemoC.Domain\Mk.DemoC.Domain.csproj", "{A6C695A9-F94B-4773-87C1-0E40B5F77DC8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoC.Domain.Shared", "microservices\Mk.DemoC\src\Mk.DemoC.Domain.Shared\Mk.DemoC.Domain.Shared.csproj", "{141206D0-73F7-43B4-BBB5-D7263703D688}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoC.Domain.Shared", "services\Mk.DemoC\src\Mk.DemoC.Domain.Shared\Mk.DemoC.Domain.Shared.csproj", "{141206D0-73F7-43B4-BBB5-D7263703D688}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoC.EntityFrameworkCore", "microservices\Mk.DemoC\src\Mk.DemoC.EntityFrameworkCore\Mk.DemoC.EntityFrameworkCore.csproj", "{CA09D21E-7EE3-4DE1-ACB3-037C9A13AB17}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoC.EntityFrameworkCore", "services\Mk.DemoC\src\Mk.DemoC.EntityFrameworkCore\Mk.DemoC.EntityFrameworkCore.csproj", "{CA09D21E-7EE3-4DE1-ACB3-037C9A13AB17}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoC.HttpApi", "microservices\Mk.DemoC\src\Mk.DemoC.HttpApi\Mk.DemoC.HttpApi.csproj", "{3375801B-1070-4D06-9B67-334CC89A125B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoC.HttpApi", "services\Mk.DemoC\src\Mk.DemoC.HttpApi\Mk.DemoC.HttpApi.csproj", "{3375801B-1070-4D06-9B67-334CC89A125B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoC.HttpApi.Host", "microservices\Mk.DemoC\src\Mk.DemoC.HttpApi.Host\Mk.DemoC.HttpApi.Host.csproj", "{95CE1EB6-2364-420E-A428-09F0F6B9F9CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoC.HttpApi.Host", "services\Mk.DemoC\src\Mk.DemoC.HttpApi.Host\Mk.DemoC.HttpApi.Host.csproj", "{95CE1EB6-2364-420E-A428-09F0F6B9F9CB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoC.HttpApi.Client", "microservices\Mk.DemoC\src\Mk.DemoC.HttpApi.Client\Mk.DemoC.HttpApi.Client.csproj", "{AC7A3EB0-B9DB-4396-B646-1F236433600E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoC.HttpApi.Client", "services\Mk.DemoC\src\Mk.DemoC.HttpApi.Client\Mk.DemoC.HttpApi.Client.csproj", "{AC7A3EB0-B9DB-4396-B646-1F236433600E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.AspNetCore.Mvc", "..\framework-aspnetcore\src\Leopard.AspNetCore.Mvc\Leopard.AspNetCore.Mvc.csproj", "{BA1218D5-7F58-4209-91AF-44761CBE9421}"
 EndProject
@@ -69,15 +69,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_doc", "_doc", "{09CFB583-D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "开发文档", "_doc\开发文档\开发文档.csproj", "{DF5B844A-D99B-4F83-B0A8-0FD3C2DFF21C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05_Microservices", "05_Microservices", "{FCF83F0C-BF45-4348-93C5-B9E560C35553}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05_Services", "05_Services", "{FCF83F0C-BF45-4348-93C5-B9E560C35553}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "99_Shared", "99_Shared", "{FC715BA7-0C2F-424C-8EA3-EB02AB3FDCB8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01_AuthServer", "01_AuthServer", "{AECD9C89-5353-49B0-A60A-0AF43D9B4573}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSO.AuthServer.HttpApi.Host", "microservices\SSO.AuthServer\SSO.AuthServer.HttpApi.Host\SSO.AuthServer.HttpApi.Host.csproj", "{39CFA2ED-E39C-425D-8D6F-4AF335C7708C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSO.AuthServer.HttpApi.Host", "services\SSO.AuthServer\SSO.AuthServer.HttpApi.Host\SSO.AuthServer.HttpApi.Host.csproj", "{39CFA2ED-E39C-425D-8D6F-4AF335C7708C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSO.AuthServer.IdentityServer", "microservices\SSO.AuthServer\SSO.AuthServer.IdentityServer\SSO.AuthServer.IdentityServer.csproj", "{D879ADBC-EC84-4F9D-AC1A-8A947E7648BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SSO.AuthServer.IdentityServer", "services\SSO.AuthServer\SSO.AuthServer.IdentityServer\SSO.AuthServer.IdentityServer.csproj", "{D879ADBC-EC84-4F9D-AC1A-8A947E7648BF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackendAdminAppGateway.Host", "gateways\BackendAdminAppGateway.Host\BackendAdminAppGateway.Host.csproj", "{E3F54858-8619-4962-B2A4-95EDC45D98DC}"
 EndProject
@@ -113,7 +113,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "06_Module", "06_Module", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02_BackendAdmin", "02_BackendAdmin", "{A5FD6C9D-BF96-4E62-A8F5-D01FF3BA8F5D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.BackendAdmin.HttpApi.Host", "microservices\BackendAdmin\Leopard.BackendAdmin.HttpApi.Host\Leopard.BackendAdmin.HttpApi.Host.csproj", "{B045D62E-A967-499C-B5E2-F40300784A12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.BackendAdmin.HttpApi.Host", "services\BackendAdmin\Leopard.BackendAdmin.HttpApi.Host\Leopard.BackendAdmin.HttpApi.Host.csproj", "{B045D62E-A967-499C-B5E2-F40300784A12}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02_Account", "02_Account", "{0D8B870B-1488-49E0-BB16-9666EC313B0E}"
 EndProject
@@ -149,19 +149,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Identity.HttpApi.Cl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.UI.Navigation", "..\framework-aspnetcore\src\Leopard.UI.Navigation\Leopard.UI.Navigation.csproj", "{00287B32-DAF2-469F-9716-4B594C633B60}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.BackendAdmin.Application", "microservices\BackendAdmin\Leopard.BackendAdmin.Application\Leopard.BackendAdmin.Application.csproj", "{0EB54C90-807B-4806-91FD-6232F32400C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.BackendAdmin.Application", "services\BackendAdmin\Leopard.BackendAdmin.Application\Leopard.BackendAdmin.Application.csproj", "{0EB54C90-807B-4806-91FD-6232F32400C4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.BackendAdmin.Application.Contracts", "microservices\BackendAdmin\Leopard.BackendAdmin.Application.Contracts\Leopard.BackendAdmin.Application.Contracts.csproj", "{37CF226B-3D0A-404D-AF27-7FEBD5D8670A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.BackendAdmin.Application.Contracts", "services\BackendAdmin\Leopard.BackendAdmin.Application.Contracts\Leopard.BackendAdmin.Application.Contracts.csproj", "{37CF226B-3D0A-404D-AF27-7FEBD5D8670A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.BackendAdmin.Domain", "microservices\BackendAdmin\Leopard.BackendAdmin.Domain\Leopard.BackendAdmin.Domain.csproj", "{A9205574-AFDB-44D3-8A0C-147C2A4A4023}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.BackendAdmin.Domain", "services\BackendAdmin\Leopard.BackendAdmin.Domain\Leopard.BackendAdmin.Domain.csproj", "{A9205574-AFDB-44D3-8A0C-147C2A4A4023}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.BackendAdmin.Domain.Shared", "microservices\BackendAdmin\Leopard.BackendAdmin.Domain.Shared\Leopard.BackendAdmin.Domain.Shared.csproj", "{9E864A99-F7A4-4367-A85B-562A6D62E277}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.BackendAdmin.Domain.Shared", "services\BackendAdmin\Leopard.BackendAdmin.Domain.Shared\Leopard.BackendAdmin.Domain.Shared.csproj", "{9E864A99-F7A4-4367-A85B-562A6D62E277}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.BackendAdmin.EntityFrameworkCore", "microservices\BackendAdmin\Leopard.BackendAdmin.EntityFrameworkCore\Leopard.BackendAdmin.EntityFrameworkCore.csproj", "{BBD08CC8-B732-4068-87D4-A0CD95942E70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.BackendAdmin.EntityFrameworkCore", "services\BackendAdmin\Leopard.BackendAdmin.EntityFrameworkCore\Leopard.BackendAdmin.EntityFrameworkCore.csproj", "{BBD08CC8-B732-4068-87D4-A0CD95942E70}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.BackendAdmin.HttpApi", "microservices\BackendAdmin\Leopard.BackendAdmin.HttpApi\Leopard.BackendAdmin.HttpApi.csproj", "{1525AC00-7418-4CB5-86AD-DEEBA194CED5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.BackendAdmin.HttpApi", "services\BackendAdmin\Leopard.BackendAdmin.HttpApi\Leopard.BackendAdmin.HttpApi.csproj", "{1525AC00-7418-4CB5-86AD-DEEBA194CED5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.BackendAdmin.Web", "microservices\BackendAdmin\Leopard.BackendAdmin.Web\Leopard.BackendAdmin.Web.csproj", "{105EB71C-98BA-4494-8150-5C1F5143C683}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.BackendAdmin.Web", "services\BackendAdmin\Leopard.BackendAdmin.Web\Leopard.BackendAdmin.Web.csproj", "{105EB71C-98BA-4494-8150-5C1F5143C683}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Gateway", "..\framework-aspnetcore\src\Leopard.Gateway\Leopard.Gateway.csproj", "{ACF99A77-9C15-47AE-BCCA-86D1E41143E9}"
 EndProject
