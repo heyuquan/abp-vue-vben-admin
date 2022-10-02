@@ -31,11 +31,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Gateway", "src\Leop
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Shared", "src\Leopard.Shared\Leopard.Shared.csproj", "{D12FA885-CC57-4FEE-A2CA-E8A4F956D70D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{29A26172-D57F-4208-934B-271F8384E124}"
-	ProjectSection(SolutionItems) = preProject
-		.editorconfig = .editorconfig
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utils", "Utils", "{E557CC6C-E93A-433D-A1ED-D3DEDA6669CC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Utils", "src\Leopard.Utils\Leopard.Utils.csproj", "{71E3F56F-7A07-47AF-9235-0B330E8629E3}"
