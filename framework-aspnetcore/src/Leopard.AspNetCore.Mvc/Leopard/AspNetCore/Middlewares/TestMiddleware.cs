@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using System;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Microsoft.AspNetCore.Builder
+namespace Leopard.AspNetCore.Middlewares
 {
     public class TestMiddleware
     {
@@ -16,7 +17,7 @@ namespace Microsoft.AspNetCore.Builder
 
         public TestMiddleware(RequestDelegate next, ILogger<TestMiddleware> logger)
         {
-            this._next = next;
+            _next = next;
             _logger = logger;
         }
 
@@ -34,6 +35,21 @@ namespace Microsoft.AspNetCore.Builder
             _logger.LogInformation(sbuilder.ToString());
             // Do something...
             await _next(context);
+        }
+    }
+
+
+    public static class TestMiddlewareApplicationBuilderExtensions
+    {
+        /// <summary>
+        /// 用于调试，断点查看中间变量值
+        /// </summary>
+        /// <param name="app"></param>
+        /// <returns></returns>
+        public static IApplicationBuilder UseTestMiddleware(this IApplicationBuilder app)
+        {
+            app.UseMiddleware<TestMiddleware>();
+            return app;
         }
     }
 }

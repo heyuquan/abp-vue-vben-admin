@@ -52,6 +52,8 @@ namespace SSO.AuthServer
             var configuration = context.Services.GetConfiguration();
             var hostingEnvironment = context.Services.GetHostingEnvironment();
 
+            ConfigureSameSiteCookiePolicy(context);
+
             Configure<AbpDbContextOptions>(options =>
             {
                 options.UseMySQL();
@@ -79,6 +81,11 @@ namespace SSO.AuthServer
 
             base.ConfigureServices(context);
 
+        }
+
+        private void ConfigureSameSiteCookiePolicy(ServiceConfigurationContext context)
+        {
+            context.Services.AddSameSiteCookiePolicy();
         }
 
         public override void OnApplicationInitialization(ApplicationInitializationContext context)

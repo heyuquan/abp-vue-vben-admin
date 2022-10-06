@@ -1,3 +1,4 @@
+using Leopard.AspNetCore.Middlewares;
 using Leopard.AspNetCore.Mvc;
 using Leopard.AspNetCore.Mvc.Filters;
 using Leopard.AspNetCore.Serilog;
@@ -12,6 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using StackExchange.Redis;
 using System;
@@ -34,6 +36,7 @@ using Volo.Abp.Modularity;
 using Volo.Abp.MultiTenancy;
 using Volo.Abp.Security.Encryption;
 using Volo.Abp.Timing;
+using Volo.Abp.Uow;
 
 namespace Leopard.Host
 {
@@ -106,6 +109,14 @@ namespace Leopard.Host
             {
                 options.IsEnabled = IsEnableMultiTenancy;
             });
+
+            #region db
+            //Configure<AbpUnitOfWorkDefaultOptions>(options =>
+            //{
+            //    //Standalone MongoDB servers don't support transactions
+            //    options.TransactionBehavior = UnitOfWorkTransactionBehavior.Disabled;
+            //});
+            #endregion
 
             Configure<MvcOptions>(mvcOptions =>
             {
@@ -196,9 +207,11 @@ namespace Leopard.Host
                     .AddIdentityServerAuthentication(options =>
                     {
                         options.Authority = configuration["AuthServer:Authority"];
-                        options.ApiName = configuration["AuthServer:ApiName"];
+                        options.ApiName = configuration["AuthServer:ApiName"];                       
                         options.RequireHttpsMetadata = Convert.ToBoolean(configuration["AuthServer:RequireHttpsMetadata"]);
                     });
+
+                // Configure<IdentityServerOptions>(options => { options.IssuerUri = configuration["App:SelfUrl"]; });
             }
 
             if (IsHost())
@@ -251,7 +264,8 @@ namespace Leopard.Host
                         var redis = ConnectionMultiplexer.Connect(redisConfiguration["Configuration"]);
                         context.Services
                             .AddDataProtection()
-                            .PersistKeysToStackExchangeRedis(redis, $"{ModuleKey}-Protection-Keys");
+                            .PersistKeysToStackExchangeRedis(redis, $"{ModuleKey}-Protection-Keys")
+                            .SetApplicationName(ModuleKey);
                     }
                 }
 
