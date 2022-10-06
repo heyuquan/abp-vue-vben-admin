@@ -1,4 +1,4 @@
-﻿using Leopard.Buiness.Consts;
+﻿using Leopard.Base.Consts;
 
 namespace Mk.DemoB.Domain.Consts.ExchangeRates
 {

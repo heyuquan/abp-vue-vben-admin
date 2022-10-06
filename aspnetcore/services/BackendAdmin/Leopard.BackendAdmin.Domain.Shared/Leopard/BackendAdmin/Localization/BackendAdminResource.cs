@@ -1,4 +1,4 @@
-﻿using Leopard.Buiness.Shared;
+﻿using Leopard.Base.Shared;
 using Volo.Abp.Localization;
 
 namespace Leopard.BackendAdmin.Localization

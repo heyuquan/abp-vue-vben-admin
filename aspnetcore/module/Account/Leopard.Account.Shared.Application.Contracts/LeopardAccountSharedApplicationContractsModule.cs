@@ -7,7 +7,7 @@ using Volo.Abp.Validation.Localization;
 using Volo.Abp.VirtualFileSystem;
 using Leopard.Account.Localization;
 using Leopard.Identity;
-using Leopard.Buiness.Shared;
+using Leopard.Base.Shared;
 
 namespace Leopard.Account
 {

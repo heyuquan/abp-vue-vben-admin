@@ -1,5 +1,5 @@
 using Leopard.BackendAdmin.EntityFrameworkCore;
-using Leopard.Buiness.Shared;
+using Leopard.Base.Shared;
 using Leopard.Consul;
 using Leopard.Host;
 using Microsoft.AspNetCore.Hosting;

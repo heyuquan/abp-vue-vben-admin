@@ -1,4 +1,4 @@
-using Leopard.Buiness.Shared;
+using Leopard.Base.Shared;
 using Volo.Abp.Reflection;
 
 namespace Leopard.Identity

@@ -1,7 +1,7 @@
 using Leopard.AspNetCore.Serilog;
 using Leopard.AspNetCore.Swashbuckle;
 using Leopard.BackendAdmin;
-using Leopard.Buiness.Shared;
+using Leopard.Base.Shared;
 using Leopard.Consul;
 using Leopard.Gateway;
 using Volo.Abp.Autofac;

@@ -1,4 +1,4 @@
-﻿using Leopard.Buiness.Shared;
+﻿using Leopard.Base.Shared;
 
 namespace Leopard.Identity.Web.Navigation
 {

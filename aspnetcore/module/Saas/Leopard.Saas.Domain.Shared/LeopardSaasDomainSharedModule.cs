@@ -1,4 +1,4 @@
-﻿using Leopard.Buiness.Shared;
+﻿using Leopard.Base.Shared;
 using Leopard.Saas.Localization;
 using Volo.Abp.Localization;
 using Volo.Abp.Localization.ExceptionHandling;

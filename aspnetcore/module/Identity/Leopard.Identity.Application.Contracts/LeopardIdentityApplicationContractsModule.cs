@@ -1,4 +1,4 @@
-﻿using Leopard.Buiness.Shared;
+﻿using Leopard.Base.Shared;
 using System;
 using Volo.Abp.Application;
 using Volo.Abp.Authorization;

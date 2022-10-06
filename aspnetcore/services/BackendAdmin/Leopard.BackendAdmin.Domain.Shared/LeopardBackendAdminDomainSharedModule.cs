@@ -1,5 +1,5 @@
 ﻿using Leopard.BackendAdmin.Localization;
-using Leopard.Buiness.Shared;
+using Leopard.Base.Shared;
 using Leopard.Saas;
 using Volo.Abp.AuditLogging;
 using Volo.Abp.FeatureManagement;

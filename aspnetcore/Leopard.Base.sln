@@ -89,7 +89,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Saas.HttpApi.Client
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "88_Test", "88_Test", "{F6A6FE17-37E6-4E0B-B583-43C37644A624}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Buiness.Shared.Const", "shared\Leopard.Buiness.Shared.Const\Leopard.Buiness.Shared.Const.csproj", "{23463A7D-8CAC-4515-B766-9383F02DEA7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Base.Shared", "shared\Leopard.Base.Shared\Leopard.Base.Shared.csproj", "{23463A7D-8CAC-4515-B766-9383F02DEA7A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "06_Module", "06_Module", "{23C5DD87-55DF-4012-8B7B-E4107B38B0DA}"
 EndProject
@@ -142,6 +142,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.BackendAdmin.HttpApi", "services\BackendAdmin\Leopard.BackendAdmin.HttpApi\Leopard.BackendAdmin.HttpApi.csproj", "{1525AC00-7418-4CB5-86AD-DEEBA194CED5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.BackendAdmin.Web", "services\BackendAdmin\Leopard.BackendAdmin.Web\Leopard.BackendAdmin.Web.csproj", "{105EB71C-98BA-4494-8150-5C1F5143C683}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Base.Shared.EntityFrameworkCore", "shared\Leopard.Base.Shared.EntityFrameworkCore\Leopard.Base.Shared.EntityFrameworkCore.csproj", "{766CE30F-B0CB-4BC4-91E4-6F520BC7CD44}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -583,6 +585,14 @@ Global
 		{105EB71C-98BA-4494-8150-5C1F5143C683}.Release|Any CPU.Build.0 = Release|Any CPU
 		{105EB71C-98BA-4494-8150-5C1F5143C683}.Release|x86.ActiveCfg = Release|Any CPU
 		{105EB71C-98BA-4494-8150-5C1F5143C683}.Release|x86.Build.0 = Release|Any CPU
+		{766CE30F-B0CB-4BC4-91E4-6F520BC7CD44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{766CE30F-B0CB-4BC4-91E4-6F520BC7CD44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{766CE30F-B0CB-4BC4-91E4-6F520BC7CD44}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{766CE30F-B0CB-4BC4-91E4-6F520BC7CD44}.Debug|x86.Build.0 = Debug|Any CPU
+		{766CE30F-B0CB-4BC4-91E4-6F520BC7CD44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{766CE30F-B0CB-4BC4-91E4-6F520BC7CD44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{766CE30F-B0CB-4BC4-91E4-6F520BC7CD44}.Release|x86.ActiveCfg = Release|Any CPU
+		{766CE30F-B0CB-4BC4-91E4-6F520BC7CD44}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -650,6 +660,7 @@ Global
 		{BBD08CC8-B732-4068-87D4-A0CD95942E70} = {A5FD6C9D-BF96-4E62-A8F5-D01FF3BA8F5D}
 		{1525AC00-7418-4CB5-86AD-DEEBA194CED5} = {A5FD6C9D-BF96-4E62-A8F5-D01FF3BA8F5D}
 		{105EB71C-98BA-4494-8150-5C1F5143C683} = {A5FD6C9D-BF96-4E62-A8F5-D01FF3BA8F5D}
+		{766CE30F-B0CB-4BC4-91E4-6F520BC7CD44} = {FC715BA7-0C2F-424C-8EA3-EB02AB3FDCB8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {28315BFD-90E7-4E14-A2EA-F3D23AF4126F}

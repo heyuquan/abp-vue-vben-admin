@@ -10,7 +10,7 @@ using Volo.Abp.MultiTenancy;
 using Volo.Abp.ObjectExtending;
 using Volo.Abp.ObjectExtending.Modularity;
 using Leopard.Saas.Localization;
-using Leopard.Buiness.Shared;
+using Leopard.Base.Shared;
 
 namespace Leopard.Saas
 {
