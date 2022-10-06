@@ -16,4 +16,8 @@
 		<ProjectReference Include="..\Leopard.Core\Leopard.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Microsoft\AspNetCore\Builder\" />
+	</ItemGroup>
+
 </Project>

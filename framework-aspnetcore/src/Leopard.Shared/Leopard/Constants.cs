@@ -8,7 +8,7 @@ namespace Leopard
         public static Encoding DEFAULT_ENCODING = Encoding.UTF8;
 
         public const string Framework_Name = "Leopard";
-
+        public const string AnonymousUserClaimName = "anonymous_id";
         public const string String_Empty = "";
 
         public const string CHARSET_UTF8 = "utf-8";
