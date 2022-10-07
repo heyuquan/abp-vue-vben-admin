@@ -1,0 +1,1 @@
+﻿docker-compose -f docker-compose.yml -f docker-compose.override.local.win.yml up -d mysql 

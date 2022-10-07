@@ -10,7 +10,7 @@ git - [abp-vue-vben-admin]
 --framework-aspnetcore  后台服务框架。提供基础类封装，提供给aspnetcore【后台基础服务】和【项目服务】使用
 
 
-git - [Leopard-Eshop]
+git - [Eshop.模块名.层名]
 --apps  应用端口
 --aspnetcore
 ----services  业务服务，eg：商品管理、订单模块、支付、采购模块等

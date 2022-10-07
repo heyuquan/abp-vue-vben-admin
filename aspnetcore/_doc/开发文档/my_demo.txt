@@ -23,7 +23,7 @@ DemoC:https://localhost:44356
 链接字符串备注
 MSSQL
 windows身份认证： "Server=(LocalDb)\\MSSQLLocalDB; Database=MsDemo_Identity;Trusted_Connection=True"
-账户登录：Data Source=服务器IP; Initial Catalog=数据库名; User ID=用户名; Password=密码;
+账户密码登录：Data Source=服务器IP; Initial Catalog=数据库名; User ID=用户名; Password=密码;
 MYSQL
 server=134.175.121.78;userid=root;pwd=***;port=8706;database=Leopard_SSO_Identity;sslmode=none;Allow User Variables=true;
 

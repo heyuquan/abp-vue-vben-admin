@@ -110,6 +110,8 @@ namespace Leopard.Host
                 options.IsEnabled = IsEnableMultiTenancy;
             });
 
+            // Configure<AbpBackgroundJobOptions>(options => options.IsJobExecutionEnabled = false);
+
             #region db
             //Configure<AbpUnitOfWorkDefaultOptions>(options =>
             //{

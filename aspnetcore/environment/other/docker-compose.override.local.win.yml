@@ -13,4 +13,9 @@ services:
       - type: bind
         source: /e/Docker/Data/Leapard/Mysql/config/my.cnf
         target: /etc/my.cnf
-
+  portainer:
+    ports:
+      - '9000:9000'
+    environment:
+      - TZ=Asia/Shanghai
+      - LANG=en_US.UTF-8
