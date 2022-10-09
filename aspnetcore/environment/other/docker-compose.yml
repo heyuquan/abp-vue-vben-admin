@@ -37,11 +37,17 @@ services:
   #     - my-net
 
   # 初始账户  admin  a123456789
+  # 使用portainer连接远程docker
+  # https://www.cnblogs.com/eastwood001/p/16086702.html
+  # 解决Windows安装Docker Desktop后Portainer连接不上问题
+  # 要配置端口映射，使用cmd的ipconfig查看本机的ip再进行配置端口映射
+  # https://blog.csdn.net/qq_38225558/article/details/117846612
   portainer:
     image: portainer.img
     build:
       context: portainer/
     container_name: portainer
+    # command: -H unix:///var/run/docker.sock
     restart: always
     networks:
       - my-net

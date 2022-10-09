@@ -43,11 +43,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoC.HttpApi.Host", "se
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mk.DemoC.HttpApi.Client", "services\Mk.DemoC\src\Mk.DemoC.HttpApi.Client\Mk.DemoC.HttpApi.Client.csproj", "{AC7A3EB0-B9DB-4396-B646-1F236433600E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03_Other", "03_Other", "{9A9EAD65-2DBA-4E8C-8A9A-D3C75EA55FA6}"
-	ProjectSection(SolutionItems) = preProject
-		docker-compose.override.prod.yml = docker-compose.override.prod.yml
-		docker-compose.yml = docker-compose.yml
-	EndProjectSection
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03_Etc", "03_Etc", "{9A9EAD65-2DBA-4E8C-8A9A-D3C75EA55FA6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04_Gateways", "04_Gateways", "{BFBA6DEE-2C3D-4695-A63C-9EC95A7D5400}"
 EndProject
@@ -144,6 +140,13 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.BackendAdmin.Web", "services\BackendAdmin\Leopard.BackendAdmin.Web\Leopard.BackendAdmin.Web.csproj", "{105EB71C-98BA-4494-8150-5C1F5143C683}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Base.Shared.EntityFrameworkCore", "shared\Leopard.Base.Shared.EntityFrameworkCore\Leopard.Base.Shared.EntityFrameworkCore.csproj", "{766CE30F-B0CB-4BC4-91E4-6F520BC7CD44}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docker", "Docker", "{6DD08D78-D96C-487A-9C8E-EE0FF5556DB8}"
+	ProjectSection(SolutionItems) = preProject
+		etc\docker\docker-compose.override.local.win.yml = etc\docker\docker-compose.override.local.win.yml
+		etc\docker\docker-compose.override.prod.yml = etc\docker\docker-compose.override.prod.yml
+		etc\docker\docker-compose.yml = etc\docker\docker-compose.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -661,6 +664,7 @@ Global
 		{1525AC00-7418-4CB5-86AD-DEEBA194CED5} = {A5FD6C9D-BF96-4E62-A8F5-D01FF3BA8F5D}
 		{105EB71C-98BA-4494-8150-5C1F5143C683} = {A5FD6C9D-BF96-4E62-A8F5-D01FF3BA8F5D}
 		{766CE30F-B0CB-4BC4-91E4-6F520BC7CD44} = {FC715BA7-0C2F-424C-8EA3-EB02AB3FDCB8}
+		{6DD08D78-D96C-487A-9C8E-EE0FF5556DB8} = {9A9EAD65-2DBA-4E8C-8A9A-D3C75EA55FA6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {28315BFD-90E7-4E14-A2EA-F3D23AF4126F}
