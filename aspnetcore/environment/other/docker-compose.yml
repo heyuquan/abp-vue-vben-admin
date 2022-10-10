@@ -47,7 +47,6 @@ services:
     build:
       context: portainer/
     container_name: portainer
-    # command: -H unix:///var/run/docker.sock
     restart: always
     networks:
       - my-net

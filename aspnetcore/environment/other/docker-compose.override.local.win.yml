@@ -28,14 +28,7 @@ services:
       - TZ=Asia/Shanghai
       - LANG=en_US.UTF-8
     volumes:
-      # - type: bind
-      #   source: \\.\pipe\docker_engine
-      #   target: \\.\pipe\docker_engine
       - type: bind
-        # docler.sock 数据文件
-        source: /e/Docker/Data/Leapard/Portainer/run/docker.sock
-        target: /var/run/docker.sock
-      # - type: bind
-        # # 配置文件
-        # source: /e/Docker/Data/Leapard/Portainer/
-        # target: /data_portainer/portainer-ce
+        # 配置文件
+        source: /e/Docker/Data/Leapard/Portainer/
+        target: /data
