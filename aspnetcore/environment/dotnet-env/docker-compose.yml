@@ -5,23 +5,22 @@ services:
   # rabbitmq 默认账户：guest guest （正式环境应该设置“默认”账户并设置密码，此时guest会被自动禁用）
   rabbitmq:
     image: rabbitmq.img
+    container_name: rabbitmq
     build:
       context: rabbitmq/
     restart: always
-    container_name: rabbitmq
-    networks:
-      - my-net
   
   redis:
     image: redis.img
+    container_name: redis
     build:
       context: redis/
     restart: always
-    container_name: redis
-    networks:
-      - my-net
 
 networks:
-  my-net:
-    driver: bridge
+  env-net:
+    external: true
+  default:
+    external:
+     name: env-net
 

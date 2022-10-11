@@ -1,25 +1,12 @@
 version: '3.7'
 
 services:
-  nginx:
-    image: nginx.img
-    build:
-      context: nginx/
-    restart: always
-    container_name: nginx
-    external_links:
-      - backend-admin-app.gateway
-    networks:
-      - my-net
-
   mysql:
     image: mysql.img
     build:
       context: mysql/
     container_name: mysql
     restart: always
-    networks:
-      - my-net
 
   # baget:
   #   image: loicsharma/baget:latest
@@ -39,21 +26,22 @@ services:
   # 初始账户  admin  a123456789
   # 使用portainer连接远程docker
   # https://www.cnblogs.com/eastwood001/p/16086702.html
-  # 解决Windows安装Docker Desktop后Portainer连接不上问题
-  # 要配置端口映射，使用cmd的ipconfig查看本机的ip再进行配置端口映射
-  # https://blog.csdn.net/qq_38225558/article/details/117846612
+  #   2375是docker远程操控的默认端口，通过这个端口可以直接对远程的docker daemon进行操作。
+  #   docker -H tcp://127.0.0.1:2375 ps
+  #   http://127.0.0.1:2375/version
+  # 【运维部署】windows下docker开启远程访问
+  # 要配置端口映射，使用【管理员身份】cmd的ipconfig查看本机的ip再进行配置端口映射
+  # https://zhuanlan.zhihu.com/p/148887874
   portainer:
     image: portainer.img
     build:
       context: portainer/
     container_name: portainer
     restart: always
-    networks:
-      - my-net
 
 networks:
-  my-net:
-    driver: bridge
+  env-net:
+    external: true
   default:
     external:
-     name: aspnetcore_my-net
+     name: env-net

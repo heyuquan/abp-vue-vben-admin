@@ -13,6 +13,7 @@ services:
       - type: bind
         source: /e/Docker/Data/Leapard/Mysql/config/my.cnf
         target: /etc/my.cnf
+        
   portainer:
     deploy:
       resources:

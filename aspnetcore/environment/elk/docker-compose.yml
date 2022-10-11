@@ -3,6 +3,7 @@ version: '3.7'
 services:
   elasticsearch:
     image: elasticsearch.img
+    container_name: elasticsearch
     build:
       context: elasticsearch/
       args:
@@ -31,12 +32,10 @@ services:
       # Use single node discovery in order to disable production mode and avoid bootstrap checks
       # see https://www.elastic.co/guide/en/elasticsearch/reference/current/bootstrap-checks.html
       discovery.type: single-node
-    container_name: elasticsearch
-    networks:
-      - my-net
 
   elasticsearch-head:
     image: elasticsearch-head.img
+    container_name: elasticsearch-head
     build:
       context: elasticsearch-head/
     restart: always
@@ -46,14 +45,12 @@ services:
         target: /usr/src/app/_site/vendor.js
     ports:
       - "9100:9100"
-    container_name: elasticsearch-head
-    networks:
-      - my-net
     depends_on:
       - elasticsearch
 
   logstash:
     image: logstash.img
+    container_name: logstash
     build:
       context: logstash/
       args:
@@ -74,14 +71,12 @@ services:
       - "9600:9600"
     environment:
       LS_JAVA_OPTS: "-Xmx256m -Xms256m"
-    container_name: logstash
-    networks:
-      - my-net
     depends_on:
       - elasticsearch
 
   kibana:
     image: kibana.img
+    container_name: kibana
     # kibana不用重启，有时候异常不断重启太吃资源
     # restart: always
     build:
@@ -95,13 +90,13 @@ services:
         read_only: true
     ports:
       - "5601:5601"
-    container_name: kibana
-    networks:
-      - my-net
     depends_on:
       - elasticsearch
       - logstash
 
 networks:
-  my-net:
-    driver: bridge
+  env-net:
+    external: true
+  default:
+    external:
+     name: env-net

@@ -1,1 +1,0 @@
-# Leopard.Abp

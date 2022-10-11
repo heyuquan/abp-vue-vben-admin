@@ -24,3 +24,7 @@
 LICENSE
 README.md
 **/Doc
+**/_doc
+**/environment
+**/_run
+**/etc

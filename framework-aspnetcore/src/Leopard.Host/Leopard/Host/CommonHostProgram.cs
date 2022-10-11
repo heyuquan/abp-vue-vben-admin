@@ -32,6 +32,7 @@ namespace Leopard.Host
         private static readonly string env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
         public int CommonMain<T>(string[] args) where T : class
         {
+            // 最先配置日志
             SerilogConfigurationHelper.Configure(env, ModuleKey, true, false);
 
             try

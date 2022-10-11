@@ -5,10 +5,15 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-COPY . .
-WORKDIR /src/services/BackendAdmin/Leopard.BackendAdmin.HttpApi.Host
+RUN curl https://nuget.cnblogs.com/v3/index.json -v
 
-RUN dotnet restore --disable-parallel -nowarn:msb3202,nu1503 
+COPY aspnetcore/ aspnetcore/
+COPY framework-aspnetcore/ framework-aspnetcore/
+COPY "./NuGet.Config" "/src/aspnetcore/services/BackendAdmin/Leopard.BackendAdmin.HttpApi.Host/NuGet.Config"
+WORKDIR /src/aspnetcore/services/BackendAdmin/Leopard.BackendAdmin.HttpApi.Host
+
+RUN dotnet restore --disable-parallel --configfile "./NuGet.Config" -nowarn:msb3202,nu1503
+# RUN dotnet restore --source "https://nuget.cnblogs.com/v3/index.json" -nowarn:msb3202,nu1503 
 RUN dotnet build -nowarn:cs1998,cs1572,cs1573 --no-restore -c Release -o /app/build
 
 FROM build AS publish

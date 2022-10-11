@@ -1,22 +1,22 @@
 version: '3.7'
 
 services:
-  sso.auth-server.api:
-    environment:
-      - TZ=Asia/Shanghai
-      # Production 、 Development
-      - ASPNETCORE_ENVIRONMENT:Development
-    #volumes:
-    #  - /usr/local/application/certificate:/app/config/certificate:rw
-    #  - /usr/local/application/logs/sso.auth-server.api:/app/Logs:rw
-    #  - /usr/local/application/config/sso.auth-server.api/appsettings.json:/app/appsettings.json:rw
-    #  - /usr/local/application/config/sso.auth-server.api/appsettings.Production.json:/app/appsettings.Production.json:rw
+  #sso.auth-server.api:
+  #  environment:
+  #    - TZ=Asia/Shanghai
+  #    # Production 、 Development
+  #    - ASPNETCORE_ENVIRONMENT:Development
+  #  #volumes:
+  #  #  - /usr/local/application/certificate:/app/config/certificate:rw
+  #  #  - /usr/local/application/logs/sso.auth-server.api:/app/Logs:rw
+  #  #  - /usr/local/application/config/sso.auth-server.api/appsettings.json:/app/appsettings.json:rw
+  #  #  - /usr/local/application/config/sso.auth-server.api/appsettings.Production.json:/app/appsettings.Production.json:rw
 
-  sso.auth-server.identityserver:
-    environment:
-      - TZ=Asia/Shanghai
-      # Production 、 Development
-      - ASPNETCORE_ENVIRONMENT:Development
+  #sso.auth-server.identityserver:
+  #  environment:
+  #    - TZ=Asia/Shanghai
+  #    # Production 、 Development
+  #    - ASPNETCORE_ENVIRONMENT:Development
 
   leopard.backend-admin.api:
     environment:
@@ -24,8 +24,8 @@ services:
       # Production 、 Development
       - ASPNETCORE_ENVIRONMENT:Development
 
-  backend-admin-app.gateway:
-    environment:
-      - TZ=Asia/Shanghai
-      # Production 、 Development
-      - ASPNETCORE_ENVIRONMENT:Development
+  #backend-admin-app.gateway:
+  #  environment:
+  #    - TZ=Asia/Shanghai
+  #    # Production 、 Development
+  #    - ASPNETCORE_ENVIRONMENT:Development
