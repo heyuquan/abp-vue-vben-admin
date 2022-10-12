@@ -113,7 +113,7 @@ namespace Leopard.AspNetCore.Mvc.Filters
                 sbuilder.Append(remoteServiceErrorInfo.Details);
             }
 
-            if (remoteServiceErrorInfo.ValidationErrors.Any())
+            if (remoteServiceErrorInfo.ValidationErrors != null && remoteServiceErrorInfo.ValidationErrors.Any())
             {
                 sbuilder.Append($"ValidationErrors:{_jsonSerializer.Serialize(remoteServiceErrorInfo.ValidationErrors, indented: true)}");
             }
