@@ -38,30 +38,39 @@ SSO.AuthServer.HttpApi.Host：封装Account、Identity服务
 SSO.AuthServer.IdentityServer：对接ids4，专门做身份认证
 Leopard.BackendAdmin.HttpApi.Host：后台管理服务，包含如：审计、特征、权限、设置管理、租户、版本、等
 
+xftp中文文件名乱码
+https://blog.csdn.net/fj_changing/article/details/122787205
+xshell中文显示乱码问题
+https://blog.csdn.net/qq_45988641/article/details/123631126
 
+程序代码目录
+  linux环境
+    代码目录：/usr/local/application/src
+  windows环境
+  
 
---SSO.AuthServer.HttpApi.Host
-docker build -f Dockerfile -t sso.auth-server.api.img ../../../ 
-docker run --name sso.auth-server.api -p 44102:80  -d sso.auth-server.api.img 
+发布案例
+  SSO.AuthServer.HttpApi.Host
+  docker build -f Dockerfile -t sso.auth-server.api.img ../../../ 
+  docker run --name sso.auth-server.api -p 44102:80  -d sso.auth-server.api.img 
+  
+  进入容器：docker exec -it sso.auth-server.api /bin/bash
 
-docker exec -it sso.auth-server.api /bin/bash
+常用命令--docker
+  docker stop [container id or name]：停止运行指定容器
 
+  构建：docker-compose build [服务名],[服务名]
+  创建服务（不启动）：docker-compose create
+  启动：docker-compose up [服务名],[服务名]
+        docker-compose up -d    -d代表在后台运行
+  停止：docker-compose stop [服务名],[服务名] 
+  停止：docker-compose start [服务名],[服务名] 
+  删除：docker-compose rm [服务名],[服务名]    // 删除前必须先stop
+  销毁：docker-compose down
+  重启：docker-compose restart
 
-docker stop [container id or name]：停止运行指定容器
+  docker-compose -f docker-compose.yml -f docker-compose.override.prod.yml up -d
 
-构建：docker-compose build [服务名],[服务名]
-创建服务（不启动）：docker-compose create
-启动：docker-compose up [服务名],[服务名]
-      docker-compose up -d    -d代表在后台运行
-停止：docker-compose stop [服务名],[服务名] 
-停止：docker-compose start [服务名],[服务名] 
-删除：docker-compose rm [服务名],[服务名]    // 删除前必须先stop
-销毁：docker-compose down
-重启：docker-compose restart
-
-docker-compose -f docker-compose.yml -f docker-compose.override.prod.yml up -d
-
-程序代码目录linux：/usr/local/application/src
 
 git 拉取远程代码
 https://blog.csdn.net/weijinqian0/article/details/76217014
@@ -73,4 +82,4 @@ Git 本地的撤销修改和删除操作
 https://www.cnblogs.com/qlqwjy/p/8378851.html
 git reset --hard
 
-
+强制删除目录和子目录：rm -rf 目录
