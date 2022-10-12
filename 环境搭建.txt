@@ -14,3 +14,6 @@ networks:
       name: services-net
 
 
+#、运行环境
+本地运行环境约定，ip地址全部指向dev环境。如开发人员要调试本地修改的代码，则修改对应微服务的ip指向本地
+dev环境：有相关环境基础设置，eg：数据库，redis，rabbitmq等等。和微服务

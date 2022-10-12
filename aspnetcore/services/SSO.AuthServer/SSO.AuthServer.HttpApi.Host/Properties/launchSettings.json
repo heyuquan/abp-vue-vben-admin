@@ -14,13 +14,6 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "applicationUrl": "https://localhost:44105;http://localhost:44102"
-    },
-    "SSO.AuthServer.HttpApi.Host.Pro": {
-      "commandName": "Project",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Production"
-      },
-      "applicationUrl": "https://localhost:44105;http://localhost:44102"
     }
   },
   "iisSettings": {

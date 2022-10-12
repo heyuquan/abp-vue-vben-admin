@@ -8,12 +8,14 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Volo.Abp.Http.Client" Version="4.4.2" />
-		<ProjectReference Include="..\Leopard.Saas.Application.Contracts\Leopard.Saas.Application.Contracts.csproj" />
+	  <Compile Remove="Leopard\**" />
+	  <EmbeddedResource Remove="Leopard\**" />
+	  <None Remove="Leopard\**" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Leopard\Saas\" />
+		<PackageReference Include="Volo.Abp.Http.Client" Version="4.4.2" />
+		<ProjectReference Include="..\Leopard.Saas.Application.Contracts\Leopard.Saas.Application.Contracts.csproj" />
 	</ItemGroup>
 
 </Project>

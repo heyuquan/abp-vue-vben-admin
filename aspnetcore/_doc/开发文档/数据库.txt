@@ -1,0 +1,19 @@
+
+
+数据里操作还是要放到 Mk.DemoB.EntityFrameworkCore 层的对应的Repository中。放在如Domain和Application中有两个问题
+1、这两个层需要引用Microsoft.EntityFrameworkCore ，否则一些扩展方法没有，eg：ToListAsync()  ----  解决方案：使用：AsyncExecuter.ToListAsync()
+2、如 Mk.DemoB.EntityFrameworkCore 中定义的 IncludeDetails 没办法使用上
+每个实体定义仓储的好处
+1、可以强制把数据库业务写到仓储中
+2、更好的封装了数据库操作。  方便在其他层注入仓储，获取数据操作
+
+
+
+链接字符串备注
+	MSSQL
+	windows身份认证： "Server=(LocalDb)\\MSSQLLocalDB; Database=MsDemo_Identity;Trusted_Connection=True"
+	账户密码登录：Data Source=服务器IP; Initial Catalog=数据库名; User ID=用户名; Password=密码;
+
+	MYSQL
+	server=134.175.121.78;userid=root;pwd=***;port=8706;database=Leopard_SSO_Identity;sslmode=none;Allow User Variables=true;
+
