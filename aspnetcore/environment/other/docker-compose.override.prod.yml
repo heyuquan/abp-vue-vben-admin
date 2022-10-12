@@ -26,7 +26,7 @@ services:
       MYSQL_ROOT_PASSWORD: '123456'
     volumes:
       - /usr/local/environment/mysql/data:/var/lib/mysql
-      - ./config/my.cnf:/etc/my.cnf
+      - /usr/local/application/src/abp-vue-vben-admin/aspnetcore/environment/other/mysql/config/my.cnf:/etc/my.cnf
 
   portainer:
     ports:
