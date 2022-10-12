@@ -117,10 +117,14 @@ https://blog.csdn.net/fengyuyeguirenenen/article/details/123754926
    generate C# and TypeScript classes or interfaces from a schema
 
 
-#、ImageMagick 图片处理的终极工具
-   在图像格式之间进行转换以及调整图像的大小，模糊，裁剪，去斑点，抖动，绘制，翻转，合并，重新采样等等。
-   https://github.com/dlemstra/Magick.NET
-   https://zhuanlan.zhihu.com/p/341328099
+#、图片处理工具
+   ImageMagick (2.4k)
+     在图像格式之间进行转换以及调整图像的大小，模糊，裁剪，去斑点，抖动，绘制，翻转，合并，重新采样等等。
+     https://github.com/dlemstra/Magick.NET
+     https://zhuanlan.zhihu.com/p/341328099
+   SkiaSharp
+     https://www.cnblogs.com/berkerdong/p/16779385.html
+     https://github.com/mono/SkiaSharp
 
 #、集合性能优化
    Collections.Pooled：通过池化内存来达到降低内存占用和GC的目的

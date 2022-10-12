@@ -1,4 +1,5 @@
-﻿using Leopard.Saas.EntityFrameworkCore;
+﻿using Leopard.EntityFrameworkCore;
+using Leopard.Saas.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.Data;
@@ -10,8 +11,8 @@ using Volo.Abp.SettingManagement.EntityFrameworkCore;
 namespace Leopard.BackendAdmin.EntityFrameworkCore
 {
     [ConnectionStringName(BackendAdminDbProperties.ConnectionStringName)]
-    public class BackendAdminDbContext : 
-        AbpDbContext<BackendAdminDbContext>
+    public class BackendAdminDbContext :
+        LeopardDbContext<BackendAdminDbContext>
     {
         /* Add DbSet properties for your Aggregate Roots / Entities here. */
         

@@ -40,7 +40,7 @@ namespace Leopard.EntityFrameworkCore
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (_serviceProvider != null)
+            if (_serviceProvider != null && _efLogOptions.IsEnableLog)
             {
                 var loggerFactory = new LoggerFactory();
                 EFLoggerProvider _efLoggerProvider = _serviceProvider.GetService<EFLoggerProvider>();

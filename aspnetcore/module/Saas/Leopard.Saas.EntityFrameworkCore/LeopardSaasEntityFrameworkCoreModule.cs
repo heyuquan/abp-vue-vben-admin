@@ -1,3 +1,4 @@
+using Leopard.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.MySQL;
@@ -7,7 +8,8 @@ namespace Leopard.Saas.EntityFrameworkCore
 {
     [DependsOn(
         typeof(LeopardSaasDomainModule),
-        typeof(AbpEntityFrameworkCoreMySQLModule)
+        typeof(AbpEntityFrameworkCoreMySQLModule),
+        typeof(LeopardEntityFrameworkCoreModule)
     )]
     public class LeopardSaasEntityFrameworkCoreModule : AbpModule
     {

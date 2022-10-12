@@ -10,6 +10,7 @@ services:
     ports:
       - "6379:6379"
 
+  # http://localhost:15672/
   rabbitmq:
     ports:
       - '5672:5672'

@@ -99,8 +99,6 @@ services:
   #    - my-net
 
 networks:
-  host:
-    external: true
   default:    
     external:
       name: services-net

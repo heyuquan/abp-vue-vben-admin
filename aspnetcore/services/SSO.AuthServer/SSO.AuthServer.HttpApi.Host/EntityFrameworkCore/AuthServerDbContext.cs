@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Leopard.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.EntityFrameworkCore;
@@ -10,8 +11,8 @@ namespace SSO.AuthServer.EntityFrameworkCore
 {
     [ReplaceDbContext(typeof(IIdentityDbContext))]
     [ConnectionStringName("Default")]
-    public class AuthServerDbContext : 
-        AbpDbContext<AuthServerDbContext>,
+    public class AuthServerDbContext :
+        LeopardDbContext<AuthServerDbContext>,
         IIdentityDbContext
     {
         /* Add DbSet properties for your Aggregate Roots / Entities here. */

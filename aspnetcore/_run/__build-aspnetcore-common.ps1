@@ -1,5 +1,5 @@
 # COMMON PATHS 
-
+# $rootFolder = \aspnetcore\_run
 $rootFolder = (Get-Item -Path "./" -Verbose).FullName
 
 Write-host ""

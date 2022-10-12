@@ -1,6 +1,7 @@
 using Leopard;
 using Leopard.Base.Shared;
 using Leopard.Consul;
+using Leopard.EntityFrameworkCore;
 using Leopard.Host;
 using Microsoft.Extensions.DependencyInjection;
 using SSO.AuthServer.Localization;
@@ -40,7 +41,8 @@ namespace SSO.AuthServer
         typeof(AbpIdentityServerEntityFrameworkCoreModule),
 
         typeof(LeopardModule),
-        typeof(LeopardConsulModule)
+        typeof(LeopardConsulModule),
+        typeof(LeopardEntityFrameworkCoreModule)
     )]
     public class AuthServerHttpApiHostModule : CommonHostModule
     {
