@@ -1,33 +1,35 @@
 ﻿using System;
 
-namespace Leopard.Threading;
-
-/// <summary>
-/// 确保 action 只执行一次。
-/// OneTimeRunner通常作为类的 私有、静态、只读 对象实例，确保在类的声明周期中，某个操作只执行一次
-/// private static readonly OneTimeRunner OneTimeRunner = new OneTimeRunner();
-/// </summary>
-public class OneTimeRunner
+namespace Leopard.Threading
 {
-    private volatile bool _runBefore;
 
-    public void Run(Action action)
+    /// <summary>
+    /// 确保 action 只执行一次。
+    /// OneTimeRunner通常作为类的 私有、静态、只读 对象实例，确保在类的声明周期中，某个操作只执行一次
+    /// private static readonly OneTimeRunner OneTimeRunner = new OneTimeRunner();
+    /// </summary>
+    public class OneTimeRunner
     {
-        if (_runBefore)
-        {
-            return;
-        }
+        private volatile bool _runBefore;
 
-        lock (this)
+        public void Run(Action action)
         {
             if (_runBefore)
             {
                 return;
             }
 
-            action();
+            lock (this)
+            {
+                if (_runBefore)
+                {
+                    return;
+                }
 
-            _runBefore = true;
+                action();
+
+                _runBefore = true;
+            }
         }
     }
 }
