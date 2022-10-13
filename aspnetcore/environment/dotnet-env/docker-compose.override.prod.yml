@@ -2,10 +2,8 @@ version: '3.7'
 
 services:
   consul:
-    image: consul.img
+    image: consul
     container_name: consul
-    build:
-      context: consul/
     restart: always
     ports:
       - '8500:8500'

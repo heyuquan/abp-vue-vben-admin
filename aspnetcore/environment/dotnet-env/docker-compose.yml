@@ -4,17 +4,13 @@ services:
 
   # rabbitmq 默认账户：guest guest （正式环境应该设置“默认”账户并设置密码，此时guest会被自动禁用）
   rabbitmq:
-    image: rabbitmq.img
+    image: rabbitmq:management-alpine
     container_name: rabbitmq
-    build:
-      context: rabbitmq/
     restart: always
   
   redis:
-    image: redis.img
+    image: redis:alpine
     container_name: redis
-    build:
-      context: redis/
     restart: always
 
 networks:
