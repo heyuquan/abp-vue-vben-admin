@@ -1,0 +1,2 @@
+subjectAltName = DNS:docker-78,IP:134.175.121.78,IP:127.0.0.1
+extendedKeyUsage = serverAuth
