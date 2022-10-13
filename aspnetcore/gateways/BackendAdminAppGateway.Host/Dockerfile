@@ -5,6 +5,7 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
+
 COPY aspnetcore/ aspnetcore/
 COPY framework-aspnetcore/ framework-aspnetcore/
 COPY "NuGet.Config" "/src/aspnetcore/gateways/BackendAdminAppGateway.Host/NuGet.Config"

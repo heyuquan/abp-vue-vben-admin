@@ -5,7 +5,6 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
-#RUN curl https://nuget.cnblogs.com/v3/index.json -v
 
 COPY aspnetcore/ aspnetcore/
 COPY framework-aspnetcore/ framework-aspnetcore/
