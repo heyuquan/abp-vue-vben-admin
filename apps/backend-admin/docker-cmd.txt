@@ -1,7 +1,7 @@
 第一步：yarn install
 第二步：yarn build
 第三步：
-cp -r /usr/local/application/src/abp-vue-vben-admin/vue/dist/ /usr/local/environment/nginx/html/leopard/
+cp -r /usr/local/application/src/abp-vue-vben-admin/apps/backend-admin/dist/ /usr/local/environment/nginx/html/leopard/
 
 
 
