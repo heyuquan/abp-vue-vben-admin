@@ -2,13 +2,9 @@ version: '3.7'
 
 services:
   nginx:
-    image: nginx.img
-    build:
-      context: nginx/
-    restart: always
+    image: nginx:1.19.2
     container_name: nginx
-    external_links:
-      - backend-admin-app.gateway
+    restart: always
     ports:
       - '80:80'
     volumes:

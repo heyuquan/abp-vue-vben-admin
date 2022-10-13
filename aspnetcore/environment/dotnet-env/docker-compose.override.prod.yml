@@ -1,12 +1,12 @@
 version: '3.7'
 
 services:
-  consul:
-    image: consul
-    container_name: consul
-    restart: always
-    ports:
-      - '8500:8500'
+  # consul:
+  #   image: consul
+  #   container_name: consul
+  #   restart: always
+  #   ports:
+  #     - '8500:8500'
 
   redis:
     ports:
