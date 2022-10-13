@@ -15,6 +15,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
+using Serilog;
 using StackExchange.Redis;
 using System;
 using System.Collections.Generic;

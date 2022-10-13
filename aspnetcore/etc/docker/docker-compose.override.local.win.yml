@@ -1,31 +1,29 @@
 version: '3.7'
 
 services:
-  #sso.auth-server.api:
+  sso.auth-server.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=a123456
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/app/config/certificate/test.pfx
+    volumes:
+      - /e/Docker/Data/Leapard/Certificate:/app/config/certificate:rw
+      - /e/Docker/Data/Leapard/Services/SSO.AuthServer.HttpApi.Host:/app/Logs:rw
+
+  #sso.auth-server.identityserver:
   #  environment:
-  #    - TZ=Asia/Shanghai
-  #    # Production 、 Development
-  #    - ASPNETCORE_ENVIRONMENT:Development
-  #  #volumes:
-  #  #  - /usr/local/application/certificate:/app/config/certificate:rw
-  #  #  - /usr/local/application/logs/sso.auth-server.api:/app/Logs:rw
-  #  #  - /usr/local/application/config/sso.auth-server.api/appsettings.json:/app/appsettings.json:rw
-  #  #  - /usr/local/application/config/sso.auth-server.api/appsettings.Production.json:/app/appsettings.Production.json:rw
+  #    - ASPNETCORE_ENVIRONMENT=Development
+  #  volumes:
+  #    - /e/Docker/Data/Leapard/Services/SSO.AuthServer.IdentityServer:/app/Logs:rw
 
-  sso.auth-server.identityserver:
-    environment:
-      - TZ=Asia/Shanghai
-      # Production 、 Development
-      - ASPNETCORE_ENVIRONMENT:Development
+  #leopard.backend-admin.api:
+  #  environment:
+  #    - ASPNETCORE_ENVIRONMENT=Development
+  #  volumes:
+  #    - /e/Docker/Data/Leapard/Services/Leopard.BackendAdmin.HttpApi.Host:/app/Logs:rw
 
-  leopard.backend-admin.api:
-    environment:
-      - TZ=Asia/Shanghai
-      # Production 、 Development
-      - ASPNETCORE_ENVIRONMENT:Development
-
-  backend-admin-app.gateway:
-    environment:
-      - TZ=Asia/Shanghai
-      # Production 、 Development
-      - ASPNETCORE_ENVIRONMENT:Development
+  #backend-admin-app.gateway:
+  #  environment:
+  #    - ASPNETCORE_ENVIRONMENT=Development
+  #  volumes:
+  #    - /e/Docker/Data/Leapard/Services/BackendAdminAppGateway.Host:/app/Logs:rw

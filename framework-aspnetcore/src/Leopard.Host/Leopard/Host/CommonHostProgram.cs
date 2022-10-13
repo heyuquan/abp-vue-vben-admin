@@ -7,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using Serilog;
 using System;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 
 namespace Leopard.Host
@@ -29,7 +30,12 @@ namespace Leopard.Host
             ModuleKey = moduleKey;
         }
 
-        private static readonly string env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+        // private static readonly string env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
+        private static readonly string env = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ?
+            (System.Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? System.Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", EnvironmentVariableTarget.Machine))
+            : System.Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", EnvironmentVariableTarget.Process);
+
         public int CommonMain<T>(string[] args) where T : class
         {
             // 最先配置日志
@@ -37,7 +43,7 @@ namespace Leopard.Host
 
             try
             {
-                Log.Information($"Starting {ModuleKey}.");
+                Log.Information($"[{env}] Starting {ModuleKey}.");
                 var host = CreateHostBuilder<T>(args).Build();
 
                 // 如何实现 asp.net core 安全优雅退出 ?

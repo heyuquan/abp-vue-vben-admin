@@ -15,50 +15,49 @@ services:
       - 44102:80
       - 44105:443
 
-  sso.auth-server.identityserver:
-    image: sso.auth-server.identityserver.img
-    container_name: sso.auth-server.identityserver
-    restart: on-failure
-    build:
-      context: ../../../.
-      dockerfile: ./aspnetcore/services/SSO.AuthServer/SSO.AuthServer.IdentityServer/Dockerfile
-    environment:
-      - TZ=Asia/Shanghai
-      - ASPNETCORE_URLS=http://+80;https://+443
-    ports:
-      - 44112:80
-      - 44115:443
-    depends_on: 
-      - sso.auth-server.api
+  #sso.auth-server.identityserver:
+  #  image: sso.auth-server.identityserver.img
+  #  container_name: sso.auth-server.identityserver
+  #  restart: on-failure
+  #  build:
+  #    context: ../../../.
+  #    dockerfile: ./aspnetcore/services/SSO.AuthServer/SSO.AuthServer.IdentityServer/Dockerfile
+  #  environment:
+  #    - TZ=Asia/Shanghai
+  #    - ASPNETCORE_URLS=http://+80;https://+443
+  #  ports:
+  #    - 44112:80
+  #    - 44115:443
+  #  depends_on: 
+  #    - sso.auth-server.api
 
-  leopard.backend-admin.api:
-    image: leopard.backend-admin.api.img
-    container_name: leopard.backend-admin.api
-    restart: on-failure
-    build:
-      context: ../../../.
-      dockerfile: ./aspnetcore/services/BackendAdmin/Leopard.BackendAdmin.HttpApi.Host/Dockerfile
-    environment:
-      - TZ=Asia/Shanghai
-      - ASPNETCORE_URLS=http://+80;https://+443
-    ports:
-      - 44142:80
-      - 44145:443
+  #leopard.backend-admin.api:
+  #  image: leopard.backend-admin.api.img
+  #  container_name: leopard.backend-admin.api
+  #  restart: on-failure
+  #  build:
+  #    context: ../../../.
+  #    dockerfile: ./aspnetcore/services/BackendAdmin/Leopard.BackendAdmin.HttpApi.Host/Dockerfile
+  #  environment:
+  #    - TZ=Asia/Shanghai
+  #    - ASPNETCORE_URLS=http://+80;https://+443
+  #  ports:
+  #    - 44142:80
+  #    - 44145:443
 
-  backend-admin-app.gateway:
-    image: backend-admin-app.gateway.img
-    container_name: backend-admin-app.gateway
-    restart: on-failure
-    build:
-      context: ../../../.
-      dockerfile: ./aspnetcore/gateways/BackendAdminAppGateway.Host/Dockerfile
-    environment:
-      - TZ=Asia/Shanghai
-      - ASPNETCORE_URLS=http://+80;https://+443
-
-    ports:
-      - 44802:80
-      - 44805:443
+  #backend-admin-app.gateway:
+  #  image: backend-admin-app.gateway.img
+  #  container_name: backend-admin-app.gateway
+  #  restart: on-failure
+  #  build:
+  #    context: ../../../.
+  #    dockerfile: ./aspnetcore/gateways/BackendAdminAppGateway.Host/Dockerfile
+  #  environment:
+  #    - TZ=Asia/Shanghai
+  #    - ASPNETCORE_URLS=http://+80;https://+443
+  #  ports:
+  #    - 44802:80
+  #    - 44805:443
 
   #internal.gateway:
   #  image: internal.gateway.img

@@ -46,8 +46,10 @@ https://blog.csdn.net/qq_45988641/article/details/123631126
 程序代码目录
   linux环境
     代码目录：/usr/local/application/src
+    数据目录：/usr/local/environment
   windows环境
-  
+    代码目录：E:\Code\my_code\abp-vue-vben-admin
+    数据目录：E:\Docker\Data\Leapard
 
 发布案例
   SSO.AuthServer.HttpApi.Host

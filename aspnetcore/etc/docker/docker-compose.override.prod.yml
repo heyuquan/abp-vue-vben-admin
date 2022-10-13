@@ -4,7 +4,7 @@ services:
   sso.auth-server.api:
     environment:
       # Production 、 Development
-      - ASPNETCORE_ENVIRONMENT:Production
+      - ASPNETCORE_ENVIRONMENT=Production
       - ASPNETCORE_Kestrel__Certificates__Default__Password=a123456
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/app/config/certificate/test.pfx
     volumes:
@@ -16,7 +16,7 @@ services:
   sso.auth-server.identityserver:
     environment:
       # Production 、 Development
-      - ASPNETCORE_ENVIRONMENT:Production
+      - ASPNETCORE_ENVIRONMENT=Production
       - ASPNETCORE_Kestrel__Certificates__Default__Password=a123456
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/app/config/certificate/test.pfx
     volumes:
@@ -28,7 +28,7 @@ services:
   leopard.backend-admin.api:
     environment:
       # Production 、 Development
-      - ASPNETCORE_ENVIRONMENT:Production
+      - ASPNETCORE_ENVIRONMENT=Production
       - ASPNETCORE_Kestrel__Certificates__Default__Password=a123456
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/app/config/certificate/test.pfx
     volumes:
@@ -40,7 +40,7 @@ services:
   backend-admin-app.gateway:
     environment:
       # Production 、 Development
-      - ASPNETCORE_ENVIRONMENT:Production
+      - ASPNETCORE_ENVIRONMENT=Production
       - ASPNETCORE_Kestrel__Certificates__Default__Password=a123456
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/app/config/certificate/test.pfx
     volumes:
@@ -53,7 +53,7 @@ services:
   #internal.gateway:
   #  environment:
   #    # Production 、 Development
-  #    - ASPNETCORE_ENVIRONMENT:Production
+  #    - ASPNETCORE_ENVIRONMENT=Production
   #    - ASPNETCORE_Kestrel__Certificates__Default__Password=a123456
   #    - ASPNETCORE_Kestrel__Certificates__Default__Path=/app/config/certificate/test.pfx
   #  volumes:
@@ -66,7 +66,7 @@ services:
   #public-web-site.gateway:
   #  environment:
   #    # Production 、 Development
-  #    - ASPNETCORE_ENVIRONMENT:Production
+  #    - ASPNETCORE_ENVIRONMENT=Production
   #    - ASPNETCORE_Kestrel__Certificates__Default__Password=a123456
   #    - ASPNETCORE_Kestrel__Certificates__Default__Path=/app/config/certificate/test.pfx
   #  volumes:
