@@ -1,13 +1,21 @@
 第一步：yarn install
+安装包可能被墙，所以在linux上安装的fastgithub
+再给yarn设置代理
+yarn config set proxy http://127.0.0.1:***/
+
 第二步：yarn build
-第三步：
-cp -r /usr/local/application/src/abp-vue-vben-admin/apps/backend-admin/dist/ /usr/local/environment/nginx/html/leopard/
+第三步：复制页面文件到nginx挂载目录
+rm -rf /usr/local/environment/nginx/html/leopard/eshop-admin/
+mkdir -p /usr/local/environment/nginx/html/leopard/eshop-admin/
+cp -rf /usr/local/application/src/abp-vue-vben-admin/apps/backend-admin/dist/** /usr/local/environment/nginx/html/leopard/eshop-admin/
+  -f：覆盖已经存在的目标文件而不给出提示。 
+  -r：若给出的源文件是一个目录文件，此时将复制该目录下所有的子目录和文件。
 
+第四步：复制nginx配置文件
+cp -rf /usr/local/application/src/abp-vue-vben-admin/apps/backend-admin/_nginx/** /usr/local/environment/nginx/
+进入容器刷新nginx配置：nginx -s reload
+docker exec -it id bash
 
-
-第三步：docker build -f Dockerfile -t leopard.vben.backend.admin.img .
-第四步：
-docker run --name leopard.vben.backend.admin -p 4200:443 -v /usr/local/application/certificate/:/etc/nginx/ssl/ -d leopard.vben.backend.admin.img
 
 
 
