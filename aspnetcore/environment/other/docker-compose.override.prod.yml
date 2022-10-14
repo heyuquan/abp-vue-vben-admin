@@ -7,6 +7,7 @@ services:
     restart: always
     ports:
       - '80:80'
+      - '4200:4200'
     volumes:
       - /usr/local/environment/nginx/logs:/var/log/nginx
       - /usr/local/environment/nginx/conf/nginx.conf:/etc/nginx/nginx.conf
