@@ -5,3 +5,11 @@
 
 #、02_Framework\Utils 文件夹中的项目，不依赖abp
    若项目不使用abp module开发方式，也可以引用 Utils
+
+#、mysql在abp中usemysql需要指定mysql版本的问题
+解决方案：
+	var builder = new DbContextOptionsBuilder<WyJBLandDbContext>()
+				.UseMySql(conn,ServerVersion.AutoDetect(conn));
+	或者
+	UseMySql(connectionString, MySqlServerVersion.LatestSupportedServerVersion)
+参考：http://user.tnblog.net/aojiancc2/article/details/7311  abp vnext连接mysql。.net core连接mysql

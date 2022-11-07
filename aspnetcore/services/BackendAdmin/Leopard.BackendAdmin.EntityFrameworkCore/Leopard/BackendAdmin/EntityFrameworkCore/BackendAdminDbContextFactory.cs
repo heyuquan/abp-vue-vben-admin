@@ -13,9 +13,9 @@ namespace Leopard.BackendAdmin.EntityFrameworkCore
         {
             var configuration = BuildConfiguration();
 
-            var version = new MySqlServerVersion(new System.Version(5, 7, 33));
+            string conn = configuration.GetConnectionString("Default");
             var builder = new DbContextOptionsBuilder<BackendAdminDbContext>()
-                .UseMySql(configuration.GetConnectionString("Default"), version);
+                .UseMySql(conn, ServerVersion.AutoDetect(conn));
 
             return new BackendAdminDbContext(builder.Options);
         }

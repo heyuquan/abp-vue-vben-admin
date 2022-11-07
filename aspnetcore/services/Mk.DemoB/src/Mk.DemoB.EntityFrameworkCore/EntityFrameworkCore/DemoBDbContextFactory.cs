@@ -16,9 +16,9 @@ namespace Mk.DemoB.EntityFrameworkCore
 
             var configuration = BuildConfiguration();
 
-            var version = new MySqlServerVersion(new Version(5, 7, 33));
+            string conn = configuration.GetConnectionString("Default");
             var builder = new DbContextOptionsBuilder<DemoBDbContext>()
-                .UseMySql(configuration.GetConnectionString("Default"), version);
+                .UseMySql(conn, ServerVersion.AutoDetect(conn));
 
             return new DemoBDbContext(builder.Options);
         }

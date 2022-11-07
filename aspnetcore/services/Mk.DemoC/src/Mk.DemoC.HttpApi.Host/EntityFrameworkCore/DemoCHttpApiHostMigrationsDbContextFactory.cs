@@ -12,9 +12,9 @@ namespace Mk.DemoC.EntityFrameworkCore
         {
             var configuration = BuildConfiguration();
 
-            var version = new MySqlServerVersion(new Version(5, 7, 33));
+            string conn = configuration.GetConnectionString(DemoCDbProperties.ConnectionStringName);
             var builder = new DbContextOptionsBuilder<DemoCHttpApiHostMigrationsDbContext>()
-                .UseMySql(configuration.GetConnectionString(DemoCDbProperties.ConnectionStringName),version);
+                .UseMySql(conn, ServerVersion.AutoDetect(conn));
 
             return new DemoCHttpApiHostMigrationsDbContext(builder.Options);
         }
