@@ -48,5 +48,26 @@ namespace System
         {
             return task.ConfigureAwait(false).GetAwaiter().GetResult();
         }
+
+        /// <summary>
+        /// Task的超时
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="milliseconds">超时时间（毫秒）</param>
+        /// <returns>未超时，返回原Task对象；超时，则返回T的默认值</returns>
+        public static async Task<T> Timeout<T>(this Task<T> task, int milliseconds)
+        {
+            // 参考：https://mp.weixin.qq.com/s/xfBUwFcvcwdc49_VZUfRVw
+
+            var timeoutTask = Task.Delay(milliseconds);
+            var allTasks = new List<Task> { task, timeoutTask };
+            Task finishedTask = await Task.WhenAny(allTasks);
+            if (finishedTask == timeoutTask)
+            {
+                return default(T);
+            }
+
+            return await task;
+        }
     }
 }
