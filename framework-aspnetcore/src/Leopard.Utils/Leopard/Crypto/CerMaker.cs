@@ -57,7 +57,7 @@ namespace Leopard.Crypto
             {
                 throw new ArgumentException("结束日期应大于开始日期");
             }
-            if (FileHelper.IsFile(outFile))
+            if (FileHelper.CheckIsFile(outFile))
             {
                 throw new ArgumentException("应该输入文件完整路径", nameof(outFile));
             }

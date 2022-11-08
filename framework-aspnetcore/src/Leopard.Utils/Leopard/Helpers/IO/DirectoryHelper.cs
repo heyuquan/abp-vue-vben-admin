@@ -82,13 +82,13 @@ namespace Leopard.Helpers.IO
         /// <returns></returns>
         public static void CreateIfNotExists(string path)
         {
-            string dir = IsDir(path) ? path : Path.GetDirectoryName(path);
+            string dir = CheckIsDir(path) ? path : Path.GetDirectoryName(path);
             if (!Directory.Exists(dir))
             {
                 Directory.CreateDirectory(dir);
             }
         }
-         
+
         /// <summary>
         /// 删除目录
         /// </summary>
@@ -117,10 +117,23 @@ namespace Leopard.Helpers.IO
         /// </summary>
         /// <param name="path">路径</param>
         /// <returns>true-文件夹，false-文件</returns>
-        public static bool IsDir(string path)
+        public static bool CheckIsDir(string path)
         {
             return string.IsNullOrEmpty(Path.GetExtension(path));
         }
+
+        /// <summary>
+        /// 检查文件夹路径正确性，抛异常
+        /// </summary>
+        public static void CheckIsDirWithException(string path)
+        {
+            if (!CheckIsDir(path))
+            {
+                throw new ArgumentException("应该输入正确的文件夹路径", nameof(path));
+            }
+        }
+
+
 
         /// <summary>
         /// 是否有效的本地文件夹路径

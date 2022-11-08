@@ -2,7 +2,9 @@
 using Leopard.Http;
 using Leopard.Utils;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
@@ -60,9 +62,20 @@ namespace Leopard.Helpers.IO
         /// </summary>
         /// <param name="path">路径</param>
         /// <returns>true-文件，false-文件夹</returns>
-        public static bool IsFile(string path)
+        public static bool CheckIsFile(string path)
         {
-            return !DirectoryHelper.IsDir(path);
+            return !DirectoryHelper.CheckIsDir(path);
+        }
+
+        /// <summary>
+        /// 检查文件路径正确性，抛异常
+        /// </summary>
+        public static void CheckIsFileWithException(string path)
+        {
+            if (!CheckIsFile(path))
+            {
+                throw new ArgumentException("应该输入正确的文件路径", nameof(path));
+            }
         }
 
         #region 下载
@@ -168,11 +181,11 @@ namespace Leopard.Helpers.IO
         /// <summary>
         /// Opens a text file, reads all lines of the file, and then closes the file.
         /// </summary>
-        /// <param name="path">The file to open for reading.</param>
+        /// <param name="fileName">The file to open for reading.</param>
         /// <returns>A string containing all lines of the file.</returns>
-        public static async Task<string> ReadAllTextAsync(string path)
+        public static async Task<string> ReadAllTextAsync(string fileName)
         {
-            using (var reader = File.OpenText(path))
+            using (var reader = File.OpenText(fileName))
             {
                 return await reader.ReadToEndAsync();
             }
@@ -181,11 +194,12 @@ namespace Leopard.Helpers.IO
         /// <summary>
         /// Opens a text file, reads all lines of the file, and then closes the file.
         /// </summary>
-        /// <param name="path">The file to open for reading.</param>
+        /// <param name="fileName">The file to open for reading.</param>
         /// <returns>A string containing all lines of the file.</returns>
-        public static async Task<byte[]> ReadAllBytesAsync(string path)
+        public static async Task<byte[]> ReadAllBytesAsync(string fileName)
         {
-            using (var stream = File.Open(path, FileMode.Open))
+            CheckIsFileWithException(fileName);
+            using (var stream = File.Open(fileName, FileMode.Open))
             {
                 var result = new byte[stream.Length];
                 await stream.ReadAsync(result, 0, (int)stream.Length);
@@ -194,13 +208,32 @@ namespace Leopard.Helpers.IO
         }
 
         /// <summary>
+        /// 读取文件内容为行列表
+        /// 读取以\n做分隔。如果最后要StringBuilder组合起来时，要带上\n如：sbuilder.AppendJoin('\n', Lines')
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
+        public static List<string> ReadTextAsLines(string fileName)
+        {
+            CheckIsFileWithException(fileName);
+
+            StreamReader sr = File.OpenText(fileName);
+            string fileContent = sr.ReadToEnd();
+            sr.Close();
+            return fileContent.Split('\n').ToList();
+        }
+
+
+        /// <summary>
         /// Opens a text file, reads content without BOM
         /// </summary>
-        /// <param name="path">The file to open for reading.</param>
+        /// <param name="fileName">The file to open for reading.</param>
         /// <returns>A string containing all lines of the file.</returns>
-        public static async Task<string> ReadFileWithoutBomAsync(string path)
+        public static async Task<string> ReadTextWithoutBomAsync(string fileName)
         {
-            var content = await ReadAllBytesAsync(path);
+            CheckIsFileWithException(fileName);
+            var content = await ReadAllBytesAsync(fileName);
 
             return Utf8BomHelper.ReadStringFromByteWithoutBom(content);
         }
@@ -208,25 +241,22 @@ namespace Leopard.Helpers.IO
         /// <summary>
         /// 保存对象到xml文件
         /// </summary>
-        /// <param name="destFilePath">文件全路径</param>
+        /// <param name="fileName">文件全路径</param>
         /// <param name="source">数据源，会序列化为xml再存储</param>
         /// <param name="isAppend">是否追加到已有文本后面；不追加则先清空，再写入文件</param>
-        public static void SaveXmlFile<T>(string destFilePath, T source, bool isAppend = false)
-        {          
-            if (IsFile(destFilePath))
-            {
-                throw new ArgumentException("应该输入文件完整路径", nameof(destFilePath));
-            }
+        public static void SaveXml<T>(string fileName, T source, bool isAppend = false)
+        {
+            CheckIsFileWithException(fileName);
 
-            DirectoryHelper.CreateIfNotExists(destFilePath);
+            DirectoryHelper.CreateIfNotExists(fileName);
 
             FileMode mode = FileMode.OpenOrCreate;
-            if (File.Exists(destFilePath))
+            if (File.Exists(fileName))
             {
                 mode = isAppend ? FileMode.Append : FileMode.Truncate;
             }
 
-            using (Stream stream = new FileStream(destFilePath, mode, FileAccess.Write, FileShare.None))
+            using (Stream stream = new FileStream(fileName, mode, FileAccess.Write, FileShare.None))
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(T));
                 serializer.Serialize(stream, source);
@@ -237,25 +267,22 @@ namespace Leopard.Helpers.IO
         /// <summary>
         /// 保存text到文件(没有文件会创建新文件)
         /// </summary>
-        /// <param name="destFilePath">文件全路径，如果没带后缀，会自动补上默认.xml</param>
+        /// <param name="fileName">文件全路径，如果没带后缀，会自动补上默认.xml</param>
         /// <param name="text">数据源</param>
         /// <param name="isAppend">是否追加到已有文本后面；不追加则先清空，再写入文件</param>
-        public static void SaveFile(string destFilePath, string text, bool isAppend = false)
+        public static void Save(string fileName, string text, bool isAppend = false)
         {
-            if (IsFile(destFilePath))
-            {
-                throw new ArgumentException("应该输入文件完整路径", nameof(destFilePath));
-            }
+            CheckIsFileWithException(fileName);
 
-            DirectoryHelper.CreateIfNotExists(destFilePath);
+            DirectoryHelper.CreateIfNotExists(fileName);
 
             FileMode mode = FileMode.OpenOrCreate;
-            if (File.Exists(destFilePath))
+            if (File.Exists(fileName))
             {
                 mode = isAppend ? FileMode.Append : FileMode.Truncate;
             }
 
-            using (Stream stream = new FileStream(destFilePath, mode, FileAccess.Write, FileShare.None))
+            using (Stream stream = new FileStream(fileName, mode, FileAccess.Write, FileShare.None))
             {
                 using (StreamWriter sw = new StreamWriter(stream))
                 {
@@ -268,25 +295,22 @@ namespace Leopard.Helpers.IO
         /// <summary>
         /// 保存data到文件
         /// </summary>
-        /// <param name="destFilePath">文件全路径</param>
+        /// <param name="fileName">文件全路径</param>
         /// <param name="data">数据源字节数组</param>
         /// <param name="isAppend">是否追加到已有文本后面；不追加则先清空，再写入文件</param>
-        public static void SaveFile(string destFilePath, byte[] data, bool isAppend = false)
+        public static void Save(string fileName, byte[] data, bool isAppend = false)
         {
-            if (IsFile(destFilePath))
-            {
-                throw new ArgumentException("应该输入文件完整路径", nameof(destFilePath));
-            }
+            CheckIsFileWithException(fileName);
 
-            DirectoryHelper.CreateIfNotExists(destFilePath);
+            DirectoryHelper.CreateIfNotExists(fileName);
 
             FileMode mode = FileMode.OpenOrCreate;
-            if (File.Exists(destFilePath))
+            if (File.Exists(fileName))
             {
                 mode = isAppend ? FileMode.Append : FileMode.Truncate;
             }
 
-            using (Stream stream = new FileStream(destFilePath, mode, FileAccess.Write, FileShare.None))
+            using (Stream stream = new FileStream(fileName, mode, FileAccess.Write, FileShare.None))
             {
                 using (BinaryWriter sw = new BinaryWriter(stream))
                 {
@@ -300,36 +324,33 @@ namespace Leopard.Helpers.IO
         /// 保存text到文件(没有文件会创建新文件)
         /// </summary>
         /// <param name="srcStream"></param>
-        /// <param name="destFilePath">文件全路径</param>
+        /// <param name="fileName">文件全路径</param>
         /// <param name="isAppend">是否追加到已有文本后面；不追加则先清空，再写入文件</param>
         /// <returns></returns>
         /// <exception cref="ArgumentException"></exception>
-        public static async Task<bool> SaveFileAsync(Stream srcStream, string destFilePath, bool isAppend = false)
+        public static async Task<bool> SaveAsync(Stream srcStream, string fileName, bool isAppend = false)
         {
             if (srcStream == null)
                 return false;
 
-            if (IsFile(destFilePath))
-            {
-                throw new ArgumentException("应该输入文件完整路径", nameof(destFilePath));
-            }
+            CheckIsFileWithException(fileName);
 
             const int BuffSize = 32768;
             var result = true;
             Stream dstStream = null;
             var buffer = new byte[BuffSize];
 
-            DirectoryHelper.CreateIfNotExists(destFilePath);
+            DirectoryHelper.CreateIfNotExists(fileName);
 
             FileMode mode = FileMode.OpenOrCreate;
-            if (File.Exists(destFilePath))
+            if (File.Exists(fileName))
             {
                 mode = isAppend ? FileMode.Append : FileMode.Truncate;
             }
 
             try
             {
-                await using (dstStream = File.Open(destFilePath, mode))
+                await using (dstStream = File.Open(fileName, mode))
                 {
                     int len;
                     while ((len = await srcStream.ReadAsync(buffer.AsMemory(0, BuffSize))) > 0)
@@ -351,32 +372,95 @@ namespace Leopard.Helpers.IO
                 }
             }
 
-            return (result && File.Exists(destFilePath));
+            return (result && File.Exists(fileName));
         }
 
         /// <summary>
         /// 读取文件，并对其stream做处理
         /// </summary>
-        /// <param name="destFilePath">文件全路径</param>
+        /// <param name="fileName">文件全路径</param>
         /// <param name="action">读取后，处理数据</param>
-        public static void HandleFile(string destFilePath, Action<Stream> action)
+        public static void HandleFile(string fileName, Action<Stream> action)
         {
-            if (IsFile(destFilePath))
-            {
-                throw new ArgumentException("应该输入文件完整路径", nameof(destFilePath));
-            }
+            CheckIsFileWithException(fileName);
             if (action == null)
             {
                 throw new ArgumentNullException(nameof(action));
             }
-            DirectoryHelper.CreateIfNotExists(destFilePath);
+            DirectoryHelper.CreateIfNotExists(fileName);
 
-            using (Stream stream = new FileStream(destFilePath, FileMode.Open, FileAccess.Read, FileShare.None))
+            using (Stream stream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.None))
             {
                 action(stream);
             }
         }
 
+        #endregion
+
+        #region 查找
+        /// <summary>
+        /// 从文件中找关键字
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <param name="word"></param>
+        public static FindTextResult FindInFile(string fileName, string word)
+        {
+            CheckIsFileWithException(fileName);
+
+            StreamReader sr = File.OpenText(fileName);
+            string s = sr.ReadToEnd();
+            sr.Close();
+            string[] temp = s.Split('\n');
+            FindTextResult findTextResult = null;
+            for (int i = 0; i < temp.Length; i++)
+            {
+                if (temp[i].IndexOf(word) != -1)
+                {
+                    if (findTextResult is null)
+                    {
+                        findTextResult = new FindTextResult();
+                        findTextResult.FileFullName = fileName;
+                    }
+                    findTextResult.Matchs.Add(new FindTextItem
+                    {
+                        LineText = temp[i].Trim(),
+                        LineNo = i + 1
+                    });
+                }
+            }
+            return findTextResult;
+        }
+        /// <summary>
+        /// 从文件夹中找关键字
+        /// </summary>
+        /// <param name="foldername"></param>
+        /// <param name="suffix"></param>
+        /// <param name="word"></param>
+        public static List<FindTextResult> FindInDirectory(string foldername, string suffix, string word)
+        {
+            DirectoryHelper.CheckIsDirWithException(foldername);
+
+            List<FindTextResult> result = new List<FindTextResult>();
+            DirectoryInfo dif = new DirectoryInfo(foldername);
+
+            foreach (DirectoryInfo di in dif.GetDirectories())
+            {
+                result.AddRange(FindInDirectory(di.FullName, suffix, word));
+            }
+
+            foreach (FileInfo f in dif.GetFiles())
+            {
+                if (string.IsNullOrEmpty(suffix) || f.Extension == suffix)
+                {
+                    var temp = FindInFile(f.FullName, word);
+                    if (temp is not null)
+                    {
+                        result.Add(temp);
+                    }
+                }
+            }
+            return result;
+        }
         #endregion
     }
 }
