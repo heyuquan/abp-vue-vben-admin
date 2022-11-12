@@ -163,7 +163,7 @@ namespace Leopard.Helpers.IO
         {
             using (FileStream stream = new FileStream(fileName, FileMode.Open))
             {
-                MD5 md5 = new MD5CryptoServiceProvider();
+                MD5 md5 = MD5.Create();
                 byte[] retVal = md5.ComputeHash(stream);
 
                 StringBuilder sb = new StringBuilder();

@@ -27,7 +27,7 @@ namespace Leopard.Crypto
         {
             byte[] inputBytes = Encoding.Default.GetBytes(input);
 
-            SHA1 sha = new SHA1CryptoServiceProvider();
+            SHA1 sha = SHA1.Create();
 
             byte[] result = sha.ComputeHash(inputBytes);
 

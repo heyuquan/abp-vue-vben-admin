@@ -29,7 +29,7 @@ namespace Leopard.AspNetCore.Mvc.Filters
 
         private readonly IExceptionToErrorInfoConverter _errorInfoConverter;
         private readonly IHttpExceptionStatusCodeFinder _statusCodeFinder;
-        private readonly AbpExceptionHandlingOptions _exceptionHAndlingOptions;
+        private readonly AbpExceptionHandlingOptions _exceptionHandlingOptions;
         private readonly IJsonSerializer _jsonSerializer;
         private readonly ICorrelationIdProvider _correlationIdProvider;
         private readonly IHostEnvironment _env;
@@ -46,7 +46,7 @@ namespace Leopard.AspNetCore.Mvc.Filters
             ICorrelationIdProvider correlationIdProvider)
         {
             _errorInfoConverter = errorInfoConverter;
-            _exceptionHAndlingOptions = exceptionHAndlingOptions.Value;
+            _exceptionHandlingOptions = exceptionHAndlingOptions.Value;
             _env = env;
             _statusCodeFinder = statusCodeFinder;
             _jsonSerializer = jsonSerializer;
@@ -101,8 +101,11 @@ namespace Leopard.AspNetCore.Mvc.Filters
             context.HttpContext.Response.StatusCode = (int)_statusCodeFinder.GetStatusCode(context.HttpContext, context.Exception);
             context.HttpContext.Response.OnStarting(_clearCacheHeadersDelegate, context.HttpContext.Response);
 
-            var remoteServiceErrorInfo = _errorInfoConverter.Convert(context.Exception, _exceptionHAndlingOptions.SendExceptionsDetailsToClients);
-
+            var remoteServiceErrorInfo = _errorInfoConverter.Convert(context.Exception, options =>
+            {
+                options.SendExceptionsDetailsToClients = _exceptionHandlingOptions.SendExceptionsDetailsToClients;
+                options.SendStackTraceToClients = _exceptionHandlingOptions.SendStackTraceToClients;
+            });
             StringBuilder sbuilder = new StringBuilder(128);
             if (string.IsNullOrWhiteSpace(remoteServiceErrorInfo.Details))
             {

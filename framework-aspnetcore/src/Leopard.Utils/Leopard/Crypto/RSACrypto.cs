@@ -120,7 +120,7 @@ namespace Leopard.Crypto
             RSACryptoServiceProvider provider = new RSACryptoServiceProvider();
             provider.FromXmlString(privateKey);
             //使用SHA1进行摘要算法，生成签名
-            byteData = provider.SignData(byteData, new SHA1CryptoServiceProvider());
+            byteData = provider.SignData(byteData, SHA1.Create());
             return CryptoGuide.Base64.Encode(byteData);
         }
 
@@ -137,7 +137,7 @@ namespace Leopard.Crypto
             provider.FromXmlString(publicKey);
             byte[] byteData = Encoding.UTF8.GetBytes(originalText);
             byte[] signData = CryptoGuide.Base64.DecodeToByte(signedData);
-            return provider.VerifyData(byteData, new SHA1CryptoServiceProvider(), signData);
+            return provider.VerifyData(byteData, SHA1.Create(), signData);
         }
 
         // https://blog.csdn.net/qq_37835111/article/details/87358779
