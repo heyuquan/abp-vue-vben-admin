@@ -214,14 +214,14 @@ namespace Leopard.Helpers.IO
         /// <param name="fileName"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentException"></exception>
-        public static List<string> ReadTextAsLines(string fileName)
+        public static string[] ReadTextAsLines(string fileName)
         {
             CheckIsFileWithException(fileName);
 
             StreamReader sr = File.OpenText(fileName);
             string fileContent = sr.ReadToEnd();
             sr.Close();
-            return fileContent.Split('\n').ToList();
+            return fileContent.Split('\n');
         }
 
 
@@ -407,10 +407,7 @@ namespace Leopard.Helpers.IO
         {
             CheckIsFileWithException(fileName);
 
-            StreamReader sr = File.OpenText(fileName);
-            string s = sr.ReadToEnd();
-            sr.Close();
-            string[] temp = s.Split('\n');
+            string[] temp = ReadTextAsLines(fileName);;
             FindTextResult findTextResult = null;
             for (int i = 0; i < temp.Length; i++)
             {

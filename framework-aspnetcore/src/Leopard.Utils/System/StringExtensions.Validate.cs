@@ -269,20 +269,35 @@ namespace System
             return Regex.IsMatch(source, @"^[+]{0,1}(\d){1,3}[ ]?([-]?((\d)|[ ]){1,12})+$", RegexOptions.Compiled);
         }
 
+        #region 电话
+        // https://github.com/VincentSit/ChinaMobilePhoneNumberRegex
+
         /// <summary>
-        /// 验证手机号是否合法 号段为13,14,15,16,17,18,19  0，86开头将自动识别
+        /// 验证手机号是否合法，可以带86
         /// </summary>
         /// <param name="source">字符串</param>
         /// <returns></returns>
-        public static bool IsMobilePhone(this string source)
+        public static bool IsMobile(this string source)
         {
-            if (!source.StartsWith("1"))
-            {
-                source = source.TrimStart(new char[] { '8', '6', }).TrimStart('0');
-            }
-            return Regex.IsMatch(source, @"^(13|14|15|16|17|18|19)\d{9}$");
+            //19612345678
+            //8618612345678
+            //+8618612345678
 
-            //return Regex.IsMatch(source, @"^(86)*0*13\d{9}$", RegexOptions.Compiled);
+            return Regex.IsMatch(source, @"^(?:\+?86)?1(?:3\d{3}|5[^4\D]\d{2}|8\d{3}|7(?:[235-8]\d{2}|4(?:0\d|1[0-2]|9\d))|9[0-35-9]\d{2}|66\d{2})\d{6}$");
+        }
+
+        /// <summary>
+        /// 验证手机号是否合法，不带86
+        /// </summary>
+        /// <param name="source">字符串</param>
+        /// <returns></returns>
+        public static bool IsMobileWithout86(this string source)
+        {
+            //19612345678
+            //8618612345678
+            //+8618612345678
+
+            return Regex.IsMatch(source, @"^1(?:3\d{3}|5[^4\D]\d{2}|8\d{3}|7(?:[235-8]\d{2}|4(?:0\d|1[0-2]|9\d))|9[0-35-9]\d{2}|66\d{2})\d{6}$");
         }
 
         /// <summary>
@@ -296,16 +311,18 @@ namespace System
             // return Regex.IsMatch(source, @"^((\d{3,4})|\d{3,4}-|\s)?\d{8}$", RegexOptions.Compiled);
         }
 
-        /// <summary>
-        /// 验证输入字符串为电话号码
-        /// </summary>
-        /// <param name="str">输入字符</param>
-        /// <returns>返回一个bool类型的值</returns>
-        public static bool IsPhone(this string str)
-        {
-            return Regex.IsMatch(str, @"(^(\d{2,4}[-_－—]?)?\d{3,8}([-_－—]?\d{3,8})?([-_－—]?\d{1,7})?$)|(^0?1[35]\d{9}$)");
-            //弱一点的验证：  @"\d{3,4}-\d{7,8}"         
-        }
+        ///// <summary>
+        ///// 验证输入字符串为电话号码
+        ///// </summary>
+        ///// <param name="str">输入字符</param>
+        ///// <returns>返回一个bool类型的值</returns>
+        //public static bool IsPhone(this string str)
+        //{
+        //    return Regex.IsMatch(str, @"(^(\d{2,4}[-_－—]?)?\d{3,8}([-_－—]?\d{3,8})?([-_－—]?\d{1,7})?$)|(^0?1[35]\d{9}$)");
+        //    //弱一点的验证：  @"\d{3,4}-\d{7,8}"         
+        //}
+
+        #endregion
 
         /// <summary>
         /// 包含html标签
