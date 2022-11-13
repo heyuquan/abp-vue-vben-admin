@@ -3,6 +3,7 @@ using Leopard.Host;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Ocelot.DependencyInjection;
+using Volo.Abp.Modularity;
 
 namespace Leopard.Gateway
 {
@@ -10,7 +11,8 @@ namespace Leopard.Gateway
     /// <summary>
     /// 共用 Program
     /// </summary>
-    public class CommonGatewayProgram : CommonProgram
+    public class CommonGatewayProgram<TModule> : CommonHostProgram<TModule>
+        where TModule : AbpModule
     {
         public CommonGatewayProgram(ApplicationServiceType serviceType, string assemblyName) : base(serviceType, assemblyName)
         {

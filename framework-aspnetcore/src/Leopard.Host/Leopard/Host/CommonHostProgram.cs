@@ -1,6 +1,8 @@
 using Leopard.AspNetCore.Serilog;
 using Leopard.Helpers;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -9,6 +11,8 @@ using System;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
+using System.Threading.Tasks;
+using Volo.Abp.Modularity;
 
 namespace Leopard.Host
 {
@@ -16,7 +20,8 @@ namespace Leopard.Host
     /// <summary>
     /// 共用 Program
     /// </summary>
-    public class CommonProgram
+    public class CommonHostProgram<TModule>
+        where TModule : AbpModule
     {
         /// <summary>
         /// 模块名（模块key）eg：Leopard.Saas
@@ -24,7 +29,7 @@ namespace Leopard.Host
         protected string ModuleKey { get; private set; }
         protected ApplicationServiceType ApplicationServiceType { get; private set; }
 
-        public CommonProgram(ApplicationServiceType serviceType, string moduleKey)
+        public CommonHostProgram(ApplicationServiceType serviceType, string moduleKey)
         {
             ApplicationServiceType = serviceType;
             ModuleKey = moduleKey;
@@ -36,7 +41,7 @@ namespace Leopard.Host
             (System.Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? System.Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", EnvironmentVariableTarget.Machine))
             : System.Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", EnvironmentVariableTarget.Process);
 
-        public int CommonMain<T>(string[] args) where T : class
+        public async Task<int> RunAsync(string[] args)
         {
             // 最先配置日志
             SerilogConfigurationHelper.Configure(env, ModuleKey, true, false);
@@ -44,18 +49,39 @@ namespace Leopard.Host
             try
             {
                 Log.Information($"[{env}] Starting {ModuleKey}.");
-                var host = CreateHostBuilder<T>(args).Build();
+                //var host = CreateHostBuilder<T>(args).Build();
+                var builder = WebApplication.CreateBuilder(args);
+                builder.Host
+                    .ConfigureAppConfiguration((hostingContext, config) =>
+                    {
+                        this.ConfigureAppConfiguration(hostingContext, config);
+                        config.AddJsonFile("appsettings.secrets.json", optional: true, reloadOnChange: true);
+                    })
+                    .ConfigureWebHostDefaults(webBuilder =>
+                    {
+                        webBuilder.ConfigureKestrel((context, options) =>
+                        {
+                            // 对于 Kestrel 托管的应用，默认的最大请求正文大小为 30,000,000 个字节，约为 28.6 MB
+                            // options.Limits.MaxRequestBodySize=null表示不限制
+                            options.Limits.MaxRequestBodySize = Constants.RequestLimit.MaxBodyLength_Byte;
+                        });
+                    })
+                    .UseAutofac()
+                    .UseSerilog();
+
+                await builder.AddApplicationAsync<TModule>();
+                var app = builder.Build();
+                await app.InitializeApplicationAsync();
 
                 // 如何实现 asp.net core 安全优雅退出 ?
                 // https://mp.weixin.qq.com/s/TwPNPwD-XlmKiuuYYk1MeQ
-                var life = host.Services.GetRequiredService<IHostApplicationLifetime>();
+                var life = app.Services.GetRequiredService<IHostApplicationLifetime>();
                 life.ApplicationStopped.Register(() =>
                 {
                     Log.Information($"{ModuleKey} is shut down");
                 });
 
-
-                host.Run();
+                await app.RunAsync();
                 return 0;
             }
             catch (Exception ex)
@@ -68,26 +94,6 @@ namespace Leopard.Host
                 Log.CloseAndFlush();
             }
         }
-
-        internal IHostBuilder CreateHostBuilder<T>(string[] args) where T : class =>
-           Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder(args)
-                .ConfigureAppConfiguration((hostingContext, config) =>
-                {
-                    this.ConfigureAppConfiguration(hostingContext, config);
-                    config.AddJsonFile("appsettings.secrets.json", optional: true, reloadOnChange: true);
-                })
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.ConfigureKestrel((context, options) =>
-                    {
-                        // 对于 Kestrel 托管的应用，默认的最大请求正文大小为 30,000,000 个字节，约为 28.6 MB
-                        // options.Limits.MaxRequestBodySize=null表示不限制
-                        options.Limits.MaxRequestBodySize = Constants.RequestLimit.MaxBodyLength_Byte;
-                    });
-                    webBuilder.UseStartup<T>();
-                })
-                .UseAutofac()
-                .UseSerilog();
 
         protected virtual void ConfigureAppConfiguration(HostBuilderContext hostingContext, IConfigurationBuilder config)
         {

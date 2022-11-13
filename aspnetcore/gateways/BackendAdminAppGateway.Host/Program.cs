@@ -1,14 +1,15 @@
 using Leopard.Base.Shared;
 using Leopard.Gateway;
+using System.Threading.Tasks;
 
 namespace BackendAdminAppGateway.Host
 {
     public class Program
     {
-        public static int Main(string[] args)
+        public async static Task<int> Main(string[] args)
         {
-            CommonGatewayProgram commonProgram = new CommonGatewayProgram(ModuleIdentity.BackendAdminAppGateway.ServiceType, ModuleIdentity.BackendAdminAppGateway.Name);
-            return commonProgram.CommonMain<Startup>(args);
+            var commonProgram = new CommonGatewayProgram<BackendAdminAppGatewayHostModule>(ModuleIdentity.BackendAdminAppGateway.ServiceType, ModuleIdentity.BackendAdminAppGateway.Name);
+            return await commonProgram.RunAsync(args);
         }
     }
 }

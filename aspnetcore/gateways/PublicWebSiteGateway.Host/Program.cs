@@ -1,14 +1,15 @@
 using Leopard.Base.Shared;
 using Leopard.Gateway;
+using System.Threading.Tasks;
 
 namespace PublicWebSiteGateway.Host
 {
     public class Program
     {
-        public static int Main(string[] args)
+        public async static Task<int> Main(string[] args)
         {
-            CommonGatewayProgram commonProgram = new CommonGatewayProgram(ModuleIdentity.PublicWebSiteGateway.ServiceType, ModuleIdentity.PublicWebSiteGateway.Name);
-            return commonProgram.CommonMain<Startup>(args);
+            var commonProgram = new CommonGatewayProgram<PublicWebSiteGatewayHostModule>(ModuleIdentity.PublicWebSiteGateway.ServiceType, ModuleIdentity.PublicWebSiteGateway.Name);
+            return await commonProgram.RunAsync(args);
         }
     }
 }

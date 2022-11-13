@@ -131,6 +131,8 @@ namespace Leopard.Host
                 mvcOptions.Filters.Add(typeof(LeopardExceptionFilter));
             });
 
+            context.Services.AddHealthChecks();
+
             context.Services.AddCors(options =>
             {
                 options.AddDefaultPolicy(builder =>
@@ -382,6 +384,10 @@ namespace Leopard.Host
             app.UseAbpSecurityHeaders();
             //路由
             app.UseRouting();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapHealthChecks("/api/health");
+            });
             app.UseCors();
 
             // 认证
