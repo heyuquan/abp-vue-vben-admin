@@ -3,8 +3,7 @@
 Write-Host ==================== Begin Init AuthServer.Host ========================
 $solutionPath = $rootFolder + "/../services/SSO.AuthServer/src/SSO.AuthServer.IdentityServer"
 Set-Location $solutionPath
-yarn install
-gulp
+abp install-libs
 
 Write-Host End Init Mk.DemoC.HttpApi.Host ========================
 
