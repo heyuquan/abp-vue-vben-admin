@@ -6,7 +6,7 @@ using Volo.Abp.Domain.Repositories;
 
 namespace Leopard.Saas
 {
-	public interface IEditionRepository : IBasicRepository<Edition>, IReadOnlyBasicRepository<Edition, Guid>, IReadOnlyBasicRepository<Edition>, IBasicRepository<Edition, Guid>, IRepository
+	public interface IEditionRepository : IRepository<Edition>, IReadOnlyRepository<Edition, Guid>, IReadOnlyBasicRepository<Edition>, IBasicRepository<Edition, Guid>, IRepository
 	{
 		Task<List<Edition>> GetListAsync(string sorting = null, int maxResultCount = 2147483647, int skipCount = 0, string filter = null, bool includeDetails = false, CancellationToken cancellationToken = default(CancellationToken));
 

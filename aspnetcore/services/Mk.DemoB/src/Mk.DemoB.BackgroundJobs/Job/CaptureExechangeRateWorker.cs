@@ -59,7 +59,7 @@ namespace Mk.DemoB.BackgroundJobs.Job
                 .ServiceProvider
                 .GetRequiredService<IRepository<ExchangeRateCaptureBatch, Guid>>();
 
-            var exchangeRateCaptureBatchs = await exchangeRateCaptureBatchRepository
+            var exchangeRateCaptureBatchs =await (await exchangeRateCaptureBatchRepository.GetQueryableAsync())
                 .Where(x => x.IsSuccess == true)
                 .OrderByDescending(x => x.Id)
                 .Take(CaptureCountPerDay)

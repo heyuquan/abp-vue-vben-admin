@@ -72,7 +72,7 @@ namespace SSO.AuthServer.IdentityServer
                 var result = _configuration.GetSection("IdentityServer:ApiScopes").GetChildren().Select(x => x.Value);
                 if (result == null)
                 {
-                    throw new Exception("ÅäÖÃÎÄ¼şÈ±ÉÙ IdentityServer:ApiScopes ½Úµã");
+                    throw new Exception("é…ç½®æ–‡ä»¶ç¼ºå°‘ IdentityServer:ApiScopes èŠ‚ç‚¹");
                 }
                 return result;
             }
@@ -132,7 +132,7 @@ namespace SSO.AuthServer.IdentityServer
 
         private async Task<ApiScope> CreateApiScopeAsync(string name)
         {
-            var apiScope = await _apiScopeRepository.GetByNameAsync(name);
+            var apiScope = await _apiScopeRepository.FindByNameAsync(name);
             if (apiScope == null)
             {
                 apiScope = await _apiScopeRepository.InsertAsync(
@@ -161,24 +161,24 @@ namespace SSO.AuthServer.IdentityServer
                 "SSOAuthServerService"
             };
 
-            // ÍêÕûµÄ²ÎÊı
+            // å®Œæ•´çš„å‚æ•°
             //{
-            //    "ClientId": "",(±ØÌî)
+            //    "ClientId": "",(å¿…å¡«)
             //    "RedirectUris": [
             //      "",
             //      ""
-            //     ],(±ØÌî)
+            //     ],(å¿…å¡«)
             //    "PostLogoutRedirectUris": [
             //      "",
             //      ""
-            //     ],(Ñ¡Ìî£¬Ä¬ÈÏ£º¿Õ)
-            //    "Scopes": [],(Ñ¡Ìî£¬Ä¬ÈÏ£º¹«¹²·¶Î§)
-            //    "GrantTypes": [ "authorization_code" ],(±ØÌî)
-            //    "RequirePkce": £¨Ñ¡Ìî£¬Ä¬ÈÏ£ºfalse£©
-            //    "RequireClientSecret":£¨Ñ¡Ìî£¬Ä¬ÈÏ£ºtrue£©
-            //    "ClientSecret": £¨Ñ¡Ìî£¬Ä¬ÈÏ£º1q2w3E*£©
-            //    "AllowAccessTokensViaBrowser"£º£¨Ñ¡Ìî£¬Ä¬ÈÏ£ºfalse£©
-            //    "Permissions":£¨Ñ¡Ìî£¬Ä¬ÈÏ£º¿Õ£©
+            //     ],(é€‰å¡«ï¼Œé»˜è®¤ï¼šç©º)
+            //    "Scopes": [],(é€‰å¡«ï¼Œé»˜è®¤ï¼šå…¬å…±èŒƒå›´)
+            //    "GrantTypes": [ "authorization_code" ],(å¿…å¡«)
+            //    "RequirePkce": ï¼ˆé€‰å¡«ï¼Œé»˜è®¤ï¼šfalseï¼‰
+            //    "RequireClientSecret":ï¼ˆé€‰å¡«ï¼Œé»˜è®¤ï¼štrueï¼‰
+            //    "ClientSecret": ï¼ˆé€‰å¡«ï¼Œé»˜è®¤ï¼š1q2w3E*ï¼‰
+            //    "AllowAccessTokensViaBrowser"ï¼šï¼ˆé€‰å¡«ï¼Œé»˜è®¤ï¼šfalseï¼‰
+            //    "Permissions":ï¼ˆé€‰å¡«ï¼Œé»˜è®¤ï¼šç©ºï¼‰
             //}
             var configurationSection = _configuration.GetSection("IdentityServer:Clients");
             foreach (var section in configurationSection.GetChildren())
@@ -192,16 +192,16 @@ namespace SSO.AuthServer.IdentityServer
                     IEnumerable<string> postLogoutRedirectUris = section.GetSection("PostLogoutRedirectUris").GetChildren().Select(x => x.Value); 
                     if (bool.TryParse(section["RequirePkce"], out bool requirePkce))
                     {
-                        //ÉèÖÃÖµ
+                        //è®¾ç½®å€¼
                     }
                     bool requireClientSecret = true;
                     if (bool.TryParse(section["RequireClientSecret"], out requireClientSecret))
                     {
-                        //ÉèÖÃÖµ
+                        //è®¾ç½®å€¼
                     }
                     if (bool.TryParse(section["AllowAccessTokensViaBrowser"], out allowAccessTokensViaBrowser))
                     {
-                        //ÉèÖÃÖµ
+                        //è®¾ç½®å€¼
                     }
                     await CreateClientAsync(
                         clientId: clientId,
@@ -221,20 +221,20 @@ namespace SSO.AuthServer.IdentityServer
         }
 
         /// <summary>
-        /// ´´½¨Éí·İ±êÊ¶¿Í»§¶Ë
+        /// åˆ›å»ºèº«ä»½æ ‡è¯†å®¢æˆ·ç«¯
         /// </summary>
-        /// <param name="clientId">¿Í»§¶ËId</param>
-        /// <param name="scopes">ÔÊĞí·ÃÎÊµÄ×ÊÔ´</param>
-        /// <param name="grantTypes">ÔÊĞí¿Í»§¶ËÊ¹ÓÃµÄÊÚÈ¨ÀàĞÍ</param>
-        /// <param name="secret">¿Í»§¶ËÃÜÂë</param>
-        /// <param name="requirePkce">Ö¸¶¨Ê¹ÓÃ»ùÓÚÊÚÈ¨´úÂëµÄÊÚÈ¨ÀàĞÍµÄ¿Í»§¶ËÊÇ·ñ±ØĞë·¢ËÍĞ£ÑéÃÜÔ¿</param>
-        /// <param name="requireClientSecret">Ö¸¶¨´Ë¿Í»§¶ËÊÇ·ñĞèÒªÃÜÔ¿²ÅÄÜ´ÓÁîÅÆ¶ËµãÇëÇóÁîÅÆ£¨Ä¬ÈÏÎªtrue£©</param>
+        /// <param name="clientId">å®¢æˆ·ç«¯Id</param>
+        /// <param name="scopes">å…è®¸è®¿é—®çš„èµ„æº</param>
+        /// <param name="grantTypes">å…è®¸å®¢æˆ·ç«¯ä½¿ç”¨çš„æˆæƒç±»å‹</param>
+        /// <param name="secret">å®¢æˆ·ç«¯å¯†ç </param>
+        /// <param name="requirePkce">æŒ‡å®šä½¿ç”¨åŸºäºæˆæƒä»£ç çš„æˆæƒç±»å‹çš„å®¢æˆ·ç«¯æ˜¯å¦å¿…é¡»å‘é€æ ¡éªŒå¯†é’¥</param>
+        /// <param name="requireClientSecret">æŒ‡å®šæ­¤å®¢æˆ·ç«¯æ˜¯å¦éœ€è¦å¯†é’¥æ‰èƒ½ä»ä»¤ç‰Œç«¯ç‚¹è¯·æ±‚ä»¤ç‰Œï¼ˆé»˜è®¤ä¸ºtrueï¼‰</param>
         /// <param name="redirectUris"></param>
         /// <param name="corsOrigins"></param>
-        /// <param name="postLogoutRedirectUris">Ö¸¶¨ÔÚ×¢ÏúºóÖØ¶¨Ïòµ½µÄÔÊĞíURI.(Ò»¸öclientId£¬¶à¸öurl)</param>
-        /// <param name="frontChannelLogoutUri">Ö¸¶¨¿Í»§¶ËµÄ×¢ÏúURI£¬ÒÔÓÃÓÚ»ùÓÚHTTPµÄÇ°¶ËÍ¨µÀ×¢Ïú¡£</param>
-        /// <param name="allowAccessTokensViaBrowser">ÔÊĞí½«tokenÍ¨¹ıä¯ÀÀÆ÷´«µİ</param>
-        /// <param name="permissions">Ä¬ÈÏ¸³È¨</param>
+        /// <param name="postLogoutRedirectUris">æŒ‡å®šåœ¨æ³¨é”€åé‡å®šå‘åˆ°çš„å…è®¸URI.(ä¸€ä¸ªclientIdï¼Œå¤šä¸ªurl)</param>
+        /// <param name="frontChannelLogoutUri">æŒ‡å®šå®¢æˆ·ç«¯çš„æ³¨é”€URIï¼Œä»¥ç”¨äºåŸºäºHTTPçš„å‰ç«¯é€šé“æ³¨é”€ã€‚</param>
+        /// <param name="allowAccessTokensViaBrowser">å…è®¸å°†tokené€šè¿‡æµè§ˆå™¨ä¼ é€’</param>
+        /// <param name="permissions">é»˜è®¤èµ‹æƒ</param>
         /// <returns></returns>
         private async Task<Client> CreateClientAsync(
             string clientId,
@@ -251,7 +251,7 @@ namespace SSO.AuthServer.IdentityServer
             IEnumerable<string> permissions = null
             )
         {
-            // ²Î¿¼£ºClient - Identity Server 4 ÖĞÎÄÎÄµµ(v1.0.0)
+            // å‚è€ƒï¼šClient - Identity Server 4 ä¸­æ–‡æ–‡æ¡£(v1.0.0)
             // https://www.cnblogs.com/thinksjay/p/10787349.html
 
             var client = await _clientRepository.FindByClientIdAsync(clientId);
@@ -265,31 +265,31 @@ namespace SSO.AuthServer.IdentityServer
                         ClientName = clientId,
                         ProtocolType = IdentityServerConstants.ProtocolTypes.OpenIdConnect,
                         Description = clientId,
-                        // ÔÊĞíID_TOKEN¸½´øClaims
+                        // å…è®¸ID_TOKENé™„å¸¦Claims
                         AlwaysIncludeUserClaimsInIdToken = true,
-                        // Ö¸¶¨´Ë¿Í»§¶ËÊÇ·ñ¿ÉÒÔÇëÇóË¢ĞÂÁîÅÆ£¨ÇëÇóoffline_access·¶Î§£©
+                        // æŒ‡å®šæ­¤å®¢æˆ·ç«¯æ˜¯å¦å¯ä»¥è¯·æ±‚åˆ·æ–°ä»¤ç‰Œï¼ˆè¯·æ±‚offline_accessèŒƒå›´ï¼‰
                         AllowOfflineAccess = true,
-                        // ÔÊĞí½«tokenÍ¨¹ıä¯ÀÀÆ÷´«µİ
+                        // å…è®¸å°†tokené€šè¿‡æµè§ˆå™¨ä¼ é€’
                         AllowAccessTokensViaBrowser = allowAccessTokensViaBrowser,
 
-                        // Ë¢ĞÂÁîÅÆµÄ×î³¤ÉúÃüÖÜÆÚ£¨Ãë£©¡£Ä¬ÈÏÎª2592000Ãë/ 30Ìì
+                        // åˆ·æ–°ä»¤ç‰Œçš„æœ€é•¿ç”Ÿå‘½å‘¨æœŸï¼ˆç§’ï¼‰ã€‚é»˜è®¤ä¸º2592000ç§’/ 30å¤©
                         AbsoluteRefreshTokenLifetime = 60 * 60 * 12, //1 days
-                                                                     // »¬¶¯Ë¢ĞÂÁîÅÆµÄÉúÃüÖÜÆÚ£¬ÒÔÃëÎªµ¥Î»¡£Ä¬ÈÏÎª1296000Ãë/ 15Ìì
+                                                                     // æ»‘åŠ¨åˆ·æ–°ä»¤ç‰Œçš„ç”Ÿå‘½å‘¨æœŸï¼Œä»¥ç§’ä¸ºå•ä½ã€‚é»˜è®¤ä¸º1296000ç§’/ 15å¤©
                         SlidingRefreshTokenLifetime = 60 * 60 * 12,//1 days
-                                                                   // ·ÃÎÊÁîÅÆµÄÉúÃüÖÜÆÚ£¬ÒÔÃëÎªµ¥Î»£¨Ä¬ÈÏÎª3600Ãë/ 1Ğ¡Ê±£©
+                                                                   // è®¿é—®ä»¤ç‰Œçš„ç”Ÿå‘½å‘¨æœŸï¼Œä»¥ç§’ä¸ºå•ä½ï¼ˆé»˜è®¤ä¸º3600ç§’/ 1å°æ—¶ï¼‰
                         AccessTokenLifetime = 60 * 60 * 12, //1 days
-                                                            // ÊÚÈ¨´úÂëµÄÉúÃüÖÜÆÚ£¬ÒÔÃëÎªµ¥Î»£¨Ä¬ÈÏÎª300Ãë/ 5·ÖÖÓ£©
+                                                            // æˆæƒä»£ç çš„ç”Ÿå‘½å‘¨æœŸï¼Œä»¥ç§’ä¸ºå•ä½ï¼ˆé»˜è®¤ä¸º300ç§’/ 5åˆ†é’Ÿï¼‰
                         AuthorizationCodeLifetime = 60 * 24 * 12,//1 days
-                                                                 // Éí·İÁîÅÆµÄÉúÃüÖÜÆÚ£¬ÒÔÃëÎªµ¥Î»£¨Ä¬ÈÏÎª300Ãë/ 5·ÖÖÓ£©
+                                                                 // èº«ä»½ä»¤ç‰Œçš„ç”Ÿå‘½å‘¨æœŸï¼Œä»¥ç§’ä¸ºå•ä½ï¼ˆé»˜è®¤ä¸º300ç§’/ 5åˆ†é’Ÿï¼‰
                         IdentityTokenLifetime = 60 * 60 * 12,//1 days
 
-                        // Ö¸¶¨ÊÇ·ñĞèÒªÍ¬ÒâÆÁÄ»¡£Ä¬ÈÏÎªtrue¡£
+                        // æŒ‡å®šæ˜¯å¦éœ€è¦åŒæ„å±å¹•ã€‚é»˜è®¤ä¸ºtrueã€‚
                         RequireConsent = false,                        
-                        // Ö¸¶¨¿Í»§¶ËµÄ×¢ÏúURI£¬ÒÔÓÃÓÚ»ùÓÚHTTPµÄÇ°¶ËÍ¨µÀ×¢Ïú¡£
+                        // æŒ‡å®šå®¢æˆ·ç«¯çš„æ³¨é”€URIï¼Œä»¥ç”¨äºåŸºäºHTTPçš„å‰ç«¯é€šé“æ³¨é”€ã€‚
                         FrontChannelLogoutUri = frontChannelLogoutUri,
-                        // Ö¸¶¨´Ë¿Í»§¶ËÊÇ·ñĞèÒªÃÜÔ¿²ÅÄÜ´ÓÁîÅÆ¶ËµãÇëÇóÁîÅÆ£¨Ä¬ÈÏÎªtrue£©
+                        // æŒ‡å®šæ­¤å®¢æˆ·ç«¯æ˜¯å¦éœ€è¦å¯†é’¥æ‰èƒ½ä»ä»¤ç‰Œç«¯ç‚¹è¯·æ±‚ä»¤ç‰Œï¼ˆé»˜è®¤ä¸ºtrueï¼‰
                         RequireClientSecret = requireClientSecret,
-                        // Ö¸¶¨Ê¹ÓÃ»ùÓÚÊÚÈ¨´úÂëµÄÊÚÈ¨ÀàĞÍµÄ¿Í»§¶ËÊÇ·ñ±ØĞë·¢ËÍĞ£ÑéÃÜÔ¿
+                        // æŒ‡å®šä½¿ç”¨åŸºäºæˆæƒä»£ç çš„æˆæƒç±»å‹çš„å®¢æˆ·ç«¯æ˜¯å¦å¿…é¡»å‘é€æ ¡éªŒå¯†é’¥
                         RequirePkce = requirePkce
                     };
                 client = await _clientRepository.InsertAsync(client, autoSave: true);

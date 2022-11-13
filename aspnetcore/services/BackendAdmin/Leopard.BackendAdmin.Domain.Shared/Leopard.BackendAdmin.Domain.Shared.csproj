@@ -3,16 +3,16 @@
 	<Import Project="..\..\..\common.props" />
 
 	<PropertyGroup>
-		<TargetFramework>netstandard2.0</TargetFramework>
+		<TargetFramework>net6.0</TargetFramework>
 		<RootNamespace></RootNamespace>
 		<GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Volo.Abp.AuditLogging.Domain.Shared" Version="4.4.2" />
-		<PackageReference Include="Volo.Abp.FeatureManagement.Domain.Shared" Version="4.4.2" />
-		<PackageReference Include="Volo.Abp.PermissionManagement.Domain.Shared" Version="4.4.2" />
-		<PackageReference Include="Volo.Abp.SettingManagement.Domain.Shared" Version="4.4.2" />
+		<PackageReference Include="Volo.Abp.AuditLogging.Domain.Shared" Version="6.0.1" />
+		<PackageReference Include="Volo.Abp.FeatureManagement.Domain.Shared" Version="6.0.1" />
+		<PackageReference Include="Volo.Abp.PermissionManagement.Domain.Shared" Version="6.0.1" />
+		<PackageReference Include="Volo.Abp.SettingManagement.Domain.Shared" Version="6.0.1" />
 	</ItemGroup>
 
 	<ItemGroup>

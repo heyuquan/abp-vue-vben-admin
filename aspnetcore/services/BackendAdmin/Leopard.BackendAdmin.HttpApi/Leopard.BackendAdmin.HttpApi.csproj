@@ -3,7 +3,7 @@
 	<Import Project="..\..\..\common.props" />
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
 	  <RootNamespace></RootNamespace>
   </PropertyGroup>
 
@@ -16,9 +16,9 @@
   </ItemGroup>
 
   <ItemGroup> 
-    <PackageReference Include="Volo.Abp.PermissionManagement.HttpApi" Version="4.4.2" />
-    <PackageReference Include="Volo.Abp.FeatureManagement.HttpApi" Version="4.4.2" />
-    <PackageReference Include="Volo.Abp.SettingManagement.HttpApi" Version="4.4.2" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.HttpApi" Version="6.0.1" />
+    <PackageReference Include="Volo.Abp.FeatureManagement.HttpApi" Version="6.0.1" />
+    <PackageReference Include="Volo.Abp.SettingManagement.HttpApi" Version="6.0.1" />
   </ItemGroup>
 
 </Project>

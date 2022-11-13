@@ -1,6 +1,7 @@
 ﻿using Hangfire;
 using Hangfire.Dashboard.BasicAuthorization;
 using Hangfire.MySql;
+using Leopard.Threading;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -95,7 +96,11 @@ namespace Mk.DemoB.BackgroundJobs
                 IsReadOnlyFunc = Context => true
             });
 
-            context.AddBackgroundWorker<CaptureExechangeRateWorker>();
+            AsyncHelper.RunSync(async () =>
+            {
+                await context.AddBackgroundWorkerAsync<CaptureExechangeRateWorker>();
+            });
+           
 
             //支持基于队列的任务处理：任务执行不是同步的，而是放到一个持久化队列中，以便马上把请求控制权返回给调用者。
             var jobId = BackgroundJob.Enqueue(() => Console.WriteLine("队列任务执行了！"));

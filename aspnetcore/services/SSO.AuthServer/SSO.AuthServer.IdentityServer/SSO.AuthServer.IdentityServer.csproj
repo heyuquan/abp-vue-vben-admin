@@ -3,7 +3,7 @@
 	<Import Project="..\..\..\common.props" />
 
 	<PropertyGroup>
-		<TargetFramework>net5.0</TargetFramework>
+		<TargetFramework>net6.0</TargetFramework>
 		<RootNamespace></RootNamespace>
 		<AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
 		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -32,15 +32,15 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-		<PackageReference Include="Volo.Abp.Autofac" Version="4.4.2" />
-    <PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy" Version="4.4.2" />
-		<PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic" Version="4.4.2" />
-		<PackageReference Include="Volo.Abp.Account.Web.IdentityServer" Version="4.4.2" />
-		<PackageReference Include="Volo.Abp.Account.Application" Version="4.4.2" />
-		<PackageReference Include="Volo.Abp.EntityFrameworkCore.MySQL" Version="4.4.2" />
-		<PackageReference Include="Volo.Abp.Identity.EntityFrameworkCore" Version="4.4.2" />
-		<PackageReference Include="Volo.Abp.IdentityServer.EntityFrameworkCore" Version="4.4.2" />
-    <PackageReference Include="Volo.Abp.PermissionManagement.EntityFrameworkCore" Version="4.4.2" />
+		<PackageReference Include="Volo.Abp.Autofac" Version="6.0.1" />
+    <PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy" Version="6.0.1" />
+		<PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic" Version="6.0.1" />
+		<PackageReference Include="Volo.Abp.Account.Web.IdentityServer" Version="6.0.1" />
+		<PackageReference Include="Volo.Abp.Account.Application" Version="6.0.1" />
+		<PackageReference Include="Volo.Abp.EntityFrameworkCore.MySQL" Version="6.0.1" />
+		<PackageReference Include="Volo.Abp.Identity.EntityFrameworkCore" Version="6.0.1" />
+		<PackageReference Include="Volo.Abp.IdentityServer.EntityFrameworkCore" Version="6.0.1" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.EntityFrameworkCore" Version="6.0.1" />
 		<ProjectReference Include="..\..\..\..\framework-aspnetcore\src\Leopard.AspNetCore.Serilog\Leopard.AspNetCore.Serilog.csproj" />
 		<ProjectReference Include="..\..\..\..\framework-aspnetcore\src\Leopard.Consul\Leopard.Consul.csproj" />
 		<ProjectReference Include="..\..\..\..\framework-aspnetcore\src\Leopard.Host\Leopard.Host.csproj" />

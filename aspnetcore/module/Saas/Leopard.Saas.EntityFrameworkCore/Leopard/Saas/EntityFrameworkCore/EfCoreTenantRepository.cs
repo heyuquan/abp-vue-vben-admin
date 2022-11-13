@@ -42,7 +42,7 @@ namespace Leopard.Saas.EntityFrameworkCore
 		public virtual async Task<long> GetCountAsync(string filter = null, CancellationToken cancellationToken = default(CancellationToken))
 		{
 			bool condition = !filter.IsNullOrWhiteSpace();
-			return await this.WhereIf(condition, x => x.Name.Contains(filter)).LongCountAsync(cancellationToken);
+			return await (await GetDbSetAsync()).WhereIf(condition, x => x.Name.Contains(filter)).LongCountAsync(cancellationToken);
 		}
 
 		public override async Task<IQueryable<Tenant>> WithDetailsAsync()
