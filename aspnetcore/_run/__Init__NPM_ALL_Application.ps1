@@ -1,7 +1,7 @@
 . "./__build-aspnetcore-common.ps1"
 
 Write-Host ==================== Begin Init AuthServer.Host ========================
-$solutionPath = $rootFolder + "/../services/SSO.AuthServer/src/SSO.AuthServer.IdentityServer"
+$solutionPath = $rootFolder + "/../services/SSO.AuthServer/SSO.AuthServer.IdentityServer"
 Set-Location $solutionPath
 abp install-libs
 

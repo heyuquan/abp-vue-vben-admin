@@ -21,7 +21,7 @@ services:
   #   networks:
   #     - my-net
 
-  # 设置初始账户  admin  ZU6blm}5%K
+  # 设置初始账户  admin  Yb[fK8oay-CE#7A9
   # 使用portainer连接远程docker
   # https://www.cnblogs.com/eastwood001/p/16086702.html
   #   2375是docker远程操控的默认端口，通过这个端口可以直接对远程的docker daemon进行操作。
