@@ -5,7 +5,7 @@ services:
     ports:
       - '8706:3306'
     environment:
-      MYSQL_ROOT_PASSWORD: '123456'
+      MYSQL_ROOT_PASSWORD: 'ZU6blm}5%K'
     volumes:
       - type: bind
         source: /e/Docker/Data/Leapard/Mysql/data

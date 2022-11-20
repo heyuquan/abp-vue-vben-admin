@@ -20,7 +20,7 @@ services:
     ports:
       - '8706:3306'
     environment:
-      MYSQL_ROOT_PASSWORD: '123456'
+      MYSQL_ROOT_PASSWORD: 'ZU6blm}5%K'
     volumes:
       - /usr/local/environment/mysql/data:/var/lib/mysql
       - /usr/local/application/src/abp-vue-vben-admin/aspnetcore/environment/other/mysql/config/my.cnf:/etc/my.cnf

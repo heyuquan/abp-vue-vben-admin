@@ -25,12 +25,12 @@
         BackendAdmin_Web          4200
 
 es 默认端口9200 老是被攻击，导致数据篡改，elk运行异常
-elastic：http://134.175.121.78:59210
-elasticsearch-head：elastic：http://134.175.121.78:9100
-kibana：http://134.175.121.78:5601/
-consul:http://134.175.121.78:8500/
+elastic：http://159.75.253.251:59210
+elasticsearch-head：elastic：http://159.75.253.251:9100
+kibana：http://159.75.253.251:5601/
+consul:http://159.75.253.251:8500/
 
-nginx:http://134.175.121.78:8081/
+nginx:http://159.75.253.251:8081/
 
 
 项目职责
