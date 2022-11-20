@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   mysql:
-    image: mysql:5.7
+    image: mysql:latest
     container_name: mysql
     restart: always
 
