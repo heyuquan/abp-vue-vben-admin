@@ -36,6 +36,11 @@ services:
     container_name: portainer
     restart: always
 
+  jenkins:
+    image: jenkins/jenkins:lts
+    container_name: jenkins
+    restart: always
+
 networks:
   env-net:
     external: true

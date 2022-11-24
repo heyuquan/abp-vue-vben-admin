@@ -34,3 +34,19 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /usr/local/environment/portainer/data:/data
+
+  jenkins:
+    ports:
+      - '8056:8080'
+    expose:
+      - "8080"
+      - "50000"
+    volumes:
+      - /usr/local/environment/jenkins/:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/bin/docker:/usr/bin/docker
+      - /usr/lib/x86_64-linux-gnu/libltdl.so.7:/usr/lib/x86_64-linux-gnu/libltdl.so.7
+    privileged: true
+    user: root
+    environment:
+      JAVA_OPTS: '-Djava.util.logging.config.file=/var/jenkins_home/log.properties'
