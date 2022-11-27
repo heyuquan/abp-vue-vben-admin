@@ -13,4 +13,4 @@ git - [abp-vue-vben-admin]
 git - [Eshop.模块名.层名]
 --apps  应用端口 
 --aspnetcore
-----services  业务服务，eg：商品管理、订单模块、支付、采购模块等  
+----services  业务服务，eg：商品管理、订单模块、支付、采购模块等   
