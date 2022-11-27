@@ -37,8 +37,12 @@ namespace Leopard.Helpers.IO
             }
         }
 
+        #region 特定系统的目录
+
         /// <summary>
         /// 将传入的路径，转为当前运行系统的路径
+        /// 建议：如果把路径存入数据库，那么统一采用 / 作为分隔符，避免系统运行不同平台，路径会乱掉。
+        /// 取出后再转为特定平台的路径。  可以调用 GetRuntimeDirectory 方法
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
@@ -61,7 +65,7 @@ namespace Leopard.Helpers.IO
         public static string GetLinuxDirectory(string path)
         {
             string pathTemp = Path.Combine(path);
-            return pathTemp.Replace("\\", "/");
+            return pathTemp.Replace(@"\", @"/");
         }
 
         /// <summary>
@@ -72,8 +76,25 @@ namespace Leopard.Helpers.IO
         public static string GetWindowDirectory(string path)
         {
             string pathTemp = Path.Combine(path);
-            return pathTemp.Replace("/", "\\");
+            return pathTemp.Replace(@"/", @"\");
         }
+
+        /// <summary>
+        /// 传入目录节点，拼接为当前系统的目录
+        /// </summary>
+        /// <param name="paths"></param>
+        /// <returns></returns>
+        public static string Combine(params string[] paths)
+        {
+            // Path.Combine 可以自动生成符合各个平台运行要求的路径
+            // eg: Path.Combine(webHostEnvironment.ContentRootPath, "files", DateTime.UtcNow.ToString("yyyy"),DateTime.UtcNow.ToString("MM"),DateTime.UtcNow.ToString("dd"),"xxx.jpg");
+            // windows: d:\appdata\files\2022\11\24\xxx.jpg
+            // linux:   /var/appdata/files/2022/11/24/xxx.jpg
+
+            return Path.Combine(paths);
+        }
+
+        #endregion
 
         /// <summary>
         /// 确保目录存在，不存在，则创建
