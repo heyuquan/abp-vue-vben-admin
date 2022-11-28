@@ -2,12 +2,12 @@ version: '3.7'
 
 services:
   sso.auth-server.api:
-    image: sso.auth-server.api.img
+    image: sso.auth-server.api
     container_name: sso.auth-server.api
     restart: on-failure
     build:
-      context: ../../../.
-      dockerfile: ./aspnetcore/services/SSO.AuthServer/SSO.AuthServer.HttpApi.Host/Dockerfile
+      context: ../../.
+      dockerfile: ./services/SSO.AuthServer/SSO.AuthServer.HttpApi.Host/Dockerfile
     environment:
       - TZ=Asia/Shanghai
       - ASPNETCORE_URLS=http://+80;https://+443
@@ -16,12 +16,12 @@ services:
       - 44105:443
 
   sso.auth-server.identityserver:
-    image: sso.auth-server.identityserver.img
+    image: sso.auth-server.identityserver
     container_name: sso.auth-server.identityserver
     restart: on-failure
     build:
-      context: ../../../.
-      dockerfile: ./aspnetcore/services/SSO.AuthServer/SSO.AuthServer.IdentityServer/Dockerfile
+      context: ../../.
+      dockerfile: ./services/SSO.AuthServer/SSO.AuthServer.IdentityServer/Dockerfile
     environment:
       - TZ=Asia/Shanghai
       - ASPNETCORE_URLS=http://+80;https://+443
@@ -32,12 +32,12 @@ services:
       - sso.auth-server.api
 
   leopard.backend-admin.api:
-    image: leopard.backend-admin.api.img
+    image: leopard.backend-admin.api
     container_name: leopard.backend-admin.api
     restart: on-failure
     build:
-      context: ../../../.
-      dockerfile: ./aspnetcore/services/BackendAdmin/Leopard.BackendAdmin.HttpApi.Host/Dockerfile
+      context: ../../.
+      dockerfile: ./services/BackendAdmin/Leopard.BackendAdmin.HttpApi.Host/Dockerfile
     environment:
       - TZ=Asia/Shanghai
       - ASPNETCORE_URLS=http://+80;https://+443
@@ -46,12 +46,12 @@ services:
       - 44145:443
 
   backend-admin-app.gateway:
-    image: backend-admin-app.gateway.img
+    image: backend-admin-app.gateway
     container_name: backend-admin-app.gateway
     restart: on-failure
     build:
-      context: ../../../.
-      dockerfile: ./aspnetcore/gateways/BackendAdminAppGateway.Host/Dockerfile
+      context: ../../.
+      dockerfile: ./gateways/BackendAdminAppGateway.Host/Dockerfile
     environment:
       - TZ=Asia/Shanghai
       - ASPNETCORE_URLS=http://+80;https://+443
@@ -60,12 +60,12 @@ services:
       - 44805:443
 
   #internal.gateway:
-  #  image: internal.gateway.img
+  #  image: internal.gateway
   #  container_name: internal.gateway
   #  restart: on-failure
   #  build:
-  #    context: ../../../.
-  #    dockerfile: ./aspnetcore/gateways/InternalGateway.Host/Dockerfile
+  #    context: ../../.
+  #    dockerfile: ./gateways/InternalGateway.Host/Dockerfile
   #  environment:
   #    - TZ=Asia/Shanghai
   #    - ASPNETCORE_URLS=http://+80;https://+443
@@ -74,12 +74,12 @@ services:
   #    - 44815:443
 
   #public-web-site.gateway:
-  #  image: public-web-site.gateway.img
+  #  image: public-web-site.gateway
   #  container_name: public-web-site.gateway
   #  restart: on-failure
   #  build:
-  #    context: ../../../.
-  #    dockerfile: ./aspnetcore/gateways/PublicWebSiteGateway.Host/Dockerfile
+  #    context: ../../.
+  #    dockerfile: ./gateways/PublicWebSiteGateway.Host/Dockerfile
   #  environment:
   #    - TZ=Asia/Shanghai
   #    - ASPNETCORE_URLS=http://+80;https://+443
