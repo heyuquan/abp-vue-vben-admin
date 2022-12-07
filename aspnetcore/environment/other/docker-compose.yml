@@ -37,9 +37,12 @@ services:
     restart: always
 
   jenkins:
-    image: jenkins/jenkins:lts
-    container_name: jenkins
+    image: jenkins-integration
+    container_name: jenkins-integration
     restart: always
+    build:
+      context: .
+      dockerfile: ./jenkins/Dockerfile
 
 networks:
   env-net:

@@ -61,10 +61,13 @@ https://blog.csdn.net/qq_45988641/article/details/123631126
 常用命令--docker
   docker stop [container id or name]：停止运行指定容器
 
+  
   构建：docker-compose build [服务名],[服务名]
+  重新构建：docker-compose build --no-cache [服务名],[服务名]
   创建服务（不启动）：docker-compose create
   启动：docker-compose up [服务名],[服务名]
         docker-compose up -d    -d代表在后台运行
+
   停止：docker-compose stop [服务名],[服务名] 
   停止：docker-compose start [服务名],[服务名] 
   删除：docker-compose rm [服务名],[服务名]    // 删除前必须先stop
