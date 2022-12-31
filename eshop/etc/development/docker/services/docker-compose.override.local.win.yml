@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+  sso.auth-server.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=a123456
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/app/config/certificate/test.pfx
+    volumes:
+      - /e/Docker/Data/Leapard/Certificate:/app/config/certificate:rw
+      - /e/Docker/Data/Leapard/Services/SSO.AuthServer.HttpApi.Host:/app/Logs:rw
+
+  sso.auth-server.identityserver:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    volumes:
+      - /e/Docker/Data/Leapard/Services/SSO.AuthServer.IdentityServer:/app/Logs:rw
+
+  leopard.backend-admin.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    volumes:
+      - /e/Docker/Data/Leapard/Services/Leopard.BackendAdmin.HttpApi.Host:/app/Logs:rw
+
+  backend-admin-app.gateway:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    volumes:
+      - /e/Docker/Data/Leapard/Services/BackendAdminAppGateway.Host:/app/Logs:rw

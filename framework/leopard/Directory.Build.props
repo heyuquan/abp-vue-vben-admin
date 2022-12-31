@@ -1,0 +1,8 @@
+<Project>
+  <PropertyGroup>
+
+    <!-- All Microsoft packages -->
+    <MicrosoftPackageVersion>6.0.*</MicrosoftPackageVersion>
+
+  </PropertyGroup>
+</Project>
