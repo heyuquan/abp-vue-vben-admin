@@ -1,4 +1,4 @@
-namespace Leopard.Base.Shared
+namespace EShop.Common.Shared
 {
     public class MultiTenancyConsts
     {

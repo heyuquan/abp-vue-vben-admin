@@ -5,9 +5,9 @@ VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{138BBFFC-09B9-49FB-9C57-E25327CCE0C1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Base.Shared", "src\Leopard.Base.Shared\Leopard.Base.Shared.csproj", "{08B05710-9EE8-4392-95BF-ADAFF8A60861}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EShop.Common.Shared", "src\EShop.Common.Shared\EShop.Common.Shared.csproj", "{08B05710-9EE8-4392-95BF-ADAFF8A60861}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Base.Shared.EntityFrameworkCore", "src\Leopard.Base.Shared.EntityFrameworkCore\Leopard.Base.Shared.EntityFrameworkCore.csproj", "{15D8403E-A970-4E2B-91E9-A3FE3797AE96}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EShop.Common.EntityFrameworkCore", "src\EShop.Common.EntityFrameworkCore\EShop.Common.EntityFrameworkCore.csproj", "{15D8403E-A970-4E2B-91E9-A3FE3797AE96}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

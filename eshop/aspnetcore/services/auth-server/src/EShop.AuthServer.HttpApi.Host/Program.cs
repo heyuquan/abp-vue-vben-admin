@@ -1,4 +1,4 @@
-using Leopard.Base.Shared;
+using EShop.Common.Shared;
 using Leopard.Host;
 using System.Threading.Tasks;
 

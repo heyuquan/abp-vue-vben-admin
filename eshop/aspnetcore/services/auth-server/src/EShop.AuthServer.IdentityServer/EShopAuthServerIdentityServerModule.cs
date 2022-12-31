@@ -1,4 +1,4 @@
-using Leopard.Base.Shared;
+using EShop.Common.Shared;
 using Leopard.Consul;
 using Leopard.Host;
 using Leopard.Saas;

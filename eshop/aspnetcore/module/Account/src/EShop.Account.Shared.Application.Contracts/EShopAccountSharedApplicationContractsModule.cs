@@ -7,7 +7,7 @@ using Volo.Abp.Validation.Localization;
 using Volo.Abp.VirtualFileSystem;
 using EShop.Account.Localization;
 using Leopard.Identity;
-using Leopard.Base.Shared;
+using EShop.Common.Shared;
 
 namespace EShop.Account
 {

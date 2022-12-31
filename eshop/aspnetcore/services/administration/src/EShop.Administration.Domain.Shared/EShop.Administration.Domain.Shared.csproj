@@ -22,7 +22,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\..\module\Saas\src\Leopard.Saas.Domain.Shared\Leopard.Saas.Domain.Shared.csproj" />
-		<ProjectReference Include="..\..\..\..\common\src\Leopard.Base.Shared\Leopard.Base.Shared.csproj" />
+		<ProjectReference Include="..\..\..\..\common\src\EShop.Common.Shared\EShop.Common.Shared.csproj" />
 	</ItemGroup>
 
 </Project>

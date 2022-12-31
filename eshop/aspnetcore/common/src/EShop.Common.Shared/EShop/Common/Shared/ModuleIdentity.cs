@@ -1,8 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Leopard;
 
-namespace Leopard.Base.Shared
+namespace EShop.Common.Shared
 {
     public static class ModuleIdentity
     {

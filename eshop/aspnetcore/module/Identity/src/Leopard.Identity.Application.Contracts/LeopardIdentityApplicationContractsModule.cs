@@ -1,4 +1,4 @@
-﻿using Leopard.Base.Shared;
+﻿using EShop.Common.Shared;
 using System;
 using Volo.Abp.Application;
 using Volo.Abp.Authorization;

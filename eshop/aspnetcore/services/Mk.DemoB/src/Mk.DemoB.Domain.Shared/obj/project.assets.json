@@ -1413,17 +1413,17 @@
           }
         }
       },
-      "Leopard.Base.Shared/1.0.0": {
+      "EShop.Common.Shared/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "Leopard.Shared": "1.0.0"
         },
         "compile": {
-          "bin/placeholder/Leopard.Base.Shared.dll": {}
+          "bin/placeholder/EShop.Common.Shared.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Leopard.Base.Shared.dll": {}
+          "bin/placeholder/EShop.Common.Shared.dll": {}
         }
       },
       "Leopard.Domain.Share/1.0.0": {
@@ -4123,10 +4123,10 @@
         "volo.abp.virtualfilesystem.nuspec"
       ]
     },
-    "Leopard.Base.Shared/1.0.0": {
+    "EShop.Common.Shared/1.0.0": {
       "type": "project",
-      "path": "../../../../shared/Leopard.Base.Shared/Leopard.Base.Shared.csproj",
-      "msbuildProject": "../../../../shared/Leopard.Base.Shared/Leopard.Base.Shared.csproj"
+      "path": "../../../../shared/EShop.Common.Shared/EShop.Common.Shared.csproj",
+      "msbuildProject": "../../../../shared/EShop.Common.Shared/EShop.Common.Shared.csproj"
     },
     "Leopard.Domain.Share/1.0.0": {
       "type": "project",
@@ -4143,7 +4143,7 @@
     "net6.0": [
       "ConfigureAwait.Fody >= 3.3.1",
       "Fody >= 6.5.4",
-      "Leopard.Base.Shared >= 1.0.0",
+      "EShop.Common.Shared >= 1.0.0",
       "Leopard.Domain.Share >= 1.0.0",
       "Microsoft.Extensions.FileProviders.Embedded >= 6.0.*",
       "Volo.Abp.EventBus >= 6.0.1",
@@ -4186,8 +4186,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\shared\\Leopard.Base.Shared\\Leopard.Base.Shared.csproj": {
-              "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\shared\\Leopard.Base.Shared\\Leopard.Base.Shared.csproj"
+            "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\shared\\EShop.Common.Shared\\EShop.Common.Shared.csproj": {
+              "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\shared\\EShop.Common.Shared\\EShop.Common.Shared.csproj"
             },
             "D:\\Work\\OpenSource\\abp-vue-vben-admin\\framework-aspnetcore\\src\\Leopard.Domain.Share\\Leopard.Domain.Share.csproj": {
               "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\framework-aspnetcore\\src\\Leopard.Domain.Share\\Leopard.Domain.Share.csproj"

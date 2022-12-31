@@ -1,6 +1,6 @@
 using Leopard;
 using Leopard.AspNetCore.Mvc.Filters;
-using Leopard.Base.Shared;
+using EShop.Common.Shared;
 using Leopard.Consul;
 using Leopard.Host;
 using Microsoft.AspNetCore.Hosting;

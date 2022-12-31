@@ -1,5 +1,5 @@
 ﻿using EShop.Administration.Localization;
-using Leopard.Base.Shared;
+using EShop.Common.Shared;
 using Leopard.Saas;
 using Volo.Abp.AuditLogging;
 using Volo.Abp.FeatureManagement;

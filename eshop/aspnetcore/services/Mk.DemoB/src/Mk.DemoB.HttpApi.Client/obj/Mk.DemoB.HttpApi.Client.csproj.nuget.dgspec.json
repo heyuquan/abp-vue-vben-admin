@@ -131,8 +131,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\shared\\Leopard.Base.Shared\\Leopard.Base.Shared.csproj": {
-                "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\shared\\Leopard.Base.Shared\\Leopard.Base.Shared.csproj"
+              "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\shared\\EShop.Common.Shared\\EShop.Common.Shared.csproj": {
+                "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\shared\\EShop.Common.Shared\\EShop.Common.Shared.csproj"
               },
               "D:\\Work\\OpenSource\\abp-vue-vben-admin\\framework-aspnetcore\\src\\Leopard.Domain.Share\\Leopard.Domain.Share.csproj": {
                 "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\framework-aspnetcore\\src\\Leopard.Domain.Share\\Leopard.Domain.Share.csproj"
@@ -278,14 +278,14 @@
         }
       }
     },
-    "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\shared\\Leopard.Base.Shared\\Leopard.Base.Shared.csproj": {
+    "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\shared\\EShop.Common.Shared\\EShop.Common.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\shared\\Leopard.Base.Shared\\Leopard.Base.Shared.csproj",
-        "projectName": "Leopard.Base.Shared",
-        "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\shared\\Leopard.Base.Shared\\Leopard.Base.Shared.csproj",
+        "projectUniqueName": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\shared\\EShop.Common.Shared\\EShop.Common.Shared.csproj",
+        "projectName": "EShop.Common.Shared",
+        "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\shared\\EShop.Common.Shared\\EShop.Common.Shared.csproj",
         "packagesPath": "D:\\Data\\.nuget\\packages",
-        "outputPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\shared\\Leopard.Base.Shared\\obj\\",
+        "outputPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\shared\\EShop.Common.Shared\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

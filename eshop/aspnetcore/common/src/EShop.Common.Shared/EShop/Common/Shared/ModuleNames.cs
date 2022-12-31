@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Leopard.Base.Shared
+namespace EShop.Common.Shared
 {
     public class ModuleNames
     {
         public const string AuthServer = "EShopAuthServer";
-        public const string AuthServerIdentityServer = "LeopardIdentityServer";
+        public const string AuthServerIdentityServer = "EShopIdentityServer";
         public const string Saas = "LeopardSaas";
         public const string Identity = "LeopardIdentity";
         public const string Account = "EShopAccount";

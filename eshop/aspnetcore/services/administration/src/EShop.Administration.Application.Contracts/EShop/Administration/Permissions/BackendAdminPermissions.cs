@@ -1,4 +1,4 @@
-﻿using Leopard.Base.Shared;
+﻿using EShop.Common.Shared;
 using Volo.Abp.Reflection;
 
 namespace EShop.Administration.Permissions

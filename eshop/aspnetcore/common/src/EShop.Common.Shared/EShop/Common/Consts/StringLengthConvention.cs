@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Leopard.Base.Consts
+﻿namespace Leopard.Base.Consts
 {
     /// <summary>
     /// 通用字符串长度约定

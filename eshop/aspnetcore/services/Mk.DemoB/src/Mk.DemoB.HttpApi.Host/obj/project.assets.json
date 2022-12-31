@@ -5762,17 +5762,17 @@
           "bin/placeholder/Leopard.AspNetCore.Swashbuckle.dll": {}
         }
       },
-      "Leopard.Base.Shared/1.0.0": {
+      "EShop.Common.Shared/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "Leopard.Shared": "1.0.0"
         },
         "compile": {
-          "bin/placeholder/Leopard.Base.Shared.dll": {}
+          "bin/placeholder/EShop.Common.Shared.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Leopard.Base.Shared.dll": {}
+          "bin/placeholder/EShop.Common.Shared.dll": {}
         }
       },
       "Leopard.Consul/1.0.0": {
@@ -5846,7 +5846,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "Leopard.Base.Shared": "1.0.0",
+          "EShop.Common.Shared": "1.0.0",
           "Microsoft.Extensions.FileProviders.Embedded": "6.0.0",
           "Volo.Abp.Validation": "6.0.1"
         },
@@ -5942,7 +5942,7 @@
           "Hangfire.Core": "1.7.29",
           "HtmlAgilityPack": "1.11.46",
           "Leopard": "1.0.0",
-          "Leopard.Base.Shared": "1.0.0",
+          "EShop.Common.Shared": "1.0.0",
           "Leopard.Saas.Domain": "1.0.0",
           "Microsoft.Extensions.Http": "6.0.0",
           "Mk.DemoB.Domain.Shared": "1.0.0",
@@ -5959,7 +5959,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "Leopard.Base.Shared": "1.0.0",
+          "EShop.Common.Shared": "1.0.0",
           "Leopard.Domain.Share": "1.0.0",
           "Microsoft.Extensions.FileProviders.Embedded": "6.0.0",
           "Volo.Abp.EventBus": "6.0.1",
@@ -14604,10 +14604,10 @@
       "path": "../../../../../framework-aspnetcore/src/Leopard.AspNetCore.Swashbuckle/Leopard.AspNetCore.Swashbuckle.csproj",
       "msbuildProject": "../../../../../framework-aspnetcore/src/Leopard.AspNetCore.Swashbuckle/Leopard.AspNetCore.Swashbuckle.csproj"
     },
-    "Leopard.Base.Shared/1.0.0": {
+    "EShop.Common.Shared/1.0.0": {
       "type": "project",
-      "path": "../../../../shared/Leopard.Base.Shared/Leopard.Base.Shared.csproj",
-      "msbuildProject": "../../../../shared/Leopard.Base.Shared/Leopard.Base.Shared.csproj"
+      "path": "../../../../shared/EShop.Common.Shared/EShop.Common.Shared.csproj",
+      "msbuildProject": "../../../../shared/EShop.Common.Shared/EShop.Common.Shared.csproj"
     },
     "Leopard.Consul/1.0.0": {
       "type": "project",
@@ -14693,7 +14693,7 @@
       "Leopard.AspNetCore.Mvc >= 1.0.0",
       "Leopard.AspNetCore.Serilog >= 1.0.0",
       "Leopard.AspNetCore.Swashbuckle >= 1.0.0",
-      "Leopard.Base.Shared >= 1.0.0",
+      "EShop.Common.Shared >= 1.0.0",
       "Leopard.Consul >= 1.0.0",
       "Leopard.Host >= 1.0.0",
       "Microsoft.AspNetCore.DataProtection.StackExchangeRedis >= 6.0.*",
@@ -14749,8 +14749,8 @@
             "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\services\\Mk.DemoB\\src\\Mk.DemoB.HttpApi\\Mk.DemoB.HttpApi.csproj": {
               "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\services\\Mk.DemoB\\src\\Mk.DemoB.HttpApi\\Mk.DemoB.HttpApi.csproj"
             },
-            "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\shared\\Leopard.Base.Shared\\Leopard.Base.Shared.csproj": {
-              "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\shared\\Leopard.Base.Shared\\Leopard.Base.Shared.csproj"
+            "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\shared\\EShop.Common.Shared\\EShop.Common.Shared.csproj": {
+              "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\shared\\EShop.Common.Shared\\EShop.Common.Shared.csproj"
             },
             "D:\\Work\\OpenSource\\abp-vue-vben-admin\\framework-aspnetcore\\src\\Leopard.AspNetCore.Mvc\\Leopard.AspNetCore.Mvc.csproj": {
               "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\framework-aspnetcore\\src\\Leopard.AspNetCore.Mvc\\Leopard.AspNetCore.Mvc.csproj"
