@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+	  <RootNamespace></RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\module\Account\Leopard.Account.Admin.Application.Contracts\Leopard.Account.Admin.Application.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\module\Identity\Leopard.Identity.Application.Contracts\Leopard.Identity.Application.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\module\Saas\Leopard.Saas.Application.Contracts\Leopard.Saas.Application.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\shared\Leopard.Base.Shared\Leopard.Base.Shared.csproj" />
+    <ProjectReference Include="..\Leopard.BackendAdmin.Domain.Shared\Leopard.BackendAdmin.Domain.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.ObjectExtending" Version="6.0.1" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.Application.Contracts" Version="6.0.1" />
+    <PackageReference Include="Volo.Abp.FeatureManagement.Application.Contracts" Version="6.0.1" />
+    <PackageReference Include="Volo.Abp.SettingManagement.Application.Contracts" Version="6.0.1" />
+  </ItemGroup>
+
+</Project>

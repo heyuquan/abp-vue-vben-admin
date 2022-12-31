@@ -1,0 +1,20 @@
+
+
+
+退出时，执行的ids4的connect/revocation方法，注销了指定token，但是使用该token还是可以访问用户信息（connect/userinfo）。
+暂不清楚啥情况
+
+
+1、参考Furion中对cors的处理方式  。CorsAccessor
+2、引入MiniProfiler.AspNetCore.Mvc
+3、引入Apollo,参考 Blog.Core项目
+$、Abp 实现通过手机号注册用户   https://www.cnblogs.com/qiu-gu/p/16130602.html
+#、参考 一沙 的登录日志。 ip地址，ip位置，浏览器，操作系统
+#、浏览器参数获取参考  yisha  YiSha.Util
+#、升级abp-6
+#、替换ids4  延后
+#、每个服务都有一个解决方案，module改名services？？？再研究下eshopabp服务划分
+
+#、decimal精度设置
+https://cloud.tencent.com/developer/article/1365658
+https://www.cnblogs.com/Ken-Blogs/p/6725679.html

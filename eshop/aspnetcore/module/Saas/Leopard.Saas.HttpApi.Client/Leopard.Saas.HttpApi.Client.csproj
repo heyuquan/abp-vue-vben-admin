@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\..\..\common.props" />
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<RootNamespace></RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Leopard\**" />
+	  <EmbeddedResource Remove="Leopard\**" />
+	  <None Remove="Leopard\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Volo.Abp.Http.Client" Version="6.0.1" />
+		<ProjectReference Include="..\Leopard.Saas.Application.Contracts\Leopard.Saas.Application.Contracts.csproj" />
+	</ItemGroup>
+
+</Project>

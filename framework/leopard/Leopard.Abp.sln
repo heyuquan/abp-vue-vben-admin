@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.AspNetCore.Swashbuc
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01_Document", "01_Document", "{09CFB583-D5A3-4631-A3FD-2C95226F4ACB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "开发文档", "_doc\开发文档\开发文档.csproj", "{DF5B844A-D99B-4F83-B0A8-0FD3C2DFF21C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "开发文档", "doc\开发文档\开发文档.csproj", "{DF5B844A-D99B-4F83-B0A8-0FD3C2DFF21C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.AspNetCore.Serilog", "src\Leopard.AspNetCore.Serilog\Leopard.AspNetCore.Serilog.csproj", "{29906DB2-CA4F-446D-B8CF-B95609F87C0E}"
 EndProject

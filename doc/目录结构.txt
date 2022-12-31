@@ -1,0 +1,16 @@
+
+git - [abp-vue-vben-admin]
+--apps  应用端口
+----auth-server  认证服务
+----backend-admin  管理端前端页面
+----public-web  客户端前端页面
+
+--aspnetcore  后台基础服务，包含用户、角色、权限、企业、组织管理等基础功能
+----Leopard.Base项目
+--framework-aspnetcore  后台服务框架。提供基础类封装，提供给aspnetcore【后台基础服务】和【项目服务】使用
+
+
+git - [Eshop.模块名.层名]
+--apps  应用端口
+--aspnetcore
+----services  业务服务，eg：商品管理、订单模块、支付、采购模块等

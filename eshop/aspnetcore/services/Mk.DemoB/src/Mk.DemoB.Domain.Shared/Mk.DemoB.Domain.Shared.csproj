@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\..\..\..\configureawait.props" />
+	<Import Project="..\..\..\..\common.props" />
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<RootNamespace>Mk.DemoB</RootNamespace>
+		<GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+	</PropertyGroup>
+
+	<ItemGroup>	
+		<PackageReference Include="Volo.Abp.EventBus" Version="6.0.1" />
+		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="$(MicrosoftPackageVersion)" />
+		<PackageReference Include="Volo.Abp.Validation" Version="6.0.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="Localization\DemoB\*.json" />
+		<Content Remove="Localization\DemoB\*.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\..\..\framework-aspnetcore\src\Leopard.Domain.Share\Leopard.Domain.Share.csproj" />
+		<ProjectReference Include="..\..\..\..\shared\Leopard.Base.Shared\Leopard.Base.Shared.csproj" />
+	</ItemGroup>
+
+</Project>

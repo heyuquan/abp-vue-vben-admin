@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\..\..\common.props" />
+	
+	<PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+		<RootNamespace></RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Volo.Abp.AutoMapper" Version="6.0.1" />
+		<PackageReference Include="Volo.Abp.Ddd.Application" Version="6.0.1" />
+		<PackageReference Include="Volo.Abp.Emailing" Version="6.0.1" />
+		<PackageReference Include="Volo.Abp.UI.Navigation" Version="6.0.1" />
+		<ProjectReference Include="..\..\Identity\Leopard.Identity.Application\Leopard.Identity.Application.csproj" />
+		<ProjectReference Include="..\Leopard.Account.Shared.Application.Contracts\Leopard.Account.Shared.Application.Contracts.csproj" />
+	</ItemGroup>
+
+</Project>

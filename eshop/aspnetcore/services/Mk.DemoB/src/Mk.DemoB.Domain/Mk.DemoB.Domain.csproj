@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\..\..\..\configureawait.props" />
+	<Import Project="..\..\..\..\common.props" />
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<RootNamespace>Mk.DemoB</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="MappingProfile\**" />
+	  <EmbeddedResource Remove="MappingProfile\**" />
+	  <None Remove="MappingProfile\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\..\..\framework-aspnetcore\src\Leopard.Core\Leopard.csproj" />
+		<ProjectReference Include="..\..\..\..\module\Saas\Leopard.Saas.Domain\Leopard.Saas.Domain.csproj" />
+		<ProjectReference Include="..\..\..\..\shared\Leopard.Base.Shared\Leopard.Base.Shared.csproj" />
+		<ProjectReference Include="..\Mk.DemoB.Domain.Shared\Mk.DemoB.Domain.Shared.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Hangfire.Core" Version="1.7.29" />	
+		<PackageReference Include="HtmlAgilityPack" Version="1.11.46" />	
+		<PackageReference Include="Microsoft.Extensions.Http" Version="$(MicrosoftPackageVersion)" />
+		<PackageReference Include="Volo.Abp.Ddd.Domain" Version="6.0.1" />
+	</ItemGroup>
+
+</Project>

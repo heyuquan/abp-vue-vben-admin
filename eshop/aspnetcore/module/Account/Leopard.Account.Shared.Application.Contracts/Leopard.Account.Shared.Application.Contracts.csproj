@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\..\..\common.props" />
+	
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<RootNamespace></RootNamespace>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<EmbeddedResource Include="Leopard\Account\Localization\Resources\*.json" />
+		<Content Remove="Leopard\Account\Localization\Resources\*.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="$(MicrosoftPackageVersion)" />
+		<PackageReference Include="Volo.Abp.Ddd.Application.Contracts" Version="6.0.1" />
+		<PackageReference Include="Volo.Abp.Authorization" Version="6.0.1" />
+		<PackageReference Include="Volo.Abp.Identity.Domain.Shared" Version="6.0.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\Identity\Leopard.Identity.Application.Contracts\Leopard.Identity.Application.Contracts.csproj" />
+	</ItemGroup>
+
+</Project>

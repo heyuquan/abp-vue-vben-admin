@@ -1,7 +1,0 @@
-
-
-docker中名称
-	服务命名
-		**Service	（eg：ProductApi）
-	Gateway命名
-		**Gateway	（eg：BackendAdminAppGateway）
