@@ -1,0 +1,986 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\services\\BackendAdmin\\Leopard.BackendAdmin.EntityFrameworkCore\\Leopard.BackendAdmin.EntityFrameworkCore.csproj": {}
+  },
+  "projects": {
+    "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\module\\Saas\\Leopard.Saas.Domain.Shared\\Leopard.Saas.Domain.Shared.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\module\\Saas\\Leopard.Saas.Domain.Shared\\Leopard.Saas.Domain.Shared.csproj",
+        "projectName": "Leopard.Saas.Domain.Shared",
+        "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\module\\Saas\\Leopard.Saas.Domain.Shared\\Leopard.Saas.Domain.Shared.csproj",
+        "packagesPath": "D:\\Data\\.nuget\\packages",
+        "outputPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\module\\Saas\\Leopard.Saas.Domain.Shared\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "D:\\Work\\OpenSource\\abp-vue-vben-admin\\NuGet.Config",
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.cdn.azure.cn/v3/index.json": {},
+          "https://nuget.cnblogs.com/v3/index.json": {},
+          "https://nuget.cnblogs.com/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\shared\\Leopard.Base.Shared\\Leopard.Base.Shared.csproj": {
+                "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\shared\\Leopard.Base.Shared\\Leopard.Base.Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.Extensions.FileProviders.Embedded": {
+              "target": "Package",
+              "version": "[6.0.*, )"
+            },
+            "Volo.Abp.Validation": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\module\\Saas\\Leopard.Saas.Domain\\Leopard.Saas.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\module\\Saas\\Leopard.Saas.Domain\\Leopard.Saas.Domain.csproj",
+        "projectName": "Leopard.Saas.Domain",
+        "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\module\\Saas\\Leopard.Saas.Domain\\Leopard.Saas.Domain.csproj",
+        "packagesPath": "D:\\Data\\.nuget\\packages",
+        "outputPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\module\\Saas\\Leopard.Saas.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "D:\\Work\\OpenSource\\abp-vue-vben-admin\\NuGet.Config",
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.cdn.azure.cn/v3/index.json": {},
+          "https://nuget.cnblogs.com/v3/index.json": {},
+          "https://nuget.cnblogs.com/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\module\\Saas\\Leopard.Saas.Domain.Shared\\Leopard.Saas.Domain.Shared.csproj": {
+                "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\module\\Saas\\Leopard.Saas.Domain.Shared\\Leopard.Saas.Domain.Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Volo.Abp.AutoMapper": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Volo.Abp.Ddd.Domain": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Volo.Abp.FeatureManagement.Domain": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\module\\Saas\\Leopard.Saas.EntityFrameworkCore\\Leopard.Saas.EntityFrameworkCore.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\module\\Saas\\Leopard.Saas.EntityFrameworkCore\\Leopard.Saas.EntityFrameworkCore.csproj",
+        "projectName": "Leopard.Saas.EntityFrameworkCore",
+        "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\module\\Saas\\Leopard.Saas.EntityFrameworkCore\\Leopard.Saas.EntityFrameworkCore.csproj",
+        "packagesPath": "D:\\Data\\.nuget\\packages",
+        "outputPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\module\\Saas\\Leopard.Saas.EntityFrameworkCore\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "D:\\Work\\OpenSource\\abp-vue-vben-admin\\NuGet.Config",
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.cdn.azure.cn/v3/index.json": {},
+          "https://nuget.cnblogs.com/v3/index.json": {},
+          "https://nuget.cnblogs.com/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\module\\Saas\\Leopard.Saas.Domain\\Leopard.Saas.Domain.csproj": {
+                "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\module\\Saas\\Leopard.Saas.Domain\\Leopard.Saas.Domain.csproj"
+              },
+              "D:\\Work\\OpenSource\\abp-vue-vben-admin\\framework-aspnetcore\\src\\Leopard.EntityFrameworkCore\\Leopard.EntityFrameworkCore.csproj": {
+                "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\framework-aspnetcore\\src\\Leopard.EntityFrameworkCore\\Leopard.EntityFrameworkCore.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Volo.Abp.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Volo.Abp.EntityFrameworkCore.MySQL": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\services\\BackendAdmin\\Leopard.BackendAdmin.Domain.Shared\\Leopard.BackendAdmin.Domain.Shared.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\services\\BackendAdmin\\Leopard.BackendAdmin.Domain.Shared\\Leopard.BackendAdmin.Domain.Shared.csproj",
+        "projectName": "Leopard.BackendAdmin.Domain.Shared",
+        "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\services\\BackendAdmin\\Leopard.BackendAdmin.Domain.Shared\\Leopard.BackendAdmin.Domain.Shared.csproj",
+        "packagesPath": "D:\\Data\\.nuget\\packages",
+        "outputPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\services\\BackendAdmin\\Leopard.BackendAdmin.Domain.Shared\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "D:\\Work\\OpenSource\\abp-vue-vben-admin\\NuGet.Config",
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.cdn.azure.cn/v3/index.json": {},
+          "https://nuget.cnblogs.com/v3/index.json": {},
+          "https://nuget.cnblogs.com/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\module\\Saas\\Leopard.Saas.Domain.Shared\\Leopard.Saas.Domain.Shared.csproj": {
+                "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\module\\Saas\\Leopard.Saas.Domain.Shared\\Leopard.Saas.Domain.Shared.csproj"
+              },
+              "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\shared\\Leopard.Base.Shared\\Leopard.Base.Shared.csproj": {
+                "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\shared\\Leopard.Base.Shared\\Leopard.Base.Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Volo.Abp.AuditLogging.Domain.Shared": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Volo.Abp.FeatureManagement.Domain.Shared": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Volo.Abp.PermissionManagement.Domain.Shared": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Volo.Abp.SettingManagement.Domain.Shared": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\services\\BackendAdmin\\Leopard.BackendAdmin.Domain\\Leopard.BackendAdmin.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\services\\BackendAdmin\\Leopard.BackendAdmin.Domain\\Leopard.BackendAdmin.Domain.csproj",
+        "projectName": "Leopard.BackendAdmin.Domain",
+        "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\services\\BackendAdmin\\Leopard.BackendAdmin.Domain\\Leopard.BackendAdmin.Domain.csproj",
+        "packagesPath": "D:\\Data\\.nuget\\packages",
+        "outputPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\services\\BackendAdmin\\Leopard.BackendAdmin.Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "D:\\Work\\OpenSource\\abp-vue-vben-admin\\NuGet.Config",
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.cdn.azure.cn/v3/index.json": {},
+          "https://nuget.cnblogs.com/v3/index.json": {},
+          "https://nuget.cnblogs.com/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\module\\Saas\\Leopard.Saas.Domain\\Leopard.Saas.Domain.csproj": {
+                "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\module\\Saas\\Leopard.Saas.Domain\\Leopard.Saas.Domain.csproj"
+              },
+              "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\services\\BackendAdmin\\Leopard.BackendAdmin.Domain.Shared\\Leopard.BackendAdmin.Domain.Shared.csproj": {
+                "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\services\\BackendAdmin\\Leopard.BackendAdmin.Domain.Shared\\Leopard.BackendAdmin.Domain.Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Volo.Abp.AuditLogging.Domain": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Volo.Abp.Emailing": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Volo.Abp.FeatureManagement.Domain": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Volo.Abp.PermissionManagement.Domain": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Volo.Abp.SettingManagement.Domain": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\services\\BackendAdmin\\Leopard.BackendAdmin.EntityFrameworkCore\\Leopard.BackendAdmin.EntityFrameworkCore.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\services\\BackendAdmin\\Leopard.BackendAdmin.EntityFrameworkCore\\Leopard.BackendAdmin.EntityFrameworkCore.csproj",
+        "projectName": "Leopard.BackendAdmin.EntityFrameworkCore",
+        "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\services\\BackendAdmin\\Leopard.BackendAdmin.EntityFrameworkCore\\Leopard.BackendAdmin.EntityFrameworkCore.csproj",
+        "packagesPath": "D:\\Data\\.nuget\\packages",
+        "outputPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\services\\BackendAdmin\\Leopard.BackendAdmin.EntityFrameworkCore\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "D:\\Work\\OpenSource\\abp-vue-vben-admin\\NuGet.Config",
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.cdn.azure.cn/v3/index.json": {},
+          "https://nuget.cnblogs.com/v3/index.json": {},
+          "https://nuget.cnblogs.com/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\module\\Saas\\Leopard.Saas.EntityFrameworkCore\\Leopard.Saas.EntityFrameworkCore.csproj": {
+                "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\module\\Saas\\Leopard.Saas.EntityFrameworkCore\\Leopard.Saas.EntityFrameworkCore.csproj"
+              },
+              "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\services\\BackendAdmin\\Leopard.BackendAdmin.Domain\\Leopard.BackendAdmin.Domain.csproj": {
+                "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\services\\BackendAdmin\\Leopard.BackendAdmin.Domain\\Leopard.BackendAdmin.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers",
+              "suppressParent": "Compile, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "target": "Package",
+              "version": "[6.0.*, )"
+            },
+            "Volo.Abp.AuditLogging.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Volo.Abp.EntityFrameworkCore.MySQL": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Volo.Abp.FeatureManagement.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Volo.Abp.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Volo.Abp.PermissionManagement.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Volo.Abp.SettingManagement.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\shared\\Leopard.Base.Shared\\Leopard.Base.Shared.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\shared\\Leopard.Base.Shared\\Leopard.Base.Shared.csproj",
+        "projectName": "Leopard.Base.Shared",
+        "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\shared\\Leopard.Base.Shared\\Leopard.Base.Shared.csproj",
+        "packagesPath": "D:\\Data\\.nuget\\packages",
+        "outputPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\shared\\Leopard.Base.Shared\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "D:\\Work\\OpenSource\\abp-vue-vben-admin\\NuGet.Config",
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.cdn.azure.cn/v3/index.json": {},
+          "https://nuget.cnblogs.com/v3/index.json": {},
+          "https://nuget.cnblogs.com/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\Work\\OpenSource\\abp-vue-vben-admin\\framework-aspnetcore\\src\\Leopard.Shared\\Leopard.Shared.csproj": {
+                "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\framework-aspnetcore\\src\\Leopard.Shared\\Leopard.Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Work\\OpenSource\\abp-vue-vben-admin\\framework-aspnetcore\\src\\Leopard.Core\\Leopard.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\framework-aspnetcore\\src\\Leopard.Core\\Leopard.csproj",
+        "projectName": "Leopard",
+        "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\framework-aspnetcore\\src\\Leopard.Core\\Leopard.csproj",
+        "packagesPath": "D:\\Data\\.nuget\\packages",
+        "outputPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\framework-aspnetcore\\src\\Leopard.Core\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "D:\\Work\\OpenSource\\abp-vue-vben-admin\\NuGet.Config",
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.cdn.azure.cn/v3/index.json": {},
+          "https://nuget.cnblogs.com/v3/index.json": {},
+          "https://nuget.cnblogs.com/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\Work\\OpenSource\\abp-vue-vben-admin\\framework-aspnetcore\\src\\Leopard.Shared\\Leopard.Shared.csproj": {
+                "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\framework-aspnetcore\\src\\Leopard.Shared\\Leopard.Shared.csproj"
+              },
+              "D:\\Work\\OpenSource\\abp-vue-vben-admin\\framework-aspnetcore\\src\\Leopard.Utils\\Leopard.Utils.csproj": {
+                "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\framework-aspnetcore\\src\\Leopard.Utils\\Leopard.Utils.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "ConfigureAwait.Fody": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.3.1, )"
+            },
+            "Fody": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.6.1, )"
+            },
+            "MiniProfiler.AspNetCore.Mvc": {
+              "target": "Package",
+              "version": "[4.2.22, )"
+            },
+            "Volo.Abp.AspNetCore": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Volo.Abp.Core": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Volo.Abp.Http": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Work\\OpenSource\\abp-vue-vben-admin\\framework-aspnetcore\\src\\Leopard.EntityFrameworkCore\\Leopard.EntityFrameworkCore.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\framework-aspnetcore\\src\\Leopard.EntityFrameworkCore\\Leopard.EntityFrameworkCore.csproj",
+        "projectName": "Leopard.EntityFrameworkCore",
+        "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\framework-aspnetcore\\src\\Leopard.EntityFrameworkCore\\Leopard.EntityFrameworkCore.csproj",
+        "packagesPath": "D:\\Data\\.nuget\\packages",
+        "outputPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\framework-aspnetcore\\src\\Leopard.EntityFrameworkCore\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "D:\\Work\\OpenSource\\abp-vue-vben-admin\\NuGet.Config",
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.cdn.azure.cn/v3/index.json": {},
+          "https://nuget.cnblogs.com/v3/index.json": {},
+          "https://nuget.cnblogs.com/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\Work\\OpenSource\\abp-vue-vben-admin\\framework-aspnetcore\\src\\Leopard.Core\\Leopard.csproj": {
+                "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\framework-aspnetcore\\src\\Leopard.Core\\Leopard.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "ConfigureAwait.Fody": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.3.1, )"
+            },
+            "Fody": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.6.1, )"
+            },
+            "Volo.Abp.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Work\\OpenSource\\abp-vue-vben-admin\\framework-aspnetcore\\src\\Leopard.Shared\\Leopard.Shared.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\framework-aspnetcore\\src\\Leopard.Shared\\Leopard.Shared.csproj",
+        "projectName": "Leopard.Shared",
+        "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\framework-aspnetcore\\src\\Leopard.Shared\\Leopard.Shared.csproj",
+        "packagesPath": "D:\\Data\\.nuget\\packages",
+        "outputPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\framework-aspnetcore\\src\\Leopard.Shared\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "D:\\Work\\OpenSource\\abp-vue-vben-admin\\NuGet.Config",
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.cdn.azure.cn/v3/index.json": {},
+          "https://nuget.cnblogs.com/v3/index.json": {},
+          "https://nuget.cnblogs.com/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "targetAlias": "netstandard2.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "targetAlias": "netstandard2.1",
+          "dependencies": {
+            "ConfigureAwait.Fody": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.3.1, )"
+            },
+            "Fody": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.6.1, )"
+            },
+            "JetBrains.Annotations": {
+              "target": "Package",
+              "version": "[2022.3.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "NETStandard.Library": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Work\\OpenSource\\abp-vue-vben-admin\\framework-aspnetcore\\src\\Leopard.Utils\\Leopard.Utils.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\framework-aspnetcore\\src\\Leopard.Utils\\Leopard.Utils.csproj",
+        "projectName": "Leopard.Utils",
+        "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\framework-aspnetcore\\src\\Leopard.Utils\\Leopard.Utils.csproj",
+        "packagesPath": "D:\\Data\\.nuget\\packages",
+        "outputPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\framework-aspnetcore\\src\\Leopard.Utils\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "D:\\Work\\OpenSource\\abp-vue-vben-admin\\NuGet.Config",
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.cdn.azure.cn/v3/index.json": {},
+          "https://nuget.cnblogs.com/v3/index.json": {},
+          "https://nuget.cnblogs.com/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\Work\\OpenSource\\abp-vue-vben-admin\\framework-aspnetcore\\src\\Leopard.Shared\\Leopard.Shared.csproj": {
+                "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\framework-aspnetcore\\src\\Leopard.Shared\\Leopard.Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "AsyncEnumerator": {
+              "target": "Package",
+              "version": "[4.0.2, )"
+            },
+            "ConfigureAwait.Fody": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.3.1, )"
+            },
+            "DeepCloner": {
+              "target": "Package",
+              "version": "[0.10.4, )"
+            },
+            "FileSignatures": {
+              "target": "Package",
+              "version": "[4.4.0, )"
+            },
+            "Fody": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.6.1, )"
+            },
+            "HtmlSanitizer": {
+              "target": "Package",
+              "version": "[8.0.601, )"
+            },
+            "IdGen": {
+              "target": "Package",
+              "version": "[3.0.2, )"
+            },
+            "JetBrains.Annotations": {
+              "target": "Package",
+              "version": "[2022.3.1, )"
+            },
+            "Microsoft.AspNetCore.Http.Abstractions": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.ObjectPool": {
+              "target": "Package",
+              "version": "[6.0.*, )"
+            },
+            "Microsoft.Net.Http.Headers": {
+              "target": "Package",
+              "version": "[2.2.8, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
+            "Nito.AsyncEx": {
+              "target": "Package",
+              "version": "[5.1.2, )"
+            },
+            "ObjectsComparer": {
+              "target": "Package",
+              "version": "[1.4.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

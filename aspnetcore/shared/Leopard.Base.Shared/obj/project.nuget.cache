@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "H4cFEUtJLvy+/fGa0b4FXPj8bGH9X8PAAFEaa7ktSCRD6d7zNxhyNV2KO/NqWd0tY068t7Zgot3ZgjMRNOBwIA==",
+  "success": true,
+  "projectFilePath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\shared\\Leopard.Base.Shared\\Leopard.Base.Shared.csproj",
+  "expectedPackageFiles": [
+    "D:\\Data\\.nuget\\packages\\jetbrains.annotations\\2022.3.1\\jetbrains.annotations.2022.3.1.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,79 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{138BBFFC-09B9-49FB-9C57-E25327CCE0C1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.BackendAdmin.Application", "..\BackendAdmin\src\Leopard.BackendAdmin.Application\Leopard.BackendAdmin.Application.csproj", "{D4ABA823-3D10-456A-B948-80A4BA676157}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.BackendAdmin.Application.Contracts", "..\BackendAdmin\src\Leopard.BackendAdmin.Application.Contracts\Leopard.BackendAdmin.Application.Contracts.csproj", "{600B38B8-7D37-4B5A-AAA9-3E95385CEAA1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.BackendAdmin.Domain", "..\BackendAdmin\src\Leopard.BackendAdmin.Domain\Leopard.BackendAdmin.Domain.csproj", "{49BCA98E-3221-4C14-8567-9F2B6FE525EB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.BackendAdmin.Domain.Shared", "..\BackendAdmin\src\Leopard.BackendAdmin.Domain.Shared\Leopard.BackendAdmin.Domain.Shared.csproj", "{5940516F-E1B0-416B-83D7-9D37FA6CBC10}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.BackendAdmin.EntityFrameworkCore", "..\BackendAdmin\src\Leopard.BackendAdmin.EntityFrameworkCore\Leopard.BackendAdmin.EntityFrameworkCore.csproj", "{45E73740-7835-4CF1-8C21-BF14AD91CDCC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.BackendAdmin.HttpApi", "..\BackendAdmin\src\Leopard.BackendAdmin.HttpApi\Leopard.BackendAdmin.HttpApi.csproj", "{EC1E244A-28AE-4379-885F-399BB43F7582}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.BackendAdmin.HttpApi.Host", "..\BackendAdmin\src\Leopard.BackendAdmin.HttpApi.Host\Leopard.BackendAdmin.HttpApi.Host.csproj", "{E80F0BC4-90CC-4F6E-9952-EA9C9FEBCFFC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.BackendAdmin.Web", "..\BackendAdmin\src\Leopard.BackendAdmin.Web\Leopard.BackendAdmin.Web.csproj", "{C7B45069-AE8A-4386-BC29-C8551E438DE8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D4ABA823-3D10-456A-B948-80A4BA676157}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4ABA823-3D10-456A-B948-80A4BA676157}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4ABA823-3D10-456A-B948-80A4BA676157}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4ABA823-3D10-456A-B948-80A4BA676157}.Release|Any CPU.Build.0 = Release|Any CPU
+		{600B38B8-7D37-4B5A-AAA9-3E95385CEAA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{600B38B8-7D37-4B5A-AAA9-3E95385CEAA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{600B38B8-7D37-4B5A-AAA9-3E95385CEAA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{600B38B8-7D37-4B5A-AAA9-3E95385CEAA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49BCA98E-3221-4C14-8567-9F2B6FE525EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49BCA98E-3221-4C14-8567-9F2B6FE525EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49BCA98E-3221-4C14-8567-9F2B6FE525EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49BCA98E-3221-4C14-8567-9F2B6FE525EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5940516F-E1B0-416B-83D7-9D37FA6CBC10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5940516F-E1B0-416B-83D7-9D37FA6CBC10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5940516F-E1B0-416B-83D7-9D37FA6CBC10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5940516F-E1B0-416B-83D7-9D37FA6CBC10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45E73740-7835-4CF1-8C21-BF14AD91CDCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45E73740-7835-4CF1-8C21-BF14AD91CDCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45E73740-7835-4CF1-8C21-BF14AD91CDCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45E73740-7835-4CF1-8C21-BF14AD91CDCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC1E244A-28AE-4379-885F-399BB43F7582}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC1E244A-28AE-4379-885F-399BB43F7582}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC1E244A-28AE-4379-885F-399BB43F7582}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC1E244A-28AE-4379-885F-399BB43F7582}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E80F0BC4-90CC-4F6E-9952-EA9C9FEBCFFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E80F0BC4-90CC-4F6E-9952-EA9C9FEBCFFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E80F0BC4-90CC-4F6E-9952-EA9C9FEBCFFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E80F0BC4-90CC-4F6E-9952-EA9C9FEBCFFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7B45069-AE8A-4386-BC29-C8551E438DE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7B45069-AE8A-4386-BC29-C8551E438DE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7B45069-AE8A-4386-BC29-C8551E438DE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7B45069-AE8A-4386-BC29-C8551E438DE8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D4ABA823-3D10-456A-B948-80A4BA676157} = {138BBFFC-09B9-49FB-9C57-E25327CCE0C1}
+		{600B38B8-7D37-4B5A-AAA9-3E95385CEAA1} = {138BBFFC-09B9-49FB-9C57-E25327CCE0C1}
+		{49BCA98E-3221-4C14-8567-9F2B6FE525EB} = {138BBFFC-09B9-49FB-9C57-E25327CCE0C1}
+		{5940516F-E1B0-416B-83D7-9D37FA6CBC10} = {138BBFFC-09B9-49FB-9C57-E25327CCE0C1}
+		{45E73740-7835-4CF1-8C21-BF14AD91CDCC} = {138BBFFC-09B9-49FB-9C57-E25327CCE0C1}
+		{EC1E244A-28AE-4379-885F-399BB43F7582} = {138BBFFC-09B9-49FB-9C57-E25327CCE0C1}
+		{E80F0BC4-90CC-4F6E-9952-EA9C9FEBCFFC} = {138BBFFC-09B9-49FB-9C57-E25327CCE0C1}
+		{C7B45069-AE8A-4386-BC29-C8551E438DE8} = {138BBFFC-09B9-49FB-9C57-E25327CCE0C1}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1753A143-A9EF-43ED-970D-C71BAD179AE6}
+	EndGlobalSection
+EndGlobal

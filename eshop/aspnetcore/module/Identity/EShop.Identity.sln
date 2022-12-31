@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{138BBFFC-09B9-49FB-9C57-E25327CCE0C1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Identity.Application", "src\Leopard.Identity.Application\Leopard.Identity.Application.csproj", "{A38250D0-364F-44E8-95A4-0CE5CB5BB56A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Identity.Application.Contracts", "src\Leopard.Identity.Application.Contracts\Leopard.Identity.Application.Contracts.csproj", "{51E34EB9-7E31-4586-AD0F-0CB25F6B0295}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Identity.HttpApi.Client", "src\Leopard.Identity.HttpApi.Client\Leopard.Identity.HttpApi.Client.csproj", "{5DBEAFAC-9CCA-4DBC-8925-16168DE0E8C0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Identity.HttpApi", "src\Leopard.Identity.HttpApi\Leopard.Identity.HttpApi.csproj", "{ECAF4F22-CE0C-4268-81D4-4365690C076C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A38250D0-364F-44E8-95A4-0CE5CB5BB56A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A38250D0-364F-44E8-95A4-0CE5CB5BB56A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A38250D0-364F-44E8-95A4-0CE5CB5BB56A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A38250D0-364F-44E8-95A4-0CE5CB5BB56A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51E34EB9-7E31-4586-AD0F-0CB25F6B0295}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51E34EB9-7E31-4586-AD0F-0CB25F6B0295}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51E34EB9-7E31-4586-AD0F-0CB25F6B0295}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51E34EB9-7E31-4586-AD0F-0CB25F6B0295}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DBEAFAC-9CCA-4DBC-8925-16168DE0E8C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DBEAFAC-9CCA-4DBC-8925-16168DE0E8C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DBEAFAC-9CCA-4DBC-8925-16168DE0E8C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DBEAFAC-9CCA-4DBC-8925-16168DE0E8C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECAF4F22-CE0C-4268-81D4-4365690C076C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECAF4F22-CE0C-4268-81D4-4365690C076C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECAF4F22-CE0C-4268-81D4-4365690C076C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECAF4F22-CE0C-4268-81D4-4365690C076C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A38250D0-364F-44E8-95A4-0CE5CB5BB56A} = {138BBFFC-09B9-49FB-9C57-E25327CCE0C1}
+		{51E34EB9-7E31-4586-AD0F-0CB25F6B0295} = {138BBFFC-09B9-49FB-9C57-E25327CCE0C1}
+		{5DBEAFAC-9CCA-4DBC-8925-16168DE0E8C0} = {138BBFFC-09B9-49FB-9C57-E25327CCE0C1}
+		{ECAF4F22-CE0C-4268-81D4-4365690C076C} = {138BBFFC-09B9-49FB-9C57-E25327CCE0C1}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1753A143-A9EF-43ED-970D-C71BAD179AE6}
+	EndGlobalSection
+EndGlobal
