@@ -30,14 +30,9 @@ namespace System
         public static string ToStrMessage(this Exception exception, bool isHideStackTrace = false)
         {
             StringBuilder sb = new StringBuilder();
-            int count = 0;
             string appString = string.Empty;
             while (exception != null)
             {
-                if (count > 0)
-                {
-                    appString += "  ";
-                }
                 sb.AppendLine(string.Format("{0}异常消息：{1}", appString, exception.Message));
                 sb.AppendLine(string.Format("{0}异常类型：{1}", appString, exception.GetType().FullName));
                 sb.AppendLine(string.Format("{0}异常方法：{1}", appString, (exception.TargetSite == null ? null : exception.TargetSite.Name)));
@@ -49,7 +44,7 @@ namespace System
                 if (exception.InnerException != null)
                 {
                     sb.AppendLine(string.Format("{0}内部异常：", appString));
-                    count++;
+                    appString += "  ";
                 }
                 exception = exception.InnerException;
             }

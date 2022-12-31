@@ -148,6 +148,7 @@ namespace Leopard.Host
                         .SetIsOriginAllowedToAllowWildcardSubdomains()
                         .AllowAnyHeader()
                         .AllowAnyMethod()
+                        // https://www.cnblogs.com/May-day/p/13965087.html
                         .AllowCredentials()
                         // 预检请求的性能
                         // https://jishuin.proginn.com/p/763bfbd36f2f
