@@ -25,9 +25,6 @@
     <ProjectReference Include="..\..\..\..\..\..\framework\leopard\src\Leopard.Consul\Leopard.Consul.csproj" />
     <ProjectReference Include="..\..\..\..\..\..\framework\leopard\src\Leopard.Host\Leopard.Host.csproj" />
     <ProjectReference Include="..\..\..\..\common\src\Leopard.Base.Shared\Leopard.Base.Shared.csproj" />
-    <ProjectReference Include="..\Leopard.BackendAdmin.Application\Leopard.BackendAdmin.Application.csproj" />
-    <ProjectReference Include="..\Leopard.BackendAdmin.EntityFrameworkCore\Leopard.BackendAdmin.EntityFrameworkCore.csproj" />
-    <ProjectReference Include="..\Leopard.BackendAdmin.HttpApi\Leopard.BackendAdmin.HttpApi.csproj" />
   </ItemGroup>
 
   <ItemGroup>
