@@ -18,7 +18,7 @@ namespace Leopard.Identity.Web.Navigation
                 return Task.CompletedTask;
             }
 
-            var backendAdminLocalizer = context.GetLocalizer<AdministrationResource>();
+            var AdministrationLocalizer = context.GetLocalizer<AdministrationResource>();
 
             #region ==== vben demo begin =====
             var dashboardMenuItem = new ApplicationMenuItem("Demo.Dashboard", "Dashboard"
@@ -46,7 +46,7 @@ namespace Leopard.Identity.Web.Navigation
             saasMenuItem.AddItem(new ApplicationMenuItem(AdministrationMenuNames.Saas.Tenants, saasLocalizer["Menu:Tenants"]
                 , url: "/saas/tenants", customData: new { Component = "/saas/tenant/index" })
                 .RequirePermissions(SaasPermissions.Tenants.Default));
-            //saasMenuItem.AddItem(new ApplicationMenuItem(BackendAdminMenuNames.Saas.Editions, saasLocalizer["Menu:Editions"]
+            //saasMenuItem.AddItem(new ApplicationMenuItem(AdministrationMenuNames.Saas.Editions, saasLocalizer["Menu:Editions"]
             //    , url: "/saas/editions", customData: new { Component = "/saas/edition/index" })
             //    .RequirePermissions(SaasPermissions.Editions.Default));
 
@@ -57,26 +57,26 @@ namespace Leopard.Identity.Web.Navigation
             #region ==== identity begin ===== 
             var identityLocalizer = context.GetLocalizer<IdentityResource>();
 
-            var manageMenuItem = new ApplicationMenuItem(AdministrationMenuNames.BackendAdmin.GroupName
-                , backendAdminLocalizer["Menu:Administration"], icon: "ion:cube-outline", url: "/manage"
+            var manageMenuItem = new ApplicationMenuItem(AdministrationMenuNames.Administration.GroupName
+                , AdministrationLocalizer["Menu:Administration"], icon: "ion:cube-outline", url: "/manage"
                 , customData: new { IsGroup = true, Component = "LAYOUT", Redirect = "/identity/users" });
 
-            var identityMenuItem = new ApplicationMenuItem(AdministrationMenuNames.BackendAdmin.Identity.GroupName
+            var identityMenuItem = new ApplicationMenuItem(AdministrationMenuNames.Administration.Identity.GroupName
                 , identityLocalizer["Menu:IdentityManagement"], url: "/identity"
-                , customData: new { IsGroup = true, Component = AdministrationMenuNames.BackendAdmin.Identity.GroupName, Redirect = "/identity/users" });
-            identityMenuItem.AddItem(new ApplicationMenuItem(AdministrationMenuNames.BackendAdmin.Identity.OrganizationUnits, identityLocalizer["Menu:OrganizationUnits"]
+                , customData: new { IsGroup = true, Component = AdministrationMenuNames.Administration.Identity.GroupName, Redirect = "/identity/users" });
+            identityMenuItem.AddItem(new ApplicationMenuItem(AdministrationMenuNames.Administration.Identity.OrganizationUnits, identityLocalizer["Menu:OrganizationUnits"]
                 , url: "/identity/organization-units", customData: new { Component = "/identity/organization-units/index" })
                 .RequirePermissions(IdentityPermissions.OrganizationUnits.Default));
-            identityMenuItem.AddItem(new ApplicationMenuItem(AdministrationMenuNames.BackendAdmin.Identity.Roles, identityLocalizer["Menu:Roles"]
+            identityMenuItem.AddItem(new ApplicationMenuItem(AdministrationMenuNames.Administration.Identity.Roles, identityLocalizer["Menu:Roles"]
                 , url: "/identity/roles", customData: new { Component = "/identity/role/index" })
                 .RequirePermissions(IdentityPermissions.Roles.Default));
-            identityMenuItem.AddItem(new ApplicationMenuItem(AdministrationMenuNames.BackendAdmin.Identity.Users, identityLocalizer["Menu:Users"]
+            identityMenuItem.AddItem(new ApplicationMenuItem(AdministrationMenuNames.Administration.Identity.Users, identityLocalizer["Menu:Users"]
                 , url: "/identity/users", customData: new { Component = "/identity/user/index" })
                 .RequirePermissions(IdentityPermissions.Users.Default));
-            //identityMenuItem.AddItem(new ApplicationMenuItem(BackendAdminMenuNames.BackendAdmin.Identity.ClaimTypes, identityLocalizer["Menu:ClaimTypes"]
+            //identityMenuItem.AddItem(new ApplicationMenuItem(AdministrationMenuNames.Administration.Identity.ClaimTypes, identityLocalizer["Menu:ClaimTypes"]
             //    , url: "/identity/claim-types", customData: new { Component = "/identity/claim-types/index" })
             //    .RequirePermissions(IdentityPermissions.ClaimTypes.Default));
-            //identityMenuItem.AddItem(new ApplicationMenuItem(BackendAdminMenuNames.BackendAdmin.Identity.SecurityLog, identityLocalizer["Menu:SecurityLog"]
+            //identityMenuItem.AddItem(new ApplicationMenuItem(AdministrationMenuNames.Administration.Identity.SecurityLog, identityLocalizer["Menu:SecurityLog"]
             //    , url: "/identity/security-log", customData: new { Component = "/identity/security-log/index" })
             //    .RequirePermissions(IdentityPermissions.SecurityLog.Default));
 
@@ -86,9 +86,9 @@ namespace Leopard.Identity.Web.Navigation
 
 
             // settings
-            //var settingMenuItem = new ApplicationMenuItem(BackendAdminMenuNames.Settings.GroupName
-            //    , backendAdminLocalizer["Menu:Settings"], icon: "fa fa-id-card-o", url: "/setting-management");
-            //context.Menu.GetAdministration().AddItem(settingMenuItem).RequirePermissions(BackendAdminPermissions.Settings.Default);
+            //var settingMenuItem = new ApplicationMenuItem(AdministrationMenuNames.Settings.GroupName
+            //    , AdministrationLocalizer["Menu:Settings"], icon: "fa fa-id-card-o", url: "/setting-management");
+            //context.Menu.GetAdministration().AddItem(settingMenuItem).RequirePermissions(AdministrationPermissions.Settings.Default);
 
             return Task.CompletedTask;
         }

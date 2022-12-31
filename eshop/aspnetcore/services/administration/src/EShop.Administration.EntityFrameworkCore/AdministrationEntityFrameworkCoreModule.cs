@@ -25,7 +25,7 @@ namespace EShop.Administration.EntityFrameworkCore
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
-            context.Services.AddAbpDbContext<BackendAdminDbContext>(options =>
+            context.Services.AddAbpDbContext<AdministrationDbContext>(options =>
             {
                 /* Remove "includeAllEntities: true" to create
                  * default repositories only for aggregate roots */
@@ -35,7 +35,7 @@ namespace EShop.Administration.EntityFrameworkCore
             Configure<AbpDbContextOptions>(options =>
             {
                 /* The main point to change your DBMS.
-                 * See also BackendAdminMigrationsDbContextFactory for EF Core tooling. */
+                 * See also AdministrationMigrationsDbContextFactory for EF Core tooling. */
                 options.UseMySQL();
             });
         }

@@ -15,7 +15,7 @@ namespace EShop.Administration.Controllers
 {
     [Route("api/backend-admin/menus")]
     [Authorize]
-    public class MenusController : BackendAdminController
+    public class MenusController : AdministrationController
     {
         private readonly IMenuManager _menuManager;
 

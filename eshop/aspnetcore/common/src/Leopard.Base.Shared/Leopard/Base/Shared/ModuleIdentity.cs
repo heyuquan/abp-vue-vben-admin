@@ -18,15 +18,15 @@ namespace Leopard.Base.Shared
             public const ApplicationServiceType ServiceType = ApplicationServiceType.AuthIdentityServer;
         }
 
-        public static class BackendAdmin
+        public static class Administration
         {
-            public const string Name = ModuleNames.BackendAdmin;
+            public const string Name = ModuleNames.Administration;
             public const ApplicationServiceType ServiceType = ApplicationServiceType.ApiHost;
         }
 
-        public static class BackendAdminAppGateway
+        public static class AdministrationAppGateway
         {
-            public const string Name = "BackendAdminAppGateway";
+            public const string Name = "AdministrationAppGateway";
             public const ApplicationServiceType ServiceType = ApplicationServiceType.GateWay;
         }
 

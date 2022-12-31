@@ -3,7 +3,7 @@ using Volo.Abp.Localization;
 
 namespace EShop.Administration.Localization
 {
-    [LocalizationResourceName(ModuleNames.BackendAdmin)]
+    [LocalizationResourceName(ModuleNames.Administration)]
     public class AdministrationResource
     {
 

@@ -8,8 +8,8 @@ WORKDIR /src
 
 COPY aspnetcore/ aspnetcore/
 COPY framework-aspnetcore/ framework-aspnetcore/
-COPY "./NuGet.Config" "/src/aspnetcore/services/BackendAdmin/EShop.Administration.HttpApi.Host/NuGet.Config"
-WORKDIR /src/aspnetcore/services/BackendAdmin/EShop.Administration.HttpApi.Host
+COPY "./NuGet.Config" "/src/aspnetcore/services/Administration/EShop.Administration.HttpApi.Host/NuGet.Config"
+WORKDIR /src/aspnetcore/services/Administration/EShop.Administration.HttpApi.Host
 
 RUN dotnet restore --disable-parallel --configfile "./NuGet.Config" -nowarn:msb3202,nu1503
 RUN dotnet build -nowarn:cs1998,cs1572,cs1573 --no-restore -c Release -o /app/build

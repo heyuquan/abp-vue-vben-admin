@@ -1,6 +1,6 @@
 ﻿namespace EShop.Administration
 {
-    public static class BackendAdminConsts
+    public static class AdministrationConsts
     {
         public const string DbTablePrefix = "App";
 

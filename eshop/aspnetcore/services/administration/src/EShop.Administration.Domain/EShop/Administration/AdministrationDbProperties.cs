@@ -2,7 +2,7 @@ using Volo.Abp.Data;
 
 namespace EShop.Administration
 {
-    public static class BackendAdminDbProperties
+    public static class AdministrationDbProperties
     {
         public static string DbTablePrefix { get; set; } = AbpCommonDbProperties.DbTablePrefix;
 

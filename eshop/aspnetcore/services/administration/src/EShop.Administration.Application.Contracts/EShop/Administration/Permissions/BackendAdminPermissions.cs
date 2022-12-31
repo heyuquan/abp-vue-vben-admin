@@ -3,14 +3,14 @@ using Volo.Abp.Reflection;
 
 namespace EShop.Administration.Permissions
 {
-    public static class BackendAdminPermissions
+    public static class AdministrationPermissions
     {
         public static string[] GetAll()
         {
-            return ReflectionHelper.GetPublicConstantsRecursively(typeof(BackendAdminPermissions));
+            return ReflectionHelper.GetPublicConstantsRecursively(typeof(AdministrationPermissions));
         }
 
-        public const string GroupName = ModuleNames.BackendAdmin;
+        public const string GroupName = ModuleNames.Administration;
 
         public static class Settings
         {

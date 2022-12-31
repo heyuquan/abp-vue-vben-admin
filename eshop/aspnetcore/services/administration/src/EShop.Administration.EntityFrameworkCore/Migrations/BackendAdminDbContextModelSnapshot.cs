@@ -10,8 +10,8 @@ using Volo.Abp.EntityFrameworkCore;
 
 namespace EShop.Administration.EntityFrameworkCore.Migrations
 {
-    [DbContext(typeof(BackendAdminDbContext))]
-    partial class BackendAdminDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(AdministrationDbContext))]
+    partial class AdministrationDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {

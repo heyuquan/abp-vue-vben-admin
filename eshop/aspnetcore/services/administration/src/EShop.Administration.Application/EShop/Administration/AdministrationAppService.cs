@@ -8,9 +8,9 @@ namespace EShop.Administration
 {
     /* Inherit your application services from this class.
      */
-    public abstract class BackendAdminAppService : ApplicationService
+    public abstract class AdministrationAppService : ApplicationService
     {
-        protected BackendAdminAppService()
+        protected AdministrationAppService()
         {
             LocalizationResource = typeof(AdministrationResource);
         }

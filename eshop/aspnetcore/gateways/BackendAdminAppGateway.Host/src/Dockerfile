@@ -8,8 +8,8 @@ WORKDIR /src
 
 COPY aspnetcore/ aspnetcore/
 COPY framework-aspnetcore/ framework-aspnetcore/
-COPY "NuGet.Config" "/src/aspnetcore/gateways/BackendAdminAppGateway.Host/NuGet.Config"
-WORKDIR /src/aspnetcore/gateways/BackendAdminAppGateway.Host
+COPY "NuGet.Config" "/src/aspnetcore/gateways/AdministrationAppGateway.Host/NuGet.Config"
+WORKDIR /src/aspnetcore/gateways/AdministrationAppGateway.Host
 
 RUN dotnet restore --disable-parallel --configfile "./NuGet.Config" -nowarn:msb3202,nu1503 
 RUN dotnet build -nowarn:cs1998,cs1572,cs1573 --no-restore -c Release -o /app/build
@@ -20,4 +20,4 @@ RUN dotnet publish -nowarn:cs1998,cs1572,cs1573 --no-restore -c Release -o /app/
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "BackendAdminAppGateway.Host.dll"]
+ENTRYPOINT ["dotnet", "AdministrationAppGateway.Host.dll"]

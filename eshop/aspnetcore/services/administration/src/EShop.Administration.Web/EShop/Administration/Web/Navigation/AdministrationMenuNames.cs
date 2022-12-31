@@ -7,9 +7,9 @@ namespace Leopard.Identity.Web.Navigation
         /// <summary>
         /// 管理
         /// </summary>
-        public class BackendAdmin
+        public class Administration
         {
-            public const string GroupName = ModuleNames.BackendAdmin;
+            public const string GroupName = ModuleNames.Administration;
             /// <summary>
             /// 身份标识管理
             /// </summary>

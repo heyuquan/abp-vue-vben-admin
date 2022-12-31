@@ -8,7 +8,7 @@ namespace EShop.Administration
     {
         public async static Task<int> Main(string[] args)
         {
-            var commonProgram = new CommonHostProgram<AdministrationHttpApiHostModule>(ModuleIdentity.BackendAdmin.ServiceType, ModuleIdentity.BackendAdmin.Name);
+            var commonProgram = new CommonHostProgram<AdministrationHttpApiHostModule>(ModuleIdentity.Administration.ServiceType, ModuleIdentity.Administration.Name);
             return await commonProgram.RunAsync(args);
         }
 

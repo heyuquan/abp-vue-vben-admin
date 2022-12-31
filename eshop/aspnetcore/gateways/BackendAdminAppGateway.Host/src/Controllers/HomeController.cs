@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc;
 
-namespace BackendAdminAppGateway.Controllers
+namespace AdministrationAppGateway.Controllers
 {
     public class HomeController : AbpController
     {

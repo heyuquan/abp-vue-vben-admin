@@ -47,7 +47,7 @@ namespace EShop.Administration
 
             Configure<AbpExceptionLocalizationOptions>(options =>
             {
-                options.MapCodeNamespace(ModuleNames.BackendAdmin, typeof(AdministrationResource));
+                options.MapCodeNamespace(ModuleNames.Administration, typeof(AdministrationResource));
             });
         }
     }

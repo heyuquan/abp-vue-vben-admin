@@ -10,9 +10,9 @@ using Volo.Abp.SettingManagement.EntityFrameworkCore;
 
 namespace EShop.Administration.EntityFrameworkCore
 {
-    [ConnectionStringName(BackendAdminDbProperties.ConnectionStringName)]
-    public class BackendAdminDbContext :
-        LeopardDbContext<BackendAdminDbContext>
+    [ConnectionStringName(AdministrationDbProperties.ConnectionStringName)]
+    public class AdministrationDbContext :
+        LeopardDbContext<AdministrationDbContext>
     {
         /* Add DbSet properties for your Aggregate Roots / Entities here. */
         
@@ -32,7 +32,7 @@ namespace EShop.Administration.EntityFrameworkCore
 
         #endregion
         
-        public BackendAdminDbContext(DbContextOptions<BackendAdminDbContext> options)
+        public AdministrationDbContext(DbContextOptions<AdministrationDbContext> options)
             : base(options)
         {
 
@@ -54,7 +54,7 @@ namespace EShop.Administration.EntityFrameworkCore
 
             //builder.Entity<YourEntity>(b =>
             //{
-            //    b.ToTable(BackendAdminConsts.DbTablePrefix + "YourEntities", BackendAdminConsts.DbSchema);
+            //    b.ToTable(AdministrationConsts.DbTablePrefix + "YourEntities", AdministrationConsts.DbSchema);
             //    b.ConfigureByConvention(); //auto configure for the base class props
             //    //...
             //});

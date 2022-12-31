@@ -26,7 +26,7 @@
 		<ProjectReference Include="..\..\..\..\..\framework\leopard\src\Leopard.AspNetCore.Swashbuckle\Leopard.AspNetCore.Swashbuckle.csproj" />
 		<ProjectReference Include="..\..\..\..\..\framework\leopard\src\Leopard.Consul\Leopard.Consul.csproj" />
 		<ProjectReference Include="..\..\..\..\..\framework\leopard\src\Leopard.Gateway\Leopard.Gateway.csproj" />
-		<ProjectReference Include="..\..\..\services\BackendAdmin\src\EShop.Administration.HttpApi\EShop.Administration.HttpApi.csproj" />
+		<ProjectReference Include="..\..\..\services\Administration\src\EShop.Administration.HttpApi\EShop.Administration.HttpApi.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

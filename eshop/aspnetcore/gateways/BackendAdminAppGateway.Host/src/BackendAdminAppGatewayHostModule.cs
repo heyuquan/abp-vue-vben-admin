@@ -8,7 +8,7 @@ using Volo.Abp.Autofac;
 using Volo.Abp.Modularity;
 using Volo.Abp.Swashbuckle;
 
-namespace BackendAdminAppGateway.Host
+namespace AdministrationAppGateway.Host
 {
     [DependsOn(
         typeof(AbpAutofacModule),
@@ -19,9 +19,9 @@ namespace BackendAdminAppGateway.Host
 
         typeof(AdministrationHttpApiModule)
     )]
-    public class BackendAdminAppGatewayHostModule : CommonGatewayModule
+    public class AdministrationAppGatewayHostModule : CommonGatewayModule
     {
-        public BackendAdminAppGatewayHostModule() : base(ModuleIdentity.BackendAdminAppGateway.ServiceType, ModuleIdentity.BackendAdminAppGateway.Name, false)
+        public AdministrationAppGatewayHostModule() : base(ModuleIdentity.AdministrationAppGateway.ServiceType, ModuleIdentity.AdministrationAppGateway.Name, false)
         { }        
     }
 }

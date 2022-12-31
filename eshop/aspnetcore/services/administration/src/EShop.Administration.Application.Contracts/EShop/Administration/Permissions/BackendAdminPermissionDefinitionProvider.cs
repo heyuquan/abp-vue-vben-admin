@@ -5,12 +5,12 @@ using Volo.Abp.MultiTenancy;
 
 namespace EShop.Administration.Permissions
 {
-    public class BackendAdminPermissionDefinitionProvider : PermissionDefinitionProvider
+    public class AdministrationPermissionDefinitionProvider : PermissionDefinitionProvider
     {
         public override void Define(IPermissionDefinitionContext context)
         {
-            var settingGroup = context.AddGroup(BackendAdminPermissions.GroupName, L("Permission:Settings"), MultiTenancySides.Host);
-            var settingManagement = settingGroup.AddPermission(BackendAdminPermissions.Settings.Default, L("Permission:SettingsManagement"), MultiTenancySides.Host);
+            var settingGroup = context.AddGroup(AdministrationPermissions.GroupName, L("Permission:Settings"), MultiTenancySides.Host);
+            var settingManagement = settingGroup.AddPermission(AdministrationPermissions.Settings.Default, L("Permission:SettingsManagement"), MultiTenancySides.Host);
         }
 
         private static LocalizableString L(string name)

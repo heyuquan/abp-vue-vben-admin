@@ -5,9 +5,9 @@ namespace EShop.Administration.Controllers
 {
     /* Inherit your controllers from this class.
      */
-    public abstract class BackendAdminController : AbpController
+    public abstract class AdministrationController : AbpController
     {
-        protected BackendAdminController()
+        protected AdministrationController()
         {
             LocalizationResource = typeof(AdministrationResource);
         }

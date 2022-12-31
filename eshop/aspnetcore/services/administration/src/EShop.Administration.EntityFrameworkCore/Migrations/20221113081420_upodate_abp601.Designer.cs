@@ -11,7 +11,7 @@ using Volo.Abp.EntityFrameworkCore;
 
 namespace EShop.Administration.EntityFrameworkCore.Migrations
 {
-    [DbContext(typeof(BackendAdminDbContext))]
+    [DbContext(typeof(AdministrationDbContext))]
     [Migration("20221113081420_upodate_abp601")]
     partial class upodate_abp601
     {

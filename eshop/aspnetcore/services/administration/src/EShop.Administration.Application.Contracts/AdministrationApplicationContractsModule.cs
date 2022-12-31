@@ -23,7 +23,7 @@ namespace EShop.Administration
     {
         public override void PreConfigureServices(ServiceConfigurationContext context)
         {
-            BackendAdminDtoExtensions.Configure();
+            AdministrationDtoExtensions.Configure();
         }
     }
 }

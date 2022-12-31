@@ -9,7 +9,7 @@ using Volo.Abp.EntityFrameworkCore;
 
 namespace EShop.Administration.EntityFrameworkCore.Migrations
 {
-    [DbContext(typeof(BackendAdminDbContext))]
+    [DbContext(typeof(AdministrationDbContext))]
     [Migration("20211028075904_init")]
     partial class init
     {

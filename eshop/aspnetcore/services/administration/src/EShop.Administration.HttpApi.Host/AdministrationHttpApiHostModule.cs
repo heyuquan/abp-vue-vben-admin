@@ -27,7 +27,7 @@ namespace EShop.Administration
     )]
     public class AdministrationHttpApiHostModule : CommonHostModule
     {
-        public AdministrationHttpApiHostModule() : base(ModuleIdentity.BackendAdmin.ServiceType, ModuleIdentity.BackendAdmin.Name, MultiTenancyConsts.IsEnabled)
+        public AdministrationHttpApiHostModule() : base(ModuleIdentity.Administration.ServiceType, ModuleIdentity.Administration.Name, MultiTenancyConsts.IsEnabled)
         { }
 
         public override void ConfigureServices(ServiceConfigurationContext context)
