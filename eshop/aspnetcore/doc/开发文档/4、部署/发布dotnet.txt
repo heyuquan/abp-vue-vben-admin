@@ -12,7 +12,7 @@
     SSO.AuthServer.IdentityServer   44115 （预留44111-44120）   
         identityserver配置链接
         https://localhost:44115/.well-known/openid-configuration
-    Leopard.BackendAdmin.HttpApi.Host   44145  （预留44141-44150）  
+    EShop.Administration.HttpApi.Host   44145  （预留44141-44150）  
     demob.api         44305 （预留44301-44310）
     democ.api         44405 （预留44401-44410）
 
@@ -36,7 +36,7 @@ nginx:http://159.75.253.251:8081/
 项目职责
 SSO.AuthServer.HttpApi.Host：封装Account、Identity服务
 SSO.AuthServer.IdentityServer：对接ids4，专门做身份认证
-Leopard.BackendAdmin.HttpApi.Host：后台管理服务，包含如：审计、特征、权限、设置管理、租户、版本、等
+EShop.Administration.HttpApi.Host：后台管理服务，包含如：审计、特征、权限、设置管理、租户、版本、等
 
 xftp中文文件名乱码
 https://blog.csdn.net/fj_changing/article/details/122787205

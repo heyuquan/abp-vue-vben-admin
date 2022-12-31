@@ -15,6 +15,6 @@ namespace Leopard.Base.Shared
         public const string Account = "LeopardAccount";
         public const string AccountAdmin = "LeopardAccountAdmin";
         public const string AccountPublic = "LeopardAccountPublic";
-        public const string BackendAdmin = "LeopardBackendAdmin";
+        public const string BackendAdmin = "Administration";
     }
 }

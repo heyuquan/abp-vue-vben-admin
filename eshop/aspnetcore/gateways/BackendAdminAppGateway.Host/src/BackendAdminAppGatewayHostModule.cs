@@ -1,6 +1,6 @@
 using Leopard.AspNetCore.Serilog;
 using Leopard.AspNetCore.Swashbuckle;
-using Leopard.BackendAdmin;
+using EShop.Administration;
 using Leopard.Base.Shared;
 using Leopard.Consul;
 using Leopard.Gateway;
@@ -17,7 +17,7 @@ namespace BackendAdminAppGateway.Host
         typeof(LeopardConsulModule),
         typeof(LeopardAspNetCoreSwashbuckleModule),
 
-        typeof(LeopardBackendAdminHttpApiModule)
+        typeof(AdministrationHttpApiModule)
     )]
     public class BackendAdminAppGatewayHostModule : CommonGatewayModule
     {

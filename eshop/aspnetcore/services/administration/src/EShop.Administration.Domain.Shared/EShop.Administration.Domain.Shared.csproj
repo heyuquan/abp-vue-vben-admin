@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\..\common.props" />
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<RootNamespace></RootNamespace>
+		<GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Volo.Abp.AuditLogging.Domain.Shared" Version="6.0.1" />
+		<PackageReference Include="Volo.Abp.FeatureManagement.Domain.Shared" Version="6.0.1" />
+		<PackageReference Include="Volo.Abp.PermissionManagement.Domain.Shared" Version="6.0.1" />
+		<PackageReference Include="Volo.Abp.SettingManagement.Domain.Shared" Version="6.0.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Remove="EShop\Administration\Localization\*\*.json" />
+		<EmbeddedResource Include="EShop\Administration\Localization\*\*.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\..\module\Saas\src\Leopard.Saas.Domain.Shared\Leopard.Saas.Domain.Shared.csproj" />
+		<ProjectReference Include="..\..\..\..\common\src\Leopard.Base.Shared\Leopard.Base.Shared.csproj" />
+	</ItemGroup>
+
+</Project>
