@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\module\Account\src\Leopard.Account.Admin.Application.Contracts\Leopard.Account.Admin.Application.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\..\module\Account\src\EShop.Account.Admin.Application.Contracts\EShop.Account.Admin.Application.Contracts.csproj" />
     <ProjectReference Include="..\..\..\..\module\Identity\src\Leopard.Identity.Application.Contracts\Leopard.Identity.Application.Contracts.csproj" />
     <ProjectReference Include="..\..\..\..\module\Saas\src\Leopard.Saas.Application.Contracts\Leopard.Saas.Application.Contracts.csproj" />
     <ProjectReference Include="..\..\..\..\common\src\Leopard.Base.Shared\Leopard.Base.Shared.csproj" />

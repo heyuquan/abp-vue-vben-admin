@@ -1,4 +1,4 @@
-﻿using Leopard.Account.Admin;
+﻿using EShop.Account.Admin;
 using Leopard.Identity;
 using Leopard.Saas;
 using Volo.Abp.FeatureManagement;
@@ -10,13 +10,13 @@ using Volo.Abp.SettingManagement;
 namespace EShop.Administration
 {
     [DependsOn(
-        typeof(AdministrationDomainSharedModule),
+        typeof(EShopAdministrationDomainSharedModule),
         typeof(AbpFeatureManagementApplicationContractsModule),
         typeof(AbpPermissionManagementApplicationContractsModule),
         typeof(AbpSettingManagementApplicationContractsModule),
         typeof(AbpObjectExtendingModule),
         typeof(LeopardSaasApplicationContractsModule),
-        typeof(LeopardAccountAdminApplicationContractsModule),
+        typeof(EShopAccountAdminApplicationContractsModule),
         typeof(LeopardIdentityApplicationContractsModule)
     )]
     public class AdministrationApplicationContractsModule : AbpModule

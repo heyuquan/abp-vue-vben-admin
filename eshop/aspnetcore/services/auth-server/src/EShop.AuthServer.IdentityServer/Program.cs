@@ -8,7 +8,7 @@ namespace EShop.AuthServer
     {
         public async static Task<int> Main(string[] args)
         {
-            var commonProgram = new CommonHostProgram<AuthServerIdentityServerModule>(ModuleIdentity.AuthIdentityServer.ServiceType, ModuleIdentity.AuthIdentityServer.Name);
+            var commonProgram = new CommonHostProgram<EShopAuthServerIdentityServerModule>(ModuleIdentity.AuthIdentityServer.ServiceType, ModuleIdentity.AuthIdentityServer.Name);
             return await commonProgram.RunAsync(args);
         }
     }

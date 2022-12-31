@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\..\common.props" />
+
+	<PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+		<RootNamespace></RootNamespace>
+		<GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Leopard\**" />
+	  <EmbeddedResource Remove="Leopard\**" />
+	  <None Remove="Leopard\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Volo.Abp.Sms" Version="6.0.1" />
+		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="$(MicrosoftPackageVersion)" />
+		<ProjectReference Include="..\..\..\Identity\src\Leopard.Identity.Application\Leopard.Identity.Application.csproj" />
+		<ProjectReference Include="..\EShop.Account.Public.Application.Contracts\EShop.Account.Public.Application.Contracts.csproj" />
+		<ProjectReference Include="..\EShop.Account.Shared.Application\EShop.Account.Shared.Application.csproj" />
+	</ItemGroup>
+
+</Project>

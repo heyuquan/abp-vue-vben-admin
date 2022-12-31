@@ -5,25 +5,25 @@ VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{138BBFFC-09B9-49FB-9C57-E25327CCE0C1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Account.Admin.Application", "src\Leopard.Account.Admin.Application\Leopard.Account.Admin.Application.csproj", "{5CD604CF-4F04-4D99-A5B6-B34AA1A42BAF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EShop.Account.Admin.Application", "src\EShop.Account.Admin.Application\EShop.Account.Admin.Application.csproj", "{5CD604CF-4F04-4D99-A5B6-B34AA1A42BAF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Account.Admin.HttpApi", "src\Leopard.Account.Admin.HttpApi\Leopard.Account.Admin.HttpApi.csproj", "{67CF2C59-469B-4088-8C0D-53E6AEBFB18D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EShop.Account.Admin.HttpApi", "src\EShop.Account.Admin.HttpApi\EShop.Account.Admin.HttpApi.csproj", "{67CF2C59-469B-4088-8C0D-53E6AEBFB18D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Account.Admin.Application.Contracts", "src\Leopard.Account.Admin.Application.Contracts\Leopard.Account.Admin.Application.Contracts.csproj", "{284D86F4-3BEE-44A4-A1C6-85CA64090763}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EShop.Account.Admin.Application.Contracts", "src\EShop.Account.Admin.Application.Contracts\EShop.Account.Admin.Application.Contracts.csproj", "{284D86F4-3BEE-44A4-A1C6-85CA64090763}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Account.Admin.HttpApi.Client", "src\Leopard.Account.Admin.HttpApi.Client\Leopard.Account.Admin.HttpApi.Client.csproj", "{3FF4095A-E2BD-4542-BCD1-0FAA7667C403}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EShop.Account.Admin.HttpApi.Client", "src\EShop.Account.Admin.HttpApi.Client\EShop.Account.Admin.HttpApi.Client.csproj", "{3FF4095A-E2BD-4542-BCD1-0FAA7667C403}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Account.Public.Application", "src\Leopard.Account.Public.Application\Leopard.Account.Public.Application.csproj", "{62B4D754-9869-4244-AD15-CE97C2BFE284}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EShop.Account.Public.Application", "src\EShop.Account.Public.Application\EShop.Account.Public.Application.csproj", "{62B4D754-9869-4244-AD15-CE97C2BFE284}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Account.Public.Application.Contracts", "src\Leopard.Account.Public.Application.Contracts\Leopard.Account.Public.Application.Contracts.csproj", "{8A371CB8-7A1B-429E-AAB0-FFAD7F2BE809}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EShop.Account.Public.Application.Contracts", "src\EShop.Account.Public.Application.Contracts\EShop.Account.Public.Application.Contracts.csproj", "{8A371CB8-7A1B-429E-AAB0-FFAD7F2BE809}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Account.Public.HttpApi", "src\Leopard.Account.Public.HttpApi\Leopard.Account.Public.HttpApi.csproj", "{839716D9-79C7-4D34-A1C3-4F329018B5E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EShop.Account.Public.HttpApi", "src\EShop.Account.Public.HttpApi\EShop.Account.Public.HttpApi.csproj", "{839716D9-79C7-4D34-A1C3-4F329018B5E2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Account.Public.HttpApi.Client", "src\Leopard.Account.Public.HttpApi.Client\Leopard.Account.Public.HttpApi.Client.csproj", "{CA25F1C6-C495-4AFB-A795-F44756BCC1D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EShop.Account.Public.HttpApi.Client", "src\EShop.Account.Public.HttpApi.Client\EShop.Account.Public.HttpApi.Client.csproj", "{CA25F1C6-C495-4AFB-A795-F44756BCC1D4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Account.Shared.Application", "src\Leopard.Account.Shared.Application\Leopard.Account.Shared.Application.csproj", "{31B5B170-E2EC-47B3-AB36-48CF6544123C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EShop.Account.Shared.Application", "src\EShop.Account.Shared.Application\EShop.Account.Shared.Application.csproj", "{31B5B170-E2EC-47B3-AB36-48CF6544123C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Leopard.Account.Shared.Application.Contracts", "src\Leopard.Account.Shared.Application.Contracts\Leopard.Account.Shared.Application.Contracts.csproj", "{E4635FDB-77A7-4E6A-A951-FBB6CB673E16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EShop.Account.Shared.Application.Contracts", "src\EShop.Account.Shared.Application.Contracts\EShop.Account.Shared.Application.Contracts.csproj", "{E4635FDB-77A7-4E6A-A951-FBB6CB673E16}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

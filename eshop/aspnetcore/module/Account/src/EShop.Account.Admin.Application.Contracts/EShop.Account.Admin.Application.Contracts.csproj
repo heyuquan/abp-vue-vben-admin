@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace></RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\common\src\Leopard.Base.Shared\Leopard.Base.Shared.csproj" />
+    <ProjectReference Include="..\EShop.Account.Shared.Application.Contracts\EShop.Account.Shared.Application.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>

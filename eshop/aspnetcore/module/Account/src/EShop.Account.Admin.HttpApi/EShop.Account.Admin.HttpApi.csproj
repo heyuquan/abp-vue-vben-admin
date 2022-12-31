@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\..\common.props" />
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<RootNamespace></RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Volo.Abp.AspNetCore.Mvc" Version="6.0.1" />
+		<ProjectReference Include="..\EShop.Account.Admin.Application.Contracts\EShop.Account.Admin.Application.Contracts.csproj" />
+	</ItemGroup>
+
+</Project>
