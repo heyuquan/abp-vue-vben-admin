@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<Import Project="..\..\..\..\configureawait.props" />
-	<Import Project="..\..\..\..\common.props" />
+	<Import Project="..\..\..\common.props" />
 
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
@@ -14,7 +14,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\..\..\framework-aspnetcore\src\Leopard.Core\Leopard.csproj" />
+		<ProjectReference Include="..\..\..\..\..\..\..\framework\leopard\src\Leopard.Core\Leopard.csproj" />
 		<ProjectReference Include="..\..\..\Mk.DemoB\src\Mk.DemoB.Domain.Shared\Mk.DemoB.Domain.Shared.csproj" />
 		<ProjectReference Include="..\Mk.DemoC.Domain.Shared\Mk.DemoC.Domain.Shared.csproj" />
 	</ItemGroup>

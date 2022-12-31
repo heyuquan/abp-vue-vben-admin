@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<Import Project="..\..\..\common.props" />
+	<Import Project="..\..\common.props" />
 	
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -8,9 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\framework-aspnetcore\src\Leopard.UI.Navigation\Leopard.UI.Navigation.csproj" />
-    <ProjectReference Include="..\..\..\module\Identity\Leopard.Identity.Application.Contracts\Leopard.Identity.Application.Contracts.csproj" />
-    <ProjectReference Include="..\..\..\module\Saas\Leopard.Saas.Application.Contracts\Leopard.Saas.Application.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\..\..\..\framework\leopard\src\Leopard.UI.Navigation\Leopard.UI.Navigation.csproj" />
+    <ProjectReference Include="..\..\..\..\module\Identity\src\Leopard.Identity.Application.Contracts\Leopard.Identity.Application.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\..\module\Saas\src\Leopard.Saas.Application.Contracts\Leopard.Saas.Application.Contracts.csproj" />
     <ProjectReference Include="..\Leopard.BackendAdmin.Application.Contracts\Leopard.BackendAdmin.Application.Contracts.csproj" />
   </ItemGroup>
 

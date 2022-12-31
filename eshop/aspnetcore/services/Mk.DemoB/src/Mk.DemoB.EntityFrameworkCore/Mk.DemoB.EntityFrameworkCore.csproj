@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<Import Project="..\..\..\..\configureawait.props" />
-	<Import Project="..\..\..\..\common.props" />
+	<Import Project="..\..\..\common.props" />
 
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
@@ -17,9 +17,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\..\..\framework-aspnetcore\src\Leopard.Core\Leopard.csproj" />
-		<ProjectReference Include="..\..\..\..\..\framework-aspnetcore\src\Leopard.EntityFrameworkCore\Leopard.EntityFrameworkCore.csproj" />
-		<ProjectReference Include="..\..\..\..\module\Saas\Leopard.Saas.EntityFrameworkCore\Leopard.Saas.EntityFrameworkCore.csproj" />
+		<ProjectReference Include="..\..\..\..\..\..\..\framework\leopard\src\Leopard.Core\Leopard.csproj" />
+		<ProjectReference Include="..\..\..\..\..\..\..\framework\leopard\src\Leopard.EntityFrameworkCore\Leopard.EntityFrameworkCore.csproj" />
+		<ProjectReference Include="..\..\..\..\..\module\Saas\src\Leopard.Saas.EntityFrameworkCore\Leopard.Saas.EntityFrameworkCore.csproj" />
 		<ProjectReference Include="..\Mk.DemoB.Domain\Mk.DemoB.Domain.csproj" />		
 	</ItemGroup>
 

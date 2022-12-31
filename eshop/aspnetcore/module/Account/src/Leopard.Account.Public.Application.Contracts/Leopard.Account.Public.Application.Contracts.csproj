@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<Import Project="..\..\..\common.props" />
+	<Import Project="..\..\common.props" />
 
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
@@ -13,7 +13,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Volo.Abp.Identity.Domain.Shared" Version="6.0.1" />
-		<ProjectReference Include="..\..\Identity\Leopard.Identity.Application.Contracts\Leopard.Identity.Application.Contracts.csproj" />
+		<ProjectReference Include="..\..\..\Identity\src\Leopard.Identity.Application.Contracts\Leopard.Identity.Application.Contracts.csproj" />
 		<ProjectReference Include="..\Leopard.Account.Shared.Application.Contracts\Leopard.Account.Shared.Application.Contracts.csproj" />
 	</ItemGroup>
 

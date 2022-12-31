@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<Import Project="..\..\..\common.props" />
+	<Import Project="..\..\common.props" />
 
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
@@ -8,7 +8,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\module\Saas\Leopard.Saas.Domain\Leopard.Saas.Domain.csproj" />
+		<ProjectReference Include="..\..\..\..\module\Saas\src\Leopard.Saas.Domain\Leopard.Saas.Domain.csproj" />
 		<ProjectReference Include="..\Leopard.BackendAdmin.Domain.Shared\Leopard.BackendAdmin.Domain.Shared.csproj" />
 	</ItemGroup>
 

@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<Import Project="..\..\..\common.props" />
+	<Import Project="..\..\common.props" />
 	
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
@@ -20,7 +20,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\Identity\Leopard.Identity.Application.Contracts\Leopard.Identity.Application.Contracts.csproj" />
+	  <ProjectReference Include="..\..\..\Identity\src\Leopard.Identity.Application.Contracts\Leopard.Identity.Application.Contracts.csproj" />
 	</ItemGroup>
 
 </Project>

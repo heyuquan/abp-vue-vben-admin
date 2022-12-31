@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<Import Project="..\..\..\common.props" />
+	<Import Project="..\..\common.props" />
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -8,10 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\module\Account\Leopard.Account.Admin.Application.Contracts\Leopard.Account.Admin.Application.Contracts.csproj" />
-    <ProjectReference Include="..\..\..\module\Identity\Leopard.Identity.Application.Contracts\Leopard.Identity.Application.Contracts.csproj" />
-    <ProjectReference Include="..\..\..\module\Saas\Leopard.Saas.Application.Contracts\Leopard.Saas.Application.Contracts.csproj" />
-    <ProjectReference Include="..\..\..\..\common\Leopard.Base.Shared\Leopard.Base.Shared.csproj" />
+    <ProjectReference Include="..\..\..\..\module\Account\src\Leopard.Account.Admin.Application.Contracts\Leopard.Account.Admin.Application.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\..\module\Identity\src\Leopard.Identity.Application.Contracts\Leopard.Identity.Application.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\..\module\Saas\src\Leopard.Saas.Application.Contracts\Leopard.Saas.Application.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\..\common\src\Leopard.Base.Shared\Leopard.Base.Shared.csproj" />
     <ProjectReference Include="..\Leopard.BackendAdmin.Domain.Shared\Leopard.BackendAdmin.Domain.Shared.csproj" />
   </ItemGroup>
 
