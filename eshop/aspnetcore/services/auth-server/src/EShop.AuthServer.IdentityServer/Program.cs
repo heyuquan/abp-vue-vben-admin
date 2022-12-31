@@ -2,7 +2,7 @@ using Leopard.Base.Shared;
 using Leopard.Host;
 using System.Threading.Tasks;
 
-namespace SSO.AuthServer
+namespace EShop.AuthServer
 {
     public class Program
     {

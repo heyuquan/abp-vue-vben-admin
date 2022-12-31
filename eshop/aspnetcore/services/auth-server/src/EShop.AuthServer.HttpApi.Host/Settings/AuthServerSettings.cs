@@ -1,4 +1,4 @@
-﻿namespace SSO.AuthServer.Settings
+﻿namespace EShop.AuthServer.Settings
 {
     public static class AuthServerSettings
     {

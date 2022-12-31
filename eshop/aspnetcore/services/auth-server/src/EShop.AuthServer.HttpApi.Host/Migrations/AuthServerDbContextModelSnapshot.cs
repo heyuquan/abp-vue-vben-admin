@@ -3,12 +3,12 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SSO.AuthServer.EntityFrameworkCore;
+using EShop.AuthServer.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
 
 #nullable disable
 
-namespace SSO.AuthServer.HttpApi.Host.Migrations
+namespace EShop.AuthServer.HttpApi.Host.Migrations
 {
     [DbContext(typeof(AuthServerDbContext))]
     partial class AuthServerDbContextModelSnapshot : ModelSnapshot

@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "SSO.AuthServer.IdentityServer": {
+    "EShop.AuthServer.IdentityServer": {
       "commandName": "Project",
       "launchBrowser": true,
       "applicationUrl": "https://localhost:44115",

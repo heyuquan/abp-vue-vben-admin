@@ -7,7 +7,7 @@ using Volo.Abp.Identity;
 using Volo.Abp.Identity.EntityFrameworkCore;
 using Volo.Abp.IdentityServer.EntityFrameworkCore;
 
-namespace SSO.AuthServer.EntityFrameworkCore
+namespace EShop.AuthServer.EntityFrameworkCore
 {
     [ReplaceDbContext(typeof(IIdentityDbContext))]
     [ConnectionStringName("Default")]

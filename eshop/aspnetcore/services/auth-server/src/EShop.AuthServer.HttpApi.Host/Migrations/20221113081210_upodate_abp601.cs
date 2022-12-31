@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace SSO.AuthServer.HttpApi.Host.Migrations
+namespace EShop.AuthServer.HttpApi.Host.Migrations
 {
     public partial class upodate_abp601 : Migration
     {

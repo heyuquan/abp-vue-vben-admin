@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 
-namespace SSO.AuthServer.EntityFrameworkCore
+namespace EShop.AuthServer.EntityFrameworkCore
 {
     /* This class is needed for EF Core console commands
      * (like Add-Migration and Update-Database commands) */
@@ -24,7 +24,7 @@ namespace SSO.AuthServer.EntityFrameworkCore
         private static IConfigurationRoot BuildConfiguration()
         {
             var builder = new ConfigurationBuilder()
-                .SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../SSO.AuthServer.HttpApi.Host/"))
+                .SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../EShop.AuthServer.HttpApi.Host/"))
                 .AddJsonFile("appsettings.json", optional: false);
 
             return builder.Build();

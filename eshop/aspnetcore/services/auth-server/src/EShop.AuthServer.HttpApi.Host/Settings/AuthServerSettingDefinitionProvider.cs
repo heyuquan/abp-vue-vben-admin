@@ -1,6 +1,6 @@
 ﻿using Volo.Abp.Settings;
 
-namespace SSO.AuthServer.Settings
+namespace EShop.AuthServer.Settings
 {
     public class AuthServerSettingDefinitionProvider : SettingDefinitionProvider
     {

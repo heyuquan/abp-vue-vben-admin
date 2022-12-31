@@ -1,7 +1,7 @@
 ﻿using Volo.Abp.Ui.Branding;
 using Volo.Abp.DependencyInjection;
 
-namespace SSO.AuthServer
+namespace EShop.AuthServer
 {
     [Dependency(ReplaceServices = true)]
     public class AuthServerBrandingProvider : DefaultBrandingProvider

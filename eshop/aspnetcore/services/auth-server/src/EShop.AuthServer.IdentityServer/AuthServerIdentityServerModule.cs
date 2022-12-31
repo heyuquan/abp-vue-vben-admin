@@ -22,7 +22,7 @@ using Volo.Abp.Modularity;
 using Volo.Abp.PermissionManagement.EntityFrameworkCore;
 using Volo.Abp.UI.Navigation.Urls;
 
-namespace SSO.AuthServer
+namespace EShop.AuthServer
 {
     [DependsOn(
         typeof(AbpAutofacModule),

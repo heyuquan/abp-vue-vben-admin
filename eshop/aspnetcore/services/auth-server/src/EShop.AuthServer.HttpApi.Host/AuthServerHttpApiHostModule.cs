@@ -4,7 +4,7 @@ using Leopard.Consul;
 using Leopard.EntityFrameworkCore;
 using Leopard.Host;
 using Microsoft.Extensions.DependencyInjection;
-using SSO.AuthServer.Localization;
+using EShop.AuthServer.Localization;
 using Volo.Abp;
 using Volo.Abp.Account;
 using Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy;
@@ -23,7 +23,7 @@ using Volo.Abp.Threading;
 using Volo.Abp.Validation.Localization;
 using Volo.Abp.VirtualFileSystem;
 
-namespace SSO.AuthServer
+namespace EShop.AuthServer
 {
     [DependsOn(
         typeof(AbpAutofacModule),

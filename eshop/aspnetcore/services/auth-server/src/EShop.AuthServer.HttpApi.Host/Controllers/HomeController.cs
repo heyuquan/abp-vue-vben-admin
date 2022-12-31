@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc;
 
-namespace SSO.AuthServer.Controllers
+namespace EShop.AuthServer.Controllers
 {
     public class HomeController : AbpController
     {

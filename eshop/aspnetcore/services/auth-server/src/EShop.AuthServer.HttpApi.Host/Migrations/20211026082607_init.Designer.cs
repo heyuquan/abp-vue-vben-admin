@@ -4,10 +4,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SSO.AuthServer.EntityFrameworkCore;
+using EShop.AuthServer.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
 
-namespace SSO.AuthServer.HttpApi.Host.Migrations
+namespace EShop.AuthServer.HttpApi.Host.Migrations
 {
     [DbContext(typeof(AuthServerDbContext))]
     [Migration("20211026082607_init")]
