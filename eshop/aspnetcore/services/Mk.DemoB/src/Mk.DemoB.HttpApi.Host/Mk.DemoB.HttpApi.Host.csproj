@@ -30,7 +30,7 @@
 		<ProjectReference Include="..\..\..\..\..\framework-aspnetcore\src\Leopard.AspNetCore.Swashbuckle\Leopard.AspNetCore.Swashbuckle.csproj" />
 		<ProjectReference Include="..\..\..\..\..\framework-aspnetcore\src\Leopard.Consul\Leopard.Consul.csproj" />
 		<ProjectReference Include="..\..\..\..\..\framework-aspnetcore\src\Leopard.Host\Leopard.Host.csproj" />
-		<ProjectReference Include="..\..\..\..\shared\Leopard.Base.Shared\Leopard.Base.Shared.csproj" />
+		<ProjectReference Include="..\..\..\..\..\common\Leopard.Base.Shared\Leopard.Base.Shared.csproj" />
 		<ProjectReference Include="..\Mk.DemoB.Application\Mk.DemoB.Application.csproj" />
 		<ProjectReference Include="..\Mk.DemoB.HttpApi\Mk.DemoB.HttpApi.csproj" />
 	</ItemGroup>

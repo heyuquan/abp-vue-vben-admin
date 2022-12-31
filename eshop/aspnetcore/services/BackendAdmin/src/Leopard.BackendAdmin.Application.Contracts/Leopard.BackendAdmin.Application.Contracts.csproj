@@ -11,7 +11,7 @@
     <ProjectReference Include="..\..\..\module\Account\Leopard.Account.Admin.Application.Contracts\Leopard.Account.Admin.Application.Contracts.csproj" />
     <ProjectReference Include="..\..\..\module\Identity\Leopard.Identity.Application.Contracts\Leopard.Identity.Application.Contracts.csproj" />
     <ProjectReference Include="..\..\..\module\Saas\Leopard.Saas.Application.Contracts\Leopard.Saas.Application.Contracts.csproj" />
-    <ProjectReference Include="..\..\..\shared\Leopard.Base.Shared\Leopard.Base.Shared.csproj" />
+    <ProjectReference Include="..\..\..\..\common\Leopard.Base.Shared\Leopard.Base.Shared.csproj" />
     <ProjectReference Include="..\Leopard.BackendAdmin.Domain.Shared\Leopard.BackendAdmin.Domain.Shared.csproj" />
   </ItemGroup>
 

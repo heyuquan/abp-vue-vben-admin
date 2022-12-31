@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\shared\Leopard.Base.Shared\Leopard.Base.Shared.csproj" />
+    <ProjectReference Include="..\..\..\..\common\Leopard.Base.Shared\Leopard.Base.Shared.csproj" />
     <ProjectReference Include="..\Leopard.Account.Shared.Application.Contracts\Leopard.Account.Shared.Application.Contracts.csproj" />
   </ItemGroup>
 

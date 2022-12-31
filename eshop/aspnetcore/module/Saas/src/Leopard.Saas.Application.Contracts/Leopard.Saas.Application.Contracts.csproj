@@ -16,7 +16,7 @@
 		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="$(MicrosoftPackageVersion)" />
 		<PackageReference Include="Volo.Abp.Ddd.Application" Version="6.0.1" />
 		<PackageReference Include="Volo.Abp.Authorization" Version="6.0.1" />
-		<ProjectReference Include="..\..\..\shared\Leopard.Base.Shared\Leopard.Base.Shared.csproj" />
+		<ProjectReference Include="..\..\..\..\common\Leopard.Base.Shared\Leopard.Base.Shared.csproj" />
 		<ProjectReference Include="..\Leopard.Saas.Domain.Shared\Leopard.Saas.Domain.Shared.csproj" />
 	</ItemGroup>
 

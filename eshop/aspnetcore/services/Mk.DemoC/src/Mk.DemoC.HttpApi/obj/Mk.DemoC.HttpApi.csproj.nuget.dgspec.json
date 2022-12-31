@@ -1,0 +1,264 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\services\\Mk.DemoC\\src\\Mk.DemoC.HttpApi\\Mk.DemoC.HttpApi.csproj": {}
+  },
+  "projects": {
+    "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\services\\Mk.DemoC\\src\\Mk.DemoC.Application.Contracts\\Mk.DemoC.Application.Contracts.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\services\\Mk.DemoC\\src\\Mk.DemoC.Application.Contracts\\Mk.DemoC.Application.Contracts.csproj",
+        "projectName": "Mk.DemoC.Application.Contracts",
+        "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\services\\Mk.DemoC\\src\\Mk.DemoC.Application.Contracts\\Mk.DemoC.Application.Contracts.csproj",
+        "packagesPath": "D:\\Data\\.nuget\\packages",
+        "outputPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\services\\Mk.DemoC\\src\\Mk.DemoC.Application.Contracts\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "D:\\Work\\OpenSource\\abp-vue-vben-admin\\NuGet.Config",
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.cdn.azure.cn/v3/index.json": {},
+          "https://nuget.cnblogs.com/v3/index.json": {},
+          "https://nuget.cnblogs.com/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\services\\Mk.DemoC\\src\\Mk.DemoC.Domain.Shared\\Mk.DemoC.Domain.Shared.csproj": {
+                "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\services\\Mk.DemoC\\src\\Mk.DemoC.Domain.Shared\\Mk.DemoC.Domain.Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "ConfigureAwait.Fody": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.3.1, )"
+            },
+            "Fody": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.5.4, )"
+            },
+            "Volo.Abp.Authorization": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Volo.Abp.Ddd.Application.Contracts": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\services\\Mk.DemoC\\src\\Mk.DemoC.Domain.Shared\\Mk.DemoC.Domain.Shared.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\services\\Mk.DemoC\\src\\Mk.DemoC.Domain.Shared\\Mk.DemoC.Domain.Shared.csproj",
+        "projectName": "Mk.DemoC.Domain.Shared",
+        "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\services\\Mk.DemoC\\src\\Mk.DemoC.Domain.Shared\\Mk.DemoC.Domain.Shared.csproj",
+        "packagesPath": "D:\\Data\\.nuget\\packages",
+        "outputPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\services\\Mk.DemoC\\src\\Mk.DemoC.Domain.Shared\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "D:\\Work\\OpenSource\\abp-vue-vben-admin\\NuGet.Config",
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.cdn.azure.cn/v3/index.json": {},
+          "https://nuget.cnblogs.com/v3/index.json": {},
+          "https://nuget.cnblogs.com/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "ConfigureAwait.Fody": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.3.1, )"
+            },
+            "Fody": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.5.4, )"
+            },
+            "Microsoft.Extensions.FileProviders.Embedded": {
+              "target": "Package",
+              "version": "[6.0.*, )"
+            },
+            "Volo.Abp.Validation": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\services\\Mk.DemoC\\src\\Mk.DemoC.HttpApi\\Mk.DemoC.HttpApi.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\services\\Mk.DemoC\\src\\Mk.DemoC.HttpApi\\Mk.DemoC.HttpApi.csproj",
+        "projectName": "Mk.DemoC.HttpApi",
+        "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\services\\Mk.DemoC\\src\\Mk.DemoC.HttpApi\\Mk.DemoC.HttpApi.csproj",
+        "packagesPath": "D:\\Data\\.nuget\\packages",
+        "outputPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\services\\Mk.DemoC\\src\\Mk.DemoC.HttpApi\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "D:\\Work\\OpenSource\\abp-vue-vben-admin\\NuGet.Config",
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.cdn.azure.cn/v3/index.json": {},
+          "https://nuget.cnblogs.com/v3/index.json": {},
+          "https://nuget.cnblogs.com/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\services\\Mk.DemoC\\src\\Mk.DemoC.Application.Contracts\\Mk.DemoC.Application.Contracts.csproj": {
+                "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\services\\Mk.DemoC\\src\\Mk.DemoC.Application.Contracts\\Mk.DemoC.Application.Contracts.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "ConfigureAwait.Fody": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.3.1, )"
+            },
+            "Fody": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.5.4, )"
+            },
+            "Volo.Abp.AspNetCore.Mvc": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
