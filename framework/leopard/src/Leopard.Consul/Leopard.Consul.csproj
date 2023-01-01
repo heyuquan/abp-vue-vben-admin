@@ -14,12 +14,5 @@
 		<PackageReference Include="Consul" Version="1.6.10.7" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="$(MicrosoftPackageVersion)" />
 	</ItemGroup>
-
-	<ItemGroup>
-	  <PackageReference Update="Fody" Version="6.6.1">
-	    <PrivateAssets>all</PrivateAssets>
-	    <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
-	  </PackageReference>
-	</ItemGroup>
-
+  
 </Project>
