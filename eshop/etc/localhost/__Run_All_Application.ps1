@@ -1,8 +1,8 @@
-start powershell .\01_SSO.AuthServer.HttpApi.Host.ps1
-start powershell .\02_SSO.AuthServer.IdentityServer.ps1
+start powershell .\01_EShop.AuthServer.HttpApi.Host.ps1
+start powershell .\02_EShop.AuthServer.IdentityServer.ps1
 
 # 应用程序
-start powershell .\06_Leopard.BackendAdmin.HttpApi.Host.ps1
+start powershell .\06_EShop.Administration.HttpApi.Host.ps1
 
 # gateway
 start powershell .\21_BackendAdminAppGateway.Host.ps1

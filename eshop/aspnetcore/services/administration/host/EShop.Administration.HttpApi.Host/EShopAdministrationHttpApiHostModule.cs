@@ -64,16 +64,16 @@ namespace EShop.Administration
                 {
                     options.FileSets.ReplaceEmbeddedByPhysical<EShopAdministrationDomainSharedModule>(
                         Path.Combine(hostingEnvironment.ContentRootPath,
-                            $"..{Path.DirectorySeparatorChar}EShop.Administration.Domain.Shared"));
+                            $"..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}src{Path.DirectorySeparatorChar}EShop.Administration.Domain.Shared"));
                     options.FileSets.ReplaceEmbeddedByPhysical<EShopAdministrationDomainModule>(
                         Path.Combine(hostingEnvironment.ContentRootPath,
-                            $"..{Path.DirectorySeparatorChar}EShop.Administration.Domain"));
+                            $"..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}src{Path.DirectorySeparatorChar}EShop.Administration.Domain"));
                     options.FileSets.ReplaceEmbeddedByPhysical<AdministrationApplicationContractsModule>(
                         Path.Combine(hostingEnvironment.ContentRootPath,
-                            $"..{Path.DirectorySeparatorChar}EShop.Administration.Application.Contracts"));
+                            $"..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}src{Path.DirectorySeparatorChar}EShop.Administration.Application.Contracts"));
                     options.FileSets.ReplaceEmbeddedByPhysical<EShopAdministrationApplicationModule>(
                         Path.Combine(hostingEnvironment.ContentRootPath,
-                            $"..{Path.DirectorySeparatorChar}EShop.Administration.Application"));
+                            $"..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}src{Path.DirectorySeparatorChar}EShop.Administration.Application"));
                 });
             }
         }

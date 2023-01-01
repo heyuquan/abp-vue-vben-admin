@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EShop.Administration.Entity
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EShop.Administration.HttpApi", "src\EShop.Administration.HttpApi\EShop.Administration.HttpApi.csproj", "{E5494412-F2DC-4701-9A16-8E47CCE0123F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EShop.Administration.HttpApi.Host", "src\EShop.Administration.HttpApi.Host\EShop.Administration.HttpApi.Host.csproj", "{3220BC0E-DA26-476C-B21C-81D66DFB589D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EShop.Administration.HttpApi.Host", "host\EShop.Administration.HttpApi.Host\EShop.Administration.HttpApi.Host.csproj", "{3220BC0E-DA26-476C-B21C-81D66DFB589D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EShop.Administration.Web", "src\EShop.Administration.Web\EShop.Administration.Web.csproj", "{B87914B6-3F37-4CCA-A8A1-3E734E2B261C}"
 EndProject

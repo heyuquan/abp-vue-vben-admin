@@ -23,9 +23,9 @@
     <ProjectReference Include="..\..\..\..\..\..\framework\leopard\src\Leopard.Consul\Leopard.Consul.csproj" />
     <ProjectReference Include="..\..\..\..\..\..\framework\leopard\src\Leopard.Host\Leopard.Host.csproj" />
     <ProjectReference Include="..\..\..\..\common\src\EShop.Common.Shared\EShop.Common.Shared.csproj" />
-    <ProjectReference Include="..\EShop.Administration.Application\EShop.Administration.Application.csproj" />
-    <ProjectReference Include="..\EShop.Administration.EntityFrameworkCore\EShop.Administration.EntityFrameworkCore.csproj" />
-    <ProjectReference Include="..\EShop.Administration.HttpApi\EShop.Administration.HttpApi.csproj" />
+    <ProjectReference Include="..\..\src\EShop.Administration.Application\EShop.Administration.Application.csproj" />
+    <ProjectReference Include="..\..\src\EShop.Administration.EntityFrameworkCore\EShop.Administration.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\..\src\EShop.Administration.HttpApi\EShop.Administration.HttpApi.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,6 +1,6 @@
 . "./__build-aspnetcore-common.ps1"
 
-$solutionPath = $rootFolder + "/../services/SSO.AuthServer/SSO.AuthServer.IdentityServer"
+$solutionPath = $rootFolder + "/../../aspnetcore/services/administration/host/EShop.Administration.HttpApi.Host"
 Set-Location $solutionPath
 $path=Get-Location
 $launchSettings = (Get-Content "Properties/launchSettings.json") | ConvertFrom-Json

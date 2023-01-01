@@ -17,7 +17,7 @@ namespace AdministrationAppGateway.Host
         typeof(LeopardConsulModule),
         typeof(LeopardAspNetCoreSwashbuckleModule),
 
-        typeof(AdministrationHttpApiModule)
+        typeof(EShopAdministrationHttpApiModule)
     )]
     public class AdministrationAppGatewayHostModule : CommonGatewayModule
     {

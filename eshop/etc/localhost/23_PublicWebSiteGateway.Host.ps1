@@ -1,6 +1,6 @@
 . "./__build-aspnetcore-common.ps1"
 
-$solutionPath = $rootFolder + "/../gateways/PublicWebSiteGateway.Host"
+$solutionPath = $rootFolder + "/../../aspnetcore/gateways/PublicWebSiteGateway.Host/src"
 Set-Location $solutionPath
 $path=Get-Location
 $launchSettings = (Get-Content "Properties/launchSettings.json") | ConvertFrom-Json

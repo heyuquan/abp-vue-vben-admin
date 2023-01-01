@@ -3,22 +3,16 @@
 # 先安装  dotnet tool install --global dotnet-ef
 
 Write-Host ==================== Begin Init AuthServer.Host ========================
-$solutionPath = $rootFolder + "/../services/SSO.AuthServer/SSO.AuthServer.HttpApi.Host"
+$solutionPath = $rootFolder + "/../../aspnetcore/services/auth-server/host/EShop.AuthServer.HttpApi.Host"
 Set-Location $solutionPath
 dotnet ef database update -p ./
 
 Write-Host End Leopard.BackendAdmin.HttpApi.Host ========================
-$solutionPath = $rootFolder + "/../services/BackendAdmin"
+$solutionPath = $rootFolder + "/../../aspnetcore/services/administration"
 Set-Location $solutionPath
-dotnet ef database update --project ./Leopard.BackendAdmin.EntityFrameworkCore/Leopard.BackendAdmin.EntityFrameworkCore.csproj --startup-project ./Leopard.BackendAdmin.HttpApi.Host/Leopard.BackendAdmin.HttpApi.Host.csproj
+dotnet ef database update --project ./src/EShop.Administration.EntityFrameworkCore/EShop.Administration.EntityFrameworkCore.csproj --startup-project ./host/EShop.Administration.HttpApi.Host/EShop.Administration.HttpApi.Host.csproj
 
 
-Write-Host ==================== Begin Mk.DemoC.HttpApi.Host ========================
-# $solutionPath = $rootFolder + "/../services/Mk.DemoC/src/Mk.DemoC.HttpApi.Host"
-# Set-Location $solutionPath
-# dotnet ef database update -p ./
-
-Write-Host End Mk.DemoC.HttpApi.Host ========================
 
 
 Set-Location $rootFolder
