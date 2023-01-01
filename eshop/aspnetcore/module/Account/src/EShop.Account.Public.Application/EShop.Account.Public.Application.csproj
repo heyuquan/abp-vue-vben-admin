@@ -15,7 +15,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Volo.Abp.Sms" Version="6.0.1" />
+		<PackageReference Include="Volo.Abp.Sms" Version="6.0.2" />
 		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="$(MicrosoftPackageVersion)" />
 		<ProjectReference Include="..\..\..\Identity\src\Leopard.Identity.Application\Leopard.Identity.Application.csproj" />
 		<ProjectReference Include="..\EShop.Account.Public.Application.Contracts\EShop.Account.Public.Application.Contracts.csproj" />

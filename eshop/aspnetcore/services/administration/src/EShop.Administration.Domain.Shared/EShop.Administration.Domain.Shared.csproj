@@ -9,10 +9,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Volo.Abp.AuditLogging.Domain.Shared" Version="6.0.1" />
-		<PackageReference Include="Volo.Abp.FeatureManagement.Domain.Shared" Version="6.0.1" />
-		<PackageReference Include="Volo.Abp.PermissionManagement.Domain.Shared" Version="6.0.1" />
-		<PackageReference Include="Volo.Abp.SettingManagement.Domain.Shared" Version="6.0.1" />
+		<PackageReference Include="Volo.Abp.AuditLogging.Domain.Shared" Version="6.0.2" />
+		<PackageReference Include="Volo.Abp.FeatureManagement.Domain.Shared" Version="6.0.2" />
+		<PackageReference Include="Volo.Abp.PermissionManagement.Domain.Shared" Version="6.0.2" />
+		<PackageReference Include="Volo.Abp.SettingManagement.Domain.Shared" Version="6.0.2" />
 	</ItemGroup>
 
 	<ItemGroup>
