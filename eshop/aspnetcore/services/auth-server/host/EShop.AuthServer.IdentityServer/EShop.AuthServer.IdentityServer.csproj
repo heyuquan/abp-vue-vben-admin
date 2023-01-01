@@ -44,8 +44,8 @@
 		<ProjectReference Include="..\..\..\..\..\..\framework\leopard\src\Leopard.AspNetCore.Serilog\Leopard.AspNetCore.Serilog.csproj" />
 		<ProjectReference Include="..\..\..\..\..\..\framework\leopard\src\Leopard.Consul\Leopard.Consul.csproj" />
 		<ProjectReference Include="..\..\..\..\..\..\framework\leopard\src\Leopard.Host\Leopard.Host.csproj" />
-		<ProjectReference Include="..\..\..\..\module\Saas\src\Leopard.Saas.Application\Leopard.Saas.Application.csproj" />
-		<ProjectReference Include="..\..\..\..\module\Saas\src\Leopard.Saas.EntityFrameworkCore\Leopard.Saas.EntityFrameworkCore.csproj" />
+		<ProjectReference Include="..\..\..\..\module\saas\src\Leopard.Saas.Application\Leopard.Saas.Application.csproj" />
+		<ProjectReference Include="..\..\..\..\module\saas\src\Leopard.Saas.EntityFrameworkCore\Leopard.Saas.EntityFrameworkCore.csproj" />
 		<ProjectReference Include="..\..\..\..\common\src\EShop.Common.Shared\EShop.Common.Shared.csproj" />
 	</ItemGroup>
 

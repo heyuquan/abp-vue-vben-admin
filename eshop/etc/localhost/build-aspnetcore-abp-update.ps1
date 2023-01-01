@@ -13,3 +13,5 @@ Set-Location $solutionPath
 abp update
 
 Set-Location $rootFolder
+
+pause

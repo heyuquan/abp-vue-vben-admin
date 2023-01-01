@@ -8,9 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\module\Account\src\EShop.Account.Admin.Application\EShop.Account.Admin.Application.csproj" />
-    <ProjectReference Include="..\..\..\..\module\Identity\src\Leopard.Identity.Application\Leopard.Identity.Application.csproj" />
-    <ProjectReference Include="..\..\..\..\module\Saas\src\Leopard.Saas.Application\Leopard.Saas.Application.csproj" />
+    <ProjectReference Include="..\..\..\..\module\account\src\EShop.Account.Admin.Application\EShop.Account.Admin.Application.csproj" />
+    <ProjectReference Include="..\..\..\..\module\identity\src\Leopard.Identity.Application\Leopard.Identity.Application.csproj" />
+    <ProjectReference Include="..\..\..\..\module\saas\src\Leopard.Saas.Application\Leopard.Saas.Application.csproj" />
     <ProjectReference Include="..\EShop.Administration.Domain\EShop.Administration.Domain.csproj" />
     <ProjectReference Include="..\EShop.Administration.Application.Contracts\EShop.Administration.Application.Contracts.csproj" />
   </ItemGroup>

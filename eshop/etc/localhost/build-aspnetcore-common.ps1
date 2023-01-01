@@ -10,9 +10,9 @@ $rootFolder = (Get-Item -Path "./" -Verbose).FullName
 #   gateway     网关项目
 $projectArray += [PsObject]@{ Path = $rootFolder + "/../../../framework/leopard/"; Name = "framework"; Type = "build"  }
 $projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/common/"; Name = "common"; Type = "build"  }
-$projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/module/Account/"; Name = "account"; Type = "build"  }
-$projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/module/Identity/"; Name = "identity"; Type = "build"  }
-$projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/module/Saas/"; Name = "saas"; Type = "build"  }
+$projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/module/account/"; Name = "account"; Type = "build"  }
+$projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/module/identity/"; Name = "identity"; Type = "build"  }
+$projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/module/saas/"; Name = "saas"; Type = "build"  }
 $projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/services/auth-server/host/EShop.AuthServer.HttpApi.Host/"; Name = "auth-server"; Type = "service"   }
 $projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/services/auth-server/host/EShop.AuthServer.IdentityServer/"; Name = "identityserver"; Type = "service"   }
 $projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/services/administration/host/EShop.Administration.HttpApi.Host/"; Name = "administration"; Type = "service"   }

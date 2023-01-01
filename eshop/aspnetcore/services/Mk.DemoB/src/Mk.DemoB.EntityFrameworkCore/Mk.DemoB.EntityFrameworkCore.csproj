@@ -19,7 +19,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\..\..\..\..\framework\leopard\src\Leopard.Core\Leopard.csproj" />
 		<ProjectReference Include="..\..\..\..\..\..\..\framework\leopard\src\Leopard.EntityFrameworkCore\Leopard.EntityFrameworkCore.csproj" />
-		<ProjectReference Include="..\..\..\..\..\module\Saas\src\Leopard.Saas.EntityFrameworkCore\Leopard.Saas.EntityFrameworkCore.csproj" />
+		<ProjectReference Include="..\..\..\..\..\module\saas\src\Leopard.Saas.EntityFrameworkCore\Leopard.Saas.EntityFrameworkCore.csproj" />
 		<ProjectReference Include="..\Mk.DemoB.Domain\Mk.DemoB.Domain.csproj" />		
 	</ItemGroup>
 

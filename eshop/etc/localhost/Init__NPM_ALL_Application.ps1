@@ -10,4 +10,5 @@ abp install-libs
 
 
 Set-Location $rootFolder
+
 pause

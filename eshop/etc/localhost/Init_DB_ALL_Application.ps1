@@ -16,4 +16,5 @@ dotnet ef database update --project ./src/EShop.Administration.EntityFrameworkCo
 
 
 Set-Location $rootFolder
+
 pause
