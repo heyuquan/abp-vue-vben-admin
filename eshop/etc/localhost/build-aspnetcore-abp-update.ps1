@@ -1,4 +1,4 @@
-. "./__build-aspnetcore-common.ps1"
+. "./build-aspnetcore-common.ps1"
 
 # update volo.abp.cli
 dotnet tool update -g Volo.Abp.Cli

@@ -1,4 +1,4 @@
-. "./__build-aspnetcore-common.ps1"
+. "./build-aspnetcore-common.ps1"
 
 Write-Host ==================== Begin Init AuthServer.Host ========================
 $solutionPath = $rootFolder + "/../../aspnetcore/services/auth-server/host/EShop.AuthServer/EShop.AuthServer.IdentityServer"

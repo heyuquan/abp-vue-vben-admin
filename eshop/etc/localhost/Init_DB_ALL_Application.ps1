@@ -1,4 +1,4 @@
-. "./__build-aspnetcore-common.ps1"
+. "./build-aspnetcore-common.ps1"
 
 # 先安装  dotnet tool install --global dotnet-ef
 
