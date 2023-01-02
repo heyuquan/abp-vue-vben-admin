@@ -14,7 +14,7 @@ $projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/module/acc
 $projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/module/identity/"; Name = "identity"; Type = "build"  }
 $projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/module/saas/"; Name = "saas"; Type = "build"  }
 $projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/services/auth-server/host/EShop.AuthServer.HttpApi.Host/"; Name = "auth-server"; Type = "service"   }
-$projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/services/auth-server/host/EShop.AuthServer.IdentityServer/"; Name = "identityserver"; Type = "service"   }
+$projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/services/auth-server/host/EShop.AuthServer.IdentityServer.Web/"; Name = "identityserver-web"; Type = "service"   }
 $projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/services/administration/host/EShop.Administration.HttpApi.Host/"; Name = "administration"; Type = "service"   }
 $projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/gateways/BackendAdminAppGateway.Host/src/"; Name = "BackendAdminAppGateway"; Type = "gateway"   }
 $projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/gateways/InternalGateway.Host/src/"; Name = "InternalGateway"; Type = "gateway"   }

@@ -17,7 +17,7 @@ using Volo.Abp.BackgroundJobs;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.MySQL;
 using Volo.Abp.Identity.EntityFrameworkCore;
-using Volo.Abp.IdentityServer.EntityFrameworkCore;
+using Volo.Abp.OpenIddict.EntityFrameworkCore;
 using Volo.Abp.Modularity;
 using Volo.Abp.PermissionManagement.EntityFrameworkCore;
 using Volo.Abp.UI.Navigation.Urls;
@@ -26,7 +26,7 @@ namespace EShop.AuthServer
 {
     [DependsOn(
         typeof(AbpAutofacModule),
-        typeof(AbpAccountWebIdentityServerModule),
+        typeof(AbpAccountWebOpenIddictModule),
         typeof(AbpAccountApplicationModule),
         typeof(AbpAspNetCoreMvcUiBasicThemeModule),
         typeof(AbpAspNetCoreMvcUiMultiTenancyModule),
@@ -34,7 +34,7 @@ namespace EShop.AuthServer
         typeof(AbpEntityFrameworkCoreMySQLModule),
         typeof(AbpPermissionManagementEntityFrameworkCoreModule),
         typeof(AbpIdentityEntityFrameworkCoreModule),
-        typeof(AbpIdentityServerEntityFrameworkCoreModule),
+        typeof(AbpOpenIddictEntityFrameworkCoreModule),
 
         // 引入saas，是因为做多租户登录时，需要查询租户数据
         typeof(LeopardSaasApplicationModule),
@@ -46,6 +46,20 @@ namespace EShop.AuthServer
     {
         public EShopAuthServerIdentityServerModule() : base(ModuleIdentity.AuthIdentityServer.ServiceType, ModuleIdentity.AuthIdentityServer.Name, MultiTenancyConsts.IsEnabled)
         { }
+
+        public override void PreConfigureServices(ServiceConfigurationContext context)
+        {
+            PreConfigure<OpenIddictBuilder>(builder =>
+            {
+                builder.AddValidation(options =>
+                {
+                    options.AddAudiences("EShop.AuthServer");
+                    options.UseLocalServer();
+                    options.UseAspNetCore();
+                });
+            });
+        }
+
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
             var hostingEnvironment = context.Services.GetHostingEnvironment();
@@ -100,7 +114,7 @@ namespace EShop.AuthServer
                 betweenAuthApplicationInitialization: (ctx) =>
                     {
                         var app = ctx.GetApplicationBuilder();
-                        app.UseIdentityServer();
+                        app.UseAbpOpenIddictValidation();
                     });
         }
 

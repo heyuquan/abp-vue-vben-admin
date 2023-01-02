@@ -9,7 +9,7 @@
     #、一个大项目预留1000个端口号足矣。eg：这个项目以44***开头
     #、每个服务，预留10个端口号，用于部署集群
     EShop.AuthServer.HttpApi.Host     44105 （预留44101-44110）   
-    EShop.AuthServer.IdentityServer   44115 （预留44111-44120）   
+    EShop.AuthServer.IdentityServer.Web   44115 （预留44111-44120）   
         identityserver配置链接
         https://localhost:44115/.well-known/openid-configuration
     EShop.Administration.HttpApi.Host   44145  （预留44141-44150）  
@@ -35,7 +35,7 @@ nginx:http://159.75.253.251:8081/
 
 项目职责
 EShop.AuthServer.HttpApi.Host：封装Account、Identity服务
-EShop.AuthServer.IdentityServer：对接ids4，专门做身份认证
+EShop.AuthServer.IdentityServer.Web：对接ids4，专门做身份认证
 EShop.Administration.HttpApi.Host：后台管理服务，包含如：审计、特征、权限、设置管理、租户、版本、等
 
 xftp中文文件名乱码

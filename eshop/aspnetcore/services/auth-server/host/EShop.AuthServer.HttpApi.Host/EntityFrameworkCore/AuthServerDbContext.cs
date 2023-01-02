@@ -2,10 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
-using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.Identity;
 using Volo.Abp.Identity.EntityFrameworkCore;
-using Volo.Abp.IdentityServer.EntityFrameworkCore;
+using Volo.Abp.OpenIddict.EntityFrameworkCore;
 
 namespace EShop.AuthServer.EntityFrameworkCore
 {
@@ -53,7 +52,7 @@ namespace EShop.AuthServer.EntityFrameworkCore
             /* Include modules to your migration db context */
 
             builder.ConfigureIdentity();
-            builder.ConfigureIdentityServer();
+            builder.ConfigureOpenIddict();
 
             /* Configure your own tables/entities inside here */
 

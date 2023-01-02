@@ -15,7 +15,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
-using Serilog;
 using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
@@ -27,7 +26,6 @@ using System.Text.Unicode;
 using Volo.Abp;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.AspNetCore.Mvc.ExceptionHandling;
-using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
 using Volo.Abp.Auditing;
 using Volo.Abp.Caching;
 using Volo.Abp.Caching.StackExchangeRedis;
@@ -37,7 +35,6 @@ using Volo.Abp.Modularity;
 using Volo.Abp.MultiTenancy;
 using Volo.Abp.Security.Encryption;
 using Volo.Abp.Timing;
-using Volo.Abp.Uow;
 
 namespace Leopard.Host
 {
@@ -198,24 +195,25 @@ namespace Leopard.Host
             context.Services.AddLeopardSwaggerGen();
             //#endif
             if (ApplicationServiceType == ApplicationServiceType.ApiHost
+                 || ApplicationServiceType == ApplicationServiceType.AuthHost
                  || ApplicationServiceType == ApplicationServiceType.GateWay
                 )
             {
-                //context.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                //    .AddJwtBearer(options =>
-                //    {
-                //        options.Authority = configuration["AuthServer:Authority"];
-                //        options.RequireHttpsMetadata = Convert.ToBoolean(configuration["AuthServer:RequireHttpsMetadata"]);
-                //        options.Audience = configuration["AuthServer:SwaggerClientId"];
-                //        options.TokenValidationParameters.ValidateAudience = false;
-                //    });
                 context.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                    .AddIdentityServerAuthentication(options =>
+                    .AddJwtBearer(options =>
                     {
                         options.Authority = configuration["AuthServer:Authority"];
-                        options.ApiName = configuration["AuthServer:ApiName"];                       
                         options.RequireHttpsMetadata = Convert.ToBoolean(configuration["AuthServer:RequireHttpsMetadata"]);
+                        options.Audience = configuration["AuthServer:ApiName"];
+                        //options.TokenValidationParameters.ValidateAudience = false;
                     });
+                //context.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                //    .AddIdentityServerAuthentication(options =>
+                //    {
+                //        options.Authority = configuration["AuthServer:Authority"];
+                //        options.ApiName = configuration["AuthServer:ApiName"];                       
+                //        options.RequireHttpsMetadata = Convert.ToBoolean(configuration["AuthServer:RequireHttpsMetadata"]);
+                //    });
 
                 // Configure<IdentityServerOptions>(options => { options.IssuerUri = configuration["App:SelfUrl"]; });
             }

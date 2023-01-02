@@ -20,8 +20,136 @@ using ApiResource = Volo.Abp.IdentityServer.ApiResources.ApiResource;
 using ApiScope = Volo.Abp.IdentityServer.ApiScopes.ApiScope;
 using Client = Volo.Abp.IdentityServer.Clients.Client;
 
-namespace EShop.AuthServer.IdentityServer
+"IdentityServer": {
+    // EShop.AuthServer.IdentityServer.Web 自身不需要在ApiScopes资源里面，
+    // 但是其 EShop.AuthServer.HttpApi.Host 是需要在ApiScopes资源里面的
+    "ApiScopes": [
+      "SSOAuthServerService",
+      "AdministrationService",
+
+      "MkDemoBService",
+      "MkDemoCService",
+
+      "AdministrationAppGateway",
+      "InternalGateway",
+      "PublicWebSiteGateway"
+    ],
+
+    "Clients": [
+      // Service ====================================================================================
+      {
+        "ClientId": "MkDemoBService",
+        "RedirectUris": [
+          "https://localhost:44305/swagger/oauth2-redirect.html",
+          "https://159.75.253.251:44305/swagger/oauth2-redirect.html",
+          "http://159.75.253.251:44302/swagger/oauth2-redirect.html"
+        ],
+        "Scopes": [ "MkDemoBService", "SSOAuthServerService", "InternalGateway", "MkDemoCService" ],
+        "GrantTypes": [ "authorization_code" ],
+        "ClientSecret": "1q2w3E*"
+      },
+      {
+        "ClientId": "MkDemoCService",
+        "RedirectUris": [
+          "https://localhost:44405/swagger/oauth2-redirect.html",
+          "https://159.75.253.251:44405/swagger/oauth2-redirect.html",
+          "http://159.75.253.251:44402/swagger/oauth2-redirect.html"
+        ],
+        "Scopes": [ "MkDemoCService", "SSOAuthServerService", "InternalGateway" ],
+        "GrantTypes": [ "authorization_code" ],
+        "ClientSecret": "1q2w3E*"
+      },
+      {
+        "ClientId": "SSOAuthServerService",
+        "RedirectUris": [
+          "https://localhost:44105/swagger/oauth2-redirect.html",
+          "https://159.75.253.251:44105/swagger/oauth2-redirect.html",
+          "http://159.75.253.251:44102/swagger/oauth2-redirect.html"
+        ],
+        "Scopes": [ "SSOAuthServerService" ],
+        "GrantTypes": [ "authorization_code" ],
+        "ClientSecret": "1q2w3E*"
+      },
+      {
+        "ClientId": "AdministrationService",
+        "RedirectUris": [
+          "https://localhost:44145/swagger/oauth2-redirect.html",
+          "https://159.75.253.251:44145/swagger/oauth2-redirect.html",
+          "http://159.75.253.251:44142/swagger/oauth2-redirect.html"
+        ],
+        "Scopes": [ "AdministrationService" ],
+        "GrantTypes": [ "authorization_code" ],
+        "ClientSecret": "1q2w3E*"
+      },
+      // gateway ====================================================================================
+      {
+        "ClientId": "AdministrationAppGateway",
+        "RedirectUris": [
+          "https://localhost:44805/swagger/oauth2-redirect.html",
+          "https://159.75.253.251:44805/swagger/oauth2-redirect.html",
+          "http://159.75.253.251:44802/swagger/oauth2-redirect.html"
+        ],
+        "Scopes": [ "AdministrationAppGateway", "SSOAuthServerService", "AdministrationService" ],
+        "GrantTypes": [ "authorization_code" ],
+        "ClientSecret": "1q2w3E*"
+      },
+      {
+        "ClientId": "InternalGateway",
+        "RedirectUris": [
+          "https://localhost:44815/swagger/oauth2-redirect.html",
+          "https://159.75.253.251:44815/swagger/oauth2-redirect.html",
+          "http://159.75.253.251:44812/swagger/oauth2-redirect.html"
+        ],
+        "Scopes": [ "InternalGateway", "SSOAuthServerService" ],
+        "GrantTypes": [ "authorization_code" ],
+        "ClientSecret": "1q2w3E*"
+      },
+      {
+        "ClientId": "PublicWebSiteGateway",
+        "RedirectUris": [
+          "https://localhost:44825/swagger/oauth2-redirect.html",
+          "https://159.75.253.251:44825/swagger/oauth2-redirect.html",
+          "http://159.75.253.251:44822/swagger/oauth2-redirect.html"
+        ],
+        "Scopes": [ "PublicWebSiteGateway", "SSOAuthServerService" ],
+        "GrantTypes": [ "authorization_code" ],
+        "ClientSecret": "1q2w3E*"
+      },
+      // client ====================================================================================
+      {
+        "ClientId": "VbenAdminWeb",
+        "RedirectUris": [
+          "https://localhost:44344/signin-oidc",
+          "https://159.75.253.251:44344/signin-oidc",
+          "http://159.75.253.251:44342/signin-oidc"
+        ],
+        "Scopes": [ "AdministrationAppGateway" ],
+        "GrantTypes": [ "authorization_code" ],
+        "RequirePkce": true,
+        "ClientSecret": "1q2w3E*"
+      },
+      {
+        "ClientId": "Administration_Web",
+        "RedirectUris": [
+          "https://localhost:4200/signin-oidc",
+          "https://159.75.253.251/signin-oidc",
+          "http://159.75.253.251/signin-oidc"
+        ],
+        "Scopes": [ "AdministrationAppGateway", "SSOAuthServerService", "AdministrationService" ],
+        "GrantTypes": [ "password" ],
+        "RequirePkce": true,
+        "ClientSecret": "1q2w3E*",
+        "Cors": [
+          "http://159.75.253.251",
+          "http://localhost:4200"
+        ]
+      }
+    ]
+  }
+
+namespace EShop.AuthServer.IdentityServer.Web
 {
+    // 原来Identityserver4的种子，留个备份
     public class IdentityServerDataSeedContributor : IDataSeedContributor, ITransientDependency
     {
         private readonly IApiResourceRepository _apiResourceRepository;

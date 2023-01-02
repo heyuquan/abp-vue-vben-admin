@@ -9,18 +9,18 @@ using Volo.Abp.EntityFrameworkCore;
 
 #nullable disable
 
-namespace EShop.Administration.EntityFrameworkCore.Migrations
+namespace Migrations
 {
     [DbContext(typeof(AdministrationDbContext))]
-    [Migration("20221113081420_upodate_abp601")]
-    partial class upodate_abp601
+    [Migration("20230102072535_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("_Abp_DatabaseProvider", EfCoreDatabaseProvider.MySql)
-                .HasAnnotation("ProductVersion", "6.0.11")
+                .HasAnnotation("ProductVersion", "6.0.12")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("Leopard.Saas.Edition", b =>

@@ -3,8 +3,8 @@
 # 先安装  dotnet tool install --global dotnet-ef
 
 Write-Host ==================== Begin Init AuthServer.Host ========================
-$solutionPath = $rootFolder + "/../../aspnetcore/services/auth-server/host/EShop.AuthServer.HttpApi.Host"
-Set-Location $solutionPath
+$project = $projectArray | Where {$_.Name -eq "auth-server" }
+Set-Location $project.Path
 dotnet ef database update -p ./
 
 Write-Host End Leopard.BackendAdmin.HttpApi.Host ========================

@@ -8,7 +8,7 @@ using Volo.Abp.EntityFrameworkCore;
 
 #nullable disable
 
-namespace EShop.Administration.EntityFrameworkCore.Migrations
+namespace Migrations
 {
     [DbContext(typeof(AdministrationDbContext))]
     partial class AdministrationDbContextModelSnapshot : ModelSnapshot
@@ -18,7 +18,7 @@ namespace EShop.Administration.EntityFrameworkCore.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("_Abp_DatabaseProvider", EfCoreDatabaseProvider.MySql)
-                .HasAnnotation("ProductVersion", "6.0.11")
+                .HasAnnotation("ProductVersion", "6.0.12")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("Leopard.Saas.Edition", b =>

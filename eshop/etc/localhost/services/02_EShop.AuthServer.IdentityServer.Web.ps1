@@ -1,6 +1,6 @@
 . "./build-aspnetcore-common.ps1"
 
-$project = $projectArray | Where {$_.Name -eq "identityserver" }
+$project = $projectArray | Where {$_.Name -eq "identityserver-web" }
 Set-Location $project.Path
 $path=Get-Location
 $launchSettings = (Get-Content "Properties/launchSettings.json") | ConvertFrom-Json

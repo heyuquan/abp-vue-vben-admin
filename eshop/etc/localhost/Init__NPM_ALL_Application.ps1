@@ -1,8 +1,8 @@
 . "./build-aspnetcore-common.ps1"
 
 Write-Host ==================== Begin Init AuthServer.Host ========================
-$solutionPath = $rootFolder + "/../../aspnetcore/services/auth-server/host/EShop.AuthServer/EShop.AuthServer.IdentityServer"
-Set-Location $solutionPath
+$project = $projectArray | Where {$_.Name -eq "identityserver-web" }
+Set-Location $project.Path
 abp install-libs
 
 

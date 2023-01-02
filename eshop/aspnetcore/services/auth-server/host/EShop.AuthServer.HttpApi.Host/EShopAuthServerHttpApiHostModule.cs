@@ -14,7 +14,7 @@ using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.MySQL;
 using Volo.Abp.Identity;
 using Volo.Abp.Identity.EntityFrameworkCore;
-using Volo.Abp.IdentityServer.EntityFrameworkCore;
+using Volo.Abp.OpenIddict.EntityFrameworkCore;
 using Volo.Abp.Localization;
 using Volo.Abp.Localization.ExceptionHandling;
 using Volo.Abp.Modularity;
@@ -38,7 +38,7 @@ namespace EShop.AuthServer
         typeof(AbpIdentityApplicationModule),
         typeof(AbpIdentityHttpApiClientModule),
         typeof(AbpIdentityEntityFrameworkCoreModule),
-        typeof(AbpIdentityServerEntityFrameworkCoreModule),
+        typeof(AbpOpenIddictEntityFrameworkCoreModule),
 
         typeof(LeopardModule),
         typeof(LeopardConsulModule),
