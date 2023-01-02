@@ -1,3 +1,4 @@
+cd ..
 . "./build-aspnetcore-common.ps1"
 
 $project = $projectArray | Where {$_.Name -eq "BackendAdminAppGateway" }
