@@ -383,11 +383,12 @@ namespace Leopard.Host
             app.UseAbpSecurityHeaders();
             //路由
             app.UseRouting();
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapHealthChecks("/api/health");
-            });
             app.UseCors();
+            // 设置了UseEndpoints openiddict 和identityserver会报错  （ids4再abpv4.0版本不会报错）
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapHealthChecks("/api/health");
+            //});
 
             // 认证
             app.UseAuthentication();
@@ -398,6 +399,7 @@ namespace Leopard.Host
             }
 
             if (ApplicationServiceType == ApplicationServiceType.ApiHost
+                 || ApplicationServiceType == ApplicationServiceType.AuthHost
                  || ApplicationServiceType == ApplicationServiceType.GateWay
                 )
             {
@@ -418,11 +420,13 @@ namespace Leopard.Host
                 // 授权
                 app.UseAuthorization();
             }
+
             //#if DEBUG
             // swagger
             app.UseSwagger();
             app.UseLeopardSwaggerUI();
             //#endif
+
             // Serilog
             app.UseAbpSerilogEnrichers();
 
@@ -442,13 +446,15 @@ namespace Leopard.Host
                 afterApplicationInitialization(context);
             }
 
-            // UseEndpoints 在 UseRouting 之后
-            // 放到 afterApplicationInitialization 之后，是因为gateway会在 after 中做一些转发处理。否则网关的ocelot会无法工作
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute("default",
-                          "{controller=Swagger}/{action=Index}");
-            });
+            // 设置了UseEndpoints openiddict 和identityserver会报错  （ids4再abpv4.0版本不会报错）
+            //// UseEndpoints 在 UseRouting 之后
+            //// 放到 afterApplicationInitialization 之后，是因为gateway会在 after 中做一些转发处理。否则网关的ocelot会无法工作
+            // 设置默认swagger index页面
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapControllerRoute("default",
+            //              "{controller=Swagger}/{action=Index}");
+            //});
         }
 
         private bool IsHost()

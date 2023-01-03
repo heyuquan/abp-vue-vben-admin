@@ -21,6 +21,8 @@ using Volo.Abp.OpenIddict.EntityFrameworkCore;
 using Volo.Abp.Modularity;
 using Volo.Abp.PermissionManagement.EntityFrameworkCore;
 using Volo.Abp.UI.Navigation.Urls;
+using Volo.Abp.OpenIddict;
+using System.Threading.Tasks;
 
 namespace EShop.AuthServer
 {
