@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Leopard.Helpers.Timing
 {
-    
+    // 时间带T Z 。T 是分隔符，代表后面跟着是时间  Z代表0时区（相差北京时间8小时）
     //private const string ISO8601_DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss'Z'";
     //private static String FormatIso8601Date(DateTime date)
     //{

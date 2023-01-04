@@ -1,16 +1,46 @@
 
-git - [abp-vue-vben-admin]
---apps  应用端口
-----auth-server  认证服务
-----backend-admin  管理端前端页面
-----public-web  客户端前端页面
+目录划分参考：https://github.com/abpframework/eShopOnAbp
 
---aspnetcore  后台基础服务，包含用户、角色、权限、企业、组织管理等基础功能
-----Leopard.Base项目
---framework-aspnetcore  后台服务框架。提供基础类封装，提供给aspnetcore【后台基础服务】和【项目服务】使用
+1、framework
+    #、leopard				netcore框架
+2、eshop/apps
+    #、backend-admin-web	电商后台网页（net技术则引入backend的各种httpClient）
+    #、public-web		    电商网站	（net技术则引入backend的各种httpClient）
+    #、wx-app		        微信小程序
+    #、mobile-app		    手机端应用（IOS/Android）
+    #、h5			        h5
+    #、auth-server-web		带页面的认证中心，（依赖：AbpAccountWebIdentityServer、AdministrationServiceEntityFrameworkCoreModule、IdentityServiceEntityFrameworkCoreModule）。
+
+3、eshop/services
+    #、administration       （Permission、Setting、AuditLogging、）
+    #、identity             （AbpIdentity、AbpIdentityServer）
+    #、basket	            购物车、产品
+    #、catalog	            目录
+    #、cmskit	
+    #、ordering	            订单
+    #、payment	            支付
+
+4、eshop/gateways
+    #、web			        Yarp.ReverseProxy,服务如：account、identity、administration、feature、permission、setting、catolog、ordering、cmskit
+    #、web-public	        Yarp.ReverseProxy,服务如：account、administration、catalog、basket、ordering、payment、cmskit
+
+5、eshop/etc		不同环境，一个子目录。方便分不同github做权限管理
+    #、development
+        cert
+        docker
+    #、production
+
+注：
+auth：不同身份的使用者，应该使用同一个认证中心。比如淘宝个人用户，和商家用户，使用的都是同一个用户名和密码，点登录获取token的url不同（eg：buyer/token ,seller/token），则返回不一样的身份token
+
+项目中github仓库应该如何划分？
+    一级项目：项目类（eg：eshop）、共用的框架类（eg：framework）
+    职能项目：一级项目中每一个具有独立作用的子项目，如上：带#的都为单个职能项目
+
+    根据开发中协作人员的数量，来进行代码仓库的划分。
+    场景一：对于1-3开发人员，开发人员越少越适用：对于同一个项目（eg：eshop），可以把项目的所有代码都放到一个仓库中。特点：方便，不用切换职能项目，拉取分支等
+    场景二：多人协作开发，开发人员越多越适用：把项目中每一个职能项目，都建一个仓库。特点：避免冲突，减少合并代码，便于职能项目的仓库权限管理
+    虽然上面两种场景划分的github不一样，但是文件夹组织和文件夹命名要保持一致，避免差异带来的复杂性
 
 
-git - [Eshop.模块名.层名]
---apps  应用端口
---aspnetcore
-----services  业务服务，eg：商品管理、订单模块、支付、采购模块等
+

@@ -1,19 +1,32 @@
-主要做 本地环境，开发环境，生产环境的一些约定。
+主要做 本地环境，开发环境（Development），测试环境（test），生产环境（Production）
 
-docker-compose 中的网络  （这样可以不同的compose使用同一个网络，不然Compose会为每一个app设置一个default网络）
+docker-compose 中的网络  
 https://blog.csdn.net/lclfans1983/article/details/113179582
-第一步：
-docker network create env-net
-docker network create services-net
-第二步：
-networks:
-  env-net:
-    external: true    # 使用已存在的网络
-  default:     # 设置默认使用的网络，如果没有在单个节点上设置 networks 时使用
-    external:
-      name: services-net
+  （不同的compose使用同一个网络，不然Compose会为每一个app设置一个default网络）
+  eg：eshop的 infrastructure 和 services 等同一项目相关的 docker 都使用同一个网络
+  第一步：
+  docker network create eshop-net
+  第二步：
+  networks:
+    eshop-net:
+      external: true    # 使用已存在的网络
+    default:     # 设置默认使用的网络，如果没有在单个节点上设置 networks 时使用
+      external:
+        name: eshop-net
 
 
 #、运行环境
-本地运行环境约定，ip地址全部指向dev环境。如开发人员要调试本地修改的代码，则修改对应微服务的ip指向本地
-dev环境：有相关环境基础设置，eg：数据库，redis，rabbitmq等等。和微服务
+  本地运行环境
+    没有基础设施，使用dev环境的基础设施。appsetting.development.json中的ip地址、服务地址等全部指向dev环境。如开发人员要调试本地修改的代码，则修改对应微服务的ip指向本地
+    好处：个人电脑不用搭建基础设施，运行服务也不用把相关的所有服务都运行起来，直接使用dev的设施和服务。
+
+  开发环境
+    有开发环境独立的基础设置，eg：数据库，redis，rabbitmq等等
+  
+  测试环境：
+    有测试环境独立的基础设置
+  
+  生产环境：
+
+  不同环境可以支持各自规则的webhook的cicd
+
