@@ -7,7 +7,6 @@
 
 1、参考Furion中对cors的处理方式  。CorsAccessor
 2、引入MiniProfiler.AspNetCore.Mvc
-3、引入Apollo,参考 Blog.Core项目
 $、Abp 实现通过手机号注册用户   https://www.cnblogs.com/qiu-gu/p/16130602.html
 #、参考 一沙 的登录日志。 ip地址，ip位置，浏览器，操作系统
 #、浏览器参数获取参考  yisha  YiSha.Util

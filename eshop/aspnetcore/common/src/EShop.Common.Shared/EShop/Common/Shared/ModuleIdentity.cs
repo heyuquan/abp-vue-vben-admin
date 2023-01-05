@@ -2,12 +2,13 @@ using Leopard;
 
 namespace EShop.Common.Shared
 {
+    // 改为从配置文件里面读取，就不用这个类了
     public static class ModuleIdentity
     {
         public static class Auth
         {
             public const string Name = ModuleNames.AuthServer;
-            public const ApplicationServiceType ServiceType = ApplicationServiceType.AuthHost;
+            public const ApplicationServiceType ServiceType = ApplicationServiceType.ApiHost;
         }
 
         public static class AuthIdentityServer

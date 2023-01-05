@@ -70,6 +70,8 @@ namespace Leopard.Host
                 var app = builder.Build();
                 await app.InitializeApplicationAsync();
 
+                Log.Information($"[{env}] Started {ModuleKey}.");
+
                 // 如何实现 asp.net core 安全优雅退出 ?
                 // https://mp.weixin.qq.com/s/TwPNPwD-XlmKiuuYYk1MeQ
                 var life = app.Services.GetRequiredService<IHostApplicationLifetime>();

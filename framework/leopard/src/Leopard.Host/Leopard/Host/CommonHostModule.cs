@@ -191,11 +191,11 @@ namespace Leopard.Host
 
             #endregion
 
-            //#if DEBUG  没有swagger不方便调试
+#if !Production  
             context.Services.AddLeopardSwaggerGen();
-            //#endif
+#endif
+
             if (ApplicationServiceType == ApplicationServiceType.ApiHost
-                 || ApplicationServiceType == ApplicationServiceType.AuthHost
                  || ApplicationServiceType == ApplicationServiceType.GateWay
                 )
             {
@@ -207,121 +207,106 @@ namespace Leopard.Host
                         options.Audience = configuration["AuthServer:ApiName"];
                         //options.TokenValidationParameters.ValidateAudience = false;
                     });
-                //context.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                //    .AddIdentityServerAuthentication(options =>
-                //    {
-                //        options.Authority = configuration["AuthServer:Authority"];
-                //        options.ApiName = configuration["AuthServer:ApiName"];                       
-                //        options.RequireHttpsMetadata = Convert.ToBoolean(configuration["AuthServer:RequireHttpsMetadata"]);
-                //    });
-
-                // Configure<IdentityServerOptions>(options => { options.IssuerUri = configuration["App:SelfUrl"]; });
             }
 
-            if (IsHost())
+            // 全局异常统一处理
+            context.Services.ConfigureModelBindingExceptionHandling();
+
+            Configure<AbpAuditingOptions>(options =>
             {
-                // 全局异常统一处理
-                context.Services.ConfigureModelBindingExceptionHandling();      // [todo] IsIdentityServer不要吗？？？
-            }
+                //options.IsEnabledForGetRequests = true;
+                options.ApplicationName = ModuleKey;
+            });
 
-            if (IsHost() || IsIdentityServer())
+            // 设置分页默认返回20条数据   
+            LimitedResultRequestDto.DefaultMaxResultCount = 20;
+
+            // 加解密
+            Configure<AbpStringEncryptionOptions>(options =>
             {
-                Configure<AbpAuditingOptions>(options =>
+                var encryptionConfiguration = configuration.GetSection("Encryption");
+                if (encryptionConfiguration.Exists())
                 {
-                    //options.IsEnabledForGetRequests = true;
-                    options.ApplicationName = ModuleKey;
-                });
-
-                // 设置分页默认返回20条数据   
-                LimitedResultRequestDto.DefaultMaxResultCount = 20;
-
-                // 加解密
-                Configure<AbpStringEncryptionOptions>(options =>
-                {
-                    var encryptionConfiguration = configuration.GetSection("Encryption");
-                    if (encryptionConfiguration.Exists())
-                    {
-                        options.DefaultPassPhrase = encryptionConfiguration["PassPhrase"] ?? options.DefaultPassPhrase;
-                        options.DefaultSalt = encryptionConfiguration.GetSection("Salt").Exists()
-                            ? Encoding.ASCII.GetBytes(encryptionConfiguration["Salt"])
-                            : options.DefaultSalt;
-                        options.InitVectorBytes = encryptionConfiguration.GetSection("InitVector").Exists()
-                            ? Encoding.ASCII.GetBytes(encryptionConfiguration["InitVector"])
-                            : options.InitVectorBytes;
-                    }
-                });
-
-                var redisConfiguration = configuration.GetSection("Redis");
-                if (redisConfiguration.Exists())
-                {
-                    Configure<AbpDistributedCacheOptions>(options =>
-                    {
-                        options.KeyPrefix = $"{ModuleKey}:";
-                        // 滑动过期30天
-                        options.GlobalCacheEntryOptions.SlidingExpiration = TimeSpan.FromDays(30);
-                        // 绝对过期60天
-                        options.GlobalCacheEntryOptions.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(60);
-                    });
-
-                    if (!hostingEnvironment.IsDevelopment())
-                    {
-                        var redis = ConnectionMultiplexer.Connect(redisConfiguration["Configuration"]);
-                        context.Services
-                            .AddDataProtection()
-                            .PersistKeysToStackExchangeRedis(redis, $"{ModuleKey}-Protection-Keys")
-                            .SetApplicationName(ModuleKey);
-                    }
+                    options.DefaultPassPhrase = encryptionConfiguration["PassPhrase"] ?? options.DefaultPassPhrase;
+                    options.DefaultSalt = encryptionConfiguration.GetSection("Salt").Exists()
+                        ? Encoding.ASCII.GetBytes(encryptionConfiguration["Salt"])
+                        : options.DefaultSalt;
+                    options.InitVectorBytes = encryptionConfiguration.GetSection("InitVector").Exists()
+                        ? Encoding.ASCII.GetBytes(encryptionConfiguration["InitVector"])
+                        : options.InitVectorBytes;
                 }
+            });
 
-                Configure<AbpClockOptions>(options =>
+            var redisConfiguration = configuration.GetSection("Redis");
+            if (redisConfiguration.Exists())
+            {
+                Configure<AbpDistributedCacheOptions>(options =>
                 {
-                    options.Kind = DateTimeKind.Utc;
+                    options.KeyPrefix = $"{ModuleKey}:";
+                    // 滑动过期30天
+                    options.GlobalCacheEntryOptions.SlidingExpiration = TimeSpan.FromDays(30);
+                    // 绝对过期60天
+                    options.GlobalCacheEntryOptions.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(60);
                 });
 
-                #region 注册响应压缩
-
-                context.Services.AddResponseCompression(options =>
-                 {
-                     options.EnableForHttps = true;  // 是否对https请求压缩.因为存在安全风险，默认禁用此选项。 
-
-                     // NET 6 webapi自定义响应压缩
-                     // https://blog.csdn.net/superQuestion/article/details/122494493
-                     // 使用自定义压缩，来更多的决策什么内容需要被压缩
-                     // 不要压缩小于 150 - 1000 字节的文件，具体取决于文件的内容和压缩效率。 压缩小文件的开销可能会产生比未压缩文件更大的压缩文件。
-
-                     // 当客户端可以处理压缩内容时，客户端必须通过随请求发送 Accept-Encoding 标头来通知服务器其功能。 
-                     // 当服务器发送压缩的内容时，它必须在 Content-Encoding 标头中包含有关如何对压缩响应进行编码的信息。
-                     // Gzip 有更好的 user-agent 兼容性，而 Brotli 有更好的性能。
-                     options.Providers.Add<BrotliCompressionProvider>();    // brotli
-                     options.Providers.Add<GzipCompressionProvider>();      // gzip
-
-                     // 压缩的默认 MIME 类型集：
-                     // application / javascript
-                     // application / json
-                     // application / xml
-                     // text / css
-                     // text / html
-                     // text / json
-                     // text / plain
-                     // text / xml
-                     // 使用Concat添加额外的压缩类型
-                     options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[]
-                      {
-                        "image/svg+xml"
-                     });
-                 });
-
-                Configure<BrotliCompressionProviderOptions>(options =>
+                if (!hostingEnvironment.IsDevelopment())
                 {
-                    options.Level = CompressionLevel.Optimal;
-                });
-                Configure<GzipCompressionProviderOptions>(options =>
-                {
-                    options.Level = CompressionLevel.Optimal;
-                });
-
-                #endregion
+                    var redis = ConnectionMultiplexer.Connect(redisConfiguration["Configuration"]);
+                    context.Services
+                        .AddDataProtection()
+                        .PersistKeysToStackExchangeRedis(redis, $"{ModuleKey}-Protection-Keys")
+                        .SetApplicationName(ModuleKey);
+                }
             }
+
+            Configure<AbpClockOptions>(options =>
+            {
+                options.Kind = DateTimeKind.Utc;
+            });
+
+            #region 注册响应压缩
+
+            context.Services.AddResponseCompression(options =>
+             {
+                 options.EnableForHttps = true;  // 是否对https请求压缩.因为存在安全风险，默认禁用此选项。 
+
+                 // NET 6 webapi自定义响应压缩
+                 // https://blog.csdn.net/superQuestion/article/details/122494493
+                 // 使用自定义压缩，来更多的决策什么内容需要被压缩
+                 // 不要压缩小于 150 - 1000 字节的文件，具体取决于文件的内容和压缩效率。 压缩小文件的开销可能会产生比未压缩文件更大的压缩文件。
+
+                 // 当客户端可以处理压缩内容时，客户端必须通过随请求发送 Accept-Encoding 标头来通知服务器其功能。 
+                 // 当服务器发送压缩的内容时，它必须在 Content-Encoding 标头中包含有关如何对压缩响应进行编码的信息。
+                 // Gzip 有更好的 user-agent 兼容性，而 Brotli 有更好的性能。
+                 options.Providers.Add<BrotliCompressionProvider>();    // brotli
+                 options.Providers.Add<GzipCompressionProvider>();      // gzip
+
+                 // 压缩的默认 MIME 类型集：
+                 // application / javascript
+                 // application / json
+                 // application / xml
+                 // text / css
+                 // text / html
+                 // text / json
+                 // text / plain
+                 // text / xml
+                 // 使用Concat添加额外的压缩类型
+                 options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[]
+                  {
+                        "image/svg+xml"
+                 });
+             });
+
+            Configure<BrotliCompressionProviderOptions>(options =>
+            {
+                options.Level = CompressionLevel.Optimal;
+            });
+            Configure<GzipCompressionProviderOptions>(options =>
+            {
+                options.Level = CompressionLevel.Optimal;
+            });
+
+            #endregion
 
             if (afterConfigureServices != null)
             {
@@ -357,19 +342,13 @@ namespace Leopard.Host
 
             if (env.IsDevelopment())
             {
-                if (IsHost() || IsIdentityServer())
-                {
-                    app.UseDeveloperExceptionPage();
-                }
+                app.UseDeveloperExceptionPage();
             }
             else
             {
-                if (IsHost() || IsIdentityServer())
-                {
-                    // app.UseErrorPage();
-                    // useErrorPage() 是 volo.abp 定制的页面，需要注册abp 的主题，暂时没去看这些东西，先用aspnetcore 默认的页面
-                    app.UseDeveloperExceptionPage();
-                }
+                // app.UseErrorPage();
+                // useErrorPage() 是 volo.abp 定制的页面，需要注册abp 的主题，暂时没去看这些东西，先用aspnetcore 默认的页面
+                app.UseDeveloperExceptionPage();
 
                 // app.UseHsts();  服务端目前启用证书有问题，去掉https相关
             }
@@ -399,7 +378,6 @@ namespace Leopard.Host
             }
 
             if (ApplicationServiceType == ApplicationServiceType.ApiHost
-                 || ApplicationServiceType == ApplicationServiceType.AuthHost
                  || ApplicationServiceType == ApplicationServiceType.GateWay
                 )
             {
@@ -415,11 +393,7 @@ namespace Leopard.Host
                 betweenAuthApplicationInitialization(context);
             }
 
-            if (IsHost() || IsIdentityServer())
-            {
-                // 授权
-                app.UseAuthorization();
-            }
+            app.UseAuthorization();
 
             //#if DEBUG
             // swagger
@@ -430,16 +404,14 @@ namespace Leopard.Host
             // Serilog
             app.UseAbpSerilogEnrichers();
 
-            if (IsHost() || IsIdentityServer())
-            {
-                // 审计日志
-                app.UseAuditing();
-                app.UseUnitOfWork();
+            // 审计日志
+            app.UseAuditing();
+            app.UseUnitOfWork();
 
-                // 在需要缓存的组件之前。 UseCORS 必须在 UseResponseCaching 之前。
-                app.UseResponseCompression();
-                app.UseConfiguredEndpoints();
-            }
+            // 在需要缓存的组件之前。 UseCORS 必须在 UseResponseCaching 之前。
+            app.UseResponseCompression();
+            app.UseConfiguredEndpoints();
+            app.UseConfiguredEndpoints();
 
             if (afterApplicationInitialization != null)
             {
@@ -455,24 +427,6 @@ namespace Leopard.Host
             //    endpoints.MapControllerRoute("default",
             //              "{controller=Swagger}/{action=Index}");
             //});
-        }
-
-        private bool IsHost()
-        {
-            if (ApplicationServiceType == ApplicationServiceType.ApiHost || ApplicationServiceType == ApplicationServiceType.AuthHost)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        private bool IsIdentityServer()
-        {
-            if (ApplicationServiceType == ApplicationServiceType.AuthIdentityServer)
-            {
-                return true;
-            }
-            return false;
         }
     }
 }
