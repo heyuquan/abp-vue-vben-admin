@@ -12,8 +12,8 @@
     #、auth-server-web		带页面的认证中心，（依赖：AbpAccountWebIdentityServer、AdministrationServiceEntityFrameworkCoreModule、IdentityServiceEntityFrameworkCoreModule）。
 
 3、eshop/services
-    #、administration       （Permission、Setting、AuditLogging、）
-    #、identity             （AbpIdentity、AbpIdentityServer）
+    #、administration       （Permission、Setting、AuditLogging、Feature）
+    #、identity             （Identity、OpenIddict）
     #、basket	            购物车、产品
     #、catalog	            目录
     #、cmskit	
@@ -43,4 +43,12 @@ auth：不同身份的使用者，应该使用同一个认证中心。比如淘�
     虽然上面两种场景划分的github不一样，但是文件夹组织和文件夹命名要保持一致，避免差异带来的复杂性
 
 
-
+是否考虑使用eshop/modules
+    使用的优点：
+        #、services可以比较少，比如后端只需要一个 LY.MicroService.BackendAdmin.HttpApi.Host 把所有需要的模块引入即可
+        #、modules的重用性强，在services中需要modules的，直接引入项目即可
+    使用的缺点：
+        #、不方便调试，断点是从services进入的，调试和修改modules中的项目比较麻烦。因为不能为了调试一个services就把对应的module也引入到sin方案中，如果引入，sin方案中会有非常多的项目
+    不使用eshop/modules的设计：
+        #、administration就只负责一些通用的功能的管理，如：Permission、Setting、AuditLogging、Feature等等，其他特定服务如ordering、payment则调用独立的端口
+        #、不同服务调用不同端口的解决方案是：使用网关来管理服务，对外暴露统一的端口

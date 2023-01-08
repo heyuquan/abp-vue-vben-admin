@@ -9,15 +9,17 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Microsoft\AspNetCore\Builder\**" />
+	  <EmbeddedResource Remove="Microsoft\AspNetCore\Builder\**" />
+	  <None Remove="Microsoft\AspNetCore\Builder\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Volo.Abp.AspNetCore.Mvc" Version="6.0.2" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\Leopard.Core\Leopard.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Microsoft\AspNetCore\Builder\" />
 	</ItemGroup>
   
 </Project>

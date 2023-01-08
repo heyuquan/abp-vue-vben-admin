@@ -10,8 +10,6 @@
 $、Abp 实现通过手机号注册用户   https://www.cnblogs.com/qiu-gu/p/16130602.html
 #、参考 一沙 的登录日志。 ip地址，ip位置，浏览器，操作系统
 #、浏览器参数获取参考  yisha  YiSha.Util
-#、升级abp-6
-#、替换ids4  延后
 #、每个服务都有一个解决方案，module改名services？？？再研究下eshopabp服务划分
 
 #、decimal精度设置

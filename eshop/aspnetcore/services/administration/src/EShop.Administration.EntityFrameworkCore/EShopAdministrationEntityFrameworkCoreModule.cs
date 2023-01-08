@@ -4,7 +4,6 @@ using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.MySQL;
 using Volo.Abp.FeatureManagement.EntityFrameworkCore;
-using Volo.Abp.Identity.EntityFrameworkCore;
 using Volo.Abp.Modularity;
 using Volo.Abp.PermissionManagement.EntityFrameworkCore;
 using Volo.Abp.SettingManagement.EntityFrameworkCore;
@@ -18,7 +17,6 @@ namespace EShop.Administration.EntityFrameworkCore
         typeof(AbpSettingManagementEntityFrameworkCoreModule),       
         typeof(AbpAuditLoggingEntityFrameworkCoreModule),
         typeof(AbpFeatureManagementEntityFrameworkCoreModule),
-        typeof(AbpIdentityEntityFrameworkCoreModule),
         typeof(LeopardSaasEntityFrameworkCoreModule)
         )]
     public class EShopAdministrationEntityFrameworkCoreModule : AbpModule

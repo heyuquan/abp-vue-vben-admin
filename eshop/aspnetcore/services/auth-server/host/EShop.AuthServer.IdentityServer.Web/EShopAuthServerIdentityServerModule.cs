@@ -17,12 +17,9 @@ using Volo.Abp.BackgroundJobs;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.MySQL;
 using Volo.Abp.Identity.EntityFrameworkCore;
-using Volo.Abp.OpenIddict.EntityFrameworkCore;
 using Volo.Abp.Modularity;
-using Volo.Abp.PermissionManagement.EntityFrameworkCore;
+using Volo.Abp.OpenIddict.EntityFrameworkCore;
 using Volo.Abp.UI.Navigation.Urls;
-using Volo.Abp.OpenIddict;
-using System.Threading.Tasks;
 
 namespace EShop.AuthServer
 {
@@ -34,7 +31,6 @@ namespace EShop.AuthServer
         typeof(AbpAspNetCoreMvcUiMultiTenancyModule),
 
         typeof(AbpEntityFrameworkCoreMySQLModule),
-        typeof(AbpPermissionManagementEntityFrameworkCoreModule),
         typeof(AbpIdentityEntityFrameworkCoreModule),
         typeof(AbpOpenIddictEntityFrameworkCoreModule),
 

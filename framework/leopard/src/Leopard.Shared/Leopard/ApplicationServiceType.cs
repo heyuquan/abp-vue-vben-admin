@@ -14,6 +14,12 @@ namespace Leopard
         ApiHost = 0,
 
         /// <summary>
+        /// 后台工作者  就不需要AuthServer相关配置
+        /// </summary>
+        [Description("后台工作者")]
+        Worker =4,
+
+        /// <summary>
         /// 认证服务  eg:获取token
         /// </summary>
         [Description("认证服务")]

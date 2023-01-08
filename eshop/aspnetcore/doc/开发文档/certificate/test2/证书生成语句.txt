@@ -12,3 +12,13 @@ a123456
 
 生成pem，nginx要用
 openssl x509 -inform der -in test.cer -out test.pem
+
+如果.cer是ascii码，就不需要再执行上面代码做转换，直接重命名后缀即可
+打开 test.cer 文件，显示类似如下，则为ascii
+-----BEGIN CERTIFICATE-----
+MIIEuTCCA6G[snip lots of chars]
+XmCpajQ==
+-----END CERTIFICATE-----
+
+将 cer 转换为 pem 时出现 OpenSSL 编码错误
+https://segmentfault.com/q/1010000042784901?utm_source=sf-similar-question

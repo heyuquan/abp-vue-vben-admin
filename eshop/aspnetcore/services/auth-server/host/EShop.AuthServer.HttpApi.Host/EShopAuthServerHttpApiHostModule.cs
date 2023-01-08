@@ -1,10 +1,10 @@
-using Leopard;
+using EShop.AuthServer.Localization;
 using EShop.Common.Shared;
+using Leopard;
 using Leopard.Consul;
 using Leopard.EntityFrameworkCore;
 using Leopard.Host;
 using Microsoft.Extensions.DependencyInjection;
-using EShop.AuthServer.Localization;
 using Volo.Abp;
 using Volo.Abp.Account;
 using Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy;
@@ -14,11 +14,10 @@ using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.MySQL;
 using Volo.Abp.Identity;
 using Volo.Abp.Identity.EntityFrameworkCore;
-using Volo.Abp.OpenIddict.EntityFrameworkCore;
 using Volo.Abp.Localization;
 using Volo.Abp.Localization.ExceptionHandling;
 using Volo.Abp.Modularity;
-using Volo.Abp.PermissionManagement.EntityFrameworkCore;
+using Volo.Abp.OpenIddict.EntityFrameworkCore;
 using Volo.Abp.Threading;
 using Volo.Abp.Validation.Localization;
 using Volo.Abp.VirtualFileSystem;
@@ -30,7 +29,6 @@ namespace EShop.AuthServer
         typeof(AbpAspNetCoreMvcUiMultiTenancyModule),
 
         typeof(AbpEntityFrameworkCoreMySQLModule),
-        typeof(AbpPermissionManagementEntityFrameworkCoreModule),
 
         typeof(AbpAccountApplicationModule),
         typeof(AbpAccountHttpApiClientModule),
