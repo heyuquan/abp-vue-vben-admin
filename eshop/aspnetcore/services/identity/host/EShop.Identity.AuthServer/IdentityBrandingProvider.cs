@@ -6,5 +6,5 @@ namespace EShop.Identity;
 [Dependency(ReplaceServices = true)]
 public class IdentityBrandingProvider : DefaultBrandingProvider
 {
-    public override string AppName => "Identity";
+    public override string AppName => "EShop.Identity.AuthServer";
 }

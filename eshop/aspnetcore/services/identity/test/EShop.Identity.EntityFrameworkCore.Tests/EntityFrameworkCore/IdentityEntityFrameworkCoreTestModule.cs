@@ -11,7 +11,7 @@ using Volo.Abp.Modularity;
 namespace EShop.Identity.EntityFrameworkCore;
 
 [DependsOn(
-    typeof(IdentityEntityFrameworkCoreModule),
+    typeof(EShopIdentityEntityFrameworkCoreModule),
     typeof(IdentityTestBaseModule),
     typeof(AbpEntityFrameworkCoreSqliteModule)
     )]

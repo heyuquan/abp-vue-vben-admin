@@ -1,4 +1,5 @@
 ﻿using EShop.Identity.EntityFrameworkCore;
+using Leopard.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.MySQL;
@@ -10,13 +11,14 @@ using Volo.Abp.PermissionManagement.EntityFrameworkCore;
 namespace EShop.Identity;
 
 [DependsOn(
-    typeof(IdentityDomainModule),
+    typeof(EShopIdentityDomainModule),
     typeof(AbpIdentityEntityFrameworkCoreModule),
     typeof(AbpOpenIddictEntityFrameworkCoreModule),
     typeof(AbpPermissionManagementEntityFrameworkCoreModule),
-    typeof(AbpEntityFrameworkCoreMySQLModule)
+    typeof(AbpEntityFrameworkCoreMySQLModule),
+    typeof(LeopardEntityFrameworkCoreModule)
     )]
-public class IdentityEntityFrameworkCoreModule : AbpModule
+public class EShopIdentityEntityFrameworkCoreModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)
     {

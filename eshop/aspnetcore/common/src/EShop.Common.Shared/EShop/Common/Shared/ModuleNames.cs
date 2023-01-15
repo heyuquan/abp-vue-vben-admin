@@ -2,10 +2,10 @@
 {
     public class ModuleNames
     {
-        public const string AuthServer = "EShopAuthServer";
-        public const string AuthServerIdentityServer = "EShopIdentityServer";
+        //public const string AuthServer = "EShopAuthServer";
+        public const string IdentityAuthServer = "EShopIdentityAuthServer";
         public const string Saas = "LeopardSaas";
-        public const string Identity = "LeopardIdentity";
+        public const string Identity = "EShopIdentity";
         public const string Account = "EShopAccount";
         public const string AccountAdmin = "EShopAccountAdmin";
         public const string AccountPublic = "EShopAccountPublic";

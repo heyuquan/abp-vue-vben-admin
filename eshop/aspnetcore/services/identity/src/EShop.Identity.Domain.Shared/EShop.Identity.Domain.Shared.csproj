@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <Import Project="..\..\common.props" />
 
@@ -20,6 +20,12 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="6.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="EShop.Common.Shared">
+      <HintPath>..\..\..\..\common\src\EShop.Common.Shared\obj\Debug\ref\EShop.Common.Shared.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

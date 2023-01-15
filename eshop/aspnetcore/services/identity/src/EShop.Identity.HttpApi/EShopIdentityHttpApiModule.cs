@@ -7,10 +7,10 @@ using Volo.Abp.Modularity;
 namespace EShop.Identity;
 
 [DependsOn(
-    typeof(IdentityApplicationContractsModule),
+    typeof(EShopIdentityApplicationContractsModule),
     typeof(AbpIdentityHttpApiModule)
     )]
-public class IdentityHttpApiModule : AbpModule
+public class EShopIdentityHttpApiModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {

@@ -1,4 +1,5 @@
-﻿using EShop.Identity.Localization;
+﻿using EShop.Common.Shared;
+using EShop.Identity.Localization;
 using Volo.Abp.Identity;
 using Volo.Abp.Localization;
 using Volo.Abp.Localization.ExceptionHandling;
@@ -13,7 +14,7 @@ namespace EShop.Identity;
     typeof(AbpIdentityDomainSharedModule),
     typeof(AbpOpenIddictDomainSharedModule) 
     )]
-public class IdentityDomainSharedModule : AbpModule
+public class EShopIdentityDomainSharedModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)
     {
@@ -25,7 +26,7 @@ public class IdentityDomainSharedModule : AbpModule
     {
         Configure<AbpVirtualFileSystemOptions>(options =>
         {
-            options.FileSets.AddEmbedded<IdentityDomainSharedModule>();
+            options.FileSets.AddEmbedded<EShopIdentityDomainSharedModule>();
         });
 
         Configure<AbpLocalizationOptions>(options =>
@@ -40,7 +41,7 @@ public class IdentityDomainSharedModule : AbpModule
 
         Configure<AbpExceptionLocalizationOptions>(options =>
         {
-            options.MapCodeNamespace("Identity", typeof(IdentityResource));
+            options.MapCodeNamespace(ModuleNames.Identity, typeof(IdentityResource));
         });
     }
 }

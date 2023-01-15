@@ -5,15 +5,15 @@ namespace EShop.Common.Shared
     // 改为从配置文件里面读取，就不用这个类了
     public static class ModuleIdentity
     {
-        public static class Auth
+        public static class Identity
         {
-            public const string Name = ModuleNames.AuthServer;
+            public const string Name = ModuleNames.Identity;
             public const ApplicationServiceType ServiceType = ApplicationServiceType.ApiHost;
         }
 
-        public static class AuthIdentityServer
+        public static class IdentityAuthServer
         {
-            public const string Name = ModuleNames.AuthServerIdentityServer;
+            public const string Name = ModuleNames.IdentityAuthServer;
             public const ApplicationServiceType ServiceType = ApplicationServiceType.AuthIdentityServer;
         }
 

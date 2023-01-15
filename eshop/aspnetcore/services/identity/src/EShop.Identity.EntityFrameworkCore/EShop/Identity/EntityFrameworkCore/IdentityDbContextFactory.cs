@@ -25,7 +25,7 @@ public class IdentityDbContextFactory : IDesignTimeDbContextFactory<IdentityDbCo
     private static IConfigurationRoot BuildConfiguration()
     {
         var builder = new ConfigurationBuilder()
-            .SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../EShop.Identity.DbMigrator/"))
+            .SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "../EShop.Identity.HttpApi.Host/"))
             .AddJsonFile("appsettings.json", optional: false);
 
         return builder.Build();

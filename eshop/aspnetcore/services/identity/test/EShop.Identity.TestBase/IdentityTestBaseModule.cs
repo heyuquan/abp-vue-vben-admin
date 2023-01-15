@@ -13,7 +13,7 @@ namespace EShop.Identity;
     typeof(AbpAutofacModule),
     typeof(AbpTestBaseModule),
     typeof(AbpAuthorizationModule),
-    typeof(IdentityDomainModule)
+    typeof(EShopIdentityDomainModule)
     )]
 public class IdentityTestBaseModule : AbpModule
 {

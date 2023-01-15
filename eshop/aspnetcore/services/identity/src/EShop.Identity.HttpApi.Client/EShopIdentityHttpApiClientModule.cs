@@ -6,23 +6,23 @@ using Volo.Abp.VirtualFileSystem;
 namespace EShop.Identity;
 
 [DependsOn(
-    typeof(IdentityApplicationContractsModule),
+    typeof(EShopIdentityApplicationContractsModule),
     typeof(AbpIdentityHttpApiClientModule)
 )]
-public class IdentityHttpApiClientModule : AbpModule
+public class EShopIdentityHttpApiClientModule : AbpModule
 {
     public const string RemoteServiceName = "Default";
 
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         context.Services.AddHttpClientProxies(
-            typeof(IdentityApplicationContractsModule).Assembly,
+            typeof(EShopIdentityApplicationContractsModule).Assembly,
             RemoteServiceName
         );
 
         Configure<AbpVirtualFileSystemOptions>(options =>
         {
-            options.FileSets.AddEmbedded<IdentityHttpApiClientModule>();
+            options.FileSets.AddEmbedded<EShopIdentityHttpApiClientModule>();
         });
     }
 }

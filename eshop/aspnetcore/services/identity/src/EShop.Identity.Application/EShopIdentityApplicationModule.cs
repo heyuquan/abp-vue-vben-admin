@@ -6,18 +6,18 @@ using Volo.Abp.PermissionManagement;
 namespace EShop.Identity;
 
 [DependsOn(
-    typeof(IdentityDomainModule),
-    typeof(IdentityApplicationContractsModule),
+    typeof(EShopIdentityDomainModule),
+    typeof(EShopIdentityApplicationContractsModule),
     typeof(AbpIdentityApplicationModule),
     typeof(AbpPermissionManagementApplicationModule)
     )]
-public class IdentityApplicationModule : AbpModule
+public class EShopIdentityApplicationModule : AbpModule
 {
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         Configure<AbpAutoMapperOptions>(options =>
         {
-            options.AddMaps<IdentityApplicationModule>();
+            options.AddMaps<EShopIdentityApplicationModule>();
         });
     }
 }

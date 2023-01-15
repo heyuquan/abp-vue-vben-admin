@@ -6,12 +6,12 @@ using Volo.Abp.PermissionManagement;
 namespace EShop.Identity;
 
 [DependsOn(
-    typeof(IdentityDomainSharedModule),
+    typeof(EShopIdentityDomainSharedModule),
     typeof(AbpIdentityApplicationContractsModule),
     typeof(AbpPermissionManagementApplicationContractsModule),
     typeof(AbpObjectExtendingModule)
 )]
-public class IdentityApplicationContractsModule : AbpModule
+public class EShopIdentityApplicationContractsModule : AbpModule
 {
     public override void PreConfigureServices(ServiceConfigurationContext context)
     {

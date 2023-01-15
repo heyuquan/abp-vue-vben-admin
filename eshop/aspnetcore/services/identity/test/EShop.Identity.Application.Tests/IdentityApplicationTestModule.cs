@@ -3,7 +3,7 @@
 namespace EShop.Identity;
 
 [DependsOn(
-    typeof(IdentityApplicationModule),
+    typeof(EShopIdentityApplicationModule),
     typeof(IdentityDomainTestModule)
     )]
 public class IdentityApplicationTestModule : AbpModule

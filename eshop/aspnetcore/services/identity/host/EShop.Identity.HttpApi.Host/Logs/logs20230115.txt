@@ -1,0 +1,1093 @@
+﻿[2023-01-15 17:03:13.897 inf] [Development] Starting EShopAuthServer. 
+[2023-01-15 17:07:17.222 inf] [Development] Starting EShopAuthServer. 
+[2023-01-15 17:09:18.468 inf] [Development] Starting EShopAuthServer. 
+[2023-01-15 17:09:21.987 inf] Loaded ABP modules: 
+[2023-01-15 17:09:21.99 inf] - EShop.Identity.EShopIdentityHttpApiHostModule 
+[2023-01-15 17:09:21.99 inf]   - EShop.Identity.EShopIdentityHttpApiModule 
+[2023-01-15 17:09:21.99 inf]     - EShop.Identity.EShopIdentityApplicationContractsModule 
+[2023-01-15 17:09:21.99 inf]       - EShop.Identity.EShopIdentityDomainSharedModule 
+[2023-01-15 17:09:21.99 inf]         - Volo.Abp.Identity.AbpIdentityDomainSharedModule 
+[2023-01-15 17:09:21.99 inf]           - Volo.Abp.Users.AbpUsersDomainSharedModule 
+[2023-01-15 17:09:21.99 inf]           - Volo.Abp.Validation.AbpValidationModule 
+[2023-01-15 17:09:21.99 inf]             - Volo.Abp.Validation.AbpValidationAbstractionsModule 
+[2023-01-15 17:09:21.99 inf]             - Volo.Abp.Localization.AbpLocalizationModule 
+[2023-01-15 17:09:21.99 inf]               - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule 
+[2023-01-15 17:09:21.99 inf]               - Volo.Abp.Settings.AbpSettingsModule 
+[2023-01-15 17:09:21.99 inf]                 - Volo.Abp.Localization.AbpLocalizationAbstractionsModule 
+[2023-01-15 17:09:21.99 inf]                 - Volo.Abp.Security.AbpSecurityModule 
+[2023-01-15 17:09:21.99 inf]                 - Volo.Abp.MultiTenancy.AbpMultiTenancyModule 
+[2023-01-15 17:09:21.99 inf]                   - Volo.Abp.Data.AbpDataModule 
+[2023-01-15 17:09:21.99 inf]                     - Volo.Abp.ObjectExtending.AbpObjectExtendingModule 
+[2023-01-15 17:09:21.99 inf]                     - Volo.Abp.Uow.AbpUnitOfWorkModule 
+[2023-01-15 17:09:21.99 inf]                     - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule 
+[2023-01-15 17:09:21.99 inf]           - Volo.Abp.Features.AbpFeaturesModule 
+[2023-01-15 17:09:21.99 inf]             - Volo.Abp.Authorization.AbpAuthorizationAbstractionsModule 
+[2023-01-15 17:09:21.99 inf]         - Volo.Abp.OpenIddict.AbpOpenIddictDomainSharedModule 
+[2023-01-15 17:09:21.99 inf]       - Volo.Abp.Identity.AbpIdentityApplicationContractsModule 
+[2023-01-15 17:09:21.99 inf]         - Volo.Abp.Users.AbpUsersAbstractionModule 
+[2023-01-15 17:09:21.99 inf]           - Volo.Abp.EventBus.AbpEventBusModule 
+[2023-01-15 17:09:21.99 inf]             - Volo.Abp.Json.AbpJsonModule 
+[2023-01-15 17:09:21.99 inf]               - Volo.Abp.Timing.AbpTimingModule 
+[2023-01-15 17:09:21.99 inf]             - Volo.Abp.Guids.AbpGuidsModule 
+[2023-01-15 17:09:21.99 inf]             - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule 
+[2023-01-15 17:09:21.99 inf]               - Volo.Abp.Threading.AbpThreadingModule 
+[2023-01-15 17:09:21.99 inf]             - Volo.Abp.DistributedLocking.AbpDistributedLockingAbstractionsModule 
+[2023-01-15 17:09:21.99 inf]         - Volo.Abp.Authorization.AbpAuthorizationModule 
+[2023-01-15 17:09:21.99 inf]         - Volo.Abp.PermissionManagement.AbpPermissionManagementApplicationContractsModule 
+[2023-01-15 17:09:21.99 inf]           - Volo.Abp.Application.AbpDddApplicationContractsModule 
+[2023-01-15 17:09:21.99 inf]             - Volo.Abp.Auditing.AbpAuditingContractsModule 
+[2023-01-15 17:09:21.99 inf]           - Volo.Abp.PermissionManagement.AbpPermissionManagementDomainSharedModule 
+[2023-01-15 17:09:21.99 inf]     - Volo.Abp.Identity.AbpIdentityHttpApiModule 
+[2023-01-15 17:09:21.99 inf]       - Volo.Abp.AspNetCore.Mvc.AbpAspNetCoreMvcModule 
+[2023-01-15 17:09:21.99 inf]         - Volo.Abp.AspNetCore.AbpAspNetCoreModule 
+[2023-01-15 17:09:21.99 inf]           - Volo.Abp.Auditing.AbpAuditingModule 
+[2023-01-15 17:09:21.99 inf]           - Volo.Abp.Http.AbpHttpModule 
+[2023-01-15 17:09:21.99 inf]             - Volo.Abp.Http.AbpHttpAbstractionsModule 
+[2023-01-15 17:09:21.99 inf]             - Volo.Abp.Minify.AbpMinifyModule 
+[2023-01-15 17:09:21.99 inf]           - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule 
+[2023-01-15 17:09:21.99 inf]         - Volo.Abp.ApiVersioning.AbpApiVersioningAbstractionsModule 
+[2023-01-15 17:09:21.99 inf]         - Volo.Abp.AspNetCore.Mvc.AbpAspNetCoreMvcContractsModule 
+[2023-01-15 17:09:21.99 inf]         - Volo.Abp.UI.Navigation.AbpUiNavigationModule 
+[2023-01-15 17:09:21.99 inf]           - Volo.Abp.UI.AbpUiModule 
+[2023-01-15 17:09:21.99 inf]         - Volo.Abp.GlobalFeatures.AbpGlobalFeaturesModule 
+[2023-01-15 17:09:21.99 inf]         - Volo.Abp.Application.AbpDddApplicationModule 
+[2023-01-15 17:09:21.99 inf]           - Volo.Abp.Domain.AbpDddDomainModule 
+[2023-01-15 17:09:21.99 inf]             - Volo.Abp.ObjectMapping.AbpObjectMappingModule 
+[2023-01-15 17:09:21.99 inf]             - Volo.Abp.Specifications.AbpSpecificationsModule 
+[2023-01-15 17:09:21.991 inf]   - Volo.Abp.Autofac.AbpAutofacModule 
+[2023-01-15 17:09:21.991 inf]     - Volo.Abp.Castle.AbpCastleCoreModule 
+[2023-01-15 17:09:21.991 inf]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule 
+[2023-01-15 17:09:21.991 inf]     - Volo.Abp.Caching.AbpCachingModule 
+[2023-01-15 17:09:21.991 inf]       - Volo.Abp.Serialization.AbpSerializationModule 
+[2023-01-15 17:09:21.991 inf]   - Volo.Abp.DistributedLocking.AbpDistributedLockingModule 
+[2023-01-15 17:09:21.991 inf]   - Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy.AbpAspNetCoreMvcUiMultiTenancyModule 
+[2023-01-15 17:09:21.991 inf]     - Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.AbpAspNetCoreMvcUiThemeSharedModule 
+[2023-01-15 17:09:21.991 inf]       - Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.AbpAspNetCoreMvcUiBootstrapModule 
+[2023-01-15 17:09:21.991 inf]         - Volo.Abp.AspNetCore.Mvc.UI.AbpAspNetCoreMvcUiModule 
+[2023-01-15 17:09:21.991 inf]       - Volo.Abp.AspNetCore.Mvc.UI.Packages.AbpAspNetCoreMvcUiPackagesModule 
+[2023-01-15 17:09:21.991 inf]         - Volo.Abp.AspNetCore.Mvc.UI.Bundling.AbpAspNetCoreMvcUiBundlingAbstractionsModule 
+[2023-01-15 17:09:21.991 inf]       - Volo.Abp.AspNetCore.Mvc.UI.Widgets.AbpAspNetCoreMvcUiWidgetsModule 
+[2023-01-15 17:09:21.991 inf]         - Volo.Abp.AspNetCore.Mvc.UI.Bundling.AbpAspNetCoreMvcUiBundlingModule 
+[2023-01-15 17:09:21.991 inf]     - Volo.Abp.AspNetCore.MultiTenancy.AbpAspNetCoreMultiTenancyModule 
+[2023-01-15 17:09:21.991 inf]   - EShop.Identity.EShopIdentityApplicationModule 
+[2023-01-15 17:09:21.991 inf]     - EShop.Identity.EShopIdentityDomainModule 
+[2023-01-15 17:09:21.991 inf]       - Volo.Abp.Identity.AbpIdentityDomainModule 
+[2023-01-15 17:09:21.991 inf]         - Volo.Abp.Users.AbpUsersDomainModule 
+[2023-01-15 17:09:21.991 inf]         - Volo.Abp.AutoMapper.AbpAutoMapperModule 
+[2023-01-15 17:09:21.991 inf]       - Volo.Abp.OpenIddict.AbpOpenIddictDomainModule 
+[2023-01-15 17:09:21.991 inf]       - Volo.Abp.PermissionManagement.AbpPermissionManagementDomainModule 
+[2023-01-15 17:09:21.991 inf]       - Volo.Abp.Emailing.AbpEmailingModule 
+[2023-01-15 17:09:21.991 inf]         - Volo.Abp.BackgroundJobs.AbpBackgroundJobsAbstractionsModule 
+[2023-01-15 17:09:21.991 inf]         - Volo.Abp.TextTemplating.AbpTextTemplatingModule 
+[2023-01-15 17:09:21.991 inf]           - Volo.Abp.TextTemplating.Scriban.AbpTextTemplatingScribanModule 
+[2023-01-15 17:09:21.991 inf]             - Volo.Abp.TextTemplating.AbpTextTemplatingCoreModule 
+[2023-01-15 17:09:21.991 inf]     - Volo.Abp.Identity.AbpIdentityApplicationModule 
+[2023-01-15 17:09:21.991 inf]       - Volo.Abp.PermissionManagement.AbpPermissionManagementApplicationModule 
+[2023-01-15 17:09:21.991 inf]   - EShop.Identity.EShopIdentityEntityFrameworkCoreModule 
+[2023-01-15 17:09:21.991 inf]     - Volo.Abp.Identity.EntityFrameworkCore.AbpIdentityEntityFrameworkCoreModule 
+[2023-01-15 17:09:21.991 inf]       - Volo.Abp.Users.EntityFrameworkCore.AbpUsersEntityFrameworkCoreModule 
+[2023-01-15 17:09:21.991 inf]         - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule 
+[2023-01-15 17:09:21.991 inf]     - Volo.Abp.OpenIddict.EntityFrameworkCore.AbpOpenIddictEntityFrameworkCoreModule 
+[2023-01-15 17:09:21.991 inf]     - Volo.Abp.PermissionManagement.EntityFrameworkCore.AbpPermissionManagementEntityFrameworkCoreModule 
+[2023-01-15 17:09:21.991 inf]     - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule 
+[2023-01-15 17:09:21.991 inf]   - Volo.Abp.AspNetCore.Serilog.AbpAspNetCoreSerilogModule 
+[2023-01-15 17:09:21.991 inf]   - Volo.Abp.Swashbuckle.AbpSwashbuckleModule 
+[2023-01-15 17:09:21.991 inf]   - Leopard.AspNetCore.Serilog.LeopardAspNetCoreSerilogModule 
+[2023-01-15 17:09:21.991 inf]   - Leopard.AspNetCore.Swashbuckle.LeopardAspNetCoreSwashbuckleModule 
+[2023-01-15 17:09:21.991 inf]     - Leopard.LeopardModule 
+[2023-01-15 17:09:21.991 inf]   - Leopard.AspNetCore.Mvc.LeopardAspNetCoreMvcModule 
+[2023-01-15 17:09:22.611 ftl] EShopAuthServer terminated unexpectedly! 
+Volo.Abp.AbpInitializationException: An error occurred during the initialize Volo.Abp.Modularity.OnApplicationInitializationModuleLifecycleContributor phase of the module Volo.Abp.OpenIddict.AbpOpenIddictDomainModule, Volo.Abp.OpenIddict.Domain, Version=6.0.2.0, Culture=neutral, PublicKeyToken=null: An exception was thrown while activating Volo.Abp.OpenIddict.Tokens.TokenCleanupBackgroundWorker -> Volo.Abp.DistributedLocking.MedallionAbpDistributedLock.. See the inner exception for details.
+ ---> Autofac.Core.DependencyResolutionException: An exception was thrown while activating Volo.Abp.OpenIddict.Tokens.TokenCleanupBackgroundWorker -> Volo.Abp.DistributedLocking.MedallionAbpDistributedLock.
+ ---> Autofac.Core.DependencyResolutionException: None of the constructors found with 'Autofac.Core.Activators.Reflection.DefaultConstructorFinder' on type 'Volo.Abp.DistributedLocking.MedallionAbpDistributedLock' can be invoked with the available services and parameters:
+Cannot resolve parameter 'Medallion.Threading.IDistributedLockProvider distributedLockProvider' of constructor 'Void .ctor(Medallion.Threading.IDistributedLockProvider)'.
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.<>c__DisplayClass12_0.<UseSingleConstructorActivation>b__0(ResolveRequestContext ctxt, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.DisposalTrackingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Builder.RegistrationBuilder`3.<>c__DisplayClass41_0.<PropertiesAutowired>b__0(ResolveRequestContext ctxt, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   --- End of inner exception stack trace ---
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.<>c__DisplayClass5_0.<Execute>b__0()
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid id, Func`1 creator)
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid primaryId, Nullable`1 qualifyingId, Func`1 creator)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.CircularDependencyDetectorMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.ResolveOperation.GetOrCreateInstance(ISharingLifetimeScope currentOperationScope, ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.ExecuteOperation(ResolveRequest request)
+   at Autofac.ResolutionExtensions.TryResolveService(IComponentContext context, Service service, IEnumerable`1 parameters, Object& instance)
+   at Autofac.ResolutionExtensions.ResolveService(IComponentContext context, Service service, IEnumerable`1 parameters)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at Volo.Abp.OpenIddict.AbpOpenIddictDomainModule.OnApplicationInitializationAsync(ApplicationInitializationContext context)
+   at Volo.Abp.Modularity.OnApplicationInitializationModuleLifecycleContributor.InitializeAsync(ApplicationInitializationContext context, IAbpModule module)
+   at Volo.Abp.Modularity.ModuleManager.InitializeModulesAsync(ApplicationInitializationContext context)
+   --- End of inner exception stack trace ---
+   at Volo.Abp.Modularity.ModuleManager.InitializeModulesAsync(ApplicationInitializationContext context)
+   at Volo.Abp.AbpApplicationBase.InitializeModulesAsync()
+   at Volo.Abp.AbpApplicationWithExternalServiceProvider.InitializeAsync(IServiceProvider serviceProvider)
+   at Microsoft.AspNetCore.Builder.AbpApplicationBuilderExtensions.InitializeApplicationAsync(IApplicationBuilder app)
+   at Leopard.Host.CommonHostProgram`1.RunAsync(String[] args) in D:\Work\OpenSource\abp-vue-vben-admin\framework\leopard\src\Leopard.Host\Leopard\Host\CommonHostProgram.cs:line 71
+[2023-01-15 17:14:09.077 inf] [Development] Starting EShopAuthServer. 
+[2023-01-15 17:14:12.69 inf] Loaded ABP modules: 
+[2023-01-15 17:14:12.692 inf] - EShop.Identity.EShopIdentityHttpApiHostModule 
+[2023-01-15 17:14:12.692 inf]   - Volo.Abp.Autofac.AbpAutofacModule 
+[2023-01-15 17:14:12.692 inf]     - Volo.Abp.Castle.AbpCastleCoreModule 
+[2023-01-15 17:14:12.692 inf]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule 
+[2023-01-15 17:14:12.692 inf]     - Volo.Abp.Caching.AbpCachingModule 
+[2023-01-15 17:14:12.692 inf]       - Volo.Abp.Threading.AbpThreadingModule 
+[2023-01-15 17:14:12.692 inf]       - Volo.Abp.Serialization.AbpSerializationModule 
+[2023-01-15 17:14:12.692 inf]       - Volo.Abp.Uow.AbpUnitOfWorkModule 
+[2023-01-15 17:14:12.692 inf]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule 
+[2023-01-15 17:14:12.692 inf]         - Volo.Abp.Data.AbpDataModule 
+[2023-01-15 17:14:12.692 inf]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule 
+[2023-01-15 17:14:12.692 inf]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule 
+[2023-01-15 17:14:12.692 inf]             - Volo.Abp.Validation.AbpValidationAbstractionsModule 
+[2023-01-15 17:14:12.692 inf]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule 
+[2023-01-15 17:14:12.692 inf]         - Volo.Abp.Security.AbpSecurityModule 
+[2023-01-15 17:14:12.692 inf]       - Volo.Abp.Json.AbpJsonModule 
+[2023-01-15 17:14:12.692 inf]         - Volo.Abp.Timing.AbpTimingModule 
+[2023-01-15 17:14:12.692 inf]           - Volo.Abp.Localization.AbpLocalizationModule 
+[2023-01-15 17:14:12.692 inf]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule 
+[2023-01-15 17:14:12.692 inf]             - Volo.Abp.Settings.AbpSettingsModule 
+[2023-01-15 17:14:12.692 inf]   - Volo.Abp.DistributedLocking.AbpDistributedLockingModule 
+[2023-01-15 17:14:12.692 inf]     - Volo.Abp.DistributedLocking.AbpDistributedLockingAbstractionsModule 
+[2023-01-15 17:14:12.692 inf]   - Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy.AbpAspNetCoreMvcUiMultiTenancyModule 
+[2023-01-15 17:14:12.692 inf]     - Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.AbpAspNetCoreMvcUiThemeSharedModule 
+[2023-01-15 17:14:12.692 inf]       - Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.AbpAspNetCoreMvcUiBootstrapModule 
+[2023-01-15 17:14:12.692 inf]         - Volo.Abp.AspNetCore.Mvc.UI.AbpAspNetCoreMvcUiModule 
+[2023-01-15 17:14:12.692 inf]           - Volo.Abp.AspNetCore.Mvc.AbpAspNetCoreMvcModule 
+[2023-01-15 17:14:12.692 inf]             - Volo.Abp.AspNetCore.AbpAspNetCoreModule 
+[2023-01-15 17:14:12.692 inf]               - Volo.Abp.Auditing.AbpAuditingModule 
+[2023-01-15 17:14:12.692 inf]                 - Volo.Abp.Auditing.AbpAuditingContractsModule 
+[2023-01-15 17:14:12.692 inf]               - Volo.Abp.Http.AbpHttpModule 
+[2023-01-15 17:14:12.692 inf]                 - Volo.Abp.Http.AbpHttpAbstractionsModule 
+[2023-01-15 17:14:12.692 inf]                 - Volo.Abp.Minify.AbpMinifyModule 
+[2023-01-15 17:14:12.692 inf]               - Volo.Abp.Authorization.AbpAuthorizationModule 
+[2023-01-15 17:14:12.692 inf]                 - Volo.Abp.Authorization.AbpAuthorizationAbstractionsModule 
+[2023-01-15 17:14:12.692 inf]               - Volo.Abp.Validation.AbpValidationModule 
+[2023-01-15 17:14:12.692 inf]               - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule 
+[2023-01-15 17:14:12.692 inf]             - Volo.Abp.ApiVersioning.AbpApiVersioningAbstractionsModule 
+[2023-01-15 17:14:12.692 inf]             - Volo.Abp.AspNetCore.Mvc.AbpAspNetCoreMvcContractsModule 
+[2023-01-15 17:14:12.692 inf]               - Volo.Abp.Application.AbpDddApplicationContractsModule 
+[2023-01-15 17:14:12.692 inf]             - Volo.Abp.UI.Navigation.AbpUiNavigationModule 
+[2023-01-15 17:14:12.692 inf]               - Volo.Abp.UI.AbpUiModule 
+[2023-01-15 17:14:12.692 inf]             - Volo.Abp.GlobalFeatures.AbpGlobalFeaturesModule 
+[2023-01-15 17:14:12.692 inf]             - Volo.Abp.Application.AbpDddApplicationModule 
+[2023-01-15 17:14:12.692 inf]               - Volo.Abp.Domain.AbpDddDomainModule 
+[2023-01-15 17:14:12.692 inf]                 - Volo.Abp.EventBus.AbpEventBusModule 
+[2023-01-15 17:14:12.692 inf]                   - Volo.Abp.Guids.AbpGuidsModule 
+[2023-01-15 17:14:12.692 inf]                   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule 
+[2023-01-15 17:14:12.692 inf]                 - Volo.Abp.ObjectMapping.AbpObjectMappingModule 
+[2023-01-15 17:14:12.692 inf]                 - Volo.Abp.Specifications.AbpSpecificationsModule 
+[2023-01-15 17:14:12.692 inf]               - Volo.Abp.Features.AbpFeaturesModule 
+[2023-01-15 17:14:12.692 inf]       - Volo.Abp.AspNetCore.Mvc.UI.Packages.AbpAspNetCoreMvcUiPackagesModule 
+[2023-01-15 17:14:12.692 inf]         - Volo.Abp.AspNetCore.Mvc.UI.Bundling.AbpAspNetCoreMvcUiBundlingAbstractionsModule 
+[2023-01-15 17:14:12.692 inf]       - Volo.Abp.AspNetCore.Mvc.UI.Widgets.AbpAspNetCoreMvcUiWidgetsModule 
+[2023-01-15 17:14:12.692 inf]         - Volo.Abp.AspNetCore.Mvc.UI.Bundling.AbpAspNetCoreMvcUiBundlingModule 
+[2023-01-15 17:14:12.692 inf]     - Volo.Abp.AspNetCore.MultiTenancy.AbpAspNetCoreMultiTenancyModule 
+[2023-01-15 17:14:12.692 inf]   - EShop.Identity.EShopIdentityHttpApiModule 
+[2023-01-15 17:14:12.692 inf]     - EShop.Identity.EShopIdentityApplicationContractsModule 
+[2023-01-15 17:14:12.692 inf]       - EShop.Identity.EShopIdentityDomainSharedModule 
+[2023-01-15 17:14:12.692 inf]         - Volo.Abp.Identity.AbpIdentityDomainSharedModule 
+[2023-01-15 17:14:12.692 inf]           - Volo.Abp.Users.AbpUsersDomainSharedModule 
+[2023-01-15 17:14:12.692 inf]         - Volo.Abp.OpenIddict.AbpOpenIddictDomainSharedModule 
+[2023-01-15 17:14:12.692 inf]       - Volo.Abp.Identity.AbpIdentityApplicationContractsModule 
+[2023-01-15 17:14:12.692 inf]         - Volo.Abp.Users.AbpUsersAbstractionModule 
+[2023-01-15 17:14:12.692 inf]         - Volo.Abp.PermissionManagement.AbpPermissionManagementApplicationContractsModule 
+[2023-01-15 17:14:12.692 inf]           - Volo.Abp.PermissionManagement.AbpPermissionManagementDomainSharedModule 
+[2023-01-15 17:14:12.692 inf]     - Volo.Abp.Identity.AbpIdentityHttpApiModule 
+[2023-01-15 17:14:12.692 inf]   - EShop.Identity.EShopIdentityApplicationModule 
+[2023-01-15 17:14:12.692 inf]     - EShop.Identity.EShopIdentityDomainModule 
+[2023-01-15 17:14:12.692 inf]       - Volo.Abp.Identity.AbpIdentityDomainModule 
+[2023-01-15 17:14:12.692 inf]         - Volo.Abp.Users.AbpUsersDomainModule 
+[2023-01-15 17:14:12.692 inf]         - Volo.Abp.AutoMapper.AbpAutoMapperModule 
+[2023-01-15 17:14:12.692 inf]       - Volo.Abp.OpenIddict.AbpOpenIddictDomainModule 
+[2023-01-15 17:14:12.692 inf]       - Volo.Abp.PermissionManagement.AbpPermissionManagementDomainModule 
+[2023-01-15 17:14:12.692 inf]       - Volo.Abp.Emailing.AbpEmailingModule 
+[2023-01-15 17:14:12.692 inf]         - Volo.Abp.BackgroundJobs.AbpBackgroundJobsAbstractionsModule 
+[2023-01-15 17:14:12.692 inf]         - Volo.Abp.TextTemplating.AbpTextTemplatingModule 
+[2023-01-15 17:14:12.692 inf]           - Volo.Abp.TextTemplating.Scriban.AbpTextTemplatingScribanModule 
+[2023-01-15 17:14:12.692 inf]             - Volo.Abp.TextTemplating.AbpTextTemplatingCoreModule 
+[2023-01-15 17:14:12.692 inf]     - Volo.Abp.Identity.AbpIdentityApplicationModule 
+[2023-01-15 17:14:12.692 inf]       - Volo.Abp.PermissionManagement.AbpPermissionManagementApplicationModule 
+[2023-01-15 17:14:12.692 inf]   - EShop.Identity.EShopIdentityEntityFrameworkCoreModule 
+[2023-01-15 17:14:12.692 inf]     - Volo.Abp.Identity.EntityFrameworkCore.AbpIdentityEntityFrameworkCoreModule 
+[2023-01-15 17:14:12.692 inf]       - Volo.Abp.Users.EntityFrameworkCore.AbpUsersEntityFrameworkCoreModule 
+[2023-01-15 17:14:12.692 inf]         - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule 
+[2023-01-15 17:14:12.692 inf]     - Volo.Abp.OpenIddict.EntityFrameworkCore.AbpOpenIddictEntityFrameworkCoreModule 
+[2023-01-15 17:14:12.692 inf]     - Volo.Abp.PermissionManagement.EntityFrameworkCore.AbpPermissionManagementEntityFrameworkCoreModule 
+[2023-01-15 17:14:12.692 inf]     - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule 
+[2023-01-15 17:14:12.692 inf]     - Leopard.EntityFrameworkCore.LeopardEntityFrameworkCoreModule 
+[2023-01-15 17:14:12.692 inf]   - Volo.Abp.AspNetCore.Serilog.AbpAspNetCoreSerilogModule 
+[2023-01-15 17:14:12.692 inf]   - Volo.Abp.Swashbuckle.AbpSwashbuckleModule 
+[2023-01-15 17:14:12.692 inf]   - Leopard.AspNetCore.Serilog.LeopardAspNetCoreSerilogModule 
+[2023-01-15 17:14:12.692 inf]   - Leopard.AspNetCore.Swashbuckle.LeopardAspNetCoreSwashbuckleModule 
+[2023-01-15 17:14:12.692 inf]     - Leopard.LeopardModule 
+[2023-01-15 17:14:12.692 inf]   - Leopard.AspNetCore.Mvc.LeopardAspNetCoreMvcModule 
+[2023-01-15 17:14:13.105 ftl] EShopAuthServer terminated unexpectedly! 
+Volo.Abp.AbpInitializationException: An error occurred during the initialize Volo.Abp.Modularity.OnApplicationInitializationModuleLifecycleContributor phase of the module Volo.Abp.OpenIddict.AbpOpenIddictDomainModule, Volo.Abp.OpenIddict.Domain, Version=6.0.2.0, Culture=neutral, PublicKeyToken=null: An exception was thrown while activating Volo.Abp.OpenIddict.Tokens.TokenCleanupBackgroundWorker -> Volo.Abp.DistributedLocking.MedallionAbpDistributedLock.. See the inner exception for details.
+ ---> Autofac.Core.DependencyResolutionException: An exception was thrown while activating Volo.Abp.OpenIddict.Tokens.TokenCleanupBackgroundWorker -> Volo.Abp.DistributedLocking.MedallionAbpDistributedLock.
+ ---> Autofac.Core.DependencyResolutionException: None of the constructors found with 'Autofac.Core.Activators.Reflection.DefaultConstructorFinder' on type 'Volo.Abp.DistributedLocking.MedallionAbpDistributedLock' can be invoked with the available services and parameters:
+Cannot resolve parameter 'Medallion.Threading.IDistributedLockProvider distributedLockProvider' of constructor 'Void .ctor(Medallion.Threading.IDistributedLockProvider)'.
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.<>c__DisplayClass12_0.<UseSingleConstructorActivation>b__0(ResolveRequestContext ctxt, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.DisposalTrackingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Builder.RegistrationBuilder`3.<>c__DisplayClass41_0.<PropertiesAutowired>b__0(ResolveRequestContext ctxt, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   --- End of inner exception stack trace ---
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.<>c__DisplayClass5_0.<Execute>b__0()
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid id, Func`1 creator)
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid primaryId, Nullable`1 qualifyingId, Func`1 creator)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.CircularDependencyDetectorMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.ResolveOperation.GetOrCreateInstance(ISharingLifetimeScope currentOperationScope, ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.ExecuteOperation(ResolveRequest request)
+   at Autofac.ResolutionExtensions.TryResolveService(IComponentContext context, Service service, IEnumerable`1 parameters, Object& instance)
+   at Autofac.ResolutionExtensions.ResolveService(IComponentContext context, Service service, IEnumerable`1 parameters)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at Volo.Abp.OpenIddict.AbpOpenIddictDomainModule.OnApplicationInitializationAsync(ApplicationInitializationContext context)
+   at Volo.Abp.Modularity.OnApplicationInitializationModuleLifecycleContributor.InitializeAsync(ApplicationInitializationContext context, IAbpModule module)
+   at Volo.Abp.Modularity.ModuleManager.InitializeModulesAsync(ApplicationInitializationContext context)
+   --- End of inner exception stack trace ---
+   at Volo.Abp.Modularity.ModuleManager.InitializeModulesAsync(ApplicationInitializationContext context)
+   at Volo.Abp.AbpApplicationBase.InitializeModulesAsync()
+   at Volo.Abp.AbpApplicationWithExternalServiceProvider.InitializeAsync(IServiceProvider serviceProvider)
+   at Microsoft.AspNetCore.Builder.AbpApplicationBuilderExtensions.InitializeApplicationAsync(IApplicationBuilder app)
+   at Leopard.Host.CommonHostProgram`1.RunAsync(String[] args) in D:\Work\OpenSource\abp-vue-vben-admin\framework\leopard\src\Leopard.Host\Leopard\Host\CommonHostProgram.cs:line 71
+[2023-01-15 17:21:52.544 inf] [Development] Starting EShopAuthServer. 
+[2023-01-15 17:21:57.549 inf] Loaded ABP modules: 
+[2023-01-15 17:21:57.551 inf] - EShop.Identity.EShopIdentityHttpApiHostModule 
+[2023-01-15 17:21:57.551 inf]   - Volo.Abp.Autofac.AbpAutofacModule 
+[2023-01-15 17:21:57.551 inf]     - Volo.Abp.Castle.AbpCastleCoreModule 
+[2023-01-15 17:21:57.551 inf]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule 
+[2023-01-15 17:21:57.551 inf]     - Volo.Abp.Caching.AbpCachingModule 
+[2023-01-15 17:21:57.551 inf]       - Volo.Abp.Threading.AbpThreadingModule 
+[2023-01-15 17:21:57.551 inf]       - Volo.Abp.Serialization.AbpSerializationModule 
+[2023-01-15 17:21:57.551 inf]       - Volo.Abp.Uow.AbpUnitOfWorkModule 
+[2023-01-15 17:21:57.551 inf]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule 
+[2023-01-15 17:21:57.551 inf]         - Volo.Abp.Data.AbpDataModule 
+[2023-01-15 17:21:57.551 inf]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule 
+[2023-01-15 17:21:57.551 inf]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule 
+[2023-01-15 17:21:57.551 inf]             - Volo.Abp.Validation.AbpValidationAbstractionsModule 
+[2023-01-15 17:21:57.551 inf]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule 
+[2023-01-15 17:21:57.551 inf]         - Volo.Abp.Security.AbpSecurityModule 
+[2023-01-15 17:21:57.551 inf]       - Volo.Abp.Json.AbpJsonModule 
+[2023-01-15 17:21:57.551 inf]         - Volo.Abp.Timing.AbpTimingModule 
+[2023-01-15 17:21:57.551 inf]           - Volo.Abp.Localization.AbpLocalizationModule 
+[2023-01-15 17:21:57.551 inf]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule 
+[2023-01-15 17:21:57.551 inf]             - Volo.Abp.Settings.AbpSettingsModule 
+[2023-01-15 17:21:57.551 inf]   - Volo.Abp.DistributedLocking.AbpDistributedLockingModule 
+[2023-01-15 17:21:57.551 inf]     - Volo.Abp.DistributedLocking.AbpDistributedLockingAbstractionsModule 
+[2023-01-15 17:21:57.551 inf]   - Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy.AbpAspNetCoreMvcUiMultiTenancyModule 
+[2023-01-15 17:21:57.551 inf]     - Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.AbpAspNetCoreMvcUiThemeSharedModule 
+[2023-01-15 17:21:57.551 inf]       - Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.AbpAspNetCoreMvcUiBootstrapModule 
+[2023-01-15 17:21:57.551 inf]         - Volo.Abp.AspNetCore.Mvc.UI.AbpAspNetCoreMvcUiModule 
+[2023-01-15 17:21:57.551 inf]           - Volo.Abp.AspNetCore.Mvc.AbpAspNetCoreMvcModule 
+[2023-01-15 17:21:57.551 inf]             - Volo.Abp.AspNetCore.AbpAspNetCoreModule 
+[2023-01-15 17:21:57.551 inf]               - Volo.Abp.Auditing.AbpAuditingModule 
+[2023-01-15 17:21:57.551 inf]                 - Volo.Abp.Auditing.AbpAuditingContractsModule 
+[2023-01-15 17:21:57.551 inf]               - Volo.Abp.Http.AbpHttpModule 
+[2023-01-15 17:21:57.551 inf]                 - Volo.Abp.Http.AbpHttpAbstractionsModule 
+[2023-01-15 17:21:57.551 inf]                 - Volo.Abp.Minify.AbpMinifyModule 
+[2023-01-15 17:21:57.551 inf]               - Volo.Abp.Authorization.AbpAuthorizationModule 
+[2023-01-15 17:21:57.551 inf]                 - Volo.Abp.Authorization.AbpAuthorizationAbstractionsModule 
+[2023-01-15 17:21:57.551 inf]               - Volo.Abp.Validation.AbpValidationModule 
+[2023-01-15 17:21:57.551 inf]               - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule 
+[2023-01-15 17:21:57.551 inf]             - Volo.Abp.ApiVersioning.AbpApiVersioningAbstractionsModule 
+[2023-01-15 17:21:57.551 inf]             - Volo.Abp.AspNetCore.Mvc.AbpAspNetCoreMvcContractsModule 
+[2023-01-15 17:21:57.551 inf]               - Volo.Abp.Application.AbpDddApplicationContractsModule 
+[2023-01-15 17:21:57.551 inf]             - Volo.Abp.UI.Navigation.AbpUiNavigationModule 
+[2023-01-15 17:21:57.551 inf]               - Volo.Abp.UI.AbpUiModule 
+[2023-01-15 17:21:57.551 inf]             - Volo.Abp.GlobalFeatures.AbpGlobalFeaturesModule 
+[2023-01-15 17:21:57.551 inf]             - Volo.Abp.Application.AbpDddApplicationModule 
+[2023-01-15 17:21:57.551 inf]               - Volo.Abp.Domain.AbpDddDomainModule 
+[2023-01-15 17:21:57.551 inf]                 - Volo.Abp.EventBus.AbpEventBusModule 
+[2023-01-15 17:21:57.551 inf]                   - Volo.Abp.Guids.AbpGuidsModule 
+[2023-01-15 17:21:57.551 inf]                   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule 
+[2023-01-15 17:21:57.551 inf]                 - Volo.Abp.ObjectMapping.AbpObjectMappingModule 
+[2023-01-15 17:21:57.551 inf]                 - Volo.Abp.Specifications.AbpSpecificationsModule 
+[2023-01-15 17:21:57.551 inf]               - Volo.Abp.Features.AbpFeaturesModule 
+[2023-01-15 17:21:57.551 inf]       - Volo.Abp.AspNetCore.Mvc.UI.Packages.AbpAspNetCoreMvcUiPackagesModule 
+[2023-01-15 17:21:57.551 inf]         - Volo.Abp.AspNetCore.Mvc.UI.Bundling.AbpAspNetCoreMvcUiBundlingAbstractionsModule 
+[2023-01-15 17:21:57.551 inf]       - Volo.Abp.AspNetCore.Mvc.UI.Widgets.AbpAspNetCoreMvcUiWidgetsModule 
+[2023-01-15 17:21:57.551 inf]         - Volo.Abp.AspNetCore.Mvc.UI.Bundling.AbpAspNetCoreMvcUiBundlingModule 
+[2023-01-15 17:21:57.551 inf]     - Volo.Abp.AspNetCore.MultiTenancy.AbpAspNetCoreMultiTenancyModule 
+[2023-01-15 17:21:57.551 inf]   - EShop.Identity.EShopIdentityHttpApiModule 
+[2023-01-15 17:21:57.551 inf]     - EShop.Identity.EShopIdentityApplicationContractsModule 
+[2023-01-15 17:21:57.551 inf]       - EShop.Identity.EShopIdentityDomainSharedModule 
+[2023-01-15 17:21:57.551 inf]         - Volo.Abp.Identity.AbpIdentityDomainSharedModule 
+[2023-01-15 17:21:57.551 inf]           - Volo.Abp.Users.AbpUsersDomainSharedModule 
+[2023-01-15 17:21:57.551 inf]         - Volo.Abp.OpenIddict.AbpOpenIddictDomainSharedModule 
+[2023-01-15 17:21:57.551 inf]       - Volo.Abp.Identity.AbpIdentityApplicationContractsModule 
+[2023-01-15 17:21:57.551 inf]         - Volo.Abp.Users.AbpUsersAbstractionModule 
+[2023-01-15 17:21:57.551 inf]         - Volo.Abp.PermissionManagement.AbpPermissionManagementApplicationContractsModule 
+[2023-01-15 17:21:57.551 inf]           - Volo.Abp.PermissionManagement.AbpPermissionManagementDomainSharedModule 
+[2023-01-15 17:21:57.551 inf]     - Volo.Abp.Identity.AbpIdentityHttpApiModule 
+[2023-01-15 17:21:57.551 inf]   - EShop.Identity.EShopIdentityApplicationModule 
+[2023-01-15 17:21:57.551 inf]     - EShop.Identity.EShopIdentityDomainModule 
+[2023-01-15 17:21:57.551 inf]       - Volo.Abp.Identity.AbpIdentityDomainModule 
+[2023-01-15 17:21:57.551 inf]         - Volo.Abp.Users.AbpUsersDomainModule 
+[2023-01-15 17:21:57.551 inf]         - Volo.Abp.AutoMapper.AbpAutoMapperModule 
+[2023-01-15 17:21:57.551 inf]       - Volo.Abp.OpenIddict.AbpOpenIddictDomainModule 
+[2023-01-15 17:21:57.551 inf]       - Volo.Abp.PermissionManagement.AbpPermissionManagementDomainModule 
+[2023-01-15 17:21:57.551 inf]       - Volo.Abp.Emailing.AbpEmailingModule 
+[2023-01-15 17:21:57.551 inf]         - Volo.Abp.BackgroundJobs.AbpBackgroundJobsAbstractionsModule 
+[2023-01-15 17:21:57.551 inf]         - Volo.Abp.TextTemplating.AbpTextTemplatingModule 
+[2023-01-15 17:21:57.551 inf]           - Volo.Abp.TextTemplating.Scriban.AbpTextTemplatingScribanModule 
+[2023-01-15 17:21:57.551 inf]             - Volo.Abp.TextTemplating.AbpTextTemplatingCoreModule 
+[2023-01-15 17:21:57.551 inf]     - Volo.Abp.Identity.AbpIdentityApplicationModule 
+[2023-01-15 17:21:57.551 inf]       - Volo.Abp.PermissionManagement.AbpPermissionManagementApplicationModule 
+[2023-01-15 17:21:57.551 inf]   - EShop.Identity.EShopIdentityEntityFrameworkCoreModule 
+[2023-01-15 17:21:57.551 inf]     - Volo.Abp.Identity.EntityFrameworkCore.AbpIdentityEntityFrameworkCoreModule 
+[2023-01-15 17:21:57.551 inf]       - Volo.Abp.Users.EntityFrameworkCore.AbpUsersEntityFrameworkCoreModule 
+[2023-01-15 17:21:57.551 inf]         - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule 
+[2023-01-15 17:21:57.551 inf]     - Volo.Abp.OpenIddict.EntityFrameworkCore.AbpOpenIddictEntityFrameworkCoreModule 
+[2023-01-15 17:21:57.551 inf]     - Volo.Abp.PermissionManagement.EntityFrameworkCore.AbpPermissionManagementEntityFrameworkCoreModule 
+[2023-01-15 17:21:57.551 inf]     - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule 
+[2023-01-15 17:21:57.551 inf]     - Leopard.EntityFrameworkCore.LeopardEntityFrameworkCoreModule 
+[2023-01-15 17:21:57.551 inf]   - Volo.Abp.AspNetCore.Serilog.AbpAspNetCoreSerilogModule 
+[2023-01-15 17:21:57.551 inf]   - Volo.Abp.Swashbuckle.AbpSwashbuckleModule 
+[2023-01-15 17:21:57.551 inf]   - Leopard.AspNetCore.Serilog.LeopardAspNetCoreSerilogModule 
+[2023-01-15 17:21:57.551 inf]   - Leopard.AspNetCore.Swashbuckle.LeopardAspNetCoreSwashbuckleModule 
+[2023-01-15 17:21:57.551 inf]     - Leopard.LeopardModule 
+[2023-01-15 17:21:57.551 inf]   - Leopard.AspNetCore.Mvc.LeopardAspNetCoreMvcModule 
+[2023-01-15 17:21:57.946 ftl] EShopAuthServer terminated unexpectedly! 
+Volo.Abp.AbpInitializationException: An error occurred during the initialize Volo.Abp.Modularity.OnApplicationInitializationModuleLifecycleContributor phase of the module Volo.Abp.OpenIddict.AbpOpenIddictDomainModule, Volo.Abp.OpenIddict.Domain, Version=6.0.2.0, Culture=neutral, PublicKeyToken=null: An exception was thrown while activating Volo.Abp.OpenIddict.Tokens.TokenCleanupBackgroundWorker -> Volo.Abp.DistributedLocking.MedallionAbpDistributedLock.. See the inner exception for details.
+ ---> Autofac.Core.DependencyResolutionException: An exception was thrown while activating Volo.Abp.OpenIddict.Tokens.TokenCleanupBackgroundWorker -> Volo.Abp.DistributedLocking.MedallionAbpDistributedLock.
+ ---> Autofac.Core.DependencyResolutionException: None of the constructors found with 'Autofac.Core.Activators.Reflection.DefaultConstructorFinder' on type 'Volo.Abp.DistributedLocking.MedallionAbpDistributedLock' can be invoked with the available services and parameters:
+Cannot resolve parameter 'Medallion.Threading.IDistributedLockProvider distributedLockProvider' of constructor 'Void .ctor(Medallion.Threading.IDistributedLockProvider)'.
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.<>c__DisplayClass12_0.<UseSingleConstructorActivation>b__0(ResolveRequestContext ctxt, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.DisposalTrackingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Builder.RegistrationBuilder`3.<>c__DisplayClass41_0.<PropertiesAutowired>b__0(ResolveRequestContext ctxt, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   --- End of inner exception stack trace ---
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.<>c__DisplayClass5_0.<Execute>b__0()
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid id, Func`1 creator)
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid primaryId, Nullable`1 qualifyingId, Func`1 creator)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.CircularDependencyDetectorMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.ResolveOperation.GetOrCreateInstance(ISharingLifetimeScope currentOperationScope, ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.ExecuteOperation(ResolveRequest request)
+   at Autofac.ResolutionExtensions.TryResolveService(IComponentContext context, Service service, IEnumerable`1 parameters, Object& instance)
+   at Autofac.ResolutionExtensions.ResolveService(IComponentContext context, Service service, IEnumerable`1 parameters)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at Volo.Abp.OpenIddict.AbpOpenIddictDomainModule.OnApplicationInitializationAsync(ApplicationInitializationContext context)
+   at Volo.Abp.Modularity.OnApplicationInitializationModuleLifecycleContributor.InitializeAsync(ApplicationInitializationContext context, IAbpModule module)
+   at Volo.Abp.Modularity.ModuleManager.InitializeModulesAsync(ApplicationInitializationContext context)
+   --- End of inner exception stack trace ---
+   at Volo.Abp.Modularity.ModuleManager.InitializeModulesAsync(ApplicationInitializationContext context)
+   at Volo.Abp.AbpApplicationBase.InitializeModulesAsync()
+   at Volo.Abp.AbpApplicationWithExternalServiceProvider.InitializeAsync(IServiceProvider serviceProvider)
+   at Microsoft.AspNetCore.Builder.AbpApplicationBuilderExtensions.InitializeApplicationAsync(IApplicationBuilder app)
+   at Leopard.Host.CommonHostProgram`1.RunAsync(String[] args) in D:\Work\OpenSource\abp-vue-vben-admin\framework\leopard\src\Leopard.Host\Leopard\Host\CommonHostProgram.cs:line 71
+[2023-01-15 17:33:57.561 inf] [Development] Starting EShopAuthServer. 
+[2023-01-15 17:34:01.306 inf] Loaded ABP modules: 
+[2023-01-15 17:34:01.309 inf] - EShop.Identity.EShopIdentityHttpApiHostModule 
+[2023-01-15 17:34:01.309 inf]   - Volo.Abp.Autofac.AbpAutofacModule 
+[2023-01-15 17:34:01.309 inf]     - Volo.Abp.Castle.AbpCastleCoreModule 
+[2023-01-15 17:34:01.309 inf]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule 
+[2023-01-15 17:34:01.309 inf]     - Volo.Abp.Caching.AbpCachingModule 
+[2023-01-15 17:34:01.309 inf]       - Volo.Abp.Threading.AbpThreadingModule 
+[2023-01-15 17:34:01.309 inf]       - Volo.Abp.Serialization.AbpSerializationModule 
+[2023-01-15 17:34:01.309 inf]       - Volo.Abp.Uow.AbpUnitOfWorkModule 
+[2023-01-15 17:34:01.309 inf]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule 
+[2023-01-15 17:34:01.309 inf]         - Volo.Abp.Data.AbpDataModule 
+[2023-01-15 17:34:01.309 inf]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule 
+[2023-01-15 17:34:01.309 inf]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule 
+[2023-01-15 17:34:01.309 inf]             - Volo.Abp.Validation.AbpValidationAbstractionsModule 
+[2023-01-15 17:34:01.309 inf]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule 
+[2023-01-15 17:34:01.309 inf]         - Volo.Abp.Security.AbpSecurityModule 
+[2023-01-15 17:34:01.309 inf]       - Volo.Abp.Json.AbpJsonModule 
+[2023-01-15 17:34:01.309 inf]         - Volo.Abp.Timing.AbpTimingModule 
+[2023-01-15 17:34:01.309 inf]           - Volo.Abp.Localization.AbpLocalizationModule 
+[2023-01-15 17:34:01.309 inf]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule 
+[2023-01-15 17:34:01.309 inf]             - Volo.Abp.Settings.AbpSettingsModule 
+[2023-01-15 17:34:01.309 inf]   - Volo.Abp.DistributedLocking.AbpDistributedLockingModule 
+[2023-01-15 17:34:01.309 inf]     - Volo.Abp.DistributedLocking.AbpDistributedLockingAbstractionsModule 
+[2023-01-15 17:34:01.309 inf]   - Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy.AbpAspNetCoreMvcUiMultiTenancyModule 
+[2023-01-15 17:34:01.309 inf]     - Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.AbpAspNetCoreMvcUiThemeSharedModule 
+[2023-01-15 17:34:01.309 inf]       - Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.AbpAspNetCoreMvcUiBootstrapModule 
+[2023-01-15 17:34:01.309 inf]         - Volo.Abp.AspNetCore.Mvc.UI.AbpAspNetCoreMvcUiModule 
+[2023-01-15 17:34:01.309 inf]           - Volo.Abp.AspNetCore.Mvc.AbpAspNetCoreMvcModule 
+[2023-01-15 17:34:01.309 inf]             - Volo.Abp.AspNetCore.AbpAspNetCoreModule 
+[2023-01-15 17:34:01.309 inf]               - Volo.Abp.Auditing.AbpAuditingModule 
+[2023-01-15 17:34:01.309 inf]                 - Volo.Abp.Auditing.AbpAuditingContractsModule 
+[2023-01-15 17:34:01.309 inf]               - Volo.Abp.Http.AbpHttpModule 
+[2023-01-15 17:34:01.309 inf]                 - Volo.Abp.Http.AbpHttpAbstractionsModule 
+[2023-01-15 17:34:01.309 inf]                 - Volo.Abp.Minify.AbpMinifyModule 
+[2023-01-15 17:34:01.309 inf]               - Volo.Abp.Authorization.AbpAuthorizationModule 
+[2023-01-15 17:34:01.309 inf]                 - Volo.Abp.Authorization.AbpAuthorizationAbstractionsModule 
+[2023-01-15 17:34:01.309 inf]               - Volo.Abp.Validation.AbpValidationModule 
+[2023-01-15 17:34:01.309 inf]               - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule 
+[2023-01-15 17:34:01.309 inf]             - Volo.Abp.ApiVersioning.AbpApiVersioningAbstractionsModule 
+[2023-01-15 17:34:01.309 inf]             - Volo.Abp.AspNetCore.Mvc.AbpAspNetCoreMvcContractsModule 
+[2023-01-15 17:34:01.309 inf]               - Volo.Abp.Application.AbpDddApplicationContractsModule 
+[2023-01-15 17:34:01.309 inf]             - Volo.Abp.UI.Navigation.AbpUiNavigationModule 
+[2023-01-15 17:34:01.309 inf]               - Volo.Abp.UI.AbpUiModule 
+[2023-01-15 17:34:01.309 inf]             - Volo.Abp.GlobalFeatures.AbpGlobalFeaturesModule 
+[2023-01-15 17:34:01.309 inf]             - Volo.Abp.Application.AbpDddApplicationModule 
+[2023-01-15 17:34:01.309 inf]               - Volo.Abp.Domain.AbpDddDomainModule 
+[2023-01-15 17:34:01.309 inf]                 - Volo.Abp.EventBus.AbpEventBusModule 
+[2023-01-15 17:34:01.309 inf]                   - Volo.Abp.Guids.AbpGuidsModule 
+[2023-01-15 17:34:01.309 inf]                   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule 
+[2023-01-15 17:34:01.309 inf]                 - Volo.Abp.ObjectMapping.AbpObjectMappingModule 
+[2023-01-15 17:34:01.309 inf]                 - Volo.Abp.Specifications.AbpSpecificationsModule 
+[2023-01-15 17:34:01.309 inf]               - Volo.Abp.Features.AbpFeaturesModule 
+[2023-01-15 17:34:01.309 inf]       - Volo.Abp.AspNetCore.Mvc.UI.Packages.AbpAspNetCoreMvcUiPackagesModule 
+[2023-01-15 17:34:01.309 inf]         - Volo.Abp.AspNetCore.Mvc.UI.Bundling.AbpAspNetCoreMvcUiBundlingAbstractionsModule 
+[2023-01-15 17:34:01.309 inf]       - Volo.Abp.AspNetCore.Mvc.UI.Widgets.AbpAspNetCoreMvcUiWidgetsModule 
+[2023-01-15 17:34:01.309 inf]         - Volo.Abp.AspNetCore.Mvc.UI.Bundling.AbpAspNetCoreMvcUiBundlingModule 
+[2023-01-15 17:34:01.309 inf]     - Volo.Abp.AspNetCore.MultiTenancy.AbpAspNetCoreMultiTenancyModule 
+[2023-01-15 17:34:01.309 inf]   - EShop.Identity.EShopIdentityHttpApiModule 
+[2023-01-15 17:34:01.309 inf]     - EShop.Identity.EShopIdentityApplicationContractsModule 
+[2023-01-15 17:34:01.309 inf]       - EShop.Identity.EShopIdentityDomainSharedModule 
+[2023-01-15 17:34:01.309 inf]         - Volo.Abp.Identity.AbpIdentityDomainSharedModule 
+[2023-01-15 17:34:01.309 inf]           - Volo.Abp.Users.AbpUsersDomainSharedModule 
+[2023-01-15 17:34:01.309 inf]         - Volo.Abp.OpenIddict.AbpOpenIddictDomainSharedModule 
+[2023-01-15 17:34:01.309 inf]       - Volo.Abp.Identity.AbpIdentityApplicationContractsModule 
+[2023-01-15 17:34:01.309 inf]         - Volo.Abp.Users.AbpUsersAbstractionModule 
+[2023-01-15 17:34:01.309 inf]         - Volo.Abp.PermissionManagement.AbpPermissionManagementApplicationContractsModule 
+[2023-01-15 17:34:01.309 inf]           - Volo.Abp.PermissionManagement.AbpPermissionManagementDomainSharedModule 
+[2023-01-15 17:34:01.309 inf]     - Volo.Abp.Identity.AbpIdentityHttpApiModule 
+[2023-01-15 17:34:01.309 inf]   - EShop.Identity.EShopIdentityApplicationModule 
+[2023-01-15 17:34:01.309 inf]     - EShop.Identity.EShopIdentityDomainModule 
+[2023-01-15 17:34:01.309 inf]       - Volo.Abp.Identity.AbpIdentityDomainModule 
+[2023-01-15 17:34:01.309 inf]         - Volo.Abp.Users.AbpUsersDomainModule 
+[2023-01-15 17:34:01.309 inf]         - Volo.Abp.AutoMapper.AbpAutoMapperModule 
+[2023-01-15 17:34:01.309 inf]       - Volo.Abp.OpenIddict.AbpOpenIddictDomainModule 
+[2023-01-15 17:34:01.309 inf]       - Volo.Abp.PermissionManagement.AbpPermissionManagementDomainModule 
+[2023-01-15 17:34:01.309 inf]       - Volo.Abp.Emailing.AbpEmailingModule 
+[2023-01-15 17:34:01.309 inf]         - Volo.Abp.BackgroundJobs.AbpBackgroundJobsAbstractionsModule 
+[2023-01-15 17:34:01.309 inf]         - Volo.Abp.TextTemplating.AbpTextTemplatingModule 
+[2023-01-15 17:34:01.309 inf]           - Volo.Abp.TextTemplating.Scriban.AbpTextTemplatingScribanModule 
+[2023-01-15 17:34:01.309 inf]             - Volo.Abp.TextTemplating.AbpTextTemplatingCoreModule 
+[2023-01-15 17:34:01.309 inf]     - Volo.Abp.Identity.AbpIdentityApplicationModule 
+[2023-01-15 17:34:01.309 inf]       - Volo.Abp.PermissionManagement.AbpPermissionManagementApplicationModule 
+[2023-01-15 17:34:01.309 inf]   - EShop.Identity.EShopIdentityEntityFrameworkCoreModule 
+[2023-01-15 17:34:01.309 inf]     - Volo.Abp.Identity.EntityFrameworkCore.AbpIdentityEntityFrameworkCoreModule 
+[2023-01-15 17:34:01.309 inf]       - Volo.Abp.Users.EntityFrameworkCore.AbpUsersEntityFrameworkCoreModule 
+[2023-01-15 17:34:01.309 inf]         - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule 
+[2023-01-15 17:34:01.309 inf]     - Volo.Abp.OpenIddict.EntityFrameworkCore.AbpOpenIddictEntityFrameworkCoreModule 
+[2023-01-15 17:34:01.309 inf]     - Volo.Abp.PermissionManagement.EntityFrameworkCore.AbpPermissionManagementEntityFrameworkCoreModule 
+[2023-01-15 17:34:01.309 inf]     - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule 
+[2023-01-15 17:34:01.309 inf]     - Leopard.EntityFrameworkCore.LeopardEntityFrameworkCoreModule 
+[2023-01-15 17:34:01.309 inf]   - Volo.Abp.AspNetCore.Serilog.AbpAspNetCoreSerilogModule 
+[2023-01-15 17:34:01.309 inf]   - Volo.Abp.Swashbuckle.AbpSwashbuckleModule 
+[2023-01-15 17:34:01.309 inf]   - Leopard.AspNetCore.Serilog.LeopardAspNetCoreSerilogModule 
+[2023-01-15 17:34:01.309 inf]   - Leopard.AspNetCore.Swashbuckle.LeopardAspNetCoreSwashbuckleModule 
+[2023-01-15 17:34:01.309 inf]     - Leopard.LeopardModule 
+[2023-01-15 17:34:01.309 inf]   - Leopard.AspNetCore.Mvc.LeopardAspNetCoreMvcModule 
+[2023-01-15 17:34:03.195 ftl] EShopAuthServer terminated unexpectedly! 
+Volo.Abp.AbpInitializationException: An error occurred during the initialize Volo.Abp.Modularity.OnApplicationInitializationModuleLifecycleContributor phase of the module EShop.Identity.EShopIdentityHttpApiHostModule, EShop.Identity.HttpApi.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null: An exception was thrown while activating Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionEndpointDataSourceFactory -> Microsoft.AspNetCore.Mvc.Infrastructure.DefaultActionDescriptorCollectionProvider -> λ:Microsoft.AspNetCore.Mvc.Abstractions.IActionDescriptorProvider[] -> Microsoft.AspNetCore.Mvc.ApplicationModels.ControllerActionDescriptorProvider -> Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModelFactory -> λ:Microsoft.AspNetCore.Mvc.ApplicationModels.IApplicationModelProvider[] -> Microsoft.AspNetCore.Mvc.ApplicationModels.DefaultApplicationModelProvider -> Microsoft.Extensions.Options.UnnamedOptionsManager`1[[Microsoft.AspNetCore.Mvc.MvcOptions, Microsoft.AspNetCore.Mvc.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]] -> Microsoft.Extensions.Options.OptionsFactory`1[[Microsoft.AspNetCore.Mvc.MvcOptions, Microsoft.AspNetCore.Mvc.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]] -> λ:Microsoft.Extensions.Options.IConfigureOptions`1[[Microsoft.AspNetCore.Mvc.MvcOptions, Microsoft.AspNetCore.Mvc.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]][] -> Microsoft.Extensions.DependencyInjection.MvcDataAnnotationsMvcOptionsSetup -> Volo.Abp.Localization.AbpStringLocalizerFactory.. See the inner exception for details.
+ ---> Autofac.Core.DependencyResolutionException: An exception was thrown while activating Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionEndpointDataSourceFactory -> Microsoft.AspNetCore.Mvc.Infrastructure.DefaultActionDescriptorCollectionProvider -> λ:Microsoft.AspNetCore.Mvc.Abstractions.IActionDescriptorProvider[] -> Microsoft.AspNetCore.Mvc.ApplicationModels.ControllerActionDescriptorProvider -> Microsoft.AspNetCore.Mvc.ApplicationModels.ApplicationModelFactory -> λ:Microsoft.AspNetCore.Mvc.ApplicationModels.IApplicationModelProvider[] -> Microsoft.AspNetCore.Mvc.ApplicationModels.DefaultApplicationModelProvider -> Microsoft.Extensions.Options.UnnamedOptionsManager`1[[Microsoft.AspNetCore.Mvc.MvcOptions, Microsoft.AspNetCore.Mvc.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]] -> Microsoft.Extensions.Options.OptionsFactory`1[[Microsoft.AspNetCore.Mvc.MvcOptions, Microsoft.AspNetCore.Mvc.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]] -> λ:Microsoft.Extensions.Options.IConfigureOptions`1[[Microsoft.AspNetCore.Mvc.MvcOptions, Microsoft.AspNetCore.Mvc.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60]][] -> Microsoft.Extensions.DependencyInjection.MvcDataAnnotationsMvcOptionsSetup -> Volo.Abp.Localization.AbpStringLocalizerFactory.
+ ---> Autofac.Core.DependencyResolutionException: An exception was thrown while invoking the constructor 'Void .ctor(Microsoft.Extensions.Localization.ResourceManagerStringLocalizerFactory, Microsoft.Extensions.Options.IOptions`1[Volo.Abp.Localization.AbpLocalizationOptions], System.IServiceProvider)' on type 'AbpStringLocalizerFactory'.
+ ---> Volo.Abp.AbpException: This resource is already added before: EShop.Identity.Localization.IdentityResource, EShop.Identity.Domain.Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+   at Volo.Abp.Localization.LocalizationResourceDictionary.Add(Type resourceType, String defaultCultureName)
+   at EShop.Identity.EShopIdentityHttpApiHostModule.<>c.<ConfigureServices>b__1_2(AbpLocalizationOptions options) in D:\Work\OpenSource\abp-vue-vben-admin\eshop\aspnetcore\services\identity\host\EShop.Identity.HttpApi.Host\EShopIdentityHttpApiHostModule.cs:line 63
+   at Microsoft.Extensions.Options.ConfigureNamedOptions`1.Configure(String name, TOptions options)
+   at Microsoft.Extensions.Options.OptionsFactory`1.Create(String name)
+   at Microsoft.Extensions.Options.UnnamedOptionsManager`1.get_Value()
+   at Volo.Abp.Localization.AbpStringLocalizerFactory..ctor(ResourceManagerStringLocalizerFactory innerFactory, IOptions`1 abpLocalizationOptions, IServiceProvider serviceProvider)
+   at lambda_method667(Closure , Object[] )
+   at Autofac.Core.Activators.Reflection.BoundConstructor.Instantiate()
+   --- End of inner exception stack trace ---
+   at Autofac.Core.Activators.Reflection.BoundConstructor.Instantiate()
+   at Autofac.Core.Activators.Reflection.ReflectionActivator.<>c__DisplayClass12_0.<UseSingleConstructorActivation>b__0(ResolveRequestContext ctxt, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.DisposalTrackingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Builder.RegistrationBuilder`3.<>c__DisplayClass41_0.<PropertiesAutowired>b__0(ResolveRequestContext ctxt, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   --- End of inner exception stack trace ---
+   at Autofac.Core.Resolving.Middleware.ActivatorErrorHandlingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.<>c__DisplayClass5_0.<Execute>b__0()
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid id, Func`1 creator)
+   at Autofac.Core.Lifetime.LifetimeScope.CreateSharedInstance(Guid primaryId, Nullable`1 qualifyingId, Func`1 creator)
+   at Autofac.Core.Resolving.Middleware.SharingMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.Middleware.CircularDependencyDetectorMiddleware.Execute(ResolveRequestContext context, Action`1 next)
+   at Autofac.Core.Resolving.Pipeline.ResolvePipelineBuilder.<>c__DisplayClass14_0.<BuildPipeline>b__1(ResolveRequestContext ctxt)
+   at Autofac.Core.Resolving.ResolveOperation.GetOrCreateInstance(ISharingLifetimeScope currentOperationScope, ResolveRequest request)
+   at Autofac.Core.Resolving.ResolveOperation.ExecuteOperation(ResolveRequest request)
+   at Autofac.ResolutionExtensions.TryResolveService(IComponentContext context, Service service, IEnumerable`1 parameters, Object& instance)
+   at Autofac.ResolutionExtensions.ResolveService(IComponentContext context, Service service, IEnumerable`1 parameters)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.GetOrCreateDataSource(IEndpointRouteBuilder endpoints)
+   at Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute(IEndpointRouteBuilder endpoints, String name, String pattern, Object defaults, Object constraints, Object dataTokens)
+   at Volo.Abp.AspNetCore.Mvc.AbpAspNetCoreMvcModule.<>c.<ConfigureServices>b__1_10(EndpointRouteBuilderContext endpointContext)
+   at Microsoft.AspNetCore.Builder.AbpAspNetCoreApplicationBuilderExtensions.<>c__DisplayClass0_0.<UseConfiguredEndpoints>b__0(IEndpointRouteBuilder endpoints)
+   at Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints(IApplicationBuilder builder, Action`1 configure)
+   at Leopard.Host.CommonHostModule.LeopardApplicationInitialization(ApplicationInitializationContext context, Action`1 betweenAuthApplicationInitialization, Action`1 afterApplicationInitialization) in D:\Work\OpenSource\abp-vue-vben-admin\framework\leopard\src\Leopard.Host\Leopard\Host\CommonHostModule.cs:line 418
+   at Leopard.Host.CommonHostModule.OnApplicationInitialization(ApplicationInitializationContext context) in D:\Work\OpenSource\abp-vue-vben-admin\framework\leopard\src\Leopard.Host\Leopard\Host\CommonHostModule.cs:line 80
+   at EShop.Identity.EShopIdentityHttpApiHostModule.OnApplicationInitialization(ApplicationInitializationContext context) in D:\Work\OpenSource\abp-vue-vben-admin\eshop\aspnetcore\services\identity\host\EShop.Identity.HttpApi.Host\EShopIdentityHttpApiHostModule.cs:line 87
+   at Volo.Abp.Modularity.AbpModule.OnApplicationInitializationAsync(ApplicationInitializationContext context)
+   at Volo.Abp.Modularity.OnApplicationInitializationModuleLifecycleContributor.InitializeAsync(ApplicationInitializationContext context, IAbpModule module)
+   at Volo.Abp.Modularity.ModuleManager.InitializeModulesAsync(ApplicationInitializationContext context)
+   --- End of inner exception stack trace ---
+   at Volo.Abp.Modularity.ModuleManager.InitializeModulesAsync(ApplicationInitializationContext context)
+   at Volo.Abp.AbpApplicationBase.InitializeModulesAsync()
+   at Volo.Abp.AbpApplicationWithExternalServiceProvider.InitializeAsync(IServiceProvider serviceProvider)
+   at Microsoft.AspNetCore.Builder.AbpApplicationBuilderExtensions.InitializeApplicationAsync(IApplicationBuilder app)
+   at Leopard.Host.CommonHostProgram`1.RunAsync(String[] args) in D:\Work\OpenSource\abp-vue-vben-admin\framework\leopard\src\Leopard.Host\Leopard\Host\CommonHostProgram.cs:line 71
+[2023-01-15 18:06:11.999 inf] [Development] Starting EShopIdentity. 
+[2023-01-15 18:06:16.058 inf] Loaded ABP modules: 
+[2023-01-15 18:06:16.06 inf] - EShop.Identity.EShopIdentityHttpApiHostModule 
+[2023-01-15 18:06:16.06 inf]   - Volo.Abp.Autofac.AbpAutofacModule 
+[2023-01-15 18:06:16.06 inf]     - Volo.Abp.Castle.AbpCastleCoreModule 
+[2023-01-15 18:06:16.06 inf]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule 
+[2023-01-15 18:06:16.06 inf]     - Volo.Abp.Caching.AbpCachingModule 
+[2023-01-15 18:06:16.06 inf]       - Volo.Abp.Threading.AbpThreadingModule 
+[2023-01-15 18:06:16.06 inf]       - Volo.Abp.Serialization.AbpSerializationModule 
+[2023-01-15 18:06:16.06 inf]       - Volo.Abp.Uow.AbpUnitOfWorkModule 
+[2023-01-15 18:06:16.06 inf]       - Volo.Abp.MultiTenancy.AbpMultiTenancyModule 
+[2023-01-15 18:06:16.06 inf]         - Volo.Abp.Data.AbpDataModule 
+[2023-01-15 18:06:16.06 inf]           - Volo.Abp.ObjectExtending.AbpObjectExtendingModule 
+[2023-01-15 18:06:16.06 inf]             - Volo.Abp.Localization.AbpLocalizationAbstractionsModule 
+[2023-01-15 18:06:16.06 inf]             - Volo.Abp.Validation.AbpValidationAbstractionsModule 
+[2023-01-15 18:06:16.06 inf]           - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule 
+[2023-01-15 18:06:16.06 inf]         - Volo.Abp.Security.AbpSecurityModule 
+[2023-01-15 18:06:16.06 inf]       - Volo.Abp.Json.AbpJsonModule 
+[2023-01-15 18:06:16.06 inf]         - Volo.Abp.Timing.AbpTimingModule 
+[2023-01-15 18:06:16.06 inf]           - Volo.Abp.Localization.AbpLocalizationModule 
+[2023-01-15 18:06:16.06 inf]             - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule 
+[2023-01-15 18:06:16.06 inf]             - Volo.Abp.Settings.AbpSettingsModule 
+[2023-01-15 18:06:16.06 inf]   - Volo.Abp.DistributedLocking.AbpDistributedLockingModule 
+[2023-01-15 18:06:16.06 inf]     - Volo.Abp.DistributedLocking.AbpDistributedLockingAbstractionsModule 
+[2023-01-15 18:06:16.06 inf]   - Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy.AbpAspNetCoreMvcUiMultiTenancyModule 
+[2023-01-15 18:06:16.06 inf]     - Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.AbpAspNetCoreMvcUiThemeSharedModule 
+[2023-01-15 18:06:16.06 inf]       - Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.AbpAspNetCoreMvcUiBootstrapModule 
+[2023-01-15 18:06:16.06 inf]         - Volo.Abp.AspNetCore.Mvc.UI.AbpAspNetCoreMvcUiModule 
+[2023-01-15 18:06:16.06 inf]           - Volo.Abp.AspNetCore.Mvc.AbpAspNetCoreMvcModule 
+[2023-01-15 18:06:16.06 inf]             - Volo.Abp.AspNetCore.AbpAspNetCoreModule 
+[2023-01-15 18:06:16.06 inf]               - Volo.Abp.Auditing.AbpAuditingModule 
+[2023-01-15 18:06:16.06 inf]                 - Volo.Abp.Auditing.AbpAuditingContractsModule 
+[2023-01-15 18:06:16.06 inf]               - Volo.Abp.Http.AbpHttpModule 
+[2023-01-15 18:06:16.06 inf]                 - Volo.Abp.Http.AbpHttpAbstractionsModule 
+[2023-01-15 18:06:16.06 inf]                 - Volo.Abp.Minify.AbpMinifyModule 
+[2023-01-15 18:06:16.06 inf]               - Volo.Abp.Authorization.AbpAuthorizationModule 
+[2023-01-15 18:06:16.06 inf]                 - Volo.Abp.Authorization.AbpAuthorizationAbstractionsModule 
+[2023-01-15 18:06:16.06 inf]               - Volo.Abp.Validation.AbpValidationModule 
+[2023-01-15 18:06:16.06 inf]               - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule 
+[2023-01-15 18:06:16.06 inf]             - Volo.Abp.ApiVersioning.AbpApiVersioningAbstractionsModule 
+[2023-01-15 18:06:16.06 inf]             - Volo.Abp.AspNetCore.Mvc.AbpAspNetCoreMvcContractsModule 
+[2023-01-15 18:06:16.06 inf]               - Volo.Abp.Application.AbpDddApplicationContractsModule 
+[2023-01-15 18:06:16.06 inf]             - Volo.Abp.UI.Navigation.AbpUiNavigationModule 
+[2023-01-15 18:06:16.06 inf]               - Volo.Abp.UI.AbpUiModule 
+[2023-01-15 18:06:16.06 inf]             - Volo.Abp.GlobalFeatures.AbpGlobalFeaturesModule 
+[2023-01-15 18:06:16.06 inf]             - Volo.Abp.Application.AbpDddApplicationModule 
+[2023-01-15 18:06:16.06 inf]               - Volo.Abp.Domain.AbpDddDomainModule 
+[2023-01-15 18:06:16.06 inf]                 - Volo.Abp.EventBus.AbpEventBusModule 
+[2023-01-15 18:06:16.06 inf]                   - Volo.Abp.Guids.AbpGuidsModule 
+[2023-01-15 18:06:16.06 inf]                   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule 
+[2023-01-15 18:06:16.06 inf]                 - Volo.Abp.ObjectMapping.AbpObjectMappingModule 
+[2023-01-15 18:06:16.06 inf]                 - Volo.Abp.Specifications.AbpSpecificationsModule 
+[2023-01-15 18:06:16.06 inf]               - Volo.Abp.Features.AbpFeaturesModule 
+[2023-01-15 18:06:16.06 inf]       - Volo.Abp.AspNetCore.Mvc.UI.Packages.AbpAspNetCoreMvcUiPackagesModule 
+[2023-01-15 18:06:16.06 inf]         - Volo.Abp.AspNetCore.Mvc.UI.Bundling.AbpAspNetCoreMvcUiBundlingAbstractionsModule 
+[2023-01-15 18:06:16.06 inf]       - Volo.Abp.AspNetCore.Mvc.UI.Widgets.AbpAspNetCoreMvcUiWidgetsModule 
+[2023-01-15 18:06:16.06 inf]         - Volo.Abp.AspNetCore.Mvc.UI.Bundling.AbpAspNetCoreMvcUiBundlingModule 
+[2023-01-15 18:06:16.06 inf]     - Volo.Abp.AspNetCore.MultiTenancy.AbpAspNetCoreMultiTenancyModule 
+[2023-01-15 18:06:16.06 inf]   - EShop.Identity.EShopIdentityHttpApiModule 
+[2023-01-15 18:06:16.06 inf]     - EShop.Identity.EShopIdentityApplicationContractsModule 
+[2023-01-15 18:06:16.06 inf]       - EShop.Identity.EShopIdentityDomainSharedModule 
+[2023-01-15 18:06:16.06 inf]         - Volo.Abp.Identity.AbpIdentityDomainSharedModule 
+[2023-01-15 18:06:16.06 inf]           - Volo.Abp.Users.AbpUsersDomainSharedModule 
+[2023-01-15 18:06:16.06 inf]         - Volo.Abp.OpenIddict.AbpOpenIddictDomainSharedModule 
+[2023-01-15 18:06:16.06 inf]       - Volo.Abp.Identity.AbpIdentityApplicationContractsModule 
+[2023-01-15 18:06:16.06 inf]         - Volo.Abp.Users.AbpUsersAbstractionModule 
+[2023-01-15 18:06:16.06 inf]         - Volo.Abp.PermissionManagement.AbpPermissionManagementApplicationContractsModule 
+[2023-01-15 18:06:16.06 inf]           - Volo.Abp.PermissionManagement.AbpPermissionManagementDomainSharedModule 
+[2023-01-15 18:06:16.06 inf]     - Volo.Abp.Identity.AbpIdentityHttpApiModule 
+[2023-01-15 18:06:16.06 inf]   - EShop.Identity.EShopIdentityApplicationModule 
+[2023-01-15 18:06:16.06 inf]     - EShop.Identity.EShopIdentityDomainModule 
+[2023-01-15 18:06:16.06 inf]       - Volo.Abp.Identity.AbpIdentityDomainModule 
+[2023-01-15 18:06:16.06 inf]         - Volo.Abp.Users.AbpUsersDomainModule 
+[2023-01-15 18:06:16.06 inf]         - Volo.Abp.AutoMapper.AbpAutoMapperModule 
+[2023-01-15 18:06:16.06 inf]       - Volo.Abp.OpenIddict.AbpOpenIddictDomainModule 
+[2023-01-15 18:06:16.06 inf]       - Volo.Abp.PermissionManagement.AbpPermissionManagementDomainModule 
+[2023-01-15 18:06:16.06 inf]       - Volo.Abp.Emailing.AbpEmailingModule 
+[2023-01-15 18:06:16.06 inf]         - Volo.Abp.BackgroundJobs.AbpBackgroundJobsAbstractionsModule 
+[2023-01-15 18:06:16.06 inf]         - Volo.Abp.TextTemplating.AbpTextTemplatingModule 
+[2023-01-15 18:06:16.06 inf]           - Volo.Abp.TextTemplating.Scriban.AbpTextTemplatingScribanModule 
+[2023-01-15 18:06:16.06 inf]             - Volo.Abp.TextTemplating.AbpTextTemplatingCoreModule 
+[2023-01-15 18:06:16.06 inf]     - Volo.Abp.Identity.AbpIdentityApplicationModule 
+[2023-01-15 18:06:16.06 inf]       - Volo.Abp.PermissionManagement.AbpPermissionManagementApplicationModule 
+[2023-01-15 18:06:16.06 inf]   - EShop.Identity.EShopIdentityEntityFrameworkCoreModule 
+[2023-01-15 18:06:16.06 inf]     - Volo.Abp.Identity.EntityFrameworkCore.AbpIdentityEntityFrameworkCoreModule 
+[2023-01-15 18:06:16.06 inf]       - Volo.Abp.Users.EntityFrameworkCore.AbpUsersEntityFrameworkCoreModule 
+[2023-01-15 18:06:16.06 inf]         - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule 
+[2023-01-15 18:06:16.06 inf]     - Volo.Abp.OpenIddict.EntityFrameworkCore.AbpOpenIddictEntityFrameworkCoreModule 
+[2023-01-15 18:06:16.06 inf]     - Volo.Abp.PermissionManagement.EntityFrameworkCore.AbpPermissionManagementEntityFrameworkCoreModule 
+[2023-01-15 18:06:16.06 inf]     - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule 
+[2023-01-15 18:06:16.06 inf]     - Leopard.EntityFrameworkCore.LeopardEntityFrameworkCoreModule 
+[2023-01-15 18:06:16.06 inf]   - Volo.Abp.AspNetCore.Serilog.AbpAspNetCoreSerilogModule 
+[2023-01-15 18:06:16.06 inf]   - Volo.Abp.Swashbuckle.AbpSwashbuckleModule 
+[2023-01-15 18:06:16.06 inf]   - Leopard.AspNetCore.Serilog.LeopardAspNetCoreSerilogModule 
+[2023-01-15 18:06:16.06 inf]   - Leopard.AspNetCore.Swashbuckle.LeopardAspNetCoreSwashbuckleModule 
+[2023-01-15 18:06:16.06 inf]     - Leopard.LeopardModule 
+[2023-01-15 18:06:16.06 inf]   - Leopard.AspNetCore.Mvc.LeopardAspNetCoreMvcModule 
+[2023-01-15 18:06:16.542 inf] User profile is available. Using 'C:\Users\PC\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. 
+[2023-01-15 18:06:25.225 inf] Initialized all ABP modules. 
+[2023-01-15 18:06:25.225 inf] [Development] Started EShopIdentity. 
+[2023-01-15 18:06:25.471 inf] Now listening on: https://localhost:44105 
+[2023-01-15 18:06:25.471 inf] Now listening on: http://localhost:44102 
+[2023-01-15 18:06:25.472 inf] Application started. Press Ctrl+C to shut down. 
+[2023-01-15 18:06:25.472 inf] Hosting environment: Development 
+[2023-01-15 18:06:25.472 inf] Content root path: D:\Work\OpenSource\abp-vue-vben-admin\eshop\aspnetcore\services\identity\host\EShop.Identity.HttpApi.Host\ 
+[2023-01-15 18:06:26.481 inf] Request starting HTTP/2 GET https://localhost:44105/ - - 
+[2023-01-15 18:06:26.78 inf] TestMiddleware==>>Headers==>>Accept=text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9;Host=localhost:44105;User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.26;:method=GET;Accept-Encoding=gzip, deflate, br;Accept-Language=zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6;Cookie=lpx_side-menu-state=,jenkins-timestamper-offset=-28800000,XSRF-TOKEN=CfDJ8MCcVXXvR6RFrqeMrLhsnTxIDse-7E7EDlY4syYFSJ7mwWg43zMAAyhAtt22TkAFjzuTDHeCG_6_0PQym6Nqh6BQ6JEXHcHnmYR3X5SO1iq_uNNjj0rcT_tHeeZPWEzXEIUYQyYaf73mv5vXbUP5dC4;Upgrade-Insecure-Requests=1;sec-ch-ua="Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24";sec-ch-ua-mobile=?0;sec-ch-ua-platform="Windows";sec-fetch-site=none;sec-fetch-mode=navigate;sec-fetch-user=?1;sec-fetch-dest=document;X-Correlation-Id=5c5bec10aa014ed9bcd93fa3fb51df79; 
+[2023-01-15 18:06:27.119 inf] Executing endpoint 'EShop.Identity.Controllers.HomeController.Index (EShop.Identity.HttpApi.Host)' 
+[2023-01-15 18:06:27.185 inf] Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult Index() on controller EShop.Identity.Controllers.HomeController (EShop.Identity.HttpApi.Host). 
+[2023-01-15 18:06:27.395 inf] Executing action method EShop.Identity.Controllers.HomeController.Index (EShop.Identity.HttpApi.Host) - Validation state: "Valid" 
+[2023-01-15 18:06:27.402 inf] Executed action method EShop.Identity.Controllers.HomeController.Index (EShop.Identity.HttpApi.Host), returned result Microsoft.AspNetCore.Mvc.RedirectResult in 0.6153ms. 
+[2023-01-15 18:06:27.412 inf] Executing RedirectResult, redirecting to /swagger. 
+[2023-01-15 18:06:27.42 inf] Executed action EShop.Identity.Controllers.HomeController.Index (EShop.Identity.HttpApi.Host) in 227.3787ms 
+[2023-01-15 18:06:27.42 inf] Executed endpoint 'EShop.Identity.Controllers.HomeController.Index (EShop.Identity.HttpApi.Host)' 
+[2023-01-15 18:06:27.45 inf] Request starting HTTP/2 GET https://localhost:44105/swagger - - 
+[2023-01-15 18:06:27.455 inf] TestMiddleware==>>Headers==>>Accept=text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9;Host=localhost:44105;User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.26;:method=GET;Accept-Encoding=gzip, deflate, br;Accept-Language=zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6;Cookie=lpx_side-menu-state=,jenkins-timestamper-offset=-28800000,XSRF-TOKEN=CfDJ8MCcVXXvR6RFrqeMrLhsnTxIDse-7E7EDlY4syYFSJ7mwWg43zMAAyhAtt22TkAFjzuTDHeCG_6_0PQym6Nqh6BQ6JEXHcHnmYR3X5SO1iq_uNNjj0rcT_tHeeZPWEzXEIUYQyYaf73mv5vXbUP5dC4;Upgrade-Insecure-Requests=1;sec-fetch-site=none;sec-fetch-mode=navigate;sec-fetch-user=?1;sec-fetch-dest=document;sec-ch-ua="Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24";sec-ch-ua-mobile=?0;sec-ch-ua-platform="Windows";X-Correlation-Id=f3bd2c2b46c2457e95d090a4f47ef3ec; 
+[2023-01-15 18:06:27.455 inf] Request finished HTTP/2 GET https://localhost:44105/ - - - 302 0 - 975.2531ms 
+[2023-01-15 18:06:27.457 inf] Request finished HTTP/2 GET https://localhost:44105/swagger - - - 301 0 - 6.2720ms 
+[2023-01-15 18:06:27.469 inf] Request starting HTTP/2 GET https://localhost:44105/swagger/index.html - - 
+[2023-01-15 18:06:27.475 inf] TestMiddleware==>>Headers==>>Accept=text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9;Host=localhost:44105;User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.26;:method=GET;Accept-Encoding=gzip, deflate, br;Accept-Language=zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6;Cookie=lpx_side-menu-state=,jenkins-timestamper-offset=-28800000,XSRF-TOKEN=CfDJ8MCcVXXvR6RFrqeMrLhsnTxIDse-7E7EDlY4syYFSJ7mwWg43zMAAyhAtt22TkAFjzuTDHeCG_6_0PQym6Nqh6BQ6JEXHcHnmYR3X5SO1iq_uNNjj0rcT_tHeeZPWEzXEIUYQyYaf73mv5vXbUP5dC4;Upgrade-Insecure-Requests=1;sec-fetch-site=none;sec-fetch-mode=navigate;sec-fetch-user=?1;sec-fetch-dest=document;sec-ch-ua="Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24";sec-ch-ua-mobile=?0;sec-ch-ua-platform="Windows";X-Correlation-Id=6ada6d8c93d7433b8d97755942e3ca7c; 
+[2023-01-15 18:06:27.772 inf] Request starting HTTP/2 GET https://localhost:44105/swagger/swagger-ui.css - - 
+[2023-01-15 18:06:27.773 inf] Request starting HTTP/2 GET https://localhost:44105/swagger/ui/abp.js - - 
+[2023-01-15 18:06:27.775 inf] Request starting HTTP/2 GET https://localhost:44105/_framework/aspnetcore-browser-refresh.js - - 
+[2023-01-15 18:06:27.775 inf] Request starting HTTP/2 GET https://localhost:44105/swagger/swagger-ui-bundle.js - - 
+[2023-01-15 18:06:27.775 inf] Request starting HTTP/2 GET https://localhost:44105/swagger/swagger-ui-standalone-preset.js - - 
+[2023-01-15 18:06:27.776 inf] Request starting HTTP/2 GET https://localhost:44105/swagger/ui/abp.swagger.js - - 
+[2023-01-15 18:06:27.776 inf] TestMiddleware==>>Headers==>>Accept=*/*;Host=localhost:44105;User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.26;:method=GET;Accept-Encoding=gzip, deflate, br;Accept-Language=zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6;Cookie=lpx_side-menu-state=,jenkins-timestamper-offset=-28800000,XSRF-TOKEN=CfDJ8MCcVXXvR6RFrqeMrLhsnTxIDse-7E7EDlY4syYFSJ7mwWg43zMAAyhAtt22TkAFjzuTDHeCG_6_0PQym6Nqh6BQ6JEXHcHnmYR3X5SO1iq_uNNjj0rcT_tHeeZPWEzXEIUYQyYaf73mv5vXbUP5dC4;Referer=https://localhost:44105/swagger/index.html;sec-ch-ua="Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24";sec-ch-ua-mobile=?0;sec-ch-ua-platform="Windows";sec-fetch-site=same-origin;sec-fetch-mode=no-cors;sec-fetch-dest=script;X-Correlation-Id=a189b1a98c534d099eb29e865a22d29c; 
+[2023-01-15 18:06:27.776 inf] TestMiddleware==>>Headers==>>Accept=*/*;Host=localhost:44105;User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.26;:method=GET;Accept-Encoding=gzip, deflate, br;Accept-Language=zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6;Cookie=lpx_side-menu-state=,jenkins-timestamper-offset=-28800000,XSRF-TOKEN=CfDJ8MCcVXXvR6RFrqeMrLhsnTxIDse-7E7EDlY4syYFSJ7mwWg43zMAAyhAtt22TkAFjzuTDHeCG_6_0PQym6Nqh6BQ6JEXHcHnmYR3X5SO1iq_uNNjj0rcT_tHeeZPWEzXEIUYQyYaf73mv5vXbUP5dC4;Referer=https://localhost:44105/swagger/index.html;sec-ch-ua="Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24";sec-ch-ua-mobile=?0;sec-ch-ua-platform="Windows";sec-fetch-site=same-origin;sec-fetch-mode=no-cors;sec-fetch-dest=script;X-Correlation-Id=11450ced908e424db49de05a04499cbd; 
+[2023-01-15 18:06:27.779 inf] TestMiddleware==>>Headers==>>Accept=text/css,*/*;q=0.1;Host=localhost:44105;User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.26;:method=GET;Accept-Encoding=gzip, deflate, br;Accept-Language=zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6;Cookie=lpx_side-menu-state=,jenkins-timestamper-offset=-28800000,XSRF-TOKEN=CfDJ8MCcVXXvR6RFrqeMrLhsnTxIDse-7E7EDlY4syYFSJ7mwWg43zMAAyhAtt22TkAFjzuTDHeCG_6_0PQym6Nqh6BQ6JEXHcHnmYR3X5SO1iq_uNNjj0rcT_tHeeZPWEzXEIUYQyYaf73mv5vXbUP5dC4;Referer=https://localhost:44105/swagger/index.html;sec-ch-ua="Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24";sec-ch-ua-mobile=?0;sec-ch-ua-platform="Windows";sec-fetch-site=same-origin;sec-fetch-mode=no-cors;sec-fetch-dest=style;X-Correlation-Id=cc2db34fbca2425d93cd535725ad77c9; 
+[2023-01-15 18:06:27.783 inf] Request finished HTTP/2 GET https://localhost:44105/_framework/aspnetcore-browser-refresh.js - - - 200 12024 application/javascript;+charset=utf-8 8.4667ms 
+[2023-01-15 18:06:27.791 inf] Request finished HTTP/2 GET https://localhost:44105/swagger/index.html - - - 200 - text/html;charset=utf-8 322.0185ms 
+[2023-01-15 18:06:27.793 inf] Sending file. Request path: '/swagger/ui/abp.js'. Physical path: 'N/A' 
+[2023-01-15 18:06:27.793 inf] Sending file. Request path: '/swagger/ui/abp.swagger.js'. Physical path: 'N/A' 
+[2023-01-15 18:06:27.806 inf] Request finished HTTP/2 GET https://localhost:44105/swagger/ui/abp.swagger.js - - - 200 1363 application/javascript 31.2955ms 
+[2023-01-15 18:06:27.821 inf] Request finished HTTP/2 GET https://localhost:44105/swagger/ui/abp.js - - - 200 3122 application/javascript 47.5959ms 
+[2023-01-15 18:06:27.836 inf] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A' 
+[2023-01-15 18:06:27.836 inf] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A' 
+[2023-01-15 18:06:27.837 inf] Request finished HTTP/2 GET https://localhost:44105/swagger/swagger-ui.css - - - 200 143943 text/css 64.9649ms 
+[2023-01-15 18:06:27.837 inf] Request finished HTTP/2 GET https://localhost:44105/swagger/swagger-ui-standalone-preset.js - - - 200 339486 application/javascript 62.5581ms 
+[2023-01-15 18:06:27.884 inf] Request starting HTTP/2 GET https://localhost:44105/_vs/browserLink - - 
+[2023-01-15 18:06:27.899 inf] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A' 
+[2023-01-15 18:06:27.899 inf] Request finished HTTP/2 GET https://localhost:44105/swagger/swagger-ui-bundle.js - - - 200 1095087 application/javascript 125.3078ms 
+[2023-01-15 18:06:28.026 inf] Request finished HTTP/2 GET https://localhost:44105/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 142.1498ms 
+[2023-01-15 18:06:28.192 inf] Request starting HTTP/2 GET https://localhost:44105/swagger/v1/swagger.json - - 
+[2023-01-15 18:06:28.193 inf] TestMiddleware==>>Headers==>>Accept=application/json,*/*;Host=localhost:44105;User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.26;:method=GET;Accept-Encoding=gzip, deflate, br;Accept-Language=zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6;Cookie=lpx_side-menu-state=,jenkins-timestamper-offset=-28800000,XSRF-TOKEN=CfDJ8MCcVXXvR6RFrqeMrLhsnTxIDse-7E7EDlY4syYFSJ7mwWg43zMAAyhAtt22TkAFjzuTDHeCG_6_0PQym6Nqh6BQ6JEXHcHnmYR3X5SO1iq_uNNjj0rcT_tHeeZPWEzXEIUYQyYaf73mv5vXbUP5dC4;Referer=https://localhost:44105/swagger/index.html;sec-ch-ua="Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24";requestverificationtoken=CfDJ8MCcVXXvR6RFrqeMrLhsnTxIDse-7E7EDlY4syYFSJ7mwWg43zMAAyhAtt22TkAFjzuTDHeCG_6_0PQym6Nqh6BQ6JEXHcHnmYR3X5SO1iq_uNNjj0rcT_tHeeZPWEzXEIUYQyYaf73mv5vXbUP5dC4;X-Requested-With=XMLHttpRequest;sec-ch-ua-mobile=?0;sec-ch-ua-platform="Windows";sec-fetch-site=same-origin;sec-fetch-mode=cors;sec-fetch-dest=empty;X-Correlation-Id=9a0cafbb65de4328bd4a01f0cd1b5b1f; 
+[2023-01-15 18:06:28.235 inf] Request starting HTTP/2 GET https://localhost:44105/swagger/favicon-32x32.png - - 
+[2023-01-15 18:06:28.236 inf] TestMiddleware==>>Headers==>>Accept=image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8;Host=localhost:44105;User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.26;:method=GET;Accept-Encoding=gzip, deflate, br;Accept-Language=zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6;Cookie=lpx_side-menu-state=,jenkins-timestamper-offset=-28800000,XSRF-TOKEN=CfDJ8MCcVXXvR6RFrqeMrLhsnTxIDse-7E7EDlY4syYFSJ7mwWg43zMAAyhAtt22TkAFjzuTDHeCG_6_0PQym6Nqh6BQ6JEXHcHnmYR3X5SO1iq_uNNjj0rcT_tHeeZPWEzXEIUYQyYaf73mv5vXbUP5dC4;Referer=https://localhost:44105/swagger/index.html;sec-ch-ua="Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24";sec-ch-ua-mobile=?0;sec-ch-ua-platform="Windows";sec-fetch-site=same-origin;sec-fetch-mode=no-cors;sec-fetch-dest=image;X-Correlation-Id=a03503e08e304861b48c2fe6d3a64110; 
+[2023-01-15 18:06:28.237 inf] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A' 
+[2023-01-15 18:06:28.237 inf] Request finished HTTP/2 GET https://localhost:44105/swagger/favicon-32x32.png - - - 200 628 image/png 1.6435ms 
+[2023-01-15 18:06:28.53 inf] Request finished HTTP/2 GET https://localhost:44105/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 337.6618ms 
+[2023-01-15 19:06:16.313 inf] Lock is acquired for TokenCleanupBackgroundWorker 
+[2023-01-15 19:06:16.488 inf] Start cleanup. 
+[2023-01-15 19:06:16.488 inf] Start cleanup tokens. 
+[2023-01-15 19:06:16.771 inf] Start cleanup authorizations. 
+[2023-01-15 19:06:17.015 inf] Lock is released for TokenCleanupBackgroundWorker 
+[2023-01-15 19:31:09.535 inf] [Development] Starting EShopIdentity. 
+[2023-01-15 19:31:09.953 ftl] EShopIdentity terminated unexpectedly! 
+System.IO.FileNotFoundException: Could not load file or assembly 'Volo.Abp.DistributedLocking, Version=6.0.2.0, Culture=neutral, PublicKeyToken=null'. 系统找不到指定的文件。
+File name: 'Volo.Abp.DistributedLocking, Version=6.0.2.0, Culture=neutral, PublicKeyToken=null'
+   at System.Reflection.CustomAttribute._CreateCaObject(RuntimeModule pModule, RuntimeType type, IRuntimeMethodInfo pCtor, Byte** ppBlob, Byte* pEndBlob, Int32* pcNamedArgs)
+   at System.Reflection.CustomAttribute.CreateCaObject(RuntimeModule module, RuntimeType type, IRuntimeMethodInfo ctor, IntPtr& blob, IntPtr blobEnd, Int32& namedArgs)
+   at System.Reflection.CustomAttribute.AddCustomAttributes(ListBuilder`1& attributes, RuntimeModule decoratedModule, Int32 decoratedMetadataToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, ListBuilder`1 derivedAttributes)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeType type, RuntimeType caType, Boolean inherit)
+   at System.RuntimeType.GetCustomAttributes(Type attributeType, Boolean inherit)
+   at System.Attribute.GetCustomAttributes(MemberInfo element, Boolean inherit)
+   at Volo.Abp.Modularity.AbpModuleHelper.FindDependedModuleTypes(Type moduleType)
+   at Volo.Abp.Modularity.AbpModuleHelper.AddModuleAndDependenciesRecursively(List`1 moduleTypes, Type moduleType, ILogger logger, Int32 depth)
+   at Volo.Abp.Modularity.AbpModuleHelper.FindAllModuleTypes(Type startupModuleType, ILogger logger)
+   at Volo.Abp.Modularity.ModuleLoader.FillModules(List`1 modules, IServiceCollection services, Type startupModuleType, PlugInSourceList plugInSources)
+   at Volo.Abp.Modularity.ModuleLoader.GetDescriptors(IServiceCollection services, Type startupModuleType, PlugInSourceList plugInSources)
+   at Volo.Abp.Modularity.ModuleLoader.LoadModules(IServiceCollection services, Type startupModuleType, PlugInSourceList plugInSources)
+   at Volo.Abp.AbpApplicationBase..ctor(Type startupModuleType, IServiceCollection services, Action`1 optionsAction)
+   at Volo.Abp.AbpApplicationFactory.CreateAsync[TStartupModule](IServiceCollection services, Action`1 optionsAction)
+   at Microsoft.Extensions.DependencyInjection.ServiceCollectionApplicationExtensions.AddApplicationAsync[TStartupModule](IServiceCollection services, Action`1 optionsAction)
+   at Microsoft.Extensions.DependencyInjection.WebApplicationBuilderExtensions.AddApplicationAsync[TStartupModule](WebApplicationBuilder builder, Action`1 optionsAction)
+   at Leopard.Host.CommonHostProgram`1.RunAsync(String[] args) in D:\Work\OpenSource\abp-vue-vben-admin\framework\leopard\src\Leopard.Host\Leopard\Host\CommonHostProgram.cs:line 69
+[2023-01-15 19:31:24.996 inf] [Development] Starting EShopIdentity. 
+[2023-01-15 19:31:25.464 ftl] EShopIdentity terminated unexpectedly! 
+System.IO.FileNotFoundException: Could not load file or assembly 'Volo.Abp.DistributedLocking, Version=6.0.2.0, Culture=neutral, PublicKeyToken=null'. 系统找不到指定的文件。
+File name: 'Volo.Abp.DistributedLocking, Version=6.0.2.0, Culture=neutral, PublicKeyToken=null'
+   at System.Reflection.CustomAttribute._CreateCaObject(RuntimeModule pModule, RuntimeType type, IRuntimeMethodInfo pCtor, Byte** ppBlob, Byte* pEndBlob, Int32* pcNamedArgs)
+   at System.Reflection.CustomAttribute.CreateCaObject(RuntimeModule module, RuntimeType type, IRuntimeMethodInfo ctor, IntPtr& blob, IntPtr blobEnd, Int32& namedArgs)
+   at System.Reflection.CustomAttribute.AddCustomAttributes(ListBuilder`1& attributes, RuntimeModule decoratedModule, Int32 decoratedMetadataToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, ListBuilder`1 derivedAttributes)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeType type, RuntimeType caType, Boolean inherit)
+   at System.RuntimeType.GetCustomAttributes(Type attributeType, Boolean inherit)
+   at System.Attribute.GetCustomAttributes(MemberInfo element, Boolean inherit)
+   at Volo.Abp.Modularity.AbpModuleHelper.FindDependedModuleTypes(Type moduleType)
+   at Volo.Abp.Modularity.AbpModuleHelper.AddModuleAndDependenciesRecursively(List`1 moduleTypes, Type moduleType, ILogger logger, Int32 depth)
+   at Volo.Abp.Modularity.AbpModuleHelper.FindAllModuleTypes(Type startupModuleType, ILogger logger)
+   at Volo.Abp.Modularity.ModuleLoader.FillModules(List`1 modules, IServiceCollection services, Type startupModuleType, PlugInSourceList plugInSources)
+   at Volo.Abp.Modularity.ModuleLoader.GetDescriptors(IServiceCollection services, Type startupModuleType, PlugInSourceList plugInSources)
+   at Volo.Abp.Modularity.ModuleLoader.LoadModules(IServiceCollection services, Type startupModuleType, PlugInSourceList plugInSources)
+   at Volo.Abp.AbpApplicationBase..ctor(Type startupModuleType, IServiceCollection services, Action`1 optionsAction)
+   at Volo.Abp.AbpApplicationFactory.CreateAsync[TStartupModule](IServiceCollection services, Action`1 optionsAction)
+   at Microsoft.Extensions.DependencyInjection.ServiceCollectionApplicationExtensions.AddApplicationAsync[TStartupModule](IServiceCollection services, Action`1 optionsAction)
+   at Microsoft.Extensions.DependencyInjection.WebApplicationBuilderExtensions.AddApplicationAsync[TStartupModule](WebApplicationBuilder builder, Action`1 optionsAction)
+   at Leopard.Host.CommonHostProgram`1.RunAsync(String[] args) in D:\Work\OpenSource\abp-vue-vben-admin\framework\leopard\src\Leopard.Host\Leopard\Host\CommonHostProgram.cs:line 69
+[2023-01-15 19:58:47.096 inf] [Development] Starting EShopIdentity. 
+[2023-01-15 19:58:48.305 ftl] EShopIdentity terminated unexpectedly! 
+System.IO.FileNotFoundException: Could not load file or assembly 'Volo.Abp.DistributedLocking, Version=6.0.2.0, Culture=neutral, PublicKeyToken=null'. 系统找不到指定的文件。
+File name: 'Volo.Abp.DistributedLocking, Version=6.0.2.0, Culture=neutral, PublicKeyToken=null'
+   at System.Reflection.CustomAttribute._CreateCaObject(RuntimeModule pModule, RuntimeType type, IRuntimeMethodInfo pCtor, Byte** ppBlob, Byte* pEndBlob, Int32* pcNamedArgs)
+   at System.Reflection.CustomAttribute.CreateCaObject(RuntimeModule module, RuntimeType type, IRuntimeMethodInfo ctor, IntPtr& blob, IntPtr blobEnd, Int32& namedArgs)
+   at System.Reflection.CustomAttribute.AddCustomAttributes(ListBuilder`1& attributes, RuntimeModule decoratedModule, Int32 decoratedMetadataToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, ListBuilder`1 derivedAttributes)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeType type, RuntimeType caType, Boolean inherit)
+   at System.RuntimeType.GetCustomAttributes(Type attributeType, Boolean inherit)
+   at System.Attribute.GetCustomAttributes(MemberInfo element, Boolean inherit)
+   at Volo.Abp.Modularity.AbpModuleHelper.FindDependedModuleTypes(Type moduleType)
+   at Volo.Abp.Modularity.AbpModuleHelper.AddModuleAndDependenciesRecursively(List`1 moduleTypes, Type moduleType, ILogger logger, Int32 depth)
+   at Volo.Abp.Modularity.AbpModuleHelper.FindAllModuleTypes(Type startupModuleType, ILogger logger)
+   at Volo.Abp.Modularity.ModuleLoader.FillModules(List`1 modules, IServiceCollection services, Type startupModuleType, PlugInSourceList plugInSources)
+   at Volo.Abp.Modularity.ModuleLoader.GetDescriptors(IServiceCollection services, Type startupModuleType, PlugInSourceList plugInSources)
+   at Volo.Abp.Modularity.ModuleLoader.LoadModules(IServiceCollection services, Type startupModuleType, PlugInSourceList plugInSources)
+   at Volo.Abp.AbpApplicationBase..ctor(Type startupModuleType, IServiceCollection services, Action`1 optionsAction)
+   at Volo.Abp.AbpApplicationFactory.CreateAsync[TStartupModule](IServiceCollection services, Action`1 optionsAction)
+   at Microsoft.Extensions.DependencyInjection.ServiceCollectionApplicationExtensions.AddApplicationAsync[TStartupModule](IServiceCollection services, Action`1 optionsAction)
+   at Microsoft.Extensions.DependencyInjection.WebApplicationBuilderExtensions.AddApplicationAsync[TStartupModule](WebApplicationBuilder builder, Action`1 optionsAction)
+   at Leopard.Host.CommonHostProgram`1.RunAsync(String[] args) in D:\Work\OpenSource\abp-vue-vben-admin\framework\leopard\src\Leopard.Host\Leopard\Host\CommonHostProgram.cs:line 69
+[2023-01-15 19:59:02.897 inf] [Development] Starting EShopIdentity. 
+[2023-01-15 19:59:03.451 ftl] EShopIdentity terminated unexpectedly! 
+System.IO.FileNotFoundException: Could not load file or assembly 'Volo.Abp.DistributedLocking, Version=6.0.2.0, Culture=neutral, PublicKeyToken=null'. 系统找不到指定的文件。
+File name: 'Volo.Abp.DistributedLocking, Version=6.0.2.0, Culture=neutral, PublicKeyToken=null'
+   at System.Reflection.CustomAttribute._CreateCaObject(RuntimeModule pModule, RuntimeType type, IRuntimeMethodInfo pCtor, Byte** ppBlob, Byte* pEndBlob, Int32* pcNamedArgs)
+   at System.Reflection.CustomAttribute.CreateCaObject(RuntimeModule module, RuntimeType type, IRuntimeMethodInfo ctor, IntPtr& blob, IntPtr blobEnd, Int32& namedArgs)
+   at System.Reflection.CustomAttribute.AddCustomAttributes(ListBuilder`1& attributes, RuntimeModule decoratedModule, Int32 decoratedMetadataToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, ListBuilder`1 derivedAttributes)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeType type, RuntimeType caType, Boolean inherit)
+   at System.RuntimeType.GetCustomAttributes(Type attributeType, Boolean inherit)
+   at System.Attribute.GetCustomAttributes(MemberInfo element, Boolean inherit)
+   at Volo.Abp.Modularity.AbpModuleHelper.FindDependedModuleTypes(Type moduleType)
+   at Volo.Abp.Modularity.AbpModuleHelper.AddModuleAndDependenciesRecursively(List`1 moduleTypes, Type moduleType, ILogger logger, Int32 depth)
+   at Volo.Abp.Modularity.AbpModuleHelper.FindAllModuleTypes(Type startupModuleType, ILogger logger)
+   at Volo.Abp.Modularity.ModuleLoader.FillModules(List`1 modules, IServiceCollection services, Type startupModuleType, PlugInSourceList plugInSources)
+   at Volo.Abp.Modularity.ModuleLoader.GetDescriptors(IServiceCollection services, Type startupModuleType, PlugInSourceList plugInSources)
+   at Volo.Abp.Modularity.ModuleLoader.LoadModules(IServiceCollection services, Type startupModuleType, PlugInSourceList plugInSources)
+   at Volo.Abp.AbpApplicationBase..ctor(Type startupModuleType, IServiceCollection services, Action`1 optionsAction)
+   at Volo.Abp.AbpApplicationFactory.CreateAsync[TStartupModule](IServiceCollection services, Action`1 optionsAction)
+   at Microsoft.Extensions.DependencyInjection.ServiceCollectionApplicationExtensions.AddApplicationAsync[TStartupModule](IServiceCollection services, Action`1 optionsAction)
+   at Microsoft.Extensions.DependencyInjection.WebApplicationBuilderExtensions.AddApplicationAsync[TStartupModule](WebApplicationBuilder builder, Action`1 optionsAction)
+   at Leopard.Host.CommonHostProgram`1.RunAsync(String[] args) in D:\Work\OpenSource\abp-vue-vben-admin\framework\leopard\src\Leopard.Host\Leopard\Host\CommonHostProgram.cs:line 69
+[2023-01-15 20:02:04.18 inf] [Development] Starting EShopIdentity. 
+[2023-01-15 20:02:04.681 ftl] EShopIdentity terminated unexpectedly! 
+System.IO.FileNotFoundException: Could not load file or assembly 'Volo.Abp.DistributedLocking, Version=6.0.2.0, Culture=neutral, PublicKeyToken=null'. 系统找不到指定的文件。
+File name: 'Volo.Abp.DistributedLocking, Version=6.0.2.0, Culture=neutral, PublicKeyToken=null'
+   at System.Reflection.CustomAttribute._CreateCaObject(RuntimeModule pModule, RuntimeType type, IRuntimeMethodInfo pCtor, Byte** ppBlob, Byte* pEndBlob, Int32* pcNamedArgs)
+   at System.Reflection.CustomAttribute.CreateCaObject(RuntimeModule module, RuntimeType type, IRuntimeMethodInfo ctor, IntPtr& blob, IntPtr blobEnd, Int32& namedArgs)
+   at System.Reflection.CustomAttribute.AddCustomAttributes(ListBuilder`1& attributes, RuntimeModule decoratedModule, Int32 decoratedMetadataToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, ListBuilder`1 derivedAttributes)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeType type, RuntimeType caType, Boolean inherit)
+   at System.RuntimeType.GetCustomAttributes(Type attributeType, Boolean inherit)
+   at System.Attribute.GetCustomAttributes(MemberInfo element, Boolean inherit)
+   at Volo.Abp.Modularity.AbpModuleHelper.FindDependedModuleTypes(Type moduleType)
+   at Volo.Abp.Modularity.AbpModuleHelper.AddModuleAndDependenciesRecursively(List`1 moduleTypes, Type moduleType, ILogger logger, Int32 depth)
+   at Volo.Abp.Modularity.AbpModuleHelper.FindAllModuleTypes(Type startupModuleType, ILogger logger)
+   at Volo.Abp.Modularity.ModuleLoader.FillModules(List`1 modules, IServiceCollection services, Type startupModuleType, PlugInSourceList plugInSources)
+   at Volo.Abp.Modularity.ModuleLoader.GetDescriptors(IServiceCollection services, Type startupModuleType, PlugInSourceList plugInSources)
+   at Volo.Abp.Modularity.ModuleLoader.LoadModules(IServiceCollection services, Type startupModuleType, PlugInSourceList plugInSources)
+   at Volo.Abp.AbpApplicationBase..ctor(Type startupModuleType, IServiceCollection services, Action`1 optionsAction)
+   at Volo.Abp.AbpApplicationFactory.CreateAsync[TStartupModule](IServiceCollection services, Action`1 optionsAction)
+   at Microsoft.Extensions.DependencyInjection.ServiceCollectionApplicationExtensions.AddApplicationAsync[TStartupModule](IServiceCollection services, Action`1 optionsAction)
+   at Microsoft.Extensions.DependencyInjection.WebApplicationBuilderExtensions.AddApplicationAsync[TStartupModule](WebApplicationBuilder builder, Action`1 optionsAction)
+   at Leopard.Host.CommonHostProgram`1.RunAsync(String[] args) in D:\Work\OpenSource\abp-vue-vben-admin\framework\leopard\src\Leopard.Host\Leopard\Host\CommonHostProgram.cs:line 69
+[2023-01-15 20:02:14.369 inf] [Development] Starting EShopIdentity. 
+[2023-01-15 20:02:14.824 ftl] EShopIdentity terminated unexpectedly! 
+System.IO.FileNotFoundException: Could not load file or assembly 'Volo.Abp.DistributedLocking, Version=6.0.2.0, Culture=neutral, PublicKeyToken=null'. 系统找不到指定的文件。
+File name: 'Volo.Abp.DistributedLocking, Version=6.0.2.0, Culture=neutral, PublicKeyToken=null'
+   at System.Reflection.CustomAttribute._CreateCaObject(RuntimeModule pModule, RuntimeType type, IRuntimeMethodInfo pCtor, Byte** ppBlob, Byte* pEndBlob, Int32* pcNamedArgs)
+   at System.Reflection.CustomAttribute.CreateCaObject(RuntimeModule module, RuntimeType type, IRuntimeMethodInfo ctor, IntPtr& blob, IntPtr blobEnd, Int32& namedArgs)
+   at System.Reflection.CustomAttribute.AddCustomAttributes(ListBuilder`1& attributes, RuntimeModule decoratedModule, Int32 decoratedMetadataToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, ListBuilder`1 derivedAttributes)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeType type, RuntimeType caType, Boolean inherit)
+   at System.RuntimeType.GetCustomAttributes(Type attributeType, Boolean inherit)
+   at System.Attribute.GetCustomAttributes(MemberInfo element, Boolean inherit)
+   at Volo.Abp.Modularity.AbpModuleHelper.FindDependedModuleTypes(Type moduleType)
+   at Volo.Abp.Modularity.AbpModuleHelper.AddModuleAndDependenciesRecursively(List`1 moduleTypes, Type moduleType, ILogger logger, Int32 depth)
+   at Volo.Abp.Modularity.AbpModuleHelper.FindAllModuleTypes(Type startupModuleType, ILogger logger)
+   at Volo.Abp.Modularity.ModuleLoader.FillModules(List`1 modules, IServiceCollection services, Type startupModuleType, PlugInSourceList plugInSources)
+   at Volo.Abp.Modularity.ModuleLoader.GetDescriptors(IServiceCollection services, Type startupModuleType, PlugInSourceList plugInSources)
+   at Volo.Abp.Modularity.ModuleLoader.LoadModules(IServiceCollection services, Type startupModuleType, PlugInSourceList plugInSources)
+   at Volo.Abp.AbpApplicationBase..ctor(Type startupModuleType, IServiceCollection services, Action`1 optionsAction)
+   at Volo.Abp.AbpApplicationFactory.CreateAsync[TStartupModule](IServiceCollection services, Action`1 optionsAction)
+   at Microsoft.Extensions.DependencyInjection.ServiceCollectionApplicationExtensions.AddApplicationAsync[TStartupModule](IServiceCollection services, Action`1 optionsAction)
+   at Microsoft.Extensions.DependencyInjection.WebApplicationBuilderExtensions.AddApplicationAsync[TStartupModule](WebApplicationBuilder builder, Action`1 optionsAction)
+   at Leopard.Host.CommonHostProgram`1.RunAsync(String[] args) in D:\Work\OpenSource\abp-vue-vben-admin\framework\leopard\src\Leopard.Host\Leopard\Host\CommonHostProgram.cs:line 69
+[2023-01-15 20:02:56.158 inf] [Development] Starting EShopIdentity. 
+[2023-01-15 20:02:56.646 ftl] EShopIdentity terminated unexpectedly! 
+System.IO.FileNotFoundException: Could not load file or assembly 'Volo.Abp.DistributedLocking, Version=6.0.2.0, Culture=neutral, PublicKeyToken=null'. 系统找不到指定的文件。
+File name: 'Volo.Abp.DistributedLocking, Version=6.0.2.0, Culture=neutral, PublicKeyToken=null'
+   at System.Reflection.CustomAttribute._CreateCaObject(RuntimeModule pModule, RuntimeType type, IRuntimeMethodInfo pCtor, Byte** ppBlob, Byte* pEndBlob, Int32* pcNamedArgs)
+   at System.Reflection.CustomAttribute.CreateCaObject(RuntimeModule module, RuntimeType type, IRuntimeMethodInfo ctor, IntPtr& blob, IntPtr blobEnd, Int32& namedArgs)
+   at System.Reflection.CustomAttribute.AddCustomAttributes(ListBuilder`1& attributes, RuntimeModule decoratedModule, Int32 decoratedMetadataToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, ListBuilder`1 derivedAttributes)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeType type, RuntimeType caType, Boolean inherit)
+   at System.RuntimeType.GetCustomAttributes(Type attributeType, Boolean inherit)
+   at System.Attribute.GetCustomAttributes(MemberInfo element, Boolean inherit)
+   at Volo.Abp.Modularity.AbpModuleHelper.FindDependedModuleTypes(Type moduleType)
+   at Volo.Abp.Modularity.AbpModuleHelper.AddModuleAndDependenciesRecursively(List`1 moduleTypes, Type moduleType, ILogger logger, Int32 depth)
+   at Volo.Abp.Modularity.AbpModuleHelper.FindAllModuleTypes(Type startupModuleType, ILogger logger)
+   at Volo.Abp.Modularity.ModuleLoader.FillModules(List`1 modules, IServiceCollection services, Type startupModuleType, PlugInSourceList plugInSources)
+   at Volo.Abp.Modularity.ModuleLoader.GetDescriptors(IServiceCollection services, Type startupModuleType, PlugInSourceList plugInSources)
+   at Volo.Abp.Modularity.ModuleLoader.LoadModules(IServiceCollection services, Type startupModuleType, PlugInSourceList plugInSources)
+   at Volo.Abp.AbpApplicationBase..ctor(Type startupModuleType, IServiceCollection services, Action`1 optionsAction)
+   at Volo.Abp.AbpApplicationFactory.CreateAsync[TStartupModule](IServiceCollection services, Action`1 optionsAction)
+   at Microsoft.Extensions.DependencyInjection.ServiceCollectionApplicationExtensions.AddApplicationAsync[TStartupModule](IServiceCollection services, Action`1 optionsAction)
+   at Microsoft.Extensions.DependencyInjection.WebApplicationBuilderExtensions.AddApplicationAsync[TStartupModule](WebApplicationBuilder builder, Action`1 optionsAction)
+   at Leopard.Host.CommonHostProgram`1.RunAsync(String[] args) in D:\Work\OpenSource\abp-vue-vben-admin\framework\leopard\src\Leopard.Host\Leopard\Host\CommonHostProgram.cs:line 69
+[2023-01-15 20:11:44.392 inf] [Development] Starting EShopIdentity. 
+[2023-01-15 20:11:45.797 ftl] EShopIdentity terminated unexpectedly! 
+System.IO.FileNotFoundException: Could not load file or assembly 'Volo.Abp.DistributedLocking, Version=6.0.2.0, Culture=neutral, PublicKeyToken=null'. 系统找不到指定的文件。
+File name: 'Volo.Abp.DistributedLocking, Version=6.0.2.0, Culture=neutral, PublicKeyToken=null'
+   at System.Reflection.CustomAttribute._CreateCaObject(RuntimeModule pModule, RuntimeType type, IRuntimeMethodInfo pCtor, Byte** ppBlob, Byte* pEndBlob, Int32* pcNamedArgs)
+   at System.Reflection.CustomAttribute.CreateCaObject(RuntimeModule module, RuntimeType type, IRuntimeMethodInfo ctor, IntPtr& blob, IntPtr blobEnd, Int32& namedArgs)
+   at System.Reflection.CustomAttribute.AddCustomAttributes(ListBuilder`1& attributes, RuntimeModule decoratedModule, Int32 decoratedMetadataToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, ListBuilder`1 derivedAttributes)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeType type, RuntimeType caType, Boolean inherit)
+   at System.RuntimeType.GetCustomAttributes(Type attributeType, Boolean inherit)
+   at System.Attribute.GetCustomAttributes(MemberInfo element, Boolean inherit)
+   at Volo.Abp.Modularity.AbpModuleHelper.FindDependedModuleTypes(Type moduleType)
+   at Volo.Abp.Modularity.AbpModuleHelper.AddModuleAndDependenciesRecursively(List`1 moduleTypes, Type moduleType, ILogger logger, Int32 depth)
+   at Volo.Abp.Modularity.AbpModuleHelper.FindAllModuleTypes(Type startupModuleType, ILogger logger)
+   at Volo.Abp.Modularity.ModuleLoader.FillModules(List`1 modules, IServiceCollection services, Type startupModuleType, PlugInSourceList plugInSources)
+   at Volo.Abp.Modularity.ModuleLoader.GetDescriptors(IServiceCollection services, Type startupModuleType, PlugInSourceList plugInSources)
+   at Volo.Abp.Modularity.ModuleLoader.LoadModules(IServiceCollection services, Type startupModuleType, PlugInSourceList plugInSources)
+   at Volo.Abp.AbpApplicationBase..ctor(Type startupModuleType, IServiceCollection services, Action`1 optionsAction)
+   at Volo.Abp.AbpApplicationFactory.CreateAsync[TStartupModule](IServiceCollection services, Action`1 optionsAction)
+   at Microsoft.Extensions.DependencyInjection.ServiceCollectionApplicationExtensions.AddApplicationAsync[TStartupModule](IServiceCollection services, Action`1 optionsAction)
+   at Microsoft.Extensions.DependencyInjection.WebApplicationBuilderExtensions.AddApplicationAsync[TStartupModule](WebApplicationBuilder builder, Action`1 optionsAction)
+   at Leopard.Host.CommonHostProgram`1.RunAsync(String[] args) in D:\Work\OpenSource\abp-vue-vben-admin\framework\leopard\src\Leopard.Host\Leopard\Host\CommonHostProgram.cs:line 69
+[2023-01-15 20:13:45.806 inf] [Development] Starting EShopIdentity. 
+[2023-01-15 20:13:46.425 ftl] EShopIdentity terminated unexpectedly! 
+System.IO.FileNotFoundException: Could not load file or assembly 'Volo.Abp.DistributedLocking, Version=6.0.2.0, Culture=neutral, PublicKeyToken=null'. 系统找不到指定的文件。
+File name: 'Volo.Abp.DistributedLocking, Version=6.0.2.0, Culture=neutral, PublicKeyToken=null'
+   at System.Reflection.CustomAttribute._CreateCaObject(RuntimeModule pModule, RuntimeType type, IRuntimeMethodInfo pCtor, Byte** ppBlob, Byte* pEndBlob, Int32* pcNamedArgs)
+   at System.Reflection.CustomAttribute.CreateCaObject(RuntimeModule module, RuntimeType type, IRuntimeMethodInfo ctor, IntPtr& blob, IntPtr blobEnd, Int32& namedArgs)
+   at System.Reflection.CustomAttribute.AddCustomAttributes(ListBuilder`1& attributes, RuntimeModule decoratedModule, Int32 decoratedMetadataToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, ListBuilder`1 derivedAttributes)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeType type, RuntimeType caType, Boolean inherit)
+   at System.RuntimeType.GetCustomAttributes(Type attributeType, Boolean inherit)
+   at System.Attribute.GetCustomAttributes(MemberInfo element, Boolean inherit)
+   at Volo.Abp.Modularity.AbpModuleHelper.FindDependedModuleTypes(Type moduleType)
+   at Volo.Abp.Modularity.AbpModuleHelper.AddModuleAndDependenciesRecursively(List`1 moduleTypes, Type moduleType, ILogger logger, Int32 depth)
+   at Volo.Abp.Modularity.AbpModuleHelper.FindAllModuleTypes(Type startupModuleType, ILogger logger)
+   at Volo.Abp.Modularity.ModuleLoader.FillModules(List`1 modules, IServiceCollection services, Type startupModuleType, PlugInSourceList plugInSources)
+   at Volo.Abp.Modularity.ModuleLoader.GetDescriptors(IServiceCollection services, Type startupModuleType, PlugInSourceList plugInSources)
+   at Volo.Abp.Modularity.ModuleLoader.LoadModules(IServiceCollection services, Type startupModuleType, PlugInSourceList plugInSources)
+   at Volo.Abp.AbpApplicationBase..ctor(Type startupModuleType, IServiceCollection services, Action`1 optionsAction)
+   at Volo.Abp.AbpApplicationFactory.CreateAsync[TStartupModule](IServiceCollection services, Action`1 optionsAction)
+   at Microsoft.Extensions.DependencyInjection.ServiceCollectionApplicationExtensions.AddApplicationAsync[TStartupModule](IServiceCollection services, Action`1 optionsAction)
+   at Microsoft.Extensions.DependencyInjection.WebApplicationBuilderExtensions.AddApplicationAsync[TStartupModule](WebApplicationBuilder builder, Action`1 optionsAction)
+   at Leopard.Host.CommonHostProgram`1.RunAsync(String[] args) in D:\Work\OpenSource\abp-vue-vben-admin\framework\leopard\src\Leopard.Host\Leopard\Host\CommonHostProgram.cs:line 69
+[2023-01-15 20:14:37.633 inf] [Development] Starting EShopIdentity. 
+[2023-01-15 20:14:38.334 ftl] EShopIdentity terminated unexpectedly! 
+System.IO.FileNotFoundException: Could not load file or assembly 'Volo.Abp.DistributedLocking, Version=6.0.2.0, Culture=neutral, PublicKeyToken=null'. 系统找不到指定的文件。
+File name: 'Volo.Abp.DistributedLocking, Version=6.0.2.0, Culture=neutral, PublicKeyToken=null'
+   at System.Reflection.CustomAttribute._CreateCaObject(RuntimeModule pModule, RuntimeType type, IRuntimeMethodInfo pCtor, Byte** ppBlob, Byte* pEndBlob, Int32* pcNamedArgs)
+   at System.Reflection.CustomAttribute.CreateCaObject(RuntimeModule module, RuntimeType type, IRuntimeMethodInfo ctor, IntPtr& blob, IntPtr blobEnd, Int32& namedArgs)
+   at System.Reflection.CustomAttribute.AddCustomAttributes(ListBuilder`1& attributes, RuntimeModule decoratedModule, Int32 decoratedMetadataToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, ListBuilder`1 derivedAttributes)
+   at System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeType type, RuntimeType caType, Boolean inherit)
+   at System.RuntimeType.GetCustomAttributes(Type attributeType, Boolean inherit)
+   at System.Attribute.GetCustomAttributes(MemberInfo element, Boolean inherit)
+   at Volo.Abp.Modularity.AbpModuleHelper.FindDependedModuleTypes(Type moduleType)
+   at Volo.Abp.Modularity.AbpModuleHelper.AddModuleAndDependenciesRecursively(List`1 moduleTypes, Type moduleType, ILogger logger, Int32 depth)
+   at Volo.Abp.Modularity.AbpModuleHelper.FindAllModuleTypes(Type startupModuleType, ILogger logger)
+   at Volo.Abp.Modularity.ModuleLoader.FillModules(List`1 modules, IServiceCollection services, Type startupModuleType, PlugInSourceList plugInSources)
+   at Volo.Abp.Modularity.ModuleLoader.GetDescriptors(IServiceCollection services, Type startupModuleType, PlugInSourceList plugInSources)
+   at Volo.Abp.Modularity.ModuleLoader.LoadModules(IServiceCollection services, Type startupModuleType, PlugInSourceList plugInSources)
+   at Volo.Abp.AbpApplicationBase..ctor(Type startupModuleType, IServiceCollection services, Action`1 optionsAction)
+   at Volo.Abp.AbpApplicationFactory.CreateAsync[TStartupModule](IServiceCollection services, Action`1 optionsAction)
+   at Microsoft.Extensions.DependencyInjection.ServiceCollectionApplicationExtensions.AddApplicationAsync[TStartupModule](IServiceCollection services, Action`1 optionsAction)
+   at Microsoft.Extensions.DependencyInjection.WebApplicationBuilderExtensions.AddApplicationAsync[TStartupModule](WebApplicationBuilder builder, Action`1 optionsAction)
+   at Leopard.Host.CommonHostProgram`1.RunAsync(String[] args) in D:\Work\OpenSource\abp-vue-vben-admin\framework\leopard\src\Leopard.Host\Leopard\Host\CommonHostProgram.cs:line 69
+[2023-01-15 20:15:32.356 inf] [Development] Starting EShopIdentity. 
+[2023-01-15 20:15:42.361 inf] Loaded ABP modules: 
+[2023-01-15 20:15:42.362 inf] - EShop.Identity.EShopIdentityHttpApiHostModule 
+[2023-01-15 20:15:42.362 inf]   - Volo.Abp.Autofac.AbpAutofacModule 
+[2023-01-15 20:15:42.362 inf]     - Volo.Abp.Castle.AbpCastleCoreModule 
+[2023-01-15 20:15:42.362 inf]   - Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy.AbpAspNetCoreMvcUiMultiTenancyModule 
+[2023-01-15 20:15:42.362 inf]     - Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.AbpAspNetCoreMvcUiThemeSharedModule 
+[2023-01-15 20:15:42.362 inf]       - Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.AbpAspNetCoreMvcUiBootstrapModule 
+[2023-01-15 20:15:42.362 inf]         - Volo.Abp.AspNetCore.Mvc.UI.AbpAspNetCoreMvcUiModule 
+[2023-01-15 20:15:42.362 inf]           - Volo.Abp.AspNetCore.Mvc.AbpAspNetCoreMvcModule 
+[2023-01-15 20:15:42.362 inf]             - Volo.Abp.AspNetCore.AbpAspNetCoreModule 
+[2023-01-15 20:15:42.362 inf]               - Volo.Abp.Auditing.AbpAuditingModule 
+[2023-01-15 20:15:42.362 inf]                 - Volo.Abp.Data.AbpDataModule 
+[2023-01-15 20:15:42.362 inf]                   - Volo.Abp.ObjectExtending.AbpObjectExtendingModule 
+[2023-01-15 20:15:42.362 inf]                     - Volo.Abp.Localization.AbpLocalizationAbstractionsModule 
+[2023-01-15 20:15:42.362 inf]                     - Volo.Abp.Validation.AbpValidationAbstractionsModule 
+[2023-01-15 20:15:42.362 inf]                   - Volo.Abp.Uow.AbpUnitOfWorkModule 
+[2023-01-15 20:15:42.362 inf]                   - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule 
+[2023-01-15 20:15:42.362 inf]                 - Volo.Abp.Json.AbpJsonModule 
+[2023-01-15 20:15:42.362 inf]                   - Volo.Abp.Timing.AbpTimingModule 
+[2023-01-15 20:15:42.362 inf]                     - Volo.Abp.Localization.AbpLocalizationModule 
+[2023-01-15 20:15:42.362 inf]                       - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule 
+[2023-01-15 20:15:42.362 inf]                       - Volo.Abp.Settings.AbpSettingsModule 
+[2023-01-15 20:15:42.362 inf]                         - Volo.Abp.Security.AbpSecurityModule 
+[2023-01-15 20:15:42.362 inf]                         - Volo.Abp.MultiTenancy.AbpMultiTenancyModule 
+[2023-01-15 20:15:42.362 inf]                 - Volo.Abp.Threading.AbpThreadingModule 
+[2023-01-15 20:15:42.362 inf]                 - Volo.Abp.Auditing.AbpAuditingContractsModule 
+[2023-01-15 20:15:42.362 inf]               - Volo.Abp.Http.AbpHttpModule 
+[2023-01-15 20:15:42.362 inf]                 - Volo.Abp.Http.AbpHttpAbstractionsModule 
+[2023-01-15 20:15:42.362 inf]                 - Volo.Abp.Minify.AbpMinifyModule 
+[2023-01-15 20:15:42.362 inf]               - Volo.Abp.Authorization.AbpAuthorizationModule 
+[2023-01-15 20:15:42.362 inf]                 - Volo.Abp.Authorization.AbpAuthorizationAbstractionsModule 
+[2023-01-15 20:15:42.362 inf]               - Volo.Abp.Validation.AbpValidationModule 
+[2023-01-15 20:15:42.362 inf]               - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule 
+[2023-01-15 20:15:42.362 inf]             - Volo.Abp.ApiVersioning.AbpApiVersioningAbstractionsModule 
+[2023-01-15 20:15:42.362 inf]             - Volo.Abp.AspNetCore.Mvc.AbpAspNetCoreMvcContractsModule 
+[2023-01-15 20:15:42.362 inf]               - Volo.Abp.Application.AbpDddApplicationContractsModule 
+[2023-01-15 20:15:42.362 inf]             - Volo.Abp.UI.Navigation.AbpUiNavigationModule 
+[2023-01-15 20:15:42.362 inf]               - Volo.Abp.UI.AbpUiModule 
+[2023-01-15 20:15:42.362 inf]             - Volo.Abp.GlobalFeatures.AbpGlobalFeaturesModule 
+[2023-01-15 20:15:42.362 inf]             - Volo.Abp.Application.AbpDddApplicationModule 
+[2023-01-15 20:15:42.362 inf]               - Volo.Abp.Domain.AbpDddDomainModule 
+[2023-01-15 20:15:42.362 inf]                 - Volo.Abp.EventBus.AbpEventBusModule 
+[2023-01-15 20:15:42.362 inf]                   - Volo.Abp.Guids.AbpGuidsModule 
+[2023-01-15 20:15:42.362 inf]                   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule 
+[2023-01-15 20:15:42.362 inf]                   - Volo.Abp.DistributedLocking.AbpDistributedLockingAbstractionsModule 
+[2023-01-15 20:15:42.362 inf]                 - Volo.Abp.ObjectMapping.AbpObjectMappingModule 
+[2023-01-15 20:15:42.362 inf]                 - Volo.Abp.Specifications.AbpSpecificationsModule 
+[2023-01-15 20:15:42.362 inf]               - Volo.Abp.Features.AbpFeaturesModule 
+[2023-01-15 20:15:42.362 inf]       - Volo.Abp.AspNetCore.Mvc.UI.Packages.AbpAspNetCoreMvcUiPackagesModule 
+[2023-01-15 20:15:42.362 inf]         - Volo.Abp.AspNetCore.Mvc.UI.Bundling.AbpAspNetCoreMvcUiBundlingAbstractionsModule 
+[2023-01-15 20:15:42.362 inf]       - Volo.Abp.AspNetCore.Mvc.UI.Widgets.AbpAspNetCoreMvcUiWidgetsModule 
+[2023-01-15 20:15:42.362 inf]         - Volo.Abp.AspNetCore.Mvc.UI.Bundling.AbpAspNetCoreMvcUiBundlingModule 
+[2023-01-15 20:15:42.362 inf]     - Volo.Abp.AspNetCore.MultiTenancy.AbpAspNetCoreMultiTenancyModule 
+[2023-01-15 20:15:42.362 inf]   - EShop.Identity.EShopIdentityHttpApiModule 
+[2023-01-15 20:15:42.362 inf]     - EShop.Identity.EShopIdentityApplicationContractsModule 
+[2023-01-15 20:15:42.362 inf]       - EShop.Identity.EShopIdentityDomainSharedModule 
+[2023-01-15 20:15:42.362 inf]         - Volo.Abp.Identity.AbpIdentityDomainSharedModule 
+[2023-01-15 20:15:42.362 inf]           - Volo.Abp.Users.AbpUsersDomainSharedModule 
+[2023-01-15 20:15:42.362 inf]         - Volo.Abp.OpenIddict.AbpOpenIddictDomainSharedModule 
+[2023-01-15 20:15:42.362 inf]       - Volo.Abp.Identity.AbpIdentityApplicationContractsModule 
+[2023-01-15 20:15:42.362 inf]         - Volo.Abp.Users.AbpUsersAbstractionModule 
+[2023-01-15 20:15:42.362 inf]         - Volo.Abp.PermissionManagement.AbpPermissionManagementApplicationContractsModule 
+[2023-01-15 20:15:42.362 inf]           - Volo.Abp.PermissionManagement.AbpPermissionManagementDomainSharedModule 
+[2023-01-15 20:15:42.362 inf]     - Volo.Abp.Identity.AbpIdentityHttpApiModule 
+[2023-01-15 20:15:42.362 inf]   - EShop.Identity.EShopIdentityApplicationModule 
+[2023-01-15 20:15:42.362 inf]     - EShop.Identity.EShopIdentityDomainModule 
+[2023-01-15 20:15:42.362 inf]       - Volo.Abp.Identity.AbpIdentityDomainModule 
+[2023-01-15 20:15:42.362 inf]         - Volo.Abp.Users.AbpUsersDomainModule 
+[2023-01-15 20:15:42.362 inf]         - Volo.Abp.AutoMapper.AbpAutoMapperModule 
+[2023-01-15 20:15:42.362 inf]       - Volo.Abp.OpenIddict.AbpOpenIddictDomainModule 
+[2023-01-15 20:15:42.362 inf]         - Volo.Abp.Caching.AbpCachingModule 
+[2023-01-15 20:15:42.362 inf]           - Volo.Abp.Serialization.AbpSerializationModule 
+[2023-01-15 20:15:42.362 inf]       - Volo.Abp.PermissionManagement.AbpPermissionManagementDomainModule 
+[2023-01-15 20:15:42.362 inf]       - Volo.Abp.Emailing.AbpEmailingModule 
+[2023-01-15 20:15:42.362 inf]         - Volo.Abp.BackgroundJobs.AbpBackgroundJobsAbstractionsModule 
+[2023-01-15 20:15:42.362 inf]         - Volo.Abp.TextTemplating.AbpTextTemplatingModule 
+[2023-01-15 20:15:42.362 inf]           - Volo.Abp.TextTemplating.Scriban.AbpTextTemplatingScribanModule 
+[2023-01-15 20:15:42.362 inf]             - Volo.Abp.TextTemplating.AbpTextTemplatingCoreModule 
+[2023-01-15 20:15:42.362 inf]     - Volo.Abp.Identity.AbpIdentityApplicationModule 
+[2023-01-15 20:15:42.362 inf]       - Volo.Abp.PermissionManagement.AbpPermissionManagementApplicationModule 
+[2023-01-15 20:15:42.362 inf]   - EShop.Identity.EShopIdentityEntityFrameworkCoreModule 
+[2023-01-15 20:15:42.362 inf]     - Volo.Abp.Identity.EntityFrameworkCore.AbpIdentityEntityFrameworkCoreModule 
+[2023-01-15 20:15:42.363 inf]       - Volo.Abp.Users.EntityFrameworkCore.AbpUsersEntityFrameworkCoreModule 
+[2023-01-15 20:15:42.363 inf]         - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule 
+[2023-01-15 20:15:42.363 inf]     - Volo.Abp.OpenIddict.EntityFrameworkCore.AbpOpenIddictEntityFrameworkCoreModule 
+[2023-01-15 20:15:42.363 inf]     - Volo.Abp.PermissionManagement.EntityFrameworkCore.AbpPermissionManagementEntityFrameworkCoreModule 
+[2023-01-15 20:15:42.363 inf]     - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule 
+[2023-01-15 20:15:42.363 inf]     - Leopard.EntityFrameworkCore.LeopardEntityFrameworkCoreModule 
+[2023-01-15 20:15:42.363 inf]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule 
+[2023-01-15 20:15:42.363 inf]   - Volo.Abp.DistributedLocking.AbpDistributedLockingModule 
+[2023-01-15 20:15:42.363 inf]   - Leopard.AspNetCore.Serilog.LeopardAspNetCoreSerilogModule 
+[2023-01-15 20:15:42.363 inf]     - Volo.Abp.AspNetCore.Serilog.AbpAspNetCoreSerilogModule 
+[2023-01-15 20:15:42.363 inf]   - Leopard.AspNetCore.Swashbuckle.LeopardAspNetCoreSwashbuckleModule 
+[2023-01-15 20:15:42.363 inf]     - Volo.Abp.Swashbuckle.AbpSwashbuckleModule 
+[2023-01-15 20:15:42.363 inf]     - Leopard.LeopardModule 
+[2023-01-15 20:15:42.363 inf]   - Leopard.AspNetCore.Mvc.LeopardAspNetCoreMvcModule 
+[2023-01-15 20:15:42.913 inf] User profile is available. Using 'C:\Users\PC\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. 
+[2023-01-15 20:15:49.547 inf] Initialized all ABP modules. 
+[2023-01-15 20:15:49.547 inf] [Development] Started EShopIdentity. 
+[2023-01-15 20:15:49.777 inf] Now listening on: https://localhost:44105 
+[2023-01-15 20:15:49.777 inf] Now listening on: http://localhost:44102 
+[2023-01-15 20:15:49.778 inf] Application started. Press Ctrl+C to shut down. 
+[2023-01-15 20:15:49.778 inf] Hosting environment: Development 
+[2023-01-15 20:15:49.778 inf] Content root path: D:\Work\OpenSource\abp-vue-vben-admin\eshop\aspnetcore\services\identity\host\EShop.Identity.HttpApi.Host\ 
+[2023-01-15 20:15:50.81 inf] Request starting HTTP/2 GET https://localhost:44105/ - - 
+[2023-01-15 20:15:51.071 inf] TestMiddleware==>>Headers==>>Accept=text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9;Host=localhost:44105;User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.26;:method=GET;Accept-Encoding=gzip, deflate, br;Accept-Language=zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6;Cookie=lpx_side-menu-state=,jenkins-timestamper-offset=-28800000,XSRF-TOKEN=CfDJ8MCcVXXvR6RFrqeMrLhsnTxIDse-7E7EDlY4syYFSJ7mwWg43zMAAyhAtt22TkAFjzuTDHeCG_6_0PQym6Nqh6BQ6JEXHcHnmYR3X5SO1iq_uNNjj0rcT_tHeeZPWEzXEIUYQyYaf73mv5vXbUP5dC4;Upgrade-Insecure-Requests=1;sec-ch-ua="Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24";sec-ch-ua-mobile=?0;sec-ch-ua-platform="Windows";sec-fetch-site=none;sec-fetch-mode=navigate;sec-fetch-user=?1;sec-fetch-dest=document;X-Correlation-Id=579446dfe14d456d8038d1b14afbca4b; 
+[2023-01-15 20:15:51.548 inf] Executing endpoint 'EShop.Identity.Controllers.HomeController.Index (EShop.Identity.HttpApi.Host)' 
+[2023-01-15 20:15:51.641 inf] Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult Index() on controller EShop.Identity.Controllers.HomeController (EShop.Identity.HttpApi.Host). 
+[2023-01-15 20:15:51.89 inf] Executing action method EShop.Identity.Controllers.HomeController.Index (EShop.Identity.HttpApi.Host) - Validation state: "Valid" 
+[2023-01-15 20:15:51.899 inf] Executed action method EShop.Identity.Controllers.HomeController.Index (EShop.Identity.HttpApi.Host), returned result Microsoft.AspNetCore.Mvc.RedirectResult in 0.5868ms. 
+[2023-01-15 20:15:51.928 inf] Executing RedirectResult, redirecting to /swagger. 
+[2023-01-15 20:15:51.942 inf] Executed action EShop.Identity.Controllers.HomeController.Index (EShop.Identity.HttpApi.Host) in 291.4509ms 
+[2023-01-15 20:15:51.942 inf] Executed endpoint 'EShop.Identity.Controllers.HomeController.Index (EShop.Identity.HttpApi.Host)' 
+[2023-01-15 20:15:51.98 inf] Request starting HTTP/2 GET https://localhost:44105/swagger - - 
+[2023-01-15 20:15:51.992 inf] TestMiddleware==>>Headers==>>Accept=text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9;Host=localhost:44105;User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.26;:method=GET;Accept-Encoding=gzip, deflate, br;Accept-Language=zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6;Cookie=lpx_side-menu-state=,jenkins-timestamper-offset=-28800000,XSRF-TOKEN=CfDJ8MCcVXXvR6RFrqeMrLhsnTxIDse-7E7EDlY4syYFSJ7mwWg43zMAAyhAtt22TkAFjzuTDHeCG_6_0PQym6Nqh6BQ6JEXHcHnmYR3X5SO1iq_uNNjj0rcT_tHeeZPWEzXEIUYQyYaf73mv5vXbUP5dC4;Upgrade-Insecure-Requests=1;sec-fetch-site=none;sec-fetch-mode=navigate;sec-fetch-user=?1;sec-fetch-dest=document;sec-ch-ua="Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24";sec-ch-ua-mobile=?0;sec-ch-ua-platform="Windows";X-Correlation-Id=1ddd56b7f70247f1ace0949f21ac4e3a; 
+[2023-01-15 20:15:51.995 inf] Request finished HTTP/2 GET https://localhost:44105/ - - - 302 0 - 1186.1888ms 
+[2023-01-15 20:15:52.003 inf] Request finished HTTP/2 GET https://localhost:44105/swagger - - - 301 0 - 15.5550ms 
+[2023-01-15 20:15:52.028 inf] Request starting HTTP/2 GET https://localhost:44105/swagger/index.html - - 
+[2023-01-15 20:15:52.041 inf] TestMiddleware==>>Headers==>>Accept=text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9;Host=localhost:44105;User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.26;:method=GET;Accept-Encoding=gzip, deflate, br;Accept-Language=zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6;Cookie=lpx_side-menu-state=,jenkins-timestamper-offset=-28800000,XSRF-TOKEN=CfDJ8MCcVXXvR6RFrqeMrLhsnTxIDse-7E7EDlY4syYFSJ7mwWg43zMAAyhAtt22TkAFjzuTDHeCG_6_0PQym6Nqh6BQ6JEXHcHnmYR3X5SO1iq_uNNjj0rcT_tHeeZPWEzXEIUYQyYaf73mv5vXbUP5dC4;Upgrade-Insecure-Requests=1;sec-fetch-site=none;sec-fetch-mode=navigate;sec-fetch-user=?1;sec-fetch-dest=document;sec-ch-ua="Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24";sec-ch-ua-mobile=?0;sec-ch-ua-platform="Windows";X-Correlation-Id=da534048491d468f8bbb331d08b4657e; 
+[2023-01-15 20:15:52.462 inf] Request starting HTTP/2 GET https://localhost:44105/swagger/swagger-ui.css - - 
+[2023-01-15 20:15:52.462 inf] Request starting HTTP/2 GET https://localhost:44105/swagger/ui/abp.swagger.js - - 
+[2023-01-15 20:15:52.464 inf] Request starting HTTP/2 GET https://localhost:44105/swagger/swagger-ui-bundle.js - - 
+[2023-01-15 20:15:52.466 inf] TestMiddleware==>>Headers==>>Accept=*/*;Host=localhost:44105;User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.26;:method=GET;Accept-Encoding=gzip, deflate, br;Accept-Language=zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6;Cookie=lpx_side-menu-state=,jenkins-timestamper-offset=-28800000,XSRF-TOKEN=CfDJ8MCcVXXvR6RFrqeMrLhsnTxIDse-7E7EDlY4syYFSJ7mwWg43zMAAyhAtt22TkAFjzuTDHeCG_6_0PQym6Nqh6BQ6JEXHcHnmYR3X5SO1iq_uNNjj0rcT_tHeeZPWEzXEIUYQyYaf73mv5vXbUP5dC4;Referer=https://localhost:44105/swagger/index.html;sec-ch-ua="Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24";sec-ch-ua-mobile=?0;sec-ch-ua-platform="Windows";sec-fetch-site=same-origin;sec-fetch-mode=no-cors;sec-fetch-dest=script;X-Correlation-Id=fe9fd9b7895b45dcb6666508e9e52a11; 
+[2023-01-15 20:15:52.466 inf] Request starting HTTP/2 GET https://localhost:44105/swagger/ui/abp.js - - 
+[2023-01-15 20:15:52.466 inf] TestMiddleware==>>Headers==>>Accept=text/css,*/*;q=0.1;Host=localhost:44105;User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.26;:method=GET;Accept-Encoding=gzip, deflate, br;Accept-Language=zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6;Cookie=lpx_side-menu-state=,jenkins-timestamper-offset=-28800000,XSRF-TOKEN=CfDJ8MCcVXXvR6RFrqeMrLhsnTxIDse-7E7EDlY4syYFSJ7mwWg43zMAAyhAtt22TkAFjzuTDHeCG_6_0PQym6Nqh6BQ6JEXHcHnmYR3X5SO1iq_uNNjj0rcT_tHeeZPWEzXEIUYQyYaf73mv5vXbUP5dC4;Referer=https://localhost:44105/swagger/index.html;sec-ch-ua="Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24";sec-ch-ua-mobile=?0;sec-ch-ua-platform="Windows";sec-fetch-site=same-origin;sec-fetch-mode=no-cors;sec-fetch-dest=style;X-Correlation-Id=367a58fd8c7b46e2a67ef187eb89d5c7; 
+[2023-01-15 20:15:52.47 inf] Request starting HTTP/2 GET https://localhost:44105/swagger/swagger-ui-standalone-preset.js - - 
+[2023-01-15 20:15:52.471 inf] TestMiddleware==>>Headers==>>Accept=*/*;Host=localhost:44105;User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.26;:method=GET;Accept-Encoding=gzip, deflate, br;Accept-Language=zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6;Cookie=lpx_side-menu-state=,jenkins-timestamper-offset=-28800000,XSRF-TOKEN=CfDJ8MCcVXXvR6RFrqeMrLhsnTxIDse-7E7EDlY4syYFSJ7mwWg43zMAAyhAtt22TkAFjzuTDHeCG_6_0PQym6Nqh6BQ6JEXHcHnmYR3X5SO1iq_uNNjj0rcT_tHeeZPWEzXEIUYQyYaf73mv5vXbUP5dC4;Referer=https://localhost:44105/swagger/index.html;sec-ch-ua="Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24";sec-ch-ua-mobile=?0;sec-ch-ua-platform="Windows";sec-fetch-site=same-origin;sec-fetch-mode=no-cors;sec-fetch-dest=script;X-Correlation-Id=3e528e38fc3a4f2eaa34d725f798d433; 
+[2023-01-15 20:15:52.501 inf] Request starting HTTP/2 GET https://localhost:44105/_framework/aspnetcore-browser-refresh.js - - 
+[2023-01-15 20:15:52.512 inf] Sending file. Request path: '/swagger/ui/abp.js'. Physical path: 'N/A' 
+[2023-01-15 20:15:52.512 inf] Sending file. Request path: '/swagger/ui/abp.swagger.js'. Physical path: 'N/A' 
+[2023-01-15 20:15:52.557 inf] Request finished HTTP/2 GET https://localhost:44105/swagger/index.html - - - 200 - text/html;charset=utf-8 529.5658ms 
+[2023-01-15 20:15:52.557 inf] Request finished HTTP/2 GET https://localhost:44105/swagger/ui/abp.swagger.js - - - 200 1363 application/javascript 95.1880ms 
+[2023-01-15 20:15:52.558 inf] Request finished HTTP/2 GET https://localhost:44105/swagger/ui/abp.js - - - 200 3122 application/javascript 91.5055ms 
+[2023-01-15 20:15:52.573 inf] Request finished HTTP/2 GET https://localhost:44105/_framework/aspnetcore-browser-refresh.js - - - 200 12024 application/javascript;+charset=utf-8 71.1312ms 
+[2023-01-15 20:15:52.591 inf] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A' 
+[2023-01-15 20:15:52.591 inf] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A' 
+[2023-01-15 20:15:52.592 inf] Request finished HTTP/2 GET https://localhost:44105/swagger/swagger-ui.css - - - 200 143943 text/css 129.4911ms 
+[2023-01-15 20:15:52.592 inf] Request finished HTTP/2 GET https://localhost:44105/swagger/swagger-ui-standalone-preset.js - - - 200 339486 application/javascript 121.4073ms 
+[2023-01-15 20:15:52.625 inf] Request starting HTTP/2 GET https://localhost:44105/_vs/browserLink - - 
+[2023-01-15 20:15:52.626 inf] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A' 
+[2023-01-15 20:15:52.626 inf] Request finished HTTP/2 GET https://localhost:44105/swagger/swagger-ui-bundle.js - - - 200 1095087 application/javascript 162.6293ms 
+[2023-01-15 20:15:52.767 inf] Request finished HTTP/2 GET https://localhost:44105/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 142.5518ms 
+[2023-01-15 20:15:53.04 inf] Request starting HTTP/2 GET https://localhost:44105/swagger/v1/swagger.json - - 
+[2023-01-15 20:15:53.042 inf] TestMiddleware==>>Headers==>>Accept=application/json,*/*;Host=localhost:44105;User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.26;:method=GET;Accept-Encoding=gzip, deflate, br;Accept-Language=zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6;Cookie=lpx_side-menu-state=,jenkins-timestamper-offset=-28800000,XSRF-TOKEN=CfDJ8MCcVXXvR6RFrqeMrLhsnTxIDse-7E7EDlY4syYFSJ7mwWg43zMAAyhAtt22TkAFjzuTDHeCG_6_0PQym6Nqh6BQ6JEXHcHnmYR3X5SO1iq_uNNjj0rcT_tHeeZPWEzXEIUYQyYaf73mv5vXbUP5dC4;Referer=https://localhost:44105/swagger/index.html;sec-ch-ua="Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24";requestverificationtoken=CfDJ8MCcVXXvR6RFrqeMrLhsnTxIDse-7E7EDlY4syYFSJ7mwWg43zMAAyhAtt22TkAFjzuTDHeCG_6_0PQym6Nqh6BQ6JEXHcHnmYR3X5SO1iq_uNNjj0rcT_tHeeZPWEzXEIUYQyYaf73mv5vXbUP5dC4;X-Requested-With=XMLHttpRequest;sec-ch-ua-mobile=?0;sec-ch-ua-platform="Windows";sec-fetch-site=same-origin;sec-fetch-mode=cors;sec-fetch-dest=empty;X-Correlation-Id=2a0b6addf4c94ea3a36e86c65f8210b2; 
+[2023-01-15 20:15:53.555 inf] Request finished HTTP/2 GET https://localhost:44105/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 514.9504ms 
+[2023-01-15 20:16:01.347 inf] Request starting HTTP/2 GET https://localhost:44105/abp/Swashbuckle/SetCsrfCookie - - 
+[2023-01-15 20:16:01.348 inf] TestMiddleware==>>Headers==>>Accept=text/plain;Host=localhost:44105;User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.26;:method=GET;Accept-Encoding=gzip, deflate, br;Accept-Language=zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6;Cookie=lpx_side-menu-state=,jenkins-timestamper-offset=-28800000,XSRF-TOKEN=CfDJ8MCcVXXvR6RFrqeMrLhsnTxIDse-7E7EDlY4syYFSJ7mwWg43zMAAyhAtt22TkAFjzuTDHeCG_6_0PQym6Nqh6BQ6JEXHcHnmYR3X5SO1iq_uNNjj0rcT_tHeeZPWEzXEIUYQyYaf73mv5vXbUP5dC4;Referer=https://localhost:44105/swagger/index.html;sec-ch-ua="Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24";sec-ch-ua-mobile=?0;sec-ch-ua-platform="Windows";sec-fetch-site=same-origin;sec-fetch-mode=cors;sec-fetch-dest=empty;X-Correlation-Id=2fa78cdfd6ff4208ada44e8c2c3c7350; 
+[2023-01-15 20:16:01.35 inf] Executing endpoint 'Volo.Abp.Swashbuckle.AbpSwashbuckleController.SetCsrfCookie (Volo.Abp.Swashbuckle)' 
+[2023-01-15 20:16:01.353 inf] Route matched with {area = "Abp", action = "SetCsrfCookie", controller = "AbpSwashbuckle", page = ""}. Executing controller action with signature Void SetCsrfCookie() on controller Volo.Abp.Swashbuckle.AbpSwashbuckleController (Volo.Abp.Swashbuckle). 
+[2023-01-15 20:16:01.398 inf] Executing action method Volo.Abp.Swashbuckle.AbpSwashbuckleController.SetCsrfCookie (Volo.Abp.Swashbuckle) - Validation state: "Valid" 
+[2023-01-15 20:16:01.414 inf] Executed action method Volo.Abp.Swashbuckle.AbpSwashbuckleController.SetCsrfCookie (Volo.Abp.Swashbuckle), returned result Microsoft.AspNetCore.Mvc.EmptyResult in 15.4854ms. 
+[2023-01-15 20:16:01.414 inf] Executed action Volo.Abp.Swashbuckle.AbpSwashbuckleController.SetCsrfCookie (Volo.Abp.Swashbuckle) in 60.641ms 
+[2023-01-15 20:16:01.414 inf] Executed endpoint 'Volo.Abp.Swashbuckle.AbpSwashbuckleController.SetCsrfCookie (Volo.Abp.Swashbuckle)' 
+[2023-01-15 20:16:01.415 inf] Request finished HTTP/2 GET https://localhost:44105/abp/Swashbuckle/SetCsrfCookie - - - 204 - - 67.7727ms 
+[2023-01-15 20:16:01.647 inf] Request starting HTTP/2 GET https://localhost:44105/api/abp/api-definition - - 
+[2023-01-15 20:16:01.648 inf] TestMiddleware==>>Headers==>>Accept=text/plain;Host=localhost:44105;User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.26;:method=GET;Accept-Encoding=gzip, deflate, br;Accept-Language=zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6;Cookie=lpx_side-menu-state=,jenkins-timestamper-offset=-28800000,.AspNetCore.Antiforgery.av2xnNOoJjM=CfDJ8MCcVXXvR6RFrqeMrLhsnTzrP-qxKVrH7GFW4kfIKeLF4YYIydWYoZutn8mReutSVq4p5WlPGmfpeXkTfga7MVZ06kTC2vNO57OKsuODf6IbO47J1-wnUNrjLq2GuakIT7oCkl7RBujQJ4W1alpk_uw,XSRF-TOKEN=CfDJ8MCcVXXvR6RFrqeMrLhsnTwChwe6m62FtdUb2ETMUD863jqqWBRAnE6iLd6z7ZvNAbt2SIGzFF9t6fuKasV3cBWoaUsa4IHWFpsmjgPrXN-RKiq0VK3OZUprnW1LgGPMuWkTNhgQJ14NkSwBJPnTX8Q;Referer=https://localhost:44105/swagger/index.html;sec-ch-ua="Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24";requestverificationtoken=CfDJ8MCcVXXvR6RFrqeMrLhsnTwChwe6m62FtdUb2ETMUD863jqqWBRAnE6iLd6z7ZvNAbt2SIGzFF9t6fuKasV3cBWoaUsa4IHWFpsmjgPrXN-RKiq0VK3OZUprnW1LgGPMuWkTNhgQJ14NkSwBJPnTX8Q;X-Requested-With=XMLHttpRequest;sec-ch-ua-mobile=?0;sec-ch-ua-platform="Windows";sec-fetch-site=same-origin;sec-fetch-mode=cors;sec-fetch-dest=empty;X-Correlation-Id=1835abb04d6e4486b4bf10a667bd71b5; 
+[2023-01-15 20:16:01.661 inf] Executing endpoint 'Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc)' 
+[2023-01-15 20:16:01.688 inf] Route matched with {area = "abp", action = "Get", controller = "AbpApiDefinition", page = ""}. Executing controller action with signature Volo.Abp.Http.Modeling.ApplicationApiDescriptionModel Get(Volo.Abp.Http.Modeling.ApplicationApiDescriptionModelRequestDto) on controller Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController (Volo.Abp.AspNetCore.Mvc). 
+[2023-01-15 20:16:02.063 inf] Executing action method Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc) - Validation state: "Valid" 
+[2023-01-15 20:16:02.136 inf] Executed action method Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 72.2222ms. 
+[2023-01-15 20:16:02.147 inf] Executing ObjectResult, writing value of type 'Volo.Abp.Http.Modeling.ApplicationApiDescriptionModel'. 
+[2023-01-15 20:16:02.342 inf] Executed action Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc) in 653.2042ms 
+[2023-01-15 20:16:02.342 inf] Executed endpoint 'Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc)' 
+[2023-01-15 20:16:02.344 inf] Request finished HTTP/2 GET https://localhost:44105/api/abp/api-definition - - - 200 - application/json;+charset=utf-8 697.3280ms 

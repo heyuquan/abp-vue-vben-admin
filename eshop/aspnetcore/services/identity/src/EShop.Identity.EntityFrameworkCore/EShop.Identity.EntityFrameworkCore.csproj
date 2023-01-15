@@ -12,7 +12,11 @@
     <PackageReference Include="Volo.Abp.EntityFrameworkCore.MySQL" Version="6.0.2" />  
     <PackageReference Include="Volo.Abp.Identity.EntityFrameworkCore" Version="6.0.2" />  
     <PackageReference Include="Volo.Abp.OpenIddict.EntityFrameworkCore" Version="6.0.2" />
-    <PackageReference Include="Volo.Abp.PermissionManagement.EntityFrameworkCore" Version="6.0.2" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.EntityFrameworkCore" Version="6.0.2" />    
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\framework\leopard\src\Leopard.EntityFrameworkCore\Leopard.EntityFrameworkCore.csproj" />
   </ItemGroup>
 
   <ItemGroup>

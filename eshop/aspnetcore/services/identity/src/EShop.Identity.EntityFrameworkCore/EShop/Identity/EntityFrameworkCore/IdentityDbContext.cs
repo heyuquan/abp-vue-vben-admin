@@ -1,8 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Leopard.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Volo.Abp.Data;
-using Volo.Abp.DependencyInjection;
-using Volo.Abp.EntityFrameworkCore;
-using Volo.Abp.Identity;
 using Volo.Abp.Identity.EntityFrameworkCore;
 using Volo.Abp.OpenIddict.EntityFrameworkCore;
 
@@ -10,7 +8,7 @@ namespace EShop.Identity.EntityFrameworkCore;
 
 [ConnectionStringName("Default")]
 public class IdentityDbContext :
-    AbpDbContext<IdentityDbContext>
+    LeopardDbContext<IdentityDbContext>
 {
     /* Add DbSet properties for your Aggregate Roots / Entities here. */
 

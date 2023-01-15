@@ -5,7 +5,11 @@ https://www.cnblogs.com/chenxf1117/p/15119692.html
 openssl genrsa -out E:\Code\证书\test2\test.key 2048
 openssl req -new -key E:\Code\证书\test2\test.key -out E:\Code\证书\test2\test.csr
 a123456
+其中Common Name一定要注意：要设置你的网站的域名（如果是本地环境，可以自定义一个域名，修改系统Host文件，将127.0.0.1指向自定义域名，如：www.samples.com）
+
 openssl x509 -req -days 365 -in E:\Code\证书\test2\test.csr -signkey E:\Code\证书\test2\test.key -out E:\Code\证书\test2\test.cer -extfile E:\Code\证书\test2\http.ext
+其中DNS.1=www.samples.com 这里实际上就是指定主题备用名称，和证书文件中的Common Name域名保持一致
+
 openssl pkcs12 -export -out  E:\Code\证书\test2\test.pfx -inkey  E:\Code\证书\test2\test.key -in  E:\Code\证书\test2\test.cer
 a123456
 
@@ -22,3 +26,7 @@ XmCpajQ==
 
 将 cer 转换为 pem 时出现 OpenSSL 编码错误
 https://segmentfault.com/q/1010000042784901?utm_source=sf-similar-question
+
+
+SSL证书部署后，为什么还是显示不安全？
+https://baijiahao.baidu.com/s?id=1733978590146711689&wfr=spider&for=pc
