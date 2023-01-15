@@ -17,3 +17,6 @@
 	MYSQL
 	server=159.75.253.251;userid=root;pwd=***;port=8706;database=eshop_auth_server;sslmode=none;Allow User Variables=true;
 
+add-migration init -Context **
+updata-database -Context **
+script-migration -from migrationName1 -to migrationName2  -Context ContextName  (不含from，含to)

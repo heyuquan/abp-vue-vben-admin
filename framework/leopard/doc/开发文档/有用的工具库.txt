@@ -43,7 +43,7 @@ https://github.com/MichaCo/CacheManager
 支持.net4.5，.net standard 2.0
 
 #、HtmlSanitizer
-清楚文本中html标记，避免xss攻击
+清除文本中html标记，避免xss攻击
 https://github.com/mganss/HtmlSanitizer
 
 #、AngleSharp
@@ -119,7 +119,7 @@ https://blog.csdn.net/fengyuyeguirenenen/article/details/123754926
 
 #、图片处理工具
    ImageMagick (2.4k)
-     在图像格式之间进行转换以及调整图像的大小，模糊，裁剪，去斑点，抖动，绘制，翻转，合并，重新采样等等。
+     在图像格式之间进行转换以及调整图像的大小，模糊，裁剪，去斑点，抖动，绘制，翻转，合并，重新采样，压缩，添加水印等等。
      https://github.com/dlemstra/Magick.NET
      https://zhuanlan.zhihu.com/p/341328099
    SkiaSharp

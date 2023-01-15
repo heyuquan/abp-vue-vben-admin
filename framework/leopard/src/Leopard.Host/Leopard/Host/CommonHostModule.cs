@@ -3,6 +3,8 @@ using Leopard.AspNetCore.Mvc;
 using Leopard.AspNetCore.Mvc.Filters;
 using Leopard.AspNetCore.Serilog;
 using Leopard.AspNetCore.Swashbuckle;
+using Medallion.Threading;
+using Medallion.Threading.Redis;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors;
@@ -29,6 +31,7 @@ using Volo.Abp.AspNetCore.Mvc.ExceptionHandling;
 using Volo.Abp.Auditing;
 using Volo.Abp.Caching;
 using Volo.Abp.Caching.StackExchangeRedis;
+using Volo.Abp.DistributedLocking;
 using Volo.Abp.Json.SystemTextJson;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
@@ -41,6 +44,7 @@ namespace Leopard.Host
 
     [DependsOn(
         typeof(AbpCachingStackExchangeRedisModule),
+        typeof(AbpDistributedLockingModule),
         typeof(LeopardAspNetCoreSerilogModule),
         typeof(LeopardAspNetCoreSwashbuckleModule),
         typeof(LeopardAspNetCoreMvcModule)
@@ -249,14 +253,17 @@ namespace Leopard.Host
                     options.GlobalCacheEntryOptions.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(60);
                 });
 
+                var connection = ConnectionMultiplexer.Connect(redisConfiguration["Configuration"]);
+                var dataProtectionBuilder = context.Services.AddDataProtection().SetApplicationName(ModuleKey);
                 if (!hostingEnvironment.IsDevelopment())
                 {
-                    var redis = ConnectionMultiplexer.Connect(redisConfiguration["Configuration"]);
-                    context.Services
-                        .AddDataProtection()
-                        .PersistKeysToStackExchangeRedis(redis, $"{ModuleKey}-Protection-Keys")
-                        .SetApplicationName(ModuleKey);
+                    dataProtectionBuilder.PersistKeysToStackExchangeRedis(connection, $"{ModuleKey}-Protection-Keys");
                 }
+
+                context.Services.AddSingleton<IDistributedLockProvider>(sp =>
+                {
+                    return new RedisDistributedSynchronizationProvider(connection.GetDatabase());
+                });
             }
 
             Configure<AbpClockOptions>(options =>

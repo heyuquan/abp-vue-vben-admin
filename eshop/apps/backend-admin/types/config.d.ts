@@ -163,7 +163,7 @@ export interface GlobEnvConfig {
   VITE_GLOB_APP_SHORT_NAME: string;
   // Upload url
   VITE_GLOB_UPLOAD_URL?: string;
-  // identityserver4 clientId
+  // identity auth server clientId
   VITE_GLOB_CLIENT_ID: string;
   VITE_GLOB_CLIENT_SECRET: string;
 

@@ -14,7 +14,7 @@ using Volo.Abp.OpenIddict.Applications;
 using Volo.Abp.PermissionManagement;
 using Volo.Abp.Uow;
 
-namespace EShop.Identity.IdentityServer;
+namespace EShop.Identity.OpenIddict;
 
 /* Creates initial data that is needed to property run the application
  * and make client-to-server communication possible.
@@ -102,7 +102,7 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
             );
         }
 
-        //EShop.Identity.IdentityServer.Web Client
+        //EShop.Identity.AuthServer Client
         var identityAuthServerClientIdName = "EShop.Identity.AuthServer.Web";
         var identityAuthServerClientId = configurationSection[$"{identityAuthServerClientIdName}:ClientId"];
         if (!identityAuthServerClientId.IsNullOrWhiteSpace())

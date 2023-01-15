@@ -2,8 +2,8 @@
 
 # 先安装  dotnet tool install --global dotnet-ef
 
-Write-Host ==================== Begin Init auth-server ========================
-$project = $projectArray | Where {$_.Name -eq "auth-server" }
+Write-Host ==================== Begin Init identity ========================
+$project = $projectArray | Where {$_.Name -eq "identity" }
 Set-Location $project.Path
 dotnet ef database update -p ./
 

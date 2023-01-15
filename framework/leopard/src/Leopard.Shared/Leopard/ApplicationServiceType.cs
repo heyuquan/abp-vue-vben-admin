@@ -23,7 +23,7 @@ namespace Leopard
         /// 认证服务  eg:获取token
         /// </summary>
         [Description("认证服务")]
-        AuthIdentityServer = 8,
+        IdentityAuthServer = 8,
 
         /// <summary>
         /// 网关服务

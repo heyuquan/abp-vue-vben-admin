@@ -8,8 +8,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="DistributedLock.Redis" Version="1.0.2" />
 		<PackageReference Include="Volo.Abp.Autofac" Version="6.0.2" />
 		<PackageReference Include="Volo.Abp.Caching.StackExchangeRedis" Version="6.0.2" />
+    <PackageReference Include="Volo.Abp.DistributedLocking" Version="6.0.2" />
 		<PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy" Version="6.0.2" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="$(MicrosoftPackageVersion)" />
 		<PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="$(MicrosoftPackageVersion)" />

@@ -14,7 +14,7 @@ namespace EShop.Common.Shared
         public static class IdentityAuthServer
         {
             public const string Name = ModuleNames.IdentityAuthServer;
-            public const ApplicationServiceType ServiceType = ApplicationServiceType.AuthIdentityServer;
+            public const ApplicationServiceType ServiceType = ApplicationServiceType.IdentityAuthServer;
         }
 
         public static class Administration
