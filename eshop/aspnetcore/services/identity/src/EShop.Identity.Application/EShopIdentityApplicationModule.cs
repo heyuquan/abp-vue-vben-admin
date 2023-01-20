@@ -1,4 +1,5 @@
-﻿using Volo.Abp.AutoMapper;
+﻿using Leopard.Identity;
+using Volo.Abp.AutoMapper;
 using Volo.Abp.Identity;
 using Volo.Abp.Modularity;
 using Volo.Abp.PermissionManagement;
@@ -9,7 +10,8 @@ namespace EShop.Identity;
     typeof(EShopIdentityDomainModule),
     typeof(EShopIdentityApplicationContractsModule),
     typeof(AbpIdentityApplicationModule),
-    typeof(AbpPermissionManagementApplicationModule)
+    typeof(AbpPermissionManagementApplicationModule),
+    typeof(LeopardIdentityApplicationModule)
     )]
 public class EShopIdentityApplicationModule : AbpModule
 {

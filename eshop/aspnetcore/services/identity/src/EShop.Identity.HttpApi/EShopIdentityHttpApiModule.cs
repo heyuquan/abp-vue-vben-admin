@@ -1,4 +1,5 @@
 ﻿using EShop.Identity.Localization;
+using Leopard.Identity;
 using Localization.Resources.AbpUi;
 using Volo.Abp.Identity;
 using Volo.Abp.Localization;
@@ -8,7 +9,8 @@ namespace EShop.Identity;
 
 [DependsOn(
     typeof(EShopIdentityApplicationContractsModule),
-    typeof(AbpIdentityHttpApiModule)
+    typeof(AbpIdentityHttpApiModule),
+    typeof(LeopardIdentityHttpApiModule)
     )]
 public class EShopIdentityHttpApiModule : AbpModule
 {

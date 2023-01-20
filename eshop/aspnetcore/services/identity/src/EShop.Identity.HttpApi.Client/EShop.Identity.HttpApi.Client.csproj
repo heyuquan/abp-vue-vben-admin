@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\..\framework\modules\identity\src\Leopard.Identity.HttpApi.Client\Leopard.Identity.HttpApi.Client.csproj" />
     <ProjectReference Include="..\EShop.Identity.Application.Contracts\EShop.Identity.Application.Contracts.csproj" />
   </ItemGroup>
 

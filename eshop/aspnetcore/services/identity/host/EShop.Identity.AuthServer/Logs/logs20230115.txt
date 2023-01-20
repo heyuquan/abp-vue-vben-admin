@@ -519,3 +519,295 @@ File name: 'Microsoft.AspNetCore.DataProtection.StackExchangeRedis, Version=6.0.
     {}
  
 [2023-01-15 21:23:50.74 inf] Request finished HTTP/1.1 POST https://localhost:44115/connect/token application/x-www-form-urlencoded 88 - 200 - application/json;charset=UTF-8 3845.4332ms 
+[2023-01-15 22:45:31.062 inf] [Development] Starting EShopIdentityAuthServer. 
+[2023-01-15 22:45:32.322 inf] Loaded ABP modules: 
+[2023-01-15 22:45:32.324 inf] - EShop.Identity.EShopIdentityAuthServerModule 
+[2023-01-15 22:45:32.324 inf]   - Volo.Abp.Autofac.AbpAutofacModule 
+[2023-01-15 22:45:32.324 inf]     - Volo.Abp.Castle.AbpCastleCoreModule 
+[2023-01-15 22:45:32.324 inf]   - Volo.Abp.Account.Web.AbpAccountWebOpenIddictModule 
+[2023-01-15 22:45:32.324 inf]     - Volo.Abp.Account.Web.AbpAccountWebModule 
+[2023-01-15 22:45:32.324 inf]       - Volo.Abp.Account.AbpAccountApplicationContractsModule 
+[2023-01-15 22:45:32.324 inf]         - Volo.Abp.Identity.AbpIdentityApplicationContractsModule 
+[2023-01-15 22:45:32.324 inf]           - Volo.Abp.Identity.AbpIdentityDomainSharedModule 
+[2023-01-15 22:45:32.324 inf]             - Volo.Abp.Users.AbpUsersDomainSharedModule 
+[2023-01-15 22:45:32.324 inf]             - Volo.Abp.Validation.AbpValidationModule 
+[2023-01-15 22:45:32.324 inf]               - Volo.Abp.Validation.AbpValidationAbstractionsModule 
+[2023-01-15 22:45:32.324 inf]               - Volo.Abp.Localization.AbpLocalizationModule 
+[2023-01-15 22:45:32.324 inf]                 - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule 
+[2023-01-15 22:45:32.324 inf]                 - Volo.Abp.Settings.AbpSettingsModule 
+[2023-01-15 22:45:32.324 inf]                   - Volo.Abp.Localization.AbpLocalizationAbstractionsModule 
+[2023-01-15 22:45:32.324 inf]                   - Volo.Abp.Security.AbpSecurityModule 
+[2023-01-15 22:45:32.324 inf]                   - Volo.Abp.MultiTenancy.AbpMultiTenancyModule 
+[2023-01-15 22:45:32.324 inf]                     - Volo.Abp.Data.AbpDataModule 
+[2023-01-15 22:45:32.324 inf]                       - Volo.Abp.ObjectExtending.AbpObjectExtendingModule 
+[2023-01-15 22:45:32.324 inf]                       - Volo.Abp.Uow.AbpUnitOfWorkModule 
+[2023-01-15 22:45:32.324 inf]                       - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule 
+[2023-01-15 22:45:32.324 inf]             - Volo.Abp.Features.AbpFeaturesModule 
+[2023-01-15 22:45:32.324 inf]               - Volo.Abp.Authorization.AbpAuthorizationAbstractionsModule 
+[2023-01-15 22:45:32.324 inf]           - Volo.Abp.Users.AbpUsersAbstractionModule 
+[2023-01-15 22:45:32.324 inf]             - Volo.Abp.EventBus.AbpEventBusModule 
+[2023-01-15 22:45:32.324 inf]               - Volo.Abp.Json.AbpJsonModule 
+[2023-01-15 22:45:32.324 inf]                 - Volo.Abp.Timing.AbpTimingModule 
+[2023-01-15 22:45:32.324 inf]               - Volo.Abp.Guids.AbpGuidsModule 
+[2023-01-15 22:45:32.324 inf]               - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule 
+[2023-01-15 22:45:32.324 inf]                 - Volo.Abp.Threading.AbpThreadingModule 
+[2023-01-15 22:45:32.324 inf]               - Volo.Abp.DistributedLocking.AbpDistributedLockingAbstractionsModule 
+[2023-01-15 22:45:32.324 inf]           - Volo.Abp.Authorization.AbpAuthorizationModule 
+[2023-01-15 22:45:32.324 inf]           - Volo.Abp.PermissionManagement.AbpPermissionManagementApplicationContractsModule 
+[2023-01-15 22:45:32.324 inf]             - Volo.Abp.Application.AbpDddApplicationContractsModule 
+[2023-01-15 22:45:32.324 inf]               - Volo.Abp.Auditing.AbpAuditingContractsModule 
+[2023-01-15 22:45:32.324 inf]             - Volo.Abp.PermissionManagement.AbpPermissionManagementDomainSharedModule 
+[2023-01-15 22:45:32.324 inf]       - Volo.Abp.Identity.AspNetCore.AbpIdentityAspNetCoreModule 
+[2023-01-15 22:45:32.324 inf]         - Volo.Abp.Identity.AbpIdentityDomainModule 
+[2023-01-15 22:45:32.324 inf]           - Volo.Abp.Domain.AbpDddDomainModule 
+[2023-01-15 22:45:32.324 inf]             - Volo.Abp.Auditing.AbpAuditingModule 
+[2023-01-15 22:45:32.324 inf]             - Volo.Abp.ObjectMapping.AbpObjectMappingModule 
+[2023-01-15 22:45:32.324 inf]             - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule 
+[2023-01-15 22:45:32.324 inf]             - Volo.Abp.Specifications.AbpSpecificationsModule 
+[2023-01-15 22:45:32.324 inf]           - Volo.Abp.Users.AbpUsersDomainModule 
+[2023-01-15 22:45:32.324 inf]           - Volo.Abp.AutoMapper.AbpAutoMapperModule 
+[2023-01-15 22:45:32.324 inf]       - Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.AbpAspNetCoreMvcUiThemeSharedModule 
+[2023-01-15 22:45:32.324 inf]         - Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.AbpAspNetCoreMvcUiBootstrapModule 
+[2023-01-15 22:45:32.324 inf]           - Volo.Abp.AspNetCore.Mvc.UI.AbpAspNetCoreMvcUiModule 
+[2023-01-15 22:45:32.324 inf]             - Volo.Abp.AspNetCore.Mvc.AbpAspNetCoreMvcModule 
+[2023-01-15 22:45:32.324 inf]               - Volo.Abp.AspNetCore.AbpAspNetCoreModule 
+[2023-01-15 22:45:32.324 inf]                 - Volo.Abp.Http.AbpHttpModule 
+[2023-01-15 22:45:32.324 inf]                   - Volo.Abp.Http.AbpHttpAbstractionsModule 
+[2023-01-15 22:45:32.324 inf]                   - Volo.Abp.Minify.AbpMinifyModule 
+[2023-01-15 22:45:32.324 inf]               - Volo.Abp.ApiVersioning.AbpApiVersioningAbstractionsModule 
+[2023-01-15 22:45:32.324 inf]               - Volo.Abp.AspNetCore.Mvc.AbpAspNetCoreMvcContractsModule 
+[2023-01-15 22:45:32.324 inf]               - Volo.Abp.UI.Navigation.AbpUiNavigationModule 
+[2023-01-15 22:45:32.324 inf]                 - Volo.Abp.UI.AbpUiModule 
+[2023-01-15 22:45:32.324 inf]               - Volo.Abp.GlobalFeatures.AbpGlobalFeaturesModule 
+[2023-01-15 22:45:32.324 inf]               - Volo.Abp.Application.AbpDddApplicationModule 
+[2023-01-15 22:45:32.324 inf]         - Volo.Abp.AspNetCore.Mvc.UI.Packages.AbpAspNetCoreMvcUiPackagesModule 
+[2023-01-15 22:45:32.324 inf]           - Volo.Abp.AspNetCore.Mvc.UI.Bundling.AbpAspNetCoreMvcUiBundlingAbstractionsModule 
+[2023-01-15 22:45:32.324 inf]         - Volo.Abp.AspNetCore.Mvc.UI.Widgets.AbpAspNetCoreMvcUiWidgetsModule 
+[2023-01-15 22:45:32.324 inf]           - Volo.Abp.AspNetCore.Mvc.UI.Bundling.AbpAspNetCoreMvcUiBundlingModule 
+[2023-01-15 22:45:32.324 inf]     - Volo.Abp.OpenIddict.AbpOpenIddictAspNetCoreModule 
+[2023-01-15 22:45:32.324 inf]       - Volo.Abp.AspNetCore.MultiTenancy.AbpAspNetCoreMultiTenancyModule 
+[2023-01-15 22:45:32.324 inf]       - Volo.Abp.OpenIddict.AbpOpenIddictDomainModule 
+[2023-01-15 22:45:32.324 inf]         - Volo.Abp.OpenIddict.AbpOpenIddictDomainSharedModule 
+[2023-01-15 22:45:32.324 inf]         - Volo.Abp.Caching.AbpCachingModule 
+[2023-01-15 22:45:32.324 inf]           - Volo.Abp.Serialization.AbpSerializationModule 
+[2023-01-15 22:45:32.324 inf]   - Volo.Abp.Account.AbpAccountApplicationModule 
+[2023-01-15 22:45:32.324 inf]     - Volo.Abp.Identity.AbpIdentityApplicationModule 
+[2023-01-15 22:45:32.324 inf]       - Volo.Abp.PermissionManagement.AbpPermissionManagementApplicationModule 
+[2023-01-15 22:45:32.324 inf]         - Volo.Abp.PermissionManagement.AbpPermissionManagementDomainModule 
+[2023-01-15 22:45:32.324 inf]     - Volo.Abp.Emailing.AbpEmailingModule 
+[2023-01-15 22:45:32.324 inf]       - Volo.Abp.BackgroundJobs.AbpBackgroundJobsAbstractionsModule 
+[2023-01-15 22:45:32.324 inf]       - Volo.Abp.TextTemplating.AbpTextTemplatingModule 
+[2023-01-15 22:45:32.324 inf]         - Volo.Abp.TextTemplating.Scriban.AbpTextTemplatingScribanModule 
+[2023-01-15 22:45:32.324 inf]           - Volo.Abp.TextTemplating.AbpTextTemplatingCoreModule 
+[2023-01-15 22:45:32.324 inf]   - Volo.Abp.Account.AbpAccountHttpApiModule 
+[2023-01-15 22:45:32.324 inf]     - Volo.Abp.Identity.AbpIdentityHttpApiModule 
+[2023-01-15 22:45:32.324 inf]   - Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic.AbpAspNetCoreMvcUiBasicThemeModule 
+[2023-01-15 22:45:32.324 inf]     - Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy.AbpAspNetCoreMvcUiMultiTenancyModule 
+[2023-01-15 22:45:32.324 inf]   - EShop.Identity.EShopIdentityEntityFrameworkCoreModule 
+[2023-01-15 22:45:32.324 inf]     - EShop.Identity.EShopIdentityDomainModule 
+[2023-01-15 22:45:32.324 inf]       - EShop.Identity.EShopIdentityDomainSharedModule 
+[2023-01-15 22:45:32.324 inf]     - Volo.Abp.Identity.EntityFrameworkCore.AbpIdentityEntityFrameworkCoreModule 
+[2023-01-15 22:45:32.324 inf]       - Volo.Abp.Users.EntityFrameworkCore.AbpUsersEntityFrameworkCoreModule 
+[2023-01-15 22:45:32.324 inf]         - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule 
+[2023-01-15 22:45:32.324 inf]     - Volo.Abp.OpenIddict.EntityFrameworkCore.AbpOpenIddictEntityFrameworkCoreModule 
+[2023-01-15 22:45:32.324 inf]     - Volo.Abp.PermissionManagement.EntityFrameworkCore.AbpPermissionManagementEntityFrameworkCoreModule 
+[2023-01-15 22:45:32.324 inf]     - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule 
+[2023-01-15 22:45:32.324 inf]     - Leopard.EntityFrameworkCore.LeopardEntityFrameworkCoreModule 
+[2023-01-15 22:45:32.324 inf]   - Leopard.Saas.LeopardSaasApplicationModule 
+[2023-01-15 22:45:32.324 inf]     - Leopard.Saas.LeopardSaasDomainModule 
+[2023-01-15 22:45:32.324 inf]       - Leopard.Saas.LeopardSaasDomainSharedModule 
+[2023-01-15 22:45:32.324 inf]       - Volo.Abp.FeatureManagement.AbpFeatureManagementDomainModule 
+[2023-01-15 22:45:32.324 inf]         - Volo.Abp.FeatureManagement.AbpFeatureManagementDomainSharedModule 
+[2023-01-15 22:45:32.324 inf]     - Leopard.Saas.LeopardSaasApplicationContractsModule 
+[2023-01-15 22:45:32.324 inf]   - Leopard.Saas.EntityFrameworkCore.LeopardSaasEntityFrameworkCoreModule 
+[2023-01-15 22:45:32.324 inf]   - Leopard.Consul.LeopardConsulModule 
+[2023-01-15 22:45:32.324 inf]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule 
+[2023-01-15 22:45:32.324 inf]   - Volo.Abp.DistributedLocking.AbpDistributedLockingModule 
+[2023-01-15 22:45:32.324 inf]   - Leopard.AspNetCore.Serilog.LeopardAspNetCoreSerilogModule 
+[2023-01-15 22:45:32.324 inf]     - Volo.Abp.AspNetCore.Serilog.AbpAspNetCoreSerilogModule 
+[2023-01-15 22:45:32.324 inf]   - Leopard.AspNetCore.Swashbuckle.LeopardAspNetCoreSwashbuckleModule 
+[2023-01-15 22:45:32.324 inf]     - Volo.Abp.Swashbuckle.AbpSwashbuckleModule 
+[2023-01-15 22:45:32.324 inf]     - Leopard.LeopardModule 
+[2023-01-15 22:45:32.324 inf]   - Leopard.AspNetCore.Mvc.LeopardAspNetCoreMvcModule 
+[2023-01-15 22:45:32.554 inf] User profile is available. Using 'C:\Users\PC\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. 
+[2023-01-15 22:45:32.721 inf] Initialized all ABP modules. 
+[2023-01-15 22:45:32.721 inf] [Development] Started EShopIdentityAuthServer. 
+[2023-01-15 22:45:32.828 inf] Now listening on: https://localhost:44115 
+[2023-01-15 22:45:32.828 inf] Application started. Press Ctrl+C to shut down. 
+[2023-01-15 22:45:32.828 inf] Hosting environment: Development 
+[2023-01-15 22:45:32.828 inf] Content root path: D:\Work\OpenSource\abp-vue-vben-admin\eshop\aspnetcore\services\identity\host\EShop.Identity.AuthServer\ 
+[2023-01-15 22:45:33.983 inf] Request starting HTTP/2 GET https://localhost:44115/ - - 
+[2023-01-15 22:45:39.559 inf] TestMiddleware==>>Headers==>>Accept=text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9;Host=localhost:44115;User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.26;:method=GET;Accept-Encoding=gzip, deflate, br;Accept-Language=zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6;Cookie=lpx_side-menu-state=,jenkins-timestamper-offset=-28800000,XSRF-TOKEN=CfDJ8MCcVXXvR6RFrqeMrLhsnTzar6IaZgkeTbgi_p6ZodruvG81UJxlGyetDUKI3HYaODM6-4kdO31VM3LIu3tIoU4Yx9fEJXl850MeTX3McuMrBfg5CTgl_JnPVEwjOTVn7hHcXbmABSW5EL18rE7jK5LvA9-OigM5QW2eiU04pkFi_dJ0AmAiqAaOx1Vv9fQIUA;Upgrade-Insecure-Requests=1;sec-ch-ua="Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24";sec-ch-ua-mobile=?0;sec-ch-ua-platform="Windows";sec-fetch-site=none;sec-fetch-mode=navigate;sec-fetch-user=?1;sec-fetch-dest=document;X-Correlation-Id=37a15c1ea8734bc7aeb5e557ee0f3e00; 
+[2023-01-15 22:45:40.033 inf] Executing endpoint '/Index' 
+[2023-01-15 22:45:40.063 inf] Route matched with {page = "/Index", area = "", action = "", controller = ""}. Executing page /Index 
+[2023-01-15 22:45:40.067 inf] Skipping the execution of current filter as its not the most effective filter implementing the policy Microsoft.AspNetCore.Mvc.ViewFeatures.IAntiforgeryPolicy 
+[2023-01-15 22:45:40.114 inf] Executing handler method EShop.Identity.Pages.IndexModel.OnGetAsync - ModelState is "Valid" 
+[2023-01-15 22:45:41.736 inf] Executed handler method OnGetAsync, returned result . 
+[2023-01-15 22:45:41.741 inf] Executing an implicit handler method - ModelState is "Valid" 
+[2023-01-15 22:45:41.741 inf] Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult. 
+[2023-01-15 22:45:42.2 inf] Executed page /Index in 2126.2831ms 
+[2023-01-15 22:45:42.201 inf] Executed endpoint '/Index' 
+[2023-01-15 22:45:42.292 inf] Request finished HTTP/2 GET https://localhost:44115/ - - - 200 - text/html;+charset=utf-8 8309.8624ms 
+[2023-01-15 22:45:42.306 inf] Request starting HTTP/2 GET https://localhost:44115/libs/abp/core/abp.css?_v=638081475840750000 - - 
+[2023-01-15 22:45:42.33 inf] Sending file. Request path: '/libs/abp/core/abp.css'. Physical path: 'D:\Work\OpenSource\abp-vue-vben-admin\eshop\aspnetcore\services\identity\host\EShop.Identity.AuthServer\wwwroot\libs\abp\core\abp.css' 
+[2023-01-15 22:45:42.333 inf] Request finished HTTP/2 GET https://localhost:44115/libs/abp/core/abp.css?_v=638081475840750000 - - - 200 1331 text/css 26.5935ms 
+[2023-01-15 22:45:42.369 inf] Request starting HTTP/2 GET https://localhost:44115/libs/bootstrap/css/bootstrap.css?_v=638047054307870000 - - 
+[2023-01-15 22:45:42.373 inf] Request starting HTTP/2 GET https://localhost:44115/libs/toastr/toastr.min.css?_v=638039330299720000 - - 
+[2023-01-15 22:45:42.373 inf] Request starting HTTP/2 GET https://localhost:44115/libs/@fortawesome/fontawesome-free/css/v4-shims.css?_v=638039330300010000 - - 
+[2023-01-15 22:45:42.374 inf] Sending file. Request path: '/libs/toastr/toastr.min.css'. Physical path: 'D:\Work\OpenSource\abp-vue-vben-admin\eshop\aspnetcore\services\identity\host\EShop.Identity.AuthServer\wwwroot\libs\toastr\toastr.min.css' 
+[2023-01-15 22:45:42.374 inf] Request finished HTTP/2 GET https://localhost:44115/libs/toastr/toastr.min.css?_v=638039330299720000 - - - 200 6454 text/css 1.1357ms 
+[2023-01-15 22:45:42.374 inf] Request starting HTTP/2 GET https://localhost:44115/libs/select2/css/select2.min.css?_v=638038562439090000 - - 
+[2023-01-15 22:45:42.375 inf] Sending file. Request path: '/libs/select2/css/select2.min.css'. Physical path: 'D:\Work\OpenSource\abp-vue-vben-admin\eshop\aspnetcore\services\identity\host\EShop.Identity.AuthServer\wwwroot\libs\select2\css\select2.min.css' 
+[2023-01-15 22:45:42.375 inf] Request finished HTTP/2 GET https://localhost:44115/libs/select2/css/select2.min.css?_v=638038562439090000 - - - 200 14966 text/css 0.6296ms 
+[2023-01-15 22:45:42.375 inf] Request starting HTTP/2 GET https://localhost:44115/libs/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css?_v=638038559059240000 - - 
+[2023-01-15 22:45:42.377 inf] Request starting HTTP/2 GET https://localhost:44115/libs/datatables.net-bs5/css/dataTables.bootstrap5.css?_v=638038563038950000 - - 
+[2023-01-15 22:45:42.384 inf] Request starting HTTP/2 GET https://localhost:44115/libs/@fortawesome/fontawesome-free/css/all.css?_v=638039330300010000 - - 
+[2023-01-15 22:45:42.396 inf] Sending file. Request path: '/libs/datatables.net-bs5/css/dataTables.bootstrap5.css'. Physical path: 'D:\Work\OpenSource\abp-vue-vben-admin\eshop\aspnetcore\services\identity\host\EShop.Identity.AuthServer\wwwroot\libs\datatables.net-bs5\css\dataTables.bootstrap5.css' 
+[2023-01-15 22:45:42.397 inf] Request finished HTTP/2 GET https://localhost:44115/libs/datatables.net-bs5/css/dataTables.bootstrap5.css?_v=638038563038950000 - - - 200 12819 text/css 20.0804ms 
+[2023-01-15 22:45:42.398 inf] Sending file. Request path: '/libs/@fortawesome/fontawesome-free/css/v4-shims.css'. Physical path: 'D:\Work\OpenSource\abp-vue-vben-admin\eshop\aspnetcore\services\identity\host\EShop.Identity.AuthServer\wwwroot\libs\@fortawesome\fontawesome-free\css\v4-shims.css' 
+[2023-01-15 22:45:42.398 inf] Request finished HTTP/2 GET https://localhost:44115/libs/@fortawesome/fontawesome-free/css/v4-shims.css?_v=638039330300010000 - - - 200 41312 text/css 25.0388ms 
+[2023-01-15 22:45:42.4 inf] Sending file. Request path: '/libs/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css'. Physical path: 'D:\Work\OpenSource\abp-vue-vben-admin\eshop\aspnetcore\services\identity\host\EShop.Identity.AuthServer\wwwroot\libs\malihu-custom-scrollbar-plugin\jquery.mCustomScrollbar.css' 
+[2023-01-15 22:45:42.401 inf] Request finished HTTP/2 GET https://localhost:44115/libs/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css?_v=638038559059240000 - - - 200 54850 text/css 25.3519ms 
+[2023-01-15 22:45:42.401 inf] Sending file. Request path: '/libs/@fortawesome/fontawesome-free/css/all.css'. Physical path: 'D:\Work\OpenSource\abp-vue-vben-admin\eshop\aspnetcore\services\identity\host\EShop.Identity.AuthServer\wwwroot\libs\@fortawesome\fontawesome-free\css\all.css' 
+[2023-01-15 22:45:42.401 inf] Request finished HTTP/2 GET https://localhost:44115/libs/@fortawesome/fontawesome-free/css/all.css?_v=638039330300010000 - - - 200 73577 text/css 17.5077ms 
+[2023-01-15 22:45:42.402 inf] Sending file. Request path: '/libs/bootstrap/css/bootstrap.css'. Physical path: 'D:\Work\OpenSource\abp-vue-vben-admin\eshop\aspnetcore\services\identity\host\EShop.Identity.AuthServer\wwwroot\libs\bootstrap\css\bootstrap.css' 
+[2023-01-15 22:45:42.402 inf] Request finished HTTP/2 GET https://localhost:44115/libs/bootstrap/css/bootstrap.css?_v=638047054307870000 - - - 200 237950 text/css 33.7936ms 
+[2023-01-15 22:45:42.426 inf] Request starting HTTP/2 GET https://localhost:44115/libs/bootstrap-datepicker/bootstrap-datepicker.min.css?_v=638038562489810000 - - 
+[2023-01-15 22:45:42.427 inf] Request starting HTTP/2 GET https://localhost:44115/libs/abp/aspnetcore-mvc-ui-theme-shared/datatables/datatables-styles.css?_v=638059364160000000 - - 
+[2023-01-15 22:45:42.427 inf] Request starting HTTP/2 GET https://localhost:44115/themes/basic/layout.css?_v=638059379320000000 - - 
+[2023-01-15 22:45:42.429 inf] Sending file. Request path: '/libs/abp/aspnetcore-mvc-ui-theme-shared/datatables/datatables-styles.css'. Physical path: 'N/A' 
+[2023-01-15 22:45:42.429 inf] Sending file. Request path: '/themes/basic/layout.css'. Physical path: 'N/A' 
+[2023-01-15 22:45:42.429 inf] Request finished HTTP/2 GET https://localhost:44115/libs/abp/aspnetcore-mvc-ui-theme-shared/datatables/datatables-styles.css?_v=638059364160000000 - - - 200 464 text/css 2.1669ms 
+[2023-01-15 22:45:42.429 inf] Request finished HTTP/2 GET https://localhost:44115/themes/basic/layout.css?_v=638059379320000000 - - - 200 2062 text/css 2.2580ms 
+[2023-01-15 22:45:42.429 inf] Request starting HTTP/2 GET https://localhost:44115/libs/abp/utils/abp-utils.umd.min.js?_v=638081475841890000 - - 
+[2023-01-15 22:45:42.43 inf] Request starting HTTP/2 GET https://localhost:44115/libs/abp/core/abp.js?_v=638081475840750000 - - 
+[2023-01-15 22:45:42.431 inf] Request starting HTTP/2 GET https://localhost:44115/libs/abp/jquery/abp.jquery.js?_v=638081475840540000 - - 
+[2023-01-15 22:45:42.431 inf] Request starting HTTP/2 GET https://localhost:44115/libs/jquery/jquery.js?_v=638087614905330000 - - 
+[2023-01-15 22:45:42.432 inf] Request starting HTTP/2 GET https://localhost:44115/libs/bootstrap/js/bootstrap.bundle.js?_v=638047054307870000 - - 
+[2023-01-15 22:45:42.432 inf] Request starting HTTP/2 GET https://localhost:44115/libs/bootstrap/js/bootstrap.enable.tooltips.everywhere.js?_v=638081475835470000 - - 
+[2023-01-15 22:45:42.432 inf] Request starting HTTP/2 GET https://localhost:44115/libs/bootstrap/js/bootstrap.enable.popovers.everywhere.js?_v=638081475835470000 - - 
+[2023-01-15 22:45:42.433 inf] Request starting HTTP/2 GET https://localhost:44115/libs/lodash/lodash.min.js?_v=638039330299710000 - - 
+[2023-01-15 22:45:42.433 inf] Request starting HTTP/2 GET https://localhost:44115/libs/jquery-validation/jquery.validate.js?_v=638038565879560000 - - 
+[2023-01-15 22:45:42.433 inf] Request starting HTTP/2 GET https://localhost:44115/libs/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js?_v=638038562598660000 - - 
+[2023-01-15 22:45:42.433 inf] Request starting HTTP/2 GET https://localhost:44115/libs/jquery-form/jquery.form.min.js?_v=638081475835490000 - - 
+[2023-01-15 22:45:42.433 inf] Request starting HTTP/2 GET https://localhost:44115/libs/select2/js/select2.min.js?_v=638038562439090000 - - 
+[2023-01-15 22:45:42.434 inf] Request starting HTTP/2 GET https://localhost:44115/libs/datatables.net/js/jquery.dataTables.js?_v=638038563240420000 - - 
+[2023-01-15 22:45:42.434 inf] Request starting HTTP/2 GET https://localhost:44115/libs/datatables.net-bs5/js/dataTables.bootstrap5.js?_v=638038563038950000 - - 
+[2023-01-15 22:45:42.434 inf] Request starting HTTP/2 GET https://localhost:44115/libs/sweetalert2/sweetalert2.all.min.js?_v=638087614904460000 - - 
+[2023-01-15 22:45:42.434 inf] Request starting HTTP/2 GET https://localhost:44115/libs/toastr/toastr.min.js?_v=638039330299720000 - - 
+[2023-01-15 22:45:42.434 inf] Request starting HTTP/2 GET https://localhost:44115/libs/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js?_v=638038559059240000 - - 
+[2023-01-15 22:45:42.434 inf] Request starting HTTP/2 GET https://localhost:44115/libs/luxon/luxon.min.js?_v=638087614903980000 - - 
+[2023-01-15 22:45:42.435 inf] Request starting HTTP/2 GET https://localhost:44115/libs/timeago/jquery.timeago.js?_v=638039330299670000 - - 
+[2023-01-15 22:45:42.435 inf] Request starting HTTP/2 GET https://localhost:44115/libs/bootstrap-datepicker/bootstrap-datepicker.min.js?_v=638038562489810000 - - 
+[2023-01-15 22:45:42.435 inf] Request starting HTTP/2 GET https://localhost:44115/libs/abp/aspnetcore-mvc-ui-theme-shared/ui-extensions.js?_v=638059364160000000 - - 
+[2023-01-15 22:45:42.435 inf] Request starting HTTP/2 GET https://localhost:44115/libs/abp/aspnetcore-mvc-ui-theme-shared/jquery/jquery-extensions.js?_v=638059364160000000 - - 
+[2023-01-15 22:45:42.435 inf] Request starting HTTP/2 GET https://localhost:44115/global-styles.css?_v=638087615967589882 - - 
+[2023-01-15 22:45:42.436 inf] Request starting HTTP/2 GET https://localhost:44115/libs/abp/aspnetcore-mvc-ui-theme-shared/jquery-form/jquery-form-extensions.js?_v=638059364160000000 - - 
+[2023-01-15 22:45:42.436 inf] Sending file. Request path: '/libs/abp/aspnetcore-mvc-ui-theme-shared/jquery/jquery-extensions.js'. Physical path: 'N/A' 
+[2023-01-15 22:45:42.436 inf] Sending file. Request path: '/libs/abp/aspnetcore-mvc-ui-theme-shared/jquery-form/jquery-form-extensions.js'. Physical path: 'N/A' 
+[2023-01-15 22:45:42.436 inf] Sending file. Request path: '/global-styles.css'. Physical path: 'D:\Work\OpenSource\abp-vue-vben-admin\eshop\aspnetcore\services\identity\host\EShop.Identity.AuthServer\wwwroot\global-styles.css' 
+[2023-01-15 22:45:42.436 inf] Request finished HTTP/2 GET https://localhost:44115/libs/abp/aspnetcore-mvc-ui-theme-shared/jquery/jquery-extensions.js?_v=638059364160000000 - - - 200 6610 application/javascript 0.9912ms 
+[2023-01-15 22:45:42.436 inf] Request finished HTTP/2 GET https://localhost:44115/libs/abp/aspnetcore-mvc-ui-theme-shared/jquery-form/jquery-form-extensions.js?_v=638059364160000000 - - - 200 3605 application/javascript 0.6359ms 
+[2023-01-15 22:45:42.436 inf] Request starting HTTP/2 GET https://localhost:44115/libs/abp/aspnetcore-mvc-ui-theme-shared/jquery/widget-manager.js?_v=638059364160000000 - - 
+[2023-01-15 22:45:42.436 inf] Request finished HTTP/2 GET https://localhost:44115/global-styles.css?_v=638087615967589882 - - - 200 191 text/css 0.7880ms 
+[2023-01-15 22:45:42.436 inf] Request starting HTTP/2 GET https://localhost:44115/libs/abp/aspnetcore-mvc-ui-theme-shared/bootstrap/dom-event-handlers.js?_v=638059364160000000 - - 
+[2023-01-15 22:45:42.436 inf] Request starting HTTP/2 GET https://localhost:44115/libs/abp/aspnetcore-mvc-ui-theme-shared/bootstrap/modal-manager.js?_v=638059364160000000 - - 
+[2023-01-15 22:45:42.436 inf] Sending file. Request path: '/libs/abp/aspnetcore-mvc-ui-theme-shared/ui-extensions.js'. Physical path: 'N/A' 
+[2023-01-15 22:45:42.437 inf] Request starting HTTP/2 GET https://localhost:44115/libs/abp/aspnetcore-mvc-ui-theme-shared/datatables/datatables-extensions.js?_v=638059364160000000 - - 
+[2023-01-15 22:45:42.437 inf] Sending file. Request path: '/libs/abp/aspnetcore-mvc-ui-theme-shared/jquery/widget-manager.js'. Physical path: 'N/A' 
+[2023-01-15 22:45:42.437 inf] Request finished HTTP/2 GET https://localhost:44115/libs/abp/aspnetcore-mvc-ui-theme-shared/ui-extensions.js?_v=638059364160000000 - - - 200 10589 application/javascript 1.9127ms 
+[2023-01-15 22:45:42.437 inf] Sending file. Request path: '/libs/abp/aspnetcore-mvc-ui-theme-shared/bootstrap/modal-manager.js'. Physical path: 'N/A' 
+[2023-01-15 22:45:42.437 inf] Sending file. Request path: '/libs/abp/aspnetcore-mvc-ui-theme-shared/bootstrap/dom-event-handlers.js'. Physical path: 'N/A' 
+[2023-01-15 22:45:42.437 inf] Request starting HTTP/2 GET https://localhost:44115/libs/abp/aspnetcore-mvc-ui-theme-shared/sweetalert2/abp-sweetalert2.js?_v=638059364160000000 - - 
+[2023-01-15 22:45:42.437 inf] Request finished HTTP/2 GET https://localhost:44115/libs/abp/aspnetcore-mvc-ui-theme-shared/jquery/widget-manager.js?_v=638059364160000000 - - - 200 4790 application/javascript 0.9040ms 
+[2023-01-15 22:45:42.437 inf] Request finished HTTP/2 GET https://localhost:44115/libs/abp/aspnetcore-mvc-ui-theme-shared/bootstrap/modal-manager.js?_v=638059364160000000 - - - 200 7267 application/javascript 0.7459ms 
+[2023-01-15 22:45:42.437 inf] Request starting HTTP/2 GET https://localhost:44115/libs/abp/aspnetcore-mvc-ui-theme-shared/toastr/abp-toastr.js?_v=638059364160000000 - - 
+[2023-01-15 22:45:42.437 inf] Request starting HTTP/2 GET https://localhost:44115/Pages/Abp/MultiTenancy/tenant-switch.js?_v=638059364180000000 - - 
+[2023-01-15 22:45:42.439 inf] Request starting HTTP/2 GET https://localhost:44115/themes/basic/layout.js?_v=638059379320000000 - - 
+[2023-01-15 22:45:42.44 inf] Request starting HTTP/2 GET https://localhost:44115/libs/abp/luxon/abp.luxon.js?_v=638081475835550000 - - 
+[2023-01-15 22:45:42.44 inf] Request starting HTTP/2 GET https://localhost:44115/libs/jquery-validation/localization/messages_zh.js?_v=638038565879560000 - - 
+[2023-01-15 22:45:42.441 inf] Request starting HTTP/2 GET https://localhost:44115/libs/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js?_v=638038562489810000 - - 
+[2023-01-15 22:45:42.441 inf] Request starting HTTP/2 GET https://localhost:44115/Abp/ServiceProxyScript - - 
+[2023-01-15 22:45:42.441 inf] Request starting HTTP/2 GET https://localhost:44115/Abp/ApplicationConfigurationScript - - 
+[2023-01-15 22:45:42.442 inf] Request starting HTTP/2 GET https://localhost:44115/libs/timeago/locales/jquery.timeago.zh-CN.js?_v=638039330299670000 - - 
+[2023-01-15 22:45:42.443 inf] TestMiddleware==>>Headers==>>Accept=*/*;Host=localhost:44115;User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.26;:method=GET;Accept-Encoding=gzip, deflate, br;Accept-Language=zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6;Cookie=lpx_side-menu-state=,jenkins-timestamper-offset=-28800000,XSRF-TOKEN=CfDJ8MCcVXXvR6RFrqeMrLhsnTzar6IaZgkeTbgi_p6ZodruvG81UJxlGyetDUKI3HYaODM6-4kdO31VM3LIu3tIoU4Yx9fEJXl850MeTX3McuMrBfg5CTgl_JnPVEwjOTVn7hHcXbmABSW5EL18rE7jK5LvA9-OigM5QW2eiU04pkFi_dJ0AmAiqAaOx1Vv9fQIUA;Referer=https://localhost:44115/;sec-ch-ua="Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24";sec-ch-ua-mobile=?0;sec-ch-ua-platform="Windows";sec-fetch-site=same-origin;sec-fetch-mode=no-cors;sec-fetch-dest=script;X-Correlation-Id=939e304376bb44aea8d49433d8c56004; 
+[2023-01-15 22:45:42.443 inf] TestMiddleware==>>Headers==>>Accept=*/*;Host=localhost:44115;User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.26;:method=GET;Accept-Encoding=gzip, deflate, br;Accept-Language=zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6;Cookie=lpx_side-menu-state=,jenkins-timestamper-offset=-28800000,XSRF-TOKEN=CfDJ8MCcVXXvR6RFrqeMrLhsnTzar6IaZgkeTbgi_p6ZodruvG81UJxlGyetDUKI3HYaODM6-4kdO31VM3LIu3tIoU4Yx9fEJXl850MeTX3McuMrBfg5CTgl_JnPVEwjOTVn7hHcXbmABSW5EL18rE7jK5LvA9-OigM5QW2eiU04pkFi_dJ0AmAiqAaOx1Vv9fQIUA;Referer=https://localhost:44115/;sec-ch-ua="Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24";sec-ch-ua-mobile=?0;sec-ch-ua-platform="Windows";sec-fetch-site=same-origin;sec-fetch-mode=no-cors;sec-fetch-dest=script;X-Correlation-Id=d3e27c4243a74088a7b3b8cb06298826; 
+[2023-01-15 22:45:42.445 inf] Request finished HTTP/2 GET https://localhost:44115/libs/abp/aspnetcore-mvc-ui-theme-shared/bootstrap/dom-event-handlers.js?_v=638059364160000000 - - - 200 8679 application/javascript 8.7647ms 
+[2023-01-15 22:45:42.445 inf] Executing endpoint 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationScriptController.Get (Volo.Abp.AspNetCore.Mvc)' 
+[2023-01-15 22:45:42.445 inf] Executing endpoint 'Volo.Abp.AspNetCore.Mvc.ProxyScripting.AbpServiceProxyScriptController.GetAll (Volo.Abp.AspNetCore.Mvc)' 
+[2023-01-15 22:45:42.446 inf] Sending file. Request path: '/libs/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js'. Physical path: 'D:\Work\OpenSource\abp-vue-vben-admin\eshop\aspnetcore\services\identity\host\EShop.Identity.AuthServer\wwwroot\libs\bootstrap-datepicker\locales\bootstrap-datepicker.zh-CN.min.js' 
+[2023-01-15 22:45:42.446 inf] Request finished HTTP/2 GET https://localhost:44115/libs/bootstrap-datepicker/locales/bootstrap-datepicker.zh-CN.min.js?_v=638038562489810000 - - - 200 613 application/javascript 5.0429ms 
+[2023-01-15 22:45:42.446 inf] Sending file. Request path: '/libs/timeago/jquery.timeago.js'. Physical path: 'D:\Work\OpenSource\abp-vue-vben-admin\eshop\aspnetcore\services\identity\host\EShop.Identity.AuthServer\wwwroot\libs\timeago\jquery.timeago.js' 
+[2023-01-15 22:45:42.446 inf] Request finished HTTP/2 GET https://localhost:44115/libs/timeago/jquery.timeago.js?_v=638039330299670000 - - - 200 7404 application/javascript 11.5086ms 
+[2023-01-15 22:45:42.446 inf] Sending file. Request path: '/libs/toastr/toastr.min.js'. Physical path: 'D:\Work\OpenSource\abp-vue-vben-admin\eshop\aspnetcore\services\identity\host\EShop.Identity.AuthServer\wwwroot\libs\toastr\toastr.min.js' 
+[2023-01-15 22:45:42.446 inf] Request finished HTTP/2 GET https://localhost:44115/libs/toastr/toastr.min.js?_v=638039330299720000 - - - 200 5251 application/javascript 12.3470ms 
+[2023-01-15 22:45:42.447 inf] Sending file. Request path: '/libs/datatables.net-bs5/js/dataTables.bootstrap5.js'. Physical path: 'D:\Work\OpenSource\abp-vue-vben-admin\eshop\aspnetcore\services\identity\host\EShop.Identity.AuthServer\wwwroot\libs\datatables.net-bs5\js\dataTables.bootstrap5.js' 
+[2023-01-15 22:45:42.447 inf] Request finished HTTP/2 GET https://localhost:44115/libs/datatables.net-bs5/js/dataTables.bootstrap5.js?_v=638038563038950000 - - - 200 4915 application/javascript 13.1987ms 
+[2023-01-15 22:45:42.447 inf] Sending file. Request path: '/libs/jquery-validation/localization/messages_zh.js'. Physical path: 'D:\Work\OpenSource\abp-vue-vben-admin\eshop\aspnetcore\services\identity\host\EShop.Identity.AuthServer\wwwroot\libs\jquery-validation\localization\messages_zh.js' 
+[2023-01-15 22:45:42.447 inf] Request finished HTTP/2 GET https://localhost:44115/libs/jquery-validation/localization/messages_zh.js?_v=638038565879560000 - - - 200 1401 application/javascript 6.8506ms 
+[2023-01-15 22:45:42.448 inf] Sending file. Request path: '/libs/jquery-form/jquery.form.min.js'. Physical path: 'D:\Work\OpenSource\abp-vue-vben-admin\eshop\aspnetcore\services\identity\host\EShop.Identity.AuthServer\wwwroot\libs\jquery-form\jquery.form.min.js' 
+[2023-01-15 22:45:42.448 inf] Request finished HTTP/2 GET https://localhost:44115/libs/jquery-form/jquery.form.min.js?_v=638081475835490000 - - - 200 17239 application/javascript 14.7279ms 
+[2023-01-15 22:45:42.448 inf] Sending file. Request path: '/libs/bootstrap/js/bootstrap.enable.popovers.everywhere.js'. Physical path: 'D:\Work\OpenSource\abp-vue-vben-admin\eshop\aspnetcore\services\identity\host\EShop.Identity.AuthServer\wwwroot\libs\bootstrap\js\bootstrap.enable.popovers.everywhere.js' 
+[2023-01-15 22:45:42.448 inf] Request finished HTTP/2 GET https://localhost:44115/libs/bootstrap/js/bootstrap.enable.popovers.everywhere.js?_v=638081475835470000 - - - 200 195 application/javascript 16.1218ms 
+[2023-01-15 22:45:42.449 inf] Sending file. Request path: '/libs/abp/jquery/abp.jquery.js'. Physical path: 'D:\Work\OpenSource\abp-vue-vben-admin\eshop\aspnetcore\services\identity\host\EShop.Identity.AuthServer\wwwroot\libs\abp\jquery\abp.jquery.js' 
+[2023-01-15 22:45:42.449 inf] Request finished HTTP/2 GET https://localhost:44115/libs/abp/jquery/abp.jquery.js?_v=638081475840540000 - - - 200 13253 application/javascript 18.2161ms 
+[2023-01-15 22:45:42.449 inf] Sending file. Request path: '/libs/bootstrap/js/bootstrap.enable.tooltips.everywhere.js'. Physical path: 'D:\Work\OpenSource\abp-vue-vben-admin\eshop\aspnetcore\services\identity\host\EShop.Identity.AuthServer\wwwroot\libs\bootstrap\js\bootstrap.enable.tooltips.everywhere.js' 
+[2023-01-15 22:45:42.449 inf] Request finished HTTP/2 GET https://localhost:44115/libs/bootstrap/js/bootstrap.enable.tooltips.everywhere.js?_v=638081475835470000 - - - 200 198 application/javascript 17.3095ms 
+[2023-01-15 22:45:42.45 inf] Sending file. Request path: '/libs/abp/core/abp.js'. Physical path: 'D:\Work\OpenSource\abp-vue-vben-admin\eshop\aspnetcore\services\identity\host\EShop.Identity.AuthServer\wwwroot\libs\abp\core\abp.js' 
+[2023-01-15 22:45:42.45 inf] Request finished HTTP/2 GET https://localhost:44115/libs/abp/core/abp.js?_v=638081475840750000 - - - 200 23726 application/javascript 20.2117ms 
+[2023-01-15 22:45:42.45 inf] Sending file. Request path: '/libs/abp/utils/abp-utils.umd.min.js'. Physical path: 'D:\Work\OpenSource\abp-vue-vben-admin\eshop\aspnetcore\services\identity\host\EShop.Identity.AuthServer\wwwroot\libs\abp\utils\abp-utils.umd.min.js' 
+[2023-01-15 22:45:42.45 inf] Request finished HTTP/2 GET https://localhost:44115/libs/abp/utils/abp-utils.umd.min.js?_v=638081475841890000 - - - 200 8256 application/javascript 20.6041ms 
+[2023-01-15 22:45:42.45 inf] Sending file. Request path: '/libs/bootstrap-datepicker/bootstrap-datepicker.min.css'. Physical path: 'D:\Work\OpenSource\abp-vue-vben-admin\eshop\aspnetcore\services\identity\host\EShop.Identity.AuthServer\wwwroot\libs\bootstrap-datepicker\bootstrap-datepicker.min.css' 
+[2023-01-15 22:45:42.45 inf] Request finished HTTP/2 GET https://localhost:44115/libs/bootstrap-datepicker/bootstrap-datepicker.min.css?_v=638038562489810000 - - - 200 15731 text/css 24.1305ms 
+[2023-01-15 22:45:42.45 inf] Sending file. Request path: '/libs/abp/luxon/abp.luxon.js'. Physical path: 'D:\Work\OpenSource\abp-vue-vben-admin\eshop\aspnetcore\services\identity\host\EShop.Identity.AuthServer\wwwroot\libs\abp\luxon\abp.luxon.js' 
+[2023-01-15 22:45:42.45 inf] Request finished HTTP/2 GET https://localhost:44115/libs/abp/luxon/abp.luxon.js?_v=638081475835550000 - - - 200 1361 application/javascript 10.6849ms 
+[2023-01-15 22:45:42.451 inf] Sending file. Request path: '/themes/basic/layout.js'. Physical path: 'N/A' 
+[2023-01-15 22:45:42.451 inf] Request finished HTTP/2 GET https://localhost:44115/themes/basic/layout.js?_v=638059379320000000 - - - 200 543 application/javascript 11.9066ms 
+[2023-01-15 22:45:42.451 inf] Sending file. Request path: '/Pages/Abp/MultiTenancy/tenant-switch.js'. Physical path: 'N/A' 
+[2023-01-15 22:45:42.451 inf] Request finished HTTP/2 GET https://localhost:44115/Pages/Abp/MultiTenancy/tenant-switch.js?_v=638059364180000000 - - - 200 414 application/javascript 14.0520ms 
+[2023-01-15 22:45:42.451 inf] Sending file. Request path: '/libs/abp/aspnetcore-mvc-ui-theme-shared/toastr/abp-toastr.js'. Physical path: 'N/A' 
+[2023-01-15 22:45:42.452 inf] Request finished HTTP/2 GET https://localhost:44115/libs/abp/aspnetcore-mvc-ui-theme-shared/toastr/abp-toastr.js?_v=638059364160000000 - - - 200 951 application/javascript 14.2174ms 
+[2023-01-15 22:45:42.452 inf] Sending file. Request path: '/libs/abp/aspnetcore-mvc-ui-theme-shared/sweetalert2/abp-sweetalert2.js'. Physical path: 'N/A' 
+[2023-01-15 22:45:42.452 inf] Request finished HTTP/2 GET https://localhost:44115/libs/abp/aspnetcore-mvc-ui-theme-shared/sweetalert2/abp-sweetalert2.js?_v=638059364160000000 - - - 200 3213 application/javascript 14.5013ms 
+[2023-01-15 22:45:42.452 inf] Sending file. Request path: '/libs/abp/aspnetcore-mvc-ui-theme-shared/datatables/datatables-extensions.js'. Physical path: 'N/A' 
+[2023-01-15 22:45:42.452 inf] Request finished HTTP/2 GET https://localhost:44115/libs/abp/aspnetcore-mvc-ui-theme-shared/datatables/datatables-extensions.js?_v=638059364160000000 - - - 200 20337 application/javascript 15.1751ms 
+[2023-01-15 22:45:42.452 inf] Sending file. Request path: '/libs/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js'. Physical path: 'D:\Work\OpenSource\abp-vue-vben-admin\eshop\aspnetcore\services\identity\host\EShop.Identity.AuthServer\wwwroot\libs\malihu-custom-scrollbar-plugin\jquery.mCustomScrollbar.concat.min.js' 
+[2023-01-15 22:45:42.452 inf] Request finished HTTP/2 GET https://localhost:44115/libs/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js?_v=638038559059240000 - - - 200 45483 application/javascript 18.1175ms 
+[2023-01-15 22:45:42.454 inf] Sending file. Request path: '/libs/bootstrap-datepicker/bootstrap-datepicker.min.js'. Physical path: 'D:\Work\OpenSource\abp-vue-vben-admin\eshop\aspnetcore\services\identity\host\EShop.Identity.AuthServer\wwwroot\libs\bootstrap-datepicker\bootstrap-datepicker.min.js' 
+[2023-01-15 22:45:42.454 inf] Request finished HTTP/2 GET https://localhost:44115/libs/bootstrap-datepicker/bootstrap-datepicker.min.js?_v=638038562489810000 - - - 200 33693 application/javascript 18.9304ms 
+[2023-01-15 22:45:42.454 inf] Sending file. Request path: '/libs/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js'. Physical path: 'D:\Work\OpenSource\abp-vue-vben-admin\eshop\aspnetcore\services\identity\host\EShop.Identity.AuthServer\wwwroot\libs\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js' 
+[2023-01-15 22:45:42.454 inf] Request finished HTTP/2 GET https://localhost:44115/libs/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js?_v=638038562598660000 - - - 200 19798 application/javascript 20.9199ms 
+[2023-01-15 22:45:42.454 inf] Sending file. Request path: '/libs/sweetalert2/sweetalert2.all.min.js'. Physical path: 'D:\Work\OpenSource\abp-vue-vben-admin\eshop\aspnetcore\services\identity\host\EShop.Identity.AuthServer\wwwroot\libs\sweetalert2\sweetalert2.all.min.js' 
+[2023-01-15 22:45:42.454 inf] Request finished HTTP/2 GET https://localhost:44115/libs/sweetalert2/sweetalert2.all.min.js?_v=638087614904460000 - - - 200 64359 application/javascript 20.3820ms 
+[2023-01-15 22:45:42.456 inf] Sending file. Request path: '/libs/select2/js/select2.min.js'. Physical path: 'D:\Work\OpenSource\abp-vue-vben-admin\eshop\aspnetcore\services\identity\host\EShop.Identity.AuthServer\wwwroot\libs\select2\js\select2.min.js' 
+[2023-01-15 22:45:42.456 inf] Request finished HTTP/2 GET https://localhost:44115/libs/select2/js/select2.min.js?_v=638038562439090000 - - - 200 70851 application/javascript 22.7823ms 
+[2023-01-15 22:45:42.456 inf] Sending file. Request path: '/libs/jquery-validation/jquery.validate.js'. Physical path: 'D:\Work\OpenSource\abp-vue-vben-admin\eshop\aspnetcore\services\identity\host\EShop.Identity.AuthServer\wwwroot\libs\jquery-validation\jquery.validate.js' 
+[2023-01-15 22:45:42.457 inf] Request finished HTTP/2 GET https://localhost:44115/libs/jquery-validation/jquery.validate.js?_v=638038565879560000 - - - 200 51171 application/javascript 23.7779ms 
+[2023-01-15 22:45:42.457 inf] Sending file. Request path: '/libs/lodash/lodash.min.js'. Physical path: 'D:\Work\OpenSource\abp-vue-vben-admin\eshop\aspnetcore\services\identity\host\EShop.Identity.AuthServer\wwwroot\libs\lodash\lodash.min.js' 
+[2023-01-15 22:45:42.457 inf] Request finished HTTP/2 GET https://localhost:44115/libs/lodash/lodash.min.js?_v=638039330299710000 - - - 200 73015 application/javascript 24.4292ms 
+[2023-01-15 22:45:42.457 inf] Sending file. Request path: '/libs/luxon/luxon.min.js'. Physical path: 'D:\Work\OpenSource\abp-vue-vben-admin\eshop\aspnetcore\services\identity\host\EShop.Identity.AuthServer\wwwroot\libs\luxon\luxon.min.js' 
+[2023-01-15 22:45:42.457 inf] Request finished HTTP/2 GET https://localhost:44115/libs/luxon/luxon.min.js?_v=638087614903980000 - - - 200 71248 application/javascript 23.0784ms 
+[2023-01-15 22:45:42.458 inf] Sending file. Request path: '/libs/timeago/locales/jquery.timeago.zh-CN.js'. Physical path: 'D:\Work\OpenSource\abp-vue-vben-admin\eshop\aspnetcore\services\identity\host\EShop.Identity.AuthServer\wwwroot\libs\timeago\locales\jquery.timeago.zh-CN.js' 
+[2023-01-15 22:45:42.459 inf] Request finished HTTP/2 GET https://localhost:44115/libs/timeago/locales/jquery.timeago.zh-CN.js?_v=638039330299670000 - - - 200 759 application/javascript 16.4166ms 
+[2023-01-15 22:45:42.46 inf] Sending file. Request path: '/libs/bootstrap/js/bootstrap.bundle.js'. Physical path: 'D:\Work\OpenSource\abp-vue-vben-admin\eshop\aspnetcore\services\identity\host\EShop.Identity.AuthServer\wwwroot\libs\bootstrap\js\bootstrap.bundle.js' 
+[2023-01-15 22:45:42.46 inf] Request finished HTTP/2 GET https://localhost:44115/libs/bootstrap/js/bootstrap.bundle.js?_v=638047054307870000 - - - 200 207989 application/javascript 28.2936ms 
+[2023-01-15 22:45:42.461 inf] Sending file. Request path: '/libs/jquery/jquery.js'. Physical path: 'D:\Work\OpenSource\abp-vue-vben-admin\eshop\aspnetcore\services\identity\host\EShop.Identity.AuthServer\wwwroot\libs\jquery\jquery.js' 
+[2023-01-15 22:45:42.461 inf] Request finished HTTP/2 GET https://localhost:44115/libs/jquery/jquery.js?_v=638087614905330000 - - - 200 293671 application/javascript 29.8774ms 
+[2023-01-15 22:45:42.462 inf] Sending file. Request path: '/libs/datatables.net/js/jquery.dataTables.js'. Physical path: 'D:\Work\OpenSource\abp-vue-vben-admin\eshop\aspnetcore\services\identity\host\EShop.Identity.AuthServer\wwwroot\libs\datatables.net\js\jquery.dataTables.js' 
+[2023-01-15 22:45:42.462 inf] Request finished HTTP/2 GET https://localhost:44115/libs/datatables.net/js/jquery.dataTables.js?_v=638038563240420000 - - - 200 454311 application/javascript 28.9010ms 
+[2023-01-15 22:45:42.477 inf] Route matched with {area = "Abp", action = "Get", controller = "AbpApplicationConfigurationScript", page = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] Get() on controller Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationScriptController (Volo.Abp.AspNetCore.Mvc). 
+[2023-01-15 22:45:42.477 inf] Route matched with {area = "Abp", action = "GetAll", controller = "AbpServiceProxyScript", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult GetAll(Volo.Abp.AspNetCore.Mvc.ProxyScripting.ServiceProxyGenerationModel) on controller Volo.Abp.AspNetCore.Mvc.ProxyScripting.AbpServiceProxyScriptController (Volo.Abp.AspNetCore.Mvc). 
+[2023-01-15 22:45:42.619 inf] Executing ContentResult with HTTP Response ContentType of application/javascript 
+[2023-01-15 22:45:42.62 inf] Executed action Volo.Abp.AspNetCore.Mvc.ProxyScripting.AbpServiceProxyScriptController.GetAll (Volo.Abp.AspNetCore.Mvc) in 142.7932ms 
+[2023-01-15 22:45:42.621 inf] Executed endpoint 'Volo.Abp.AspNetCore.Mvc.ProxyScripting.AbpServiceProxyScriptController.GetAll (Volo.Abp.AspNetCore.Mvc)' 
+[2023-01-15 22:45:42.646 inf] Request finished HTTP/2 GET https://localhost:44115/Abp/ServiceProxyScript - - - 200 - application/javascript 204.7309ms 
+[2023-01-15 22:45:42.693 inf] Request starting HTTP/2 GET https://localhost:44115/libs/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2 - - 
+[2023-01-15 22:45:42.722 inf] Sending file. Request path: '/libs/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2'. Physical path: 'D:\Work\OpenSource\abp-vue-vben-admin\eshop\aspnetcore\services\identity\host\EShop.Identity.AuthServer\wwwroot\libs\@fortawesome\fontawesome-free\webfonts\fa-solid-900.woff2' 
+[2023-01-15 22:45:42.726 inf] Request finished HTTP/2 GET https://localhost:44115/libs/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2 - - - 200 78268 font/woff2 32.3047ms 
+[2023-01-15 22:45:42.934 inf] Executing ContentResult with HTTP Response ContentType of application/javascript 
+[2023-01-15 22:45:42.935 inf] Executed action Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationScriptController.Get (Volo.Abp.AspNetCore.Mvc) in 457.8765ms 
+[2023-01-15 22:45:42.935 inf] Executed endpoint 'Volo.Abp.AspNetCore.Mvc.ApplicationConfigurations.AbpApplicationConfigurationScriptController.Get (Volo.Abp.AspNetCore.Mvc)' 
+[2023-01-15 22:45:42.988 inf] Request finished HTTP/2 GET https://localhost:44115/Abp/ApplicationConfigurationScript - - - 200 - application/javascript 547.5409ms 
+[2023-01-15 22:45:43.006 inf] Request starting HTTP/2 GET https://localhost:44115/favicon.ico - - 
+[2023-01-15 22:45:43.009 inf] TestMiddleware==>>Headers==>>Accept=image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8;Host=localhost:44115;User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.26;:method=GET;Accept-Encoding=gzip, deflate, br;Accept-Language=zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6;Cookie=lpx_side-menu-state=,jenkins-timestamper-offset=-28800000,.AspNetCore.Antiforgery.arLh3kPec3g=CfDJ8MCcVXXvR6RFrqeMrLhsnTzKafuvt8lt1fo3frZCkVAhECvhJIt93QC2hoKXNbqLEyCYUqC5W_joviwaR_AIC75Htw_F37FKFxxOJs0ONAnNrm6fobxJL9XcaGvwpmiS-uE4JBzDOKbsWnZsq148pWA,XSRF-TOKEN=CfDJ8MCcVXXvR6RFrqeMrLhsnTzGISsWapFowFlYapyjsgUTwRwt1acjEYR7SjS_TyCSGmJI25jQVBQMGHReoa-qd6Nwvw2_JBAm6fc9o4r_MGOSpYwB0sFjmdliJnUImQCVnW7qO4bUvyDphX65NLwldIk;Referer=https://localhost:44115/;sec-ch-ua="Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24";sec-ch-ua-mobile=?0;sec-ch-ua-platform="Windows";sec-fetch-site=same-origin;sec-fetch-mode=no-cors;sec-fetch-dest=image;X-Correlation-Id=028fdb99c26a4ab3a59fdfd0f4e1e5fe; 
+[2023-01-15 22:45:43.012 inf] Request finished HTTP/2 GET https://localhost:44115/favicon.ico - - - 404 0 - 4.8281ms 

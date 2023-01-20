@@ -43,8 +43,6 @@
     <ProjectReference Include="..\..\..\..\common\src\EShop.Common.Shared\EShop.Common.Shared.csproj" />
     <ProjectReference Include="..\..\..\..\..\..\framework\leopard\src\Leopard.Host\Leopard.Host.csproj" />
     <ProjectReference Include="..\..\..\..\..\..\framework\leopard\src\Leopard.Consul\Leopard.Consul.csproj" />
-    <ProjectReference Include="..\..\..\..\module\saas\src\Leopard.Saas.Application\Leopard.Saas.Application.csproj" />
-    <ProjectReference Include="..\..\..\..\module\saas\src\Leopard.Saas.EntityFrameworkCore\Leopard.Saas.EntityFrameworkCore.csproj" />
   </ItemGroup>
 
 </Project>

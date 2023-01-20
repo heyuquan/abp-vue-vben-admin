@@ -1,11 +1,9 @@
-﻿using EShop.Common.Shared;
-using System;
+﻿using System;
 using Volo.Abp.Application;
 using Volo.Abp.Authorization;
 using Volo.Abp.Identity;
 using Volo.Abp.Identity.Localization;
 using Volo.Abp.Localization;
-using Volo.Abp.Localization.ExceptionHandling;
 using Volo.Abp.Modularity;
 using Volo.Abp.ObjectExtending.Modularity;
 using Volo.Abp.PermissionManagement;
@@ -15,7 +13,7 @@ using Volo.Abp.VirtualFileSystem;
 
 namespace Leopard.Identity
 {
-    [DependsOn(
+	[DependsOn(
 		typeof(AbpIdentityDomainSharedModule),
 		typeof(AbpUsersAbstractionModule),
 		typeof(AbpAuthorizationModule),
@@ -34,7 +32,7 @@ namespace Leopard.Identity
 					typeof(AbpValidationResource)
 				}).AddVirtualJson("/Leopard/Identity/Localization/Resources");
 			});
-			Configure<AbpExceptionLocalizationOptions>(options => options.MapCodeNamespace(ModuleNames.Identity, typeof(IdentityResource)));
+			//Configure<AbpExceptionLocalizationOptions>(options => options.MapCodeNamespace(ModuleNames.Identity, typeof(IdentityResource)));
 		}
 
 		public override void PostConfigureServices(ServiceConfigurationContext context)

@@ -1,4 +1,3 @@
-using EShop.Common.Shared;
 using Volo.Abp.Reflection;
 
 namespace Leopard.Identity
@@ -10,9 +9,9 @@ namespace Leopard.Identity
             return ReflectionHelper.GetPublicConstantsRecursively(typeof(IdentityPermissions));
         }
 
-        public const string GroupName = ModuleNames.Identity;
+        public const string GroupName = "Leopard.Identity";
 
-        public const string SettingManagement = ModuleNames.Identity + ".SettingManagement";
+        public const string SettingManagement = "Leopard.Identity.SettingManagement";
 
         public static class Roles
         {

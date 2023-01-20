@@ -1,8 +1,6 @@
 using EShop.Common.Shared;
 using Leopard.Consul;
 using Leopard.Host;
-using Leopard.Saas;
-using Leopard.Saas.EntityFrameworkCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp;
@@ -30,10 +28,6 @@ namespace EShop.Identity;
     typeof(AbpAspNetCoreMvcUiMultiTenancyModule),
 
     typeof(EShopIdentityEntityFrameworkCoreModule),
-
-    // 引入saas，是因为做多租户登录时，需要查询租户数据
-    typeof(LeopardSaasApplicationModule),
-    typeof(LeopardSaasEntityFrameworkCoreModule),
 
     typeof(LeopardConsulModule)
     )]

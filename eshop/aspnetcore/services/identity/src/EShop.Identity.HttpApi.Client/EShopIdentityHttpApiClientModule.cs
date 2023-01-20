@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Leopard.Identity;
+using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.Identity;
 using Volo.Abp.Modularity;
 using Volo.Abp.VirtualFileSystem;
@@ -7,7 +8,8 @@ namespace EShop.Identity;
 
 [DependsOn(
     typeof(EShopIdentityApplicationContractsModule),
-    typeof(AbpIdentityHttpApiClientModule)
+    typeof(AbpIdentityHttpApiClientModule),
+    typeof(LeopardIdentityHttpApiClientModule)
 )]
 public class EShopIdentityHttpApiClientModule : AbpModule
 {

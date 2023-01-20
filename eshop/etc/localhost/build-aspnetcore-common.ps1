@@ -8,11 +8,15 @@ $rootFolder = (Get-Item -Path "./" -Verbose).FullName
 #   build       需要编译的项目
 #   service     服务项目（host、identity、identityserver）
 #   gateway     网关项目
+
+#leopard
 $projectArray += [PsObject]@{ Path = $rootFolder + "/../../../framework/leopard/"; Name = "framework"; Type = "build"  }
+$projectArray += [PsObject]@{ Path = $rootFolder + "/../../../framework/leopard/modules/identity/"; Name = "leopard-identity"; Type = "build"  }
+
+#eshop
 $projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/common/"; Name = "common"; Type = "build"  }
-$projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/module/account/"; Name = "account"; Type = "build"  }
-#$projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/module/identity/"; Name = "identity"; Type = "build"  }
-$projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/module/saas/"; Name = "saas"; Type = "build"  }
+$projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/modules/account/"; Name = "account"; Type = "build"  }
+#$projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/modules/saas/"; Name = "saas"; Type = "build"  }
 
 # service
 $projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/services/identity/host/EShop.Identity.HttpApi.Host/"; Name = "identity"; Type = "service"   }

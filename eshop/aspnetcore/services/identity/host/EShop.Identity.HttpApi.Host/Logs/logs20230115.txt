@@ -1091,3 +1091,124 @@ File name: 'Volo.Abp.DistributedLocking, Version=6.0.2.0, Culture=neutral, Publi
 [2023-01-15 20:16:02.342 inf] Executed action Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc) in 653.2042ms 
 [2023-01-15 20:16:02.342 inf] Executed endpoint 'Volo.Abp.AspNetCore.Mvc.ApiExploring.AbpApiDefinitionController.Get (Volo.Abp.AspNetCore.Mvc)' 
 [2023-01-15 20:16:02.344 inf] Request finished HTTP/2 GET https://localhost:44105/api/abp/api-definition - - - 200 - application/json;+charset=utf-8 697.3280ms 
+[2023-01-15 22:47:45.151 inf] [Development] Starting EShopIdentity. 
+[2023-01-15 22:47:46.577 inf] Loaded ABP modules: 
+[2023-01-15 22:47:46.578 inf] - EShop.Identity.EShopIdentityHttpApiHostModule 
+[2023-01-15 22:47:46.579 inf]   - Volo.Abp.Autofac.AbpAutofacModule 
+[2023-01-15 22:47:46.579 inf]     - Volo.Abp.Castle.AbpCastleCoreModule 
+[2023-01-15 22:47:46.579 inf]   - Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy.AbpAspNetCoreMvcUiMultiTenancyModule 
+[2023-01-15 22:47:46.579 inf]     - Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.AbpAspNetCoreMvcUiThemeSharedModule 
+[2023-01-15 22:47:46.579 inf]       - Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.AbpAspNetCoreMvcUiBootstrapModule 
+[2023-01-15 22:47:46.579 inf]         - Volo.Abp.AspNetCore.Mvc.UI.AbpAspNetCoreMvcUiModule 
+[2023-01-15 22:47:46.579 inf]           - Volo.Abp.AspNetCore.Mvc.AbpAspNetCoreMvcModule 
+[2023-01-15 22:47:46.579 inf]             - Volo.Abp.AspNetCore.AbpAspNetCoreModule 
+[2023-01-15 22:47:46.579 inf]               - Volo.Abp.Auditing.AbpAuditingModule 
+[2023-01-15 22:47:46.579 inf]                 - Volo.Abp.Data.AbpDataModule 
+[2023-01-15 22:47:46.579 inf]                   - Volo.Abp.ObjectExtending.AbpObjectExtendingModule 
+[2023-01-15 22:47:46.579 inf]                     - Volo.Abp.Localization.AbpLocalizationAbstractionsModule 
+[2023-01-15 22:47:46.579 inf]                     - Volo.Abp.Validation.AbpValidationAbstractionsModule 
+[2023-01-15 22:47:46.579 inf]                   - Volo.Abp.Uow.AbpUnitOfWorkModule 
+[2023-01-15 22:47:46.579 inf]                   - Volo.Abp.EventBus.Abstractions.AbpEventBusAbstractionsModule 
+[2023-01-15 22:47:46.579 inf]                 - Volo.Abp.Json.AbpJsonModule 
+[2023-01-15 22:47:46.579 inf]                   - Volo.Abp.Timing.AbpTimingModule 
+[2023-01-15 22:47:46.579 inf]                     - Volo.Abp.Localization.AbpLocalizationModule 
+[2023-01-15 22:47:46.579 inf]                       - Volo.Abp.VirtualFileSystem.AbpVirtualFileSystemModule 
+[2023-01-15 22:47:46.579 inf]                       - Volo.Abp.Settings.AbpSettingsModule 
+[2023-01-15 22:47:46.579 inf]                         - Volo.Abp.Security.AbpSecurityModule 
+[2023-01-15 22:47:46.579 inf]                         - Volo.Abp.MultiTenancy.AbpMultiTenancyModule 
+[2023-01-15 22:47:46.579 inf]                 - Volo.Abp.Threading.AbpThreadingModule 
+[2023-01-15 22:47:46.579 inf]                 - Volo.Abp.Auditing.AbpAuditingContractsModule 
+[2023-01-15 22:47:46.579 inf]               - Volo.Abp.Http.AbpHttpModule 
+[2023-01-15 22:47:46.579 inf]                 - Volo.Abp.Http.AbpHttpAbstractionsModule 
+[2023-01-15 22:47:46.579 inf]                 - Volo.Abp.Minify.AbpMinifyModule 
+[2023-01-15 22:47:46.579 inf]               - Volo.Abp.Authorization.AbpAuthorizationModule 
+[2023-01-15 22:47:46.579 inf]                 - Volo.Abp.Authorization.AbpAuthorizationAbstractionsModule 
+[2023-01-15 22:47:46.579 inf]               - Volo.Abp.Validation.AbpValidationModule 
+[2023-01-15 22:47:46.579 inf]               - Volo.Abp.ExceptionHandling.AbpExceptionHandlingModule 
+[2023-01-15 22:47:46.579 inf]             - Volo.Abp.ApiVersioning.AbpApiVersioningAbstractionsModule 
+[2023-01-15 22:47:46.579 inf]             - Volo.Abp.AspNetCore.Mvc.AbpAspNetCoreMvcContractsModule 
+[2023-01-15 22:47:46.579 inf]               - Volo.Abp.Application.AbpDddApplicationContractsModule 
+[2023-01-15 22:47:46.579 inf]             - Volo.Abp.UI.Navigation.AbpUiNavigationModule 
+[2023-01-15 22:47:46.579 inf]               - Volo.Abp.UI.AbpUiModule 
+[2023-01-15 22:47:46.579 inf]             - Volo.Abp.GlobalFeatures.AbpGlobalFeaturesModule 
+[2023-01-15 22:47:46.579 inf]             - Volo.Abp.Application.AbpDddApplicationModule 
+[2023-01-15 22:47:46.579 inf]               - Volo.Abp.Domain.AbpDddDomainModule 
+[2023-01-15 22:47:46.579 inf]                 - Volo.Abp.EventBus.AbpEventBusModule 
+[2023-01-15 22:47:46.579 inf]                   - Volo.Abp.Guids.AbpGuidsModule 
+[2023-01-15 22:47:46.579 inf]                   - Volo.Abp.BackgroundWorkers.AbpBackgroundWorkersModule 
+[2023-01-15 22:47:46.579 inf]                   - Volo.Abp.DistributedLocking.AbpDistributedLockingAbstractionsModule 
+[2023-01-15 22:47:46.579 inf]                 - Volo.Abp.ObjectMapping.AbpObjectMappingModule 
+[2023-01-15 22:47:46.579 inf]                 - Volo.Abp.Specifications.AbpSpecificationsModule 
+[2023-01-15 22:47:46.579 inf]               - Volo.Abp.Features.AbpFeaturesModule 
+[2023-01-15 22:47:46.579 inf]       - Volo.Abp.AspNetCore.Mvc.UI.Packages.AbpAspNetCoreMvcUiPackagesModule 
+[2023-01-15 22:47:46.579 inf]         - Volo.Abp.AspNetCore.Mvc.UI.Bundling.AbpAspNetCoreMvcUiBundlingAbstractionsModule 
+[2023-01-15 22:47:46.579 inf]       - Volo.Abp.AspNetCore.Mvc.UI.Widgets.AbpAspNetCoreMvcUiWidgetsModule 
+[2023-01-15 22:47:46.579 inf]         - Volo.Abp.AspNetCore.Mvc.UI.Bundling.AbpAspNetCoreMvcUiBundlingModule 
+[2023-01-15 22:47:46.579 inf]     - Volo.Abp.AspNetCore.MultiTenancy.AbpAspNetCoreMultiTenancyModule 
+[2023-01-15 22:47:46.579 inf]   - EShop.Identity.EShopIdentityHttpApiModule 
+[2023-01-15 22:47:46.579 inf]     - EShop.Identity.EShopIdentityApplicationContractsModule 
+[2023-01-15 22:47:46.579 inf]       - EShop.Identity.EShopIdentityDomainSharedModule 
+[2023-01-15 22:47:46.579 inf]         - Volo.Abp.Identity.AbpIdentityDomainSharedModule 
+[2023-01-15 22:47:46.579 inf]           - Volo.Abp.Users.AbpUsersDomainSharedModule 
+[2023-01-15 22:47:46.579 inf]         - Volo.Abp.OpenIddict.AbpOpenIddictDomainSharedModule 
+[2023-01-15 22:47:46.579 inf]       - Volo.Abp.Identity.AbpIdentityApplicationContractsModule 
+[2023-01-15 22:47:46.579 inf]         - Volo.Abp.Users.AbpUsersAbstractionModule 
+[2023-01-15 22:47:46.579 inf]         - Volo.Abp.PermissionManagement.AbpPermissionManagementApplicationContractsModule 
+[2023-01-15 22:47:46.579 inf]           - Volo.Abp.PermissionManagement.AbpPermissionManagementDomainSharedModule 
+[2023-01-15 22:47:46.579 inf]     - Volo.Abp.Identity.AbpIdentityHttpApiModule 
+[2023-01-15 22:47:46.579 inf]   - EShop.Identity.EShopIdentityApplicationModule 
+[2023-01-15 22:47:46.579 inf]     - EShop.Identity.EShopIdentityDomainModule 
+[2023-01-15 22:47:46.579 inf]       - Volo.Abp.Identity.AbpIdentityDomainModule 
+[2023-01-15 22:47:46.579 inf]         - Volo.Abp.Users.AbpUsersDomainModule 
+[2023-01-15 22:47:46.579 inf]         - Volo.Abp.AutoMapper.AbpAutoMapperModule 
+[2023-01-15 22:47:46.579 inf]       - Volo.Abp.OpenIddict.AbpOpenIddictDomainModule 
+[2023-01-15 22:47:46.579 inf]         - Volo.Abp.Caching.AbpCachingModule 
+[2023-01-15 22:47:46.579 inf]           - Volo.Abp.Serialization.AbpSerializationModule 
+[2023-01-15 22:47:46.579 inf]       - Volo.Abp.PermissionManagement.AbpPermissionManagementDomainModule 
+[2023-01-15 22:47:46.579 inf]       - Volo.Abp.Emailing.AbpEmailingModule 
+[2023-01-15 22:47:46.579 inf]         - Volo.Abp.BackgroundJobs.AbpBackgroundJobsAbstractionsModule 
+[2023-01-15 22:47:46.579 inf]         - Volo.Abp.TextTemplating.AbpTextTemplatingModule 
+[2023-01-15 22:47:46.579 inf]           - Volo.Abp.TextTemplating.Scriban.AbpTextTemplatingScribanModule 
+[2023-01-15 22:47:46.579 inf]             - Volo.Abp.TextTemplating.AbpTextTemplatingCoreModule 
+[2023-01-15 22:47:46.579 inf]     - Volo.Abp.Identity.AbpIdentityApplicationModule 
+[2023-01-15 22:47:46.579 inf]       - Volo.Abp.PermissionManagement.AbpPermissionManagementApplicationModule 
+[2023-01-15 22:47:46.579 inf]   - EShop.Identity.EShopIdentityEntityFrameworkCoreModule 
+[2023-01-15 22:47:46.579 inf]     - Volo.Abp.Identity.EntityFrameworkCore.AbpIdentityEntityFrameworkCoreModule 
+[2023-01-15 22:47:46.579 inf]       - Volo.Abp.Users.EntityFrameworkCore.AbpUsersEntityFrameworkCoreModule 
+[2023-01-15 22:47:46.579 inf]         - Volo.Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule 
+[2023-01-15 22:47:46.579 inf]     - Volo.Abp.OpenIddict.EntityFrameworkCore.AbpOpenIddictEntityFrameworkCoreModule 
+[2023-01-15 22:47:46.579 inf]     - Volo.Abp.PermissionManagement.EntityFrameworkCore.AbpPermissionManagementEntityFrameworkCoreModule 
+[2023-01-15 22:47:46.579 inf]     - Volo.Abp.EntityFrameworkCore.MySQL.AbpEntityFrameworkCoreMySQLModule 
+[2023-01-15 22:47:46.579 inf]     - Leopard.EntityFrameworkCore.LeopardEntityFrameworkCoreModule 
+[2023-01-15 22:47:46.579 inf]   - Volo.Abp.Caching.StackExchangeRedis.AbpCachingStackExchangeRedisModule 
+[2023-01-15 22:47:46.579 inf]   - Volo.Abp.DistributedLocking.AbpDistributedLockingModule 
+[2023-01-15 22:47:46.579 inf]   - Leopard.AspNetCore.Serilog.LeopardAspNetCoreSerilogModule 
+[2023-01-15 22:47:46.579 inf]     - Volo.Abp.AspNetCore.Serilog.AbpAspNetCoreSerilogModule 
+[2023-01-15 22:47:46.579 inf]   - Leopard.AspNetCore.Swashbuckle.LeopardAspNetCoreSwashbuckleModule 
+[2023-01-15 22:47:46.579 inf]     - Volo.Abp.Swashbuckle.AbpSwashbuckleModule 
+[2023-01-15 22:47:46.579 inf]     - Leopard.LeopardModule 
+[2023-01-15 22:47:46.579 inf]   - Leopard.AspNetCore.Mvc.LeopardAspNetCoreMvcModule 
+[2023-01-15 22:47:46.839 inf] User profile is available. Using 'C:\Users\PC\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. 
+[2023-01-15 22:47:50.41 inf] Initialized all ABP modules. 
+[2023-01-15 22:47:50.411 inf] [Development] Started EShopIdentity. 
+[2023-01-15 22:47:50.565 inf] Now listening on: https://localhost:44105 
+[2023-01-15 22:47:50.565 inf] Now listening on: http://localhost:44102 
+[2023-01-15 22:47:50.566 inf] Application started. Press Ctrl+C to shut down. 
+[2023-01-15 22:47:50.566 inf] Hosting environment: Development 
+[2023-01-15 22:47:50.566 inf] Content root path: D:\Work\OpenSource\abp-vue-vben-admin\eshop\aspnetcore\services\identity\host\EShop.Identity.HttpApi.Host\ 
+[2023-01-15 22:47:50.955 inf] Request starting HTTP/2 GET https://localhost:44105/ - - 
+[2023-01-15 22:47:51.071 inf] TestMiddleware==>>Headers==>>Accept=text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9;Host=localhost:44105;User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.26;:method=GET;Accept-Encoding=gzip, deflate, br;Accept-Language=zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6;Cookie=lpx_side-menu-state=,jenkins-timestamper-offset=-28800000,.AspNetCore.Antiforgery.arLh3kPec3g=CfDJ8MCcVXXvR6RFrqeMrLhsnTzKafuvt8lt1fo3frZCkVAhECvhJIt93QC2hoKXNbqLEyCYUqC5W_joviwaR_AIC75Htw_F37FKFxxOJs0ONAnNrm6fobxJL9XcaGvwpmiS-uE4JBzDOKbsWnZsq148pWA,XSRF-TOKEN=CfDJ8MCcVXXvR6RFrqeMrLhsnTzGISsWapFowFlYapyjsgUTwRwt1acjEYR7SjS_TyCSGmJI25jQVBQMGHReoa-qd6Nwvw2_JBAm6fc9o4r_MGOSpYwB0sFjmdliJnUImQCVnW7qO4bUvyDphX65NLwldIk;Upgrade-Insecure-Requests=1;sec-ch-ua="Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24";sec-ch-ua-mobile=?0;sec-ch-ua-platform="Windows";sec-fetch-site=none;sec-fetch-mode=navigate;sec-fetch-user=?1;sec-fetch-dest=document;X-Correlation-Id=4f0563f37a65413bb4a14421382eaab2; 
+[2023-01-15 22:47:51.421 inf] Executing endpoint 'EShop.Identity.Controllers.HomeController.Index (EShop.Identity.HttpApi.Host)' 
+[2023-01-15 22:47:51.451 inf] Route matched with {action = "Index", controller = "Home", area = "", page = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult Index() on controller EShop.Identity.Controllers.HomeController (EShop.Identity.HttpApi.Host). 
+[2023-01-15 22:47:51.488 inf] Executing RedirectResult, redirecting to /swagger. 
+[2023-01-15 22:47:51.499 inf] Executed action EShop.Identity.Controllers.HomeController.Index (EShop.Identity.HttpApi.Host) in 37.8249ms 
+[2023-01-15 22:47:51.499 inf] Executed endpoint 'EShop.Identity.Controllers.HomeController.Index (EShop.Identity.HttpApi.Host)' 
+[2023-01-15 22:47:51.522 inf] Request starting HTTP/2 GET https://localhost:44105/swagger/index.html - - 
+[2023-01-15 22:47:51.526 inf] Request finished HTTP/2 GET https://localhost:44105/ - - - 302 0 - 570.1639ms 
+[2023-01-15 22:47:51.531 inf] TestMiddleware==>>Headers==>>Accept=text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9;Host=localhost:44105;User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.26;:method=GET;Accept-Encoding=gzip, deflate, br;Accept-Language=zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6;Cookie=lpx_side-menu-state=,jenkins-timestamper-offset=-28800000,.AspNetCore.Antiforgery.arLh3kPec3g=CfDJ8MCcVXXvR6RFrqeMrLhsnTzKafuvt8lt1fo3frZCkVAhECvhJIt93QC2hoKXNbqLEyCYUqC5W_joviwaR_AIC75Htw_F37FKFxxOJs0ONAnNrm6fobxJL9XcaGvwpmiS-uE4JBzDOKbsWnZsq148pWA,XSRF-TOKEN=CfDJ8MCcVXXvR6RFrqeMrLhsnTzGISsWapFowFlYapyjsgUTwRwt1acjEYR7SjS_TyCSGmJI25jQVBQMGHReoa-qd6Nwvw2_JBAm6fc9o4r_MGOSpYwB0sFjmdliJnUImQCVnW7qO4bUvyDphX65NLwldIk;Upgrade-Insecure-Requests=1;sec-fetch-site=none;sec-fetch-mode=navigate;sec-fetch-user=?1;sec-fetch-dest=document;sec-ch-ua="Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24";sec-ch-ua-mobile=?0;sec-ch-ua-platform="Windows";X-Correlation-Id=f25fd1f09e97435ba1c98e86fd61a740; 
+[2023-01-15 22:47:51.569 inf] Request finished HTTP/2 GET https://localhost:44105/swagger/index.html - - - 200 - text/html;charset=utf-8 47.2616ms 
+[2023-01-15 22:47:51.585 inf] Request starting HTTP/2 GET https://localhost:44105/_framework/aspnetcore-browser-refresh.js - - 
+[2023-01-15 22:47:51.587 inf] Request finished HTTP/2 GET https://localhost:44105/_framework/aspnetcore-browser-refresh.js - - - 200 11966 application/javascript;+charset=utf-8 2.1965ms 
+[2023-01-15 22:47:51.871 inf] Request starting HTTP/2 GET https://localhost:44105/swagger/v1/swagger.json - - 
+[2023-01-15 22:47:51.874 inf] TestMiddleware==>>Headers==>>Accept=application/json,*/*;Host=localhost:44105;User-Agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.26;:method=GET;Accept-Encoding=gzip, deflate, br;Accept-Language=zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6;Cookie=lpx_side-menu-state=,jenkins-timestamper-offset=-28800000,.AspNetCore.Antiforgery.arLh3kPec3g=CfDJ8MCcVXXvR6RFrqeMrLhsnTzKafuvt8lt1fo3frZCkVAhECvhJIt93QC2hoKXNbqLEyCYUqC5W_joviwaR_AIC75Htw_F37FKFxxOJs0ONAnNrm6fobxJL9XcaGvwpmiS-uE4JBzDOKbsWnZsq148pWA,XSRF-TOKEN=CfDJ8MCcVXXvR6RFrqeMrLhsnTzGISsWapFowFlYapyjsgUTwRwt1acjEYR7SjS_TyCSGmJI25jQVBQMGHReoa-qd6Nwvw2_JBAm6fc9o4r_MGOSpYwB0sFjmdliJnUImQCVnW7qO4bUvyDphX65NLwldIk;Referer=https://localhost:44105/swagger/index.html;sec-ch-ua="Microsoft Edge";v="107", "Chromium";v="107", "Not=A?Brand";v="24";requestverificationtoken=CfDJ8MCcVXXvR6RFrqeMrLhsnTzGISsWapFowFlYapyjsgUTwRwt1acjEYR7SjS_TyCSGmJI25jQVBQMGHReoa-qd6Nwvw2_JBAm6fc9o4r_MGOSpYwB0sFjmdliJnUImQCVnW7qO4bUvyDphX65NLwldIk;X-Requested-With=XMLHttpRequest;sec-ch-ua-mobile=?0;sec-ch-ua-platform="Windows";sec-fetch-site=same-origin;sec-fetch-mode=cors;sec-fetch-dest=empty;X-Correlation-Id=0fcb769c4a9c4eee96fc45b0b7ca9eb6; 
+[2023-01-15 22:47:52.023 inf] Request finished HTTP/2 GET https://localhost:44105/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 152.6018ms 
