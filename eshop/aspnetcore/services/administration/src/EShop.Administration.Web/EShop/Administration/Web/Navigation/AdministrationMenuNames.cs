@@ -1,6 +1,6 @@
 ﻿using EShop.Common.Shared;
 
-namespace Leopard.Identity.Web.Navigation
+namespace EShop.Administration.Web.Navigation
 {
     public class AdministrationMenuNames
     {

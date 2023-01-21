@@ -1,23 +1,21 @@
 ﻿using EShop.Account.Admin;
-using Leopard.Identity;
-using Leopard.Saas;
 using Volo.Abp.AutoMapper;
 using Volo.Abp.FeatureManagement;
 using Volo.Abp.Modularity;
 using Volo.Abp.PermissionManagement;
 using Volo.Abp.SettingManagement;
+using Volo.Abp.TenantManagement;
 
 namespace EShop.Administration
 {
     [DependsOn(
         typeof(EShopAdministrationDomainModule),
-        typeof(AdministrationApplicationContractsModule),
+        typeof(EShopAdministrationApplicationContractsModule),
         typeof(AbpPermissionManagementApplicationModule),
         typeof(AbpFeatureManagementApplicationModule),
         typeof(AbpSettingManagementApplicationModule),
-        typeof(LeopardSaasApplicationModule),
-        typeof(EShopAccountAdminApplicationModule),
-        typeof(LeopardIdentityApplicationModule)
+        typeof(AbpTenantManagementApplicationModule),
+        typeof(EShopAccountAdminApplicationModule)
         )]
     public class EShopAdministrationApplicationModule : AbpModule
     {

@@ -9,7 +9,6 @@ namespace EShop.Identity;
 
 [DependsOn(
     typeof(EShopIdentityApplicationContractsModule),
-    typeof(AbpIdentityHttpApiModule),
     typeof(LeopardIdentityHttpApiModule)
     )]
 public class EShopIdentityHttpApiModule : AbpModule

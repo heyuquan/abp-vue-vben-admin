@@ -1,10 +1,10 @@
-﻿using Leopard.Saas;
-using Volo.Abp.AuditLogging;
+﻿using Volo.Abp.AuditLogging;
 using Volo.Abp.Emailing;
 using Volo.Abp.FeatureManagement;
 using Volo.Abp.Modularity;
 using Volo.Abp.PermissionManagement;
 using Volo.Abp.SettingManagement;
+using Volo.Abp.TenantManagement;
 
 namespace EShop.Administration
 {
@@ -15,7 +15,7 @@ namespace EShop.Administration
         typeof(AbpPermissionManagementDomainModule),
         typeof(AbpSettingManagementDomainModule),
         typeof(AbpEmailingModule),
-        typeof(LeopardSaasDomainModule)
+        typeof(AbpTenantManagementDomainModule)
     )]
     public class EShopAdministrationDomainModule : AbpModule
     {

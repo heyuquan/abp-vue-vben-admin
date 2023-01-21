@@ -1,6 +1,5 @@
 ﻿using EShop.Administration.Localization;
 using EShop.Common.Shared;
-using Leopard.Saas;
 using Volo.Abp.AuditLogging;
 using Volo.Abp.FeatureManagement;
 using Volo.Abp.FeatureManagement.Localization;
@@ -9,6 +8,7 @@ using Volo.Abp.Localization.ExceptionHandling;
 using Volo.Abp.Modularity;
 using Volo.Abp.PermissionManagement;
 using Volo.Abp.SettingManagement;
+using Volo.Abp.TenantManagement;
 using Volo.Abp.Validation.Localization;
 using Volo.Abp.VirtualFileSystem;
 
@@ -19,7 +19,7 @@ namespace EShop.Administration
         typeof(AbpFeatureManagementDomainSharedModule),
         typeof(AbpPermissionManagementDomainSharedModule),
         typeof(AbpSettingManagementDomainSharedModule),
-        typeof(LeopardSaasDomainSharedModule)
+        typeof(AbpTenantManagementDomainSharedModule)
         )]
     public class EShopAdministrationDomainSharedModule : AbpModule
     {

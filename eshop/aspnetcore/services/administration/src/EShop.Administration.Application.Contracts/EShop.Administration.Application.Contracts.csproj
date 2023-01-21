@@ -8,9 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\module\account\src\EShop.Account.Admin.Application.Contracts\EShop.Account.Admin.Application.Contracts.csproj" />
-    <ProjectReference Include="..\..\..\..\module\identity\src\Leopard.Identity.Application.Contracts\Leopard.Identity.Application.Contracts.csproj" />
-    <ProjectReference Include="..\..\..\..\module\saas\src\Leopard.Saas.Application.Contracts\Leopard.Saas.Application.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\..\modules\account\src\EShop.Account.Admin.Application.Contracts\EShop.Account.Admin.Application.Contracts.csproj" />
     <ProjectReference Include="..\..\..\..\common\src\EShop.Common.Shared\EShop.Common.Shared.csproj" />
     <ProjectReference Include="..\EShop.Administration.Domain.Shared\EShop.Administration.Domain.Shared.csproj" />
   </ItemGroup>
@@ -20,6 +18,7 @@
     <PackageReference Include="Volo.Abp.PermissionManagement.Application.Contracts" Version="6.0.2" />
     <PackageReference Include="Volo.Abp.FeatureManagement.Application.Contracts" Version="6.0.2" />
     <PackageReference Include="Volo.Abp.SettingManagement.Application.Contracts" Version="6.0.2" />
+    <PackageReference Include="Volo.Abp.TenantManagement.Application.Contracts" Version="6.0.2" />
   </ItemGroup>
 
 </Project>

@@ -1,11 +1,10 @@
 ﻿using EShop.Account.Admin;
-using Leopard.Identity;
-using Leopard.Saas;
 using Volo.Abp.FeatureManagement;
 using Volo.Abp.Modularity;
 using Volo.Abp.ObjectExtending;
 using Volo.Abp.PermissionManagement;
 using Volo.Abp.SettingManagement;
+using Volo.Abp.TenantManagement;
 
 namespace EShop.Administration
 {
@@ -15,11 +14,10 @@ namespace EShop.Administration
         typeof(AbpPermissionManagementApplicationContractsModule),
         typeof(AbpSettingManagementApplicationContractsModule),
         typeof(AbpObjectExtendingModule),
-        typeof(LeopardSaasApplicationContractsModule),
-        typeof(EShopAccountAdminApplicationContractsModule),
-        typeof(LeopardIdentityApplicationContractsModule)
+        typeof(AbpTenantManagementApplicationContractsModule),
+        typeof(EShopAccountAdminApplicationContractsModule)
     )]
-    public class AdministrationApplicationContractsModule : AbpModule
+    public class EShopAdministrationApplicationContractsModule : AbpModule
     {
         public override void PreConfigureServices(ServiceConfigurationContext context)
         {

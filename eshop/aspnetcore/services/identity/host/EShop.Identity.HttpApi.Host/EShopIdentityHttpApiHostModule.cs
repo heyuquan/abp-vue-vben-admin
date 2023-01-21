@@ -8,6 +8,7 @@ using Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy;
 using Volo.Abp.Autofac;
 using Volo.Abp.Data;
 using Volo.Abp.Modularity;
+using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.Threading;
 
 namespace EShop.Identity;
@@ -19,7 +20,10 @@ namespace EShop.Identity;
 
     typeof(EShopIdentityHttpApiModule),
     typeof(EShopIdentityApplicationModule),
-    typeof(EShopIdentityEntityFrameworkCoreModule)
+    typeof(EShopIdentityEntityFrameworkCoreModule),
+
+    // 在执行 Volo.Abp.Identity.IdentityDataSeeder 的时候会用到Setting
+    typeof(AbpSettingManagementEntityFrameworkCoreModule)
 )]
 public class EShopIdentityHttpApiHostModule : CommonHostModule
 {

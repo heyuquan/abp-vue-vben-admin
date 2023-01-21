@@ -1,13 +1,12 @@
 using EShop.Administration.Localization;
-using Leopard.Saas.Localization;
-using Leopard.Saas.Permissions;
+using EShop.Identity.Localization;
+using Leopard.Identity;
 using Leopard.UI.Navigation;
 using System.Threading.Tasks;
 using Volo.Abp.Authorization.Permissions;
-using Volo.Abp.Identity.Localization;
 using Volo.Abp.UI.Navigation;
 
-namespace Leopard.Identity.Web.Navigation
+namespace EShop.Administration.Web.Navigation
 {
     public class AdministrationWebMenuContributor : IMenuContributor
     {
@@ -39,19 +38,19 @@ namespace Leopard.Identity.Web.Navigation
             context.Menu.GetAdministration().AddItem(aboutMenuItem);
             #endregion ==== vben demo end =====           
 
-            #region ==== saas begin =====
-            var saasLocalizer = context.GetLocalizer<SaasResource>();
-            var saasMenuItem = new ApplicationMenuItem(AdministrationMenuNames.Saas.GroupName, saasLocalizer["Menu:Saas"]
-                , url: "/saas", icon: "ion:git-branch-outline", customData: new { IsGroup = true, Component = "LAYOUT", Redirect = "/saas/tenants" });
-            saasMenuItem.AddItem(new ApplicationMenuItem(AdministrationMenuNames.Saas.Tenants, saasLocalizer["Menu:Tenants"]
-                , url: "/saas/tenants", customData: new { Component = "/saas/tenant/index" })
-                .RequirePermissions(SaasPermissions.Tenants.Default));
-            //saasMenuItem.AddItem(new ApplicationMenuItem(AdministrationMenuNames.Saas.Editions, saasLocalizer["Menu:Editions"]
-            //    , url: "/saas/editions", customData: new { Component = "/saas/edition/index" })
-            //    .RequirePermissions(SaasPermissions.Editions.Default));
+            //#region ==== saas begin =====
+            //var saasLocalizer = context.GetLocalizer<SaasResource>();
+            //var saasMenuItem = new ApplicationMenuItem(AdministrationMenuNames.Saas.GroupName, saasLocalizer["Menu:Saas"]
+            //    , url: "/saas", icon: "ion:git-branch-outline", customData: new { IsGroup = true, Component = "LAYOUT", Redirect = "/saas/tenants" });
+            //saasMenuItem.AddItem(new ApplicationMenuItem(AdministrationMenuNames.Saas.Tenants, saasLocalizer["Menu:Tenants"]
+            //    , url: "/saas/tenants", customData: new { Component = "/saas/tenant/index" })
+            //    .RequirePermissions(SaasPermissions.Tenants.Default));
+            ////saasMenuItem.AddItem(new ApplicationMenuItem(AdministrationMenuNames.Saas.Editions, saasLocalizer["Menu:Editions"]
+            ////    , url: "/saas/editions", customData: new { Component = "/saas/edition/index" })
+            ////    .RequirePermissions(SaasPermissions.Editions.Default));
 
-            context.Menu.GetAdministration().AddItem(saasMenuItem);
-            #endregion ==== saas end =====
+            //context.Menu.GetAdministration().AddItem(saasMenuItem);
+            //#endregion ==== saas end =====
 
 
             #region ==== identity begin ===== 

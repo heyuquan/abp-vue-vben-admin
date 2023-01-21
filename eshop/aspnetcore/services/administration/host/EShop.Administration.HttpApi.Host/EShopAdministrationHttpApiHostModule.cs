@@ -68,7 +68,7 @@ namespace EShop.Administration
                     options.FileSets.ReplaceEmbeddedByPhysical<EShopAdministrationDomainModule>(
                         Path.Combine(hostingEnvironment.ContentRootPath,
                             $"..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}src{Path.DirectorySeparatorChar}EShop.Administration.Domain"));
-                    options.FileSets.ReplaceEmbeddedByPhysical<AdministrationApplicationContractsModule>(
+                    options.FileSets.ReplaceEmbeddedByPhysical<EShopAdministrationApplicationContractsModule>(
                         Path.Combine(hostingEnvironment.ContentRootPath,
                             $"..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}src{Path.DirectorySeparatorChar}EShop.Administration.Application.Contracts"));
                     options.FileSets.ReplaceEmbeddedByPhysical<EShopAdministrationApplicationModule>(

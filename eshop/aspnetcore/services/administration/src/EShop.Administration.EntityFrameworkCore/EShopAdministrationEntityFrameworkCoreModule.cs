@@ -1,5 +1,4 @@
-﻿using Leopard.Saas.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.MySQL;
@@ -7,6 +6,7 @@ using Volo.Abp.FeatureManagement.EntityFrameworkCore;
 using Volo.Abp.Modularity;
 using Volo.Abp.PermissionManagement.EntityFrameworkCore;
 using Volo.Abp.SettingManagement.EntityFrameworkCore;
+using Volo.Abp.TenantManagement.EntityFrameworkCore;
 
 namespace EShop.Administration.EntityFrameworkCore
 {
@@ -17,7 +17,7 @@ namespace EShop.Administration.EntityFrameworkCore
         typeof(AbpSettingManagementEntityFrameworkCoreModule),       
         typeof(AbpAuditLoggingEntityFrameworkCoreModule),
         typeof(AbpFeatureManagementEntityFrameworkCoreModule),
-        typeof(LeopardSaasEntityFrameworkCoreModule)
+        typeof(AbpTenantManagementEntityFrameworkCoreModule)
         )]
     public class EShopAdministrationEntityFrameworkCoreModule : AbpModule
     {

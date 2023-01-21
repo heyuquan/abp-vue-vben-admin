@@ -12,8 +12,4 @@
     <ProjectReference Include="..\EShop.Identity.Application.Contracts\EShop.Identity.Application.Contracts.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Volo.Abp.Identity.HttpApi" Version="6.0.2" />
-  </ItemGroup>
-
 </Project>

@@ -8,9 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\module\account\src\EShop.Account.Admin.Application\EShop.Account.Admin.Application.csproj" />
-    <ProjectReference Include="..\..\..\..\module\identity\src\Leopard.Identity.Application\Leopard.Identity.Application.csproj" />
-    <ProjectReference Include="..\..\..\..\module\saas\src\Leopard.Saas.Application\Leopard.Saas.Application.csproj" />
+    <ProjectReference Include="..\..\..\..\modules\account\src\EShop.Account.Admin.Application\EShop.Account.Admin.Application.csproj" />
     <ProjectReference Include="..\EShop.Administration.Domain\EShop.Administration.Domain.csproj" />
     <ProjectReference Include="..\EShop.Administration.Application.Contracts\EShop.Administration.Application.Contracts.csproj" />
   </ItemGroup>
@@ -20,6 +18,7 @@
     <PackageReference Include="Volo.Abp.PermissionManagement.Application" Version="6.0.2" />
     <PackageReference Include="Volo.Abp.FeatureManagement.Application" Version="6.0.2" />
     <PackageReference Include="Volo.Abp.SettingManagement.Application" Version="6.0.2" />
+    <PackageReference Include="Volo.Abp.TenantManagement.Application" Version="6.0.2" />
   </ItemGroup>
 
 </Project>

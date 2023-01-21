@@ -1,24 +1,22 @@
-﻿using EShop.Administration.Localization;
-using EShop.Account.Admin;
-using Leopard.Identity;
-using Leopard.Saas;
+﻿using EShop.Account.Admin;
+using EShop.Administration.Localization;
 using Localization.Resources.AbpUi;
 using Volo.Abp.FeatureManagement;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Volo.Abp.PermissionManagement.HttpApi;
 using Volo.Abp.SettingManagement;
+using Volo.Abp.TenantManagement;
 
 namespace EShop.Administration
 {
     [DependsOn(
-        typeof(AdministrationApplicationContractsModule),
+        typeof(EShopAdministrationApplicationContractsModule),
         typeof(AbpPermissionManagementHttpApiModule),
         typeof(AbpFeatureManagementHttpApiModule),
         typeof(AbpSettingManagementHttpApiModule),
-        typeof(LeopardSaasHttpApiModule),
-        typeof(EShopAccountAdminHttpApiModule),
-        typeof(LeopardIdentityHttpApiModule)
+        typeof(AbpTenantManagementHttpApiModule),
+        typeof(EShopAccountAdminHttpApiModule)
         )]
     public class EShopAdministrationHttpApiModule : AbpModule
     {

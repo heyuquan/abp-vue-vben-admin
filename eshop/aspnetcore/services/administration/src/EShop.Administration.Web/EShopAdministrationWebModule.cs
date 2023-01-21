@@ -1,4 +1,4 @@
-﻿using Leopard.Identity.Web.Navigation;
+﻿using EShop.Administration.Web.Navigation;
 using Leopard.UI.Navigation;
 using Volo.Abp.Modularity;
 using Volo.Abp.UI.Navigation;

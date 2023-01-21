@@ -9,8 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\..\..\framework\leopard\src\Leopard.UI.Navigation\Leopard.UI.Navigation.csproj" />
-    <ProjectReference Include="..\..\..\..\module\identity\src\Leopard.Identity.Application.Contracts\Leopard.Identity.Application.Contracts.csproj" />
-    <ProjectReference Include="..\..\..\..\module\saas\src\Leopard.Saas.Application.Contracts\Leopard.Saas.Application.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\identity\src\EShop.Identity.Application.Contracts\EShop.Identity.Application.Contracts.csproj" />
     <ProjectReference Include="..\EShop.Administration.Domain.Shared\EShop.Administration.Domain.Shared.csproj" />
   </ItemGroup>
 

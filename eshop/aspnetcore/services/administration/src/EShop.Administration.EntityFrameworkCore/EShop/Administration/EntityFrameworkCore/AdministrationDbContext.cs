@@ -1,5 +1,4 @@
 ﻿using Leopard.EntityFrameworkCore;
-using Leopard.Saas.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.Data;
@@ -7,6 +6,7 @@ using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.FeatureManagement.EntityFrameworkCore;
 using Volo.Abp.PermissionManagement.EntityFrameworkCore;
 using Volo.Abp.SettingManagement.EntityFrameworkCore;
+using Volo.Abp.TenantManagement.EntityFrameworkCore;
 
 namespace EShop.Administration.EntityFrameworkCore
 {
@@ -48,7 +48,7 @@ namespace EShop.Administration.EntityFrameworkCore
             builder.ConfigureSettingManagement();
             builder.ConfigureAuditLogging();
             builder.ConfigureFeatureManagement();
-            builder.ConfigureSaas();
+            builder.ConfigureTenantManagement();
 
             /* Configure your own tables/entities inside here */
 

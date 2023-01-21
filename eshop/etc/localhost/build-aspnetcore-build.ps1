@@ -2,9 +2,15 @@
 
 # Build all solutions
 foreach ($project in $projectArray) {  
-    Set-Location $project.Path
-    Write-Host $project.Name $project.Path -ForegroundColor green
-    dotnet build --no-cache
+    Write-Host "begin build 【$($project.Name)】 path:$($project.Path)" -ForegroundColor yellow
+    if (Test-Path $project.Path) {
+        Set-Location $project.Path        
+        dotnet build --no-cache
+        Write-Host "success build $($project.Name)" -ForegroundColor green
+    } else {
+        Write-Host "can not find path:$($project.Path)" -ForegroundColor red
+    }
+    Write-Host "" # 换行
 }
 
 Set-Location $rootFolder

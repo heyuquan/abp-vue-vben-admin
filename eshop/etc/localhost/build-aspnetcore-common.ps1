@@ -11,7 +11,7 @@ $rootFolder = (Get-Item -Path "./" -Verbose).FullName
 
 #leopard
 $projectArray += [PsObject]@{ Path = $rootFolder + "/../../../framework/leopard/"; Name = "framework"; Type = "build"  }
-$projectArray += [PsObject]@{ Path = $rootFolder + "/../../../framework/leopard/modules/identity/"; Name = "leopard-identity"; Type = "build"  }
+$projectArray += [PsObject]@{ Path = $rootFolder + "/../../../framework/modules/identity/"; Name = "leopard-identity"; Type = "build"  }
 
 #eshop
 $projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/common/"; Name = "common"; Type = "build"  }
