@@ -2,7 +2,7 @@
 
 Write-Host ==================== Begin Init EShop.Identity.AuthServer ========================
 $project = $projectArray | Where {$_.Name -eq "identity-auth-server" }
-Set-Location $project.Path
+Set-Location $project.RunPath
 abp install-libs
 
 

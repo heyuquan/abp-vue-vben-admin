@@ -10,24 +10,45 @@ $rootFolder = (Get-Item -Path "./" -Verbose).FullName
 #   gateway     网关项目
 
 #leopard
-$projectArray += [PsObject]@{ Path = $rootFolder + "/../../../framework/leopard/"; Name = "framework"; Type = "build"  }
-$projectArray += [PsObject]@{ Path = $rootFolder + "/../../../framework/modules/identity/"; Name = "leopard-identity"; Type = "build"  }
+$projectArray += [PsObject]@{ Path = $rootFolder + "/../../../framework/leopard"; RunPath = ""; Name = "framework"; Type = "build"  }
+$projectArray += [PsObject]@{ Path = $rootFolder + "/../../../framework/modules/identity"; RunPath = ""; Name = "leopard-identity"; Type = "build"  }
 
 #eshop
-$projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/common/"; Name = "common"; Type = "build"  }
-$projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/modules/account/"; Name = "account"; Type = "build"  }
+$projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/common/"; RunPath = ""; Name = "common"; Type = "build"  }
+$projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/modules/account"; RunPath = ""; Name = "account"; Type = "build"  }
 #$projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/modules/saas/"; Name = "saas"; Type = "build"  }
 
-# service
-$projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/services/identity/host/EShop.Identity.HttpApi.Host/"; Name = "identity"; Type = "service"   }
-$projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/services/identity/host/EShop.Identity.AuthServer/"; Name = "identity-auth-server"; Type = "service"   }
-$projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/services/administration/host/EShop.Administration.HttpApi.Host/"; Name = "administration"; Type = "service"   }
+#service
+$projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/services/identity"; RunPath = "/host/EShop.Identity.HttpApi.Host"; Name = "identity"; Type = "service"   }
+$projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/services/identity"; RunPath = "/host/EShop.Identity.AuthServer"; 
+                              Name = "identity-auth-server"; Type = "service"; 
+                              IsMigration = $true ; 
+                              EfProject = "/src/EShop.Identity.EntityFrameworkCore/EShop.Identity.EntityFrameworkCore.csproj" ;
+                              StartProject = "/host/EShop.Identity.HttpApi.Host/EShop.Identity.HttpApi.Host.csproj"
+                            }
+$projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/services/administration"; RunPath = "/host/EShop.Administration.HttpApi.Host"; 
+                              Name = "administration"; Type = "service"   
+                              IsMigration = $true ; 
+                              EfProject = "/src/EShop.Administration.EntityFrameworkCore/EShop.Administration.EntityFrameworkCore.csproj" ;
+                              StartProject = "/host/EShop.Administration.HttpApi.Host/EShop.Administration.HttpApi.Host.csproj"
+                            }
 
 #gateway
-$projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/gateways/BackendAdminAppGateway.Host/src/"; Name = "BackendAdminAppGateway"; Type = "gateway"   }
-$projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/gateways/InternalGateway.Host/src/"; Name = "InternalGateway"; Type = "gateway"   }
-$projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/gateways/PublicWebSiteGateway.Host/src/"; Name = "PublicWebSiteGateway"; Type = "gateway"   }
+$projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/gateways/BackendAdminAppGateway.Host"; RunPath = "/src"; Name = "BackendAdminAppGateway"; Type = "gateway"   }
+$projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/gateways/InternalGateway.Host"; RunPath = "/src"; Name = "InternalGateway"; Type = "gateway"   }
+$projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/gateways/PublicWebSiteGateway.Host"; RunPath = "/src"; Name = "PublicWebSiteGateway"; Type = "gateway"   }
 
+foreach ($project in $projectArray) {  
+    $project.RunPath = $project.Path + $project.RunPath
+}
+
+#test
+# foreach ($project in $projectArray) {  
+#     Write-Host $project.Path
+#     Write-Host $project.RunPath
+#     Write-Host $project.Name
+#     Write-Host $project.Type
+# }
 
 Write-host ""
 Write-host ":::::::::::::: !!! You are in development mode !!! ::::::::::::::" -ForegroundColor red -BackgroundColor  yellow

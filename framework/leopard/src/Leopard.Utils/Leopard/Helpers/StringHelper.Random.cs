@@ -14,7 +14,6 @@ namespace Leopard.Helpers
         /// <summary>
         /// 创建伪随机字符串 （由26个小写字母+26个大写字母构成）
         /// </summary>
-        /// <param name="str"></param>
         /// <param name="strleg">长度</param>
         /// <returns></returns>
         public static string CreateRandomChar(long strleg = 15)
@@ -34,7 +33,6 @@ namespace Leopard.Helpers
         /// <summary>
         /// 创建伪随机数字符串
         /// </summary>
-        /// <param name="str"></param>
         /// <param name="numleg"></param>
         /// <returns></returns>
         public static string CreateRandomNumber(int numleg = 4)

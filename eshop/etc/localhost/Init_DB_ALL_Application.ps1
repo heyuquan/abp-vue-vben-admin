@@ -2,18 +2,15 @@
 
 # 先安装  dotnet tool install --global dotnet-ef
 
-Write-Host ==================== Begin Init identity ========================
-$project = $projectArray | Where {$_.Name -eq "identity" }
-Set-Location $project.Path
-dotnet ef database update -p ./
-
-Write-Host ==================== Begin administration ========================
-$solutionPath = $rootFolder + "/../../aspnetcore/services/administration"
-Set-Location $solutionPath
-dotnet ef database update --project ./src/EShop.Administration.EntityFrameworkCore/EShop.Administration.EntityFrameworkCore.csproj --startup-project ./host/EShop.Administration.HttpApi.Host/EShop.Administration.HttpApi.Host.csproj
-
-
-
+foreach ($project in $projectArray) {  
+    if ($project.IsMigration) {
+        Write-Host "【$($project.Name)】 begin ef database update, project-path:$($project.Path)" -ForegroundColor yellow
+        Set-Location $project.Path        
+        dotnet ef database update --project $project.EfProject --startup-project $project.StartProject
+        Write-Host "success ef database update..." -ForegroundColor green
+    }
+    Write-Host "" # 换行
+}
 
 Set-Location $rootFolder
 

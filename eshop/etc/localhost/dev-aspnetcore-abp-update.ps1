@@ -8,7 +8,7 @@ $solutionPath = $rootFolder + "/../../aspnetcore/"
 Set-Location $solutionPath
 abp update
 
-$solutionPath = $rootFolder + "/../../../framework/leopard/"
+$solutionPath = $rootFolder + "/../../../framework/"
 Set-Location $solutionPath
 abp update
 

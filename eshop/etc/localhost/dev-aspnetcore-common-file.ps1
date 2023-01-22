@@ -2,11 +2,11 @@
 
 # Build all solutions
 foreach ($project in $projectArray) {  
-    Write-Host "begin build 【$($project.Name)】 path:$($project.Path)" -ForegroundColor yellow
+    Write-Host "[ $($project.Name) ] begin copy common-file , project-path:$($project.Path)" -ForegroundColor yellow
     if (Test-Path $project.Path) {
         Set-Location $project.Path        
         dotnet build --no-cache
-        Write-Host "success build $($project.Name)" -ForegroundColor green
+        Write-Host "success copy common-file..." -ForegroundColor green
     } else {
         Write-Host "can not find path:$($project.Path)" -ForegroundColor red
     }
