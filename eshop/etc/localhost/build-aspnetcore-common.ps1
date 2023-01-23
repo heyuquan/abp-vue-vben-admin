@@ -40,6 +40,10 @@ $projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/gateways/P
 
 foreach ($project in $projectArray) {  
     $project.RunPath = $project.Path + $project.RunPath
+
+    #、相对路径，转绝对路径  ps：xcopy的时候识别不了相对路径
+    $project.Path = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($project.Path)
+    $project.RunPath = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($project.RunPath)
 }
 
 #test

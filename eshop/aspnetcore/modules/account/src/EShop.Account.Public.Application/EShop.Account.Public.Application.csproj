@@ -15,9 +15,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="EShop\Account\Public\Emailing\Templates\EmailConfirmationLink.tpl" />
+	  <None Remove="EShop\Account\Public\Emailing\Templates\PasswordResetLink.tpl" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="EShop\Account\Public\Emailing\Templates\EmailConfirmationLink.tpl" />
+	  <EmbeddedResource Include="EShop\Account\Public\Emailing\Templates\PasswordResetLink.tpl" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Volo.Abp.Sms" Version="6.0.2" />
 		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="$(MicrosoftPackageVersion)" />
-		<ProjectReference Include="..\..\..\Identity\src\Leopard.Identity.Application\Leopard.Identity.Application.csproj" />
+		<ProjectReference Include="..\..\..\..\..\..\framework\modules\identity\src\Leopard.Identity.Application\Leopard.Identity.Application.csproj" />
 		<ProjectReference Include="..\EShop.Account.Public.Application.Contracts\EShop.Account.Public.Application.Contracts.csproj" />
 		<ProjectReference Include="..\EShop.Account.Shared.Application\EShop.Account.Shared.Application.csproj" />
 	</ItemGroup>

@@ -3,7 +3,7 @@
 	<Import Project="..\..\common.props" />
 	
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>netstandard2.0</TargetFramework>
 		<RootNamespace></RootNamespace>
 	</PropertyGroup>
 	
@@ -20,7 +20,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\..\Identity\src\Leopard.Identity.Application.Contracts\Leopard.Identity.Application.Contracts.csproj" />
+	  <ProjectReference Include="..\..\..\..\..\..\framework\modules\identity\src\Leopard.Identity.Application.Contracts\Leopard.Identity.Application.Contracts.csproj" />
     <ProjectReference Include="..\..\..\..\common\src\EShop.Common.Shared\EShop.Common.Shared.csproj" />
 	</ItemGroup>
 
