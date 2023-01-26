@@ -1,5 +1,4 @@
 ﻿using Volo.Abp.AuditLogging;
-using Volo.Abp.Emailing;
 using Volo.Abp.FeatureManagement;
 using Volo.Abp.Modularity;
 using Volo.Abp.PermissionManagement;
@@ -14,7 +13,6 @@ namespace EShop.Administration
         typeof(AbpFeatureManagementDomainModule),
         typeof(AbpPermissionManagementDomainModule),
         typeof(AbpSettingManagementDomainModule),
-        typeof(AbpEmailingModule),
         typeof(AbpTenantManagementDomainModule)
     )]
     public class EShopAdministrationDomainModule : AbpModule

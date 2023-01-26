@@ -8,6 +8,7 @@ using Volo.Abp.MultiTenancy;
 using Volo.Abp.TextTemplating;
 using Volo.Abp.UI.Navigation.Urls;
 using EShop.Account.Localization;
+using EShop.Account.Public.Emailing.Templates;
 
 namespace EShop.Account.Public.Emailing
 {
@@ -35,7 +36,7 @@ namespace EShop.Account.Public.Emailing
 		public virtual async Task SendPasswordResetLinkAsync(IdentityUser user, string resetToken, string appName)
 		{
 			string text = await this.AppUrlProvider.GetResetPasswordUrlAsync(appName);
-			string body = await this.TemplateRenderer.RenderAsync("Abp.Account.PasswordResetLink", string.Format("{0}?userId={1}&tenantId={2}&resetToken={3}", new object[]
+			string body = await this.TemplateRenderer.RenderAsync(AccountEmailTemplates.PasswordResetLink, string.Format("{0}?userId={1}&tenantId={2}&resetToken={3}", new object[]
 			{
 				text,
 				user.Id,
@@ -48,7 +49,7 @@ namespace EShop.Account.Public.Emailing
 		public async Task SendEmailConfirmationLinkAsync(IdentityUser user, string confirmationToken, string appName)
 		{
 			string text = await this.AppUrlProvider.GetEmailConfirmationUrlAsync(appName);
-			string body = await this.TemplateRenderer.RenderAsync("Abp.Account.EmailConfirmationLink", string.Format("{0}?userId={1}&tenantId={2}&confirmationToken={3}", new object[]
+			string body = await this.TemplateRenderer.RenderAsync(AccountEmailTemplates.EmailConfirmationLink, string.Format("{0}?userId={1}&tenantId={2}&confirmationToken={3}", new object[]
 			{
 				text,
 				user.Id,

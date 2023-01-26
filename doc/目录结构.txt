@@ -12,8 +12,9 @@
     #、auth-server-web		带页面的认证中心，（依赖：AbpAccountWebIdentityServer、AdministrationServiceEntityFrameworkCoreModule、IdentityServiceEntityFrameworkCoreModule）。
 
 3、eshop/services
-    #、administration       （Permission、Setting、AuditLogging、Feature）
+    #、administration       （Permission、Setting、AuditLogging、Feature），account.admin
     #、identity             （Identity、OpenIddict）
+    #、member               会员中心  accoount.public
     #、basket	            购物车、产品
     #、catalog	            目录
     #、cmskit	

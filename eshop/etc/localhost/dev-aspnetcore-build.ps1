@@ -6,7 +6,7 @@ foreach ($project in $projectArray) {
     if (Test-Path $project.Path) {
         Set-Location $project.Path        
         # CS1573 : 类似：参数“task”在“TaskExtensions.Timeout<T>(Task<T>, int)”的 XML 注释中没有匹配的 param 标记(但其他参数有) 
-        dotnet build --no-cache -nowarn:CS1573
+        dotnet build -nowarn:CS1573 --no-cache
         Write-Host "success build..." -ForegroundColor green
     } else {
         Write-Host "can not find path:$($project.Path)" -ForegroundColor red
