@@ -349,6 +349,9 @@ namespace Leopard.Host
 
             if (env.IsDevelopment())
             {
+                // https://github.com/SpringLeee/ViewConfig
+                app.UseViewConfig(x => x.Map().RenderJson());
+
                 app.UseDeveloperExceptionPage();
             }
             else

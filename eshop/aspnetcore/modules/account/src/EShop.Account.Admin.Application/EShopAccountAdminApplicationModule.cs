@@ -2,12 +2,14 @@
 using Volo.Abp.AutoMapper;
 using Volo.Abp.Modularity;
 using Volo.Abp.Application;
+using Volo.Abp.SettingManagement;
 
 namespace EShop.Account.Admin
 {
     [DependsOn(
         typeof(EShopAccountSharedApplicationModule),
-        typeof(EShopAccountAdminApplicationContractsModule)
+        typeof(EShopAccountAdminApplicationContractsModule),
+        typeof(AbpSettingManagementDomainModule)
         )]
     public class EShopAccountAdminApplicationModule : AbpModule
     {

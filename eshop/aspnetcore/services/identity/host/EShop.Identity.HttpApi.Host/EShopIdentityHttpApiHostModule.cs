@@ -1,5 +1,6 @@
 using EShop.Common.Shared;
 using EShop.Identity.Microsoft.Extensions.DependencyInjection;
+using Leopard;
 using Leopard.Host;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp;

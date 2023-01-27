@@ -188,7 +188,7 @@ ClientBin/
 *~
 *.dbmdl
 *.dbproj.schemaview
-# *.pfx
+*.pfx
 *.publishsettings
 node_modules/
 orleans.codegen.cs
@@ -258,3 +258,6 @@ paket-files/
 **/tempkey.jwk
 **.local
 ocelot.json
+
+# Use abp install-libs to restore.
+**/wwwroot/libs/*

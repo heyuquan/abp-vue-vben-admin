@@ -251,15 +251,13 @@ paket-files/
 .idea/
 *.sln.iml
 
-# Identity
-src/EShop.Identity.Web/Logs/*
-src/EShop.Identity.Web/Logs/*
-src/EShop.Identity.AuthServer/Logs/*
-src/EShop.Identity.HttpApi.Host/Logs/*
-src/EShop.Identity.HttpApi.HostWithIds/Logs/*
-src/EShop.Identity.DbMigrator/Logs/*
-src/EShop.Identity.Blazor.Server/Logs/*
-src/EShop.Identity.Blazor.Server.Tiered/Logs/*
+# User
+**/Logs/
+
+/Environment/elasticsearch/plugins/
+**/tempkey.jwk
+**.local
+ocelot.json
 
 # Use abp install-libs to restore.
 **/wwwroot/libs/*

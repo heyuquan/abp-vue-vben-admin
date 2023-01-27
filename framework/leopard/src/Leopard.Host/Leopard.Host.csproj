@@ -9,14 +9,14 @@
 
 	<ItemGroup>
 		<PackageReference Include="DistributedLock.Redis" Version="1.0.2" />
-		<PackageReference Include="Volo.Abp.Autofac" Version="6.0.2" />
-		<PackageReference Include="Volo.Abp.Caching.StackExchangeRedis" Version="6.0.2" />
+    <PackageReference Include="Volo.Abp.Autofac" Version="6.0.2" />
+    <PackageReference Include="Volo.Abp.Caching.StackExchangeRedis" Version="6.0.2" />
     <PackageReference Include="Volo.Abp.DistributedLocking" Version="6.0.2" />
-		<PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy" Version="6.0.2" />
-		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="$(MicrosoftPackageVersion)" />
-		<PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="$(MicrosoftPackageVersion)" />
-		<PackageReference Include="Microsoft.Extensions.Hosting" Version="$(MicrosoftPackageVersion)" />
-	</ItemGroup>
+    <PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy" Version="6.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="$(MicrosoftPackageVersion)" />
+    <PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="$(MicrosoftPackageVersion)" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="$(MicrosoftPackageVersion)" />
+  </ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\Leopard.AspNetCore.Mvc\Leopard.AspNetCore.Mvc.csproj" />

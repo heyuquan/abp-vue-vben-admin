@@ -3,7 +3,6 @@ using Volo.Abp.AutoMapper;
 using Volo.Abp.Emailing;
 using Volo.Abp.Modularity;
 using Volo.Abp.UI.Navigation;
-using Leopard.Identity;
 
 namespace EShop.Account
 {
@@ -12,7 +11,6 @@ namespace EShop.Account
 		typeof(AbpUiNavigationModule),
 		typeof(AbpEmailingModule),
 		typeof(AbpAutoMapperModule),
-		typeof(LeopardIdentityApplicationModule),
 		typeof(EShopAccountSharedApplicationContractsModule)		
 	)]
 	public class EShopAccountSharedApplicationModule : AbpModule

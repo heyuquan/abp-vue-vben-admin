@@ -23,14 +23,14 @@ $projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/services/i
 $projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/services/identity"; RunPath = "/host/EShop.Identity.AuthServer"; 
                               Name = "identity-auth-server"; Type = "service"; 
                               IsMigration = $true ; 
-                              EfProject = "/src/EShop.Identity.EntityFrameworkCore/EShop.Identity.EntityFrameworkCore.csproj" ;
-                              StartProject = "/host/EShop.Identity.HttpApi.Host/EShop.Identity.HttpApi.Host.csproj"
+                              EfProject = "./src/EShop.Identity.EntityFrameworkCore/EShop.Identity.EntityFrameworkCore.csproj" ;
+                              StartProject = "./host/EShop.Identity.HttpApi.Host/EShop.Identity.HttpApi.Host.csproj"
                             }
 $projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/services/administration"; RunPath = "/host/EShop.Administration.HttpApi.Host"; 
                               Name = "administration"; Type = "service"   
                               IsMigration = $true ; 
-                              EfProject = "/src/EShop.Administration.EntityFrameworkCore/EShop.Administration.EntityFrameworkCore.csproj" ;
-                              StartProject = "/host/EShop.Administration.HttpApi.Host/EShop.Administration.HttpApi.Host.csproj"
+                              EfProject = "./src/EShop.Administration.EntityFrameworkCore/EShop.Administration.EntityFrameworkCore.csproj" ;
+                              StartProject = "./host/EShop.Administration.HttpApi.Host/EShop.Administration.HttpApi.Host.csproj"
                             }
 
 #gateway
