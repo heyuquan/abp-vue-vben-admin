@@ -16,6 +16,11 @@ foreach ($project in $projectArray) {
         Write-Host "success copy common-file/sln..." -ForegroundColor green
 
         if($project.Type -eq "service") {
+            $cur_sln_service_folder = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath("$($rootFolder)/aspnetcore/common-file/sln/service/*.*")
+            Write-Host xcopy $cur_sln_service_folder "$($project.Path)\" /s/i/y/d
+            &xcopy $cur_sln_service_folder "$($project.Path)\" /s/i/y/d
+            Write-Host "success copy common-file/sln/setvice/..." -ForegroundColor green
+
             $cur_run_folder = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath("$($rootFolder)/aspnetcore/common-file/run/*.*")
             Write-Host xcopy $cur_run_folder "$($project.RunPath)\" /s/i/y/d
             &xcopy $cur_run_folder "$($project.RunPath)\" /s/i/y/d

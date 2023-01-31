@@ -254,7 +254,7 @@ paket-files/
 # User
 **/Logs/
 
-/Environment/elasticsearch/plugins/
+#/Environment/elasticsearch/plugins/
 **/tempkey.jwk
 **.local
 ocelot.json

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -53,6 +54,34 @@ namespace Leopard.Helpers
         }
 
         #endregion
+
+        /// <summary>
+        /// 指定两个数组的偏移值，进行拷贝
+        /// </summary>
+        /// <param name="src"></param>
+        /// <param name="srcOffset">src 偏移值</param>
+        /// <param name="dst"></param>
+        /// <param name="dstOffset">dst 偏移值</param>
+        /// <param name="size">拷贝的数量</param>
+        public static void Copy(Array src, int srcOffset, Array dst, int dstOffset, int size)
+        {
+            // https://www.cnblogs.com/deali/p/17075093.html
+            // Linq: array.Select(x=>x).ToArray() 比 Array.Copy、Buffer.BlockCopy 慢2-3倍
+            Buffer.BlockCopy(src, srcOffset, dst, dstOffset, size);
+        }
+
+        /// <summary>
+        /// 指定数组的偏移值，进行拷贝
+        /// </summary>
+        /// <param name="src"></param>
+        /// <param name="srcOffset">src 偏移值</param>
+        /// <param name="size">拷贝的数量</param>
+        public static Array Copy(Array src, int srcOffset, int size)
+        {
+            byte[] result = new byte[size];
+            Copy(src, srcOffset, result, 0, size);
+            return result;
+        }
 
     }
 }

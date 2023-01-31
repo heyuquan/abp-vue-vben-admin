@@ -2,6 +2,6 @@
 {
 	public class IdentityProRemoteServiceConsts
 	{
-		public const string RemoteServiceName = "YunIdentity";
+		public const string RemoteServiceName = "LeopardIdentity";
 	}
 }

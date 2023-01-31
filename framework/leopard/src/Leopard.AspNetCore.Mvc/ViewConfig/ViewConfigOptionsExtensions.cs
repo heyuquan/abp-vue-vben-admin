@@ -5,7 +5,6 @@ using ViewConfig;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
-    // https://github.com/SpringLeee/ViewConfig
     public static class ViewConfigOptionsExtensions
     {
         public static ViewConfigOptions Map(this ViewConfigOptions options,string endpoint = "/viewconfig")
