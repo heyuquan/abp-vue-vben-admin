@@ -34,9 +34,9 @@ $projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/services/a
                             }
 
 #gateway
-$projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/gateways/BackendAdminAppGateway.Host"; RunPath = "/src"; Name = "BackendAdminAppGateway"; Type = "gateway"   }
-$projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/gateways/InternalGateway.Host"; RunPath = "/src"; Name = "InternalGateway"; Type = "gateway"   }
-$projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/gateways/PublicWebSiteGateway.Host"; RunPath = "/src"; Name = "PublicWebSiteGateway"; Type = "gateway"   }
+$projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/gateways/BackendAdminAppGateway.Host"; RunPath = "/host"; Name = "BackendAdminAppGateway"; Type = "gateway"   }
+$projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/gateways/InternalGateway.Host"; RunPath = "/host"; Name = "InternalGateway"; Type = "gateway"   }
+$projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/gateways/PublicWebSiteGateway.Host"; RunPath = "/host"; Name = "PublicWebSiteGateway"; Type = "gateway"   }
 
 foreach ($project in $projectArray) {  
     $project.RunPath = $project.Path + $project.RunPath
