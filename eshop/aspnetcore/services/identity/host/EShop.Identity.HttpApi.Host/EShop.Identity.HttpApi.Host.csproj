@@ -1,29 +1,36 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <RootNamespace>EShop.Identity</RootNamespace>
-    <PreserveCompilationReferences>true</PreserveCompilationReferences>
-    <UserSecretsId>EShop.Identity-4681b4fd-151f-4221-84a4-929d86723e4c</UserSecretsId>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<RootNamespace>EShop.Identity</RootNamespace>
+		<PreserveCompilationReferences>true</PreserveCompilationReferences>
+		<UserSecretsId>EShop.Identity-4681b4fd-151f-4221-84a4-929d86723e4c</UserSecretsId>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy" Version="6.0.2" />
-    <PackageReference Include="Volo.Abp.Autofac" Version="6.0.2" />
-    <PackageReference Include="Volo.Abp.SettingManagement.EntityFrameworkCore" Version="6.0.2" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy" Version="6.0.2" />
+		<PackageReference Include="Volo.Abp.Autofac" Version="6.0.2" />
+		<PackageReference Include="Volo.Abp.SettingManagement.EntityFrameworkCore" Version="6.0.2" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\EShop.Identity.Application\EShop.Identity.Application.csproj" />
-    <ProjectReference Include="..\..\src\EShop.Identity.EntityFrameworkCore\EShop.Identity.EntityFrameworkCore.csproj" />
-    <ProjectReference Include="..\..\src\EShop.Identity.HttpApi\EShop.Identity.HttpApi.csproj" />
-    <ProjectReference Include="..\..\..\..\common\src\EShop.Common.Shared\EShop.Common.Shared.csproj" />
-    <ProjectReference Include="..\..\..\..\..\..\framework\leopard\src\Leopard.Host\Leopard.Host.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\src\EShop.Identity.Application\EShop.Identity.Application.csproj" />
+		<ProjectReference Include="..\..\src\EShop.Identity.EntityFrameworkCore\EShop.Identity.EntityFrameworkCore.csproj" />
+		<ProjectReference Include="..\..\src\EShop.Identity.HttpApi\EShop.Identity.HttpApi.csproj" />
+		<ProjectReference Include="..\..\..\..\common\src\EShop.Common.Shared\EShop.Common.Shared.csproj" />
+		<ProjectReference Include="..\..\..\..\..\..\framework\leopard\src\Leopard.Host\Leopard.Host.csproj" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Compile Remove="IdentityServer\IdentityServerDataSeedContributor.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="IdentityServer\IdentityServerDataSeedContributor.cs" />
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Remove="IdentityServer\IdentityServerDataSeedContributor.cs" />
+	</ItemGroup>
+	<ItemGroup>
+		<Content Include="IdentityServer\IdentityServerDataSeedContributor.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Remove="Logs\**" />
+		<Content Remove="Logs\**" />
+		<EmbeddedResource Remove="Logs\**" />
+		<None Remove="Logs\**" />
+	</ItemGroup>
 </Project>

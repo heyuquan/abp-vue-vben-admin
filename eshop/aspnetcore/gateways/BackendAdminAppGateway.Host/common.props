@@ -30,5 +30,5 @@
 	
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 	  <WarningsAsErrors>$(WarningsAsErrors);NU1605;CS4014</WarningsAsErrors>
-	</PropertyGroup>
+	</PropertyGroup> 
 </Project>
