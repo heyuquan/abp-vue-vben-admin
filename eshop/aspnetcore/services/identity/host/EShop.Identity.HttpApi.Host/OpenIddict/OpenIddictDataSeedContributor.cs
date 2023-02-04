@@ -26,6 +26,8 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
     private readonly IOpenIddictScopeManager _scopeManager;
     private readonly IPermissionDataSeeder _permissionDataSeeder;
     private readonly IStringLocalizer<OpenIddictResponse> L;
+    // 身份中心服务，身份相关的数据，都在这个服务中
+    private readonly string IDENTITY_SERVICE_NAME = "EShop.Identity.Service";
 
     public OpenIddictDataSeedContributor(
         IConfiguration configuration,
@@ -41,6 +43,19 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
         L = l;
     }
 
+    IEnumerable<String> AllApiScopes
+    {
+        get
+        {
+            var result = _configuration.GetSection("OpenIddict:ApiScopes").GetChildren().Select(x => x.Value);
+            if (result == null)
+            {
+                throw new Exception("配置文件缺少 OpenIddict:ApiScopes 节点");
+            }
+            return result;
+        }
+    }
+
     [UnitOfWork]
     public virtual async Task SeedAsync(DataSeedContext context)
     {
@@ -50,16 +65,23 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
 
     private async Task CreateScopesAsync()
     {
-        // 新建 EShop.Identity.Service 范围，后续设置为公共的
-        if (await _scopeManager.FindByNameAsync("EShop.Identity.Service") == null)
+        foreach (var item in AllApiScopes)
+        {
+            await CreateApiScopeAsync(item);
+        }
+    }
+
+    private async Task CreateApiScopeAsync(string name)
+    {
+        if (await _scopeManager.FindByNameAsync(name) == null)
         {
             await _scopeManager.CreateAsync(new OpenIddictScopeDescriptor
             {
-                Name = "EShop.Identity.Service",
-                DisplayName = "EShop.Identity.Service API",
+                Name = name,
+                DisplayName = $"{name} API",
                 Resources =
                 {
-                    "EShop.Identity.Service"
+                    name
                 }
             });
         }
@@ -74,7 +96,7 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
             OpenIddictConstants.Permissions.Scopes.Phone,
             OpenIddictConstants.Permissions.Scopes.Profile,
             OpenIddictConstants.Permissions.Scopes.Roles,
-            "EShop.Identity.Service"
+            IDENTITY_SERVICE_NAME
         };
 
         var configurationSection = _configuration.GetSection("OpenIddict:Applications");
@@ -102,32 +124,6 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
             );
         }
 
-        //EShop.Identity.AuthServer Client
-        var identityAuthServerClientIdName = "EShop.Identity.AuthServer.Web";
-        var identityAuthServerClientId = configurationSection[$"{identityAuthServerClientIdName}:ClientId"];
-        if (!identityAuthServerClientId.IsNullOrWhiteSpace())
-        {
-            var identityAuthServerRootUrl = configurationSection[$"{identityAuthServerClientIdName}:RootUrl"].EnsureEndsWith('/');
-
-            /* oidctest_Web client is only needed if you created a tiered
-             * solution. Otherwise, you can delete this client. */
-            await CreateApplicationAsync(
-                name: identityAuthServerClientId,
-                type: OpenIddictConstants.ClientTypes.Confidential,
-                consentType: OpenIddictConstants.ConsentTypes.Implicit,
-                displayName: identityAuthServerClientIdName,
-                secret: configurationSection[$"{identityAuthServerClientIdName}:ClientSecret"] ?? "1q2w3e*",
-                grantTypes: new List<string> 
-                {
-                    OpenIddictConstants.GrantTypes.AuthorizationCode,
-                    //OpenIddictConstants.GrantTypes.Implicit
-                },
-                scopes: commonScopes,
-                redirectUri: $"{identityAuthServerRootUrl}signin-oidc",
-                clientUri: identityAuthServerRootUrl,
-                postLogoutRedirectUri: $"{identityAuthServerRootUrl}signout-callback-oidc"
-            );
-        }
         // EShop.Administration.Web
         var administrationClientIdName = "EShop.Administration.Web";
         var administrationClientId = configurationSection[$"{administrationClientIdName}:ClientId"];
@@ -142,10 +138,7 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
                 secret: null,
                 grantTypes: new List<string>
                 {
-                    OpenIddictConstants.GrantTypes.AuthorizationCode,
                     OpenIddictConstants.GrantTypes.Password,
-                    //OpenIddictConstants.GrantTypes.ClientCredentials,
-                    OpenIddictConstants.GrantTypes.RefreshToken
                 },
                 scopes: commonScopes,
                 redirectUri: administrationClientRootUrl,
@@ -153,9 +146,32 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
                 postLogoutRedirectUri: administrationClientRootUrl
             );
         }
+
+        // EShop.Administration.Service.Swagger
+        var administrationSwaggerClientIdName = "EShop.Administration.Service.Swagger";
+        var administrationSwaggerClientId = configurationSection[$"{administrationSwaggerClientIdName}:ClientId"];
+        if (!administrationSwaggerClientId.IsNullOrWhiteSpace())
+        {
+            var administrationClientRootUrl = configurationSection[$"{administrationSwaggerClientIdName}:RootUrl"]?.TrimEnd('/');
+            await CreateApplicationAsync(
+                name: administrationSwaggerClientId,
+                type: OpenIddictConstants.ClientTypes.Public,
+                consentType: OpenIddictConstants.ConsentTypes.Implicit,
+                displayName: administrationSwaggerClientIdName,
+                secret: null,
+                grantTypes: new List<string>
+                {
+                    OpenIddictConstants.GrantTypes.AuthorizationCode,
+                },
+                scopes: commonScopes,
+                redirectUri: $"{administrationClientRootUrl}/swagger/oauth2-redirect.html",
+                clientUri: administrationClientRootUrl
+            );
+        }
     }
 
     // #、客户端类型 ClientType
+    // 基于客户端是否有能力与授权服务器进行安全认证的能力（即是否有能力保障其客户端凭证的保密性），OAuth定义了两种客户端类型：
     // 私密客户端：能够保障其凭证的保密性的客户端（如在安全的服务器上部署的客户端，对其凭证的访问受到限制），或者有办法通过别的方式进行安全认证的客户端。
     // 公开客户端：客户端无法保障其凭证的保密性（如客户端运行在资源所有者的设备上，比如是本地应用或基于web浏览器的应用），也无法通过别的方式进行安全认证的客户端。
 

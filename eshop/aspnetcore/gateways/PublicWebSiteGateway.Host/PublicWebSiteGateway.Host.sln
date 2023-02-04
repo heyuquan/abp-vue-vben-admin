@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{138BBFFC-09B9-49FB-9C57-E25327CCE0C1}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "host", "host", "{138BBFFC-09B9-49FB-9C57-E25327CCE0C1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PublicWebSiteGateway.Host", "src\PublicWebSiteGateway.Host.csproj", "{658F39A4-4E7B-40AC-8787-FFA014AC86C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PublicWebSiteGateway.Host", "host\PublicWebSiteGateway.Host.csproj", "{658F39A4-4E7B-40AC-8787-FFA014AC86C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

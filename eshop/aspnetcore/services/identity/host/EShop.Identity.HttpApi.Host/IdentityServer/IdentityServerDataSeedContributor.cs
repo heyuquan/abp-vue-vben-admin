@@ -24,8 +24,8 @@ using Client = Volo.Abp.IdentityServer.Clients.Client;
     // EShop.AuthServer.IdentityServer.Web 自身不需要在ApiScopes资源里面，
     // 但是其 EShop.AuthServer.HttpApi.Host 是需要在ApiScopes资源里面的
     "ApiScopes": [
-      "SSOAuthServerService",
-      "AdministrationService",
+      "EShop.Identity.Service",
+      "EShop.Administration.Service",
 
       "MkDemoBService",
       "MkDemoCService",
@@ -44,7 +44,7 @@ using Client = Volo.Abp.IdentityServer.Clients.Client;
           "https://159.75.253.251:44305/swagger/oauth2-redirect.html",
           "http://159.75.253.251:44302/swagger/oauth2-redirect.html"
         ],
-        "Scopes": [ "MkDemoBService", "SSOAuthServerService", "InternalGateway", "MkDemoCService" ],
+        "Scopes": [ "MkDemoBService", "EShop.Identity.Service", "InternalGateway", "MkDemoCService" ],
         "GrantTypes": [ "authorization_code" ],
         "ClientSecret": "1q2w3E*"
       },
@@ -55,29 +55,29 @@ using Client = Volo.Abp.IdentityServer.Clients.Client;
           "https://159.75.253.251:44405/swagger/oauth2-redirect.html",
           "http://159.75.253.251:44402/swagger/oauth2-redirect.html"
         ],
-        "Scopes": [ "MkDemoCService", "SSOAuthServerService", "InternalGateway" ],
+        "Scopes": [ "MkDemoCService", "EShop.Identity.Service", "InternalGateway" ],
         "GrantTypes": [ "authorization_code" ],
         "ClientSecret": "1q2w3E*"
       },
       {
-        "ClientId": "SSOAuthServerService",
+        "ClientId": "EShop.Identity.Service",
         "RedirectUris": [
           "https://localhost:44105/swagger/oauth2-redirect.html",
           "https://159.75.253.251:44105/swagger/oauth2-redirect.html",
           "http://159.75.253.251:44102/swagger/oauth2-redirect.html"
         ],
-        "Scopes": [ "SSOAuthServerService" ],
+        "Scopes": [ "EShop.Identity.Service" ],
         "GrantTypes": [ "authorization_code" ],
         "ClientSecret": "1q2w3E*"
       },
       {
-        "ClientId": "AdministrationService",
+        "ClientId": "EShop.Administration.Service",
         "RedirectUris": [
           "https://localhost:44145/swagger/oauth2-redirect.html",
           "https://159.75.253.251:44145/swagger/oauth2-redirect.html",
           "http://159.75.253.251:44142/swagger/oauth2-redirect.html"
         ],
-        "Scopes": [ "AdministrationService" ],
+        "Scopes": [ "EShop.Administration.Service" ],
         "GrantTypes": [ "authorization_code" ],
         "ClientSecret": "1q2w3E*"
       },
@@ -89,7 +89,7 @@ using Client = Volo.Abp.IdentityServer.Clients.Client;
           "https://159.75.253.251:44805/swagger/oauth2-redirect.html",
           "http://159.75.253.251:44802/swagger/oauth2-redirect.html"
         ],
-        "Scopes": [ "AdministrationAppGateway", "SSOAuthServerService", "AdministrationService" ],
+        "Scopes": [ "AdministrationAppGateway", "EShop.Identity.Service", "EShop.Administration.Service" ],
         "GrantTypes": [ "authorization_code" ],
         "ClientSecret": "1q2w3E*"
       },
@@ -100,7 +100,7 @@ using Client = Volo.Abp.IdentityServer.Clients.Client;
           "https://159.75.253.251:44815/swagger/oauth2-redirect.html",
           "http://159.75.253.251:44812/swagger/oauth2-redirect.html"
         ],
-        "Scopes": [ "InternalGateway", "SSOAuthServerService" ],
+        "Scopes": [ "InternalGateway", "EShop.Identity.Service" ],
         "GrantTypes": [ "authorization_code" ],
         "ClientSecret": "1q2w3E*"
       },
@@ -111,7 +111,7 @@ using Client = Volo.Abp.IdentityServer.Clients.Client;
           "https://159.75.253.251:44825/swagger/oauth2-redirect.html",
           "http://159.75.253.251:44822/swagger/oauth2-redirect.html"
         ],
-        "Scopes": [ "PublicWebSiteGateway", "SSOAuthServerService" ],
+        "Scopes": [ "PublicWebSiteGateway", "EShop.Identity.Service" ],
         "GrantTypes": [ "authorization_code" ],
         "ClientSecret": "1q2w3E*"
       },
@@ -135,7 +135,7 @@ using Client = Volo.Abp.IdentityServer.Clients.Client;
           "https://159.75.253.251/signin-oidc",
           "http://159.75.253.251/signin-oidc"
         ],
-        "Scopes": [ "AdministrationAppGateway", "SSOAuthServerService", "AdministrationService" ],
+        "Scopes": [ "AdministrationAppGateway", "EShop.Identity.Service", "EShop.Administration.Service" ],
         "GrantTypes": [ "password" ],
         "RequirePkce": true,
         "ClientSecret": "1q2w3E*",
@@ -286,7 +286,7 @@ namespace EShop.Identity.IdentityServer.Web
                 "role",
                 "phone",
                 "address",
-                "SSOAuthServerService"
+                "EShop.Identity.Service"
             };
 
             // 完整的参数
