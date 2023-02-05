@@ -468,6 +468,12 @@ namespace System
         /// <returns></returns>
         public static bool IsValidHttpURL(this string str, out Uri resultURI)
         {
+            if (str.IsNullOrWhiteSpace2())
+            {
+                resultURI = null;
+                return false;
+            }
+
             if (str.StartsWith("www."))
             {
                 str = "http://" + str;

@@ -26,8 +26,6 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
     private readonly IOpenIddictScopeManager _scopeManager;
     private readonly IPermissionDataSeeder _permissionDataSeeder;
     private readonly IStringLocalizer<OpenIddictResponse> L;
-    // 身份中心服务，身份相关的数据，都在这个服务中
-    private readonly string IDENTITY_SERVICE_NAME = "EShop.Identity.Service";
 
     public OpenIddictDataSeedContributor(
         IConfiguration configuration,
@@ -87,6 +85,20 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
         }
     }
 
+    /// <summary>
+    /// 判断输入uri是否为完整http地址，不完整，则拼接defaultRootUri
+    /// </summary>
+    /// <param name="uri"></param>
+    /// <param name="defaultRootUri"></param>
+    /// <returns></returns>
+    private string GetFullUri(string uri, string defaultRootUri)
+    {
+        if (uri.IsNullOrWhiteSpace())
+            return defaultRootUri;
+
+        return uri.IsUrlAddress() ? uri : $"{defaultRootUri}{uri}";
+    }
+
     private async Task CreateApplicationsAsync()
     {
         var commonScopes = new List<string>
@@ -96,77 +108,44 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
             OpenIddictConstants.Permissions.Scopes.Phone,
             OpenIddictConstants.Permissions.Scopes.Profile,
             OpenIddictConstants.Permissions.Scopes.Roles,
-            IDENTITY_SERVICE_NAME
+            "EShop.Identity.AuthServer"
         };
 
+        // 完整的参数
+        //{
+        //    "ClientId": "",               （必填）
+        //    "ClientUri": "",              （必填）
+        //    "ClientType": "",             （必填） 值为：OpenIddictConstants.ClientTypes
+        //    "ConsentType": "",            （必填） 值为：OpenIddictConstants.ConsentTypes
+        //    "ClientSecret": "",                   （选填） ClientTypes 为 confidential 时，才需要填写
+        //    "Scopes": [ ],                （必填）
+        //    "GrantTypes": [ ],            （必填） 值为：OpenIddictConstants.GrantTypes
+        //    "RedirectUri": "",                    （选填）默认为：ClientUri
+        //    "PostLogoutRedirectUri": ""           （选填）默认为：ClientUri
+        //    "Permissions":                （选填）默认：空
+        //}
+
         var configurationSection = _configuration.GetSection("OpenIddict:Applications");
-
-        // EShop.Identity.Service.Swagger Client
-        var identityServiceSwaggerClientIdName = "EShop.Identity.Service.Swagger";
-        var identityServiceSwaggerClientId = configurationSection[$"{identityServiceSwaggerClientIdName}:ClientId"];
-        if (!identityServiceSwaggerClientId.IsNullOrWhiteSpace())
+        foreach (var section in configurationSection.GetChildren())
         {
-            var identityServiceSwaggerRootUrl = configurationSection[$"{identityServiceSwaggerClientIdName}:RootUrl"].TrimEnd('/');
-
-            await CreateApplicationAsync(
-                name: identityServiceSwaggerClientId,
-                type: OpenIddictConstants.ClientTypes.Public,
-                consentType: OpenIddictConstants.ConsentTypes.Implicit,
-                displayName: identityServiceSwaggerClientIdName,
-                secret: null,
-                grantTypes: new List<string>
-                {
-                    OpenIddictConstants.GrantTypes.AuthorizationCode,
-                },
-                scopes: commonScopes,
-                redirectUri: $"{identityServiceSwaggerRootUrl}/swagger/oauth2-redirect.html",
-                clientUri: identityServiceSwaggerRootUrl
-            );
-        }
-
-        // EShop.Administration.Web
-        var administrationClientIdName = "EShop.Administration.Web";
-        var administrationClientId = configurationSection[$"{administrationClientIdName}:ClientId"];
-        if (!administrationClientId.IsNullOrWhiteSpace())
-        {
-            var administrationClientRootUrl = configurationSection[$"{administrationClientIdName}:RootUrl"]?.TrimEnd('/');
-            await CreateApplicationAsync(
-                name: administrationClientId,
-                type: OpenIddictConstants.ClientTypes.Public,
-                consentType: OpenIddictConstants.ConsentTypes.Implicit,
-                displayName: administrationClientIdName,
-                secret: null,
-                grantTypes: new List<string>
-                {
-                    OpenIddictConstants.GrantTypes.Password,
-                },
-                scopes: commonScopes,
-                redirectUri: administrationClientRootUrl,
-                clientUri: administrationClientRootUrl,
-                postLogoutRedirectUri: administrationClientRootUrl
-            );
-        }
-
-        // EShop.Administration.Service.Swagger
-        var administrationSwaggerClientIdName = "EShop.Administration.Service.Swagger";
-        var administrationSwaggerClientId = configurationSection[$"{administrationSwaggerClientIdName}:ClientId"];
-        if (!administrationSwaggerClientId.IsNullOrWhiteSpace())
-        {
-            var administrationClientRootUrl = configurationSection[$"{administrationSwaggerClientIdName}:RootUrl"]?.TrimEnd('/');
-            await CreateApplicationAsync(
-                name: administrationSwaggerClientId,
-                type: OpenIddictConstants.ClientTypes.Public,
-                consentType: OpenIddictConstants.ConsentTypes.Implicit,
-                displayName: administrationSwaggerClientIdName,
-                secret: null,
-                grantTypes: new List<string>
-                {
-                    OpenIddictConstants.GrantTypes.AuthorizationCode,
-                },
-                scopes: commonScopes,
-                redirectUri: $"{administrationClientRootUrl}/swagger/oauth2-redirect.html",
-                clientUri: administrationClientRootUrl
-            );
+            var clientId = section["ClientId"];
+            if (!clientId.IsNullOrWhiteSpace())
+            {
+                string clientUri = section["ClientUri"].TrimEnd('/');
+                await CreateApplicationAsync(
+                    name: clientId,
+                    clientUri: clientUri,
+                    type: section["ClientType"],
+                    consentType: section["ConsentType"],
+                    displayName: clientId,
+                    secret: section["ClientSecret"],
+                    grantTypes: section.GetSection("GrantTypes").GetChildren().Select(x => x.Value).ToList(),
+                    scopes: commonScopes.Union(section.GetSection("Scopes").GetChildren().Select(x => x.Value)).Distinct().ToList(),
+                    redirectUri: GetFullUri(section["RedirectUri"], clientUri),
+                    postLogoutRedirectUri: GetFullUri(section["PostLogoutRedirectUri"], clientUri),
+                    permissions: section.GetSection("Permissions").GetChildren().Select(x => x.Value).ToList()
+                );
+            }
         }
     }
 
@@ -236,7 +215,7 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
             Check.NotNullOrEmpty(grantTypes, nameof(grantTypes));
             Check.NotNullOrEmpty(scopes, nameof(scopes));
 
-            if (new [] { OpenIddictConstants.GrantTypes.AuthorizationCode, OpenIddictConstants.GrantTypes.Implicit }.All(grantTypes.Contains))
+            if (new[] { OpenIddictConstants.GrantTypes.AuthorizationCode, OpenIddictConstants.GrantTypes.Implicit }.All(grantTypes.Contains))
             {
                 application.Permissions.Add(OpenIddictConstants.Permissions.ResponseTypes.CodeIdToken);
 
@@ -313,7 +292,7 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
                 }
             }
 
-            var buildInScopes = new []
+            var buildInScopes = new[]
             {
                 OpenIddictConstants.Permissions.Scopes.Address,
                 OpenIddictConstants.Permissions.Scopes.Email,
