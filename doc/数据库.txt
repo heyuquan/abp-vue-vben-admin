@@ -20,3 +20,4 @@
 add-migration init -Context **
 updata-database -Context **
 script-migration -from migrationName1 -to migrationName2  -Context ContextName  (不含from，含to)
+

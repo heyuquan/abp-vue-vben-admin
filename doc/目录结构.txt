@@ -11,7 +11,7 @@
     #、h5			        h5
     #、auth-server-web		带页面的认证中心，（依赖：AbpAccountWebIdentityServer、AdministrationServiceEntityFrameworkCoreModule、IdentityServiceEntityFrameworkCoreModule）。
 
-3、eshop/services
+3、eshop/aspnetcore/services
     #、administration       （Permission、Setting、AuditLogging、Feature），account.admin
     #、identity             （Identity、OpenIddict）
     #、member               会员中心  accoount.public
@@ -21,7 +21,7 @@
     #、ordering	            订单
     #、payment	            支付
 
-4、eshop/gateways
+4、eshop/aspnetcore/gateways
     #、web			        Yarp.ReverseProxy,服务如：account、identity、administration、feature、permission、setting、catolog、ordering、cmskit
     #、web-public	        Yarp.ReverseProxy,服务如：account、administration、catalog、basket、ordering、payment、cmskit
 

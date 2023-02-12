@@ -1,0 +1,7 @@
+
+常用命令
+abp cli
+	dotnet tool install -g Volo.Abp.Cli
+	dotnet tool update -g Volo.Abp.Cli
+	abp update：自动更新的ABP解决方案ABP相关的NuGet和NPM包.
+	abp clean：删除当前目录下所有的 BIN 和 OBJ 子目录. (同：delete-bin-obj-folders.bat文件，但是此bat也保留)

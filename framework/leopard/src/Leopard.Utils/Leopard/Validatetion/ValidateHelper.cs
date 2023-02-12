@@ -32,10 +32,10 @@ namespace Leopard.Validatetion
                 var validationContext = new ValidationContext(value);
                 var results = new List<ValidationResult>();
                 var isValid = Validator.TryValidateObject(value, validationContext, results, true);
+                result.IsVaild = isValid;
 
                 if (!isValid)
                 {
-                    result.IsVaild = false;
                     result.ErrorMembers = new List<ErrorMember>();
                     foreach (var item in results)
                     {

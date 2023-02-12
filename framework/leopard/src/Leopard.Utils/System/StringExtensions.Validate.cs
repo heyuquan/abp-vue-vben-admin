@@ -7,6 +7,9 @@ using System.Text.RegularExpressions;
 
 namespace System
 {
+    // RegexHelper 改造否？ 参考：https://mp.weixin.qq.com/s/64KxwdnoRji6Wk4p-DNe_Q
+
+
     /// <summary>
     /// 字符串方法扩展
     /// </summary>

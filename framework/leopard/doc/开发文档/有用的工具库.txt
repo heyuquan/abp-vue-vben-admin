@@ -99,6 +99,8 @@ https://blog.csdn.net/fengyuyeguirenenen/article/details/123754926
     秒杀系统，查看用户是否重复购买。
 
 #、snowflake是Twitter开源的分布式ID生成算法，结果是一个long型的ID
+    // 雪花算法(Snowflake)顺序ID
+    // https://www.jianshu.com/p/d26ee01d7dea
     // 原理：https://www.jianshu.com/p/b7a3f0fdd717
     // 所有位数加起来共64位，恰好是一个Long型（转换为字符串长度为18）
     // eg:412992501465481216
@@ -129,3 +131,7 @@ https://blog.csdn.net/fengyuyeguirenenen/article/details/123754926
 #、pdf
     https://github.com/UglyToad/PdfPig
     https://github.com/QuestPDF/QuestPDF
+
+#、BouncyCastle.Cryptography：一个基于.Net开发齐全的加密库
+    https://github.com/bcgit/bc-csharp
+    
