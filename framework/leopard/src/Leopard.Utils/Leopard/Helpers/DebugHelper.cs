@@ -12,6 +12,10 @@ namespace Leopard.Helpers
     /// </summary>
     public static class DebugHelper
     {
+        // 我不想再传递 nameof 了
+        // 下次调试了，可以看看这里面的方式
+        // https://www.cnblogs.com/newbe36524/p/0x01D-I-don-t-want-to-pass-nameof-anymore.html
+
         /// <summary>
         /// 获取调用者的方法名、所在文件、行号、列号等信息
         /// </summary>

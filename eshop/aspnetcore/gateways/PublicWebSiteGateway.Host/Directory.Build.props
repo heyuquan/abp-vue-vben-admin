@@ -9,4 +9,17 @@
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     
   </PropertyGroup>
+
+  <!--VisualStudio 构建时将 NuGet 的 PDB 符号文件拷贝到输出文件夹   https://cloud.tencent.com/developer/article/2071603-->
+  <Target Name="IncludeSymbolFromReferences"
+          AfterTargets="ResolveAssemblyReferences"
+          Condition="@(ReferenceCopyLocalPaths) != '' And '$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <ItemGroup>
+      <ReferenceCopyLocalPaths
+              Include="%(ReferenceCopyLocalPaths.RelativeDir)%(ReferenceCopyLocalPaths.Filename).pdb"
+              DestinationSubDirectory="%(ReferenceCopyLocalPaths.DestinationSubDirectory)" />
+      <ReferenceCopyLocalPaths Remove="@(ReferenceCopyLocalPaths)"
+                              Condition="!Exists('%(FullPath)')" />
+    </ItemGroup>
+  </Target>
 </Project> 
