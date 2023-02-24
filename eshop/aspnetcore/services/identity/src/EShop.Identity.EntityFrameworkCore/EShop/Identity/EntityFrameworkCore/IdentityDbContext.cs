@@ -23,19 +23,9 @@ public class IdentityDbContext :
     {
         base.OnModelCreating(builder);
 
-        /* Include modules to your migration db context */
-
-        //builder.ConfigurePermissionManagement();
         builder.ConfigureIdentity();
         builder.ConfigureOpenIddict();
 
-        /* Configure your own tables/entities inside here */
-
-        //builder.Entity<YourEntity>(b =>
-        //{
-        //    b.ToTable(IdentityConsts.DbTablePrefix + "YourEntities", IdentityConsts.DbSchema);
-        //    b.ConfigureByConvention(); //auto configure for the base class props
-        //    //...
-        //});
+        builder.LeopardDbMapper();
     }
 }

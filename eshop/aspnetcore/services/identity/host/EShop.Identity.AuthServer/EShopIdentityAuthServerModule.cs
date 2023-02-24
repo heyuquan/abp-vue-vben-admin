@@ -3,6 +3,7 @@ using Leopard.Consul;
 using Leopard.Host;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 using Volo.Abp;
 using Volo.Abp.Account;
 using Volo.Abp.Account.Web;
@@ -45,6 +46,10 @@ public class EShopIdentityAuthServerModule : CommonHostModule
                 options.AddAudiences("EShop.Identity.AuthServer");
                 options.UseLocalServer();
                 options.UseAspNetCore();
+            });
+            builder.AddServer(options =>
+            {
+                options.SetAccessTokenLifetime(TimeSpan.FromDays(365));
             });
         });
     }

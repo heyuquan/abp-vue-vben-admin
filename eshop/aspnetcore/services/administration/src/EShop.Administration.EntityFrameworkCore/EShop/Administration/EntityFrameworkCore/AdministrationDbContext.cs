@@ -42,22 +42,13 @@ namespace EShop.Administration.EntityFrameworkCore
         {
             base.OnModelCreating(builder);
 
-            /* Include modules to your migration db context */
-
             builder.ConfigurePermissionManagement();
             builder.ConfigureSettingManagement();
             builder.ConfigureAuditLogging();
             builder.ConfigureFeatureManagement();
             builder.ConfigureTenantManagement();
 
-            /* Configure your own tables/entities inside here */
-
-            //builder.Entity<YourEntity>(b =>
-            //{
-            //    b.ToTable(AdministrationConsts.DbTablePrefix + "YourEntities", AdministrationConsts.DbSchema);
-            //    b.ConfigureByConvention(); //auto configure for the base class props
-            //    //...
-            //});
+            builder.LeopardDbMapper();
         }
     }
 }

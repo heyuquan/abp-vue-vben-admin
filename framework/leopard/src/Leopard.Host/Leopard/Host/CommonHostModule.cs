@@ -101,6 +101,8 @@ namespace Leopard.Host
             var hostingEnvironment = context.Services.GetHostingEnvironment();
             var configuration = context.Services.GetConfiguration();
 
+            Configure<AbpClockOptions>(options => { options.Kind = DateTimeKind.Utc; });
+
             // 中文序列化的编码问题   ？？ 确认 使用newtonsoft是不是就没必要配置？？ [todo]
             Configure<AbpSystemTextJsonSerializerOptions>(options =>
             {
@@ -206,6 +208,8 @@ namespace Leopard.Host
                 context.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddJwtBearer(options =>
                     {
+                        // ValidateIssuer，验证访问令牌中的iss声明是否与API信任的颁发者（权限）匹配（即，您的令牌服务）。验证令牌的颁发者是否符合此API的预期。
+                        // ValidateAudience，验证访问令牌内的aud声明是否与访问群体参数匹配。也就是说，接收到的令牌是用于此API的。
                         options.Authority = configuration["AuthServer:Authority"];
                         options.RequireHttpsMetadata = Convert.ToBoolean(configuration["AuthServer:RequireHttpsMetadata"]);
                         options.Audience = configuration["AuthServer:ApiName"];
@@ -380,7 +384,7 @@ namespace Leopard.Host
             //});
 
             // 认证
-            app.UseAuthentication();
+            app.UseAuthentication(); 
 
             if (env.IsDevelopment())
             {
