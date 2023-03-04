@@ -128,6 +128,16 @@ namespace System
             }
         }
 
+        /// <summary>
+        /// 获取枚举定义值的字符串列表
+        /// </summary>
+        /// <param name="enumType"></param>
+        /// <returns></returns>
+        public static IEnumerable<string> GetList(this Type enumType)
+        {
+            return enumType.GetFields().Where(f => f.FieldType.IsEnum).Select(o => o.Name);
+        }
+
         #region 枚举成员转成dictionary类型
         /// <summary>
         /// 转成dictionary类型

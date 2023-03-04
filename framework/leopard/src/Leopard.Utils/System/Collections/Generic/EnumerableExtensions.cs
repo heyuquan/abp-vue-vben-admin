@@ -225,7 +225,7 @@ namespace System.Collections.Generic
         /// <param name="action">The action delegate which is called on each item while iterating.</param>
         [DebuggerStepThrough]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Each<T>(this IEnumerable<T> source, Action<T> action)
+        public static void ForEach<T>(this IEnumerable<T> source, Action<T> action)
         {
             if (source is List<T> list)
             {
@@ -248,7 +248,7 @@ namespace System.Collections.Generic
         /// <param name="action">The action delegate which is called on each item while iterating.</param>
         [DebuggerStepThrough]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void Each<T>(this IEnumerable<T> source, Action<T, int> action)
+        public static void ForEach<T>(this IEnumerable<T> source, Action<T, int> action)
         {
             int i = 0;
             foreach (T t in source)
@@ -285,7 +285,7 @@ namespace System.Collections.Generic
         /// <param name="action">The action delegate which is called on each item while iterating.</param>
         [DebuggerStepThrough]
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static async Task EachAsync<T>(this IEnumerable<T> source, Func<T, Task> action)
+        public static async Task ForEachAsync<T>(this IEnumerable<T> source, Func<T, Task> action)
         {
             foreach (T t in source)
             {
@@ -300,7 +300,7 @@ namespace System.Collections.Generic
         /// <typeparam name="T">The type of the items.</typeparam>
         /// <param name="source">The list, which holds the objects.</param>
         /// <param name="action">The action delegate which is called on each item while iterating.</param>
-        public static async Task EachAsync<T>(this IEnumerable<T> source, Func<T, int, Task> action)
+        public static async Task ForEachAsync<T>(this IEnumerable<T> source, Func<T, int, Task> action)
         {
             int i = 0;
             foreach (T t in source)

@@ -1,12 +1,17 @@
 ﻿using Leopard.Utils;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Leopard.Crypto
 {
+    // 编码扩展知识
+    // base64
+    // 由于 ASCII 码称为了国际标准，所以我们要把其它字符转成 ASCII 就要用到 base64。
+    // utf-8 -> base64(编码) -> ASCII
+    // ASCII -> base64(解码) -> utf-8
+    // 这样就可以让只支持 ASCII 的计算机支持 utf-8 了。 如jwt，就使用到base64。
+    // base64编码的结果，可能会出现等号（=），如果把base64值（eg：token）放入url中，需先对其执行 UrlEncode 将 “=” 编码为 “%3d”
+
     /// <summary>
     /// base64 编码 解码
     /// （使用 CryptoGuide 静态类进行访问）
