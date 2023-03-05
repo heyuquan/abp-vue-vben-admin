@@ -41,14 +41,14 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
         L = l;
     }
 
-    IEnumerable<String> AllApiScopes
+    IEnumerable<Scopes> AllScopes
     {
         get
         {
-            var result = _configuration.GetSection("OpenIddict:ApiScopes").GetChildren().Select(x => x.Value);
+            var result = _configuration.GetSection("OpenIddict:Scopes").Get<IEnumerable<Scopes>>().ToList();
             if (result == null)
             {
-                throw new Exception("配置文件缺少 OpenIddict:ApiScopes 节点");
+                throw new Exception("配置文件缺少 OpenIddict:Scopes 节点");
             }
             return result;
         }
@@ -63,25 +63,29 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
 
     private async Task CreateScopesAsync()
     {
-        foreach (var item in AllApiScopes)
+        foreach (var item in AllScopes)
         {
             await CreateApiScopeAsync(item);
         }
     }
 
-    private async Task CreateApiScopeAsync(string name)
+    private async Task CreateApiScopeAsync(Scopes scope)
     {
-        if (await _scopeManager.FindByNameAsync(name) == null)
+        if (await _scopeManager.FindByNameAsync(scope.Name) == null)
         {
-            await _scopeManager.CreateAsync(new OpenIddictScopeDescriptor
+            var scopeDescriptor = new OpenIddictScopeDescriptor
             {
-                Name = name,
-                DisplayName = $"{name} API",
-                Resources =
+                Name = scope.Name,
+                DisplayName = $"{scope.Name} API"
+            };
+            if (scope.Resources != null)
+            {
+                foreach (var resource in scope.Resources)
                 {
-                    name
+                    scopeDescriptor.Resources.Add(resource);
                 }
-            });
+            }
+            await _scopeManager.CreateAsync(scopeDescriptor);
         }
     }
 
@@ -108,7 +112,7 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
             OpenIddictConstants.Permissions.Scopes.Phone,
             OpenIddictConstants.Permissions.Scopes.Profile,
             OpenIddictConstants.Permissions.Scopes.Roles,
-            "EShop.Identity.AuthServer"
+            "Common"
         };
 
         // 完整的参数

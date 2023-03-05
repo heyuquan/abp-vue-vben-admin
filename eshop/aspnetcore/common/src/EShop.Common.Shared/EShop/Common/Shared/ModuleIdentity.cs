@@ -25,19 +25,19 @@ namespace EShop.Common.Shared
 
         public static class AdministrationAppGateway
         {
-            public const string Name = "AdministrationAppGateway";
+            public const string Name = "EshopAdministrationAppGateway";
             public const ApplicationServiceType ServiceType = ApplicationServiceType.GateWay;
         }
 
         public static class InternalGateway
         {
-            public const string Name = "InternalGateway";
+            public const string Name = "EshopInternalGateway";
             public const ApplicationServiceType ServiceType = ApplicationServiceType.GateWay;
         }
 
         public static class PublicWebSiteGateway
         {
-            public const string Name = "PublicWebSiteGateway";
+            public const string Name = "EshopPublicWebSiteGateway";
             public const ApplicationServiceType ServiceType = ApplicationServiceType.GateWay;
         }
     }

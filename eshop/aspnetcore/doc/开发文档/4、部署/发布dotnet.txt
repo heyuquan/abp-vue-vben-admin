@@ -17,9 +17,9 @@
     democ.api         44405 （预留44401-44410）
 
 
-    AdministrationAppGateway      44805 （预留44801-44810）
-    InternalGateway             44815 （预留44811-44820）
-    PublicWebSiteGateway        44825 （预留44821-44830）
+    EShop.AdministrationAppGateway      44805 （预留44801-44810）
+    EShop.InternalGateway             44815 （预留44811-44820）
+    EShop.PublicWebSiteGateway        44825 （预留44821-44830）
 
     Client
         Administration_Web          4200

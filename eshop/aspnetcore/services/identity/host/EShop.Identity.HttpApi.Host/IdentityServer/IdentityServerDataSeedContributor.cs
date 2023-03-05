@@ -30,9 +30,9 @@ using Client = Volo.Abp.IdentityServer.Clients.Client;
       "MkDemoBService",
       "MkDemoCService",
 
-      "AdministrationAppGateway",
-      "InternalGateway",
-      "PublicWebSiteGateway"
+      "Eshop.AdministrationAppGateway",
+      "Eshop.InternalGateway",
+      "Eshop.PublicWebSiteGateway"
     ],
 
     "Clients": [
@@ -83,13 +83,13 @@ using Client = Volo.Abp.IdentityServer.Clients.Client;
       },
       // gateway ====================================================================================
       {
-        "ClientId": "AdministrationAppGateway",
+        "ClientId": "Eshop.AdministrationAppGateway",
         "RedirectUris": [
           "https://localhost:44805/swagger/oauth2-redirect.html",
           "https://159.75.253.251:44805/swagger/oauth2-redirect.html",
           "http://159.75.253.251:44802/swagger/oauth2-redirect.html"
         ],
-        "Scopes": [ "AdministrationAppGateway", "EShop.Identity.Service", "EShop.Administration.Service" ],
+        "Scopes": [ "Eshop.AdministrationAppGateway", "EShop.Identity.Service", "EShop.Administration.Service" ],
         "GrantTypes": [ "authorization_code" ],
         "ClientSecret": "1q2w3E*"
       },
@@ -123,7 +123,7 @@ using Client = Volo.Abp.IdentityServer.Clients.Client;
           "https://159.75.253.251:44344/signin-oidc",
           "http://159.75.253.251:44342/signin-oidc"
         ],
-        "Scopes": [ "AdministrationAppGateway" ],
+        "Scopes": [ "Eshop.AdministrationAppGateway" ],
         "GrantTypes": [ "authorization_code" ],
         "RequirePkce": true,
         "ClientSecret": "1q2w3E*"
@@ -135,7 +135,7 @@ using Client = Volo.Abp.IdentityServer.Clients.Client;
           "https://159.75.253.251/signin-oidc",
           "http://159.75.253.251/signin-oidc"
         ],
-        "Scopes": [ "AdministrationAppGateway", "EShop.Identity.Service", "EShop.Administration.Service" ],
+        "Scopes": [ "Eshop.AdministrationAppGateway", "EShop.Identity.Service", "EShop.Administration.Service" ],
         "GrantTypes": [ "password" ],
         "RequirePkce": true,
         "ClientSecret": "1q2w3E*",
