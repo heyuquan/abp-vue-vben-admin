@@ -23,8 +23,6 @@ public class IdentityDbContext :
     {
         base.OnModelCreating(builder);
 
-        builder.UseCollation("utf8mb4_0900_as_cs");
-
         builder.ConfigureIdentity();
         builder.ConfigureOpenIddict();
 

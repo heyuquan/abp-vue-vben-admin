@@ -54,5 +54,13 @@ namespace Leopard.EntityFrameworkCore
 
             base.OnConfiguring(optionsBuilder);
         }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            // 重音灵敏度和区分大小写
+            builder.UseCollation("utf8mb4_0900_as_cs");
+        }
     }
 }
