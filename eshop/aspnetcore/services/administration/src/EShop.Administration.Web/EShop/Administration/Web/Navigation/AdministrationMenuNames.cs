@@ -25,23 +25,23 @@ namespace EShop.Administration.Web.Navigation
             }
         }        
 
-        /// <summary>
-        /// Saas
-        /// </summary>
-        public class Saas
-        {
-            public const string GroupName = ModuleNames.Saas;
+        ///// <summary>
+        ///// Saas
+        ///// </summary>
+        //public class Saas
+        //{
+        //    public const string GroupName = ModuleNames.Saas;
 
-            public const string Tenants = GroupName + ".Tenants";
-            public const string Editions = GroupName + ".Editions";
-        }
+        //    public const string Tenants = GroupName + ".Tenants";
+        //    public const string Editions = GroupName + ".Editions";
+        //}
 
-        /// <summary>
-        /// 设置
-        /// </summary>
-        public class Settings
-        {
-            public const string GroupName = "Settings";
-        }
+        ///// <summary>
+        ///// 设置
+        ///// </summary>
+        //public class Settings
+        //{
+        //    public const string GroupName = "Settings";
+        //}
     }
 }

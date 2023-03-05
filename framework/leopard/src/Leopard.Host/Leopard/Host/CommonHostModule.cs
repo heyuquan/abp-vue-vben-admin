@@ -17,6 +17,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Logging;
 using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
@@ -199,6 +200,7 @@ namespace Leopard.Host
 
 #if !Production  
             context.Services.AddLeopardSwaggerGen();
+            IdentityModelEventSource.ShowPII = true;
 #endif
 
             if (ApplicationServiceType == ApplicationServiceType.ApiHost

@@ -78,12 +78,9 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
                 Name = scope.Name,
                 DisplayName = $"{scope.Name} API"
             };
-            if (scope.Resources != null)
+            foreach (var resource in scope.Resources)
             {
-                foreach (var resource in scope.Resources)
-                {
-                    scopeDescriptor.Resources.Add(resource);
-                }
+                scopeDescriptor.Resources.Add(resource);
             }
             await _scopeManager.CreateAsync(scopeDescriptor);
         }

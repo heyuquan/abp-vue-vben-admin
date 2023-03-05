@@ -14,11 +14,11 @@ using Volo.Abp.OpenIddict.Controllers;
 
 namespace EShop.Identity.Controllers;
 
+/// <summary>
+/// 重写volo.TokenController，认证成功后处理程序，把clientId对应的scopes全部放入token中。  这样避免申请token端还要传入scope参数
+/// </summary>
 public class EshopTokenController : TokenController, ITransientDependency
 {
-    // EshopTokenController职责
-    // 重现认证成功后处理，把clientId对应的scopes全部放入token中。  这样避免申请token端还要传入scope参数
-
     private readonly IOpenIddictApplicationManager _applicationManager;
 
     public EshopTokenController(IOpenIddictApplicationManager applicationManager)
