@@ -42,6 +42,8 @@ namespace EShop.Administration.EntityFrameworkCore
         {
             base.OnModelCreating(builder);
 
+            builder.UseCollation("utf8mb4_0900_as_cs");
+
             builder.ConfigurePermissionManagement();
             builder.ConfigureSettingManagement();
             builder.ConfigureAuditLogging();
