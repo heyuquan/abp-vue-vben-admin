@@ -25,6 +25,7 @@ using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
+using System.Text.Json.Serialization;
 using System.Text.Unicode;
 using Volo.Abp;
 using Volo.Abp.Application.Dtos;
@@ -101,6 +102,12 @@ namespace Leopard.Host
             }
             var hostingEnvironment = context.Services.GetHostingEnvironment();
             var configuration = context.Services.GetConfiguration();
+
+            // 默认枚举只能接收数值，并且swagger上显示为 0，1，2……没有枚举的字符串定义
+            // 设置后，在swagger上就可以将枚举定义的值都显示出来。对于接收值可以是：数值和枚举字符串，swagger默认示例是用字符串描述的
+            context.Services.AddControllersWithViews()
+                    .AddJsonOptions(options =>
+                        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
             Configure<AbpClockOptions>(options => { options.Kind = DateTimeKind.Utc; });
 
@@ -343,12 +350,12 @@ namespace Leopard.Host
 
             var app = context.GetApplicationBuilder();
 
-            // 本地化
-            app.UseAbpRequestLocalization(options =>
+            app.UseRequestLocalization(options =>
             {
-                // 设置ABP默认使用中文
-                // https://www.cnblogs.com/waku/p/11433242.html
-                options.RequestCultureProviders.RemoveAll(provider => provider is AcceptLanguageHeaderRequestCultureProvider);
+                // ABP (.NET 5.0) 设置默认语言为简体中文
+                // https://www.cnblogs.com/feng-NET/p/16044457.html
+                options.RequestCultureProviders = options.RequestCultureProviders.Where(a => !(a is AcceptLanguageHeaderRequestCultureProvider)).ToList();
+                options.SetDefaultCulture("zh-Hans");
             });
 
             var env = context.GetEnvironment();
@@ -386,7 +393,7 @@ namespace Leopard.Host
             //});
 
             // 认证
-            app.UseAuthentication(); 
+            app.UseAuthentication();
 
             if (env.IsDevelopment())
             {

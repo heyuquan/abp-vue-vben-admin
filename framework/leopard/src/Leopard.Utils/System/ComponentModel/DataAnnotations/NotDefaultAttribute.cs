@@ -6,7 +6,7 @@ namespace System.ComponentModel.DataAnnotations
 {
     /// <summary>
     /// 对于不可空类型的Guid和DateTime的dto字段，如果不设置值（不传入），会默认填上Guid.Empty和DateTime.MinValue
-    /// 使用此特性，要求如果是不可空类型，必须传入一个有效值
+    /// 使用此特性，要求此字段，必须传入一个有效值 。
     /// </summary>
     [AttributeUsage(
     AttributeTargets.Property | AttributeTargets.Field | AttributeTargets.Parameter,

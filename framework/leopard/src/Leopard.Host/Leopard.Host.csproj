@@ -19,6 +19,7 @@
 		<ProjectReference Include="..\Leopard.AspNetCore.Mvc\Leopard.AspNetCore.Mvc.csproj" />
 		<ProjectReference Include="..\Leopard.AspNetCore.Serilog\Leopard.AspNetCore.Serilog.csproj" />
 		<ProjectReference Include="..\Leopard.AspNetCore.Swashbuckle\Leopard.AspNetCore.Swashbuckle.csproj" />
+		<ProjectReference Include="..\Leopard.Utils\Leopard.Utils.csproj" />
 	</ItemGroup>
 
 </Project>

@@ -1,16 +1,12 @@
 using Leopard.AspNetCore.Serilog;
-using Leopard.Helpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 using System;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Volo.Abp.Modularity;
 
@@ -35,16 +31,17 @@ namespace Leopard.Host
             ModuleKey = moduleKey;
         }
 
-        // private static readonly string env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-
         private static readonly string env = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ?
             (System.Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? System.Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", EnvironmentVariableTarget.Machine))
             : System.Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", EnvironmentVariableTarget.Process);
 
+        // 函数main的返回值来告知操作系统函数的执行是否成功。返回值为0代表程序执行成功，返回值非0则表示程序执行失败。
+
         public async Task<int> RunAsync(string[] args)
         {
-            // 最先配置日志
-            SerilogConfigurationHelper.Configure(env, ModuleKey, true, false);
+            // 最先配置并创建日志，然后再打印日志
+            // 注意：不能放到 UseSerilog() 中进行配置和创建，因为程序启动中有异常，还没走到UseSerilog就报错，日志会丢失
+            Log.Logger = SerilogHelper.Create(env, ModuleKey, true, false);
 
             try
             {

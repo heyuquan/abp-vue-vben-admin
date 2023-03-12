@@ -3,16 +3,13 @@ using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.Elasticsearch;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Leopard.AspNetCore.Serilog
 {
-    public static class SerilogConfigurationHelper
+    public static class SerilogHelper
     {
-        public static void Configure(string env, string applicationName, bool isWriteToFile, bool isWriteToElasticsearch)
+        public static ILogger Create(string env, string applicationName, bool isWriteToFile, bool isWriteToElasticsearch)
         {
             var cfg = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
@@ -76,7 +73,7 @@ namespace Leopard.AspNetCore.Serilog
                 return false;
             });
 
-            Log.Logger = loggerConfiguration.ReadFrom.Configuration(cfg).CreateLogger();
+            return loggerConfiguration.ReadFrom.Configuration(cfg).CreateLogger();
         }
 
         private static ElasticsearchSinkOptions ConfigureElasticSink(IConfigurationRoot cfg, string env, string applicationName)
