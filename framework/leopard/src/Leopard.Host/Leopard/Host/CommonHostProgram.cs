@@ -39,14 +39,24 @@ namespace Leopard.Host
 
         public async Task<int> RunAsync(string[] args)
         {
+            //#if RELEASE
+            //        var cfg = new ConfigurationBuilder().AddAgileConfig(new ConfigClient(
+            //            $"AgileConfig/agilesettings.{env}.json"))
+            //            .Build();
+            //#else
+            var cfg = new ConfigurationBuilder()
+                           .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                           .AddJsonFile($"appsettings.{env}.json", optional: true, reloadOnChange: true)
+                           .Build();
+            //#endif
+
             // 最先配置并创建日志，然后再打印日志
             // 注意：不能放到 UseSerilog() 中进行配置和创建，因为程序启动中有异常，还没走到UseSerilog就报错，日志会丢失
-            Log.Logger = SerilogHelper.Create(env, ModuleKey, true, false);
+            Log.Logger = SerilogHelper.Create(env, ModuleKey, cfg);
 
             try
             {
                 Log.Information($"[{env}] Starting {ModuleKey}.");
-                //var host = CreateHostBuilder<T>(args).Build();
                 var builder = WebApplication.CreateBuilder(args);
                 builder.WebHost.UseKestrel((context, options) =>
                 {

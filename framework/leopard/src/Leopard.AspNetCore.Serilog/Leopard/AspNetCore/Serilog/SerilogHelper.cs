@@ -9,17 +9,9 @@ namespace Leopard.AspNetCore.Serilog
 {
     public static class SerilogHelper
     {
-        public static ILogger Create(string env, string applicationName, bool isWriteToFile, bool isWriteToElasticsearch)
+        public static ILogger Create(string env, string applicationName, IConfiguration config)
         {
-            var cfg = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env}.json", optional: true, reloadOnChange: true)
-                .Build();
-
-            // https://www.cnblogs.com/Quinnz/p/12202633.html
-            // {Message:lj} 格式选项使消息中嵌入的数据输出在 JSON（j）中，但字符串文本除外，这些文本是原样输出的。
-            // {Level:u3} 三个字符大写或 {Level:w3} 小写作为级别名称的格式
-            const string outputTemplate = "[{Timestamp:yyyy-MM-dd HH:mm:ss.FFF} {Level:w3}] {Message:lj} {NewLine}{Exception}";
+            var logOptions = (config.GetSection(LeopardLogOptions.SectionName).Get<LeopardLogOptions>()) ?? new LeopardLogOptions();
 
             var loggerConfiguration = new LoggerConfiguration()
 #if DEBUG
@@ -38,8 +30,12 @@ namespace Leopard.AspNetCore.Serilog
 #else
             ;
 #endif
-            if (isWriteToFile)
+            if (logOptions.EnableToFile)
             {
+                // https://www.cnblogs.com/Quinnz/p/12202633.html
+                // {Message:lj} 格式选项使消息中嵌入的数据输出在 JSON（j）中，但字符串文本除外，这些文本是原样输出的。
+                // {Level:u3} 三个字符大写或 {Level:w3} 小写作为级别名称的格式
+                string outputTemplate = "[{Timestamp:yyyy-MM-dd HH:mm:ss.FFF} {Level:w3}] {Message:lj} {NewLine}{Exception}";
                 loggerConfiguration = loggerConfiguration.WriteTo.Async(c => c.File(
                                 "Logs/logs.txt"
                                 , encoding: Encoding.UTF8
@@ -51,9 +47,9 @@ namespace Leopard.AspNetCore.Serilog
                                 )
                             );
             }
-            if (isWriteToElasticsearch)
+            if (logOptions.EnableToElasticsearch)
             {
-                loggerConfiguration = loggerConfiguration.WriteTo.Elasticsearch(ConfigureElasticSink(cfg, env, applicationName));
+                loggerConfiguration = loggerConfiguration.WriteTo.Elasticsearch(ConfigureElasticSink(config, env, applicationName));
             }
 
             loggerConfiguration.Filter.ByExcluding(logEvent =>
@@ -73,10 +69,10 @@ namespace Leopard.AspNetCore.Serilog
                 return false;
             });
 
-            return loggerConfiguration.ReadFrom.Configuration(cfg).CreateLogger();
+            return loggerConfiguration.ReadFrom.Configuration(config).CreateLogger();
         }
 
-        private static ElasticsearchSinkOptions ConfigureElasticSink(IConfigurationRoot cfg, string env, string applicationName)
+        private static ElasticsearchSinkOptions ConfigureElasticSink(IConfiguration cfg, string env, string applicationName)
         {
             return new ElasticsearchSinkOptions(new Uri(cfg["ElasticSearch:Uri"]))
             {
