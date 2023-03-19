@@ -57,6 +57,7 @@ namespace Leopard.EntityFrameworkCore
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            // 首先调用 base.OnModelCreating 方法让ABP框架为我们实现基础映射.
             base.OnModelCreating(builder);
 
             // 重音灵敏度和区分大小写

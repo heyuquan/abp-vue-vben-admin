@@ -32,7 +32,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 options.CustomSchemaIds(type => type.FullName);
                 options.HideAbpEndpoints();
 
-                options.DocumentFilter<EnumDescriptionFilter>();
+                //options.DocumentFilter<EnumDescriptionFilter>();
                 //options.OperationFilter<CollectionAbpApiFilter>();
 
                 // 为 Swagger JSON and UI设置xml文档注释路径

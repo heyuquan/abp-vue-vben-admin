@@ -1,8 +1,6 @@
+using EShop.Common.Shared;
 using Leopard.AspNetCore.Serilog;
 using Leopard.AspNetCore.Swashbuckle;
-using EShop.Administration;
-using EShop.Common.Shared;
-using Leopard.Consul;
 using Leopard.Gateway;
 using Volo.Abp.Autofac;
 using Volo.Abp.Modularity;
@@ -14,10 +12,8 @@ namespace AdministrationAppGateway.Host
         typeof(AbpAutofacModule),
         typeof(AbpSwashbuckleModule),
         typeof(LeopardAspNetCoreSerilogModule),
-        typeof(LeopardConsulModule),
-        typeof(LeopardAspNetCoreSwashbuckleModule),
-
-        typeof(EShopAdministrationHttpApiModule)
+        //typeof(LeopardConsulModule),
+        typeof(LeopardAspNetCoreSwashbuckleModule)
     )]
     public class AdministrationAppGatewayHostModule : CommonGatewayModule
     {

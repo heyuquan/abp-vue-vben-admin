@@ -13,7 +13,6 @@ namespace Leopard.AspNetCore.Serilog
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
             var configuration = context.Services.GetConfiguration();
-            Configure<LeopardLogOptions>(configuration.GetSection(LeopardLogOptions.SectionName));
 
             context.Services.AddOptions<LeopardLogOptions>()
                 .Bind(configuration.GetSection(LeopardLogOptions.SectionName))
