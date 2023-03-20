@@ -1,5 +1,7 @@
 using EShop.Administration.EntityFrameworkCore;
+using EShop.Administration.Web;
 using EShop.Common.Shared;
+using EShop.Identity;
 using Leopard.Consul;
 using Leopard.Host;
 using Microsoft.AspNetCore.Hosting;
@@ -21,6 +23,7 @@ namespace EShop.Administration
         typeof(AbpAutofacModule),
         typeof(AbpAspNetCoreMvcUiMultiTenancyModule),
         typeof(LeopardConsulModule),
+        typeof(EShopAdministrationWebModule),
         typeof(EShopAdministrationApplicationModule),
         typeof(EShopAdministrationEntityFrameworkCoreModule),
         typeof(EShopAdministrationHttpApiModule)

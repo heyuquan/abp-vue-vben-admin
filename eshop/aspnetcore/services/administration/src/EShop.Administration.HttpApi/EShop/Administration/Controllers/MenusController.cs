@@ -49,7 +49,7 @@ namespace EShop.Administration.Controllers
         {
             var applicationMenu = await this.GetUserMenuAsync(LeopardStandardMenus.Main);
             // 适配vben
-            if (applicationMenu != null)
+            if (applicationMenu != null&& applicationMenu.Items.Any())
             {
                 return ConvertToRouteItemForVben(applicationMenu.Items[0].Items);
             }

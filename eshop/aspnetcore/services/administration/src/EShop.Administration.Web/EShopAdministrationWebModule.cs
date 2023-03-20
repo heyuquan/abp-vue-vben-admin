@@ -1,4 +1,5 @@
 ﻿using EShop.Administration.Web.Navigation;
+using EShop.Identity;
 using Leopard.UI.Navigation;
 using Volo.Abp.Modularity;
 using Volo.Abp.UI.Navigation;
@@ -6,7 +7,9 @@ using Volo.Abp.UI.Navigation;
 namespace EShop.Administration.Web
 {
     [DependsOn(
-        typeof(LeopardUiNavigationModule)
+        typeof(LeopardUiNavigationModule),
+        // 界面的多语言
+        typeof(EShopIdentityApplicationContractsModule)
     )]
     public class EShopAdministrationWebModule : AbpModule
     {

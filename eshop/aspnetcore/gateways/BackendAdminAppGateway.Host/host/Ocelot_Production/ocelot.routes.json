@@ -97,18 +97,6 @@
       "UpstreamhttpMethod": [ "Put", "Delete", "Get", "Post" ]
     },
     {
-      "DownstreamPathTemplate": "/api/saas/{everything}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "159.75.253.251",
-          "Port": 44142
-        }
-      ],
-      "UpstreamPathTemplate": "/api/saas/{everything}",
-      "UpstreamhttpMethod": [ "Put", "Delete", "Get", "Post" ]
-    },
-    {
       "DownstreamPathTemplate": "/api/feature-management/{everything}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [

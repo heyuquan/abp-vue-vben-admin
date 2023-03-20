@@ -23,6 +23,7 @@
 		<ProjectReference Include="..\..\src\EShop.Administration.Application\EShop.Administration.Application.csproj" />
 		<ProjectReference Include="..\..\src\EShop.Administration.EntityFrameworkCore\EShop.Administration.EntityFrameworkCore.csproj" />
 		<ProjectReference Include="..\..\src\EShop.Administration.HttpApi\EShop.Administration.HttpApi.csproj" />
+		<ProjectReference Include="..\..\src\EShop.Administration.Web\EShop.Administration.Web.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

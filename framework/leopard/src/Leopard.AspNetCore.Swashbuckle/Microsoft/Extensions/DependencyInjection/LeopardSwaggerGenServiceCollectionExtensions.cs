@@ -30,7 +30,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = authServerOptions.ApiName, Version = "v1" });
                 options.DocInclusionPredicate((docName, description) => true);
                 options.CustomSchemaIds(type => type.FullName);
-                options.HideAbpEndpoints();
+                //options.HideAbpEndpoints();
 
                 //options.DocumentFilter<EnumDescriptionFilter>();
                 //options.OperationFilter<CollectionAbpApiFilter>();
