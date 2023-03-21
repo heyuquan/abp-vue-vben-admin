@@ -34,7 +34,7 @@ namespace EShop.Identity;
     )]
 public class EShopIdentityAuthServerModule : CommonHostModule
 {
-    public EShopIdentityAuthServerModule() : base(ModuleIdentity.IdentityAuthServer.ServiceType, ModuleIdentity.IdentityAuthServer.Name, MultiTenancyConsts.IsEnabled)
+    public EShopIdentityAuthServerModule() : base(ModuleIdentity.IdentityAuth.ServiceType, ModuleIdentity.IdentityAuth.Name, MultiTenancyConsts.IsEnabled)
     { }
 
     public override void PreConfigureServices(ServiceConfigurationContext context)

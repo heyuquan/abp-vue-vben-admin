@@ -5,7 +5,7 @@ VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "host", "host", "{138BBFFC-09B9-49FB-9C57-E25327CCE0C1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackendAdminAppGateway.Host", "host\BackendAdminAppGateway.Host.csproj", "{72AB441E-0235-4A5D-9E77-1A18B024343D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdministrationGateway.Host", "host\AdministrationGateway.Host.csproj", "{72AB441E-0235-4A5D-9E77-1A18B024343D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -12,5 +12,5 @@ start powershell .\06_EShop.Administration.HttpApi.Host.ps1
 Start-Sleep -s 5
 
 # gateway
-start powershell .\21_BackendAdminAppGateway.Host.ps1
+start powershell .\21_AdministrationGateway.Host.ps1
 #start powershell .\22_InternalGateway.Host.ps1

@@ -8,7 +8,7 @@ public class Program
 {
     public async static Task<int> Main(string[] args)
     {
-        var commonProgram = new CommonHostProgram<EShopIdentityAuthServerModule>(ModuleIdentity.IdentityAuthServer.ServiceType, ModuleIdentity.IdentityAuthServer.Name);
+        var commonProgram = new CommonHostProgram<EShopIdentityAuthServerModule>(ModuleIdentity.IdentityAuth.ServiceType, ModuleIdentity.IdentityAuth.Name);
         return await commonProgram.RunAsync(args);
     }
 }

@@ -11,7 +11,7 @@ namespace EShop.Common.Shared
             public const ApplicationServiceType ServiceType = ApplicationServiceType.ApiHost;
         }
 
-        public static class IdentityAuthServer
+        public static class IdentityAuth
         {
             public const string Name = ModuleNames.IdentityAuthServer;
             public const ApplicationServiceType ServiceType = ApplicationServiceType.IdentityAuthServer;
@@ -23,21 +23,21 @@ namespace EShop.Common.Shared
             public const ApplicationServiceType ServiceType = ApplicationServiceType.ApiHost;
         }
 
-        public static class AdministrationAppGateway
+        public static class AdministrationGateway
         {
-            public const string Name = "EshopAdministrationAppGateway";
+            public const string Name = ModuleNames.AdministrationGateway;
             public const ApplicationServiceType ServiceType = ApplicationServiceType.GateWay;
         }
 
         public static class InternalGateway
         {
-            public const string Name = "EshopInternalGateway";
+            public const string Name = ModuleNames.InternalGateway;
             public const ApplicationServiceType ServiceType = ApplicationServiceType.GateWay;
         }
 
-        public static class PublicWebSiteGateway
+        public static class PublicWebGateway
         {
-            public const string Name = "EshopPublicWebSiteGateway";
+            public const string Name = ModuleNames.PublicWebGateway;
             public const ApplicationServiceType ServiceType = ApplicationServiceType.GateWay;
         }
     }

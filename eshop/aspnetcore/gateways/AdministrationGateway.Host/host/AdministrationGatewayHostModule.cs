@@ -17,7 +17,7 @@ namespace AdministrationAppGateway.Host
     )]
     public class AdministrationAppGatewayHostModule : CommonGatewayModule
     {
-        public AdministrationAppGatewayHostModule() : base(ModuleIdentity.AdministrationAppGateway.ServiceType, ModuleIdentity.AdministrationAppGateway.Name, false)
+        public AdministrationAppGatewayHostModule() : base(ModuleIdentity.AdministrationGateway.ServiceType, ModuleIdentity.AdministrationGateway.Name, false)
         { }        
     }
 }
