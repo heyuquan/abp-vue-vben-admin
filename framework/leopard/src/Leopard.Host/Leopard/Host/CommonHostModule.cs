@@ -383,8 +383,12 @@ namespace Leopard.Host
             // 虚拟文件系统
             app.UseStaticFiles();
             app.UseAbpSecurityHeaders();
-            //路由
-            app.UseRouting();
+
+            if (ApplicationServiceType != ApplicationServiceType.GateWay)
+            {
+                //路由
+                app.UseRouting();
+            }
             app.UseCors();
             // 设置了UseEndpoints openiddict 和identityserver会报错  （ids4再abpv4.0版本不会报错）
             //app.UseEndpoints(endpoints =>
@@ -427,14 +431,19 @@ namespace Leopard.Host
             // Serilog
             app.UseAbpSerilogEnrichers();
 
-            // 审计日志
-            app.UseAuditing();
+            if (ApplicationServiceType != ApplicationServiceType.GateWay)
+            {
+                // 审计日志
+                app.UseAuditing();                
+            }
             app.UseUnitOfWork();
 
             // 在需要缓存的组件之前。 UseCORS 必须在 UseResponseCaching 之前。
             app.UseResponseCompression();
-            app.UseConfiguredEndpoints();
-            app.UseConfiguredEndpoints();
+            if (ApplicationServiceType != ApplicationServiceType.GateWay)
+            {
+                app.UseConfiguredEndpoints();
+            }
 
             if (afterApplicationInitialization != null)
             {

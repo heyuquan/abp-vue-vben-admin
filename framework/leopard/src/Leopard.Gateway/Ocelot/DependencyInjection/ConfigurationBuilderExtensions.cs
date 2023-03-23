@@ -20,7 +20,7 @@ namespace Ocelot.DependencyInjection
 
         public static IConfigurationBuilder AddOcelot(this IConfigurationBuilder builder, string folder, string environmentName)
         {
-            const string primaryConfigFile = "ocelot.json";
+            string primaryConfigFile = $"ocelot.{environmentName}.json";
 
             const string globalConfigFile = "ocelot.global.json";
 

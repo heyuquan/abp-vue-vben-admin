@@ -290,6 +290,17 @@ namespace System
         }
 
         /// <summary>
+        /// 验证手机号是否合法，带+86
+        /// </summary>
+        /// <param name="source">字符串</param>
+        /// <returns></returns>
+        public static bool IsMobileWith86(this string source)
+        {
+            //案例 ：+8618575598999
+            return Regex.IsMatch(source, @"^(?:\+86)1(?:3\d{3}|5[^4\D]\d{2}|8\d{3}|7(?:[235-8]\d{2}|4(?:0\d|1[0-2]|9\d))|9[0-35-9]\d{2}|66\d{2})\d{6}$", RegexOptions.Compiled);
+        }
+
+        /// <summary>
         /// 验证手机号是否合法，不带86
         /// </summary>
         /// <param name="source">字符串</param>
@@ -297,9 +308,6 @@ namespace System
         public static bool IsMobileWithout86(this string source)
         {
             //19612345678
-            //8618612345678
-            //+8618612345678
-
             return Regex.IsMatch(source, @"^1(?:3\d{3}|5[^4\D]\d{2}|8\d{3}|7(?:[235-8]\d{2}|4(?:0\d|1[0-2]|9\d))|9[0-35-9]\d{2}|66\d{2})\d{6}$", RegexOptions.Compiled);
         }
 
