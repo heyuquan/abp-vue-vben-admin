@@ -4,9 +4,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Serilog;
 using System;
 using System.Runtime.InteropServices;
+using System.Text.Encodings.Web;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Volo.Abp.Modularity;
 
@@ -63,6 +66,17 @@ namespace Leopard.Host
                     // 对于 Kestrel 托管的应用，默认的最大请求正文大小为 30,000,000 个字节，约为 28.6 MB
                     // options.Limits.MaxRequestBodySize=null表示不限制
                     options.Limits.MaxRequestBodySize = Constants.RequestLimit.MaxBodyLength_Byte;
+                });
+                //  .net 5.0 中的 JsonConsoleJsonConsole 来格式化 Console 的日志为 Json，
+                //  使用默认的配置然后会发现日志中会有很多这种 \\uxxxx 的东西
+                //  日志不会直接渲染在页面上，所以不必要求的太严格
+                builder.Logging.AddJsonConsole(options =>
+                {
+                    options.JsonWriterOptions = new JsonWriterOptions
+                    {
+                        Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+                        Indented = true,
+                    };
                 });
                 builder.Host
                     .AddAppSettingsSecretsJson()

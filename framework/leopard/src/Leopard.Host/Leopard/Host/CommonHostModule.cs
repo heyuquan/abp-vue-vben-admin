@@ -15,16 +15,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Logging;
 using StackExchange.Redis;
 using System;
-using System.Collections.Generic;
 using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.Unicode;
 using Volo.Abp;
@@ -35,6 +34,7 @@ using Volo.Abp.Caching;
 using Volo.Abp.Caching.StackExchangeRedis;
 using Volo.Abp.DistributedLocking;
 using Volo.Abp.Json.SystemTextJson;
+using Volo.Abp.Json.SystemTextJson.JsonConverters;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Volo.Abp.MultiTenancy;
@@ -76,51 +76,39 @@ namespace Leopard.Host
 
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
-            this.LeopardConfigureServices(context);
-        }
-
-        public override void OnApplicationInitialization(ApplicationInitializationContext context)
-        {
-            this.LeopardApplicationInitialization(context);
-        }
-
-        /// <summary>
-        /// LeopardConfigureServices
-        /// </summary>
-        /// <param name="context"></param>
-        /// <param name="otherConfigureServices">其他ConfigureServices，执行上没有顺序要求</param>
-        /// <param name="afterConfigureServices">在最后执行的ConfigureServices</param>
-        protected void LeopardConfigureServices(
-            ServiceConfigurationContext context,
-            Action<ServiceConfigurationContext> otherConfigureServices = null,
-            Action<ServiceConfigurationContext> afterConfigureServices = null
-            )
-        {
-            if (otherConfigureServices != null)
-            {
-                otherConfigureServices(context);
-            }
             var hostingEnvironment = context.Services.GetHostingEnvironment();
             var configuration = context.Services.GetConfiguration();
-
-            // 默认枚举只能接收数值，并且swagger上显示为 0，1，2……没有枚举的字符串定义
-            // 设置后，在swagger上就可以将枚举定义的值都显示出来。对于接收值可以是：数值和枚举字符串，swagger默认示例是用字符串描述的
-            context.Services.AddControllersWithViews()
-                    .AddJsonOptions(options =>
-                        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
-
-            Configure<AbpClockOptions>(options => { options.Kind = DateTimeKind.Utc; });
-
-            // 中文序列化的编码问题   ？？ 确认 使用newtonsoft是不是就没必要配置？？ [todo]
-            Configure<AbpSystemTextJsonSerializerOptions>(options =>
-            {
-                options.JsonSerializerOptions.Encoder = JavaScriptEncoder.Create(UnicodeRanges.All);
-            });
 
             Configure<AbpMultiTenancyOptions>(options =>
             {
                 options.IsEnabled = IsEnableMultiTenancy;
             });
+
+            Configure<AbpClockOptions>(options => { options.Kind = DateTimeKind.Utc; });
+
+            #region json
+            context.Services.AddControllersWithViews()
+                    .AddJsonOptions(options =>
+                    {
+                        SetJsonSerializerOptions(options.JsonSerializerOptions);
+                    });
+
+            Configure<AbpSystemTextJsonSerializerOptions>(options =>
+            {
+                SetJsonSerializerOptions(options.JsonSerializerOptions);
+            });
+
+            void SetJsonSerializerOptions(JsonSerializerOptions options)
+            {
+                options.Converters.Add(new AbpStringToBooleanConverter());
+                // 默认枚举只能接收数值，并且swagger上显示为 0，1，2……没有枚举的字符串定义
+                // 设置后，在swagger上就可以将枚举定义的值都显示出来。对于接收值可以是：数值和枚举字符串，swagger默认示例是用字符串描述的
+                options.Converters.Add(new JsonStringEnumConverter());
+                // 默认的 System.Text.Json 序列化的时候会把所有的非 ASCII 的字符进行转义，这就会导致很多时候我们的一些非 ASCII 的字符就会变成 \\uxxxx 这样的形式，很多场景下并不太友好
+                // https://www.cnblogs.com/cdaniu/p/16024229.html
+                options.Encoder = JavaScriptEncoder.Create(UnicodeRanges.All);
+            }
+            #endregion
 
             // Configure<AbpBackgroundJobOptions>(options => options.IsJobExecutionEnabled = false);
 
@@ -141,6 +129,8 @@ namespace Leopard.Host
                     mvcOptions.Filters.RemoveAt(index);
                 mvcOptions.Filters.Add(typeof(LeopardExceptionFilter));
             });
+            // 全局异常统一处理
+            context.Services.ConfigureModelBindingExceptionHandling();
 
             context.Services.AddHealthChecks();
 
@@ -210,9 +200,7 @@ namespace Leopard.Host
             IdentityModelEventSource.ShowPII = true;
 #endif
 
-            if (ApplicationServiceType == ApplicationServiceType.ApiHost
-                 || ApplicationServiceType == ApplicationServiceType.GateWay
-                )
+            if (ApplicationServiceType == ApplicationServiceType.ApiHost)
             {
                 context.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddJwtBearer(options =>
@@ -225,9 +213,6 @@ namespace Leopard.Host
                         //options.TokenValidationParameters.ValidateAudience = false;
                     });
             }
-
-            // 全局异常统一处理
-            context.Services.ConfigureModelBindingExceptionHandling();
 
             Configure<AbpAuditingOptions>(options =>
             {
@@ -279,43 +264,38 @@ namespace Leopard.Host
                 });
             }
 
-            Configure<AbpClockOptions>(options =>
-            {
-                options.Kind = DateTimeKind.Utc;
-            });
-
             #region 注册响应压缩
 
             context.Services.AddResponseCompression(options =>
-             {
-                 options.EnableForHttps = true;  // 是否对https请求压缩.因为存在安全风险，默认禁用此选项。 
+            {
+                options.EnableForHttps = true;  // 是否对https请求压缩.因为存在安全风险，默认禁用此选项。 
 
-                 // NET 6 webapi自定义响应压缩
-                 // https://blog.csdn.net/superQuestion/article/details/122494493
-                 // 使用自定义压缩，来更多的决策什么内容需要被压缩
-                 // 不要压缩小于 150 - 1000 字节的文件，具体取决于文件的内容和压缩效率。 压缩小文件的开销可能会产生比未压缩文件更大的压缩文件。
+                // NET 6 webapi自定义响应压缩
+                // https://blog.csdn.net/superQuestion/article/details/122494493
+                // 使用自定义压缩，来更多的决策什么内容需要被压缩
+                // 不要压缩小于 150 - 1000 字节的文件，具体取决于文件的内容和压缩效率。 压缩小文件的开销可能会产生比未压缩文件更大的压缩文件。
 
-                 // 当客户端可以处理压缩内容时，客户端必须通过随请求发送 Accept-Encoding 标头来通知服务器其功能。 
-                 // 当服务器发送压缩的内容时，它必须在 Content-Encoding 标头中包含有关如何对压缩响应进行编码的信息。
-                 // Gzip 有更好的 user-agent 兼容性，而 Brotli 有更好的性能。
-                 options.Providers.Add<BrotliCompressionProvider>();    // brotli
-                 options.Providers.Add<GzipCompressionProvider>();      // gzip
+                // 当客户端可以处理压缩内容时，客户端必须通过随请求发送 Accept-Encoding 标头来通知服务器其功能。 
+                // 当服务器发送压缩的内容时，它必须在 Content-Encoding 标头中包含有关如何对压缩响应进行编码的信息。
+                // Gzip 有更好的 user-agent 兼容性，而 Brotli 有更好的性能。
+                options.Providers.Add<BrotliCompressionProvider>();    // brotli
+                options.Providers.Add<GzipCompressionProvider>();      // gzip
 
-                 // 压缩的默认 MIME 类型集：
-                 // application / javascript
-                 // application / json
-                 // application / xml
-                 // text / css
-                 // text / html
-                 // text / json
-                 // text / plain
-                 // text / xml
-                 // 使用Concat添加额外的压缩类型
-                 options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[]
-                  {
+                // 压缩的默认 MIME 类型集：
+                // application / javascript
+                // application / json
+                // application / xml
+                // text / css
+                // text / html
+                // text / json
+                // text / plain
+                // text / xml
+                // 使用Concat添加额外的压缩类型
+                options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[]
+                 {
                         "image/svg+xml"
                  });
-             });
+            });
 
             Configure<BrotliCompressionProviderOptions>(options =>
             {
@@ -327,11 +307,11 @@ namespace Leopard.Host
             });
 
             #endregion
+        }
 
-            if (afterConfigureServices != null)
-            {
-                afterConfigureServices(context);
-            }
+        public override void OnApplicationInitialization(ApplicationInitializationContext context)
+        {
+            this.LeopardApplicationInitialization(context);
         }
 
         /// <summary>
@@ -339,26 +319,24 @@ namespace Leopard.Host
         /// </summary>
         /// <param name="context"></param>
         /// <param name="betweenAuthApplicationInitialization">在认证之后，授权之前执行</param>
-        /// <param name="afterApplicationInitialization">在最后执行</param>
         protected void LeopardApplicationInitialization(
             ApplicationInitializationContext context
-            , Action<ApplicationInitializationContext> betweenAuthApplicationInitialization = null
-            , Action<ApplicationInitializationContext> afterApplicationInitialization = null)
+            , Action<ApplicationInitializationContext> betweenAuthApplicationInitialization = null)
         {
             // ASP.NET Core 中间件顺序
             // https://docs.microsoft.com/zh-cn/aspnet/core/fundamentals/middleware/?view=aspnetcore-6.0#middleware-order
 
             var app = context.GetApplicationBuilder();
+            var env = context.GetEnvironment();
 
             app.UseRequestLocalization(options =>
             {
                 // ABP (.NET 5.0) 设置默认语言为简体中文
                 // https://www.cnblogs.com/feng-NET/p/16044457.html
+                // 移除header中的中文参数，因为浏览器会默认带上语言参数。  移除后由cookie来决定语言，并设置默认语言为zh-hands
                 options.RequestCultureProviders = options.RequestCultureProviders.Where(a => !(a is AcceptLanguageHeaderRequestCultureProvider)).ToList();
                 options.SetDefaultCulture("zh-Hans");
             });
-
-            var env = context.GetEnvironment();
 
             if (env.IsDevelopment())
             {
@@ -380,15 +358,12 @@ namespace Leopard.Host
 
             // http调用链
             app.UseCorrelationId();
-            // 虚拟文件系统
-            app.UseStaticFiles();
             app.UseAbpSecurityHeaders();
 
-            if (ApplicationServiceType != ApplicationServiceType.GateWay)
-            {
-                //路由
-                app.UseRouting();
-            }
+            // 虚拟文件系统
+            app.UseStaticFiles();
+            //路由
+            app.UseRouting();
             app.UseCors();
             // 设置了UseEndpoints openiddict 和identityserver会报错  （ids4再abpv4.0版本不会报错）
             //app.UseEndpoints(endpoints =>
@@ -405,7 +380,6 @@ namespace Leopard.Host
             }
 
             if (ApplicationServiceType == ApplicationServiceType.ApiHost
-                 || ApplicationServiceType == ApplicationServiceType.GateWay
                 )
             {
                 app.UseAbpClaimsMap();
@@ -431,34 +405,20 @@ namespace Leopard.Host
             // Serilog
             app.UseAbpSerilogEnrichers();
 
-            if (ApplicationServiceType != ApplicationServiceType.GateWay)
-            {
-                // 审计日志
-                app.UseAuditing();                
-            }
+            // 审计日志
+            app.UseAuditing();
             app.UseUnitOfWork();
 
             // 在需要缓存的组件之前。 UseCORS 必须在 UseResponseCaching 之前。
             app.UseResponseCompression();
-            if (ApplicationServiceType != ApplicationServiceType.GateWay)
-            {
-                app.UseConfiguredEndpoints();
-            }
+            //app.UseConfiguredEndpoints();
 
-            if (afterApplicationInitialization != null)
-            {
-                afterApplicationInitialization(context);
-            }
-
-            // 设置了UseEndpoints openiddict 和identityserver会报错  （ids4再abpv4.0版本不会报错）
-            //// UseEndpoints 在 UseRouting 之后
-            //// 放到 afterApplicationInitialization 之后，是因为gateway会在 after 中做一些转发处理。否则网关的ocelot会无法工作
             // 设置默认swagger index页面
-            //app.UseEndpoints(endpoints =>
-            //{
-            //    endpoints.MapControllerRoute("default",
-            //              "{controller=Swagger}/{action=Index}");
-            //});
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute("default",
+                          "{controller=Swagger}/{action=Index}");
+            });
         }
     }
 }
