@@ -179,7 +179,6 @@ namespace Leopard.Gateway
 
             //#if DEBUG
             // swagger
-            app.UseSwagger();
             app.UseLeopardSwaggerUI();
             //访问 "/" and "" (whitespace) 地址，自动跳转到 /swagger 的首页
             app.UseRewriter(new RewriteOptions()
@@ -191,28 +190,6 @@ namespace Leopard.Gateway
             {
                 endpoints.MapReverseProxy();
             });
-
-            //app.MapWhen(
-            //      ctx => ctx.Request.Path.ToString().EndsWith("/api/health", StringComparison.OrdinalIgnoreCase) ||
-            //             ctx.Request.Path.ToString().EndsWith("/swagger/index", StringComparison.OrdinalIgnoreCase) ||
-            //             // ocelot configuration api
-            //             ctx.Request.Path.ToString().EndsWith("/configuration", StringComparison.OrdinalIgnoreCase) ||
-            //             ctx.Request.Path.ToString().TrimEnd('/').Equals(""),
-            //      appBuilderConfig =>
-            //      {
-            //          appBuilderConfig.UseRouting();
-            //          //appBuilderConfig.UseConfiguredEndpoints();
-            //          //appBuilderConfig.UseEndpoints(endpoints =>
-            //          //{
-            //          //    endpoints.MapHealthChecks("/api/health");
-            //          //});
-            //          //appBuilderConfig.UseEndpoints(endpoints =>
-            //          //{
-            //          //    endpoints.MapControllerRoute("default",
-            //          //              "{controller=Swagger}/{action=Index}");
-            //          //});
-            //      }
-            //   );
         }
     }
 }

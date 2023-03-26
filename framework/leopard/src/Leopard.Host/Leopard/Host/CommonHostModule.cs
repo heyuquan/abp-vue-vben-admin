@@ -101,6 +101,7 @@ namespace Leopard.Host
 
             void SetJsonSerializerOptions(JsonSerializerOptions options)
             {
+                options.Converters.Add(new DatetimeJsonConverter());
                 options.Converters.Add(new AbpStringToBooleanConverter());
                 // 默认枚举只能接收数值，并且swagger上显示为 0，1，2……没有枚举的字符串定义
                 // 设置后，在swagger上就可以将枚举定义的值都显示出来。对于接收值可以是：数值和枚举字符串，swagger默认示例是用字符串描述的
@@ -108,6 +109,13 @@ namespace Leopard.Host
                 // 默认的 System.Text.Json 序列化的时候会把所有的非 ASCII 的字符进行转义，这就会导致很多时候我们的一些非 ASCII 的字符就会变成 \\uxxxx 这样的形式，很多场景下并不太友好
                 // https://www.cnblogs.com/cdaniu/p/16024229.html
                 options.Encoder = JavaScriptEncoder.Create(UnicodeRanges.All);
+                //数据格式首字母小写
+                options.PropertyNamingPolicy =JsonNamingPolicy.CamelCase;
+                //反序列化过程中属性名称是否使用不区分大小写的比较
+                options.PropertyNameCaseInsensitive = false;
+                //要反序列化的 JSON 有效负载中是否允许（和忽略）对象或数组中 JSON 值的列表末尾多余的逗号
+                // https://docs.microsoft.com/zh-cn/dotnet/api/system.text.json.jsonserializeroptions.allowtrailingcommas?view=net-7.0
+                options.AllowTrailingCommas = true;   // 兼容 Newtonsoft.Json ，默认情况 Newtonsoft.Json 下会忽略尾随逗号
             }
             #endregion
 
@@ -401,7 +409,6 @@ namespace Leopard.Host
 
             //#if DEBUG
             // swagger
-            app.UseSwagger();
             app.UseLeopardSwaggerUI();
             //访问 "/" and "" (whitespace) 地址，自动跳转到 /swagger 的首页
             app.UseRewriter(new RewriteOptions()
