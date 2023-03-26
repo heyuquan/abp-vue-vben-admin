@@ -257,7 +257,6 @@ paket-files/
 #/Environment/elasticsearch/plugins/
 **/tempkey.jwk
 **.local
-ocelot.**.json
 
 # Use abp install-libs to restore.
 **/wwwroot/libs/*

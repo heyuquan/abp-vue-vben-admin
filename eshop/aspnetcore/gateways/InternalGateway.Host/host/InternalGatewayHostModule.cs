@@ -20,7 +20,7 @@ namespace InternalGateway.Host
         )]
     public class InternalGatewayHostModule : CommonGatewayModule
     {
-        public InternalGatewayHostModule() : base(ModuleIdentity.InternalGateway.ServiceType, ModuleIdentity.InternalGateway.Name, false)
+        public InternalGatewayHostModule() : base(ModuleIdentity.InternalGateway.ServiceType, ModuleIdentity.InternalGateway.Name)
         { }
         
     }

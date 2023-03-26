@@ -80,12 +80,10 @@ namespace Leopard.Host
                 });
                 builder.Host
                     .AddAppSettingsSecretsJson()
-                    .ConfigureAppConfiguration((hostingContext, config) =>
-                    {
-                        this.ConfigureAppConfiguration(hostingContext, config);
-                    })
                     .UseAutofac()
                     .UseSerilog();
+
+                ConfigureHostBuilder(builder.Host);
 
                 await builder.AddApplicationAsync<TModule>();
                 var app = builder.Build();
@@ -119,7 +117,7 @@ namespace Leopard.Host
             }
         }
 
-        protected virtual void ConfigureAppConfiguration(HostBuilderContext hostingContext, IConfigurationBuilder config)
+        protected virtual void ConfigureHostBuilder(IHostBuilder hostBuilder)
         {
             // 给子类重写用
         }

@@ -1,8 +1,5 @@
-using Leopard.Helpers.IO;
 using Leopard.Host;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Ocelot.DependencyInjection;
 using Volo.Abp.Modularity;
 
 namespace Leopard.Gateway
@@ -18,12 +15,9 @@ namespace Leopard.Gateway
         {
         }
 
-        protected override void ConfigureAppConfiguration(HostBuilderContext hostingContext, IConfigurationBuilder config)
+        protected override void ConfigureHostBuilder(IHostBuilder hostBuilder)
         {
-            base.ConfigureAppConfiguration(hostingContext, config);
-            config.AddOcelot(
-                DirectoryHelper.GetRuntimeDirectory($"./Ocelot_{hostingContext.HostingEnvironment?.EnvironmentName}")
-                , hostingContext.HostingEnvironment?.EnvironmentName);
+            hostBuilder.AddYarpJson();
         }
     }
 }

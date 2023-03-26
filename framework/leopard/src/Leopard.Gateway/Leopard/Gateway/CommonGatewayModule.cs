@@ -8,10 +8,10 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Logging;
-using Ocelot.Middleware;
 using System;
 using System.Linq;
 using Volo.Abp;
@@ -137,6 +137,8 @@ namespace Leopard.Gateway
                     //options.TokenValidationParameters.ValidateAudience = false;
                 });
 
+            context.Services.AddReverseProxy()
+               .LoadFromConfig(configuration.GetSection("ReverseProxy"));
         }
 
         public override void OnApplicationInitialization(ApplicationInitializationContext context)
@@ -161,55 +163,56 @@ namespace Leopard.Gateway
 
             // http调用链
             app.UseCorrelationId();
-            // 虚拟文件系统
-            app.UseStaticFiles();
+            // Serilog
+            app.UseAbpSerilogEnrichers();
             app.UseAbpSecurityHeaders();
             app.UseCors();
             // 认证
-            app.UseAuthentication();
+            //app.UseAuthentication();
 
             if (env.IsDevelopment())
             {
                 app.UseTestMiddleware();
             }
 
-            app.UseAuthorization();
+            //app.UseAuthorization();
 
             //#if DEBUG
             // swagger
             app.UseSwagger();
             app.UseLeopardSwaggerUI();
+            //访问 "/" and "" (whitespace) 地址，自动跳转到 /swagger 的首页
+            app.UseRewriter(new RewriteOptions()
+                .AddRedirect("^(|\\|\\s+)$", "/swagger"));
             //#endif
 
-            // Serilog
-            app.UseAbpSerilogEnrichers();
+            app.UseRouting();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapReverseProxy();
+            });
 
-            //app.UseConfiguredEndpoints();
-
-            app.MapWhen(
-                  ctx => ctx.Request.Path.ToString().EndsWith("/api/health", StringComparison.OrdinalIgnoreCase) ||
-                         ctx.Request.Path.ToString().EndsWith("/swagger/index", StringComparison.OrdinalIgnoreCase) ||
-                         // ocelot configuration api
-                         ctx.Request.Path.ToString().EndsWith("/configuration", StringComparison.OrdinalIgnoreCase) ||
-                         ctx.Request.Path.ToString().TrimEnd('/').Equals(""),
-                  appBuilderConfig =>
-                  {
-                      appBuilderConfig.UseRouting();
-                      //appBuilderConfig.UseConfiguredEndpoints();
-                      //appBuilderConfig.UseEndpoints(endpoints =>
-                      //{
-                      //    endpoints.MapHealthChecks("/api/health");
-                      //});
-                      //appBuilderConfig.UseEndpoints(endpoints =>
-                      //{
-                      //    endpoints.MapControllerRoute("default",
-                      //              "{controller=Swagger}/{action=Index}");
-                      //});
-                  }
-               );
-            //app.UseRouting();
-            app.UseOcelot().Wait();
-
+            //app.MapWhen(
+            //      ctx => ctx.Request.Path.ToString().EndsWith("/api/health", StringComparison.OrdinalIgnoreCase) ||
+            //             ctx.Request.Path.ToString().EndsWith("/swagger/index", StringComparison.OrdinalIgnoreCase) ||
+            //             // ocelot configuration api
+            //             ctx.Request.Path.ToString().EndsWith("/configuration", StringComparison.OrdinalIgnoreCase) ||
+            //             ctx.Request.Path.ToString().TrimEnd('/').Equals(""),
+            //      appBuilderConfig =>
+            //      {
+            //          appBuilderConfig.UseRouting();
+            //          //appBuilderConfig.UseConfiguredEndpoints();
+            //          //appBuilderConfig.UseEndpoints(endpoints =>
+            //          //{
+            //          //    endpoints.MapHealthChecks("/api/health");
+            //          //});
+            //          //appBuilderConfig.UseEndpoints(endpoints =>
+            //          //{
+            //          //    endpoints.MapControllerRoute("default",
+            //          //              "{controller=Swagger}/{action=Index}");
+            //          //});
+            //      }
+            //   );
         }
     }
 }

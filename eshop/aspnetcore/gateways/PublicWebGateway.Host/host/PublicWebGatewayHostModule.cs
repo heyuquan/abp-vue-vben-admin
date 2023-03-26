@@ -1,7 +1,7 @@
+using EShop.Common.Shared;
 using Leopard;
 using Leopard.AspNetCore.Serilog;
 using Leopard.AspNetCore.Swashbuckle;
-using EShop.Common.Shared;
 using Leopard.Consul;
 using Leopard.Gateway;
 using Volo.Abp.Autofac;
@@ -20,7 +20,7 @@ namespace PublicWebSiteGateway.Host
         )]
     public class PublicWebGatewayHostModule : CommonGatewayModule
     {
-        public PublicWebGatewayHostModule() : base(ModuleIdentity.PublicWebGateway.ServiceType, ModuleIdentity.PublicWebGateway.Name, false)
+        public PublicWebGatewayHostModule() : base(ModuleIdentity.PublicWebGateway.ServiceType, ModuleIdentity.PublicWebGateway.Name)
         {
         }
     }

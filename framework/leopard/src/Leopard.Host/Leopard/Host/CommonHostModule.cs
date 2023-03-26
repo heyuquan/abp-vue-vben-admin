@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -358,6 +359,8 @@ namespace Leopard.Host
 
             // http调用链
             app.UseCorrelationId();
+            // Serilog
+            app.UseAbpSerilogEnrichers();
             app.UseAbpSecurityHeaders();
 
             // 虚拟文件系统
@@ -400,10 +403,10 @@ namespace Leopard.Host
             // swagger
             app.UseSwagger();
             app.UseLeopardSwaggerUI();
+            //访问 "/" and "" (whitespace) 地址，自动跳转到 /swagger 的首页
+            app.UseRewriter(new RewriteOptions()
+                .AddRedirect("^(|\\|\\s+)$", "/swagger"));
             //#endif
-
-            // Serilog
-            app.UseAbpSerilogEnrichers();
 
             // 审计日志
             app.UseAuditing();
@@ -411,14 +414,7 @@ namespace Leopard.Host
 
             // 在需要缓存的组件之前。 UseCORS 必须在 UseResponseCaching 之前。
             app.UseResponseCompression();
-            //app.UseConfiguredEndpoints();
-
-            // 设置默认swagger index页面
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute("default",
-                          "{controller=Swagger}/{action=Index}");
-            });
+            app.UseConfiguredEndpoints();
         }
     }
 }
