@@ -12,18 +12,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Ocelot" Version="18.0.0" />
-		<PackageReference Include="IdentityServer4.AccessTokenValidation" Version="3.0.1" />
-	</ItemGroup>
-
-	<ItemGroup>
+	    <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="3.0.1" />
 		<PackageReference Include="Volo.Abp.Autofac" Version="6.0.2" />
 		<PackageReference Include="Volo.Abp.Swashbuckle" Version="6.0.2" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\..\..\framework\leopard\src\Leopard.AspNetCore.Serilog\Leopard.AspNetCore.Serilog.csproj" />
-		<ProjectReference Include="..\..\..\..\..\framework\leopard\src\Leopard.AspNetCore.Swashbuckle\Leopard.AspNetCore.Swashbuckle.csproj" />
 		<ProjectReference Include="..\..\..\..\..\framework\leopard\src\Leopard.Consul\Leopard.Consul.csproj" />
 		<ProjectReference Include="..\..\..\..\..\framework\leopard\src\Leopard.Gateway\Leopard.Gateway.csproj" />
 		<ProjectReference Include="..\..\..\common\src\EShop.Common.Shared\EShop.Common.Shared.csproj" />

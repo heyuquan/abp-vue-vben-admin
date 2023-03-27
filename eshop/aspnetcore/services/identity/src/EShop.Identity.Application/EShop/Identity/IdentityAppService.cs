@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using EShop.Identity.Localization;
-using Volo.Abp.Application.Services;
+﻿using Volo.Abp.Application.Services;
+using Volo.Abp.Identity.Localization;
 
 namespace EShop.Identity;
 

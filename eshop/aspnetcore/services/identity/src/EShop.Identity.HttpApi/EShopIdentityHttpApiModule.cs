@@ -1,7 +1,6 @@
-﻿using EShop.Identity.Localization;
-using Leopard.Identity;
+﻿using Leopard.Identity;
 using Localization.Resources.AbpUi;
-using Volo.Abp.Identity;
+using Volo.Abp.Identity.Localization;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 

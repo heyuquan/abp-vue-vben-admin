@@ -1,5 +1,5 @@
-﻿using EShop.Identity.Localization;
-using Volo.Abp.AspNetCore.Mvc;
+﻿using Volo.Abp.AspNetCore.Mvc;
+using Volo.Abp.Identity.Localization;
 
 namespace EShop.Identity.Controllers;
 

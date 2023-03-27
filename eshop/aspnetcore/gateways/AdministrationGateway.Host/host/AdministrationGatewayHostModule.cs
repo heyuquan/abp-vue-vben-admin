@@ -9,11 +9,8 @@ using Volo.Abp.Swashbuckle;
 namespace AdministrationAppGateway.Host
 {
     [DependsOn(
-        typeof(AbpAutofacModule),
-        typeof(AbpSwashbuckleModule),
-        typeof(LeopardAspNetCoreSerilogModule),
+        typeof(AbpAutofacModule)
         //typeof(LeopardConsulModule),
-        typeof(LeopardAspNetCoreSwashbuckleModule)
     )]
     public class AdministrationAppGatewayHostModule : CommonGatewayModule
     {

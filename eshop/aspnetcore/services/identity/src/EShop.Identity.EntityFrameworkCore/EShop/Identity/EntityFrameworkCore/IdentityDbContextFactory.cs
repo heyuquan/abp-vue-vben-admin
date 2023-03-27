@@ -12,8 +12,6 @@ public class IdentityDbContextFactory : IDesignTimeDbContextFactory<IdentityDbCo
 {
     public IdentityDbContext CreateDbContext(string[] args)
     {
-        IdentityEfCoreEntityExtensionMappings.Configure();
-
         var configuration = BuildConfiguration();
 
         var builder = new DbContextOptionsBuilder<IdentityDbContext>()

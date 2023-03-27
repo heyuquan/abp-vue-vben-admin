@@ -1,5 +1,5 @@
-﻿using EShop.Identity.Localization;
-using Volo.Abp.Authorization.Permissions;
+﻿using Volo.Abp.Authorization.Permissions;
+using Volo.Abp.Identity.Localization;
 using Volo.Abp.Localization;
 
 namespace EShop.Identity.Permissions;

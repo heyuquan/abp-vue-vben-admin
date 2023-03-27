@@ -20,11 +20,6 @@ namespace EShop.Identity;
     )]
 public class EShopIdentityEntityFrameworkCoreModule : AbpModule
 {
-    public override void PreConfigureServices(ServiceConfigurationContext context)
-    {
-        IdentityEfCoreEntityExtensionMappings.Configure();
-    }
-
     public override void ConfigureServices(ServiceConfigurationContext context)
     {
         context.Services.AddAbpDbContext<EShop.Identity.EntityFrameworkCore.IdentityDbContext>(options =>

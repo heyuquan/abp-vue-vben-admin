@@ -11,8 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="EShop\Identity\Localization\Identity\*.json" />
-    <Content Remove="EShop\Identity\Localization\Identity\*.json" />
+    <EmbeddedResource Include="EShop\Identity\Localization\Resources\*.json" />
+    <Content Remove="EShop\Identity\Localization\Resources\*.json" />
   </ItemGroup>
 
   <ItemGroup>

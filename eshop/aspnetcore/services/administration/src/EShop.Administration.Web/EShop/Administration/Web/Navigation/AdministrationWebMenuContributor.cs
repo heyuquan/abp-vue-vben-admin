@@ -1,9 +1,9 @@
 using EShop.Administration.Localization;
-using EShop.Identity.Localization;
 using Leopard.Identity;
 using Leopard.UI.Navigation;
 using System.Threading.Tasks;
 using Volo.Abp.Authorization.Permissions;
+using Volo.Abp.Identity.Localization;
 using Volo.Abp.UI.Navigation;
 
 namespace EShop.Administration.Web.Navigation
