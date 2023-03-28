@@ -4,15 +4,15 @@
 	<Import Project="..\..\..\common.props" />
 
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net7.0</TargetFramework>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Hangfire.Dashboard.BasicAuthorization" Version="1.0.2" />
-		<PackageReference Include="Volo.Abp.AspNetCore" Version="6.0.2" />		
-		<PackageReference Include="Volo.Abp.BackgroundJobs" Version="6.0.2" />
-		<PackageReference Include="Volo.Abp.BackgroundJobs.HangFire" Version="6.0.2" />
-		<PackageReference Include="Volo.Abp.EntityFrameworkCore" Version="6.0.2" />
+		<PackageReference Include="Volo.Abp.AspNetCore" Version="7.1.0" />		
+		<PackageReference Include="Volo.Abp.BackgroundJobs" Version="7.1.0" />
+		<PackageReference Include="Volo.Abp.BackgroundJobs.HangFire" Version="7.1.0" />
+		<PackageReference Include="Volo.Abp.EntityFrameworkCore" Version="7.1.0" />
 		<PackageReference Include="Hangfire.MySqlStorage" Version="2.0.3" />
 	</ItemGroup>
 

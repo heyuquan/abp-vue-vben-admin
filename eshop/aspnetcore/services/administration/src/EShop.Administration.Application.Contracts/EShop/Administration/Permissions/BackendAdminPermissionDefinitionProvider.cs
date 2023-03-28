@@ -9,7 +9,7 @@ namespace EShop.Administration.Permissions
     {
         public override void Define(IPermissionDefinitionContext context)
         {
-            var settingGroup = context.AddGroup(AdministrationPermissions.GroupName, L("Permission:Settings"), MultiTenancySides.Host);
+            var settingGroup = context.AddGroup(AdministrationPermissions.GroupName, L("Permission:Settings"));
             var settingManagement = settingGroup.AddPermission(AdministrationPermissions.Settings.Default, L("Permission:SettingsManagement"), MultiTenancySides.Host);
         }
 

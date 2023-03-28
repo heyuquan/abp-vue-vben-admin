@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
 		<RootNamespace></RootNamespace>
 		<GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
 	</PropertyGroup>
@@ -22,7 +22,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Volo.Abp.Sms" Version="6.0.2" />
+		<PackageReference Include="Volo.Abp.Sms" Version="7.1.0" />
 		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="$(MicrosoftPackageVersion)" />
 		<ProjectReference Include="..\..\..\..\..\..\framework\modules\identity\src\Leopard.Identity.Application\Leopard.Identity.Application.csproj" />
 		<ProjectReference Include="..\EShop.Account.Public.Application.Contracts\EShop.Account.Public.Application.Contracts.csproj" />

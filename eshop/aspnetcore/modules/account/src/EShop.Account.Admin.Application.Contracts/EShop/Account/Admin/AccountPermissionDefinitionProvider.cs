@@ -9,7 +9,8 @@ namespace EShop.Account.Admin
 	{
 		public override void Define(IPermissionDefinitionContext context)
 		{
-			context.AddGroup(AccountPermissions.GroupName, L("Permission:Account"), MultiTenancySides.Both).AddPermission(AccountPermissions.SettingManagement, L("Permission:SettingManagement"), MultiTenancySides.Both);
+			context.AddGroup(AccountPermissions.GroupName, L("Permission:Account"))
+				.AddPermission(AccountPermissions.SettingManagement, L("Permission:SettingManagement"), MultiTenancySides.Both);
 		}
 
 		private static LocalizableString L(string name)

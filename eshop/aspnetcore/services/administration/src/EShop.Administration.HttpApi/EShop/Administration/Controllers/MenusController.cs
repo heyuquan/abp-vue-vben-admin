@@ -49,7 +49,7 @@ namespace EShop.Administration.Controllers
         {
             var applicationMenu = await this.GetUserMenuAsync(LeopardStandardMenus.Main);
             // 适配vben
-            if (applicationMenu != null&& applicationMenu.Items.Any())
+            if (applicationMenu != null && applicationMenu.Items.Any())
             {
                 return ConvertToRouteItemForVben(applicationMenu.Items[0].Items);
             }
@@ -64,13 +64,9 @@ namespace EShop.Administration.Controllers
             List<RouteItemForVben> result = new List<RouteItemForVben>();
             foreach (var menuItem in menuItems)
             {
-
-                PropertyInfo[] props = menuItem.CustomData.GetType()
-                                                    .GetProperties(BindingFlags.GetField |
-                                                                    BindingFlags.Public |
-                                                                    BindingFlags.Instance);
-
-                bool.TryParse(props.FirstOrDefault(x => x.Name == "IsGroup")?.GetValue(menuItem.CustomData).ToString(), out bool IsGroup);
+                bool IsGroup = false;
+                if (menuItem.CustomData.ContainsKey("CustomData"))
+                    bool.TryParse(menuItem.CustomData["IsGroup"]?.ToString(), out IsGroup);
 
                 if (!IsGroup || (IsGroup && menuItem.Items.Count > 0))   // 没有子菜单的一级IsGroup菜单，就不需要显示了
                 {
@@ -78,17 +74,17 @@ namespace EShop.Administration.Controllers
                     {
                         Name = menuItem.Name,
                         Path = menuItem.Url,
-                        Component = props.FirstOrDefault(x => x.Name == "Component")?.GetValue(menuItem.CustomData).ToString(),
-                        Redirect = props.FirstOrDefault(x => x.Name == "Redirect")?.GetValue(menuItem.CustomData).ToString(),
+                        Component = menuItem.CustomData.ContainsKey("Component") ? menuItem.CustomData["Component"]?.ToString() : string.Empty,
+                        Redirect = menuItem.CustomData.ContainsKey("Redirect") ? menuItem.CustomData["Redirect"]?.ToString() : string.Empty,
                         Meta = new RouteItemMetaForVben
                         {
                             OrderNo = menuItem.Order,
                             Title = menuItem.DisplayName,
                             Icon = menuItem.Icon,
                             CssClass = menuItem.CssClass,
-                            HideChildrenInMenu = Convert.ToBoolean(props.FirstOrDefault(x => x.Name == "HideChildrenInMenu")?.GetValue(menuItem.CustomData)),
-                            HideMenu = Convert.ToBoolean(props.FirstOrDefault(x => x.Name == "HideMenu")?.GetValue(menuItem.CustomData)),
-                            HideTab = Convert.ToBoolean(props.FirstOrDefault(x => x.Name == "HideTab")?.GetValue(menuItem.CustomData)),
+                            HideChildrenInMenu = menuItem.CustomData.ContainsKey("HideChildrenInMenu") ? Convert.ToBoolean(menuItem.CustomData["HideChildrenInMenu"]?.ToString()) : false,
+                            HideMenu = menuItem.CustomData.ContainsKey("HideMenu") ? Convert.ToBoolean(menuItem.CustomData["HideMenu"]?.ToString()) : false,
+                            HideTab = menuItem.CustomData.ContainsKey("HideTab") ? Convert.ToBoolean(menuItem.CustomData["HideTab"]?.ToString()) : false,
                         },
                         Children = ConvertToRouteItemForVben(menuItem.Items)
                     };

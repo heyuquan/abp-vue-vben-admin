@@ -9,7 +9,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Volo.Abp.Identity.Domain.Shared" Version="6.0.2" />
+		<PackageReference Include="Volo.Abp.Identity.Domain.Shared" Version="7.1.0" />
 		<ProjectReference Include="..\..\..\..\..\..\framework\modules\identity\src\Leopard.Identity.Application.Contracts\Leopard.Identity.Application.Contracts.csproj" />
 		<ProjectReference Include="..\EShop.Account.Shared.Application.Contracts\EShop.Account.Shared.Application.Contracts.csproj" />
 	</ItemGroup>

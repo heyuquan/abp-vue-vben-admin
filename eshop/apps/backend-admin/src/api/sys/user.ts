@@ -7,9 +7,9 @@ import { ErrorMessageMode } from '/#/axios';
 import { ContentTypeEnum } from '/@/enums/httpEnum';
 
 enum Api {
-  Login = '/api/connect/token',
-  Logout = '/api/connect/revocation',
-  GetUserInfo = '/api/connect/userinfo',
+  Login = '/connect/token',
+  Logout = '/connect/revocation',
+  GetUserInfo = '/connect/userinfo',
 }
 
 /**

@@ -20,20 +20,31 @@ namespace EShop.Administration.Web.Navigation
             var AdministrationLocalizer = context.GetLocalizer<AdministrationResource>();
 
             #region ==== vben demo begin =====
-            var dashboardMenuItem = new ApplicationMenuItem("Demo.Dashboard", "Dashboard"
-                , url: "/dashboard", icon: "ion:grid-outline", customData: new { IsGroup = true, Component = "LAYOUT", Redirect = "/dashboard/analysis" });
-            dashboardMenuItem.AddItem(new ApplicationMenuItem("Demo.Dashboard.Analysis", "分析页"
-                , url: "/dashboard/analysis", customData: new { Component = "/dashboard/analysis/index" }));
-            dashboardMenuItem.AddItem(new ApplicationMenuItem("Demo.Dashboard.Workbench", "工作台"
-                , url: "/dashboard/workbench", customData: new { Component = "/dashboard/workbench/index" }));
+            var dashboardMenuItem = new ApplicationMenuItem("Demo.Dashboard", "Dashboard", url: "/dashboard", icon: "ion:grid-outline");
+            dashboardMenuItem.WithCustomData("IsGroup", true);
+            dashboardMenuItem.WithCustomData("Component", "LAYOUT");
+            dashboardMenuItem.WithCustomData("Redirect", "/dashboard/analysis");
+            dashboardMenuItem.AddItem(
+                    new ApplicationMenuItem("Demo.Dashboard.Analysis", "分析页", url: "/dashboard/analysis")
+                        .WithCustomData("Component", "/dashboard/analysis/index")
+                );
+            dashboardMenuItem.AddItem(
+                    new ApplicationMenuItem("Demo.Dashboard.Workbench", "工作台", url: "/dashboard/workbench")
+                        .WithCustomData("Component", "/dashboard/workbench/index")
+                );
 
             context.Menu.GetAdministration().AddItem(dashboardMenuItem);
 
-            var aboutMenuItem = new ApplicationMenuItem("Demo.About", "关于", order: 99999
-                , url: "/about", icon: "simple-icons:about-dot-me"
-                , customData: new { IsGroup = true, Component = "LAYOUT", Redirect = "/about/index", HideChildrenInMenu = true });
-            aboutMenuItem.AddItem(new ApplicationMenuItem("Demo.About.AboutPage", "关于"
-                , url: "/about/index", customData: new { Component = "/sys/about/index", HideMenu = true }));
+            var aboutMenuItem = new ApplicationMenuItem("Demo.About", "关于", order: 99999, url: "/about", icon: "simple-icons:about-dot-me");
+            dashboardMenuItem.WithCustomData("IsGroup", true);
+            dashboardMenuItem.WithCustomData("Component", "LAYOUT");
+            dashboardMenuItem.WithCustomData("Redirect", "/about/index");
+            dashboardMenuItem.WithCustomData("HideChildrenInMenu", true);
+            aboutMenuItem.AddItem(
+                    new ApplicationMenuItem("Demo.About.AboutPage", "关于", url: "/about/index")
+                        .WithCustomData("Component", "/sys/about/index")
+                        .WithCustomData("HideMenu", true)
+                );
 
             context.Menu.GetAdministration().AddItem(aboutMenuItem);
             #endregion ==== vben demo end =====           
@@ -57,21 +68,34 @@ namespace EShop.Administration.Web.Navigation
             var identityLocalizer = context.GetLocalizer<IdentityResource>();
 
             var manageMenuItem = new ApplicationMenuItem(AdministrationMenuNames.Administration.GroupName
-                , AdministrationLocalizer["Menu:Administration"], icon: "ion:cube-outline", url: "/manage"
-                , customData: new { IsGroup = true, Component = "LAYOUT", Redirect = "/identity/users" });
+                , AdministrationLocalizer["Menu:Administration"], icon: "ion:cube-outline", url: "/manage");
+            manageMenuItem.WithCustomData("IsGroup", true);
+            manageMenuItem.WithCustomData("Component", "LAYOUT");
+            manageMenuItem.WithCustomData("Redirect", "/identity/users");
 
             var identityMenuItem = new ApplicationMenuItem(AdministrationMenuNames.Administration.Identity.GroupName
-                , identityLocalizer["Menu:IdentityManagement"], url: "/identity"
-                , customData: new { IsGroup = true, Component = AdministrationMenuNames.Administration.Identity.GroupName, Redirect = "/identity/users" });
-            identityMenuItem.AddItem(new ApplicationMenuItem(AdministrationMenuNames.Administration.Identity.OrganizationUnits, identityLocalizer["Menu:OrganizationUnits"]
-                , url: "/identity/organization-units", customData: new { Component = "/identity/organization-units/index" })
-                .RequirePermissions(IdentityPermissions.OrganizationUnits.Default));
-            identityMenuItem.AddItem(new ApplicationMenuItem(AdministrationMenuNames.Administration.Identity.Roles, identityLocalizer["Menu:Roles"]
-                , url: "/identity/roles", customData: new { Component = "/identity/role/index" })
-                .RequirePermissions(IdentityPermissions.Roles.Default));
-            identityMenuItem.AddItem(new ApplicationMenuItem(AdministrationMenuNames.Administration.Identity.Users, identityLocalizer["Menu:Users"]
-                , url: "/identity/users", customData: new { Component = "/identity/user/index" })
-                .RequirePermissions(IdentityPermissions.Users.Default));
+                , identityLocalizer["Menu:IdentityManagement"], url: "/identity");
+            identityMenuItem.WithCustomData("IsGroup", true);
+            identityMenuItem.WithCustomData("Component", AdministrationMenuNames.Administration.Identity.GroupName);
+            identityMenuItem.WithCustomData("Redirect", "/identity/users");
+            identityMenuItem.AddItem(
+                    new ApplicationMenuItem(AdministrationMenuNames.Administration.Identity.OrganizationUnits
+                        , identityLocalizer["Menu:OrganizationUnits"], url: "/identity/organization-units")
+                    .RequirePermissions(IdentityPermissions.OrganizationUnits.Default)
+                    .WithCustomData("Component", "/identity/organization-units/index")
+                );
+
+            identityMenuItem.AddItem(
+                    new ApplicationMenuItem(AdministrationMenuNames.Administration.Identity.Roles, identityLocalizer["Menu:Roles"], url: "/identity/roles")
+                    .RequirePermissions(IdentityPermissions.Roles.Default)
+                    .WithCustomData("Component", "/identity/role/index")
+                );
+
+            identityMenuItem.AddItem(
+                new ApplicationMenuItem(AdministrationMenuNames.Administration.Identity.Users, identityLocalizer["Menu:Users"], url: "/identity/users")
+                .RequirePermissions(IdentityPermissions.Users.Default)
+                .WithCustomData("Component", "/identity/user/index")
+                );
             //identityMenuItem.AddItem(new ApplicationMenuItem(AdministrationMenuNames.Administration.Identity.ClaimTypes, identityLocalizer["Menu:ClaimTypes"]
             //    , url: "/identity/claim-types", customData: new { Component = "/identity/claim-types/index" })
             //    .RequirePermissions(IdentityPermissions.ClaimTypes.Default));

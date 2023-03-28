@@ -4,7 +4,7 @@
 	<Import Project="..\..\..\common.props" />
 
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net7.0</TargetFramework>
 		<RootNamespace>Mk.DemoC</RootNamespace>
 		<PreserveCompilationReferences>true</PreserveCompilationReferences>
 		<UserSecretsId>Mk.DemoC-c2d31439-b723-48e2-b061-5ebd7aeb6010</UserSecretsId>
@@ -16,12 +16,12 @@
 		<PackageReference Include="IdentityServer4.AccessTokenValidation" Version="3.0.1" />
 		<PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="$(MicrosoftPackageVersion)" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="$(MicrosoftPackageVersion)" />
-		<PackageReference Include="Volo.Abp.Autofac" Version="6.0.2" />
-		<PackageReference Include="Volo.Abp.Caching.StackExchangeRedis" Version="6.0.2" />
-		<PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy" Version="6.0.2" />
-		<PackageReference Include="Volo.Abp.EntityFrameworkCore.MySQL" Version="6.0.2" />
-		<PackageReference Include="Volo.Abp.EventBus.RabbitMQ" Version="6.0.2" />
-		<PackageReference Include="Volo.Abp.Swashbuckle" Version="6.0.2" />
+		<PackageReference Include="Volo.Abp.Autofac" Version="7.1.0" />
+		<PackageReference Include="Volo.Abp.Caching.StackExchangeRedis" Version="7.1.0" />
+		<PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy" Version="7.1.0" />
+		<PackageReference Include="Volo.Abp.EntityFrameworkCore.MySQL" Version="7.1.0" />
+		<PackageReference Include="Volo.Abp.EventBus.RabbitMQ" Version="7.1.0" />
+		<PackageReference Include="Volo.Abp.Swashbuckle" Version="7.1.0" />
 	</ItemGroup>
 
 	<ItemGroup>
