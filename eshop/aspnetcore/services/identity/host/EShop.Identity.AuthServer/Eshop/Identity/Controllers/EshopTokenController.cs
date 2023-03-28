@@ -17,7 +17,7 @@ namespace EShop.Identity.Controllers;
 
 // 重写volo.TokenController，认证成功后处理程序，把clientId对应的scopes全部放入token中。
 // 这样避免申请token端还要传入scope参数。因为如果不传入scope参数，返回的token中就不会包含aud参数，
-// 验证token的时候会报 The 'audiences' parameter is empty  （https://github.com/dotnet/aspnetcore/issues/42207）
+// 验证token的时候会报 The 'audiences' parameter is empty  （https://github.com/WilliamXu96/ABP-MicroService/issues/54）
 
 public class EshopTokenController : TokenController, ITransientDependency
 {
