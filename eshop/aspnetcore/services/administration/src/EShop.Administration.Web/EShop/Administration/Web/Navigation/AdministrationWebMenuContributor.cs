@@ -36,10 +36,10 @@ namespace EShop.Administration.Web.Navigation
             context.Menu.GetAdministration().AddItem(dashboardMenuItem);
 
             var aboutMenuItem = new ApplicationMenuItem("Demo.About", "关于", order: 99999, url: "/about", icon: "simple-icons:about-dot-me");
-            dashboardMenuItem.WithCustomData("IsGroup", true);
-            dashboardMenuItem.WithCustomData("Component", "LAYOUT");
-            dashboardMenuItem.WithCustomData("Redirect", "/about/index");
-            dashboardMenuItem.WithCustomData("HideChildrenInMenu", true);
+            aboutMenuItem.WithCustomData("IsGroup", true);
+            aboutMenuItem.WithCustomData("Component", "LAYOUT");
+            aboutMenuItem.WithCustomData("Redirect", "/about/index");
+            aboutMenuItem.WithCustomData("HideChildrenInMenu", true);
             aboutMenuItem.AddItem(
                     new ApplicationMenuItem("Demo.About.AboutPage", "关于", url: "/about/index")
                         .WithCustomData("Component", "/sys/about/index")
