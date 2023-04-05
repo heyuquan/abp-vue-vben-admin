@@ -3,7 +3,7 @@
     <BasicTable @register="registerTable">
       <template #toolbar>
         <a-button
-          v-if="hasPermission('LeopardIdentity.Users.Create')"
+          v-if="hasPermission('Leopard.Identity.Users.Create')"
           type="primary"
           @click="handleAddNew"
           >{{ t('AbpIdentity.NewUser') }}</a-button
@@ -29,13 +29,13 @@
         <TableAction
           :actions="[
             {
-              auth: 'LeopardIdentity.Users.Update',
+              auth: 'Leopard.Identity.Users.Update',
               label: t('AbpUi.Edit'),
               icon: 'ant-design:edit-outlined',
               onClick: handleEdit.bind(null, record),
             },
             {
-              auth: 'LeopardIdentity.Users.Delete',
+              auth: 'Leopard.Identity.Users.Delete',
               color: 'error',
               label: t('AbpUi.Delete'),
               icon: 'ant-design:delete-outlined',
@@ -44,29 +44,29 @@
           ]"
           :dropDownActions="[
             {
-              auth: 'LeopardIdentity.Users.Update',
+              auth: 'Leopard.Identity.Users.Update',
               label: t('AbpIdentity.DisplayName:Lockout'),
               ifShow: lockEnable(record),
               onClick: showLockModal.bind(null, record.id),
             },
             {
-              auth: 'LeopardIdentity.Users.Update',
+              auth: 'Leopard.Identity.Users.Update',
               label: t('AbpIdentity.UnLock'),
               ifShow: record.lockoutEnabled && !lockEnable(record),
               onClick: handleUnlock.bind(null, record),
             },
             {
-              auth: 'LeopardIdentity.Users.ManagePermissions',
+              auth: 'Leopard.Identity.Users.ManagePermissions',
               label: t('AbpIdentity.Permissions'),
               onClick: showPermissionModal.bind(null, record.id),
             },
             {
-              auth: 'LeopardIdentity.Users.ManageClaims',
+              auth: 'Leopard.Identity.Users.ManageClaims',
               label: t('AbpIdentity.Claims'),
               onClick: openClaimModal.bind(null, true, record, true),
             },
             {
-              auth: 'LeopardIdentity.Users.Update',
+              auth: 'Leopard.Identity.Users.Update',
               label: t('AbpIdentity.SetPassword'),
               onClick: showPasswordModal.bind(null, record.id),
             },

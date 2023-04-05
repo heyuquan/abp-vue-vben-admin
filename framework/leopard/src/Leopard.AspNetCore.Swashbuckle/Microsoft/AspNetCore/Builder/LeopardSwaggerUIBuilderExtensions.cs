@@ -1,6 +1,7 @@
-﻿using Leopard.AuthServer;
-using Microsoft.Extensions.Configuration;
+﻿using Leopard.AspNetCore.Swashbuckle.Options;
+using Leopard.Options;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using System;
 
@@ -14,21 +15,21 @@ namespace Microsoft.AspNetCore.Builder
         {
             app.UseSwagger();
 
-            var configuration = app.ApplicationServices.GetRequiredService<IConfiguration>();
-            var authServerOptions = configuration.GetSection(AuthServerOptions.SectionName).Get<AuthServerOptions>();
-            if (authServerOptions != null)
+            var swaggerOptions = app.ApplicationServices.GetRequiredService<IOptions<SwaggerOptions>>().Value;
+            var applicationOptions = app.ApplicationServices.GetRequiredService<IOptions<ApplicationOptions>>().Value;
+
+            app.UseAbpSwaggerUI(options =>
             {
-                app.UseAbpSwaggerUI(options =>
-                {
-                    options.SwaggerEndpoint("/swagger/v1/swagger.json", authServerOptions.ApiName);
+                options.SwaggerEndpoint("/swagger/v1/swagger.json", applicationOptions.AppName);
 
-                    options.OAuthClientId(authServerOptions.SwaggerClientId);
-                    options.OAuthClientSecret(authServerOptions.SwaggerClientSecret);
-                    options.OAuthScopes(authServerOptions.SwaggerClientScopes);
+                if (!swaggerOptions.ClientId.IsNullOrWhiteSpace())
+                    options.OAuthClientId(swaggerOptions.ClientId);
+                if (!swaggerOptions.ClientSecret.IsNullOrWhiteSpace())
+                    options.OAuthClientSecret(swaggerOptions.ClientSecret);
 
-                    setupAction?.Invoke(options);
-                });
-            }
+                setupAction?.Invoke(options);
+            });
+
             return app;
         }
     }

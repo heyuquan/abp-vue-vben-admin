@@ -15,7 +15,7 @@
         :stop-button-propagation="true"
         :actions="[
           {
-            auth: 'LeopardIdentity.Users.Delete',
+            auth: 'Leopard.Identity.Users.Delete',
             color: 'error',
             label: t('AbpUi.Delete'),
             icon: 'ant-design:delete-outlined',
@@ -54,7 +54,7 @@
         if (!unref(getProps).ouId) {
           return false;
         }
-        return hasPermission('LeopardIdentity.Users.Create');
+        return hasPermission('Leopard.Identity.Users.Create');
       });
       const { registerTable, reloadMembers, handleDelete } = useMemberTable({ getProps });
       const [registerModal, { openModal }] = useModal();

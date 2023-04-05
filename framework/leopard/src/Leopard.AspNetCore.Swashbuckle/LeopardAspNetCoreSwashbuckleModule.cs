@@ -1,7 +1,7 @@
-﻿using Volo.Abp.Modularity;
-using Volo.Abp.Swashbuckle;
+﻿using Leopard.AspNetCore.Swashbuckle.Options;
 using Microsoft.Extensions.DependencyInjection;
-using Leopard.AuthServer;
+using Volo.Abp.Modularity;
+using Volo.Abp.Swashbuckle;
 
 namespace Leopard.AspNetCore.Swashbuckle
 {
@@ -11,5 +11,11 @@ namespace Leopard.AspNetCore.Swashbuckle
    )]
     public class LeopardAspNetCoreSwashbuckleModule : AbpModule
     {
+        public override void ConfigureServices(ServiceConfigurationContext context)
+        {
+            var configuration = context.Services.GetConfiguration();
+            context.Services.AddOptions<SwaggerOptions>()
+                            .Bind(configuration.GetSection(SwaggerOptions.SectionName));
+        }
     }
 }

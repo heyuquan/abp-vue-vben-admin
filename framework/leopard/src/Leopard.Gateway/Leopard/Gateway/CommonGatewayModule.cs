@@ -3,12 +3,14 @@ using Leopard.AspNetCore.Mvc;
 using Leopard.AspNetCore.Mvc.Filters;
 using Leopard.AspNetCore.Serilog;
 using Leopard.AspNetCore.Swashbuckle;
+using Leopard.Options;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Rewrite;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Logging;
@@ -125,15 +127,19 @@ namespace Leopard.Gateway
             context.Services.AddLeopardSwaggerGen();
             IdentityModelEventSource.ShowPII = true;
 #endif
-
+            var applicationOptions = configuration.GetSection(ApplicationOptions.SectionName).Get<ApplicationOptions>();
+            if (applicationOptions.Auth?.Authority?.IsNullOrWhiteSpace() ?? false)
+            {
+                throw new UserFriendlyException("缺少 Application:Auth 配置节点");
+            }
             context.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
                     // ValidateIssuer，验证访问令牌中的iss声明是否与API信任的颁发者（权限）匹配（即，您的令牌服务）。验证令牌的颁发者是否符合此API的预期。
                     // ValidateAudience，验证访问令牌内的aud声明是否与访问群体参数匹配。也就是说，接收到的令牌是用于此API的。
-                    options.Authority = configuration["AuthServer:Authority"];
-                    options.RequireHttpsMetadata = Convert.ToBoolean(configuration["AuthServer:RequireHttpsMetadata"]);
-                    options.Audience = configuration["AuthServer:ApiName"];
+                    options.Authority = applicationOptions.Auth.Authority;
+                    options.RequireHttpsMetadata = applicationOptions.Auth.RequireHttpsMetadata;
+                    options.Audience = applicationOptions.AppName;
                     //options.TokenValidationParameters.ValidateAudience = false;
                 });
 

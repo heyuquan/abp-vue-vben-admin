@@ -67,6 +67,8 @@ https://blog.csdn.net/qq_45988641/article/details/123631126
   创建服务（不启动）：docker-compose create
   启动：docker-compose up [服务名],[服务名]
         docker-compose up -d    -d代表在后台运行
+  改了docker-compose 配置，需要重新部署容器时
+        docker compose up -d --force-recreate [服务名]
 
   停止：docker-compose stop [服务名],[服务名] 
   停止：docker-compose start [服务名],[服务名] 

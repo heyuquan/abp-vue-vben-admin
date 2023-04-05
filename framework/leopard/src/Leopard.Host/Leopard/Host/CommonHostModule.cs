@@ -3,6 +3,7 @@ using Leopard.AspNetCore.Mvc;
 using Leopard.AspNetCore.Mvc.Filters;
 using Leopard.AspNetCore.Serilog;
 using Leopard.AspNetCore.Swashbuckle;
+using Leopard.Options;
 using Medallion.Threading;
 using Medallion.Threading.Redis;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -17,6 +18,7 @@ using Microsoft.AspNetCore.Rewrite;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Logging;
 using StackExchange.Redis;
 using System;
@@ -110,7 +112,7 @@ namespace Leopard.Host
                 // https://www.cnblogs.com/cdaniu/p/16024229.html
                 options.Encoder = JavaScriptEncoder.Create(UnicodeRanges.All);
                 //数据格式首字母小写
-                options.PropertyNamingPolicy =JsonNamingPolicy.CamelCase;
+                options.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
                 //反序列化过程中属性名称是否使用不区分大小写的比较
                 options.PropertyNameCaseInsensitive = false;
                 //要反序列化的 JSON 有效负载中是否允许（和忽略）对象或数组中 JSON 值的列表末尾多余的逗号
@@ -211,14 +213,20 @@ namespace Leopard.Host
 
             if (ApplicationServiceType == ApplicationServiceType.ApiHost)
             {
+
+                var applicationOptions = configuration.GetSection(ApplicationOptions.SectionName).Get<ApplicationOptions>();
+                if (applicationOptions.Auth?.Authority?.IsNullOrWhiteSpace() ?? false)
+                {
+                    throw new UserFriendlyException("缺少 Application:Auth 配置节点");
+                }
                 context.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddJwtBearer(options =>
                     {
                         // ValidateIssuer，验证访问令牌中的iss声明是否与API信任的颁发者（权限）匹配（即，您的令牌服务）。验证令牌的颁发者是否符合此API的预期。
                         // ValidateAudience，验证访问令牌内的aud声明是否与访问群体参数匹配。也就是说，接收到的令牌是用于此API的。
-                        options.Authority = configuration["AuthServer:Authority"];
-                        options.RequireHttpsMetadata = Convert.ToBoolean(configuration["AuthServer:RequireHttpsMetadata"]);
-                        options.Audience = configuration["AuthServer:ApiName"];
+                        options.Authority = applicationOptions.Auth.Authority;
+                        options.RequireHttpsMetadata = applicationOptions.Auth.RequireHttpsMetadata;
+                        options.Audience = applicationOptions.AppName;
                         //options.TokenValidationParameters.ValidateAudience = false;
                     });
             }

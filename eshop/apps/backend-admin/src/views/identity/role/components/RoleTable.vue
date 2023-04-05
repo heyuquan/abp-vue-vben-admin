@@ -3,7 +3,7 @@
     <BasicTable @register="registerTable">
       <template #toolbar>
         <a-button
-          v-if="hasPermission('LeopardIdentity.Roles.Create')"
+          v-if="hasPermission('Leopard.Identity.Roles.Create')"
           type="primary"
           @click="handleAddNew"
           >{{ t('AbpIdentity.NewRole') }}</a-button
@@ -14,13 +14,13 @@
           :stop-button-propagation="true"
           :actions="[
             {
-              auth: 'LeopardIdentity.Roles.Update',
+              auth: 'Leopard.Identity.Roles.Update',
               label: t('AbpUi.Edit'),
               icon: 'ant-design:edit-outlined',
               onClick: handleEdit.bind(null, record),
             },
             {
-              auth: 'LeopardIdentity.Roles.Delete',
+              auth: 'Leopard.Identity.Roles.Delete',
               color: 'error',
               label: t('AbpUi.Delete'),
               icon: 'ant-design:delete-outlined',
@@ -30,12 +30,12 @@
           ]"
           :dropDownActions="[
             {
-              auth: 'LeopardIdentity.Roles.ManagePermissions',
+              auth: 'Leopard.Identity.Roles.ManagePermissions',
               label: t('AbpIdentity.Permissions'),
               onClick: showPermissionModal.bind(null, record.name),
             },
             {
-              auth: 'LeopardIdentity.Roles.ManageClaims',
+              auth: 'Leopard.Identity.Roles.ManageClaims',
               label: t('AbpIdentity.Claims'),
               onClick: openClaimModal.bind(null, true, record, true),
             },

@@ -1,5 +1,4 @@
-﻿using Leopard.AspNetCore.Swashbuckle.Filter;
-using Leopard.AuthServer;
+﻿using Leopard.Options;
 using Microsoft.Extensions.Configuration;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
@@ -16,24 +15,17 @@ namespace Microsoft.Extensions.DependencyInjection
             Action<SwaggerGenOptions> setupAction = null)
         {
             var configuration = services.GetConfiguration();
-            var authServerOptionsSection = configuration.GetSection(AuthServerOptions.SectionName);
-            if (!authServerOptionsSection.Exists())
-            {
-                throw new Exception($"配置文件中缺少{AuthServerOptions.SectionName}节点的配置");
-            }
-            var authServerOptions = authServerOptionsSection.Get<AuthServerOptions>();
-
-            bool isRequiredSetAuth = !authServerOptions.Authority.IsNullOrWhiteSpace();
+            var applicationOptions = configuration.GetSection(ApplicationOptions.SectionName).Get<ApplicationOptions>();
+            bool isRequiredSetAuth = !applicationOptions.Auth?.Authority?.IsNullOrWhiteSpace() ?? false;
 
             Action<SwaggerGenOptions> innerSetupAction = options =>
             {
-                options.SwaggerDoc("v1", new OpenApiInfo { Title = authServerOptions.ApiName, Version = "v1" });
+                options.SwaggerDoc("v1", new OpenApiInfo { Title = applicationOptions.AppName, Version = applicationOptions.AppVersion });
                 options.DocInclusionPredicate((docName, description) => true);
                 options.CustomSchemaIds(type => type.FullName);
                 //options.HideAbpEndpoints();
 
-                //options.DocumentFilter<EnumDescriptionFilter>();
-                //options.OperationFilter<CollectionAbpApiFilter>();
+                //options.OperationFilter<EnumDescriptionFilter>();
 
                 // 为 Swagger JSON and UI设置xml文档注释路径
                 var filePaths = System.IO.Directory.GetFiles(AppContext.BaseDirectory, "*.xml")
@@ -52,15 +44,9 @@ namespace Microsoft.Extensions.DependencyInjection
 
             if (isRequiredSetAuth)
             {
-                Dictionary<string, string> scopes = new Dictionary<string, string>();
-                foreach (var item in authServerOptions.SwaggerClientScopes)
-                {
-                    scopes.Add(item, $"{item} API");
-                }
-
                 services = services.AddAbpSwaggerGenWithOAuth(
-                                            authServerOptions.Authority,
-                                            scopes,
+                                            applicationOptions.Auth.Authority,
+                                            new Dictionary<string, string>(),
                                             innerSetupAction
                                         );
             }

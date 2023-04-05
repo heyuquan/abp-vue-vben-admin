@@ -15,7 +15,7 @@
         :stop-button-propagation="true"
         :actions="[
           {
-            auth: 'LeopardIdentity.Roles.Delete',
+            auth: 'Leopard.Identity.Roles.Delete',
             color: 'error',
             label: t('AbpUi.Delete'),
             icon: 'ant-design:delete-outlined',
@@ -54,7 +54,7 @@
         if (!unref(getProps).ouId) {
           return false;
         }
-        return hasPermission('LeopardIdentity.Roles.Create');
+        return hasPermission('Leopard.Identity.Roles.Create');
       });
       const { registerTable, reloadRoles, handleDelete } = useRoleTable({ getProps });
       const [registerModal, { openModal }] = useModal();

@@ -2,7 +2,7 @@
   <Card :title="t('AbpIdentity.OrganizationUnit:OrganizationTree')">
     <template #extra>
       <a-button
-        v-if="hasPermission('LeopardIdentity.OrganizationUnits.Create')"
+        v-if="hasPermission('Leopard.Identity.OrganizationUnits.Create')"
         type="primary"
         pre-icon="ant-design:plus-outlined"
         @click="handleAddNew"

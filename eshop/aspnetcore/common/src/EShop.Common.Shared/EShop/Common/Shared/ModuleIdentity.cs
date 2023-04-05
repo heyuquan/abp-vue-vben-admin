@@ -11,7 +11,7 @@ namespace EShop.Common.Shared
             public const ApplicationServiceType ServiceType = ApplicationServiceType.ApiHost;
         }
 
-        public static class IdentityAuth
+        public static class IdentityAuthServer
         {
             public const string Name = ModuleNames.IdentityAuthServer;
             public const ApplicationServiceType ServiceType = ApplicationServiceType.IdentityAuthServer;
