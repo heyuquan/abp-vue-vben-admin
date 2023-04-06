@@ -41,7 +41,7 @@ namespace Leopard.Gateway
 
         public CommonGatewayModule(
             ApplicationServiceType serviceType
-            , string moduleKey) 
+            , string moduleKey)
         {
             ModuleKey = moduleKey;
             ApplicationServiceType = serviceType;
@@ -51,6 +51,7 @@ namespace Leopard.Gateway
         {
             var hostingEnvironment = context.Services.GetHostingEnvironment();
             var configuration = context.Services.GetConfiguration();
+            var applicationOptions = configuration.GetSection(ApplicationOptions.SectionName).Get<ApplicationOptions>();
 
             Configure<MvcOptions>(mvcOptions =>
             {
@@ -125,9 +126,10 @@ namespace Leopard.Gateway
 
 #if !Production  
             context.Services.AddLeopardSwaggerGen();
-            IdentityModelEventSource.ShowPII = true;
 #endif
-            var applicationOptions = configuration.GetSection(ApplicationOptions.SectionName).Get<ApplicationOptions>();
+
+            IdentityModelEventSource.ShowPII = applicationOptions.IsIdentityModelShowPII;
+
             if (applicationOptions.Auth?.Authority?.IsNullOrWhiteSpace() ?? false)
             {
                 throw new UserFriendlyException("缺少 Application:Auth 配置节点");

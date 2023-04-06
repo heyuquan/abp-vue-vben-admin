@@ -19,6 +19,7 @@ namespace Leopard.Options
 
         public AuthOptions Auth { get; set; }
 
+        public bool IsIdentityModelShowPII { get; set; }
     }
 
     /// <summary>

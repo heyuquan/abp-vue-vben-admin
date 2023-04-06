@@ -1,5 +1,7 @@
-﻿using Leopard.Options;
+﻿using Leopard.AspNetCore.Swashbuckle.Options;
+using Leopard.Options;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System;
@@ -17,13 +19,17 @@ namespace Microsoft.Extensions.DependencyInjection
             var configuration = services.GetConfiguration();
             var applicationOptions = configuration.GetSection(ApplicationOptions.SectionName).Get<ApplicationOptions>();
             bool isRequiredSetAuth = !applicationOptions.Auth?.Authority?.IsNullOrWhiteSpace() ?? false;
+            var swaggerOptions = configuration.GetSection(SwaggerOptions.SectionName).Get<SwaggerOptions>();
 
             Action<SwaggerGenOptions> innerSetupAction = options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = applicationOptions.AppName, Version = applicationOptions.AppVersion });
                 options.DocInclusionPredicate((docName, description) => true);
                 options.CustomSchemaIds(type => type.FullName);
-                //options.HideAbpEndpoints();
+                if (!swaggerOptions.IsHideAbpEndpoints)
+                {
+                    options.HideAbpEndpoints();
+                }
 
                 //options.OperationFilter<EnumDescriptionFilter>();
 

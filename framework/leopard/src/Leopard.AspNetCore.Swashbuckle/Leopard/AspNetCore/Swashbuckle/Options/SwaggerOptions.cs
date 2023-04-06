@@ -20,5 +20,9 @@ namespace Leopard.AspNetCore.Swashbuckle.Options
         ///// ClientScopes
         ///// </summary>
         //public string[] ClientScopes { get; set; }
+        /// <summary>
+        /// 隐藏abp的节点
+        /// </summary>
+        public bool IsHideAbpEndpoints { get; set; } = true;
     }
 }
