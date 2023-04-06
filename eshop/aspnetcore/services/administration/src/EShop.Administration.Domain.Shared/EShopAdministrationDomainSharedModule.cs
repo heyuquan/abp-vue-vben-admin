@@ -1,5 +1,5 @@
 ﻿using EShop.Administration.Localization;
-using EShop.Common.Shared;
+using EShop.Shared;
 using Volo.Abp.AuditLogging;
 using Volo.Abp.FeatureManagement;
 using Volo.Abp.FeatureManagement.Localization;

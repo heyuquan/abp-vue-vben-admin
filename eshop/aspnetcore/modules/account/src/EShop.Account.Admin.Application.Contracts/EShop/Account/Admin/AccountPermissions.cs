@@ -1,4 +1,4 @@
-﻿using EShop.Common.Shared;
+﻿using EShop.Shared;
 using Volo.Abp.Reflection;
 
 namespace EShop.Account.Admin

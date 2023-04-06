@@ -1,4 +1,4 @@
-using EShop.Common.Shared;
+using EShop.Shared;
 using Leopard.Gateway;
 using Volo.Abp.Autofac;
 using Volo.Abp.Modularity;

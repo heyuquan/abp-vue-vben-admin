@@ -1,4 +1,4 @@
-using EShop.Common.Shared;
+using EShop.Shared;
 using Leopard;
 using Leopard.AspNetCore.Serilog;
 using Leopard.AspNetCore.Swashbuckle;

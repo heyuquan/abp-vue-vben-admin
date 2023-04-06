@@ -31,7 +31,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\src\EShop.Identity.EntityFrameworkCore\EShop.Identity.EntityFrameworkCore.csproj" />
-		<ProjectReference Include="..\..\..\..\common\src\EShop.Common.Shared\EShop.Common.Shared.csproj" />
+		<ProjectReference Include="..\..\..\..\shared\src\EShop.Shared\EShop.Shared.csproj" />
 		<ProjectReference Include="..\..\..\..\..\..\framework\leopard\src\Leopard.Host\Leopard.Host.csproj" />
 		<ProjectReference Include="..\..\..\..\..\..\framework\leopard\src\Leopard.Consul\Leopard.Consul.csproj" />
 	</ItemGroup>

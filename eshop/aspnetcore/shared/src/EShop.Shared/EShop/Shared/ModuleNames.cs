@@ -1,4 +1,4 @@
-﻿namespace EShop.Common.Shared
+﻿namespace EShop.Shared
 {
 
     // #、应用标识

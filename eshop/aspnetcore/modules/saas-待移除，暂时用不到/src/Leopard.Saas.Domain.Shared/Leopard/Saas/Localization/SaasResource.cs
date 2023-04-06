@@ -1,4 +1,4 @@
-﻿using EShop.Common.Shared;
+﻿using EShop.Shared;
 using Volo.Abp.Localization;
 
 namespace Leopard.Saas.Localization

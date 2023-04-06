@@ -1,7 +1,7 @@
 using Leopard;
 using Leopard.AspNetCore.Serilog;
 using Leopard.AspNetCore.Swashbuckle;
-using EShop.Common.Shared;
+using EShop.Shared;
 using Leopard.Consul;
 using Leopard.Gateway;
 using Volo.Abp.Autofac;

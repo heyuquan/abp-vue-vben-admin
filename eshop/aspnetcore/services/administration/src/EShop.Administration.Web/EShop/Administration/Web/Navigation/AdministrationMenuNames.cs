@@ -1,4 +1,4 @@
-﻿using EShop.Common.Shared;
+﻿using EShop.Shared;
 
 namespace EShop.Administration.Web.Navigation
 {

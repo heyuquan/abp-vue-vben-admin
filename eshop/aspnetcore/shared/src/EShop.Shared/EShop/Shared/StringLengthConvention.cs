@@ -1,4 +1,4 @@
-﻿namespace Leopard.Base.Consts
+﻿namespace EShop.Shared
 {
     /// <summary>
     /// 通用字符串长度约定

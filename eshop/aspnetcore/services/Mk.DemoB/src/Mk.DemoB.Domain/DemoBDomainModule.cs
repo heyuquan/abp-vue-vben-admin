@@ -1,5 +1,5 @@
 using Mk.DemoB.ObjectExtending;
-using EShop.Common.Shared;
+using EShop.Shared;
 using Volo.Abp.Modularity;
 using Volo.Abp.MultiTenancy;
 using Leopard.Saas;

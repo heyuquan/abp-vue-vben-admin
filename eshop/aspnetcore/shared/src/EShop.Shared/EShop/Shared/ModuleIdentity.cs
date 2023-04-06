@@ -1,6 +1,6 @@
 using Leopard;
 
-namespace EShop.Common.Shared
+namespace EShop.Shared
 {
     // 改为从配置文件里面读取，就不用这个类了
     public static class ModuleIdentity

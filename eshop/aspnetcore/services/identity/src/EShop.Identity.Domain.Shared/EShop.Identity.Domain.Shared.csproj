@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="$(MicrosoftPackageVersion)" />
-    <ProjectReference Include="..\..\..\..\common\src\EShop.Common.Shared\EShop.Common.Shared.csproj" />
+    <ProjectReference Include="..\..\..\..\shared\src\EShop.Shared\EShop.Shared.csproj" />
   </ItemGroup>
 
 </Project>

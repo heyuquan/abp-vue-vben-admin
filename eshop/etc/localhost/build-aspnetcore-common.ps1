@@ -14,7 +14,7 @@ $projectArray += [PsObject]@{ Path = $rootFolder + "/../../../framework/leopard"
 $projectArray += [PsObject]@{ Path = $rootFolder + "/../../../framework/modules/identity"; RunPath = ""; Name = "leopard-identity"; Type = "build"  }
 
 #eshop
-$projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/common/"; RunPath = ""; Name = "common"; Type = "build"  }
+$projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/shared/"; RunPath = ""; Name = "shared"; Type = "build"  }
 $projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/modules/account"; RunPath = ""; Name = "account"; Type = "build"  }
 #$projectArray += [PsObject]@{ Path = $rootFolder + "/../../aspnetcore/modules/saas/"; Name = "saas"; Type = "build"  }
 

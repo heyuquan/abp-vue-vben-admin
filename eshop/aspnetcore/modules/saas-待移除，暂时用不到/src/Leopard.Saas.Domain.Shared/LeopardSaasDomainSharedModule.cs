@@ -1,4 +1,4 @@
-﻿using EShop.Common.Shared;
+﻿using EShop.Shared;
 using Leopard.Saas.Localization;
 using Volo.Abp.Localization;
 using Volo.Abp.Localization.ExceptionHandling;

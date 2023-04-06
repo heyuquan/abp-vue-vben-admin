@@ -5440,17 +5440,17 @@
           "bin/placeholder/Leopard.AspNetCore.Swashbuckle.dll": {}
         }
       },
-      "EShop.Common.Shared/1.0.0": {
+      "EShop.Shared/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "Leopard.Shared": "1.0.0"
         },
         "compile": {
-          "bin/placeholder/EShop.Common.Shared.dll": {}
+          "bin/placeholder/EShop.Shared.dll": {}
         },
         "runtime": {
-          "bin/placeholder/EShop.Common.Shared.dll": {}
+          "bin/placeholder/EShop.Shared.dll": {}
         }
       },
       "Leopard.Consul/1.0.0": {
@@ -5560,7 +5560,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "EShop.Common.Shared": "1.0.0",
+          "EShop.Shared": "1.0.0",
           "Leopard.Domain.Share": "1.0.0",
           "Microsoft.Extensions.FileProviders.Embedded": "6.0.0",
           "Volo.Abp.EventBus": "6.0.1",
@@ -13997,10 +13997,10 @@
       "path": "../../../../../framework-aspnetcore/src/Leopard.AspNetCore.Swashbuckle/Leopard.AspNetCore.Swashbuckle.csproj",
       "msbuildProject": "../../../../../framework-aspnetcore/src/Leopard.AspNetCore.Swashbuckle/Leopard.AspNetCore.Swashbuckle.csproj"
     },
-    "EShop.Common.Shared/1.0.0": {
+    "EShop.Shared/1.0.0": {
       "type": "project",
-      "path": "../../../../shared/EShop.Common.Shared/EShop.Common.Shared.csproj",
-      "msbuildProject": "../../../../shared/EShop.Common.Shared/EShop.Common.Shared.csproj"
+      "path": "../../../../shared/EShop.Shared/EShop.Shared.csproj",
+      "msbuildProject": "../../../../shared/EShop.Shared/EShop.Shared.csproj"
     },
     "Leopard.Consul/1.0.0": {
       "type": "project",
@@ -14076,7 +14076,7 @@
       "Leopard.AspNetCore.Mvc >= 1.0.0",
       "Leopard.AspNetCore.Serilog >= 1.0.0",
       "Leopard.AspNetCore.Swashbuckle >= 1.0.0",
-      "EShop.Common.Shared >= 1.0.0",
+      "EShop.Shared >= 1.0.0",
       "Leopard.Consul >= 1.0.0",
       "Leopard.Host >= 1.0.0",
       "Microsoft.AspNetCore.DataProtection.StackExchangeRedis >= 6.0.*",
@@ -14137,8 +14137,8 @@
             "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\services\\Mk.DemoC\\src\\Mk.DemoC.HttpApi\\Mk.DemoC.HttpApi.csproj": {
               "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\services\\Mk.DemoC\\src\\Mk.DemoC.HttpApi\\Mk.DemoC.HttpApi.csproj"
             },
-            "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\shared\\EShop.Common.Shared\\EShop.Common.Shared.csproj": {
-              "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\shared\\EShop.Common.Shared\\EShop.Common.Shared.csproj"
+            "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\shared\\EShop.Shared\\EShop.Shared.csproj": {
+              "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\aspnetcore\\shared\\EShop.Shared\\EShop.Shared.csproj"
             },
             "D:\\Work\\OpenSource\\abp-vue-vben-admin\\framework-aspnetcore\\src\\Leopard.AspNetCore.Mvc\\Leopard.AspNetCore.Mvc.csproj": {
               "projectPath": "D:\\Work\\OpenSource\\abp-vue-vben-admin\\framework-aspnetcore\\src\\Leopard.AspNetCore.Mvc\\Leopard.AspNetCore.Mvc.csproj"

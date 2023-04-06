@@ -3998,17 +3998,17 @@
           "bin/placeholder/Leopard.dll": {}
         }
       },
-      "EShop.Common.Shared/1.0.0": {
+      "EShop.Shared/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "Leopard.Shared": "1.0.0"
         },
         "compile": {
-          "bin/placeholder/EShop.Common.Shared.dll": {}
+          "bin/placeholder/EShop.Shared.dll": {}
         },
         "runtime": {
-          "bin/placeholder/EShop.Common.Shared.dll": {}
+          "bin/placeholder/EShop.Shared.dll": {}
         }
       },
       "Leopard.Domain.Share/1.0.0": {
@@ -4058,7 +4058,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "EShop.Common.Shared": "1.0.0",
+          "EShop.Shared": "1.0.0",
           "Microsoft.Extensions.FileProviders.Embedded": "6.0.0",
           "Volo.Abp.Validation": "6.0.1"
         },
@@ -4147,7 +4147,7 @@
           "Hangfire.Core": "1.7.29",
           "HtmlAgilityPack": "1.11.46",
           "Leopard": "1.0.0",
-          "EShop.Common.Shared": "1.0.0",
+          "EShop.Shared": "1.0.0",
           "Leopard.Saas.Domain": "1.0.0",
           "Microsoft.Extensions.Http": "6.0.0",
           "Mk.DemoB.Domain.Shared": "1.0.0",
@@ -4164,7 +4164,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
-          "EShop.Common.Shared": "1.0.0",
+          "EShop.Shared": "1.0.0",
           "Leopard.Domain.Share": "1.0.0",
           "Microsoft.Extensions.FileProviders.Embedded": "6.0.0",
           "Volo.Abp.EventBus": "6.0.1",
@@ -10756,10 +10756,10 @@
       "path": "../../../../../framework-aspnetcore/src/Leopard.Core/Leopard.csproj",
       "msbuildProject": "../../../../../framework-aspnetcore/src/Leopard.Core/Leopard.csproj"
     },
-    "EShop.Common.Shared/1.0.0": {
+    "EShop.Shared/1.0.0": {
       "type": "project",
-      "path": "../../../../shared/EShop.Common.Shared/EShop.Common.Shared.csproj",
-      "msbuildProject": "../../../../shared/EShop.Common.Shared/EShop.Common.Shared.csproj"
+      "path": "../../../../shared/EShop.Shared/EShop.Shared.csproj",
+      "msbuildProject": "../../../../shared/EShop.Shared/EShop.Shared.csproj"
     },
     "Leopard.Domain.Share/1.0.0": {
       "type": "project",

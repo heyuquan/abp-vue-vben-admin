@@ -1,4 +1,4 @@
-using EShop.Common.Shared;
+using EShop.Shared;
 using EShop.Identity.Microsoft.Extensions.DependencyInjection;
 using Leopard;
 using Leopard.Host;

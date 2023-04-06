@@ -1,6 +1,6 @@
 using EShop.Administration.EntityFrameworkCore;
 using EShop.Administration.Web;
-using EShop.Common.Shared;
+using EShop.Shared;
 using EShop.Identity;
 using Leopard.Consul;
 using Leopard.Host;

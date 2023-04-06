@@ -4,7 +4,7 @@ using Volo.Abp.Modularity;
 
 namespace EShop.Shared.EntityFrameworkCore
 {
-    public class EShopCommonEntityFrameworkCoreModule : AbpModule
+    public class EShopSharedEntityFrameworkCoreModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
