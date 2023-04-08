@@ -1,9 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -19,7 +15,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 {
                     var errors = actionContext.ModelState?
                         .Where(e => e.Value.Errors.Count > 0)
-                        ?.Select(e => new
+                        ?.Select(e => new 
                         {
                             ErrorCode = -9998,
                             ErrorMessage = $"模型绑定异常：{e.Value.Errors.First().ErrorMessage}",

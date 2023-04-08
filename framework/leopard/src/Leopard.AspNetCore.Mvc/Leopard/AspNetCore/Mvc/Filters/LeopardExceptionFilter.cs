@@ -52,8 +52,6 @@ namespace Leopard.AspNetCore.Mvc.Filters
             _jsonSerializer = jsonSerializer;
             _correlationIdProvider = correlationIdProvider;
 
-            // Volo.Abp.AspNetCore.Mvc.ExceptionHandling.AbpExceptionFilter 中直接使用NullLogger，但也可以打出日志，不清楚什么原因
-            //Logger = NullLogger<LeopardExceptionFilter>.Instance;
             Logger = logger;
             _clearCacheHeadersDelegate = ClearCacheHeaders;
         }

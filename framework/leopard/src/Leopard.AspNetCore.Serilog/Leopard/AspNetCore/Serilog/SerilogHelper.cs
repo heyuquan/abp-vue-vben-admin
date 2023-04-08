@@ -4,6 +4,7 @@ using Serilog.Events;
 using Serilog.Sinks.Elasticsearch;
 using System;
 using System.Text;
+using Volo.Abp;
 
 namespace Leopard.AspNetCore.Serilog
 {
@@ -11,7 +12,12 @@ namespace Leopard.AspNetCore.Serilog
     {
         public static ILogger Create(string env, string applicationName, IConfiguration config)
         {
-            var logOptions = (config.GetSection(LeopardLogOptions.SectionName).Get<LeopardLogOptions>()) ?? new LeopardLogOptions();
+            var section = config.GetSection(LoggerOptions.SectionName);
+            if (!section.Exists())
+            {
+                throw new UserFriendlyException($"缺少 {LoggerOptions.SectionName} 配置节点");
+            }
+            var logOptions = section.Get<LoggerOptions>();
 
             var loggerConfiguration = new LoggerConfiguration()
 #if DEBUG
@@ -30,7 +36,7 @@ namespace Leopard.AspNetCore.Serilog
 #else
             ;
 #endif
-            if (logOptions.EnableToFile)
+            //if (logOptions.EnableToFile.Value)
             {
                 // https://www.cnblogs.com/Quinnz/p/12202633.html
                 // {Message:lj} 格式选项使消息中嵌入的数据输出在 JSON（j）中，但字符串文本除外，这些文本是原样输出的。
@@ -47,10 +53,10 @@ namespace Leopard.AspNetCore.Serilog
                                 )
                             );
             }
-            if (logOptions.EnableToElasticsearch)
-            {
-                loggerConfiguration = loggerConfiguration.WriteTo.Elasticsearch(ConfigureElasticSink(config, env, applicationName));
-            }
+            //if (logOptions.EnableToElasticsearch.Value)
+            //{
+            //    loggerConfiguration = loggerConfiguration.WriteTo.Elasticsearch(ConfigureElasticSink(config, env, applicationName));
+            //}
 
             loggerConfiguration.Filter.ByExcluding(logEvent =>
             {

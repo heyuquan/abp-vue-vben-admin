@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Microsoft.EntityFrameworkCore
+﻿namespace Microsoft.EntityFrameworkCore
 {
     public class LeopardModelBuilderOptions
     {
@@ -19,8 +13,7 @@ namespace Microsoft.EntityFrameworkCore
     public class DefaultDecimalPrecisionOptions
     {
         public bool IsEnable { get; set; } = true;
-        public int Precision { get; set; } = 18;
-        public int Scale { get; set; } = 4;
-
+        public int Precision { get; set; } = DecimalConst.Default_Precision;
+        public int Scale { get; set; } = DecimalConst.Default_Scale;
     }
 }

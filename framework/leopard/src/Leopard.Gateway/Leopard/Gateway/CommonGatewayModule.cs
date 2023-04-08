@@ -53,15 +53,15 @@ namespace Leopard.Gateway
             var configuration = context.Services.GetConfiguration();
             var applicationOptions = configuration.GetSection(ApplicationOptions.SectionName).Get<ApplicationOptions>();
 
-            Configure<MvcOptions>(mvcOptions =>
-            {
-                // 全局异常替换
-                // https://www.cnblogs.com/twoBcoder/p/12838913.html
-                var index = mvcOptions.Filters.ToList().FindIndex(filter => filter is ServiceFilterAttribute attr && attr.ServiceType.Equals(typeof(AbpExceptionFilter)));
-                if (index > -1)
-                    mvcOptions.Filters.RemoveAt(index);
-                mvcOptions.Filters.Add(typeof(LeopardExceptionFilter));
-            });
+            //Configure<MvcOptions>(mvcOptions =>
+            //{
+            //    // 全局异常替换
+            //    // https://www.cnblogs.com/twoBcoder/p/12838913.html
+            //    var index = mvcOptions.Filters.ToList().FindIndex(filter => filter is ServiceFilterAttribute attr && attr.ServiceType.Equals(typeof(AbpExceptionFilter)));
+            //    if (index > -1)
+            //        mvcOptions.Filters.RemoveAt(index);
+            //    mvcOptions.Filters.Add(typeof(LeopardExceptionFilter));
+            //});
             // 全局异常统一处理
             context.Services.ConfigureModelBindingExceptionHandling();
 
@@ -132,7 +132,7 @@ namespace Leopard.Gateway
 
             if (applicationOptions.Auth?.Authority?.IsNullOrWhiteSpace() ?? false)
             {
-                throw new UserFriendlyException("缺少 Application:Auth 配置节点");
+                throw new UserFriendlyException($"缺少 {AuthOptions.SectionName} 配置节点");
             }
             context.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -185,6 +185,7 @@ namespace Leopard.Gateway
 
             //app.UseAuthorization();
 
+            app.UseAnonymousUser();
             //#if DEBUG
             // swagger
             app.UseLeopardSwaggerUI();

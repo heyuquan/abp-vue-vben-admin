@@ -6,8 +6,8 @@ namespace Microsoft.EntityFrameworkCore
     public class DecimalPrecisionAttribute : Attribute
     {
         #region Field
-        private byte _precision = 18;
-        public byte _scale = 2;
+        private byte _precision = DecimalConst.Default_Precision;
+        private byte _scale = DecimalConst.Default_Scale;
         #endregion
 
         #region Construct
@@ -18,7 +18,8 @@ namespace Microsoft.EntityFrameworkCore
         /// <para>精度（默认18）</para></param>
         /// <param name="scale">scale
         /// <para>小数位数（默认2）</para></param>
-        public DecimalPrecisionAttribute(byte precision = 18, byte scale = 4)
+        public DecimalPrecisionAttribute(byte precision = DecimalConst.Default_Precision
+            , byte scale = DecimalConst.Default_Scale)
         {
             Precision = precision;
             Scale = scale;

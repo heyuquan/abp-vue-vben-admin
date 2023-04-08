@@ -14,8 +14,8 @@ namespace Leopard.AspNetCore.Serilog
         {
             var configuration = context.Services.GetConfiguration();
 
-            context.Services.AddOptions<LeopardLogOptions>()
-                .Bind(configuration.GetSection(LeopardLogOptions.SectionName))
+            context.Services.AddOptions<LoggerOptions>()
+                .Bind(configuration.GetSection(LoggerOptions.SectionName))
                 .ValidateDataAnnotations()
                 .ValidateOnStart();
         }
