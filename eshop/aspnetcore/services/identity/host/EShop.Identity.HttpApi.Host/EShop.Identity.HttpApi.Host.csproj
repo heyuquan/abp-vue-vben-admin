@@ -34,15 +34,4 @@
 		<None Remove="Logs\**" />
 	</ItemGroup>
 
-	<Target Name="IncludeSymbolFromReferences"
-        AfterTargets="ResolveAssemblyReferences"
-        Condition="@(ReferenceCopyLocalPaths) != ''">
-		<ItemGroup>
-			<ReferenceCopyLocalPaths
-					Include="%(ReferenceCopyLocalPaths.RelativeDir)%(ReferenceCopyLocalPaths.Filename).pdb"
-					DestinationSubDirectory="%(ReferenceCopyLocalPaths.DestinationSubDirectory)" />
-			<ReferenceCopyLocalPaths Remove="@(ReferenceCopyLocalPaths)"
-									 Condition="!Exists('%(FullPath)')" />
-		</ItemGroup>
-	</Target>
 </Project>
