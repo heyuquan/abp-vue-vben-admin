@@ -119,8 +119,6 @@ namespace Leopard.Host
             }
             #endregion
 
-            // Configure<AbpBackgroundJobOptions>(options => options.IsJobExecutionEnabled = false);
-
             #region db
             //Configure<AbpUnitOfWorkDefaultOptions>(options =>
             //{
