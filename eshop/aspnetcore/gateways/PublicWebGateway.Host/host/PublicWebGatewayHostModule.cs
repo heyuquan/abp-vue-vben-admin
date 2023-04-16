@@ -18,7 +18,7 @@ namespace PublicWebSiteGateway.Host
         typeof(LeopardConsulModule),
         typeof(LeopardAspNetCoreSwashbuckleModule)
         )]
-    public class PublicWebGatewayHostModule : CommonGatewayModule
+    public class PublicWebGatewayHostModule : LeopardGatewayModule
     {
         public PublicWebGatewayHostModule() : base(ModuleIdentity.PublicWebGateway.ServiceType, ModuleIdentity.PublicWebGateway.Name)
         {

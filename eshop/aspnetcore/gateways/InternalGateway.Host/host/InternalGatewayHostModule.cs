@@ -18,7 +18,7 @@ namespace InternalGateway.Host
         typeof(LeopardConsulModule),
         typeof(LeopardAspNetCoreSwashbuckleModule)
         )]
-    public class InternalGatewayHostModule : CommonGatewayModule
+    public class InternalGatewayHostModule : LeopardGatewayModule
     {
         public InternalGatewayHostModule() : base(ModuleIdentity.InternalGateway.ServiceType, ModuleIdentity.InternalGateway.Name)
         { }

@@ -28,7 +28,7 @@ namespace EShop.Administration
         typeof(EShopAdministrationEntityFrameworkCoreModule),
         typeof(EShopAdministrationHttpApiModule)
     )]
-    public class EShopAdministrationHttpApiHostModule : CommonHostModule
+    public class EShopAdministrationHttpApiHostModule : LeopardHostModule
     {
         public EShopAdministrationHttpApiHostModule() : base(ModuleIdentity.Administration.ServiceType, ModuleIdentity.Administration.Name, MultiTenancyConsts.IsEnabled)
         { }

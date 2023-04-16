@@ -8,8 +8,8 @@ namespace AdministrationGateway.Host
     {
         public async static Task<int> Main(string[] args)
         {
-            var commonProgram = new CommonGatewayProgram<AdministrationGatewayHostModule>(ModuleIdentity.AdministrationGateway.ServiceType, ModuleIdentity.AdministrationGateway.Name);
-            return await commonProgram.RunAsync(args);
+            var leopardProgram = new LeopardGatewayProgram<AdministrationGatewayHostModule>(ModuleIdentity.AdministrationGateway.ServiceType, ModuleIdentity.AdministrationGateway.Name);
+            return await leopardProgram.RunAsync(args);
         }
     }
 }

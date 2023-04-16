@@ -28,7 +28,7 @@ namespace EShop.Identity;
     // 在执行 Volo.Abp.Identity.IdentityDataSeeder 的时候会用到Setting
     typeof(AbpSettingManagementEntityFrameworkCoreModule)
 )]
-public class EShopIdentityHttpApiHostModule : CommonHostModule
+public class EShopIdentityHttpApiHostModule : LeopardHostModule
 {
     public EShopIdentityHttpApiHostModule() : base(ModuleIdentity.Identity.ServiceType, ModuleIdentity.Identity.Name, MultiTenancyConsts.IsEnabled)
     { }

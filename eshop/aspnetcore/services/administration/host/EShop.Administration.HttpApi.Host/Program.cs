@@ -8,8 +8,8 @@ namespace EShop.Administration
     {
         public async static Task<int> Main(string[] args)
         {
-            var commonProgram = new CommonHostProgram<EShopAdministrationHttpApiHostModule>(ModuleIdentity.Administration.ServiceType, ModuleIdentity.Administration.Name);
-            return await commonProgram.RunAsync(args);
+            var leopardProgram = new LeopardHostProgram<EShopAdministrationHttpApiHostModule>(ModuleIdentity.Administration.ServiceType, ModuleIdentity.Administration.Name);
+            return await leopardProgram.RunAsync(args);
         }
 
     }

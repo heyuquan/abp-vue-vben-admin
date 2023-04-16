@@ -8,7 +8,7 @@ public class Program
 {
     public async static Task<int> Main(string[] args)
     {
-        var commonProgram = new CommonHostProgram<EShopIdentityHttpApiHostModule>(ModuleIdentity.Identity.ServiceType, ModuleIdentity.Identity.Name);
-        return await commonProgram.RunAsync(args);
+        var leopardProgram = new LeopardHostProgram<EShopIdentityHttpApiHostModule>(ModuleIdentity.Identity.ServiceType, ModuleIdentity.Identity.Name);
+        return await leopardProgram.RunAsync(args);
     }
 }

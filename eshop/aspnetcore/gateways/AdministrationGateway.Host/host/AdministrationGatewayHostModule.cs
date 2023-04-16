@@ -9,7 +9,7 @@ namespace AdministrationGateway.Host
         typeof(AbpAutofacModule)
         //typeof(LeopardConsulModule),
     )]
-    public class AdministrationGatewayHostModule : CommonGatewayModule
+    public class AdministrationGatewayHostModule : LeopardGatewayModule
     {
         public AdministrationGatewayHostModule() : base(ModuleIdentity.AdministrationGateway.ServiceType, ModuleIdentity.AdministrationGateway.Name)
         { }        

@@ -8,8 +8,8 @@ namespace Mk.DemoC
     {
         public async static Task<int> Main(string[] args)
         {
-            var commonProgram = new CommonHostProgram<DemoCHttpApiHostModule>(ApplicationServiceType.ApiHost, typeof(Program).Assembly.GetName().Name);
-            return await commonProgram.RunAsync(args);
+            var leopardProgram = new LeopardHostProgram<DemoCHttpApiHostModule>(ApplicationServiceType.ApiHost, typeof(Program).Assembly.GetName().Name);
+            return await leopardProgram.RunAsync(args);
         }
     }
 }

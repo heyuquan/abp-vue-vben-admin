@@ -32,7 +32,7 @@ namespace EShop.Identity;
 
     typeof(LeopardConsulModule)
     )]
-public class EShopIdentityAuthServerModule : CommonHostModule
+public class EShopIdentityAuthServerModule : LeopardHostModule
 {
     public EShopIdentityAuthServerModule() : base(ModuleIdentity.IdentityAuthServer.ServiceType, ModuleIdentity.IdentityAuthServer.Name, MultiTenancyConsts.IsEnabled)
     { }

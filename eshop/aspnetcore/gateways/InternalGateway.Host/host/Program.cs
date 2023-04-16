@@ -8,8 +8,8 @@ namespace InternalGateway.Host
     {
         public async static Task<int> Main(string[] args)
         {
-            var commonProgram = new CommonGatewayProgram<InternalGatewayHostModule>(ModuleIdentity.InternalGateway.ServiceType, ModuleIdentity.InternalGateway.Name);
-            return await commonProgram.RunAsync(args);
+            var leopardProgram = new LeopardGatewayProgram<InternalGatewayHostModule>(ModuleIdentity.InternalGateway.ServiceType, ModuleIdentity.InternalGateway.Name);
+            return await leopardProgram.RunAsync(args);
         }
     }
 }
