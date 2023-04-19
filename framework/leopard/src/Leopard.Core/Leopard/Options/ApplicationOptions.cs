@@ -36,6 +36,6 @@ namespace Leopard.Options
         /// <summary>
         /// 是否需要HTTP元数据
         /// </summary>
-        public bool RequireHttpsMetadata { get; set; }
+        public bool RequireHttpsMetadata { get; set; } 
     }
 }

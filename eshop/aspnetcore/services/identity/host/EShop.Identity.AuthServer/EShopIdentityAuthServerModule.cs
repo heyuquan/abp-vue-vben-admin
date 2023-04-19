@@ -91,7 +91,7 @@ public class EShopIdentityAuthServerModule : LeopardHostModule
     {
         LeopardApplicationInitialization(
             context,
-            betweenAuthApplicationInitialization: (ctx) =>
+            betweenAuthHandle: (ctx) =>
             {
                 var app = ctx.GetApplicationBuilder();
                 app.UseAbpOpenIddictValidation();

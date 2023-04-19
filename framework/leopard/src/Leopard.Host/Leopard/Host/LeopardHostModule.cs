@@ -214,8 +214,8 @@ namespace Leopard.Host
                     throw new UserFriendlyException($"缺少 {AuthOptions.SectionName} 配置节点");
                 }
                 context.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                    // .addJwtBearer 只是对token的校验。 用于api，本身不获取token
-                    // .AddAbpOpenIdConnect 是要从认证服务器上获取token。 用于web应用，用户在web界面上输入账户和密码
+                    // .addJwtBearer 只需对token的校验。 用于api，本身不获取token
+                    // .AddAbpOpenIdConnect 是要从认证服务器上申请token。 用于web应用，用户在web界面上输入账户和密码
                     .AddJwtBearer(options =>
                     {
                         // ValidateIssuer，验证访问令牌中的iss声明是否与API信任的颁发者（权限）匹配（即，您的令牌服务）。验证令牌的颁发者是否符合此API的预期。
@@ -331,10 +331,10 @@ namespace Leopard.Host
         /// LeopardApplicationInitialization
         /// </summary>
         /// <param name="context"></param>
-        /// <param name="betweenAuthApplicationInitialization">在认证之后，授权之前执行</param>
+        /// <param name="betweenAuthHandle">在认证之后，授权之前执行</param>
         protected void LeopardApplicationInitialization(
             ApplicationInitializationContext context
-            , Action<ApplicationInitializationContext> betweenAuthApplicationInitialization = null)
+            , Action<ApplicationInitializationContext> betweenAuthHandle = null)
         {
             // ASP.NET Core 中间件顺序
             // https://docs.microsoft.com/zh-cn/aspnet/core/fundamentals/middleware/?view=aspnetcore-6.0#middleware-order
@@ -404,9 +404,9 @@ namespace Leopard.Host
             {
                 app.UseMultiTenancy();   // 必须在 UseIdentityServer 之前，在做ids4之前从 UseMultiTenancy 获取到tenant信息
             }
-            if (betweenAuthApplicationInitialization != null)
+            if (betweenAuthHandle != null)
             {
-                betweenAuthApplicationInitialization(context);
+                betweenAuthHandle(context);
             }
 
             app.UseAuthorization();

@@ -11,7 +11,7 @@ namespace Leopard.EntityFrameworkCore
             var configuration = context.Services.GetConfiguration();
             context.Services.AddEFLogger();
 
-            context.Services.Configure<EFLogOptions>(configuration.GetSection("EFCore:EFLog"));
+            context.Services.Configure<EFLogOptions>(configuration.GetSection(EFLogOptions.SectionName));
         }
     }
 }

@@ -39,7 +39,6 @@ namespace Leopard.AspNetCore.Mvc
             var miniProfilerOptions = context.ServiceProvider.GetRequiredService<IOptions<MiniProfilerOptions>>().Value;
             if (!miniProfilerOptions.IsEnabled)
             {
-                // 一定要把它放在UseMvc()方法之前。 
                 app.UseMiniProfiler();
             }
         }

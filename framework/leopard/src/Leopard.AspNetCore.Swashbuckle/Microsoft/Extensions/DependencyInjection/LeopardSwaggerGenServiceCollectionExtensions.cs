@@ -19,7 +19,7 @@ namespace Microsoft.Extensions.DependencyInjection
             var configuration = services.GetConfiguration();
             var applicationOptions = configuration.GetSection(ApplicationOptions.SectionName).Get<ApplicationOptions>();
             bool isRequiredSetAuth = !applicationOptions.Auth?.Authority?.IsNullOrWhiteSpace() ?? false;
-            var swaggerOptions = configuration.GetSection(SwaggerOptions.SectionName).Get<SwaggerOptions>();
+            var swaggerOptions = configuration.GetSection(SwaggerOptions.SectionName).Get<SwaggerOptions>() ?? new SwaggerOptions();
 
             Action<SwaggerGenOptions> innerSetupAction = options =>
             {

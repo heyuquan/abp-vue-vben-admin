@@ -9,6 +9,7 @@ namespace Leopard.EntityFrameworkCore.Logger
     /// </summary>
     public class EFLogOptions
     {
+        public const string SectionName = "EFCore:EFLog";
         /// <summary>
         /// 是否启用日志，默认false
         /// </summary>

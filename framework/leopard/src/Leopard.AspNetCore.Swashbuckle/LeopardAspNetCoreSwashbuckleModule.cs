@@ -14,8 +14,7 @@ namespace Leopard.AspNetCore.Swashbuckle
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
             var configuration = context.Services.GetConfiguration();
-            context.Services.AddOptions<SwaggerOptions>()
-                            .Bind(configuration.GetSection(SwaggerOptions.SectionName));
+            context.Services.Configure<SwaggerOptions>(configuration.GetSection(SwaggerOptions.SectionName));
         }
     }
 }
