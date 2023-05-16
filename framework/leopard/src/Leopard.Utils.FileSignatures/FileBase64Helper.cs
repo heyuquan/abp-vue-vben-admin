@@ -2,16 +2,12 @@
 using Leopard.Crypto;
 using Leopard.Utils;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Leopard.Helpers.IO
 {
     /// <summary>
-    /// file base64 帮助类
+    /// file base64 帮助类 （文件扩展名识别）
     /// </summary>
     public class FileBase64Helper
     {

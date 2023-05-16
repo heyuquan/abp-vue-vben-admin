@@ -1,5 +1,4 @@
-﻿using Dasync.Collections;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -309,23 +308,6 @@ namespace System.Collections.Generic
             }
         }
 
-        /// <summary>
-        /// Filters a sequence of values based on an async predicate.
-        /// </summary>
-        /// <typeparam name="T">The type of the elements of source.</typeparam>
-        /// <param name="source">A sequence to filter.</param>
-        /// <param name="predicate">An async task function to test each element for a condition.</param>
-        /// <returns>An <see cref="IAsyncEnumerable{T}"/> that contains elements from the input sequence that satisfy the condition.</returns>
-        public static async IAsyncEnumerable<T> WhereAsync<T>(this IEnumerable<T> source, Func<T, Task<bool>> predicate)
-        {
-            await foreach (var item in source.ToAsyncEnumerable())
-            {
-                if (await predicate(item))
-                {
-                    yield return item;
-                }
-            }
-        }
 
         /// <summary>
         /// Projects each element of a sequence into a new form in parallel.
@@ -335,19 +317,6 @@ namespace System.Collections.Generic
         public static async Task<IEnumerable<TResult>> SelectAsyncParallel<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, Task<TResult>> selector)
         {
             return await Task.WhenAll(source.Select(async x => await selector(x)));
-        }
-
-        /// <summary>
-        /// Projects each element of a sequence into a new form.
-        /// </summary>
-        /// <param name="source">A sequence of values to invoke a transform function on.</param>
-        /// <param name="selector">A transform function to apply to each source element.</param>
-        public static async IAsyncEnumerable<TResult> SelectAsync<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, Task<TResult>> selector)
-        {
-            await foreach (var item in source.ToAsyncEnumerable())
-            {
-                yield return await selector(item);
-            }
         }
 
         /// <summary>

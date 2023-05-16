@@ -136,3 +136,7 @@ https://blog.csdn.net/fengyuyeguirenenen/article/details/123754926
 #、BouncyCastle.Cryptography：一个基于.Net开发齐全的加密库
     https://github.com/bcgit/bc-csharp
     
+#、Nito.AsyncEx async/await 的辅助库
+   https://www.dongchuanmin.com/net/1859.html
+   AsyncLock、AsyncContext
+
