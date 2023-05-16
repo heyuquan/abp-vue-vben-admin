@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Leopard.Helpers.Timing
 {
@@ -185,7 +180,7 @@ namespace Leopard.Helpers.Timing
         /// <returns>本地时间</returns>       
         public static DateTime ToDateTime(long unixTimestamp, DateTimeStampDigit digit = DateTimeStampDigit.Millisecond)
         {
-            DateTime time ;
+            DateTime time;
 
             switch (digit)
             {
@@ -291,11 +286,14 @@ namespace Leopard.Helpers.Timing
         public static string DateDiffString_Fuzzy(DateTime dateStart, DateTime dateEnd)
         {
             TimeSpan span = DateDiffTimeSpan(dateStart, dateEnd);
-            if (span.TotalDays > 60)
+            // 一个月可能有28天，30天，31天，所以这样计算月更加精确
+            var durationMonth = (dateEnd.Year - dateStart.Year) * 12 + (dateEnd.Month - dateStart.Month);
+
+            if (durationMonth > 2)
             {
                 return dateStart.ToShortDateString();
             }
-            else if (span.TotalDays > 30)
+            else if (durationMonth > 1)
             {
                 return "1个月前";
             }
@@ -339,7 +337,7 @@ namespace Leopard.Helpers.Timing
         public static string DateDiffTimeSpan_Exact(DateTime dateStart, DateTime dateEnd)
         {
             TimeSpan ts = DateDiffTimeSpan(dateStart, dateEnd);
-            return $"{ts.Days.ToString()}天{ts.Hours.ToString()}小时{ ts.Minutes.ToString()}分钟{ts.Seconds.ToString()}秒";
+            return $"{ts.Days.ToString()}天{ts.Hours.ToString()}小时{ts.Minutes.ToString()}分钟{ts.Seconds.ToString()}秒";
         }
 
 

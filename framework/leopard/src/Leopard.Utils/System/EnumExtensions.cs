@@ -107,12 +107,9 @@ namespace System
         /// <summary>
         /// 把字符串转为枚举值
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="enum"></param>
-        /// <param name="defaultValue"></param>
-        /// <returns></returns>
         [DebuggerStepThrough]
-        public static T ToEnum<T>(this string @enum, T defaultValue)
+        public static T ToEnum<T>(this string @enum, T defaultValue, bool isIgnoreCase = true)
+            where T : Enum
         {
             if (!@enum.HasValue())
             {
@@ -120,6 +117,7 @@ namespace System
             }
             try
             {
+                string temp = isIgnoreCase ? @enum.ToLower().ToUpperHead() : @enum;
                 return (T)Enum.Parse(typeof(T), @enum, true);
             }
             catch (ArgumentException)

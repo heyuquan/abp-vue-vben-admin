@@ -1,5 +1,4 @@
 ﻿using System;
-using IdGen;
 
 namespace Leopard.Helper
 {
@@ -68,17 +67,6 @@ namespace Leopard.Helper
         public static string NewGuidStr(bool hasDash = true)
         {
             return hasDash ? Guid.NewGuid().ToString() : Guid.NewGuid().ToString("N");
-        }
-
-        /// <summary>
-        /// 生成雪花Id
-        /// </summary>
-        /// <param name="workerId">分布式情况下的Id</param>
-        /// <returns></returns>
-        public static long NewSnowflakeId(int workerId = 0)
-        {
-            var generator = new IdGenerator(workerId);
-            return generator.CreateId();
         }
     }
 }

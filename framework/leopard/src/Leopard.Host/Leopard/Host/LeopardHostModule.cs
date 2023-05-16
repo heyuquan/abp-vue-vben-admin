@@ -204,8 +204,9 @@ namespace Leopard.Host
 
 #if !Production  
             context.Services.AddLeopardSwaggerGen();
-            IdentityModelEventSource.ShowPII = true;
 #endif
+
+            IdentityModelEventSource.ShowPII = applicationOptions.IsIdentityModelShowPII;
 
             if (ApplicationServiceType == ApplicationServiceType.ApiHost)
             {
